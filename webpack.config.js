@@ -8,6 +8,11 @@ module.exports = {
         path: path.resolve(__dirname, 'dist'),
         filename: 'bundle.js'
     },
+    devServer: {
+      inline: true,
+      contentBase: path.resolve(__dirname, 'dist'),
+      port: 8200
+    },
     devtool: "source-map",
     resolve: {
         extensions: [".webpack.js", ".web.js", ".ts", ".tsx", ".js"]
@@ -20,7 +25,7 @@ module.exports = {
             },
             {
                 test: /\.(ts|tsx)$/,
-                exclude: /(node_modules|bower_components)/,
+                exclude: /node_modules/,
                 use: 'ts-loader'
             },
             {
@@ -29,6 +34,13 @@ module.exports = {
             },
             {
                 test: /\.xml$/, loader: 'xml-loader'
+            },
+            {
+                test: /\.(jpe?g|png|gif|svg)$/i,
+                loaders: [
+                    'url?limit=8192',
+                    'img'
+                ]
             },
             {
                 test: /\.json$/, loader: 'raw-loader'

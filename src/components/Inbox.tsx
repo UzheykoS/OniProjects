@@ -1,5 +1,5 @@
 import * as React from 'react'
-import * as ReactDOM from 'react-dom'
+import { Nav } from "./Nav";
 
 const enum Tabs {
     FileImport = 0,
@@ -12,11 +12,11 @@ const enum Tabs {
     Map
 }
 
-interface IContainerState {
+interface IInboxState {
     activeTab?: Tabs;
 }
 
-export class Container extends React.Component<IContainerState, any>{
+export class Inbox extends React.Component<IInboxState, any>{
     constructor(props: any) {
         super(props);
     }
@@ -24,6 +24,9 @@ export class Container extends React.Component<IContainerState, any>{
     render() {
         return (
             <div>
+                <h2>Inbox</h2>
+                {this.props.children || "Welcome to your Inbox"}
+                <Nav />
             </div>
         );
     }

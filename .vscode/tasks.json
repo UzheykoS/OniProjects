@@ -18,14 +18,14 @@
 			"taskName": "webpack_dev_watch",
 			"isBuildCommand": true
 		},
-		{
-			"args": [
-				"-p"
-			],
-			"suppressTaskName": true,
-			"taskName": "webpack dist",
-			"isBuildCommand": false
-		},
+		// {
+		// 	"args": [
+		// 		"-p"
+		// 	],
+		// 	"suppressTaskName": true,
+		// 	"taskName": "webpack dist",
+		// 	"isBuildCommand": false
+		// },
 		{
 			"args": [
 				"-d",
