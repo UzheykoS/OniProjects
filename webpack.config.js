@@ -25,8 +25,7 @@ module.exports = {
             },
             {
                 test: /\.(ts|tsx)$/,
-                exclude: /node_modules/,
-                use: 'ts-loader'
+                loader: "babel-loader?presets[]=es2015!ts-loader"
             },
             {
                 test: /\.(png|jpg)$/,
