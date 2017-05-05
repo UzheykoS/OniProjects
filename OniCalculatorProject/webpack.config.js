@@ -42,7 +42,7 @@ module.exports = {
                 ]
             },
             {
-                test: /\.json$/, loader: 'raw-loader'
+                test: /\.json$/, loader: 'json-loader'
             }]
     },
     plugins: [

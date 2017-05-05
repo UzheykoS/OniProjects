@@ -6,8 +6,11 @@ export default class Recipe {
     Name: string;  
     SubRecipes: Array<SubRecipe>;
 
-    constructor(name: string) {
+    constructor(name: string, prevIndex?: number) {
         this.Name = name;
+        if (!!prevIndex) {
+            nextRecipeId = ++prevIndex;
+        }
         this.Id = nextRecipeId++;
         this.SubRecipes = [];
     }

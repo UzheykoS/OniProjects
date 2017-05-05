@@ -6,9 +6,12 @@ export default class SubRecipe {
     Name: string;  
     IngredientsToQty: { [key: string]: { Qty: number, Desc?: string }; };
 
-    constructor(name: string) {
+    constructor(name: string, prevIndex?: number) {
         this.Name = name;
         this.Id = nextSubRecipeId++;
+        if (!!prevIndex) {
+            nextSubRecipeId = ++prevIndex;
+        }
         this.IngredientsToQty = {};
     }
 }
