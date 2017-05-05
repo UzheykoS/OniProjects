@@ -1,7 +1,7 @@
 {
-  "name": "oni",
+  "name": "oniwebsite",
   "version": "0.1.0",
-  "description": "Oni Desserts Web Project",
+  "description": "Oni Desserts Web Site Project",
   "main": "index.js",
   "scripts": {
     "typinst": "typings install -g",
