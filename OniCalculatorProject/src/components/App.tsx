@@ -41,20 +41,48 @@ export class App extends React.Component<any, IAppState>{
         rawFile.send(null);
     }
 
-    onSaveDataClick = () => {
-        const { ingredients, recipes } = this.state;
+    onSaveIngredientsClick = () => {
+        const { ingredients } = this.state;
 
-        let recipesBlob = new Blob([JSON.stringify(recipes)], { type: "application/json" });
-        let ingBlob = new Blob([JSON.stringify(ingredients)], { type: "application/json" });
+        let xmlhttp = new XMLHttpRequest();
+        xmlhttp.open("POST", "/save/ingredients");
+        xmlhttp.setRequestHeader("Content-Type", "application/json");
+        xmlhttp.send(JSON.stringify(ingredients));
 
-        let url = URL.createObjectURL(ingBlob);
-        let a = document.createElement('a');
-        a.download = "ingredients.json";
-        a.href = url;
-        a.textContent = "Download ingredients.json";
-        a.click();
-        // FileSaver.saveAs(recipesBlob, "recipes.json");        
-        // FileSaver.saveAs(ingBlob, "ingredients.json");
+        xmlhttp.onreadystatechange = () => {            
+            if (xmlhttp.readyState != 4) return;
+
+            debugger;
+            
+            if (xmlhttp.status != 200) {
+                alert(xmlhttp.status + ': ' + xmlhttp.statusText);
+            } else {
+                alert(xmlhttp.responseText);
+            }
+
+        }
+    }
+
+    onSaveRecipesClick = () => {
+        const { recipes } = this.state;
+
+        let xmlhttp = new XMLHttpRequest();
+        xmlhttp.open("POST", "/save/recipes");
+        xmlhttp.setRequestHeader("Content-Type", "application/json");
+        xmlhttp.send(JSON.stringify(recipes));
+
+        xmlhttp.onreadystatechange = () => {            
+            if (xmlhttp.readyState != 4) return;
+
+            debugger;
+            
+            if (xmlhttp.status != 200) {
+                alert(xmlhttp.status + ': ' + xmlhttp.statusText);
+            } else {
+                alert(xmlhttp.responseText);
+            }
+
+        }
     }
 
     onChange = (item) => {
@@ -114,7 +142,9 @@ export class App extends React.Component<any, IAppState>{
                 <br />
                 <Button class="B1B" text="Add Recipe" onClick={this.onRecipeButtonClick} />
                 <br />
-                <Button class="B1A" text="Save Data" onClick={this.onSaveDataClick} />
+                <Button class="B1A" text="Save Ingredients" onClick={this.onSaveIngredientsClick} />
+                <br />
+                <Button class="B1A" text="Save Recipes" onClick={this.onSaveRecipesClick} />
             </div>
             <br />
             Ingredients:
