@@ -2,10 +2,9 @@ import * as React from "react";
 import * as ReactDOM from "react-dom";
 
 import { App } from "./components/App";
-import { About } from "./components/About";
-import { Home } from "./components/Home";
 
 require("./styles/global.scss");
+require("./styles/font.css");
 
 ReactDOM.render(
     <App/>,
