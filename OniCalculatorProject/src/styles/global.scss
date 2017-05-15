@@ -92,6 +92,53 @@
         }
 }
 
+.recipes-container {
+    .recipes-table {
+
+.toggle-group {
+    margin-right: 5px;
+    cursor: pointer;    
+    }
+
+    .rotate-90 {
+    -webkit-transform: rotate(90deg);
+    -moz-transform: rotate(90deg);
+    -ms-transform: rotate(90deg);
+    -o-transform: rotate(90deg);
+    transform: rotate(90deg);
+    display: inline-block;
+}    
+.first-column {
+    text-align: left !important;  
+}
+.row-parent-label {
+    font-weight: 300;
+    color: #333333;
+    cursor: pointer;
+}
+.row-parent-data {
+    font-weight: 600;
+    color: #666666;
+}
+
+.row-child-label {
+    font-weight: 300;
+    color: #333333;
+    padding-left: 30px;
+}
+.row-child-data {
+    font-weight: 300;
+    color: #666666;
+}
+.group-visible {
+    display: table-row;
+}
+.group-hidden {
+    display: none !important;
+}
+}
+}
+
 ul.tab {
     overflow: hidden;
     list-style-type: none;

@@ -3,7 +3,7 @@ const url = require('url');
 const fs = require('fs');
 const path = require('path');
 // you can pass the parameter in the command line. e.g. node server.js 3000
-const port = process.argv[2] || 9000;
+const port = process.argv[2] || 9020;
 
 http.createServer((req, res) => {
     console.log(`${req.method} ${req.url}`);
@@ -83,7 +83,7 @@ http.createServer((req, res) => {
             }
             // if is a directory, then look for index.html
             if (fs.statSync(pathname).isDirectory()) {
-                pathname += 'dist/index.html';
+                pathname += 'index.html';
             }
             // read file from file system
             fs.readFile(pathname, (err, data) => {

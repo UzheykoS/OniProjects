@@ -1,5 +1,6 @@
 import * as React from 'react'
 import { Select, Button, Checkbox, Input, Busy, NotificationContainer, NotificationType } from "altareturn-ui-controls";
+import { RecipeGroup } from "./RecipeGroup";
 import Recipe from "../models/Recipe"
 import SubRecipe from "../models/SubRecipe"
 import Ingredient from "../models/Ingredient"
@@ -75,7 +76,7 @@ export class Recipes extends React.Component<any, IRecipesState>{
     render() {
         const { recipes, ingredients } = this.state;
 
-        return <div className="noselect" style={{ margin: "20px" }}>
+        return <div className="recipes-container" style={{ margin: "20px" }}>
             Recipes
             <div style={{ width: "200px" }}>
                 <Select
@@ -90,6 +91,11 @@ export class Recipes extends React.Component<any, IRecipesState>{
                 <br />
                 <Button class="B1A" text="Save Recipes" onClick={this.onSaveRecipesClick} />
             </div>
+            <table className="recipes-table">
+                {recipes.map((r, i) => {
+                    return <RecipeGroup recipe={r} key={i} />;
+                })}
+            </table>
         </div>;
     }
 };

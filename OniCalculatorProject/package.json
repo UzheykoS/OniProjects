@@ -7,7 +7,7 @@
     "typinst": "typings install -g",
     "devpack": "webpack -d --display-modules --progress --color",
     "relpack": "webpack -p --displaynpm -modules --progress --color",
-    "server": "node src/server.js",
+    "server": "node src/server.js 9020",
     "build": "webpack",
     "start": "npm run build -s && npm run server -s"
   },
