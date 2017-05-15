@@ -14,129 +14,113 @@
     table-layout: fixed;
     overflow-y: auto;
     font-family: Segoe UI Light;
-
-        .selected-row {
-            background-color: #d7ebf9 !important;
+    .selected-row {
+        background-color: #d7ebf9 !important;
+    }
+    .column-remove {
+        visibility: hidden;
+        text-align: center;
+        cursor: pointer;
+    }
+    .column-remove:hover {
+        color: #c10000;
+    }
+    thead {
+        height: 34px;
+        tr th div {
+            border-right: 1px solid #ccc;
         }
-        
-        .column-remove {
-            visibility: hidden;
-            text-align: center;
-            cursor: pointer;
+        tr th:last-child div {
+            border-right: none;
         }
-
-        .column-remove:hover {
-            color: #c10000;
-        }
-
-        thead {
+    }
+    tbody {
+        tr {
             height: 34px;
-
-            tr th div {
-                border-right: 1px solid #ccc;
-            }
-
-            tr th:last-child div {
-                border-right: none;
-            }
-        }
-
-        tbody {
-            tr {
-                height: 34px;
+            border: none;
+            input {
                 border: none;
-
-                input {
-                    border: none;
-                    background: transparent;
-                    text-align: center;
-                }
-            }
-
-            tr:hover {
-                background-color: #d7ebf9 !important;
-
-                .column-remove {
-                    visibility: visible;
-                }
-            }
-
-            tr:last-child {
-                border-bottom: 1px solid #ccc;
-            }
-
-            tr:nth-child(even) {
-                background-color: white;
-            }
-
-            tr:nth-child(odd) {
-                background-color: #f3f3f3;
+                background: transparent;
+                text-align: center;
             }
         }
-
-        thead tr th div, tbody tr td div {
-            margin-top: 5px;
-            margin-bottom: 5px;
-            text-align: left;
-            box-sizing: border-box;
-            white-space: nowrap;            
-            padding-right: 10px;
-            padding-left: 10px;
-            font-weight: 400;
-            text-align: center;
+        tr:hover {
+            background-color: #d7ebf9 !important;
+            .column-remove {
+                visibility: visible;
+            }
         }
-
-        thead tr th:last-child, tbody tr td:last-child {
-            width: 40px;
-            text-align: center;
+        tr:last-child {
+            border-bottom: 1px solid #ccc;
         }
+        tr:nth-child(even) {
+            background-color: white;
+        }
+        tr:nth-child(odd) {
+            background-color: #f3f3f3;
+        }
+    }
+    thead tr th div,
+    tbody tr td div {
+        margin-top: 5px;
+        margin-bottom: 5px;
+        text-align: left;
+        box-sizing: border-box;
+        white-space: nowrap;
+        padding-right: 10px;
+        padding-left: 10px;
+        font-weight: 400;
+        text-align: center;
+    }
+    thead tr th:last-child,
+    tbody tr td:last-child {
+        width: 40px;
+        text-align: center;
+    }
 }
 
 .recipes-container {
     .recipes-table {
-
-.toggle-group {
-    margin-right: 5px;
-    cursor: pointer;    
+        .toggle-group {
+            margin-right: 5px;
+            cursor: pointer;
+        }
+        .rotate-90 {
+            -webkit-transform: rotate(90deg);
+            -moz-transform: rotate(90deg);
+            -ms-transform: rotate(90deg);
+            -o-transform: rotate(90deg);
+            transform: rotate(90deg);
+            display: inline-block;
+        }
+        .first-column {
+            text-align: left !important;
+        }
+        .row-parent-label {
+            font-weight: 300;
+            color: #333333;
+            cursor: pointer;
+        }
+        .row-parent-data {
+            font-weight: 600;
+            color: #666666;
+        }
+        .row-child-label {
+            font-weight: 300;
+            color: #333333;
+            padding-left: 30px;
+        }
+        .row-child-data {
+            font-weight: 300;
+            color: #666666;
+        }
+        .group-visible {
+            display: table-row;
+        }
+        .group-hidden {
+            display: none !important;
+        }
     }
-
-    .rotate-90 {
-    -webkit-transform: rotate(90deg);
-    -moz-transform: rotate(90deg);
-    -ms-transform: rotate(90deg);
-    -o-transform: rotate(90deg);
-    transform: rotate(90deg);
-    display: inline-block;
-}    
-.first-column {
-    text-align: left !important;  
-}
-.row-parent-label {
-    font-weight: 300;
-    color: #333333;
-    cursor: pointer;
-}
-.row-parent-data {
-    font-weight: 600;
-    color: #666666;
-}
-
-.row-child-label {
-    font-weight: 300;
-    color: #333333;
-    padding-left: 30px;
-}
-.row-child-data {
-    font-weight: 300;
-    color: #666666;
-}
-.group-visible {
-    display: table-row;
-}
-.group-hidden {
-    display: none !important;
-}
-}
 }
 
 ul.tab {
@@ -164,7 +148,8 @@ ul.tab li a {
     color: #333333;
 }
 
-ul.tab li a:focus, .active {
+ul.tab li a:focus,
+.active {
     width: auto;
     border-bottom: 4px solid #1979ca;
     height: 30px;
