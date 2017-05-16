@@ -78,7 +78,7 @@ export class Recipes extends React.Component<any, IRecipesState>{
 
         return <div className="recipes-container" style={{ margin: "20px" }}>
             Recipes
-            <div style={{ width: "200px" }}>
+            <div style={{ width: "400px" }}>
                 <Select
                     showClear={true}
                     isMultiple={false}
