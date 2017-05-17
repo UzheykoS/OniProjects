@@ -40,7 +40,7 @@ export class SubRecipeGroup extends React.Component<ISubRecipeGroupProps, ISubRe
         if (!ingredients) {
             return;
         }
-        
+
         const { isCollapsed } = this.state;
 
         return Object.keys(ingredients).map((i) => {
@@ -53,7 +53,7 @@ export class SubRecipeGroup extends React.Component<ISubRecipeGroupProps, ISubRe
                 </td>
                 <td>
                     <span className="row-child-data">{"Description = " + ingredients[i].Desc}</span>
-                </td>             
+                </td>
             </tr>
         });
     }
@@ -65,15 +65,15 @@ export class SubRecipeGroup extends React.Component<ISubRecipeGroupProps, ISubRe
 
         result.push(<tr key={subrecipe.Id}>
             <td className="first-column" style={{ paddingLeft: "10px" }}>
-                <span className={"ar-crm-arrow toggle-group " + (isCollapsed ? "" : "rotate-90")} onClick={this.toggleRowGroup}/>
+                <span className={"ar-crm-arrow toggle-group " + (isCollapsed ? "" : "rotate-90")} onClick={this.toggleRowGroup} />
                 <span className="row-parent-label" onClick={() => this.toggleRowGroup()}>{subrecipe.Name}</span>
             </td>
             <td>
                 <span className="row-parent-data">{}</span>
-            </td> 
+            </td>
             <td>
                 <span className="row-parent-data">{}</span>
-            </td> 
+            </td>
         </tr>);
 
         result.push(this.renderChildRows(subrecipe.IngredientsToQty));

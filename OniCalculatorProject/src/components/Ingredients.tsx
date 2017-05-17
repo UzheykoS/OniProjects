@@ -36,12 +36,14 @@ export class Ingredients extends React.Component<any, IIngredientsState>{
         xmlhttp.send(JSON.stringify(ingredients));
 
         xmlhttp.onreadystatechange = () => {
-            if (xmlhttp.readyState != 4) return;
-
+            if (xmlhttp.readyState != 4) {
+                return;
+            }
+            
             if (xmlhttp.status != 200) {
-                alert(xmlhttp.status + ': ' + xmlhttp.statusText);
+                console.log(xmlhttp.status + ': ' + xmlhttp.statusText);
             } else {
-                alert(xmlhttp.responseText);
+                console.log(xmlhttp.responseText);
             }
         }
     }

@@ -32,8 +32,10 @@ export class Recipes extends React.Component<any, IRecipesState>{
         xmlhttp.send(JSON.stringify(recipes));
 
         xmlhttp.onreadystatechange = () => {
-            if (xmlhttp.readyState != 4) return;
-
+            if (xmlhttp.readyState != 4) {
+                return;
+            }
+            
             debugger;
 
             if (xmlhttp.status != 200) {
