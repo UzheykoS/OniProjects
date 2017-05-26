@@ -100,11 +100,10 @@
             display: inline-block;
         }
         .subrecipe-name {
-            display: inline-block;
-            border: 1px solid #ccc;
+            display: inline-block; // border: 1px solid #ccc;
         }
         .first-column {
-            text-align: left !important;            
+            text-align: left !important;
         }
         .row-parent-label {
             font-weight: 300;
@@ -151,7 +150,7 @@
             }
         }
         tbody {
-            tr {
+            .input-holder {
                 height: 34px;
                 border: none;
                 text-align: center;
@@ -160,6 +159,12 @@
                     background: transparent;
                     text-align: center;
                 }
+                input:focus {
+                    border: #90CAF9 solid 1px;
+                }
+            }
+            .select-holder {
+                padding: 2px 40px;
             }
             tr:hover {
                 background-color: #d7ebf9 !important;
@@ -177,8 +182,7 @@
                 background-color: #f3f3f3;
             }
         }
-        thead tr th div,
-        tbody tr td div {
+        subrecipe-name {
             margin-top: 5px;
             margin-bottom: 5px;
             text-align: left;

@@ -121,7 +121,7 @@ export class Recipes extends React.Component<any, IRecipesState>{
                 <Button class="B1A" text="Save Recipes" onClick={this.onSaveRecipesClick} />
             </div>
             {recipes.map((r, i) => {
-                return <RecipeGroup recipe={r} key={i} onRecipeChanged={this.onRecipeChanged} onRecipeRemoved={this.onRecipeRemoved}/>;
+                return <RecipeGroup recipe={r} key={i} ingredients={ingredients} onRecipeChanged={this.onRecipeChanged} onRecipeRemoved={this.onRecipeRemoved}/>;
             })}
         </div>;
     }
