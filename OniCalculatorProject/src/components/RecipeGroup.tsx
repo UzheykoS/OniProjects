@@ -6,6 +6,9 @@ import Ingredient from "../models/Ingredient"
 
 interface IRecipeGroupProps {
     recipe: Recipe;
+
+    onRecipeChanged?: (sr: Recipe) => void;
+    onRecipeRemoved?: (sr: Recipe) => void;
 }
 
 interface IRecipeGroupState {
@@ -61,7 +64,61 @@ export class RecipeGroup extends React.Component<IRecipeGroupProps, IRecipeGroup
         return null;
     }
 
-    renderIngredients(ingredients: { [key: string]: { Qty: number, Desc?: string }; }, isCollapsed) {
+    onRecipeRemoveClick = () => {
+        const { onRecipeRemoved, recipe } = this.props;
+        onRecipeRemoved(recipe);
+    }
+
+    onSubrecipeRemoveClick = (subrecipeId: number) => {
+        const { onRecipeChanged, recipe } = this.props;
+
+        const index = recipe.SubRecipes.findIndex(sr => sr.Id == subrecipeId);
+        if (index > -1) {
+            recipe.SubRecipes.splice(index, 1);
+        }
+
+        onRecipeChanged(recipe);
+    }
+
+    onIngredientRemoveClick = (subrecipe: SubRecipe, ingredientKey: string) => {
+        const { onRecipeChanged, recipe } = this.props;
+
+        delete recipe.SubRecipes.find(sr => sr.Id == subrecipe.Id).IngredientsToQty[ingredientKey];
+
+        onRecipeChanged(recipe);
+    }
+
+    onIngredientChanged = (sr: SubRecipe, ingredient: string) => {
+        const { recipe, onRecipeChanged } = this.props;
+
+
+
+        onRecipeChanged(recipe);
+    }
+
+    onSubrecipeChanged = (ev: any, srId: number) => {
+        const { recipe, onRecipeChanged } = this.props;
+
+        recipe.SubRecipes.forEach(subrecipe => {
+            if (srId == subrecipe.Id) {
+                subrecipe.Name = ev.target.value;
+                return;
+            }
+        });
+
+        onRecipeChanged(recipe);
+    }
+
+    onRecipeNameChanged = (ev: any) => {
+        const { recipe, onRecipeChanged } = this.props;
+
+        recipe.Name = ev.target.value;
+
+        onRecipeChanged(recipe);
+    }
+
+    renderIngredients(subrecipe: SubRecipe, isCollapsed: boolean) {
+        const ingredients = subrecipe.IngredientsToQty;
         if (!ingredients) {
             return;
         }
@@ -73,10 +130,13 @@ export class RecipeGroup extends React.Component<IRecipeGroupProps, IRecipeGroup
                     <span className="row-child-label">{i}</span>
                 </td>
                 <td>
-                    <span className="row-child-data">{"Qty = " + ingredients[i].Qty}</span>
+                    <span className="row-child-data">{ingredients[i].Qty}</span>
                 </td>
                 <td>
-                    <span className="row-child-data">{"Description = " + ingredients[i].Desc}</span>
+                    <span className="row-child-data">{ingredients[i].Desc}</span>
+                </td>
+                <td>
+                    <span className="ar-crm-close column-remove" onClick={() => this.onIngredientRemoveClick(subrecipe, i)}></span>
                 </td>
             </tr>);
         });
@@ -94,19 +154,17 @@ export class RecipeGroup extends React.Component<IRecipeGroupProps, IRecipeGroup
 
         subRecipes.forEach((sr, index) => {
             subRecipeRows.push(<tr key={sr.Id} className={isRecipeCollapsed ? "group-hidden" : "group-visible"}>
-                <td className="first-column" style={{ paddingLeft: "10px" }}>
-                    <span className={"ar-crm-arrow toggle-group " + (subrecipeCollapsedState[sr.Id] ? "" : "rotate-90")} 
-                    onClick={() => this.toggleSubRecipeGroup(sr.Id.toString())} />
-                    <span className="row-parent-label" onClick={() => this.toggleSubRecipeGroup(sr.Id.toString())}>{sr.Name}</span>
+                <td className="first-column" style={{ paddingLeft: "20px" }} colSpan={3} onClick={() => this.toggleSubRecipeGroup(sr.Id.toString())}>
+                    <span className={"ar-crm-arrow toggle-group " + (subrecipeCollapsedState[sr.Id] ? "" : "rotate-90")} />
+                    <div className="subrecipe-name" onClick={(ev) => { ev.preventDefault(); ev.stopPropagation(); }}>
+                        <Input class="if1" placeholder="Enter name" value={sr.Name} onChange={(ev) => this.onSubrecipeChanged(ev, sr.Id)} />
+                    </div>
                 </td>
                 <td>
-                    <span className="row-parent-data">{}</span>
-                </td>
-                <td>
-                    <span className="row-parent-data">{}</span>
+                    <span className="ar-crm-close column-remove" onClick={() => this.onSubrecipeRemoveClick(sr.Id)}></span>
                 </td>
             </tr>);
-            subRecipeRows.push(this.renderIngredients(sr.IngredientsToQty, subrecipeCollapsedState[sr.Id] || isRecipeCollapsed));
+            subRecipeRows.push(this.renderIngredients(sr, subrecipeCollapsedState[sr.Id] || isRecipeCollapsed));
         });
 
         return subRecipeRows;
@@ -118,22 +176,39 @@ export class RecipeGroup extends React.Component<IRecipeGroupProps, IRecipeGroup
         let recipeRows = [];
 
         recipeRows.push(<tr key={recipe.Name}>
-            <td className="first-column">
-                <span className={"ar-crm-arrow toggle-group " + (isRecipeCollapsed ? "" : "rotate-90")} onClick={this.toggleRowGroup} />
-                <span className="row-parent-label" onClick={this.toggleRowGroup}>{recipe.Name}</span>
+            <td className="first-column" colSpan={3} onClick={this.toggleRowGroup}>
+                <span className={"ar-crm-arrow toggle-group " + (isRecipeCollapsed ? "" : "rotate-90")}/>
+                <div className="subrecipe-name" onClick={(ev) => { ev.preventDefault(); ev.stopPropagation(); }}>
+                    <Input class="if1" placeholder="Enter name" value={recipe.Name} onChange={(ev) => this.onRecipeNameChanged(ev)} />
+                </div>
             </td>
             <td>
-                <span className="row-parent-data">{}</span>
-            </td>
-            <td>
-                <span className="row-parent-data">{}</span>
-            </td>
+                    <span className="ar-crm-close column-remove" onClick={() => this.onRecipeRemoveClick()}></span>
+                </td>
         </tr>);
 
         recipeRows.push(this.renderSubrecipeGroup(recipe.SubRecipes));
 
-        return <tbody>
-            {recipeRows}
-        </tbody>;
+        return <table className="recipes-table">
+            <thead>
+                <tr>
+                    <th>
+                        <div>Recipe Name</div>
+                    </th>
+                    <th>
+                        <div>Quantity</div>
+                    </th>
+                    <th>
+                        <div>Description</div>
+                    </th>
+                    <th>
+                        <span className="ar-crm-basket_deleting"></span>
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                {recipeRows}
+            </tbody>
+        </table>;
     }
 }

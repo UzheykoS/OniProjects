@@ -6,6 +6,9 @@ import Ingredient from "../models/Ingredient"
 interface ISubRecipeGroupProps {
     subrecipe: SubRecipe;
     isVisible: boolean;
+
+    onIngredientChanged?: (sr: SubRecipe, ingredient: string) => void;
+    onSubrecipeChanged?: (sr: SubRecipe) => void;
 }
 
 interface ISubRecipeGroupState {
@@ -64,15 +67,9 @@ export class SubRecipeGroup extends React.Component<ISubRecipeGroupProps, ISubRe
         let result = [];
 
         result.push(<tr key={subrecipe.Id}>
-            <td className="first-column" style={{ paddingLeft: "10px" }}>
+            <td className="first-column" style={{ paddingLeft: "10px" }} colSpan={3}>
                 <span className={"ar-crm-arrow toggle-group " + (isCollapsed ? "" : "rotate-90")} onClick={this.toggleRowGroup} />
                 <span className="row-parent-label" onClick={() => this.toggleRowGroup()}>{subrecipe.Name}</span>
-            </td>
-            <td>
-                <span className="row-parent-data">{}</span>
-            </td>
-            <td>
-                <span className="row-parent-data">{}</span>
             </td>
         </tr>);
 
