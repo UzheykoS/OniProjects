@@ -3,7 +3,6 @@ import * as ReactDOM from 'react-dom'
 import { Select, Button, Checkbox, Input, Busy, NotificationContainer, NotificationType } from "altareturn-ui-controls";
 import { Ingredients } from "./Ingredients";
 import { Recipes } from "./Recipes";
-
 import Moment = require("moment")
 
 const enum Tabs {
