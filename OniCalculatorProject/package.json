@@ -7,18 +7,22 @@
     "typinst": "typings install -g",
     "devpack": "webpack -d --display-modules --progress --color",
     "relpack": "webpack -p --displaynpm -modules --progress --color",
-    "server": "node src/server.js",
+    "server": "node src/server.js 9020",
     "build": "webpack",
     "start": "npm run build -s && npm run server -s"
   },
   "author": "Sergey Uzheyko",
   "license": "ISC",
   "dependencies": {
+    "@types/material-ui": "^0.17.7",
     "@types/react": "^15.0.9",
     "@types/react-dom": "^0.14.23",
     "react": "^15.4.2",
     "react-dom": "^15.4.2",
-    "sqlite3": "^3.1.8"
+    "sqlite3": "^3.1.8",
+    "material-ui": "^0.18.1",
+    "react": "15.4.2",
+    "react-dom": "15.4.2"
   },
   "devDependencies": {
     "@types/babel-core": "^6.7.14",
@@ -27,6 +31,7 @@
     "@types/moment": "^2.13.0",
     "@types/node": "^7.0.5",
     "@types/node-sass": "^3.10.32",
+    "@types/react-tap-event-plugin": "0.0.30",
     "altareturn-ui-controls": "^1.0.145",
     "babel-cli": "6.14.0",
     "babel-core": "6.14.0",
@@ -42,6 +47,7 @@
     "json-loader": "^0.5.4",
     "moment": "^2.18.1",
     "node-sass": "^4.5.0",
+    "react-tap-event-plugin": "^2.0.1",
     "sass-loader": "^4.0.0",
     "serve-static": "^1.12.2",
     "source-map-loader": "^0.1.6",

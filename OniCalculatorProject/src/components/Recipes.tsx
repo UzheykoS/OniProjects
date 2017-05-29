@@ -1,5 +1,6 @@
 import * as React from 'react'
 import { Select, Button, Checkbox, Input, Busy, NotificationContainer, NotificationType } from "altareturn-ui-controls";
+import { RecipeGroup } from "./RecipeGroup";
 import Recipe from "../models/Recipe"
 import SubRecipe from "../models/SubRecipe"
 import Ingredient from "../models/Ingredient"
@@ -31,7 +32,9 @@ export class Recipes extends React.Component<any, IRecipesState>{
         xmlhttp.send(JSON.stringify(recipes));
 
         xmlhttp.onreadystatechange = () => {
-            if (xmlhttp.readyState != 4) return;
+            if (xmlhttp.readyState != 4) {
+                return;
+            }
 
             debugger;
 
@@ -40,7 +43,6 @@ export class Recipes extends React.Component<any, IRecipesState>{
             } else {
                 alert(xmlhttp.responseText);
             }
-
         }
     }
 
@@ -72,12 +74,40 @@ export class Recipes extends React.Component<any, IRecipesState>{
         })
     }
 
+    onRecipeChanged = (recipe: Recipe) => {
+        const { recipes, ingredients } = this.state;
+
+        recipes.forEach(r => {
+            if (r.Id === recipe.Id) {
+                r = recipe;
+                return;
+            }
+        })
+
+        this.setState({
+            recipes
+        })
+    }
+
+    onRecipeRemoved = (recipe: Recipe) => {
+        const { recipes, ingredients } = this.state;
+
+        const index = recipes.indexOf(recipe);
+        if (index > -1) {
+            recipes.splice(index, 1);
+        }
+        
+        this.setState({
+            recipes
+        })
+    }
+
     render() {
         const { recipes, ingredients } = this.state;
 
-        return <div className="noselect" style={{ margin: "20px" }}>
-            Recipes
-            <div style={{ width: "200px" }}>
+        return <div className="recipes-container" style={{ margin: "20px" }}>
+            Ingredients:
+            <div>
                 <Select
                     showClear={true}
                     isMultiple={false}
@@ -90,6 +120,9 @@ export class Recipes extends React.Component<any, IRecipesState>{
                 <br />
                 <Button class="B1A" text="Save Recipes" onClick={this.onSaveRecipesClick} />
             </div>
+            {recipes.map((r, i) => {
+                return <RecipeGroup recipe={r} key={i} ingredients={ingredients} onRecipeChanged={this.onRecipeChanged} onRecipeRemoved={this.onRecipeRemoved}/>;
+            })}
         </div>;
     }
 };

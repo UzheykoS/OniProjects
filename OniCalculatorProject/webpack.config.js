@@ -48,9 +48,5 @@ module.exports = {
     plugins: [
         new HtmlWebpackPlugin({ template: 'template.ejs' }),
         new ExtractTextPlugin("styles.css")
-    ],
-    externals: {
-        "react": "React",
-        "react-dom": "ReactDOM"
-    }
+    ]
 };
