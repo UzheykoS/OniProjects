@@ -30,6 +30,7 @@ const styles = {
 
 interface IIngredientsState {
     ingredients?: Array<Ingredient>;
+    selectedRows?: Array<any>;
 }
 
 export class Ingredients extends React.Component<any, IIngredientsState>{
@@ -37,7 +38,8 @@ export class Ingredients extends React.Component<any, IIngredientsState>{
         super(props);
 
         this.state = {
-            ingredients: ingredients || []
+            ingredients: ingredients || [],
+            selectedRows: []
         }
     }
 
@@ -49,6 +51,21 @@ export class Ingredients extends React.Component<any, IIngredientsState>{
         this.setState({
             ingredients
         })
+    }
+
+    onRemoveIngredientsClick = () => {
+        const { selectedRows, ingredients } = this.state;
+        debugger;
+        selectedRows.forEach(sr => {
+            let index = ingredients.findIndex(i => i.Id == sr);
+            if (index > -1) {
+                ingredients.splice(index, 1);
+            }
+        });
+
+        this.setState({
+            ingredients
+        });
     }
 
     onSaveIngredientsClick = () => {
@@ -105,10 +122,39 @@ export class Ingredients extends React.Component<any, IIngredientsState>{
         });
     }
 
+    onTextFieldClick = (ev) => {
+        ev.preventDefault();
+        ev.stopPropagation();
+    }
+
+    onRowSelect = (ev) => {
+        const { selectedRows, ingredients } = this.state;
+        debugger;
+        selectedRows.length = 0;
+        if (ev == "all") {
+            if (selectedRows.length !== ingredients.length) {
+                ingredients.forEach(i => {
+                    selectedRows.push(i.Id);
+                });
+            }
+        } else if (ev == "none") {            
+            //do nothing
+        }else {            
+            ev.forEach(element => {
+                selectedRows.push(ingredients[element].Id);
+            });
+        }
+
+        this.setState({
+            selectedRows
+        });
+    }
+
     render() {
-        const { ingredients } = this.state;
+        const { ingredients, selectedRows } = this.state;
         const buttonsStyle = {
             margin: 12,
+            width: 172
         };
 
         return <div className="ingredients-container">
@@ -147,18 +193,21 @@ export class Ingredients extends React.Component<any, IIngredientsState>{
                 <RaisedButton label="Add Ingredient" secondary={true} style={buttonsStyle} onClick={this.onIngredientButtonClick} />
                 <br />
                 <RaisedButton label="Save Ingredients" primary={true} style={buttonsStyle} onClick={this.onSaveIngredientsClick} />
+                <br />
+                <RaisedButton label="Remove selected" style={buttonsStyle} onClick={this.onRemoveIngredientsClick} />
             </div>
             <div>
                 <Table
                     height='300px'
                     fixedHeader={true}
                     fixedFooter={true}
-                    selectable={false}
-                    multiSelectable={false}>
+                    selectable={true}
+                    onRowSelection={this.onRowSelect}
+                    multiSelectable={true}>
                     <TableHeader
-                        displaySelectAll={false}
-                        adjustForCheckbox={false}
-                        enableSelectAll={false}>
+                        displaySelectAll={true}
+                        adjustForCheckbox={true}
+                        enableSelectAll={true}>
                         <TableRow>
                             <TableHeaderColumn colSpan={3} tooltip="Super Header" style={{ textAlign: 'center' }}>
                                 Ingredients Table
@@ -171,22 +220,26 @@ export class Ingredients extends React.Component<any, IIngredientsState>{
                         </TableRow>
                     </TableHeader>
                     <TableBody
-                        displayRowCheckbox={false}
+                        displayRowCheckbox={true}
                         deselectOnClickaway={false}
                         showRowHover={true}
                         stripedRows={true}>
                         {ingredients.map((row, index) => (
-                            <TableRow key={index}>
-                                <TableRowColumn>{row.Id}</TableRowColumn>                                
+                            <TableRow key={index} selected={selectedRows.indexOf(row.Id) > -1}>
+                                <TableRowColumn>{row.Id}</TableRowColumn>
                                 <TableRowColumn>
-                                    <TextField hintText="Hint Text" value={row.Name} onChange={(ev) => this.onNameChanged(ev, row)}/>
+                                    <div onClick={this.onTextFieldClick}>
+                                        <TextField hintText="Hint Text" value={row.Name} onChange={(ev) => this.onNameChanged(ev, row)} />
+                                    </div>
                                 </TableRowColumn>
                                 <TableRowColumn>
-                                    <TextField hintText="Hint Text" value={row.Price} onChange={(ev) => this.onPriceChanged(ev, row)} />
+                                    <div onClick={this.onTextFieldClick}>
+                                        <TextField hintText="Hint Text" value={row.Price} onChange={(ev) => this.onPriceChanged(ev, row)} />
+                                    </div>
                                 </TableRowColumn>
-                                <TableRowColumn style={{ width: "30px", cursor: "pointer" }}>
+                                {/*<TableRowColumn style={{ width: "30px", cursor: "pointer" }}>
                                     <FontIcon className="ar-crm-close" onClick={() => this.onRemoveClick(row)}/>
-                                </TableRowColumn>
+                                </TableRowColumn>*/}
                             </TableRow>
                         ))}
                     </TableBody>
