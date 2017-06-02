@@ -9,9 +9,9 @@ module.exports = {
         filename: 'bundle.js'
     },
     devServer: {
-      inline: true,
-      contentBase: path.resolve(__dirname, 'dist'),
-      port: 8200
+        inline: true,
+        contentBase: path.resolve(__dirname, 'dist'),
+        port: 8200
     },
     devtool: "source-map",
     resolve: {
@@ -28,18 +28,14 @@ module.exports = {
                 loader: "babel-loader?presets[]=es2015!ts-loader"
             },
             {
-                test: /\.(png|jpg)$/,
-                use: 'url-loader?limit=8192'
+                test: /\.(jpe?g|png|gif|svg)$/i,
+                loaders: [
+                    "file-loader?name=/images/[name].[ext]",
+                    'image-webpack-loader?{optimizationLevel: 7, interlaced: false, mozjpeg: {quality: 65}}'
+                ]
             },
             {
                 test: /\.xml$/, loader: 'xml-loader'
-            },
-            {
-                test: /\.(jpe?g|png|gif|svg)$/i,
-                loaders: [
-                    'url?limit=8192',
-                    'img'
-                ]
             },
             {
                 test: /\.json$/, loader: 'raw-loader'
