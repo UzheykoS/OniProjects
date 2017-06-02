@@ -57,15 +57,15 @@ export class Recipes extends React.Component<any, IRecipesState>{
     onRecipeButtonClick = () => {
         const { recipes, ingredients } = this.state;
 
-        let recipe = new Recipe("TestRecipe", recipes.length > 0 ? recipes[recipes.length - 1].Id : null);
-        if (!!ingredients && ingredients.length > 1) {
-            let subRecipe = new SubRecipe("TestSubRecipe");
+        let recipe = new Recipe("", recipes.length > 0 ? recipes[recipes.length - 1].Id : null);
+        // if (!!ingredients && ingredients.length > 1) {
+        //     let subRecipe = new SubRecipe("TestSubRecipe");
 
-            subRecipe.IngredientsToQty[ingredients[0].Name] = { Qty: 100, Desc: "test desc" };
-            subRecipe.IngredientsToQty[ingredients[1].Name + "1"] = { Qty: 250, Desc: "test desc 2" };
+        //     subRecipe.IngredientsToQty[ingredients[0].Name] = { Qty: 100, Desc: "test desc" };
+        //     subRecipe.IngredientsToQty[ingredients[1].Name + "1"] = { Qty: 250, Desc: "test desc 2" };
 
-            recipe.SubRecipes.push(subRecipe);
-        }
+        //     recipe.SubRecipes.push(subRecipe);
+        // }
 
         recipes.push(recipe);
 

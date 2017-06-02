@@ -14,15 +14,14 @@
   "author": "Sergey Uzheyko",
   "license": "ISC",
   "dependencies": {
+    "@types/bootstrap": "^3.3.33",
     "@types/material-ui": "^0.17.7",
     "@types/react": "^15.0.9",
     "@types/react-dom": "^0.14.23",
-    "react": "^15.4.2",
-    "react-dom": "^15.4.2",
-    "sqlite3": "^3.1.8",
     "material-ui": "^0.18.1",
     "react": "15.4.2",
-    "react-dom": "15.4.2"
+    "react-dom": "15.4.2",
+    "sqlite3": "^3.1.8"
   },
   "devDependencies": {
     "@types/babel-core": "^6.7.14",
