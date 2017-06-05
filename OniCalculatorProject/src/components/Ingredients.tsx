@@ -3,15 +3,6 @@ import { Select, Button, Checkbox, Input, Busy, NotificationContainer, Notificat
 import Ingredient from "../models/Ingredient"
 
 import RaisedButton from 'material-ui/RaisedButton';
-import {
-    Table,
-    TableBody,
-    TableFooter,
-    TableHeader,
-    TableHeaderColumn,
-    TableRow,
-    TableRowColumn,
-} from 'material-ui/Table';
 import TextField from 'material-ui/TextField';
 import FontIcon from 'material-ui/FontIcon';
 
@@ -30,7 +21,7 @@ const styles = {
 
 interface IIngredientsState {
     ingredients?: Array<Ingredient>;
-    selectedRows?: Array<any>;
+    searchText?: string;
 }
 
 export class Ingredients extends React.Component<any, IIngredientsState>{
@@ -39,33 +30,18 @@ export class Ingredients extends React.Component<any, IIngredientsState>{
 
         this.state = {
             ingredients: ingredients || [],
-            selectedRows: []
+            searchText: ""
         }
     }
 
     onIngredientButtonClick = () => {
         const { ingredients } = this.state;
 
-        ingredients.push(new Ingredient("", 0, ingredients.length > 0 ? ingredients[ingredients.length - 1].Id : null));
+        ingredients.push(new Ingredient("", 0, "", ingredients.length > 0 ? ingredients[ingredients.length - 1].Id : null));
 
         this.setState({
             ingredients
         })
-    }
-
-    onRemoveIngredientsClick = () => {
-        const { selectedRows, ingredients } = this.state;
-        debugger;
-        selectedRows.forEach(sr => {
-            let index = ingredients.findIndex(i => i.Id == sr);
-            if (index > -1) {
-                ingredients.splice(index, 1);
-            }
-        });
-
-        this.setState({
-            ingredients
-        });
     }
 
     onSaveIngredientsClick = () => {
@@ -109,6 +85,16 @@ export class Ingredients extends React.Component<any, IIngredientsState>{
         });
     }
 
+    onSupplierChanged = (ev: any, ingredient: Ingredient) => {
+        const { ingredients } = this.state;
+
+        ingredients.find(i => i == ingredient).Supplier = ev.target.value;
+
+        this.setState({
+            ingredients
+        });
+    }
+
     onRemoveClick = (ingredient: Ingredient) => {
         const { ingredients } = this.state;
 
@@ -122,42 +108,23 @@ export class Ingredients extends React.Component<any, IIngredientsState>{
         });
     }
 
-    onTextFieldClick = (ev) => {
-        ev.preventDefault();
-        ev.stopPropagation();
-    }
-
-    onRowSelect = (ev) => {
-        const { selectedRows, ingredients } = this.state;
-        debugger;
-        selectedRows.length = 0;
-        if (ev == "all") {
-            if (selectedRows.length !== ingredients.length) {
-                ingredients.forEach(i => {
-                    selectedRows.push(i.Id);
-                });
-            }
-        } else if (ev == "none") {            
-            //do nothing
-        }else {            
-            ev.forEach(element => {
-                selectedRows.push(ingredients[element].Id);
-            });
-        }
-
+    onIngredientSearch = (ev) => {
         this.setState({
-            selectedRows
-        });
+            searchText: ev.target.value
+        })
     }
 
     render() {
-        const { ingredients, selectedRows } = this.state;
+        const { ingredients, searchText } = this.state;
         const buttonsStyle = {
             margin: 12,
             width: 172
         };
 
         return <div className="ingredients-container">
+            <div className="search-wrapper">
+                <Input class="if1" placeholder="Search" value={searchText} onChange={this.onIngredientSearch} />
+            </div>
             <table className="ingredients-table">
                 <thead>
                     <tr>
@@ -168,18 +135,24 @@ export class Ingredients extends React.Component<any, IIngredientsState>{
                             <div>Price per kg</div>
                         </th>
                         <th>
+                            <div>Supplier</div>
+                        </th>
+                        <th>
                             <span className="ar-crm-basket_deleting"></span>
                         </th>
                     </tr>
                 </thead>
                 <tbody>
-                    {ingredients.map(i => {
+                    {ingredients.filter(i => i.Name.toLowerCase().indexOf(searchText.toLowerCase()) > -1).map(i => {
                         return <tr key={i.Id}>
                             <td>
                                 <Input class="if1" placeholder="Enter name" value={i.Name} onChange={(ev) => this.onNameChanged(ev, i)} />
                             </td>
                             <td>
                                 <Input class="if1" placeholder="Enter price" value={i.Price ? i.Price.toString() : ""} onChange={(ev) => this.onPriceChanged(ev, i)} />
+                            </td>
+                            <td>
+                                <Input class="if1" placeholder="Enter supplier" value={i.Supplier ? i.Supplier.toString() : ""} onChange={(ev) => this.onSupplierChanged(ev, i)} />
                             </td>
                             <td>
                                 <span className="ar-crm-close column-remove" onClick={() => this.onRemoveClick(i)}></span>
@@ -193,64 +166,6 @@ export class Ingredients extends React.Component<any, IIngredientsState>{
                 <RaisedButton label="Add Ingredient" secondary={true} style={buttonsStyle} onClick={this.onIngredientButtonClick} />
                 <br />
                 <RaisedButton label="Save Ingredients" primary={true} style={buttonsStyle} onClick={this.onSaveIngredientsClick} />
-                <br />
-                <RaisedButton label="Remove selected" style={buttonsStyle} onClick={this.onRemoveIngredientsClick} />
-            </div>
-            <div>
-                <Table
-                    height='300px'
-                    fixedHeader={true}
-                    fixedFooter={true}
-                    selectable={true}
-                    onRowSelection={this.onRowSelect}
-                    multiSelectable={true}>
-                    <TableHeader
-                        displaySelectAll={true}
-                        adjustForCheckbox={true}
-                        enableSelectAll={true}>
-                        <TableRow>
-                            <TableHeaderColumn colSpan={3} tooltip="Super Header" style={{ textAlign: 'center' }}>
-                                Ingredients Table
-                            </TableHeaderColumn>
-                        </TableRow>
-                        <TableRow>
-                            <TableHeaderColumn tooltip="The ID">ID</TableHeaderColumn>
-                            <TableHeaderColumn tooltip="The Name">Name</TableHeaderColumn>
-                            <TableHeaderColumn tooltip="The Price">Price</TableHeaderColumn>
-                        </TableRow>
-                    </TableHeader>
-                    <TableBody
-                        displayRowCheckbox={true}
-                        deselectOnClickaway={false}
-                        showRowHover={true}
-                        stripedRows={true}>
-                        {ingredients.map((row, index) => (
-                            <TableRow key={index} selected={selectedRows.indexOf(row.Id) > -1}>
-                                <TableRowColumn>{row.Id}</TableRowColumn>
-                                <TableRowColumn>
-                                    <div onClick={this.onTextFieldClick}>
-                                        <TextField hintText="Hint Text" value={row.Name} onChange={(ev) => this.onNameChanged(ev, row)} />
-                                    </div>
-                                </TableRowColumn>
-                                <TableRowColumn>
-                                    <div onClick={this.onTextFieldClick}>
-                                        <TextField hintText="Hint Text" value={row.Price} onChange={(ev) => this.onPriceChanged(ev, row)} />
-                                    </div>
-                                </TableRowColumn>
-                                {/*<TableRowColumn style={{ width: "30px", cursor: "pointer" }}>
-                                    <FontIcon className="ar-crm-close" onClick={() => this.onRemoveClick(row)}/>
-                                </TableRowColumn>*/}
-                            </TableRow>
-                        ))}
-                    </TableBody>
-                    <TableFooter adjustForCheckbox={true}>
-                        <TableRow>
-                            <TableRowColumn>ID</TableRowColumn>
-                            <TableRowColumn>Name</TableRowColumn>
-                            <TableRowColumn>Price</TableRowColumn>
-                        </TableRow>
-                    </TableFooter>
-                </Table>
             </div>
         </div>;
     }

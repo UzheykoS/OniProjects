@@ -4,6 +4,7 @@ import { RecipeGroup } from "./RecipeGroup";
 import Recipe from "../models/Recipe"
 import SubRecipe from "../models/SubRecipe"
 import Ingredient from "../models/Ingredient"
+import {Tabs, Tab} from 'material-ui/Tabs';
 
 let recipes = require('../recipes.json')
 let ingredients = require('../ingredients.json')
