@@ -1,12 +1,13 @@
 import * as React from 'react'
 import { Select, Button, Checkbox, Input, Busy, NotificationContainer, NotificationType } from "altareturn-ui-controls";
 import Ingredient from "../models/Ingredient"
+import Helper from "../middleware/helper"
 
 import RaisedButton from 'material-ui/RaisedButton';
 import TextField from 'material-ui/TextField';
 import FontIcon from 'material-ui/FontIcon';
 
-let ingredients = require('../ingredients.json')
+// let ingredients = require('../ingredients.json')
 
 const styles = {
     propContainer: {
@@ -29,15 +30,22 @@ export class Ingredients extends React.Component<any, IIngredientsState>{
         super(props);
 
         this.state = {
-            ingredients: ingredients || [],
+            ingredients: [],
             searchText: ""
         }
+    }
+
+    async componentDidMount() {     
+        let ingredients = await Helper.getIngredients();
+        this.setState({
+            ingredients
+        })
     }
 
     onIngredientButtonClick = () => {
         const { ingredients } = this.state;
 
-        ingredients.push(new Ingredient("", 0, "", ingredients.length > 0 ? ingredients[ingredients.length - 1].Id : null));
+        ingredients.push(new Ingredient());
 
         this.setState({
             ingredients

@@ -134,7 +134,7 @@ export class RecipeGroup extends React.Component<IRecipeGroupProps, IRecipeGroup
                     <div className="select-holder">
                         <Select
                             showClear={false}
-                            defaultValue={(options: Array<Ingredient>) => options.filter(o => o.Name == i)}
+                            defaultValue={(options: Array<Ingredient>) => options.filter(o => o.Id.toString() == i)}
                             isMultiple={false}
                             options={ingredients}
                             optionTitle={o => o.map((el) => el.Name).join("")}

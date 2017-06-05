@@ -1,17 +1,19 @@
-let nextRecipeId = 1;
 import SubRecipe from "./SubRecipe"
 
 export default class Recipe {
     Id: number;
     Name: string;  
+    CategoryId: number;
     SubRecipes: Array<SubRecipe>;
 
-    constructor(name: string, prevIndex?: number) {
-        this.Name = name;
-        if (!!prevIndex) {
-            nextRecipeId = ++prevIndex;
-        }
-        this.Id = nextRecipeId++;
+    constructor() {
         this.SubRecipes = [];
     }
+
+    // constructor(name: string, id: number, categoryId: number) {
+    //     this.Name = name;
+    //     this.Id = id;
+    //     this.CategoryId = categoryId; 
+    //     this.SubRecipes = [];
+    // }
 }

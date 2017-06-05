@@ -1,17 +1,17 @@
-let nextSubRecipeId = 1;
-// import Ingredient from "./Ingredient"
+import Ingredient from "./Ingredient"
 
 export default class SubRecipe {
     Id: number;
     Name: string;  
-    IngredientsToQty: { [key: string]: { Qty: number, Desc?: string }; };
+    IngredientsToQty: { [key: number]: { Qty: number, Desc?: string }; };
 
-    constructor(name: string, prevIndex?: number) {
-        this.Name = name;
-        this.Id = nextSubRecipeId++;
-        if (!!prevIndex) {
-            nextSubRecipeId = ++prevIndex;
-        }
+    constructor() {
         this.IngredientsToQty = {};
     }
+
+    // constructor(name: string, id: number) {
+    //     this.Name = name;
+    //     this.Id = id;
+    //     this.IngredientsToQty = {};
+    // }
 }
