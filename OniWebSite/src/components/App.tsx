@@ -1,15 +1,38 @@
 import * as React from 'react'
 import * as ReactDOM from 'react-dom'
-import { Nav } from "./Nav";
-// require("file-loader!../images/banner.jpg");
-require("../images/banner.jpg");
+// import { Nav } from "./Nav";
+require("../images/cite_1920.png");
+require("../images/favicon.png");
+require("../images/logo.png");
+require("../images/facebook.png");
+require("../images/instagram.png");
+require("../images/telegram.png");
 
 export class App extends React.Component<any, any>{
     render() {
         return <div className="app">
-            APP
-             <Nav />
-            <span>Site maintenance</span>
+            <div className="central-panel">
+                <span className="logo"></span>
+                <span className="message">
+                    <div>Welcome to ONI!</div>
+                    <div>На данный момент сайт находится на стадии разработки.</div>
+                    <div>Все актуальные новости Вы можете найти на наших</div>
+                    <div>страницах в социальных сетях. </div>
+                    <div>Follow us!</div>
+                    <span className="phone">+ 38 (096) 249 04 30</span>
+                    <div>
+                        <a target="_blank" href="https://www.facebook.com/">
+                            <img className="social_network" src="images/facebook.png" />
+                        </a>
+                        <a target="_blank" href="https://www.instagram.com">
+                            <img className="social_network" src="images/instagram.png" />
+                        </a>
+                        <a target="_blank"href="https://www.telegram.com">
+                            <img className="social_network" src="images/telegram.png" />
+                        </a>
+                    </div>
+                </span>
+            </div>
         </div>;
     }
 };

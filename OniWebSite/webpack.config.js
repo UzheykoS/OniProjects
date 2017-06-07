@@ -31,7 +31,9 @@ module.exports = {
                 test: /\.(jpe?g|png|gif|svg)$/i,
                 loaders: [
                     "file-loader?name=/images/[name].[ext]",
-                    'image-webpack-loader?{optimizationLevel: 7, interlaced: false, mozjpeg: {quality: 65}}'
+                    {
+                        loader: 'image-webpack-loader'
+                    }
                 ]
             },
             {
@@ -44,9 +46,5 @@ module.exports = {
     plugins: [
         new HtmlWebpackPlugin({ template: 'template.ejs' }),
         new ExtractTextPlugin("styles.css")
-    ],
-    externals: {
-        "react": "React",
-        "react-dom": "ReactDOM"
-    }
+    ]
 };
