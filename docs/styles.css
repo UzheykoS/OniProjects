@@ -14,7 +14,7 @@ body {
   height: 100%;
   z-index: 0; }
   
-@media only screen and (min-width : 320px) {
+@media only screen and (min-width : 320px), only screen and (min-device-width: 374px) and (max-device-width: 376px) {
   .app {
     background-image: url("/OniProjects/images/cite_680.png"); }
   .central-panel {
