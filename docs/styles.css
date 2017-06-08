@@ -14,7 +14,7 @@ body {
   height: 100%;
   z-index: 0; }
 
-@media screen and (max-width: 800px) and (max-device-width: 800px) {
+@media only screen and (min-device-width: 480px) {
   .app {
     background-image: url("/OniProjects/images/cite_680.png"); }
   .central-panel {
@@ -31,7 +31,7 @@ body {
     width: 24px;
     padding: 5px 10px; } }
 
-@media screen and (min-width: 800px) {
+@media only screen and (min-device-width: 800px) {
   .app {
     background-image: url("/OniProjects/images/cite_1920_v2.png"); }
   .central-panel {
