@@ -23,7 +23,7 @@ body {
   position: absolute;
   z-index: 2; }
   .central-panel .logo {
-    background-image: url("/images/logo.png");
+    background-image: url("OniProjects/images/logo.png");
     background-size: contain;
     background-position: center;
     background-repeat: no-repeat;
