@@ -1,12 +1,6 @@
 import * as React from 'react'
 import * as ReactDOM from 'react-dom'
-// import { Nav } from "./Nav";
-require("../images/cite_1920.png");
-require("../images/favicon.png");
-require("../images/logo.png");
-require("../images/facebook.png");
-require("../images/instagram.png");
-require("../images/telegram.png");
+import { Nav } from "./Nav";
 
 export class App extends React.Component<any, any>{
     render() {
@@ -33,6 +27,7 @@ export class App extends React.Component<any, any>{
                     </div>
                 </span>
             </div>
+            <Nav />
         </div>;
     }
 };

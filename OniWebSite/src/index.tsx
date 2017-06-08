@@ -1,14 +1,17 @@
-import * as React from "react";
-import * as ReactDOM from "react-dom";
-import { App } from "./components/App";
-require("./styles/global.scss");
-require("./styles/global.scss");
-require("./styles/global.scss");
 
-ReactDOM.render(
-    <App/>,
-    document.getElementById("root")
-);
+require("./styles/global.scss");
+require("./styles/global.scss");
+require("./styles/global.scss");
+require("./images/cite_1920.png");
+require("./images/favicon.png");
+require("./images/logo.png");
+require("./images/facebook.png");
+require("./images/instagram.png");
+require("./images/telegram.png");
+
+// import * as React from "react";
+// import * as ReactDOM from "react-dom";
+// import { App } from "./components/App";
 // import { Router, Route, IndexRoute, IndexRedirect, Redirect, browserHistory, hashHistory } from 'react-router';
 
 // import { Inbox } from "./components/Inbox";
