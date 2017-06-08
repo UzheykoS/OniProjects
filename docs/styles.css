@@ -15,7 +15,7 @@ body {
   
 @media only screen and (min-width : 320px), only screen and (min-device-width: 374px) and (max-device-width: 376px) {
   .app {
-    background-image: url("/OniProjects/images/cite_680.png");
+    background-image: url("/images/cite_680.png");
     background-size: cover; }
   .central-panel {
     top: 25%; }
@@ -33,7 +33,7 @@ body {
 
 @media only screen and (min-width: 800px) {
   .app {
-    background-image: url("/OniProjects/images/cite_1920_v2.png");
+    background-image: url("/images/cite_1920_v2.png");
     background-size: contain;  }
   .central-panel {
     top: 27%; }
@@ -55,7 +55,7 @@ body {
   position: absolute;
   z-index: 2; }
   .central-panel .logo {
-    background-image: url("/OniProjects/images/logo.png");
+    background-image: url("/images/logo.png");
     background-size: contain;
     background-position: center;
     background-repeat: no-repeat;
