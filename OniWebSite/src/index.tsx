@@ -1,8 +1,8 @@
 
 require("./styles/global.scss");
-require("./styles/global.scss");
-require("./styles/global.scss");
 require("./images/cite_1920.png");
+require("./images/cite_1920_v2.png");
+require("./images/cite_680.png");
 require("./images/favicon.png");
 require("./images/logo.png");
 require("./images/facebook.png");

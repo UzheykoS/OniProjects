@@ -7,7 +7,7 @@
     "typinst": "typings install -g",
     "devpack": "webpack -d --display-modules --progress --color",
     "relpack": "webpack -p --displaynpm -modules --progress --color",
-    "server": "http-server -p 9030 dist",
+    "server": "http-server -p 9040 dist",
     "build": "webpack",
     "start": "npm run build -s && npm run server -s"
   },
