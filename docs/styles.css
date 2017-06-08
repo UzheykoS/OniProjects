@@ -6,8 +6,7 @@ body {
 .root {
   height: 100%; }
 
-.app {
-  background-size: contain;
+.app {  
   background-position: center;
   background-repeat: no-repeat;
   background-attachment: fixed;
@@ -16,7 +15,8 @@ body {
   
 @media only screen and (min-width : 320px), only screen and (min-device-width: 374px) and (max-device-width: 376px) {
   .app {
-    background-image: url("/OniProjects/images/cite_680.png"); }
+    background-image: url("/OniProjects/images/cite_680.png");
+    background-size: cover; }
   .central-panel {
     top: 25%; }
   .logo {
@@ -33,7 +33,8 @@ body {
 
 @media only screen and (min-width: 800px) {
   .app {
-    background-image: url("/OniProjects/images/cite_1920_v2.png"); }
+    background-image: url("/OniProjects/images/cite_1920_v2.png");
+    background-size: contain;  }
   .central-panel {
     top: 27%; }
   .logo {
@@ -65,15 +66,13 @@ body {
     font-family: 'Museo Sans Cyrl 500';
     display: block;
     text-align: center;
-    margin: 0 auto;
-    white-space: nowrap; }
+    margin: 0 auto; }
   .central-panel .message div {
     font-family: 'Museo Sans Cyrl 100';
     font-weight: bold;
     display: block;
     text-align: center;
-    margin: 0 auto;
-    white-space: nowrap; }
+    margin: 0 auto; }
   .central-panel .phone {
     font-family: 'Museo Sans Cyrl 300';
     font-weight: bolder;

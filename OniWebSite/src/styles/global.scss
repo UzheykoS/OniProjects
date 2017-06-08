@@ -22,6 +22,7 @@ html { min-width:100%; }
 @media only screen and (min-width : 320px), only screen and (min-device-width: 374px) and (max-device-width: 376px) {
     .app {
         background-image: url("/images/cite_680.png");
+        background-size: cover;
     }
     .central-panel {
         top: 25%;
@@ -47,6 +48,7 @@ html { min-width:100%; }
 @media only screen and (min-width: 800px) {
     .app {
         background-image: url("/images/cite_1920_v2.png");
+        background-size: contain;
     }
     .central-panel {
         top: 27%;
@@ -88,7 +90,6 @@ html { min-width:100%; }
         display: block;
         text-align: center;
         margin: 0 auto;
-        white-space: nowrap;
     }
     .message div {
         font-family: 'Museo Sans Cyrl 100';
@@ -96,7 +97,6 @@ html { min-width:100%; }
         display: block;
         text-align: center;
         margin: 0 auto;
-        white-space: nowrap;
     }
     .phone {
         font-family: 'Museo Sans Cyrl 300';
