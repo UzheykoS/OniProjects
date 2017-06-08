@@ -68,7 +68,7 @@
 /************************************************************************/
 /******/ ([
 /* 0 */
-/* unknown exports provided */
+/* no static exports found */
 /* all exports used */
 /*!********************************!*\
   !*** ./src/styles/global.scss ***!
@@ -79,7 +79,7 @@ eval("// removed by extract-text-webpack-plugin//# sourceMappingURL=data:applica
 
 /***/ }),
 /* 1 */
-/* unknown exports provided */
+/* no static exports found */
 /* all exports used */
 /*!**********************************!*\
   !*** ./src/images/cite_1920.png ***!
@@ -90,7 +90,7 @@ eval("module.exports = __webpack_require__.p + \"/images/cite_1920.png\";//# sou
 
 /***/ }),
 /* 2 */
-/* unknown exports provided */
+/* no static exports found */
 /* all exports used */
 /*!*********************************!*\
   !*** ./src/images/facebook.png ***!
@@ -101,7 +101,7 @@ eval("module.exports = __webpack_require__.p + \"/images/facebook.png\";//# sour
 
 /***/ }),
 /* 3 */
-/* unknown exports provided */
+/* no static exports found */
 /* all exports used */
 /*!********************************!*\
   !*** ./src/images/favicon.png ***!
@@ -112,7 +112,7 @@ eval("module.exports = __webpack_require__.p + \"/images/favicon.png\";//# sourc
 
 /***/ }),
 /* 4 */
-/* unknown exports provided */
+/* no static exports found */
 /* all exports used */
 /*!**********************************!*\
   !*** ./src/images/instagram.png ***!
@@ -123,7 +123,7 @@ eval("module.exports = __webpack_require__.p + \"/images/instagram.png\";//# sou
 
 /***/ }),
 /* 5 */
-/* unknown exports provided */
+/* no static exports found */
 /* all exports used */
 /*!*****************************!*\
   !*** ./src/images/logo.png ***!
@@ -134,7 +134,7 @@ eval("module.exports = __webpack_require__.p + \"/images/logo.png\";//# sourceMa
 
 /***/ }),
 /* 6 */
-/* unknown exports provided */
+/* no static exports found */
 /* all exports used */
 /*!*********************************!*\
   !*** ./src/images/telegram.png ***!
@@ -145,7 +145,7 @@ eval("module.exports = __webpack_require__.p + \"/images/telegram.png\";//# sour
 
 /***/ }),
 /* 7 */
-/* unknown exports provided */
+/* no static exports found */
 /* all exports used */
 /*!***********************!*\
   !*** ./src/index.tsx ***!
@@ -153,7 +153,32 @@ eval("module.exports = __webpack_require__.p + \"/images/telegram.png\";//# sour
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-eval("\n\n// import * as React from \"react\";\n// import * as ReactDOM from \"react-dom\";\n// import { App } from \"./components/App\";\n__webpack_require__(/*! ./styles/global.scss */ 0);\n__webpack_require__(/*! ./styles/global.scss */ 0);\n__webpack_require__(/*! ./styles/global.scss */ 0);\n__webpack_require__(/*! ./images/cite_1920.png */ 1);\n__webpack_require__(/*! ./images/favicon.png */ 3);\n__webpack_require__(/*! ./images/logo.png */ 5);\n__webpack_require__(/*! ./images/facebook.png */ 2);\n__webpack_require__(/*! ./images/instagram.png */ 4);\n__webpack_require__(/*! ./images/telegram.png */ 6);\n// ReactDOM.render(\n//     <App/>,\n//     document.getElementById(\"root\")\n// );\n// import { Router, Route, IndexRoute, IndexRedirect, Redirect, browserHistory, hashHistory } from 'react-router';\n// import { Inbox } from \"./components/Inbox\";\n// import { Dashboard } from \"./components/Dashboard\";\n// import { About } from \"./components/About\";\n// import { Message } from \"./components/Message\";\n// import { Home } from \"./components/Home\";\n/*ReactDOM.render(\r\n    <Router history={hashHistory}>\r\n        <Route path=\"/\" component={App} />\r\n        <Route path=\"about\" component={About} />\r\n        <Route path=\"inbox\" component={Inbox}>\r\n            <Redirect from=\"messages/:id\" to=\"/messages/:id\" />\r\n        </Route>\r\n        <Route component={Inbox}>\r\n            <Route path=\"messages/:id\" component={Message} />\r\n        </Route>\r\n    </Router>,\r\n    document.getElementById(\"root\")\r\n);*///# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiNy5qcyIsInNvdXJjZXMiOlsid2VicGFjazovLy8uL3NyYy9pbmRleC50c3g/YThjMSJdLCJzb3VyY2VzQ29udGVudCI6WyIvLyBpbXBvcnQgKiBhcyBSZWFjdCBmcm9tIFwicmVhY3RcIjtcclxuLy8gaW1wb3J0ICogYXMgUmVhY3RET00gZnJvbSBcInJlYWN0LWRvbVwiO1xyXG4vLyBpbXBvcnQgeyBBcHAgfSBmcm9tIFwiLi9jb21wb25lbnRzL0FwcFwiO1xyXG5yZXF1aXJlKFwiLi9zdHlsZXMvZ2xvYmFsLnNjc3NcIik7XHJcbnJlcXVpcmUoXCIuL3N0eWxlcy9nbG9iYWwuc2Nzc1wiKTtcclxucmVxdWlyZShcIi4vc3R5bGVzL2dsb2JhbC5zY3NzXCIpO1xyXG5yZXF1aXJlKFwiLi9pbWFnZXMvY2l0ZV8xOTIwLnBuZ1wiKTtcclxucmVxdWlyZShcIi4vaW1hZ2VzL2Zhdmljb24ucG5nXCIpO1xyXG5yZXF1aXJlKFwiLi9pbWFnZXMvbG9nby5wbmdcIik7XHJcbnJlcXVpcmUoXCIuL2ltYWdlcy9mYWNlYm9vay5wbmdcIik7XHJcbnJlcXVpcmUoXCIuL2ltYWdlcy9pbnN0YWdyYW0ucG5nXCIpO1xyXG5yZXF1aXJlKFwiLi9pbWFnZXMvdGVsZWdyYW0ucG5nXCIpO1xyXG5cclxuLy8gUmVhY3RET00ucmVuZGVyKFxyXG4vLyAgICAgPEFwcC8+LFxyXG4vLyAgICAgZG9jdW1lbnQuZ2V0RWxlbWVudEJ5SWQoXCJyb290XCIpXHJcbi8vICk7XHJcblxyXG5cclxuLy8gaW1wb3J0IHsgUm91dGVyLCBSb3V0ZSwgSW5kZXhSb3V0ZSwgSW5kZXhSZWRpcmVjdCwgUmVkaXJlY3QsIGJyb3dzZXJIaXN0b3J5LCBoYXNoSGlzdG9yeSB9IGZyb20gJ3JlYWN0LXJvdXRlcic7XHJcblxyXG4vLyBpbXBvcnQgeyBJbmJveCB9IGZyb20gXCIuL2NvbXBvbmVudHMvSW5ib3hcIjtcclxuLy8gaW1wb3J0IHsgRGFzaGJvYXJkIH0gZnJvbSBcIi4vY29tcG9uZW50cy9EYXNoYm9hcmRcIjtcclxuLy8gaW1wb3J0IHsgQWJvdXQgfSBmcm9tIFwiLi9jb21wb25lbnRzL0Fib3V0XCI7XHJcbi8vIGltcG9ydCB7IE1lc3NhZ2UgfSBmcm9tIFwiLi9jb21wb25lbnRzL01lc3NhZ2VcIjtcclxuLy8gaW1wb3J0IHsgSG9tZSB9IGZyb20gXCIuL2NvbXBvbmVudHMvSG9tZVwiO1xyXG5cclxuLypSZWFjdERPTS5yZW5kZXIoXHJcbiAgICA8Um91dGVyIGhpc3Rvcnk9e2hhc2hIaXN0b3J5fT5cclxuICAgICAgICA8Um91dGUgcGF0aD1cIi9cIiBjb21wb25lbnQ9e0FwcH0gLz5cclxuICAgICAgICA8Um91dGUgcGF0aD1cImFib3V0XCIgY29tcG9uZW50PXtBYm91dH0gLz5cclxuICAgICAgICA8Um91dGUgcGF0aD1cImluYm94XCIgY29tcG9uZW50PXtJbmJveH0+XHJcbiAgICAgICAgICAgIDxSZWRpcmVjdCBmcm9tPVwibWVzc2FnZXMvOmlkXCIgdG89XCIvbWVzc2FnZXMvOmlkXCIgLz5cclxuICAgICAgICA8L1JvdXRlPlxyXG4gICAgICAgIDxSb3V0ZSBjb21wb25lbnQ9e0luYm94fT5cclxuICAgICAgICAgICAgPFJvdXRlIHBhdGg9XCJtZXNzYWdlcy86aWRcIiBjb21wb25lbnQ9e01lc3NhZ2V9IC8+XHJcbiAgICAgICAgPC9Sb3V0ZT5cclxuICAgIDwvUm91dGVyPixcclxuICAgIGRvY3VtZW50LmdldEVsZW1lbnRCeUlkKFwicm9vdFwiKVxyXG4pOyovXG5cblxuLy8gV0VCUEFDSyBGT09URVIgLy9cbi8vIC4vc3JjL2luZGV4LnRzeCJdLCJtYXBwaW5ncyI6Ijs7QUFBQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFFQTtBQUNBO0FBQ0E7QUFDQTtBQUdBO0FBRUE7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUVBOzs7Ozs7Ozs7Ozs7QSIsInNvdXJjZVJvb3QiOiIifQ==");
+eval("\n\n__webpack_require__(/*! ./styles/global.scss */ 0);\n__webpack_require__(/*! ./images/cite_1920.png */ 1);\n__webpack_require__(/*! ./images/cite_1920_v2.png */ 12);\n__webpack_require__(/*! ./images/cite_680.png */ 11);\n__webpack_require__(/*! ./images/favicon.png */ 3);\n__webpack_require__(/*! ./images/logo.png */ 5);\n__webpack_require__(/*! ./images/facebook.png */ 2);\n__webpack_require__(/*! ./images/instagram.png */ 4);\n__webpack_require__(/*! ./images/telegram.png */ 6);\n// import * as React from \"react\";\n// import * as ReactDOM from \"react-dom\";\n// import { App } from \"./components/App\";\n// import { Router, Route, IndexRoute, IndexRedirect, Redirect, browserHistory, hashHistory } from 'react-router';\n// import { Inbox } from \"./components/Inbox\";\n// import { Dashboard } from \"./components/Dashboard\";\n// import { About } from \"./components/About\";\n// import { Message } from \"./components/Message\";\n// import { Home } from \"./components/Home\";\n/*ReactDOM.render(\r\n    <Router history={hashHistory}>\r\n        <Route path=\"/\" component={App} />\r\n        <Route path=\"about\" component={About} />\r\n        <Route path=\"inbox\" component={Inbox}>\r\n            <Redirect from=\"messages/:id\" to=\"/messages/:id\" />\r\n        </Route>\r\n        <Route component={Inbox}>\r\n            <Route path=\"messages/:id\" component={Message} />\r\n        </Route>\r\n    </Router>,\r\n    document.getElementById(\"root\")\r\n);*///# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiNy5qcyIsInNvdXJjZXMiOlsid2VicGFjazovLy8uL3NyYy9pbmRleC50c3g/YThjMSJdLCJzb3VyY2VzQ29udGVudCI6WyJcclxucmVxdWlyZShcIi4vc3R5bGVzL2dsb2JhbC5zY3NzXCIpO1xyXG5yZXF1aXJlKFwiLi9pbWFnZXMvY2l0ZV8xOTIwLnBuZ1wiKTtcclxucmVxdWlyZShcIi4vaW1hZ2VzL2NpdGVfMTkyMF92Mi5wbmdcIik7XHJcbnJlcXVpcmUoXCIuL2ltYWdlcy9jaXRlXzY4MC5wbmdcIik7XHJcbnJlcXVpcmUoXCIuL2ltYWdlcy9mYXZpY29uLnBuZ1wiKTtcclxucmVxdWlyZShcIi4vaW1hZ2VzL2xvZ28ucG5nXCIpO1xyXG5yZXF1aXJlKFwiLi9pbWFnZXMvZmFjZWJvb2sucG5nXCIpO1xyXG5yZXF1aXJlKFwiLi9pbWFnZXMvaW5zdGFncmFtLnBuZ1wiKTtcclxucmVxdWlyZShcIi4vaW1hZ2VzL3RlbGVncmFtLnBuZ1wiKTtcclxuXHJcbi8vIGltcG9ydCAqIGFzIFJlYWN0IGZyb20gXCJyZWFjdFwiO1xyXG4vLyBpbXBvcnQgKiBhcyBSZWFjdERPTSBmcm9tIFwicmVhY3QtZG9tXCI7XHJcbi8vIGltcG9ydCB7IEFwcCB9IGZyb20gXCIuL2NvbXBvbmVudHMvQXBwXCI7XHJcbi8vIGltcG9ydCB7IFJvdXRlciwgUm91dGUsIEluZGV4Um91dGUsIEluZGV4UmVkaXJlY3QsIFJlZGlyZWN0LCBicm93c2VySGlzdG9yeSwgaGFzaEhpc3RvcnkgfSBmcm9tICdyZWFjdC1yb3V0ZXInO1xyXG5cclxuLy8gaW1wb3J0IHsgSW5ib3ggfSBmcm9tIFwiLi9jb21wb25lbnRzL0luYm94XCI7XHJcbi8vIGltcG9ydCB7IERhc2hib2FyZCB9IGZyb20gXCIuL2NvbXBvbmVudHMvRGFzaGJvYXJkXCI7XHJcbi8vIGltcG9ydCB7IEFib3V0IH0gZnJvbSBcIi4vY29tcG9uZW50cy9BYm91dFwiO1xyXG4vLyBpbXBvcnQgeyBNZXNzYWdlIH0gZnJvbSBcIi4vY29tcG9uZW50cy9NZXNzYWdlXCI7XHJcbi8vIGltcG9ydCB7IEhvbWUgfSBmcm9tIFwiLi9jb21wb25lbnRzL0hvbWVcIjtcclxuXHJcbi8qUmVhY3RET00ucmVuZGVyKFxyXG4gICAgPFJvdXRlciBoaXN0b3J5PXtoYXNoSGlzdG9yeX0+XHJcbiAgICAgICAgPFJvdXRlIHBhdGg9XCIvXCIgY29tcG9uZW50PXtBcHB9IC8+XHJcbiAgICAgICAgPFJvdXRlIHBhdGg9XCJhYm91dFwiIGNvbXBvbmVudD17QWJvdXR9IC8+XHJcbiAgICAgICAgPFJvdXRlIHBhdGg9XCJpbmJveFwiIGNvbXBvbmVudD17SW5ib3h9PlxyXG4gICAgICAgICAgICA8UmVkaXJlY3QgZnJvbT1cIm1lc3NhZ2VzLzppZFwiIHRvPVwiL21lc3NhZ2VzLzppZFwiIC8+XHJcbiAgICAgICAgPC9Sb3V0ZT5cclxuICAgICAgICA8Um91dGUgY29tcG9uZW50PXtJbmJveH0+XHJcbiAgICAgICAgICAgIDxSb3V0ZSBwYXRoPVwibWVzc2FnZXMvOmlkXCIgY29tcG9uZW50PXtNZXNzYWdlfSAvPlxyXG4gICAgICAgIDwvUm91dGU+XHJcbiAgICA8L1JvdXRlcj4sXHJcbiAgICBkb2N1bWVudC5nZXRFbGVtZW50QnlJZChcInJvb3RcIilcclxuKTsqL1xuXG5cbi8vIFdFQlBBQ0sgRk9PVEVSIC8vXG4vLyAuL3NyYy9pbmRleC50c3giXSwibWFwcGluZ3MiOiI7O0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBRUE7QUFDQTtBQUNBO0FBQ0E7QUFFQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBRUE7Ozs7Ozs7Ozs7OztBIiwic291cmNlUm9vdCI6IiJ9");
+
+/***/ }),
+/* 8 */,
+/* 9 */,
+/* 10 */,
+/* 11 */
+/* no static exports found */
+/* all exports used */
+/*!*********************************!*\
+  !*** ./src/images/cite_680.png ***!
+  \*********************************/
+/***/ (function(module, exports, __webpack_require__) {
+
+eval("module.exports = __webpack_require__.p + \"/images/cite_680.png\";//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiMTEuanMiLCJzb3VyY2VzIjpbIndlYnBhY2s6Ly8vLi9zcmMvaW1hZ2VzL2NpdGVfNjgwLnBuZz80ZTIyIl0sInNvdXJjZXNDb250ZW50IjpbIm1vZHVsZS5leHBvcnRzID0gX193ZWJwYWNrX3B1YmxpY19wYXRoX18gKyBcIi9pbWFnZXMvY2l0ZV82ODAucG5nXCI7XG5cblxuLy8vLy8vLy8vLy8vLy8vLy8vXG4vLyBXRUJQQUNLIEZPT1RFUlxuLy8gLi9zcmMvaW1hZ2VzL2NpdGVfNjgwLnBuZ1xuLy8gbW9kdWxlIGlkID0gMTFcbi8vIG1vZHVsZSBjaHVua3MgPSAwIl0sIm1hcHBpbmdzIjoiQUFBQSIsInNvdXJjZVJvb3QiOiIifQ==");
+
+/***/ }),
+/* 12 */
+/* no static exports found */
+/* all exports used */
+/*!*************************************!*\
+  !*** ./src/images/cite_1920_v2.png ***!
+  \*************************************/
+/***/ (function(module, exports, __webpack_require__) {
+
+eval("module.exports = __webpack_require__.p + \"/images/cite_1920_v2.png\";//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiMTIuanMiLCJzb3VyY2VzIjpbIndlYnBhY2s6Ly8vLi9zcmMvaW1hZ2VzL2NpdGVfMTkyMF92Mi5wbmc/MDMxOSJdLCJzb3VyY2VzQ29udGVudCI6WyJtb2R1bGUuZXhwb3J0cyA9IF9fd2VicGFja19wdWJsaWNfcGF0aF9fICsgXCIvaW1hZ2VzL2NpdGVfMTkyMF92Mi5wbmdcIjtcblxuXG4vLy8vLy8vLy8vLy8vLy8vLy9cbi8vIFdFQlBBQ0sgRk9PVEVSXG4vLyAuL3NyYy9pbWFnZXMvY2l0ZV8xOTIwX3YyLnBuZ1xuLy8gbW9kdWxlIGlkID0gMTJcbi8vIG1vZHVsZSBjaHVua3MgPSAwIl0sIm1hcHBpbmdzIjoiQUFBQSIsInNvdXJjZVJvb3QiOiIifQ==");
 
 /***/ })
 /******/ ]);
