@@ -171,29 +171,31 @@ app.route('/api/ingredients')
     })
   })
   .post((req, res) => {
-    var ingredient = Ingredient.build(_.pick(req.body, ['name', 'price', 'supplier']));
-    ingredient.save().then((ingredient) => {
-      res.json(ingredient);
+    req.body.forEach((element) => {
+      var ingredient = Ingredient.build(_.pick(element, ['id', 'name', 'price', 'supplier']));
+      ingredient.save().then((ingredient) => {
+        res.json(ingredient);
+      });
     });
   });
 
 app.route('/api/ingredients/:ingredient_id')
   .get((req, res) => {
     Ingredient.findById(req.params.ingredient_id).then((ingredient) => {
-      res.json(ingredient);
+       res.json(ingredient);
     });
   })
   .put((req, res) => {
     Ingredient.findById(req.params.ingredient_id).then((ingredient) => {
       ingredient.update(_.pick(req.body, ['name', 'price', 'supplier'])).then((ingredient) => {
-        res.json(ingredient);
+         res.json(ingredient);
       });
     });
   })
   .delete((req, res) => {
     Ingredient.findById(req.params.ingredient_id).then(ingredient => {
       ingredient.destroy().then(ingredient => {
-        res.json(ingredient);
+         res.json(ingredient);
       });
     });
   });

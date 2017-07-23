@@ -14,7 +14,7 @@ export default class Helper {
     }
 
     static async executePostRequest (url: string, data: string) {
-        let result = await axios.post(url, JSON.stringify(data));
+        let result = await axios.post(url, data);
         return result;
 
         // let xmlhttp = new XMLHttpRequest();
@@ -35,18 +35,33 @@ export default class Helper {
         // }
     }
 
+    static async executeDeleteRequest (url: string) {
+        let result = await axios.delete(url);
+        return result;
+    }
+
+    static async executePutRequest (url: string, data: any) {
+        let result = await axios.put(url, data);
+        return result;
+    }
+
     static async getIngredients () {
         const response = await this.executeGetRequest('api/ingredients');
         let result = new Array<Ingredient>();   
         response.data.forEach(element => {
             let ingredient = new Ingredient();
-            ingredient.Id = element.id;
-            ingredient.Name = element.name;
-            ingredient.Price = element.price;
-            ingredient.Supplier = element.supplier;
+            ingredient.id = element.id;
+            ingredient.name = element.name;
+            ingredient.price = element.price;
+            ingredient.supplier = element.supplier;
             result.push(ingredient)
         });
              
+        return result;
+    }
+    
+    static async saveIngredients (data) {
+        const result = await this.executePostRequest('api/ingredients', data);
         return result;
     }
 
@@ -54,12 +69,22 @@ export default class Helper {
         const response = await this.executeGetRequest('api/ingredients/' + id);
         let result = new Ingredient();   
         response.data.forEach(element => {
-            result.Id = element.id;
-            result.Name = element.name;
-            result.Price = element.price;
-            result.Supplier = element.supplier;
+            result.id = element.id;
+            result.name = element.name;
+            result.price = element.price;
+            result.supplier = element.supplier;
         });
              
+        return result;
+    }
+
+    static async deleteIngredient (id: number) {
+        const result = await this.executeDeleteRequest('api/ingredients/' + id);
+        return result;
+    }
+
+    static async putIngredient (id: number, data: any) {
+        const result = await this.executePutRequest('api/ingredients/' + id, data);
         return result;
     }
 
@@ -68,8 +93,8 @@ export default class Helper {
         let result = new Array<Category>();   
         response.data.forEach(element => {
             let category = new Category();
-            category.Id = element.id;
-            category.Name = element.name;
+            category.id = element.id;
+            category.name = element.name;
             result.push(category)
         });
              
@@ -83,18 +108,18 @@ export default class Helper {
         let result = new Array<Recipe>();   
         recipesResponse.data.forEach(r => {
             let recipe = new Recipe();
-            recipe.Id = r.id;
-            recipe.Name = r.name;
-            recipe.CategoryId = r.category_id;
-            subrecipesResponse.data.filter(sr => sr.recipe_id == recipe.Id).forEach(async (sr) => {
+            recipe.id = r.id;
+            recipe.name = r.name;
+            recipe.categoryid = r.category_id;
+            subrecipesResponse.data.filter(sr => sr.recipe_id == recipe.id).forEach(async (sr) => {
                 let subRecipe = new SubRecipe();
-                subRecipe.Id = sr.id;
-                subRecipe.Name = sr.name;
+                subRecipe.id = sr.id;
+                subRecipe.name = sr.name;
                 itemsResponse = await this.executeGetRequest(`/api/subrecipes/${sr.id}/items`);
-                itemsResponse.data.filter(i => i.subrecipe_id == subRecipe.Id).forEach(i => {
-                    subRecipe.IngredientsToQty[i.ingredient_id] = { Qty: i.quantity, Desc: i.description}
+                itemsResponse.data.filter(i => i.subrecipe_id == subRecipe.id).forEach(i => {
+                    subRecipe.ingredientstoqty[i.ingredient_id] = { Qty: i.quantity, Desc: i.description}
                 });                
-                recipe.SubRecipes.push(subRecipe);
+                recipe.subrecipes.push(subRecipe);
             });
             result.push(recipe);
         });

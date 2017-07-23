@@ -70,7 +70,7 @@ export class Recipes extends React.Component<any, IRecipesState>{
         const { recipes, ingredients } = this.state;
 
         recipes.forEach(r => {
-            if (r.Id === recipe.Id) {
+            if (r.id === recipe.id) {
                 r = recipe;
                 return;
             }
@@ -100,7 +100,7 @@ export class Recipes extends React.Component<any, IRecipesState>{
         return <div className="recipes-container" style={{ margin: "20px" }}>
             <Tabs>
                 {categories.map(c => {
-                    return <Tab label={c.Name} key={c.Id}>
+                    return <Tab label={c.name} key={c.id}>
                         <div>
                         </div>
                     </Tab>;

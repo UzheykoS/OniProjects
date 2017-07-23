@@ -1,13 +1,13 @@
 import SubRecipe from "./SubRecipe"
 
 export default class Recipe {
-    Id: number;
-    Name: string;  
-    CategoryId: number;
-    SubRecipes: Array<SubRecipe>;
+    id: number;
+    name: string;  
+    categoryid: number;
+    subrecipes: Array<SubRecipe>;
 
     constructor() {
-        this.SubRecipes = [];
+        this.subrecipes = [];
     }
 
     // constructor(name: string, id: number, categoryId: number) {
