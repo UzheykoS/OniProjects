@@ -3,7 +3,7 @@ import Ingredient from "./Ingredient"
 export default class SubRecipe {
     id: number;
     name: string;  
-    ingredientstoqty: { [key: number]: { Qty: number, Desc?: string }; };
+    ingredientstoqty: { [key: number]: { qty: number, desc?: string }; };
 
     constructor() {
         this.ingredientstoqty = {};

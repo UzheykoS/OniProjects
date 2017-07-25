@@ -66,6 +66,22 @@ export class Recipes extends React.Component<any, IRecipesState>{
         })
     }
 
+    onSaveRecipesButtonClick = () => {
+        const { recipes, ingredients } = this.state;
+//TODO - implement save logic
+        recipes.forEach(r => {
+            r.subrecipes.forEach(sr => {
+                for (let ingredient_id in sr.ingredientstoqty) {
+                    
+                }
+            })
+        })
+
+        this.setState({
+            recipes
+        })
+    }
+
     onRecipeChanged = (recipe: Recipe) => {
         const { recipes, ingredients } = this.state;
 
@@ -109,7 +125,7 @@ export class Recipes extends React.Component<any, IRecipesState>{
             <div>
                 <Button class="B1B" text="Add Recipe" onClick={this.onRecipeButtonClick} />
                 <br />
-                <Button class="B1A" text="Save Recipes" onClick={() => { }} />
+                <Button class="B1A" text="Save Recipes" onClick={this.onSaveRecipesButtonClick} />
             </div>
             {recipes.map((r, i) => {
                 return <RecipeGroup recipe={r} key={i} ingredients={ingredients} onRecipeChanged={this.onRecipeChanged} onRecipeRemoved={this.onRecipeRemoved} />;

@@ -89,6 +89,8 @@ IngredientItem = sequelize.define('ingredientitems', {
 });
 
 sequelize.sync().then(() => {
+  //FILLING TABLES WITH TEST DATA FIRST TIME - DO NOT UNCOMMENT
+
   // Ingredient.create({
   //   name: "Milk",
   //   price: 23.25,
@@ -172,7 +174,7 @@ app.route('/api/ingredients')
   })
   .post((req, res) => {
     req.body.forEach((element) => {
-      var ingredient = Ingredient.build(_.pick(element, ['id', 'name', 'price', 'supplier']));
+      var ingredient = Ingredient.build(_.pick(element, ['name', 'price', 'supplier']));
       ingredient.save().then((ingredient) => {
         res.json(ingredient);
       });
@@ -208,10 +210,12 @@ app.route('/api/categories')
       res.json(categories);
     })
   })
-  .post(function(req, res) {
-    var category = Category.build(_.pick(req.body, ['name']));
-    category.save().then(function(category){
-      res.json(category);
+  .post(function (req, res) {
+    req.body.forEach((element) => {
+      var category = Category.build(_.pick(element, ['name']));
+      category.save().then(function (category) {
+        res.json(category);
+      });
     });
   });
 
@@ -244,10 +248,12 @@ app.route('/api/recipes')
       res.json(recipes);
     })
   })
-  .post(function(req, res) {
-    var recipe = Recipe.build(_.pick(req.body, ['category_id', 'name']));
-    recipe.save().then(function(recipe){
-      res.json(recipe);
+  .post(function (req, res) {
+    req.body.forEach((element) => {
+      var recipe = Recipe.build(_.pick(element, ['category_id', 'name']));
+      recipe.save().then(function (recipe) {
+        res.json(recipe);
+      });
     });
   });
 
@@ -355,6 +361,8 @@ app.get('*', function(req, res) {
 http.createServer(app).listen(app.get('port'), function () {
   console.log('Express server listening on port ' + app.get('port'));
 });
+
+//CREATE DATABASE AND TABLES STRUCTURE AT FIRST RUN - DO NOT UNCOMMENT
 
 // var sqlite3 = require('sqlite3').verbose();
 // var db = new sqlite3.Database('oni.db');
