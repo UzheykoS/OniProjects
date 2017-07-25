@@ -1,39 +1,40 @@
 {
 	"version": "0.1.0",
-	"command": "${workspaceRoot}/node_modules/.bin/webpack",
+	"command": "npm",
 	"isShellCommand": true,
+	"suppressTaskName": true,
 	"args": [
-		"--display-modules"
+		"--display-modules",
+		"--progress",
+		"--colors"
 	],
-	"echoCommand": true,
-    "showOutput": "always",
+	"windows": {
+		"command": "npm.cmd"
+	},
+	"showOutput": "always",
 	"tasks": [
 		{
+			// Build task, Ctrl+Shift+B
+			// "npm install --loglevel info"
+			"taskName": "install",
+			"isBuildCommand": true,
 			"args": [
-				"-d",
-				"--watch",
-				"--color"
-			],
-			"suppressTaskName": true,
-			"taskName": "webpack_dev_watch",
-			"isBuildCommand": true
+				"install",
+				"--loglevel",
+				"info"
+			]
 		},
-		// {
-		// 	"args": [
-		// 		"-p"
-		// 	],
-		// 	"suppressTaskName": true,
-		// 	"taskName": "webpack dist",
-		// 	"isBuildCommand": false
-		// },
+		{
+			"args": ["run-script", "webpack-watch"],
+			"taskName": "webpack_watch"
+		},
 		{
 			"args": [
-				"-d",
-				"--color"
+				"run",
+				"webpack_dev"
 			],
-			"suppressTaskName": true,
-			"taskName": "webpack_dev_single",
-			"isBuildCommand": true
+			"isBuildCommand": true,
+			"taskName": "webpack_single"
 		}
 	]
 }

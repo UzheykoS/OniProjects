@@ -5,11 +5,11 @@
   "main": "index.js",
   "scripts": {
     "typinst": "typings install -g",
-    "devpack": "webpack -d --display-modules --progress --color",
-    "relpack": "webpack -p --displaynpm -modules --progress --color",
     "server": "node src/server.js 9020",
-    "build": "webpack",
-    "start": "npm run build -s && npm run server -s"
+    "start": "npm run webpack-dev -s && npm run server -s",
+    "webpack-dev": "SET NODE_ENV=dev && webpack -d --progress --colors",
+    "webpack-watch": "SET NODE_ENV=dev && webpack -d --progress --colors --watch",
+    "webpack-prod": "SET NODE_ENV=prod && webpack -p --progress --colors --optimize-minimize"
   },
   "author": "Sergey Uzheyko",
   "license": "ISC",
@@ -59,9 +59,9 @@
     "source-map-loader": "^0.1.6",
     "style-loader": "^0.9.0",
     "ts-loader": "^2.0.0",
-    "typescript": "^2.3.2",
+    "typescript": "2.4.2",
     "url-loader": "^0.5.6",
-    "webpack": "^2.4.1",
+    "webpack": "3.2.0",
     "webpack-dev-server": "^2.4.4"
   }
 }
