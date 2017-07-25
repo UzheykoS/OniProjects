@@ -4,7 +4,7 @@
   "description": "Oni Desserts Calculator Project",
   "main": "index.js",
   "scripts": {
-    "typinst": "typings install -g",
+    "postinstall": "typings install -g",
     "server": "node src/server.js 9020",
     "start": "npm run webpack-dev -s && npm run server -s",
     "webpack-dev": "SET NODE_ENV=dev && webpack -d --progress --colors",

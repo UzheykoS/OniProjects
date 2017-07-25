@@ -16,23 +16,6 @@ export default class Helper {
     static async executePostRequest (url: string, data: string) {
         let result = await axios.post(url, data);
         return result;
-
-        // let xmlhttp = new XMLHttpRequest();
-        // xmlhttp.open("POST", url);
-        // xmlhttp.setRequestHeader("Content-Type", "application/json");
-        // xmlhttp.send(JSON.stringify(data));
-
-        // xmlhttp.onreadystatechange = () => {
-        //     if (xmlhttp.readyState != 4) {
-        //         return;
-        //     }
-
-        //     if (xmlhttp.status != 200) {
-        //         console.log(xmlhttp.status + ': ' + xmlhttp.statusText);
-        //     } else {
-        //         console.log(xmlhttp.responseText);
-        //     }
-        // }
     }
 
     static async executeDeleteRequest (url: string) {

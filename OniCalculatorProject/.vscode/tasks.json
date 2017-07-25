@@ -8,32 +8,14 @@
 		"--progress",
 		"--colors"
 	],
-	"windows": {
-		"command": "npm.cmd"
-	},
 	"showOutput": "always",
 	"tasks": [
-		{
-			// Build task, Ctrl+Shift+B
-			// "npm install --loglevel info"
-			"taskName": "install",
-			"isBuildCommand": true,
-			"args": [
-				"install",
-				"--loglevel",
-				"info"
-			]
-		},
 		{
 			"args": ["run-script", "webpack-watch"],
 			"taskName": "webpack_watch"
 		},
 		{
-			"args": [
-				"run",
-				"webpack_dev"
-			],
-			"isBuildCommand": true,
+			"args": ["run-script", "webpack_dev"],
 			"taskName": "webpack_single"
 		}
 	]
