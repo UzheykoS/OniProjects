@@ -1,12 +1,12 @@
 import Ingredient from "./Ingredient"
 
 export default class SubRecipe {
-    Id: number;
-    Name: string;  
-    IngredientsToQty: { [key: number]: { Qty: number, Desc?: string }; };
+    id: number;
+    name: string;  
+    ingredientstoqty: { [key: number]: { Qty: number, Desc?: string }; };
 
     constructor() {
-        this.IngredientsToQty = {};
+        this.ingredientstoqty = {};
     }
 
     // constructor(name: string, id: number) {

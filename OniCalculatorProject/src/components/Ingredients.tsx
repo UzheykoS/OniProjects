@@ -23,6 +23,8 @@ const styles = {
 interface IIngredientsState {
     ingredients?: Array<Ingredient>;
     searchText?: string;
+    removedIngrediets?: Array<number>;
+    pending?: boolean;
 }
 
 export class Ingredients extends React.Component<any, IIngredientsState>{
@@ -31,7 +33,9 @@ export class Ingredients extends React.Component<any, IIngredientsState>{
 
         this.state = {
             ingredients: [],
-            searchText: ""
+            searchText: "",
+            removedIngrediets: [],
+            pending: false
         }
     }
 
@@ -39,6 +43,13 @@ export class Ingredients extends React.Component<any, IIngredientsState>{
         let ingredients = await Helper.getIngredients();
         this.setState({
             ingredients
+        })
+    }
+
+    componentWillReceiverProps(nextProps) {
+        this.setState({
+            removedIngrediets: [],
+            searchText: ""
         })
     }
 
@@ -52,31 +63,37 @@ export class Ingredients extends React.Component<any, IIngredientsState>{
         })
     }
 
-    onSaveIngredientsClick = () => {
-        const { ingredients } = this.state;
+    onSaveIngredientsClick = async () => {
+        const { ingredients, removedIngrediets } = this.state;
 
-        let xmlhttp = new XMLHttpRequest();
-        xmlhttp.open("POST", "/save/ingredients");
-        xmlhttp.setRequestHeader("Content-Type", "application/json");
-        xmlhttp.send(JSON.stringify(ingredients));
+        this.setState({
+            pending: true
+        })
 
-        xmlhttp.onreadystatechange = () => {
-            if (xmlhttp.readyState != 4) {
-                return;
-            }
+        for (let i of removedIngrediets) {
+            await Helper.deleteIngredient(i);
+        }
 
-            if (xmlhttp.status != 200) {
-                console.log(xmlhttp.status + ': ' + xmlhttp.statusText);
-            } else {
-                console.log(xmlhttp.responseText);
+        for (let i of ingredients.filter(i => removedIngrediets.indexOf(i.id) < 0)) {
+            if (i.id) {
+                await Helper.putIngredient(i.id, i);
             }
         }
+
+        const newIngredients = ingredients.filter(i => !i.id);
+        if (newIngredients.length) {
+            await Helper.saveIngredients(newIngredients);    
+        }          
+
+        this.setState({
+            pending: false
+        })
     }
 
     onNameChanged = (ev: any, ingredient: Ingredient) => {
         const { ingredients } = this.state;
 
-        ingredients.find(i => i == ingredient).Name = ev.target.value;
+        ingredients.find(i => i == ingredient).name = ev.target.value;
 
         this.setState({
             ingredients
@@ -86,7 +103,7 @@ export class Ingredients extends React.Component<any, IIngredientsState>{
     onPriceChanged = (ev: any, ingredient: Ingredient) => {
         const { ingredients } = this.state;
 
-        ingredients.find(i => i == ingredient).Price = ev.target.value;
+        ingredients.find(i => i == ingredient).price = ev.target.value;
 
         this.setState({
             ingredients
@@ -96,7 +113,7 @@ export class Ingredients extends React.Component<any, IIngredientsState>{
     onSupplierChanged = (ev: any, ingredient: Ingredient) => {
         const { ingredients } = this.state;
 
-        ingredients.find(i => i == ingredient).Supplier = ev.target.value;
+        ingredients.find(i => i == ingredient).supplier = ev.target.value;
 
         this.setState({
             ingredients
@@ -104,16 +121,20 @@ export class Ingredients extends React.Component<any, IIngredientsState>{
     }
 
     onRemoveClick = (ingredient: Ingredient) => {
-        const { ingredients } = this.state;
+        const { removedIngrediets, ingredients } = this.state;
 
-        const index = ingredients.indexOf(ingredient);
-        if (index > -1) {
+        if (ingredient.id) {
+            removedIngrediets.push(ingredient.id);
+            this.setState({
+                removedIngrediets
+            });
+        } else {
+            const index = ingredients.indexOf(ingredient);
             ingredients.splice(index, 1);
+            this.setState({
+                ingredients
+            });
         }
-
-        this.setState({
-            ingredients
-        });
     }
 
     onIngredientSearch = (ev) => {
@@ -123,7 +144,7 @@ export class Ingredients extends React.Component<any, IIngredientsState>{
     }
 
     render() {
-        const { ingredients, searchText } = this.state;
+        const { ingredients, searchText, removedIngrediets, pending } = this.state;
         const buttonsStyle = {
             margin: 12,
             width: 172
@@ -151,16 +172,19 @@ export class Ingredients extends React.Component<any, IIngredientsState>{
                     </tr>
                 </thead>
                 <tbody>
-                    {ingredients.filter(i => i.Name.toLowerCase().indexOf(searchText.toLowerCase()) > -1).map(i => {
-                        return <tr key={i.Id}>
+                    {ingredients.
+                    filter(i => removedIngrediets.indexOf(i.id) < 0).
+                    filter(i => i.name.toLowerCase().indexOf(searchText.toLowerCase()) > -1).
+                    map((i, index) => {
+                        return <tr key={index}>
                             <td>
-                                <Input class="if1" placeholder="Enter name" value={i.Name} onChange={(ev) => this.onNameChanged(ev, i)} />
+                                <Input class="if1" placeholder="Enter name" value={i.name} onChange={(ev) => this.onNameChanged(ev, i)} />
                             </td>
                             <td>
-                                <Input class="if1" placeholder="Enter price" value={i.Price ? i.Price.toString() : ""} onChange={(ev) => this.onPriceChanged(ev, i)} />
+                                <Input class="if1" placeholder="Enter price" value={i.price ? i.price.toString() : ""} onChange={(ev) => this.onPriceChanged(ev, i)} />
                             </td>
                             <td>
-                                <Input class="if1" placeholder="Enter supplier" value={i.Supplier ? i.Supplier.toString() : ""} onChange={(ev) => this.onSupplierChanged(ev, i)} />
+                                <Input class="if1" placeholder="Enter supplier" value={i.supplier ? i.supplier.toString() : ""} onChange={(ev) => this.onSupplierChanged(ev, i)} />
                             </td>
                             <td>
                                 <span className="ar-crm-close column-remove" onClick={() => this.onRemoveClick(i)}></span>
@@ -175,6 +199,7 @@ export class Ingredients extends React.Component<any, IIngredientsState>{
                 <br />
                 <RaisedButton label="Save Ingredients" primary={true} style={buttonsStyle} onClick={this.onSaveIngredientsClick} />
             </div>
+            <Busy isVisible={pending} />
         </div>;
     }
 };

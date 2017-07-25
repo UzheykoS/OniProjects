@@ -22,8 +22,8 @@ export class RecipeGroup extends React.Component<IRecipeGroupProps, IRecipeGroup
         super(props);
 
         let subrecipeCollapsedState = {};
-        props.recipe.SubRecipes.forEach(sr => {
-            subrecipeCollapsedState[sr.Id] = true;
+        props.recipe.subrecipes.forEach(sr => {
+            subrecipeCollapsedState[sr.id] = true;
         });
         this.state = {
             isRecipeCollapsed: true,
@@ -57,9 +57,9 @@ export class RecipeGroup extends React.Component<IRecipeGroupProps, IRecipeGroup
     onSubrecipeRemoveClick = (subrecipeId: number) => {
         const { onRecipeChanged, recipe } = this.props;
 
-        const index = recipe.SubRecipes.findIndex(sr => sr.Id == subrecipeId);
+        const index = recipe.subrecipes.findIndex(sr => sr.id == subrecipeId);
         if (index > -1) {
-            recipe.SubRecipes.splice(index, 1);
+            recipe.subrecipes.splice(index, 1);
         }
 
         onRecipeChanged(recipe);
@@ -68,7 +68,7 @@ export class RecipeGroup extends React.Component<IRecipeGroupProps, IRecipeGroup
     onIngredientRemoveClick = (subrecipe: SubRecipe, ingredientKey: string) => {
         const { onRecipeChanged, recipe } = this.props;
 
-        delete recipe.SubRecipes.find(sr => sr.Id == subrecipe.Id).IngredientsToQty[ingredientKey];
+        delete recipe.subrecipes.find(sr => sr.id == subrecipe.id).ingredientstoqty[ingredientKey];
 
         onRecipeChanged(recipe);
     }
@@ -76,7 +76,7 @@ export class RecipeGroup extends React.Component<IRecipeGroupProps, IRecipeGroup
     onIngredientQtyChanged = (sr: SubRecipe, ingredient: string, ev: any) => {
         const { recipe, onRecipeChanged } = this.props;
 
-        recipe.SubRecipes.find(subrecipe => subrecipe.Id == sr.Id).IngredientsToQty[ingredient].Qty = parseInt(ev.target.value);
+        recipe.subrecipes.find(subrecipe => subrecipe.id == sr.id).ingredientstoqty[ingredient].Qty = parseInt(ev.target.value);
 
         onRecipeChanged(recipe);
     }
@@ -84,7 +84,7 @@ export class RecipeGroup extends React.Component<IRecipeGroupProps, IRecipeGroup
     onIngredientDescChanged = (sr: SubRecipe, ingredient: string, ev: any) => {
         const { recipe, onRecipeChanged } = this.props;
 
-        recipe.SubRecipes.find(subrecipe => subrecipe.Id == sr.Id).IngredientsToQty[ingredient].Desc = ev.target.value;
+        recipe.subrecipes.find(subrecipe => subrecipe.id == sr.id).ingredientstoqty[ingredient].Desc = ev.target.value;
 
         onRecipeChanged(recipe);
     }
@@ -92,9 +92,9 @@ export class RecipeGroup extends React.Component<IRecipeGroupProps, IRecipeGroup
     onSubrecipeNameChanged = (ev: any, srId: number) => {
         const { recipe, onRecipeChanged } = this.props;
 
-        recipe.SubRecipes.forEach(subrecipe => {
-            if (srId == subrecipe.Id) {
-                subrecipe.Name = ev.target.value;
+        recipe.subrecipes.forEach(subrecipe => {
+            if (srId == subrecipe.id) {
+                subrecipe.name = ev.target.value;
                 return;
             }
         });
@@ -105,22 +105,22 @@ export class RecipeGroup extends React.Component<IRecipeGroupProps, IRecipeGroup
     onRecipeNameChanged = (ev: any) => {
         const { recipe, onRecipeChanged } = this.props;
 
-        recipe.Name = ev.target.value;
+        recipe.name = ev.target.value;
 
         onRecipeChanged(recipe);
     }
 
     onIngredientChange = (sr: SubRecipe, item: Ingredient, prevIngredientKey: string) => {
         const { recipe, onRecipeChanged } = this.props;
-        const prevIngredient = recipe.SubRecipes.find(subrecipe => subrecipe.Id == sr.Id).IngredientsToQty[prevIngredientKey];
-        recipe.SubRecipes.find(subrecipe => subrecipe.Id == sr.Id).IngredientsToQty[item.Name] = prevIngredient;
-        delete recipe.SubRecipes.find(subrecipe => sr.Id == subrecipe.Id).IngredientsToQty[prevIngredientKey];
+        const prevIngredient = recipe.subrecipes.find(subrecipe => subrecipe.id == sr.id).ingredientstoqty[prevIngredientKey];
+        recipe.subrecipes.find(subrecipe => subrecipe.id == sr.id).ingredientstoqty[item.name] = prevIngredient;
+        delete recipe.subrecipes.find(subrecipe => sr.id == subrecipe.id).ingredientstoqty[prevIngredientKey];
 
         onRecipeChanged(recipe);
     }
 
     renderIngredients(subrecipe: SubRecipe, isCollapsed: boolean) {
-        const ingredientKeys = subrecipe.IngredientsToQty;
+        const ingredientKeys = subrecipe.ingredientstoqty;
         if (!ingredientKeys) {
             return;
         }
@@ -134,7 +134,7 @@ export class RecipeGroup extends React.Component<IRecipeGroupProps, IRecipeGroup
                     <div className="select-holder">
                         <Select
                             showClear={false}
-                            defaultValue={(options: Array<Ingredient>) => options.filter(o => o.Id.toString() == i)}
+                            defaultValue={(options: Array<Ingredient>) => options.filter(o => o.id.toString() == i)}
                             isMultiple={false}
                             options={ingredients}
                             optionTitle={o => o.map((el) => el.Name).join("")}
@@ -166,18 +166,18 @@ export class RecipeGroup extends React.Component<IRecipeGroupProps, IRecipeGroup
         let subRecipeRows = [];
 
         subRecipes.forEach((sr, index) => {
-            subRecipeRows.push(<tr key={sr.Id} className={isRecipeCollapsed ? "group-hidden" : "group-visible"}>
-                <td className="first-column" style={{ paddingLeft: "20px" }} colSpan={3} onClick={() => this.toggleSubRecipeGroup(sr.Id.toString())}>
-                    <span className={"ar-crm-arrow toggle-group " + (subrecipeCollapsedState[sr.Id] ? "" : "rotate-90")} />
+            subRecipeRows.push(<tr key={sr.id} className={isRecipeCollapsed ? "group-hidden" : "group-visible"}>
+                <td className="first-column" style={{ paddingLeft: "20px" }} colSpan={3} onClick={() => this.toggleSubRecipeGroup(sr.id.toString())}>
+                    <span className={"ar-crm-arrow toggle-group " + (subrecipeCollapsedState[sr.id] ? "" : "rotate-90")} />
                     <div className="subrecipe-name input-holder" onClick={(ev) => { ev.preventDefault(); ev.stopPropagation(); }}>
-                        <Input class="if1" placeholder="Enter name" value={sr.Name} onChange={(ev) => this.onSubrecipeNameChanged(ev, sr.Id)} />
+                        <Input class="if1" placeholder="Enter name" value={sr.name} onChange={(ev) => this.onSubrecipeNameChanged(ev, sr.id)} />
                     </div>
                 </td>
                 <td>
-                    <span className="ar-crm-close column-remove" onClick={() => this.onSubrecipeRemoveClick(sr.Id)}></span>
+                    <span className="ar-crm-close column-remove" onClick={() => this.onSubrecipeRemoveClick(sr.id)}></span>
                 </td>
             </tr>);
-            subRecipeRows.push(this.renderIngredients(sr, subrecipeCollapsedState[sr.Id] || isRecipeCollapsed));
+            subRecipeRows.push(this.renderIngredients(sr, subrecipeCollapsedState[sr.id] || isRecipeCollapsed));
         });
 
         return subRecipeRows;
@@ -188,11 +188,11 @@ export class RecipeGroup extends React.Component<IRecipeGroupProps, IRecipeGroup
         const { isRecipeCollapsed } = this.state;
         let recipeRows = [];
 
-        recipeRows.push(<tr key={recipe.Name}>
+        recipeRows.push(<tr key={recipe.name}>
             <td className="first-column" colSpan={3} onClick={this.toggleRowGroup}>
                 <span className={"ar-crm-arrow toggle-group " + (isRecipeCollapsed ? "" : "rotate-90")} />
                 <div className="subrecipe-name input-holder" onClick={(ev) => { ev.preventDefault(); ev.stopPropagation(); }}>
-                    <Input class="if1" placeholder="Enter name" value={recipe.Name} onChange={(ev) => this.onRecipeNameChanged(ev)} />
+                    <Input class="if1" placeholder="Enter name" value={recipe.name} onChange={(ev) => this.onRecipeNameChanged(ev)} />
                 </div>
             </td>
             <td>
@@ -200,7 +200,7 @@ export class RecipeGroup extends React.Component<IRecipeGroupProps, IRecipeGroup
             </td>
         </tr>);
 
-        recipeRows.push(this.renderSubrecipeGroup(recipe.SubRecipes));
+        recipeRows.push(this.renderSubrecipeGroup(recipe.subrecipes));
 
         return <table className="recipes-table">
             <thead>

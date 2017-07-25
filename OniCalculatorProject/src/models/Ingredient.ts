@@ -1,12 +1,12 @@
 
 export default class Ingredient {
-    Id: number;
-    Name: string;
-    Price: number;
-    Supplier: string;
+    id: number;
+    name: string;
+    price: number;
+    supplier: string;
 
     constructor() {
-        this.Name = "";
+        this.name = "";
     }
     // constructor(name: string, price: number, supplier: string, id: number) {
     //     this.Name = name;

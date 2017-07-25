@@ -6,49 +6,75 @@ body {
 .root {
   height: 100%; }
 
-.app {
-  background-image: url("/OniProjects/images/cite_1920.png");
-  background-size: contain;
+.app {  
   background-position: center;
   background-repeat: no-repeat;
   background-attachment: fixed;
   height: 100%;
   z-index: 0; }
+  
+@media only screen and (min-width : 320px), only screen and (min-device-width: 374px) and (max-device-width: 376px) {
+  .app {
+    background-image: url("/images/cite_680.png");
+    background-size: cover; }
+  .central-panel {
+    top: 25%; }
+  .logo {
+    height: 18vh; }
+  .message div:first-child {
+    font-size: 2.5vh; }
+  .message div {
+    font-size: 2.2vh; }
+  .phone {
+    font-size: 2.3vh; }
+  .social_network {
+    width: 2rem;
+    padding: 5px 10px; } }
+
+@media only screen and (min-width: 800px) {
+  .app {
+    background-image: url("/images/cite_1920_v2.png");
+    background-size: contain;  }
+  .central-panel {
+    top: 27%; }
+  .logo {
+    height: 18vh; }
+  .message div:first-child {
+    font-size: 2.5vh; }
+  .message div {
+    font-size: 2.2vh; }
+  .phone {
+    font-size: 2.4vh; }
+  .social_network {
+    width: 30px;
+    padding: 0.4vw; } }
 
 .central-panel {
   background: rgba(250, 233, 167, 0.7);
-  top: 29%;
-  height: 42%;
   width: 100%;
   position: absolute;
   z-index: 2; }
   .central-panel .logo {
-    background-image: url("/OniProjects/images/logo.png");
+    background-image: url("/images/logo.png");
     background-size: contain;
     background-position: center;
     background-repeat: no-repeat;
-    height: 40%;
     display: block;
     margin: 0 auto;
     margin-top: 3vh; }
   .central-panel .message div:first-child {
     font-family: 'Museo Sans Cyrl 500';
-    font-size: 2vh;
     display: block;
     text-align: center;
-    margin: 0 auto;
-    white-space: nowrap; }
+    margin: 0 auto; }
   .central-panel .message div {
     font-family: 'Museo Sans Cyrl 100';
-    font-size: 1.7vh;
     font-weight: bold;
     display: block;
     text-align: center;
-    margin: 0 auto;
-    white-space: nowrap; }
+    margin: 0 auto; }
   .central-panel .phone {
     font-family: 'Museo Sans Cyrl 300';
-    font-size: 2vh;
     font-weight: bolder;
     display: block;
     text-align: center;
@@ -56,11 +82,10 @@ body {
     white-space: nowrap;
     padding-bottom: 1vh;
     padding-top: 1vh; }
+  .central-panel .socials a {
+    text-decoration: none; }
   .central-panel .social_network {
-    display: inline-block;
-    width: 1.5%;
-    height: 1.5%;
-    padding: 0.4vw; }
+    display: inline-block; }
 
 @font-face {
   font-family: 'Museo Sans Cyrl 500';

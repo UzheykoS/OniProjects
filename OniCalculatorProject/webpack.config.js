@@ -13,7 +13,7 @@ module.exports = {
       contentBase: path.resolve(__dirname, 'dist'),
       port: 8300
     },
-    devtool: "source-map",
+    devtool: "inline-source-map",
     resolve: {
         extensions: [".webpack.js", ".web.js", ".ts", ".tsx", ".js"]
     },
