@@ -7,14 +7,13 @@ import Ingredient from "../models/Ingredient"
 import Category from "../models/Category"
 import { Tabs, Tab } from 'material-ui/Tabs';
 import Helper from "../middleware/helper"
-
-// let recipes = require('../recipes.json')
-// let ingredients = require('../ingredients.json')
+import { Status }  from '../models/Status'
 
 interface IRecipesState {
     recipes?: Array<Recipe>;
     ingredients?: Array<Ingredient>;
     categories?: Array<Category>;
+    pending?: boolean;
 }
 
 export class Recipes extends React.Component<any, IRecipesState>{
@@ -23,7 +22,8 @@ export class Recipes extends React.Component<any, IRecipesState>{
 
         this.state = {
             recipes: [],
-            categories: []
+            categories: [],
+            pending: false
         }
     }
 
@@ -38,27 +38,10 @@ export class Recipes extends React.Component<any, IRecipesState>{
         })
     }
 
-    onChange = (item) => {
-        if (item) {
-            console.log(item);
-        } else {
-            console.log("no value");
-        }
-    }
-
     onRecipeButtonClick = () => {
         const { recipes, ingredients } = this.state;
 
         let recipe = new Recipe();
-        // if (!!ingredients && ingredients.length > 1) {
-        //     let subRecipe = new SubRecipe("TestSubRecipe");
-
-        //     subRecipe.IngredientsToQty[ingredients[0].Name] = { Qty: 100, Desc: "test desc" };
-        //     subRecipe.IngredientsToQty[ingredients[1].Name + "1"] = { Qty: 250, Desc: "test desc 2" };
-
-        //     recipe.SubRecipes.push(subRecipe);
-        // }
-
         recipes.push(recipe);
 
         this.setState({
@@ -66,19 +49,38 @@ export class Recipes extends React.Component<any, IRecipesState>{
         })
     }
 
-    onSaveRecipesButtonClick = () => {
+    onSaveRecipesButtonClick = async () => {
         const { recipes, ingredients } = this.state;
-//TODO - implement save logic
+
         recipes.forEach(r => {
             r.subrecipes.forEach(sr => {
-                for (let ingredient_id in sr.ingredientstoqty) {
-                    
-                }
+                sr.ingredientItems.forEach(ii => {
+
+                })
             })
         })
 
         this.setState({
-            recipes
+            pending: true
+        })
+
+        for (let recipe of recipes.filter(r => r.status == Status.Removed)) {
+            await Helper.deleteRecipe(recipe.id);
+        }
+
+        for (let recipe of recipes.filter(r => r.status == Status.Changed)) {
+            if (recipe.id) {
+                await Helper.putRecipe(recipe.id, recipe);
+            }
+        }
+
+        const newRecipes = recipes.filter(r => r.status == Status.Added);
+        if (newRecipes.length) {
+            await Helper.saveRecipes(newRecipes);    
+        }          
+
+        this.setState({
+            pending: false
         })
     }
 
@@ -111,7 +113,7 @@ export class Recipes extends React.Component<any, IRecipesState>{
     }
 
     render() {
-        const { recipes, ingredients, categories } = this.state;
+        const { recipes, ingredients, categories, pending } = this.state;
 
         return <div className="recipes-container" style={{ margin: "20px" }}>
             <Tabs>
@@ -130,6 +132,7 @@ export class Recipes extends React.Component<any, IRecipesState>{
             {recipes.map((r, i) => {
                 return <RecipeGroup recipe={r} key={i} ingredients={ingredients} onRecipeChanged={this.onRecipeChanged} onRecipeRemoved={this.onRecipeRemoved} />;
             })}
+            <Busy isVisible={pending} />
         </div>;
     }
 };

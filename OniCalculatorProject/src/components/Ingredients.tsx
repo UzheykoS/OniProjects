@@ -2,12 +2,11 @@ import * as React from 'react'
 import { Select, Button, Checkbox, Input, Busy, NotificationContainer, NotificationType } from "altareturn-ui-controls";
 import Ingredient from "../models/Ingredient"
 import Helper from "../middleware/helper"
+import { Status }  from '../models/Status'
 
 import RaisedButton from 'material-ui/RaisedButton';
 import TextField from 'material-ui/TextField';
 import FontIcon from 'material-ui/FontIcon';
-
-// let ingredients = require('../ingredients.json')
 
 const styles = {
     propContainer: {
@@ -23,7 +22,6 @@ const styles = {
 interface IIngredientsState {
     ingredients?: Array<Ingredient>;
     searchText?: string;
-    removedIngrediets?: Array<number>;
     pending?: boolean;
 }
 
@@ -34,7 +32,6 @@ export class Ingredients extends React.Component<any, IIngredientsState>{
         this.state = {
             ingredients: [],
             searchText: "",
-            removedIngrediets: [],
             pending: false
         }
     }
@@ -48,7 +45,6 @@ export class Ingredients extends React.Component<any, IIngredientsState>{
 
     componentWillReceiverProps(nextProps) {
         this.setState({
-            removedIngrediets: [],
             searchText: ""
         })
     }
@@ -56,7 +52,9 @@ export class Ingredients extends React.Component<any, IIngredientsState>{
     onIngredientButtonClick = () => {
         const { ingredients } = this.state;
 
-        ingredients.push(new Ingredient());
+        const ingredient = new Ingredient();
+        ingredient.status = Status.Added;
+        ingredients.push(ingredient);
 
         this.setState({
             ingredients
@@ -64,23 +62,23 @@ export class Ingredients extends React.Component<any, IIngredientsState>{
     }
 
     onSaveIngredientsClick = async () => {
-        const { ingredients, removedIngrediets } = this.state;
+        const { ingredients } = this.state;
 
         this.setState({
             pending: true
         })
 
-        for (let i of removedIngrediets) {
-            await Helper.deleteIngredient(i);
+        for (let i of ingredients.filter(ing => ing.status == Status.Removed)) {
+            await Helper.deleteIngredient(i.id);
         }
 
-        for (let i of ingredients.filter(i => removedIngrediets.indexOf(i.id) < 0)) {
+        for (let i of ingredients.filter(ing => ing.status == Status.Changed)) {
             if (i.id) {
                 await Helper.putIngredient(i.id, i);
             }
         }
 
-        const newIngredients = ingredients.filter(i => !i.id);
+        const newIngredients = ingredients.filter(i => i.status == Status.Added);
         if (newIngredients.length) {
             await Helper.saveIngredients(newIngredients);    
         }          
@@ -94,6 +92,7 @@ export class Ingredients extends React.Component<any, IIngredientsState>{
         const { ingredients } = this.state;
 
         ingredients.find(i => i == ingredient).name = ev.target.value;
+        ingredients.find(i => i == ingredient).status = Status.Changed;
 
         this.setState({
             ingredients
@@ -104,6 +103,7 @@ export class Ingredients extends React.Component<any, IIngredientsState>{
         const { ingredients } = this.state;
 
         ingredients.find(i => i == ingredient).price = ev.target.value;
+        ingredients.find(i => i == ingredient).status = Status.Changed;
 
         this.setState({
             ingredients
@@ -114,6 +114,7 @@ export class Ingredients extends React.Component<any, IIngredientsState>{
         const { ingredients } = this.state;
 
         ingredients.find(i => i == ingredient).supplier = ev.target.value;
+        ingredients.find(i => i == ingredient).status = Status.Changed;
 
         this.setState({
             ingredients
@@ -121,20 +122,19 @@ export class Ingredients extends React.Component<any, IIngredientsState>{
     }
 
     onRemoveClick = (ingredient: Ingredient) => {
-        const { removedIngrediets, ingredients } = this.state;
+        const { ingredients } = this.state;
 
         if (ingredient.id) {
-            removedIngrediets.push(ingredient.id);
-            this.setState({
-                removedIngrediets
-            });
-        } else {
+            ingredients.find(i => i == ingredient).status = Status.Removed;
+        }
+        else {
             const index = ingredients.indexOf(ingredient);
             ingredients.splice(index, 1);
-            this.setState({
-                ingredients
-            });
         }
+
+        this.setState({
+            ingredients
+        });
     }
 
     onIngredientSearch = (ev) => {
@@ -144,7 +144,7 @@ export class Ingredients extends React.Component<any, IIngredientsState>{
     }
 
     render() {
-        const { ingredients, searchText, removedIngrediets, pending } = this.state;
+        const { ingredients, searchText, pending } = this.state;
         const buttonsStyle = {
             margin: 12,
             width: 172
@@ -173,7 +173,7 @@ export class Ingredients extends React.Component<any, IIngredientsState>{
                 </thead>
                 <tbody>
                     {ingredients.
-                    filter(i => removedIngrediets.indexOf(i.id) < 0).
+                    filter(i => i.status != Status.Removed).
                     filter(i => i.name.toLowerCase().indexOf(searchText.toLowerCase()) > -1).
                     map((i, index) => {
                         return <tr key={index}>

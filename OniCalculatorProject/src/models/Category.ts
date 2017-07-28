@@ -1,7 +1,9 @@
+import { Status }  from './Status'
 
 export default class Category {
     id: number;
     name: string; 
+    status: Status;
 
     constructor() {
     }

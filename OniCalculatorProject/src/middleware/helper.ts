@@ -1,21 +1,24 @@
 import Recipe from "../models/Recipe"
 import SubRecipe from "../models/SubRecipe"
 import Ingredient from "../models/Ingredient"
+import IngredientItem from "../models/IngredientItem"
 import Category from "../models/Category"
 import Error from "../models/Error"
 import BaseHelper from "./BaseHelper"
+import { Status }  from '../models/Status'
 
 export default class Helper extends BaseHelper {
     //INGREDIENTS SECTION
-    static async getIngredients () {
+    static async getIngredients (): Promise<Array<Ingredient>> {
         const response = await this.executeGetRequest('api/ingredients');
-        let result = new Array<Ingredient>();   
+        const result = new Array<Ingredient>();   
         response.data.forEach(element => {
             let ingredient = new Ingredient();
             ingredient.id = element.id;
             ingredient.name = element.name;
             ingredient.price = element.price;
             ingredient.supplier = element.supplier;
+            ingredient.status = Status.Saved;
             result.push(ingredient)
         });
              
@@ -27,7 +30,7 @@ export default class Helper extends BaseHelper {
         return result;
     }
 
-    static async getIngredientById (id: number) {
+    static async getIngredientById (id: number): Promise<Ingredient> {
         const response = await this.executeGetRequest('api/ingredients/' + id);
 
         let result = new Ingredient();
@@ -35,6 +38,7 @@ export default class Helper extends BaseHelper {
         result.name = response.data.name;
         result.price = response.data.price;
         result.supplier = response.data.supplier;
+        result.status = Status.Saved;
         return result;
     }
 
@@ -49,14 +53,15 @@ export default class Helper extends BaseHelper {
     }
 
     //CATEGORIES SECTION
-    static async getCategories () {
+    static async getCategories (): Promise<Array<Category>> {
         const response = await this.executeGetRequest('api/categories');
 
-        let result = new Array<Category>();   
+        const result = new Array<Category>();   
         response.data.forEach(element => {
             let category = new Category();
             category.id = element.id;
             category.name = element.name;
+            category.status = Status.Saved;
             result.push(category)
         });             
         return result;
@@ -67,12 +72,13 @@ export default class Helper extends BaseHelper {
         return result;
     }
 
-    static async getCategoryById (id: number) {
+    static async getCategoryById (id: number): Promise<Category> {
         const response = await this.executeGetRequest('api/categories/' + id);
 
         let result = new Category();
         result.id = response.data.id;
         result.name = response.data.name;
+        result.status = Status.Saved;
         return result;
     }
 
@@ -87,23 +93,22 @@ export default class Helper extends BaseHelper {
     }
 
     //RECIPES SECTION
-    static async getRecipes () {
+    static async getRecipes (): Promise<Array<Recipe>> {
         const recipesResponse = await this.executeGetRequest('api/recipes');
-        const subrecipesResponse = await this.executeGetRequest('api/subrecipes');
-        let itemsResponse;
-        let result = new Array<Recipe>();   
+        const subreciepes = await this.getSubrecipes();
+        let itemsResponse = new Array<IngredientItem>();
+        const result = new Array<Recipe>();   
+
         recipesResponse.data.forEach(r => {
-            let recipe = new Recipe();
+            const recipe = new Recipe();
             recipe.id = r.id;
             recipe.name = r.name;
             recipe.categoryid = r.category_id;
-            subrecipesResponse.data.filter(sr => sr.recipe_id == recipe.id).forEach(async (sr) => {
-                let subRecipe = new SubRecipe();
-                subRecipe.id = sr.id;
-                subRecipe.name = sr.name;
-                itemsResponse = await this.executeGetRequest(`/api/subrecipes/${sr.id}/items`);
-                itemsResponse.data.filter(i => i.subrecipe_id == subRecipe.id).forEach(i => {
-                    subRecipe.ingredientstoqty[i.ingredient_id] = { qty: i.quantity, desc: i.description}
+            recipe.status = Status.Saved;
+            subreciepes.filter(sr => sr.recipe_id == recipe.id).forEach(async (subRecipe) => {
+                itemsResponse = await this.getIngredientItems(subRecipe.id);
+                itemsResponse.forEach(i => {
+                    subRecipe.ingredientItems.push(i);
                 });                
                 recipe.subrecipes.push(subRecipe);
             });
@@ -118,23 +123,20 @@ export default class Helper extends BaseHelper {
         return result;
     }
 
-    static async getRecipeById(id: number) {
+    static async getRecipeById(id: number): Promise<Recipe> {
         const recipeResponse = await this.executeGetRequest('api/recipes/' + id);
-        const subrecipesResponse = await this.executeGetRequest('api/subrecipes');
+        const subreciepes = await this.getSubrecipes();
         let itemsResponse;
-
-        let result = new Recipe();
+        const result = new Recipe();
         result.id = recipeResponse.data.id;
         result.name = recipeResponse.data.name;
         result.categoryid = recipeResponse.data.category_id;
+        result.status = Status.Saved;
 
-        subrecipesResponse.data.filter(sr => sr.recipe_id == result.id).forEach(async (sr) => {
-            let subRecipe = new SubRecipe();
-            subRecipe.id = sr.id;
-            subRecipe.name = sr.name;
-            itemsResponse = await this.executeGetRequest(`/api/subrecipes/${sr.id}/items`);
-            itemsResponse.data.filter(i => i.subrecipe_id == subRecipe.id).forEach(i => {
-                subRecipe.ingredientstoqty[i.ingredient_id] = { qty: i.quantity, desc: i.description }
+        subreciepes.filter(sr => sr.recipe_id == result.id).forEach(async (subRecipe) => {
+            itemsResponse = await this.getIngredientItems(subRecipe.id);
+            itemsResponse.forEach(i => {
+                subRecipe.ingredientItems.push(i);
             });
             result.subrecipes.push(subRecipe);
         });
@@ -153,30 +155,19 @@ export default class Helper extends BaseHelper {
     }
 
     //SUBRECIPES SECTION
-    static async getSubrecipes () {
-        // const recipesResponse = await this.executeGetRequest('api/recipes');
-        // const subrecipesResponse = await this.executeGetRequest('api/subrecipes');
-        // let itemsResponse;
-        // let result = new Array<Recipe>();   
-        // recipesResponse.data.forEach(r => {
-        //     let recipe = new Recipe();
-        //     recipe.id = r.id;
-        //     recipe.name = r.name;
-        //     recipe.categoryid = r.category_id;
-        //     subrecipesResponse.data.filter(sr => sr.recipe_id == recipe.id).forEach(async (sr) => {
-        //         let subRecipe = new SubRecipe();
-        //         subRecipe.id = sr.id;
-        //         subRecipe.name = sr.name;
-        //         itemsResponse = await this.executeGetRequest(`/api/subrecipes/${sr.id}/items`);
-        //         itemsResponse.data.filter(i => i.subrecipe_id == subRecipe.id).forEach(i => {
-        //             subRecipe.ingredientstoqty[i.ingredient_id] = { Qty: i.quantity, Desc: i.description}
-        //         });                
-        //         recipe.subrecipes.push(subRecipe);
-        //     });
-        //     result.push(recipe);
-        // });
-             
-        // return result;
+    static async getSubrecipes (): Promise<Array<SubRecipe>> {
+        const subrecipesResponse = await this.executeGetRequest('api/subrecipes');
+        const result = new Array<SubRecipe>();
+        subrecipesResponse.data.forEach(r => {
+            let subRecipe = new SubRecipe();
+            subRecipe.id = r.id;
+            subRecipe.name = r.name;
+            subRecipe.recipe_id = r.recipe_id;
+            subRecipe.status = Status.Saved;
+            result.push(subRecipe);
+        });
+
+        return result;
     }
 
     static async saveSubrecipes (data) {
@@ -184,16 +175,14 @@ export default class Helper extends BaseHelper {
         return result;
     }
 
-    static async getSubrecipeById (id: number) {
+    static async getSubrecipeById (id: number): Promise<SubRecipe> {
         const response = await this.executeGetRequest('api/subrecipes/' + id);
         
-        let result = new SubRecipe();   
+        const result = new SubRecipe();   
         result.id = response.data.id;
         result.name = response.data.name;
-        let itemsResponse = await this.executeGetRequest(`/api/subrecipes/${result.id}/items`);
-        itemsResponse.data.filter(i => i.subrecipe_id == result.id).forEach(i => {
-            result.ingredientstoqty[i.ingredient_id] = { qty: i.quantity, desc: i.description }
-        });             
+        result.recipe_id = response.data.recipe_id;        
+        result.status = Status.Saved;
         return result;
     }
 
@@ -208,4 +197,48 @@ export default class Helper extends BaseHelper {
     }
 
     // INGREDIENT ITEMS SECTION
+    static async getIngredientItems (subrecipeId: number): Promise<Array<IngredientItem>> {
+        const ingredientItemsResponse = await this.executeGetRequest(`/api/subrecipes/${subrecipeId}/items`);
+        let result = new Array<IngredientItem>();
+        ingredientItemsResponse.data.forEach(r => {
+            let ingredientItem = new IngredientItem();
+            ingredientItem.id = r.id;
+            ingredientItem.ingredient_id = r.ingredient_id;
+            ingredientItem.subrecipe_id = r.subrecipe_id;
+            ingredientItem.quantity = r.quantity;
+            ingredientItem.description = r.description;
+            ingredientItem.status = Status.Saved;
+            result.push(ingredientItem);
+        });
+
+        return result;
+    }
+
+    static async saveIngredientItems (subrecipeId: number, data) {
+        const result = await this.executePostRequest(`/api/subrecipes/${subrecipeId}/items`, data);
+        return result;
+    }
+
+    static async getIngredientItemById (subrecipeId: number, id: number) {
+        const response = await this.executeGetRequest(`/api/subrecipes/${subrecipeId}/items/${id}`);
+
+        let ingredientItem = new IngredientItem();
+        ingredientItem.id = response.data.id;
+        ingredientItem.ingredient_id = response.data.ingredient_id;
+        ingredientItem.subrecipe_id = response.data.subrecipe_id;
+        ingredientItem.quantity = response.data.quantity;
+        ingredientItem.description = response.data.description;
+        ingredientItem.status = Status.Saved;
+        return ingredientItem;
+    }
+
+    static async deleteIngredientItem (subrecipeId: number, id: number) {
+        const result = await this.executeDeleteRequest(`/api/subrecipes/${subrecipeId}/items/${id}`);
+        return result;
+    }
+
+    static async putIngredientItem (subrecipeId: number, id: number, data: any) {
+        const result = await this.executePutRequest(`/api/subrecipes/${subrecipeId}/items/${id}`, data);
+        return result;
+    }
 }

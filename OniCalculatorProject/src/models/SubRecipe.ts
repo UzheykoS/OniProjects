@@ -1,17 +1,15 @@
 import Ingredient from "./Ingredient"
+import IngredientItem from "./IngredientItem"
+import { Status }  from './Status'
 
 export default class SubRecipe {
     id: number;
     name: string;  
-    ingredientstoqty: { [key: number]: { qty: number, desc?: string }; };
+    recipe_id: number;
+    ingredientItems: Array<IngredientItem>;
+    status: Status;
 
     constructor() {
-        this.ingredientstoqty = {};
+        this.ingredientItems = new Array<IngredientItem>();
     }
-
-    // constructor(name: string, id: number) {
-    //     this.Name = name;
-    //     this.Id = id;
-    //     this.IngredientsToQty = {};
-    // }
 }
