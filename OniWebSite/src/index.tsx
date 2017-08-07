@@ -1,3 +1,4 @@
+declare var require: any;
 
 require("./styles/global.scss");
 require("./images/cite_1920.png");
@@ -9,18 +10,18 @@ require("./images/facebook.png");
 require("./images/instagram.png");
 require("./images/telegram.png");
 
-// import * as React from "react";
-// import * as ReactDOM from "react-dom";
-// import { App } from "./components/App";
-// import { Router, Route, IndexRoute, IndexRedirect, Redirect, browserHistory, hashHistory } from 'react-router';
+import * as React from "react";
+import * as ReactDOM from "react-dom";
+import { App } from "./components/App";
+import { Router, Route, IndexRoute, IndexRedirect, Redirect, browserHistory, hashHistory } from 'react-router';
 
-// import { Inbox } from "./components/Inbox";
-// import { Dashboard } from "./components/Dashboard";
-// import { About } from "./components/About";
-// import { Message } from "./components/Message";
-// import { Home } from "./components/Home";
+import { Inbox } from "./components/Inbox";
+import { Dashboard } from "./components/Dashboard";
+import { About } from "./components/About";
+import { Message } from "./components/Message";
+import { Home } from "./components/Home";
 
-/*ReactDOM.render(
+ReactDOM.render(
     <Router history={hashHistory}>
         <Route exact path="/" component={App} />
         <Route path="about" component={About} />
@@ -32,4 +33,4 @@ require("./images/telegram.png");
         </Route>
     </Router>,
     document.getElementById("root")
-);*/
+);
