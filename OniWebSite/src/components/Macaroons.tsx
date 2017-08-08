@@ -1,17 +1,17 @@
 import * as React from 'react'
 import { Nav } from "./Nav";
 
-export class Inbox extends React.Component<any, any>{
+export class Macaroons extends React.Component<any, any>{
     constructor(props: any) {
         super(props);
     }
 
     render() {
         return (
-            <div>
-                Inbox
-                {this.props.children || "Welcome to your Inbox"}
+            <div>                
                 <Nav />
+                <span>Macaroons</span>
+                {this.props.children || "Welcome to your Inbox"}
             </div>
         );
     }

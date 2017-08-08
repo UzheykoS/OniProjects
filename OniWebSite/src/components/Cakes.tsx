@@ -1,12 +1,12 @@
 import * as React from 'react'
 import { Nav } from "./Nav";
 
-export class Home extends React.Component<any, any>{
+export class Cakes extends React.Component<any, any>{
     render() {
         return (
-            <div>
-                Home
+            <div>                
                 <Nav />
+                Cakes
             </div>
         );
     }
