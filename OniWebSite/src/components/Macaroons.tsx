@@ -1,5 +1,7 @@
 import * as React from 'react'
 import { Nav } from "./Nav";
+import { Tabs } from "../Helper"
+import { MacaronSingle } from './MacaronSingle'
 
 export class Macaroons extends React.Component<any, any>{
     constructor(props: any) {
@@ -7,12 +9,106 @@ export class Macaroons extends React.Component<any, any>{
     }
 
     render() {
-        return (
-            <div>                
-                <Nav />
-                <span>Macaroons</span>
-                {this.props.children || "Welcome to your Inbox"}
+        return <div className="macarons-container">
+            <Nav tab={Tabs.Macarons} />
+            <div className="macarons-header">
+                <div className="row">
+                    <div className="col-md-6">
+                        <div className="header-main">Макаруны</div>
+                        <div className="header-desc">Очень вкусные дессерты</div>
+                        <div className="header-body">А тут много текста
+                                Lorem ipsum dolor sit amet, congue gravida erat et nullam, quis habitant varius convallis pellentesque eros. Fringilla montes ut enim id pellentesque consectetuer, erat magna sed etiam a viverra ut, fringilla nec sit orci curabitur ut risus, tristique platea ultricies aliquam venenatis curabitur.
+
+In scelerisque nisl sit neque lorem, id integer ut commodo nunc purus neque, vel in leo, pede eos ipsum, dui commodo metus. </div>
+                    </div>
+                    <div className="col-md-6">
+                        <div className="macarons-prices">
+                            <div className="price-large">
+                                <span className="large">540</span>
+                                <span className="small">.00</span>
+                                <div className="qty">24шт</div>
+                            </div>
+                            <div className="price-small">
+                                <span className="large">270</span>
+                                <span className="small">.00</span>
+                                <div className="qty">12шт</div>
+                            </div>
+                            <img src="./images/mac_large.png" className="large-image" />
+                            <img src="./images/mac_small.png" className="small-image" />
+                        </div>
+                    </div>
+                </div>
             </div>
-        );
+            <div className="macarons-body">
+                <div className="tastes">Вкусы</div>
+                <div className="row">
+                    <div className="col-md-6">
+                        <MacaronSingle name="Лимонный"
+                            shortDescription="Короткое описание"
+                            fullDescription="In scelerisque nisl sit neque lorem, id integer ut commodo nunc purus neque, vel in leo, pede eos ipsum, dui commodo metus"
+                            imageOnTheLeft={true}
+                            imageUrl="./images/mac1_a.jpg" />
+                    </div>
+                    <div className="col-md-6">
+                        <MacaronSingle name="Шоколадный"
+                            shortDescription="Короткое описание"
+                            fullDescription="In scelerisque nisl sit neque lorem, id integer ut commodo nunc purus neque, vel in leo, pede eos ipsum, dui commodo metus"
+                            imageOnTheLeft={true}
+                            imageUrl="./images/mac2_a.jpg" />
+                    </div>
+                </div>
+                <div className="row">
+                    <div className="col-md-6">
+                        <MacaronSingle name="Лимонный"
+                            shortDescription="Короткое описание"
+                            fullDescription="In scelerisque nisl sit neque lorem, id integer ut commodo nunc purus neque, vel in leo, pede eos ipsum, dui commodo metus"
+                            imageOnTheLeft={false}
+                            imageUrl="./images/mac3_a.jpg" />
+                    </div>
+                    <div className="col-md-6">
+                        <MacaronSingle name="Шоколадный"
+                            shortDescription="Короткое описание"
+                            fullDescription="In scelerisque nisl sit neque lorem, id integer ut commodo nunc purus neque, vel in leo, pede eos ipsum, dui commodo metus"
+                            imageOnTheLeft={false}
+                            imageUrl="./images/mac4_a.jpg" />
+                    </div>
+                </div>
+                <div className="row">
+                    <div className="col-md-6">
+                        <MacaronSingle name="Лимонный"
+                            shortDescription="Короткое описание"
+                            fullDescription="In scelerisque nisl sit neque lorem, id integer ut commodo nunc purus neque, vel in leo, pede eos ipsum, dui commodo metus"
+                            imageOnTheLeft={true}
+                            imageUrl="./images/mac5_a.jpg" />
+                    </div>
+                    <div className="col-md-6">
+                        <MacaronSingle name="Шоколадный"
+                            shortDescription="Короткое описание"
+                            fullDescription="In scelerisque nisl sit neque lorem, id integer ut commodo nunc purus neque, vel in leo, pede eos ipsum, dui commodo metus"
+                            imageOnTheLeft={true}
+                            imageUrl="./images/mac6_a.jpg" />
+                    </div>
+                </div>
+                <div className="row">
+                    <div className="col-md-6">
+                        <MacaronSingle name="Лимонный"
+                            shortDescription="Короткое описание"
+                            fullDescription="In scelerisque nisl sit neque lorem, id integer ut commodo nunc purus neque, vel in leo, pede eos ipsum, dui commodo metus"
+                            imageOnTheLeft={false}
+                            imageUrl="./images/mac7_a.jpg" />
+                    </div>
+                    <div className="col-md-6">
+                        <MacaronSingle name="Шоколадный"
+                            shortDescription="Короткое описание"
+                            fullDescription="In scelerisque nisl sit neque lorem, id integer ut commodo nunc purus neque, vel in leo, pede eos ipsum, dui commodo metus"
+                            imageOnTheLeft={false}
+                            imageUrl="./images/mac8_a.jpg" />
+                    </div>
+                </div>
+            </div>
+            <div className="macarons-footer">
+                <img src="/images/Oni_logo.png" />
+            </div>
+        </div>;
     }
 };

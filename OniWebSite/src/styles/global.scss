@@ -1,10 +1,6 @@
 html,
 body {
     margin: 0px;
-    height: 100%;
-}
-
-html {
     min-width: 100%;
 }
 
@@ -12,144 +8,328 @@ html {
     height: 100%;
 }
 
-.app {
-    background-size: contain;
-    background-position: center;
-    background-repeat: no-repeat;
-    background-attachment: fixed;
+html {
     height: 100%;
-    z-index: 0;
+}
+
+body {
+    min-height: 100%;
+}
+
+.app {
+    height: 100%;
+    z-index: 0; // position: relative;
 }
 
 @media only screen and (min-width: 320px),
 only screen and (min-device-width: 374px) and (max-device-width: 376px) {
-    .app {
-        background-image: url("/images/cite_680.png");
-        background-size: cover;
-    }
-    .central-panel {
-        top: 25%;
+    .main-body img {
+        // src: url("/images/cite_680.png");
+        // background-size: cover;
     }
     .logo {
         height: 18vh;
-    }
-    .message div:first-child {
-        font-size: 2.5vh;
-    }
-    .message div {
-        font-size: 2.2vh;
-    }
-    .phone {
-        font-size: 2.3vh;
-    }
-    .social_network {
-        width: 2rem;
-        padding: 5px 10px;
     }
 }
 
 @media only screen and (min-width: 800px) {
-    .app {
-        background-image: url("/images/cite_1920_v2.png");
-        background-size: contain;
-    }
-    .central-panel {
-        top: 27%;
+    .main-body img {
+        // src: url("/images/cite_1920_v2.png");
+        // background-size: contain;
     }
     .logo {
         height: 18vh;
     }
-    .message div:first-child {
-        font-size: 2.5vh;
-    }
-    .message div {
-        font-size: 2.2vh;
-    }
-    .phone {
-        font-size: 2.4vh;
-    }
-    .social_network {
-        width: 30px;
-        padding: 0.4vw;
-    }
-}
-
-.central-panel {
-    background: rgba(250, 233, 167, 0.7);
-    width: 100%;
-    position: absolute;
-    z-index: 2;
-    .logo {
-        background-image: url("/images/logo.png");
-        background-size: contain;
-        background-position: center;
-        background-repeat: no-repeat;
-        display: block;
-        margin: 0 auto;
-        margin-top: 3vh;
-    }
-    .message div:first-child {
-        font-family: 'Museo Sans Cyrl 500';
-        display: block;
-        text-align: center;
-        margin: 0 auto;
-    }
-    .message div {
-        font-family: 'Museo Sans Cyrl 100';
-        font-weight: bold;
-        display: block;
-        text-align: center;
-        margin: 0 auto;
-    }
-    .phone {
-        font-family: 'Museo Sans Cyrl 300';
-        font-weight: bolder;
-        display: block;
-        text-align: center;
-        margin: 0 auto;
-        white-space: nowrap;
-        padding-bottom: 1vh;
-        padding-top: 1vh;
-    }
-    .socials a {
-        text-decoration: none;
-    }
-    .social_network {
-        display: inline-block;
-    }
 }
 
 .nav-bar {
+    position: relative;
+    max-height: 200px;
     ul {
         overflow: hidden;
         list-style-type: none;
-        font-family: Segoe UI Light;
-        font-size: 18px;
-        font-weight: normal;
-        text-align: left;
-        color: #333333;
-        margin-bottom: 0px;
+        display: inline-block;
+        position: absolute;
+        right: 0;
+        top: 20px;
     }
     ul li {
         float: left;
-        margin: 10px;
-        margin-bottom: 0px;
+        margin: 0px 20px;
+        position: relative;
     }
     ul li a {
         display: inline-block;
-        font-family: Segoe UI;
-        font-size: 18px;
+        font-family: 'Museo Sans Cyrl 500';
+        font-size: 16px;
         font-weight: 300;
+        line-height: 29px;
         color: #333333;
+        text-decoration: none;
     }
     ul li a:focus,
     .active {
-        width: auto;
-        border-bottom: 4px solid #1979ca;
-        height: 30px;
-        font-family: Segoe UI;
-        font-size: 18px !important;
-        font-weight: normal !important;
-        color: #333333 !important;
+        font-family: 'Museo Sans Cyrl 900';
+    }
+    li:not(:last-child) a:before {
+        content: '';
+        width: 15px;
+        border-bottom: solid 1px #333333;
+        position: absolute;
+        right: -28px;
+        top: 50%;
+        z-index: 1;
+    }
+    .logo {
+        max-width: 100%;
+        height: auto;
+        display: inline-block;
+        margin: 26px 30px 0px 30px;
+        height: 150px;
+    }
+    .logo-small {
+        height: 70px;
+        margin: 5px 10px 5px 20px;
+    }
+}
+
+.socials {
+    position: absolute;
+    right: 10px;
+    bottom: 10px;
+    a {
+        width: 2rem;
+        padding: 5px 10px;
+        img {
+            height: 27px;
+        }
+    }
+}
+
+.main-body {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    max-height: calc(100% - 200px);
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    .cake {
+        max-width: 100%;
+        height: 165%;
+        margin: -182px 0 0 -346px;
+    }
+}
+
+.macarons-container {
+    height: 100%;
+    font-family: 'Museo Sans Cyrl 500'; // position: relative;
+    .macarons-header {
+        width: 100%;
+        height: 450px;
+        background-color: #eea250;
+        padding-top: 86px;
+        padding-left: 77px;
+        margin-bottom: 70px;
+        .header-main {
+            color: #ffffff;
+            font-family: 'Museo Sans Cyrl 900';
+            font-size: 36px;
+        }
+        .header-desc {
+            color: #ffffff;
+            font-family: 'Museo Sans Cyrl 100';
+            font-size: 18px;
+        }
+        .header-body {
+            color: #ffffff;
+            font-family: 'Museo Sans Cyrl 500';
+            font-size: 14px;
+            padding-top: 20px;
+        }
+        .macarons-prices {
+            position: relative;
+            .small-image {
+                width: 269px;
+                height: 188px;
+                position: absolute;
+                bottom: -77px;
+                z-index: 3;
+                left: 239px;
+                top: 37px;
+            }
+            .large-image {
+                width: 345px;
+                height: 276px;
+                position: absolute;
+                z-index: 2;
+                left: 120px;
+                top: 150px;
+            }
+            .price-small,
+            .price-large {
+                color: #ffffff;
+                .large {
+                    font-size: 36px;
+                    font-family: 'Museo Sans Cyrl 500';
+                }
+                .small {
+                    font-size: 20px;
+                    font-family: 'Museo Sans Cyrl 500';
+                }
+                .qty {
+                    font-size: 14px;
+                    font-family: 'Museo Sans Cyrl 500';
+                    margin-top: -10px;
+                }
+            }
+            .price-small {
+                position: absolute;
+                top: -21px;
+                left: 257px;
+            }
+            .price-large {
+                position: absolute;
+                top: 90px;
+                left: 140px;
+            }
+        }
+    }
+    .macarons-body {
+        height: 100%;
+        margin: 50px;
+        img {
+            max-width: 100%;
+            height: auto;
+        }
+        .tastes {
+            color: #535353;
+            font-family: 'Museo Sans Cyrl 100';
+            font-size: 36px;
+            margin-bottom: 50px;
+        }
+        .taste-name {
+            color: #555555;
+            font-family: 'Museo Sans Cyrl 900';
+            font-size: 24px;
+        }
+        .taste-desc {
+            color: #555555;
+            font-family: 'Museo Sans Cyrl 100';
+            font-size: 16px;
+        }
+        .taste-body {
+            color: #555555;
+            font-family: 'Museo Sans Cyrl 500';
+            font-size: 12px;
+            line-height: 19px;
+        }
+    }
+    .macarons-footer {
+        position: relative;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        width: 100%;
+        height: 80px;
+        background-color: #ffd85c;
+        img {
+            width: 67px;
+            height: 52px;
+            position: absolute;
+            right: 10px;
+            bottom: 15px;
+        }
+    }
+}
+
+.cakes-container {
+    height: 100%;
+    font-family: 'Museo Sans Cyrl 500'; // position: relative;
+    .cakes-header {
+        width: 100%;
+        height: 450px;
+        background-color: #ce97be;
+        padding-top: 86px;
+        padding-left: 77px;
+        margin-bottom: 70px;
+        .header-main {
+            color: #ffffff;
+            font-family: 'Museo Sans Cyrl 900';
+            font-size: 36px;
+        }
+        .header-desc {
+            color: #ffffff;
+            font-family: 'Museo Sans Cyrl 100';
+            font-size: 18px;
+        }
+        .header-body {
+            color: #ffffff;
+            font-family: 'Museo Sans Cyrl 500';
+            font-size: 14px;
+            padding-top: 20px;
+        }
+        .cakes-photo {
+            position: relative;
+            img {
+                max-width: 100%;
+                height: auto;
+                position: absolute;
+                z-index: 2;
+                left: -34px;
+                top: -17px;
+            }
+        }
+    }
+    .cakes-body {
+        height: 100%;
+        margin: 50px;
+        img {
+            max-width: 100%;
+            height: auto;
+        }
+        .tastes {
+            color: #535353;
+            font-family: 'Museo Sans Cyrl 100';
+            font-size: 36px;
+            margin-bottom: 50px;
+        }
+        .taste-name {
+            color: #555555;
+            font-family: 'Museo Sans Cyrl 900';
+            font-size: 24px;
+        }
+        .taste-desc {
+            color: #555555;
+            font-family: 'Museo Sans Cyrl 100';
+            font-size: 16px;
+        }
+        .taste-body {
+            color: #555555;
+            font-family: 'Museo Sans Cyrl 500';
+            font-size: 12px;
+            line-height: 19px;
+            margin-top: 20px;
+        }
+    }
+    .cakes-footer {
+        position: relative;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        width: 100%;
+        height: 80px;
+        background-color: #ffd85c;
+        img {
+            width: 67px;
+            height: 52px;
+            position: absolute;
+            right: 10px;
+            bottom: 15px;
+        }
     }
 }
