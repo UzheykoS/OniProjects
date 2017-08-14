@@ -20,10 +20,17 @@ const CakesWrapper = (props) => (
 )
 
 export class App extends React.Component<any, any>{
+    preloadImages(urls: string[]) {
+        urls.forEach(url => {
+            let img = new Image();
+            img.src = url;
+        });
+    }
 
     componentDidMount() {
         // preloads the rest
-        loadCakes(() => { })
+        // loadCakes(() => { })
+        this.preloadImages(["./images/cake1_b.jpg"]);
     }
 
     render() {
