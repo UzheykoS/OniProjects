@@ -54,12 +54,12 @@ export class Nav extends React.Component<INavProps, INavState>{
                         onClick={() => this.onLinkClick(Tabs.Macarons)}>{Tabs.Macarons}
                     </Link>
                 </li>
-                <li>
+                {/* <li>
                     <Link to="/stub/Мармелад"
                         className={activeTab == Tabs.Marmalade ? "active" : ""}
                         onClick={() => this.onLinkClick(Tabs.Marmalade)}>{Tabs.Marmalade}
                     </Link>
-                </li>
+                </li> */}
                 <li>
                     <Link to="/stub/Корпоративным"
                         className={activeTab == Tabs.Corporate ? "active" : ""}

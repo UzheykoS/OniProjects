@@ -34,9 +34,20 @@ In scelerisque nisl sit neque lorem, id integer ut commodo nunc purus neque, vel
                     priceLarge="1000.00"
                     weightSmall="1200 g"
                     weightLarge="1600 g"
+                    fullCakeOnTheLeft={false}
+                    imageSmallUrl="/images/cut1.jpg"
+                    imageLargeUrl="/images/cake1.jpg" />
+                <CakeSingle
+                    name="Rio"
+                    shortDescription="fringilla nec sit orci curabitur"
+                    fullDescription="Lorem ipsum dolor sit amet, congue gravida erat et nullam, quis habitant varius convallis pellentesque eros. Fringilla montes ut enim id pellentesque"
+                    priceSmall="800.00"
+                    priceLarge="1000.00"
+                    weightSmall="1200 g"
+                    weightLarge="1600 g"
                     fullCakeOnTheLeft={true}
-                    imageSmallUrl="/images/cake1_b.jpg"
-                    imageLargeUrl="/images/cake1_a.jpg" />
+                    imageSmallUrl="/images/cut2.jpg"
+                    imageLargeUrl="/images/cake2.jpg" />
                 <CakeSingle
                     name="Rio"
                     shortDescription="fringilla nec sit orci curabitur"
@@ -46,8 +57,30 @@ In scelerisque nisl sit neque lorem, id integer ut commodo nunc purus neque, vel
                     weightSmall="1200 g"
                     weightLarge="1600 g"
                     fullCakeOnTheLeft={false}
-                    imageSmallUrl="/images/cake2_b.jpg"
-                    imageLargeUrl="/images/cake2_a.jpg" />
+                    imageSmallUrl="/images/cut3.jpg"
+                    imageLargeUrl="/images/cake3.jpg" />
+                <CakeSingle
+                    name="Rio"
+                    shortDescription="fringilla nec sit orci curabitur"
+                    fullDescription="Lorem ipsum dolor sit amet, congue gravida erat et nullam, quis habitant varius convallis pellentesque eros. Fringilla montes ut enim id pellentesque"
+                    priceSmall="800.00"
+                    priceLarge="1000.00"
+                    weightSmall="1200 g"
+                    weightLarge="1600 g"
+                    fullCakeOnTheLeft={true}
+                    imageSmallUrl="/images/cut4.jpg"
+                    imageLargeUrl="/images/cake4.jpg" />
+                <CakeSingle
+                    name="Rio"
+                    shortDescription="fringilla nec sit orci curabitur"
+                    fullDescription="Lorem ipsum dolor sit amet, congue gravida erat et nullam, quis habitant varius convallis pellentesque eros. Fringilla montes ut enim id pellentesque"
+                    priceSmall="800.00"
+                    priceLarge="1000.00"
+                    weightSmall="1200 g"
+                    weightLarge="1600 g"
+                    fullCakeOnTheLeft={false}
+                    imageSmallUrl="/images/cut5.jpg"
+                    imageLargeUrl="/images/cake5.jpg" />
             </div>
             <div className="cakes-footer">
                 <img src="/images/Oni_logo.png" />

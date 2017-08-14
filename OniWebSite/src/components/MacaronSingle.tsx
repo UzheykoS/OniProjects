@@ -18,17 +18,21 @@ export class MacaronSingle extends React.Component<IMacaronSingleProps, any>{
             return <div>
                 <div className="row">
                     <div className="col-md-6">
-                        <img src={imageUrl} />
+                        <div className="macaron-image-container">
+                            <img src={imageUrl} />
+                        </div>
                     </div>
                     <div className="col-md-6">
-                        <div className="taste-name">
-                            {name}
-                        </div>
-                        <div className="taste-desc">
-                            {shortDescription}
-                        </div>
-                        <div className="taste-body">
-                            {fullDescription}
+                        <div className="macaron-desc-container">
+                            <div className="taste-name">
+                                {name}
+                            </div>
+                            <div className="taste-desc">
+                                {shortDescription}
+                            </div>
+                            <div className="taste-body">
+                                {fullDescription}
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -36,20 +40,24 @@ export class MacaronSingle extends React.Component<IMacaronSingleProps, any>{
         }
         else {
             return <div>
-                <div className="row">                    
+                <div className="row">
                     <div className="col-md-6">
-                        <div className="taste-name">
-                            {name}
-                        </div>
-                        <div className="taste-desc">
-                            {shortDescription}
-                        </div>
-                        <div className="taste-body">
-                            {fullDescription}
+                        <div className="macaron-desc-container">
+                            <div className="taste-name">
+                                {name}
+                            </div>
+                            <div className="taste-desc">
+                                {shortDescription}
+                            </div>
+                            <div className="taste-body">
+                                {fullDescription}
+                            </div>
                         </div>
                     </div>
                     <div className="col-md-6">
-                        <img src={imageUrl} />
+                        <div className="macaron-image-container">
+                            <img src={imageUrl} />
+                        </div>
                     </div>
                 </div>
             </div>;

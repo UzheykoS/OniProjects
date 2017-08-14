@@ -47,14 +47,14 @@ In scelerisque nisl sit neque lorem, id integer ut commodo nunc purus neque, vel
                             shortDescription="Короткое описание"
                             fullDescription="In scelerisque nisl sit neque lorem, id integer ut commodo nunc purus neque, vel in leo, pede eos ipsum, dui commodo metus"
                             imageOnTheLeft={true}
-                            imageUrl="./images/mac1_a.jpg" />
+                            imageUrl="./images/macaron1.jpg" />
                     </div>
                     <div className="col-md-6">
                         <MacaronSingle name="Шоколадный"
                             shortDescription="Короткое описание"
                             fullDescription="In scelerisque nisl sit neque lorem, id integer ut commodo nunc purus neque, vel in leo, pede eos ipsum, dui commodo metus"
                             imageOnTheLeft={true}
-                            imageUrl="./images/mac2_a.jpg" />
+                            imageUrl="./images/macaron2.jpg" />
                     </div>
                 </div>
                 <div className="row">
@@ -63,14 +63,14 @@ In scelerisque nisl sit neque lorem, id integer ut commodo nunc purus neque, vel
                             shortDescription="Короткое описание"
                             fullDescription="In scelerisque nisl sit neque lorem, id integer ut commodo nunc purus neque, vel in leo, pede eos ipsum, dui commodo metus"
                             imageOnTheLeft={false}
-                            imageUrl="./images/mac3_a.jpg" />
+                            imageUrl="./images/macaron3.jpg" />
                     </div>
                     <div className="col-md-6">
                         <MacaronSingle name="Шоколадный"
                             shortDescription="Короткое описание"
                             fullDescription="In scelerisque nisl sit neque lorem, id integer ut commodo nunc purus neque, vel in leo, pede eos ipsum, dui commodo metus"
                             imageOnTheLeft={false}
-                            imageUrl="./images/mac4_a.jpg" />
+                            imageUrl="./images/macaron4.jpg" />
                     </div>
                 </div>
                 <div className="row">
@@ -79,14 +79,14 @@ In scelerisque nisl sit neque lorem, id integer ut commodo nunc purus neque, vel
                             shortDescription="Короткое описание"
                             fullDescription="In scelerisque nisl sit neque lorem, id integer ut commodo nunc purus neque, vel in leo, pede eos ipsum, dui commodo metus"
                             imageOnTheLeft={true}
-                            imageUrl="./images/mac5_a.jpg" />
+                            imageUrl="./images/macaron5.jpg" />
                     </div>
                     <div className="col-md-6">
                         <MacaronSingle name="Шоколадный"
                             shortDescription="Короткое описание"
                             fullDescription="In scelerisque nisl sit neque lorem, id integer ut commodo nunc purus neque, vel in leo, pede eos ipsum, dui commodo metus"
                             imageOnTheLeft={true}
-                            imageUrl="./images/mac6_a.jpg" />
+                            imageUrl="./images/macaron6.jpg" />
                     </div>
                 </div>
                 <div className="row">
@@ -95,14 +95,14 @@ In scelerisque nisl sit neque lorem, id integer ut commodo nunc purus neque, vel
                             shortDescription="Короткое описание"
                             fullDescription="In scelerisque nisl sit neque lorem, id integer ut commodo nunc purus neque, vel in leo, pede eos ipsum, dui commodo metus"
                             imageOnTheLeft={false}
-                            imageUrl="./images/mac7_a.jpg" />
+                            imageUrl="./images/macaron7.jpg" />
                     </div>
                     <div className="col-md-6">
                         <MacaronSingle name="Шоколадный"
                             shortDescription="Короткое описание"
                             fullDescription="In scelerisque nisl sit neque lorem, id integer ut commodo nunc purus neque, vel in leo, pede eos ipsum, dui commodo metus"
                             imageOnTheLeft={false}
-                            imageUrl="./images/mac8_a.jpg" />
+                            imageUrl="./images/macaron8.jpg" />
                     </div>
                 </div>
             </div>

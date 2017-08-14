@@ -2,13 +2,13 @@ declare var require: any;
 import * as React from 'react'
 import * as ReactDOM from 'react-dom'
 import { Router, Route, IndexRoute, IndexRedirect, Redirect, browserHistory, hashHistory } from 'react-router';
-import { BounceLoader } from 'react-spinners';
+import { GridLoader } from 'react-spinners';
 
 // import { Cakes } from "./Cakes";
 import { Macaroons } from "./Macaroons";
 import { About } from "./About";
 import { Contacts } from "./Contacts";
-import { Stub } from "./Stub";
+// import { Stub } from "./Stub";
 import { Main } from "./Main";
 import { Bundle } from "./Bundle";
 import { preloadImages, loadMainPageImage } from "../Helper"
@@ -56,13 +56,13 @@ export class App extends React.Component<any, IAppState>{
                 <Route path="about" component={About} />
                 <Route path="cakes" component={CakesWrapper} />
                 <Route path="macaroons" component={Macaroons} />
-                <Route path="stub/:id" component={Stub} />
+                {/* <Route path="stub/:id" component={Stub} /> */}
                 <Route path="contacts" component={Contacts} />
             </Router>
             <div className={"busy-container" + (loading ? "" : " invisible")}>
                 <div className="busy">
-                <BounceLoader
-                    color={'#123abc'}
+                <GridLoader
+                    color={'#d0006f'}
                     loading={loading}
                 />
             </div>

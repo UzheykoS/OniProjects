@@ -10,23 +10,31 @@ export class Main extends React.Component<any, any>{
             <Nav tab={Tabs.About} />
 
             <div className="main-body">
-                <img src="./images/cake2_a.jpg" className="cake" />
-                {/* <Carousel axis="horizontal"
-                    showThumbs={false}
-                    showArrows={false}
-                    showStatus={false}
-                    infiniteLoop={true}
-                    dynamicHeight emulateTouch>
-                    <div>
-                        <img src="./images/cake1_a.jpg" className="cake" />
-                    </div>
-                    <div>
-                        <img src="./images/cake2_a.jpg" className="cake" />
-                    </div>
-                    <div>
-                        <img src="./images/cake3_a.jpg" className="cake" />
-                    </div>
-                </Carousel> */}
+                {/* <img src="./images/cake2_a.jpg" className="cake" /> */}
+                <div className="carousel-container">
+                    <Carousel axis="horizontal"
+                        showThumbs={false}
+                        showArrows={false}
+                        showStatus={false}
+                        infiniteLoop={true}
+                        dynamicHeight emulateTouch>
+                        <div className="cake-container">
+                            <img src="./images/cake1.jpg" className="cake" />
+                        </div>
+                        <div className="cake-container">
+                            <img src="./images/cake2.jpg" className="cake" />
+                        </div>
+                        <div className="cake-container">
+                            <img src="./images/cake3.jpg" className="cake" />
+                        </div>
+                        <div className="cake-container">
+                            <img src="./images/cake4.jpg" className="cake" />
+                        </div>
+                        <div className="cake-container">
+                            <img src="./images/cake5.jpg" className="cake" />
+                        </div>
+                    </Carousel>
+                </div>
             </div>
 
             <div className="socials">
