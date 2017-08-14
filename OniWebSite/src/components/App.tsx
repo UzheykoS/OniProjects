@@ -11,7 +11,7 @@ import { Stub } from "./Stub";
 import { Main } from "./Main";
 import { Bundle } from "./Bundle";
 
-var loadCakes = require('bundle-loader?lazy!./Cakes');
+var loadCakes = require('bundle-loader?lazy&name=[name]!./Cakes');
 
 const CakesWrapper = (props) => (
     <Bundle load={loadCakes}>
