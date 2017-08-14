@@ -3,7 +3,7 @@ import { Nav } from "./Nav";
 import { Tabs } from "../Helper"
 import { CakeSingle } from './CakeSingle'
 
-export class Cakes extends React.Component<any, any>{
+export default class Cakes extends React.Component<any, any>{
     render() {
         return <div className="cakes-container">
             <Nav tab={Tabs.Cakes} />

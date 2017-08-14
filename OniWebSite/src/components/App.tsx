@@ -1,45 +1,41 @@
+declare var require: any;
 import * as React from 'react'
 import * as ReactDOM from 'react-dom'
-import { Nav } from "./Nav";
-import { Tabs } from "../Helper"
-import { Carousel } from 'react-responsive-carousel';
+import { Router, Route, IndexRoute, IndexRedirect, Redirect, browserHistory, hashHistory } from 'react-router';
+
+// import { Cakes } from "./Cakes";
+import { Macaroons } from "./Macaroons";
+import { About } from "./About";
+import { Contacts } from "./Contacts";
+import { Stub } from "./Stub";
+import { Main } from "./Main";
+import { Bundle } from "./Bundle";
+
+var loadCakes = require('bundle-loader?lazy!./Cakes');
+
+const CakesWrapper = (props) => (
+    <Bundle load={loadCakes}>
+        {(Cakes) => <Cakes {...props} />}
+    </Bundle>
+)
 
 export class App extends React.Component<any, any>{
+
+    componentDidMount() {
+        // preloads the rest
+        loadCakes(() => { })
+    }
+
     render() {
         return <div className="app">
-            <Nav tab={Tabs.About} />
-
-            <div className="main-body">
-                <img src="./images/cake2_a.jpg" className="cake" />
-                {/* <Carousel axis="horizontal"
-                    showThumbs={false}
-                    showArrows={false}
-                    showStatus={false}
-                    infiniteLoop={true}
-                    dynamicHeight emulateTouch>
-                    <div>
-                        <img src="./images/cake1_a.jpg" className="cake" />
-                    </div>
-                    <div>
-                        <img src="./images/cake2_a.jpg" className="cake" />
-                    </div>
-                    <div>
-                        <img src="./images/cake3_a.jpg" className="cake" />
-                    </div>
-                </Carousel> */}
-            </div>
-
-            <div className="socials">
-                <a target="_blank" href="https://www.facebook.com/">
-                    <img className="social_network" src="images/facebook.png" />
-                </a>
-                <a target="_blank" href="https://www.instagram.com">
-                    <img className="social_network" src="images/instagram.png" />
-                </a>
-                <a target="_blank" href="https://www.telegram.com">
-                    <img className="social_network" src="images/twitter.png" />
-                </a>
-            </div>
+            <Router history={hashHistory}>
+                <Route exact path="/" component={Main} />
+                <Route path="about" component={About} />
+                <Route path="cakes" component={CakesWrapper} />
+                <Route path="macaroons" component={Macaroons} />
+                <Route path="stub/:id" component={Stub} />
+                <Route path="contacts" component={Contacts} />
+            </Router>
         </div>;
     }
 };
