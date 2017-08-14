@@ -1,5 +1,7 @@
 declare var require: any;
 
+require("babel-polyfill");
+
 require("./styles/global.scss");
 require("./styles/fonts.scss");
 
