@@ -235,7 +235,7 @@ only screen and (min-device-width: 374px) and (max-device-width: 376px) {
         height: 100%;
         margin: 50px;
         .macaron-desc-container {
-            margin-top: 25px;
+            margin-top: 1.3vh;
         }
         .macaron-image-container {
             text-align: center;
@@ -254,18 +254,19 @@ only screen and (min-device-width: 374px) and (max-device-width: 376px) {
         .taste-name {
             color: #555555;
             font-family: 'Museo Sans Cyrl 900';
-            font-size: 24px;
+            font-size: 4vh;
         }
         .taste-desc {
             color: #555555;
             font-family: 'Museo Sans Cyrl 100';
-            font-size: 16px;
+            font-size: 2.2vh;
+            margin-top: -5px;
         }
         .taste-body {
             color: #555555;
             font-family: 'Museo Sans Cyrl 500';
-            font-size: 12px;
-            line-height: 19px;
+            font-size: 1.6vh;
+            line-height: 2.5vh;
         }
     }
     .macarons-footer {
@@ -289,6 +290,7 @@ only screen and (min-device-width: 374px) and (max-device-width: 376px) {
 .cakes-container {
     height: 100%;
     font-family: 'Museo Sans Cyrl 500'; // position: relative;
+    font-size: 1.9vh;
     .cakes-header {
         width: 100%;
         height: 450px;
@@ -326,7 +328,7 @@ only screen and (min-device-width: 374px) and (max-device-width: 376px) {
     }
     .cakes-body {
         height: 100%;
-        margin: 50px;
+        margin: 50px 0px;
         img {
             max-width: 100%;
             height: auto;
@@ -334,25 +336,28 @@ only screen and (min-device-width: 374px) and (max-device-width: 376px) {
         .tastes {
             color: #535353;
             font-family: 'Museo Sans Cyrl 100';
-            font-size: 36px;
-            margin-bottom: 50px;
+            font-size: 5vh;
+            margin-bottom: 5vh;
+            margin-left: 5vh;
         }
         .taste-name {
             color: #555555;
             font-family: 'Museo Sans Cyrl 900';
-            font-size: 24px;
+            font-size: 3.5vh;
+            padding-top: 20vh;
         }
         .taste-desc {
             color: #555555;
             font-family: 'Museo Sans Cyrl 100';
-            font-size: 16px;
+            font-size: 2.7vh;
         }
         .taste-body {
             color: #555555;
             font-family: 'Museo Sans Cyrl 500';
-            font-size: 12px;
-            line-height: 19px;
-            margin-top: 20px;
+            margin-top: 1vh;
+            font-size: 2vh;
+            line-height: 2.5vh;
+            padding-bottom: 2vh;
         }
     }
     .cakes-footer {
