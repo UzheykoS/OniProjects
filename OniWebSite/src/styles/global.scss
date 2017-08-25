@@ -161,7 +161,7 @@ only screen and (min-device-width: 374px) and (max-device-width: 376px) {
     height: 100%;
     font-family: 'Museo Sans Cyrl 500'; // position: relative;
     .macarons-header {
-        width: 100%;
+        width: calc(100% - 20px);
         height: 450px;
         background-color: #eea250;
         padding-top: 86px;
@@ -170,17 +170,17 @@ only screen and (min-device-width: 374px) and (max-device-width: 376px) {
         .header-main {
             color: #ffffff;
             font-family: 'Museo Sans Cyrl 900';
-            font-size: 36px;
+            font-size: 5vh;
         }
         .header-desc {
             color: #ffffff;
             font-family: 'Museo Sans Cyrl 100';
-            font-size: 18px;
+            font-size: 2.7vh;
         }
         .header-body {
             color: #ffffff;
             font-family: 'Museo Sans Cyrl 500';
-            font-size: 14px;
+            font-size: 2vh;
             padding-top: 20px;
         }
         .macarons-prices {
@@ -292,7 +292,7 @@ only screen and (min-device-width: 374px) and (max-device-width: 376px) {
     font-family: 'Museo Sans Cyrl 500'; // position: relative;
     font-size: 1.9vh;
     .cakes-header {
-        width: 100%;
+        width: calc(100% - 20px);
         height: 450px;
         background-color: #ce97be;
         padding-top: 86px;
@@ -301,17 +301,17 @@ only screen and (min-device-width: 374px) and (max-device-width: 376px) {
         .header-main {
             color: #ffffff;
             font-family: 'Museo Sans Cyrl 900';
-            font-size: 36px;
+            font-size: 5vh;
         }
         .header-desc {
             color: #ffffff;
             font-family: 'Museo Sans Cyrl 100';
-            font-size: 18px;
+            font-size: 2.7vh;
         }
         .header-body {
             color: #ffffff;
             font-family: 'Museo Sans Cyrl 500';
-            font-size: 14px;
+            font-size: 2vh;
             padding-top: 20px;
         }
         .cakes-photo {
