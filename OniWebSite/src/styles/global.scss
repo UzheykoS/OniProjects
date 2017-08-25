@@ -331,6 +331,16 @@ only screen and (min-device-width: 374px) and (max-device-width: 376px) {
     .cakes-body {
         height: 100%;
         margin: 50px 0px;
+        .cake-image-wrapper {
+            position: relative;
+            img {
+                max-width: 100%;
+                height: auto;
+                position: absolute;
+                top: 10vh;
+                // width: 85%;
+            }
+        }
         img {
             max-width: 100%;
             height: auto;

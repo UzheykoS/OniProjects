@@ -69,18 +69,22 @@ export class CakeSingle extends React.Component<ICakeSingleProps, any>{
                             </div>
                         </div>
                         <div className="col-md-5">
-                            <img src={imageSmallUrl} />
+                            <div className="cake-image-wrapper">
+                                <img src={imageSmallUrl} />
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>;
         }
         else {
-            return <div className="row">                
+            return <div className="row">
                 <div className="col-md-6">
                     <div className="row">
                         <div className="col-md-5">
-                            <img src={imageSmallUrl} />
+                            <div className="cake-image-wrapper">
+                                <img src={imageSmallUrl} />
+                            </div>
                         </div>
                         <div className="col-md-7">
                             <div className="taste-name">
@@ -122,7 +126,7 @@ export class CakeSingle extends React.Component<ICakeSingleProps, any>{
                                     </div>
                                 </div>
                             </div>
-                        </div>                        
+                        </div>
                     </div>
                 </div>
                 <div className="col-md-6">
