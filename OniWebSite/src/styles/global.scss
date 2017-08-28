@@ -337,8 +337,7 @@ only screen and (min-device-width: 374px) and (max-device-width: 376px) {
                 max-width: 100%;
                 height: auto;
                 position: absolute;
-                top: 10vh;
-                // width: 85%;
+                top: 10vh; // width: 85%;
             }
         }
         img {
@@ -370,6 +369,38 @@ only screen and (min-device-width: 374px) and (max-device-width: 376px) {
             font-size: 2vh;
             line-height: 2.5vh;
             padding-bottom: 2vh;
+        }
+        .cake-info {
+            img {
+                width: 10px;
+                height: 10px;
+                opacity: 0.5;
+                margin-right: 5px;
+            }
+            span {
+                font-family: 'Museo Sans Cyrl 500';
+                font-size: 12px;
+                font-weight: 500;
+                color: #8a8a8a;
+            }
+            .price-small, .price-small span {
+                font-family: 'Museo Sans Cyrl 500';
+                font-size: 24px;
+                font-weight: 500;
+                color: #ce97bd;
+                height: 55px;
+                vertical-align: bottom;
+            }
+            .price-large {
+                font-family: 'Museo Sans Cyrl 500';
+                font-size: 36px;
+                font-weight: 500;
+                color: #ce97bd;
+                vertical-align: bottom;
+            }
+            .price {
+                height: 55px;
+            }
         }
     }
     .cakes-footer {

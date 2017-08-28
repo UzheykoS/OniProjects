@@ -11,6 +11,9 @@ require("./images/icons/Oni_w_black.png");
 require("./images/icons/facebook.png");
 require("./images/icons/instagram.png");
 require("./images/icons/twitter.png");
+require("./images/icons/weight.png");
+require("./images/icons/diameter.png");
+require("./images/icons/team.png");
 
 require("./images/images_large/cakes/cake1.jpg");
 require("./images/images_large/cakes/cake2.jpg");

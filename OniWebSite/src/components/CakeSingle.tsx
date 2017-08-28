@@ -39,31 +39,42 @@ export class CakeSingle extends React.Component<ICakeSingleProps, any>{
                             </div>
                             <div className="row">
                                 <div className="col-md-6">
-                                    <div className="price-small">
-                                        {priceSmall}
-                                    </div>
-                                    <div className="weight-small">
-                                        {weightSmall}
-                                    </div>
-                                    <div className="size-small">
-                                        20 cm
-                                    </div>
-                                    <div className="persons-small">
-                                        7-8
+                                    <div className="cake-info">
+                                        <div className="price-small">
+                                            <span>{priceSmall}</span>
+                                        </div>
+                                        <div className="weight-small">
+                                            <img src="/images/weight.png" />
+                                            <span>{weightSmall}</span>
+                                        </div>
+                                        <div className="size-small">
+                                            <img src="/images/diameter.png" />
+                                            <span>20 см</span>
+                                        </div>
+                                        <div className="persons-small">
+                                            <img src="/images/team.png" />
+                                            <span>7-8</span>
+                                        </div>
                                     </div>
                                 </div>
                                 <div className="col-md-6">
-                                    <div className="price-large">
-                                        {priceLarge}
-                                    </div>
-                                    <div className="weight-large">
-                                        {weightLarge}
-                                    </div>
-                                    <div className="size-large">
-                                        35 cm
-                                    </div>
-                                    <div className="persons-large">
-                                        10-12
+                                    <div className="cake-info">
+                                        <div className="price">
+                                            <span className="price-large">{priceLarge}</span>
+                                            <span className="price-small">.00</span>
+                                        </div>
+                                        <div className="weight-large">
+                                            <img src="/images/weight.png" />
+                                            <span>{weightLarge}</span>
+                                        </div>
+                                        <div className="size-large">
+                                            <img src="/images/diameter.png" />
+                                            <span>35 см</span>
+                                        </div>
+                                        <div className="persons-large">
+                                            <img src="/images/team.png" />
+                                            <span>10-12</span>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -98,31 +109,42 @@ export class CakeSingle extends React.Component<ICakeSingleProps, any>{
                             </div>
                             <div className="row">
                                 <div className="col-md-6">
-                                    <div className="price-small">
-                                        {priceSmall}
-                                    </div>
-                                    <div className="weight-small">
-                                        {weightSmall}
-                                    </div>
-                                    <div className="size-small">
-                                        20 cm
-                                    </div>
-                                    <div className="persons-small">
-                                        7-8
+                                    <div className="cake-info">
+                                        <div className="price-small">
+                                            <span>{priceSmall}</span>
+                                        </div>
+                                        <div className="weight-small">
+                                            <img src="/images/weight.png" />
+                                            <span>{weightSmall}</span>
+                                        </div>
+                                        <div className="size-small">
+                                            <img src="/images/diameter.png" />
+                                            <span>20 см</span>
+                                        </div>
+                                        <div className="persons-small">
+                                            <img src="/images/team.png" />
+                                            <span>7-8</span>
+                                        </div>
                                     </div>
                                 </div>
                                 <div className="col-md-6">
-                                    <div className="price-large">
-                                        {priceLarge}
-                                    </div>
-                                    <div className="weight-large">
-                                        {weightLarge}
-                                    </div>
-                                    <div className="size-large">
-                                        35 cm
-                                    </div>
-                                    <div className="persons-large">
-                                        10-12
+                                    <div className="cake-info">
+                                        <div className="price">
+                                            <span className="price-large">{priceLarge}</span>
+                                            <span className="price-small">.00</span>
+                                        </div>
+                                        <div className="weight-large">
+                                            <img src="/images/weight.png" />
+                                            <span>{weightLarge}</span>
+                                        </div>
+                                        <div className="size-large">
+                                            <img src="/images/diameter.png" />
+                                            <span>35 см</span>
+                                        </div>
+                                        <div className="persons-large">
+                                            <img src="/images/team.png" />
+                                            <span>10-12</span>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
