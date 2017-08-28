@@ -29,7 +29,7 @@ In scelerisque nisl sit neque lorem, id integer ut commodo nunc purus neque, vel
                 <CakeSingle
                     name="Soul"
                     shortDescription="Для любителей вечной классики и беспроигрышных сочетаний"
-                    fullDescription="Лёгкий шоколадный бисквит без муки, кремю с мадагаскарской ванилью, малиновое конфи, мусс чёрным шоколадом"
+                    fullDescription="Лёгкий шоколадный бисквит без муки, кремю с мадагаскарской ванилью, малиновое конфи, мусс c чёрным шоколадом."
                     priceSmall="800"
                     priceLarge="1000"
                     weightSmall="1200 г"
@@ -40,7 +40,7 @@ In scelerisque nisl sit neque lorem, id integer ut commodo nunc purus neque, vel
                 <CakeSingle
                     name="Carrot Cake"
                     shortDescription="Морковный торт, ломающий гастрономические стереотипы"
-                    fullDescription="Хрустящий миндальный слой с корицей, морковный бисквит с грецким орехом и апельсином, конфи из моркови и мандарина, мусс с филадельфией и мягким козьим сыром"
+                    fullDescription="Хрустящий миндальный слой с корицей, морковный бисквит с грецким орехом и апельсином, конфи из моркови и мандарина, мусс с филадельфией и мягким козьим сыром."
                     priceSmall="800"
                     priceLarge="1000"
                     weightSmall="1200 г"
@@ -51,7 +51,7 @@ In scelerisque nisl sit neque lorem, id integer ut commodo nunc purus neque, vel
                 <CakeSingle
                     name="Pink"
                     shortDescription="Легкий торт с ярко выраженной кислинкой"
-                    fullDescription="Фисташковый бисквит дакуаз, клубничное конфи, кремю с лаймом, легкий грейпфрутовый мусс"
+                    fullDescription="Фисташковый бисквит дакуаз, клубничное конфи, кремю с лаймом, легкий грейпфрутовый мусс."
                     priceSmall="800"
                     priceLarge="1000"
                     weightSmall="1200 г"
@@ -62,7 +62,7 @@ In scelerisque nisl sit neque lorem, id integer ut commodo nunc purus neque, vel
                 <CakeSingle
                     name="No Name"
                     shortDescription="Насыщенный ореховый вкус с ярким абрикосовым акцентом"
-                    fullDescription="Хрустящий миндально-фундучный слой, бисквит муалё с фундуком, абрикосовое конфи, мусс с молочным шоколадом и домашним пралине"
+                    fullDescription="Хрустящий миндально-фундучный слой, бисквит муалё с фундуком, абрикосовое конфи, мусс с молочным шоколадом и домашним пралине."
                     priceSmall="800"
                     priceLarge="1000"
                     weightSmall="1200 г"
@@ -73,7 +73,7 @@ In scelerisque nisl sit neque lorem, id integer ut commodo nunc purus neque, vel
                 <CakeSingle
                     name="Rio"
                     shortDescription="Идеальная комбинация экзотических фруктов"
-                    fullDescription="Хрустящий миндальный слой с кокосом, кокосовый бисквит дакуаз с лаймом, карамелизированные бананы с ананасом, легкий мусс с маракуйей"
+                    fullDescription="Хрустящий миндальный слой с кокосом, кокосовый бисквит дакуаз с лаймом, карамелизированные бананы с ананасом, легкий мусс с маракуйей."
                     priceSmall="800"
                     priceLarge="1000"
                     weightSmall="1200 г"

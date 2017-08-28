@@ -21,67 +21,70 @@ export class CakeSingle extends React.Component<ICakeSingleProps, any>{
             weightSmall, weightLarge, fullCakeOnTheLeft, imageSmallUrl, imageLargeUrl } = this.props;
 
         if (fullCakeOnTheLeft) {
-            return <div className="row">
-                <div className="col-md-6">
-                    <img src={imageLargeUrl} />
-                </div>
-                <div className="col-md-6">
-                    <div className="row">
-                        <div className="col-md-7">
-                            <div className="taste-name">
-                                {name}
-                            </div>
-                            <div className="taste-desc">
-                                {shortDescription}
-                            </div>
-                            <div className="taste-body">
-                                {fullDescription}
-                            </div>
-                            <div className="row">
-                                <div className="col-md-6">
-                                    <div className="cake-info">
-                                        <div className="price-small">
-                                            <span>{priceSmall}</span>
-                                        </div>
-                                        <div className="weight-small">
-                                            <img src="/images/weight.png" />
-                                            <span>{weightSmall}</span>
-                                        </div>
-                                        <div className="size-small">
-                                            <img src="/images/diameter.png" />
-                                            <span>20 см</span>
-                                        </div>
-                                        <div className="persons-small">
-                                            <img src="/images/team.png" />
-                                            <span>7-8</span>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div className="col-md-6">
-                                    <div className="cake-info">
-                                        <div className="price">
-                                            <span className="price-large">{priceLarge}</span>
-                                            <span className="price-small">.00</span>
-                                        </div>
-                                        <div className="weight-large">
-                                            <img src="/images/weight.png" />
-                                            <span>{weightLarge}</span>
-                                        </div>
-                                        <div className="size-large">
-                                            <img src="/images/diameter.png" />
-                                            <span>35 см</span>
-                                        </div>
-                                        <div className="persons-large">
-                                            <img src="/images/team.png" />
-                                            <span>10-12</span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+            return <div className="cake-single clearfix">
+                <div className="row">
+                    <div className="col-md-6">
+                        <div className="cake-large-image-wrapper">
+                            <img src={imageLargeUrl} />
                         </div>
-                        <div className="col-md-5">
-                            <div className="cake-image-wrapper">
-                                <img src={imageSmallUrl} />
+                    </div>
+                    <div className="col-md-6">
+                        <div className="row">
+                            <div className="col-md-7">
+                                <div className="taste-name">
+                                    {name}
+                                </div>
+                                <div className="taste-desc">
+                                    {shortDescription}
+                                </div>
+                                <div className="taste-body">
+                                    {fullDescription}
+                                </div>
+                                <div className="row">
+                                    <div className="col-md-6">
+                                        <div className="cake-info">
+                                            <div className="price-small">
+                                                <p><span>{priceSmall}</span>.00</p>
+                                            </div>
+                                            <div className="info">
+                                                <img src="/images/weight.png" />
+                                                <span>{weightSmall}</span>
+                                            </div>
+                                            <div className="info">
+                                                <img src="/images/diameter.png" />
+                                                <span>20 см</span>
+                                            </div>
+                                            <div className="info">
+                                                <img src="/images/team.png" />
+                                                <span>7-8</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div className="col-md-6">
+                                        <div className="cake-info">
+                                            <div className="price-large">
+                                                <p><span>{priceLarge}</span>.00</p>
+                                            </div>
+                                            <div className="info">
+                                                <img src="/images/weight.png" />
+                                                <span>{weightLarge}</span>
+                                            </div>
+                                            <div className="info">
+                                                <img src="/images/diameter.png" />
+                                                <span>35 см</span>
+                                            </div>
+                                            <div className="info">
+                                                <img src="/images/team.png" />
+                                                <span>10-12</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div className="col-md-5">
+                                <div className="cake-small-image-wrapper">
+                                    <img src={imageSmallUrl} />
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -89,70 +92,73 @@ export class CakeSingle extends React.Component<ICakeSingleProps, any>{
             </div>;
         }
         else {
-            return <div className="row">
-                <div className="col-md-6">
-                    <div className="row">
-                        <div className="col-md-5">
-                            <div className="cake-image-wrapper">
-                                <img src={imageSmallUrl} />
+            return <div className="cake-single clearfix">
+                <div className="row">
+                    <div className="col-md-6">
+                        <div className="row">
+                            <div className="col-md-5">
+                                <div className="cake-small-image-wrapper">
+                                    <img src={imageSmallUrl} />
+                                </div>
                             </div>
-                        </div>
-                        <div className="col-md-7">
-                            <div className="taste-name">
-                                {name}
-                            </div>
-                            <div className="taste-desc">
-                                {shortDescription}
-                            </div>
-                            <div className="taste-body">
-                                {fullDescription}
-                            </div>
-                            <div className="row">
-                                <div className="col-md-6">
-                                    <div className="cake-info">
-                                        <div className="price-small">
-                                            <span>{priceSmall}</span>
-                                        </div>
-                                        <div className="weight-small">
-                                            <img src="/images/weight.png" />
-                                            <span>{weightSmall}</span>
-                                        </div>
-                                        <div className="size-small">
-                                            <img src="/images/diameter.png" />
-                                            <span>20 см</span>
-                                        </div>
-                                        <div className="persons-small">
-                                            <img src="/images/team.png" />
-                                            <span>7-8</span>
+                            <div className="col-md-7">
+                                <div className="taste-name">
+                                    {name}
+                                </div>
+                                <div className="taste-desc">
+                                    {shortDescription}
+                                </div>
+                                <div className="taste-body">
+                                    {fullDescription}
+                                </div>
+                                <div className="row">
+                                    <div className="col-md-6">
+                                        <div className="cake-info">
+                                            <div className="price-small">
+                                                <p><span>{priceSmall}</span>.00</p>
+                                            </div>
+                                            <div className="info">
+                                                <img src="/images/weight.png" />
+                                                <span>{weightSmall}</span>
+                                            </div>
+                                            <div className="info">
+                                                <img src="/images/diameter.png" />
+                                                <span>20 см</span>
+                                            </div>
+                                            <div className="info">
+                                                <img src="/images/team.png" />
+                                                <span>7-8</span>
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
-                                <div className="col-md-6">
-                                    <div className="cake-info">
-                                        <div className="price">
-                                            <span className="price-large">{priceLarge}</span>
-                                            <span className="price-small">.00</span>
-                                        </div>
-                                        <div className="weight-large">
-                                            <img src="/images/weight.png" />
-                                            <span>{weightLarge}</span>
-                                        </div>
-                                        <div className="size-large">
-                                            <img src="/images/diameter.png" />
-                                            <span>35 см</span>
-                                        </div>
-                                        <div className="persons-large">
-                                            <img src="/images/team.png" />
-                                            <span>10-12</span>
+                                    <div className="col-md-6">
+                                        <div className="cake-info">
+                                            <div className="price-large">
+                                                <p><span>{priceLarge}</span>.00</p>
+                                            </div>
+                                            <div className="info">
+                                                <img src="/images/weight.png" />
+                                                <span>{weightLarge}</span>
+                                            </div>
+                                            <div className="info">
+                                                <img src="/images/diameter.png" />
+                                                <span>35 см</span>
+                                            </div>
+                                            <div className="info">
+                                                <img src="/images/team.png" />
+                                                <span>10-12</span>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                </div>
-                <div className="col-md-6">
-                    <img src={imageLargeUrl} />
+                    <div className="col-md-6">
+                        <div className="cake-large-image-wrapper">
+                            <img src={imageLargeUrl} />
+                        </div>
+                    </div>
                 </div>
             </div>;
         }

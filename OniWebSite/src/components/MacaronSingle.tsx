@@ -23,7 +23,7 @@ export class MacaronSingle extends React.Component<IMacaronSingleProps, any>{
                         </div>
                     </div>
                     <div className="col-md-6">
-                        <div className="macaron-desc-container">
+                        <div className="macaron-desc-container" style={{ marginRight: "20px" }}>
                             <div className="taste-name">
                                 {name}
                             </div>
@@ -41,7 +41,7 @@ export class MacaronSingle extends React.Component<IMacaronSingleProps, any>{
         else {
             return <div>
                 <div className="row">
-                    <div className="col-md-6">
+                    <div className="col-md-6" >
                         <div className="macaron-desc-container">
                             <div className="taste-name">
                                 {name}
@@ -55,7 +55,7 @@ export class MacaronSingle extends React.Component<IMacaronSingleProps, any>{
                         </div>
                     </div>
                     <div className="col-md-6">
-                        <div className="macaron-image-container">
+                        <div className="macaron-image-container" style={{ marginRight: "20px" }}>
                             <img src={imageUrl} />
                         </div>
                     </div>

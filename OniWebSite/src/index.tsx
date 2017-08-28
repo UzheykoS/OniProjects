@@ -15,17 +15,17 @@ require("./images/icons/weight.png");
 require("./images/icons/diameter.png");
 require("./images/icons/team.png");
 
-require("./images/images_large/cakes/cake1.jpg");
-require("./images/images_large/cakes/cake2.jpg");
-require("./images/images_large/cakes/cake3.jpg");
-require("./images/images_large/cakes/cake4.jpg");
-require("./images/images_large/cakes/cake5.jpg");
+require("./images/images_small/cakes/cake1.jpg");
+require("./images/images_small/cakes/cake2.jpg");
+require("./images/images_small/cakes/cake3.jpg");
+require("./images/images_small/cakes/cake4.jpg");
+require("./images/images_small/cakes/cake5.jpg");
 
-require("./images/images_large/cakes/cut1.jpg");
-require("./images/images_large/cakes/cut2.jpg");
-require("./images/images_large/cakes/cut3.jpg");
-require("./images/images_large/cakes/cut4.jpg");
-require("./images/images_large/cakes/cut5.jpg");
+require("./images/images_small/cakes/cut1.jpg");
+require("./images/images_small/cakes/cut2.jpg");
+require("./images/images_small/cakes/cut3.jpg");
+require("./images/images_small/cakes/cut4.jpg");
+require("./images/images_small/cakes/cut5.jpg");
 
 require("./images/images_large/macarons/macaron1.jpg");
 require("./images/images_large/macarons/macaron2.jpg");

@@ -244,7 +244,7 @@ only screen and (min-device-width: 374px) and (max-device-width: 376px) {
         img {
             max-width: 100%;
             height: auto;
-            width: 60%;
+            width: 90%;
         }
         .tastes {
             color: #535353;
@@ -331,75 +331,95 @@ only screen and (min-device-width: 374px) and (max-device-width: 376px) {
     .cakes-body {
         height: 100%;
         margin: 50px 0px;
-        .cake-image-wrapper {
-            position: relative;
-            img {
-                max-width: 100%;
-                height: auto;
-                position: absolute;
-                top: 10vh; // width: 85%;
+        .cake-single {
+            // height: 100%;
+            .cake-small-image-wrapper {
+                // padding-top: 49px;
+                // position: relative;
+                img {
+                    max-width: 100%;
+                    height: auto;
+                    // position: absolute;
+                    // top: 10vh; // width: 85%;
+                }
             }
-        }
-        img {
-            max-width: 100%;
-            height: auto;
-        }
-        .tastes {
-            color: #535353;
-            font-family: 'Museo Sans Cyrl 100';
-            font-size: 5vh;
-            margin-bottom: 5vh;
-            margin-left: 5vh;
-        }
-        .taste-name {
-            color: #555555;
-            font-family: 'Museo Sans Cyrl 900';
-            font-size: 3.5vh;
-            padding-top: 20vh;
-        }
-        .taste-desc {
-            color: #555555;
-            font-family: 'Museo Sans Cyrl 100';
-            font-size: 2.7vh;
-        }
-        .taste-body {
-            color: #555555;
-            font-family: 'Museo Sans Cyrl 500';
-            margin-top: 1vh;
-            font-size: 2vh;
-            line-height: 2.5vh;
-            padding-bottom: 2vh;
-        }
-        .cake-info {
-            img {
-                width: 10px;
-                height: 10px;
-                opacity: 0.5;
-                margin-right: 5px;
+            .cake-large-image-wrapper {
+                // position: relative;
+                img {
+                    max-width: 100%;
+                    height: auto;
+                    // position: absolute;
+                    // top: 10vh; // width: 85%;
+                }
             }
-            span {
+            .tastes {
+                color: #535353;
+                font-family: 'Museo Sans Cyrl 100';
+                font-size: 5vh;
+                margin-bottom: 5vh;
+                margin-left: 5vh;
+            }
+            .taste-name {
+                color: #555555;
+                font-family: 'Museo Sans Cyrl 900';
+                font-size: 3.5vh;
+                padding-top: 13vh;
+                line-height: 4vh;
+            }
+            .taste-desc {
+                color: #555555;
+                font-family: 'Museo Sans Cyrl 100';
+                font-size: 2.5vh;
+                line-height: 3.3vh;
+            }
+            .taste-body {
+                color: #555555;
                 font-family: 'Museo Sans Cyrl 500';
-                font-size: 12px;
-                font-weight: 500;
-                color: #8a8a8a;
+                margin-top: 2.5vh;
+                font-size: 2vh;
+                line-height: 2.5vh;
+                padding-bottom: 2vh;
             }
-            .price-small, .price-small span {
-                font-family: 'Museo Sans Cyrl 500';
-                font-size: 24px;
-                font-weight: 500;
-                color: #ce97bd;
-                height: 55px;
-                vertical-align: bottom;
-            }
-            .price-large {
-                font-family: 'Museo Sans Cyrl 500';
-                font-size: 36px;
-                font-weight: 500;
-                color: #ce97bd;
-                vertical-align: bottom;
-            }
-            .price {
-                height: 55px;
+            .cake-info {
+                img {
+                    width: 1.7vh;
+                    height: 1.7vh;
+                    opacity: 0.5;
+                    margin-right: 5px;
+                }
+                span {
+                    font-family: 'Museo Sans Cyrl 500';
+                    font-size: 1.7vh;
+                    font-weight: 500;
+                    color: #8a8a8a;
+                }
+                .price-small {
+                    font-family: 'Museo Sans Cyrl 500';
+                    font-size: 3.3vh;
+                    font-weight: 500;
+                    color: #ce97bd;
+                    vertical-align: bottom;
+                    height: 8vh;
+                    span, p {
+                        font-size: 4vh;
+                        color: #ce97bd;
+                    }
+                }
+                .price-large {
+                    font-family: 'Museo Sans Cyrl 500';
+                    font-size: 4vh;
+                    font-weight: 500;
+                    color: #ce97bd;
+                    vertical-align: bottom;
+                    height: 8vh;
+                    span, p {
+                        font-size: 5vh;
+                        color: #ce97bd;
+                    }
+                }
+                .info {
+                    height: 2.5vh;
+                }
             }
         }
     }
@@ -423,4 +443,18 @@ only screen and (min-device-width: 374px) and (max-device-width: 376px) {
 
 .carousel .control-dots {
     top: 530px;
+}
+
+.clearfix:before,
+.clearfix:after {
+  content: "";
+  display: table;
+}
+
+.clearfix:after {
+  clear: both;
+}
+
+.clearfix {
+  zoom: 1; /* ie 6/7 */
 }
