@@ -331,6 +331,13 @@ only screen and (min-device-width: 374px) and (max-device-width: 376px) {
     .cakes-body {
         height: 100%;
         margin: 50px 0px;
+        .tastes {
+            color: #535353;
+            font-family: 'Museo Sans Cyrl 100';
+            font-size: 5vh;
+            margin-bottom: 5vh;
+            margin-left: 5vh;
+        }
         .cake-single {
             // height: 100%;
             .cake-small-image-wrapper {
@@ -338,8 +345,7 @@ only screen and (min-device-width: 374px) and (max-device-width: 376px) {
                 // position: relative;
                 img {
                     max-width: 100%;
-                    height: auto;
-                    // position: absolute;
+                    height: auto; // position: absolute;
                     // top: 10vh; // width: 85%;
                 }
             }
@@ -347,23 +353,14 @@ only screen and (min-device-width: 374px) and (max-device-width: 376px) {
                 // position: relative;
                 img {
                     max-width: 100%;
-                    height: auto;
-                    // position: absolute;
+                    height: auto; // position: absolute;
                     // top: 10vh; // width: 85%;
                 }
-            }
-            .tastes {
-                color: #535353;
-                font-family: 'Museo Sans Cyrl 100';
-                font-size: 5vh;
-                margin-bottom: 5vh;
-                margin-left: 5vh;
             }
             .taste-name {
                 color: #555555;
                 font-family: 'Museo Sans Cyrl 900';
                 font-size: 3.5vh;
-                padding-top: 13vh;
                 line-height: 4vh;
             }
             .taste-desc {
@@ -400,9 +397,15 @@ only screen and (min-device-width: 374px) and (max-device-width: 376px) {
                     color: #ce97bd;
                     vertical-align: bottom;
                     height: 8vh;
-                    span, p {
+                    position: relative;
+                    span,
+                    p {
                         font-size: 4vh;
                         color: #ce97bd;
+                    }
+                    p {
+                        position: absolute;
+                        top: 2vh;
                     }
                 }
                 .price-large {
@@ -412,9 +415,15 @@ only screen and (min-device-width: 374px) and (max-device-width: 376px) {
                     color: #ce97bd;
                     vertical-align: bottom;
                     height: 8vh;
-                    span, p {
-                        font-size: 5vh;
+                    position: relative;
+                    span {
+                        font-size: 6vh;
                         color: #ce97bd;
+                    }
+                    p {
+                        font-size: 4vh;
+                        color: #ce97bd;
+                        position: absolute; // top: 1vh;
                     }
                 }
                 .info {
@@ -447,14 +456,15 @@ only screen and (min-device-width: 374px) and (max-device-width: 376px) {
 
 .clearfix:before,
 .clearfix:after {
-  content: "";
-  display: table;
+    content: "";
+    display: table;
 }
 
 .clearfix:after {
-  clear: both;
+    clear: both;
 }
 
 .clearfix {
-  zoom: 1; /* ie 6/7 */
+    zoom: 1;
+    /* ie 6/7 */
 }

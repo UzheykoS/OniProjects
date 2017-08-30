@@ -36,7 +36,8 @@ In scelerisque nisl sit neque lorem, id integer ut commodo nunc purus neque, vel
                     weightLarge="1600 г"
                     fullCakeOnTheLeft={false}
                     imageSmallUrl="/images/cut1.jpg"
-                    imageLargeUrl="/images/cake1.jpg" />
+                    imageLargeUrl="/images/cake1.jpg" 
+                    paddingTop="14vh" />
                 <CakeSingle
                     name="Carrot Cake"
                     shortDescription="Морковный торт, ломающий гастрономические стереотипы"
@@ -47,7 +48,8 @@ In scelerisque nisl sit neque lorem, id integer ut commodo nunc purus neque, vel
                     weightLarge="1600 г"
                     fullCakeOnTheLeft={true}
                     imageSmallUrl="/images/cut2.jpg"
-                    imageLargeUrl="/images/cake2.jpg" />
+                    imageLargeUrl="/images/cake2.jpg"
+                    paddingTop="16vh" />
                 <CakeSingle
                     name="Pink"
                     shortDescription="Легкий торт с ярко выраженной кислинкой"
@@ -58,7 +60,8 @@ In scelerisque nisl sit neque lorem, id integer ut commodo nunc purus neque, vel
                     weightLarge="1600 г"
                     fullCakeOnTheLeft={false}
                     imageSmallUrl="/images/cut3.jpg"
-                    imageLargeUrl="/images/cake3.jpg" />
+                    imageLargeUrl="/images/cake3.jpg" 
+                    paddingTop="19vh" />
                 <CakeSingle
                     name="No Name"
                     shortDescription="Насыщенный ореховый вкус с ярким абрикосовым акцентом"
@@ -69,7 +72,8 @@ In scelerisque nisl sit neque lorem, id integer ut commodo nunc purus neque, vel
                     weightLarge="1600 г"
                     fullCakeOnTheLeft={true}
                     imageSmallUrl="/images/cut4.jpg"
-                    imageLargeUrl="/images/cake4.jpg" />
+                    imageLargeUrl="/images/cake4.jpg" 
+                    paddingTop="22vh" />
                 <CakeSingle
                     name="Rio"
                     shortDescription="Идеальная комбинация экзотических фруктов"
@@ -80,7 +84,8 @@ In scelerisque nisl sit neque lorem, id integer ut commodo nunc purus neque, vel
                     weightLarge="1600 г"
                     fullCakeOnTheLeft={false}
                     imageSmallUrl="/images/cut5.jpg"
-                    imageLargeUrl="/images/cake5.jpg" />
+                    imageLargeUrl="/images/cake5.jpg"
+                    paddingTop="22vh" />
             </div>
             <div className="cakes-footer">
                 <img src="/images/Oni_logo.png" />

@@ -13,12 +13,13 @@ interface ICakeSingleProps {
     fullCakeOnTheLeft: boolean;
     imageSmallUrl: string;
     imageLargeUrl: string;
+    paddingTop: string;
 }
 
 export class CakeSingle extends React.Component<ICakeSingleProps, any>{
     render() {
         const { name, shortDescription, fullDescription, priceSmall, priceLarge,
-            weightSmall, weightLarge, fullCakeOnTheLeft, imageSmallUrl, imageLargeUrl } = this.props;
+            weightSmall, weightLarge, fullCakeOnTheLeft, imageSmallUrl, imageLargeUrl, paddingTop } = this.props;
 
         if (fullCakeOnTheLeft) {
             return <div className="cake-single clearfix">
@@ -31,7 +32,7 @@ export class CakeSingle extends React.Component<ICakeSingleProps, any>{
                     <div className="col-md-6">
                         <div className="row">
                             <div className="col-md-7">
-                                <div className="taste-name">
+                                <div className="taste-name" style={{ paddingTop: paddingTop }}>
                                     {name}
                                 </div>
                                 <div className="taste-desc">
@@ -41,7 +42,7 @@ export class CakeSingle extends React.Component<ICakeSingleProps, any>{
                                     {fullDescription}
                                 </div>
                                 <div className="row">
-                                    <div className="col-md-6">
+                                    <div className="col-md-4">
                                         <div className="cake-info">
                                             <div className="price-small">
                                                 <p><span>{priceSmall}</span>.00</p>
@@ -60,7 +61,7 @@ export class CakeSingle extends React.Component<ICakeSingleProps, any>{
                                             </div>
                                         </div>
                                     </div>
-                                    <div className="col-md-6">
+                                    <div className="col-md-5">
                                         <div className="cake-info">
                                             <div className="price-large">
                                                 <p><span>{priceLarge}</span>.00</p>
@@ -102,7 +103,7 @@ export class CakeSingle extends React.Component<ICakeSingleProps, any>{
                                 </div>
                             </div>
                             <div className="col-md-7">
-                                <div className="taste-name">
+                                <div className="taste-name" style={{ paddingTop: paddingTop }}>
                                     {name}
                                 </div>
                                 <div className="taste-desc">
@@ -112,7 +113,7 @@ export class CakeSingle extends React.Component<ICakeSingleProps, any>{
                                     {fullDescription}
                                 </div>
                                 <div className="row">
-                                    <div className="col-md-6">
+                                    <div className="col-md-4">
                                         <div className="cake-info">
                                             <div className="price-small">
                                                 <p><span>{priceSmall}</span>.00</p>
@@ -131,7 +132,7 @@ export class CakeSingle extends React.Component<ICakeSingleProps, any>{
                                             </div>
                                         </div>
                                     </div>
-                                    <div className="col-md-6">
+                                    <div className="col-md-5">
                                         <div className="cake-info">
                                             <div className="price-large">
                                                 <p><span>{priceLarge}</span>.00</p>

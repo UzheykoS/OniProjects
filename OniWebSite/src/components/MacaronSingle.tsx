@@ -17,13 +17,13 @@ export class MacaronSingle extends React.Component<IMacaronSingleProps, any>{
         if (imageOnTheLeft) {
             return <div>
                 <div className="row">
-                    <div className="col-md-6">
+                    <div className="col-md-5">
                         <div className="macaron-image-container">
                             <img src={imageUrl} />
                         </div>
                     </div>
                     <div className="col-md-6">
-                        <div className="macaron-desc-container" style={{ marginRight: "20px" }}>
+                        <div className="macaron-desc-container">
                             <div className="taste-name">
                                 {name}
                             </div>
@@ -35,6 +35,7 @@ export class MacaronSingle extends React.Component<IMacaronSingleProps, any>{
                             </div>
                         </div>
                     </div>
+                    <div className="col-md-1" />
                 </div>
             </div>;
         }
@@ -54,11 +55,12 @@ export class MacaronSingle extends React.Component<IMacaronSingleProps, any>{
                             </div>
                         </div>
                     </div>
-                    <div className="col-md-6">
-                        <div className="macaron-image-container" style={{ marginRight: "20px" }}>
+                    <div className="col-md-5">
+                        <div className="macaron-image-container">
                             <img src={imageUrl} />
                         </div>
                     </div>
+                    <div className="col-md-1" />
                 </div>
             </div>;
         }
