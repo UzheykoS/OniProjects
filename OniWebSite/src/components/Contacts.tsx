@@ -3,15 +3,20 @@ import { Nav } from "./Nav";
 import { Tabs } from "../Helper"
 import { withGoogleMap, GoogleMap, Marker } from "react-google-maps";
 
-const googleMapURL = "https://maps.googleapis.com/maps/api/js?v=3.27&libraries=places,geometry&key=AIzaSyDH_aHRsVOr_CMITd6m0Vuo1X2qSXMicdY"
+// const googleMapURL = "https://maps.googleapis.com/maps/api/js?v=3.27&libraries=places,geometry&key=AIzaSyDH_aHRsVOr_CMITd6m0Vuo1X2qSXMicdY"
 
-const GettingStartedGoogleMap = withGoogleMap(props => (
+const GoogleMapsWrapper = withGoogleMap(props => (
     <GoogleMap
         ref={props.onMapLoad}
-        defaultZoom={3}
-        defaultCenter={{ lat: 50.4544477, lng: 30.6165073 }}
+        defaultZoom={17}
+        defaultCenter={{ lat: 50.446102, lng: 30.425567 }}
         onClick={props.onMapClick}
     >
+        <Marker
+            title={'ONI'}
+            label={'O'}
+            position={{ lat: 50.446102, lng: 30.425567 }}
+        />
     </GoogleMap>
 ));
 
@@ -37,17 +42,25 @@ In scelerisque nisl sit neque lorem, id integer ut commodo nunc purus neque, vel
                 </div>
             </div>
             <div className="contacts-body">
-                <GettingStartedGoogleMap
-                    containerElement={
-                        <div style={{ height: `100%` }} />
-                    }
-                    mapElement={
-                        <div style={{ height: `100%` }} />
-                    }
-                    onMapLoad={() => { }}
-                    onMapClick={() => { }}
-                    onMarkerRightClick={() => { }}
-                />
+                <div className="contacts-body-text">
+                    <div>А тут много текста
+                                Lorem ipsum dolor sit amet, congue gravida erat et nullam, quis habitant varius convallis pellentesque eros. Fringilla montes ut enim id pellentesque consectetuer, erat magna sed etiam a viverra ut, fringilla nec sit orci curabitur ut risus, tristique platea ultricies aliquam venenatis curabitur.
+
+In scelerisque nisl sit neque lorem, id integer ut commodo nunc purus neque, vel in leo, pede eos ipsum, dui commodo metus. </div>
+                </div>
+                <div className="contacts-body-map">
+                    <GoogleMapsWrapper
+                        containerElement={
+                            <div style={{ height: `100%` }} />
+                        }
+                        mapElement={
+                            <div style={{ height: `100%` }} />
+                        }
+                        onMapLoad={() => { }}
+                        onMapClick={() => { }}
+                        onMarkerRightClick={() => { }}
+                    />
+                </div>
             </div>
             <div className="contacts-footer">
                 <img src="/images/Oni_logo.png" />

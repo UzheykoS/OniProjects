@@ -245,7 +245,7 @@ only screen and (min-device-width: 374px) and (max-device-width: 376px) {
         img {
             max-width: 100%;
             height: auto;
-            width: 90%;
+            width: 80%;
         }
         .tastes {
             color: #535353;
@@ -484,7 +484,22 @@ only screen and (min-device-width: 374px) and (max-device-width: 376px) {
             }
         }
     }
-    .contacts-body {}
+    .contacts-body {
+        .contacts-body-text {
+            text-align: center;
+            color: #000000;
+            font-family: 'Museo Sans Cyrl 500';
+            font-size: 16px;
+            padding-top: 20px;
+        }
+        .contacts-body-map {
+            height: 400px;
+            text-align: center;
+            width: 600px;
+            margin: 0 auto;
+            padding: 10px;
+        }
+    }
     .contacts-footer {
         position: relative;
         bottom: 0;
