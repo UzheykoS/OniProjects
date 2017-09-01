@@ -38,6 +38,7 @@
     "image-webpack-loader": "^3.4.0",
     "node-sass": "^4.5.0",
     "react-google-maps": "^7.2.0",
+    "react-media": "^1.6.1",
     "sass-loader": "^4.0.0",
     "style-loader": "^0.9.0",
     "ts-loader": "0.8.2",

@@ -19,7 +19,7 @@ body {
 .app {
     height: 100%;
     min-width: 1000px;
-    overflow-x: scroll;
+    overflow-x: auto;
 }
 
 .invisible {
@@ -43,26 +43,16 @@ body {
     }
 }
 
-@media only screen and (min-width: 320px),
-only screen and (min-device-width: 374px) and (max-device-width: 376px) {
-    .main-body img {
-        // src: url("/images/cite_680.png");
-        // background-size: cover;
-    }
-    .logo {
-        height: 18vh;
-    }
-}
-
-@media only screen and (min-width: 800px) {
-    .main-body img {
-        // src: url("/images/cite_1920_v2.png");
-        // background-size: contain;
-    }
-    .logo {
-        height: 18vh;
-    }
-}
+// @media only screen and (min-width: 320px),
+// only screen and (min-device-width: 374px) and (max-device-width: 376px) {
+//     .main-body img {
+//         // src: url("/images/cite_680.png");
+//         // background-size: cover;
+//     }
+//     .logo {
+//         height: 18vh;
+//     }
+// }
 
 .nav-bar {
     position: relative;
@@ -292,7 +282,6 @@ only screen and (min-device-width: 374px) and (max-device-width: 376px) {
 .cakes-container {
     height: 100%;
     font-family: 'Museo Sans Cyrl 500'; // position: relative;
-    font-size: 1.9vh;
     overflow-x: hidden;
     .cakes-header {
         width: 100%;
@@ -446,7 +435,6 @@ only screen and (min-device-width: 374px) and (max-device-width: 376px) {
 .contacts-container {
     height: 100%;
     font-family: 'Museo Sans Cyrl 500';
-    font-size: 1.9vh;
     overflow-x: hidden;
     .contacts-header {
         width: 100%;
@@ -535,4 +523,168 @@ only screen and (min-device-width: 374px) and (max-device-width: 376px) {
 .clearfix {
     zoom: 1;
     /* ie 6/7 */
+}
+
+
+@media only screen and (max-width: 800px) {
+    .app {
+        height: 100%;
+        max-width: 800px;
+        min-width: 0;
+        overflow-x: hidden;
+    }
+    
+    .cakes-container {
+        .cakes-header {
+            padding-top: 70px;
+            padding-left: 25px;
+            margin-bottom: 70px;
+            height: 300px;
+            .header-main {
+                font-size: 20px;
+            }
+            .header-desc {
+                font-size: 14px;
+            }
+            .header-body {
+                font-size: 12px;
+                line-height: 19px;
+                padding-top: 20px;
+            }
+            .cakes-photo {
+                display: none;
+            }
+        }
+        .cakes-body {
+            .tastes {
+                font-size: 24px;
+            }
+            .cake-single {
+                .cake-small-image-wrapper {
+                    img {
+                        max-width: 100%;
+                        height: auto;
+                    }
+                }
+                .cake-large-image-wrapper {
+                    img {
+                        max-width: 100%;
+                        height: auto;
+                    }
+                }
+                .taste-name {
+                    font-size: 24px;
+                }
+                .taste-desc {
+                    font-size: 16px;
+                }
+                .taste-body {
+                    margin-top: 12px;
+                    font-size: 12px;
+                    line-height: 19px;
+                    padding-bottom: 14px;
+                }
+            }
+        }
+    }
+
+    .macarons-container {
+        .macarons-header {
+            padding-top: 70px;
+            padding-left: 25px;
+            margin-bottom: 70px;
+            height: 590px;
+            .header-main {
+                font-size: 20px;
+            }
+            .header-desc {
+                font-size: 14px;
+            }
+            .header-body {
+                font-size: 12px;
+                padding-top: 20px;
+            }
+            .macarons-prices {
+                .small-image {
+                    width: 269px;
+                    height: 188px;
+                    position: absolute;
+                    bottom: -77px;
+                    z-index: 3;
+                    left: 239px;
+                    top: 37px;
+                }
+                .large-image {
+                    width: 345px;
+                    height: 276px;
+                    position: absolute;
+                    z-index: 2;
+                    left: 120px;
+                    top: 150px;
+                }
+                .price-small {
+                    position: absolute;
+                    top: -21px;
+                    left: 257px;
+                }
+                .price-large {
+                    position: absolute;
+                    top: 90px;
+                    left: 140px;
+                }
+            }
+        }
+        .macarons-body {
+            .macaron-image-container {
+                margin: 10px 0px;
+            }
+            img {
+                width: 70%;
+            }
+            .tastes {
+                font-size: 24px;
+                margin-bottom: 50px;
+            }
+            .taste-name {
+                font-size: 24px;
+            }
+            .taste-desc {
+                font-size: 14px;
+                margin-top: -5px;
+            }
+            .taste-body {
+                font-size: 12px;
+                line-height: 16px;
+            }
+        }
+    }
+
+    .contacts-container {
+        .contacts-header {
+            height: 250px;
+            padding-top: 40px;
+            padding-left: 25px;
+            .header-main {
+                font-size: 20px;
+            }
+            .header-desc {
+                font-size: 14px;
+            }
+            .header-body {
+                font-size: 12px;
+            }
+            .contacts-photo {
+                display: none;
+            }
+        }
+        .contacts-body {
+            .contacts-body-map {
+                height: 400px;
+                text-align: center;
+                width: 90%;
+                margin: 0 auto;
+                padding: 10px;
+            }
+        }
+    }
 }
