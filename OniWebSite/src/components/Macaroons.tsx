@@ -23,18 +23,22 @@ In scelerisque nisl sit neque lorem, id integer ut commodo nunc purus neque, vel
                     </div>
                     <div className="col-md-6">
                         <div className="macarons-prices">
-                            <div className="price-large">
-                                <span className="large">540</span>
-                                <span className="small">.00</span>
-                                <div className="qty">24шт</div>
+                            <div className="macarons-small">
+                                <div className="price-small">
+                                    <span className="large">270</span>
+                                    <span className="small">.00</span>
+                                    <div className="qty">12шт</div>
+                                </div>
+                                <img src="./images/mac_small.png" className="small-image" />
                             </div>
-                            <div className="price-small">
-                                <span className="large">270</span>
-                                <span className="small">.00</span>
-                                <div className="qty">12шт</div>
+                            <div className="macarons-large">
+                                <div className="price-large">
+                                    <span className="large">540</span>
+                                    <span className="small">.00</span>
+                                    <div className="qty">24шт</div>
+                                </div>
+                                <img src="./images/mac_large.png" className="large-image" />
                             </div>
-                            <img src="./images/mac_large.png" className="large-image" />
-                            <img src="./images/mac_small.png" className="small-image" />
                         </div>
                     </div>
                 </div>

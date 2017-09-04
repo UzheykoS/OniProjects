@@ -175,23 +175,38 @@ body {
             padding-top: 20px;
         }
         .macarons-prices {
-            position: relative;
-            .small-image {
-                width: 269px;
-                height: 188px;
-                position: absolute;
-                bottom: -77px;
-                z-index: 3;
-                left: 239px;
-                top: 37px;
+            .macarons-large {
+                position: relative;
+                .price-large {
+                    position: absolute;
+                    top: 90px;
+                    left: 140px;
+                }
+                .large-image {
+                    width: 345px;
+                    height: 276px;
+                    position: absolute;
+                    z-index: 2;
+                    left: 120px;
+                    top: 150px;
+                }
             }
-            .large-image {
-                width: 345px;
-                height: 276px;
-                position: absolute;
-                z-index: 2;
-                left: 120px;
-                top: 150px;
+            .macarons-small {
+                position: relative;
+                .price-small {
+                    position: absolute;
+                    top: -21px;
+                    left: 257px;
+                }
+                .small-image {
+                    width: 269px;
+                    height: 188px;
+                    position: absolute;
+                    bottom: -77px;
+                    z-index: 3;
+                    left: 239px;
+                    top: 37px;
+                }
             }
             .price-small,
             .price-large {
@@ -209,16 +224,6 @@ body {
                     font-family: 'Museo Sans Cyrl 500';
                     margin-top: -10px;
                 }
-            }
-            .price-small {
-                position: absolute;
-                top: -21px;
-                left: 257px;
-            }
-            .price-large {
-                position: absolute;
-                top: 90px;
-                left: 140px;
             }
         }
     }
@@ -308,7 +313,7 @@ body {
         .cakes-photo {
             position: relative;
             img {
-                max-width: 100%;
+                width: 450px;
                 height: auto;
                 position: absolute;
                 z-index: 2;
@@ -462,7 +467,7 @@ body {
         .contacts-photo {
             position: relative;
             img {
-                max-width: 100%;
+                width: 450px;
                 height: auto;
                 position: absolute;
                 z-index: 2;
@@ -536,7 +541,8 @@ body {
             padding-top: 70px;
             padding-left: 25px;
             margin-bottom: 70px;
-            height: 300px;
+            height: auto;
+            padding-bottom: 30px;
             .header-main {
                 font-size: 20px;
             }
@@ -589,7 +595,7 @@ body {
             padding-top: 70px;
             padding-left: 25px;
             margin-bottom: 70px;
-            height: 590px;
+            height: auto;
             .header-main {
                 font-size: 20px;
             }
@@ -601,32 +607,43 @@ body {
                 padding-top: 20px;
             }
             .macarons-prices {
-                .small-image {
-                    width: 269px;
-                    height: 188px;
-                    position: absolute;
-                    bottom: -77px;
-                    z-index: 3;
-                    left: 239px;
-                    top: 37px;
+                height: 100%;
+                width: 100%;
+                display: inline-block;
+                position: initial;
+                .macarons-large {
+                    width: 100%;
+                    display: inline-block;
+                    .large-image {
+                        width: 90%;
+                        height: auto;
+                        position: initial;
+                        left: 20px;
+                        top: 376px;
+                        max-height: 400px;
+                    }
+                    .price-large {
+                        position: initial;
+                        top: 330px;
+                        left: 20px;
+                    }
                 }
-                .large-image {
-                    width: 345px;
-                    height: 276px;
-                    position: absolute;
-                    z-index: 2;
-                    left: 120px;
-                    top: 150px;
-                }
-                .price-small {
-                    position: absolute;
-                    top: -21px;
-                    left: 257px;
-                }
-                .price-large {
-                    position: absolute;
-                    top: 90px;
-                    left: 140px;
+                .macarons-small {
+                    width: 100%;
+                    display: inline-block;
+                    .small-image {
+                        width: 90%;
+                        height: auto;
+                        position: initial;
+                        left: 20px;
+                        top: 55px;
+                        max-height: 400px;
+                    }
+                    .price-small {
+                        position: initial;
+                        top: 10px;
+                        left: 20px;
+                    }
                 }
             }
         }
@@ -656,7 +673,8 @@ body {
     }
     .contacts-container {
         .contacts-header {
-            height: 250px;
+            height: auto;
+            padding-bottom: 30px;
             padding-top: 40px;
             padding-left: 25px;
             .header-main {
@@ -687,7 +705,7 @@ body {
         .logo,
         .logo-small {
             height: 70px;
-            margin: 5px 10px 5px 20px;
+            margin: 5px 10px 10px 20px;
         }
     }
 }
@@ -695,27 +713,28 @@ body {
 .bm-burger-button {
     .bm-icon {
         width: 20px !important;
+        height: 20px !important;
+        margin-bottom: 3px;
     }
 }
 
-
-/* Position and sizing of burger button */
+.bm-burger-button::before {
+    content: "МЕНЮ";
+    font-family: 'Museo Sans Cyrl 100';
+    font-size: 14px;
+    color: #848484;
+    padding-right: 10px;
+}
 
 .bm-burger-button {
-    position: fixed;
+    position: absolute;
     right: 10px;
     top: 28px;
 }
 
-
-/* Color/shape of burger icon bars */
-
 .bm-burger-bars {
     background: #373a47;
 }
-
-
-/* Position and sizing of clickable cross button */
 
 .bm-cross-button {
     height: 24px;
@@ -724,36 +743,50 @@ body {
 
 .bm-menu-wrap {
     top: 0px;
+    z-index: 10 !important;
 }
-
-
-/* General sidebar styles */
 
 .bm-menu {
     background: #ffd85c;
     padding: 2.5em 1.5em 0;
     font-size: 1.15em;
+    padding-top: 100px;
 }
-
-
-/* Morph shape necessary with bubble or elastic */
 
 .bm-morph-shape {
     fill: #373a47;
 }
 
-
-/* Wrapper for item list */
-
 .bm-item-list {
     color: #b8b7ad;
     padding: 0.8em;
+    text-align: center;
+    span>a {
+        color: #000000;
+        font-family: 'Museo Sans Cyrl 500';
+        font-size: 17px;
+        line-height: 30px;
+    }
 }
-
-
-/* Styling of overlay */
 
 .bm-overlay {
     background: rgba(0, 0, 0, 0.3);
     top: 0px;
+}
+
+.bm-socials {
+    position: absolute;
+    margin-left: auto;
+    margin-right: auto;
+    left: 0;
+    right: 0;
+    bottom: 20px;
+    opacity: 0.4;
+    a {
+        width: 2rem;
+        padding: 5px 10px;
+        img {
+            height: 27px;
+        }
+    }
 }

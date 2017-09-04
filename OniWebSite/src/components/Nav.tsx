@@ -32,10 +32,6 @@ export class Nav extends React.Component<INavProps, INavState>{
         })
     }
 
-    showSettings(event) {
-        event.preventDefault();
-    }
-
     render() {
         const { activeTab } = this.state;
 
@@ -44,14 +40,56 @@ export class Nav extends React.Component<INavProps, INavState>{
                 <div className="nav-bar">
                     <img src="/images/Oni_w_black.png" className={activeTab == Tabs.About ? "logo" : "logo logo-small"} />
                     <Menu right
-                        width={'70%'}
+                        width={'100%'}
                         customBurgerIcon={<img src="/images/menu-button.png" />}
                         customCrossIcon={<img src="/images/close.png" />} >
-                        <a id="home" className="menu-item" href="/">Home</a>
-                        <a id="about" className="menu-item" href="/about">About</a>
-                        <a id="contact" className="menu-item" href="/contact">Contact</a>
-                        <a onClick={this.showSettings} className="menu-item--small" href="">Settings</a>
-                    </Menu>
+                        <span className="menu-item">
+                            <IndexLink to="/"
+                                className={activeTab == Tabs.About ? "active" : ""}
+                                onClick={() => this.onLinkClick(Tabs.About)}>
+                                О НАС
+                            </IndexLink>
+                        </span>
+                        <span className="menu-item">
+                            <Link to="/cakes"
+                                className={activeTab == Tabs.Cakes ? "active" : ""}
+                                onClick={() => this.onLinkClick(Tabs.Cakes)}>
+                                ТОРТЫ
+                            </Link>
+                        </span>
+                        <span className="menu-item">
+                            <Link to="/macaroons"
+                                className={activeTab == Tabs.Macarons ? "active" : ""}
+                                onClick={() => this.onLinkClick(Tabs.Macarons)}>
+                                МАКАРУНЫ
+                            </Link>                        
+                        </span>
+                        <span className="menu-item">
+                            <Link to="/stub/Корпоративным"
+                                className={activeTab == Tabs.Corporate ? "active" : ""}
+                                onClick={() => this.onLinkClick(Tabs.Corporate)}>
+                                КОРПОРАТИВНЫМ КЛИЕНТАМ
+                            </Link>                        
+                        </span>
+                        <span className="menu-item">
+                            <Link to="/contacts"
+                                className={activeTab == Tabs.Contacts ? "active" : ""}
+                                onClick={() => this.onLinkClick(Tabs.Contacts)}>
+                                КОНТАКТЫ
+                            </Link>
+                        </span>
+                        <div className="bm-socials">
+                            <a target="_blank" href="https://www.facebook.com/">
+                                <img className="social_network" src="images/facebook.png" />
+                            </a>
+                            <a target="_blank" href="https://www.instagram.com">
+                                <img className="social_network" src="images/instagram.png" />
+                            </a>
+                            <a target="_blank" href="https://www.telegram.com">
+                                <img className="social_network" src="images/twitter.png" />
+                            </a>
+                        </div>
+                    </Menu>                    
                 </div>
             ) : (
                     <div className="nav-bar">
