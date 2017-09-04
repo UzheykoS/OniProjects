@@ -53,7 +53,6 @@ body {
 //         height: 18vh;
 //     }
 // }
-
 .nav-bar {
     position: relative;
     max-height: 200px;
@@ -525,7 +524,6 @@ body {
     /* ie 6/7 */
 }
 
-
 @media only screen and (max-width: 800px) {
     .app {
         height: 100%;
@@ -533,7 +531,6 @@ body {
         min-width: 0;
         overflow-x: hidden;
     }
-    
     .cakes-container {
         .cakes-header {
             padding-top: 70px;
@@ -587,7 +584,6 @@ body {
             }
         }
     }
-
     .macarons-container {
         .macarons-header {
             padding-top: 70px;
@@ -658,7 +654,6 @@ body {
             }
         }
     }
-
     .contacts-container {
         .contacts-header {
             height: 250px;
@@ -687,4 +682,78 @@ body {
             }
         }
     }
+    .nav-bar {
+        max-height: 200px;
+        .logo,
+        .logo-small {
+            height: 70px;
+            margin: 5px 10px 5px 20px;
+        }
+    }
+}
+
+.bm-burger-button {
+    .bm-icon {
+        width: 20px !important;
+    }
+}
+
+
+/* Position and sizing of burger button */
+
+.bm-burger-button {
+    position: fixed;
+    right: 10px;
+    top: 28px;
+}
+
+
+/* Color/shape of burger icon bars */
+
+.bm-burger-bars {
+    background: #373a47;
+}
+
+
+/* Position and sizing of clickable cross button */
+
+.bm-cross-button {
+    height: 24px;
+    width: 24px;
+}
+
+.bm-menu-wrap {
+    top: 0px;
+}
+
+
+/* General sidebar styles */
+
+.bm-menu {
+    background: #ffd85c;
+    padding: 2.5em 1.5em 0;
+    font-size: 1.15em;
+}
+
+
+/* Morph shape necessary with bubble or elastic */
+
+.bm-morph-shape {
+    fill: #373a47;
+}
+
+
+/* Wrapper for item list */
+
+.bm-item-list {
+    color: #b8b7ad;
+    padding: 0.8em;
+}
+
+
+/* Styling of overlay */
+
+.bm-overlay {
+    background: rgba(0, 0, 0, 0.3);
+    top: 0px;
 }

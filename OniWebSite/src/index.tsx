@@ -39,6 +39,9 @@ require("./images/images_large/macarons/macaron8.jpg");
 require("./images/images_large/macarons/mac_large.png");
 require("./images/images_large/macarons/mac_small.png");
 
+require("./images/icons/close.png");
+require("./images/icons/menu-button.png");
+
 require("../node_modules/react-responsive-carousel/lib/styles/carousel.css")
 
 import * as React from "react";
