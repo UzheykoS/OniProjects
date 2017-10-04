@@ -1,8 +1,9 @@
-const path = require('path');
+import * as path from 'path';
+import { Configuration, DefinePlugin, IgnorePlugin } from 'webpack';
 const ExtractTextPlugin = require("extract-text-webpack-plugin");
-var HtmlWebpackPlugin = require('html-webpack-plugin');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 
-module.exports = {
+const config: Configuration = {
     entry: "./src/index.tsx",
     output: {
         path: path.resolve(__dirname, 'dist'),
@@ -14,7 +15,7 @@ module.exports = {
         contentBase: path.resolve(__dirname, 'dist'),
         port: 8200
     },
-    devtool: "source-map",
+    devtool: "inline-source-map",
     resolve: {
         extensions: [".webpack.js", ".web.js", ".ts", ".tsx", ".js"]
     },
@@ -50,6 +51,14 @@ module.exports = {
     },
     plugins: [
         new HtmlWebpackPlugin({ template: 'template.ejs' }),
-        new ExtractTextPlugin("styles.css")
+        new ExtractTextPlugin("styles.css"),
+        new IgnorePlugin(/^\.\/locale/, /moment/),
+        new DefinePlugin({
+            'process.env': {
+                'NODE_ENV': JSON.stringify(process.env.NOVE_ENV)
+            }
+        })
     ]
-};
+}
+
+export default config;
