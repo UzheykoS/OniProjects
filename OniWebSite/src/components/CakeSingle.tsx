@@ -90,6 +90,7 @@ export class CakeSingle extends React.Component<ICakeSingleProps, any>{
                         </div>
                     </div>
                 </div>
+                <br/>
             </div>;
         }
         else {
@@ -161,6 +162,7 @@ export class CakeSingle extends React.Component<ICakeSingleProps, any>{
                         </div>
                     </div>
                 </div>
+                <br/>
             </div>;
         }
     }

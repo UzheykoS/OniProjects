@@ -63,14 +63,14 @@ In scelerisque nisl sit neque lorem, id integer ut commodo nunc purus neque, vel
                 </div>
                 <div className="row">
                     <div className="col-md-6">
-                        <MacaronSingle name="Манго-Маракуйя"
+                        <MacaronSingle name="Манго - Маракуйя"
                             shortDescription=""
                             fullDescription="Двойная начинка на основе натурального пюре манго и маракуйи с ярким центром"
                             imageOnTheLeft={false}
                             imageUrl="./images/macaron8.jpg" />
                     </div>
                     <div className="col-md-6">
-                        <MacaronSingle name="Лаванда-Черника"
+                        <MacaronSingle name="Лаванда - Черника"
                             shortDescription=""
                             fullDescription="Двойная начинка на основе натуральных молочных сливок, настоянных на цветках лаванды, с ярким центром из натурального пюре черники"
                             imageOnTheLeft={false}
@@ -79,7 +79,7 @@ In scelerisque nisl sit neque lorem, id integer ut commodo nunc purus neque, vel
                 </div>
                 <div className="row">
                     <div className="col-md-6">
-                        <MacaronSingle name="Кокос-Ананас"
+                        <MacaronSingle name="Кокос - Ананас"
                             shortDescription=""
                             fullDescription="Двойная начинка на основе натуральных кокосовых сливок и ликёра Malibu с ярким центром из натурального пюре ананаса"
                             imageOnTheLeft={true}
@@ -102,16 +102,16 @@ In scelerisque nisl sit neque lorem, id integer ut commodo nunc purus neque, vel
                             imageUrl="./images/macaron4.jpg" />
                     </div>
                     <div className="col-md-6">
-                        <MacaronSingle name="Солёная карамель-Кофе"
+                        <MacaronSingle name="Солёная карамель - Кофе"
                             shortDescription=""
-                            fullDescription="войная начинка на основе натурального кофе эспрессо с центром из мягкой соленой карамели"
+                            fullDescription="Двойная начинка на основе натурального кофе эспрессо с центром из мягкой соленой карамели"
                             imageOnTheLeft={false}
                             imageUrl="./images/macaron5.jpg" />
                     </div>
                 </div>
                 <div className="row">
                     <div className="col-md-6">
-                        <MacaronSingle name="Дор Блю-Груша"
+                        <MacaronSingle name="Дор Блю - Груша"
                             shortDescription=""
                             fullDescription="Двойная начинка на основе сыра Дор Блю с центром из натурального грушевого пюре"
                             imageOnTheLeft={false}

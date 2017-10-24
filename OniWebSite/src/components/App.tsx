@@ -34,33 +34,34 @@ export class App extends React.Component<any, IAppState>{
         }
     }
 
-    componentDidMount() {
+    async componentDidMount() {
         // preloads the rest
         // loadCakes(() => { })
-        loadMainPageImage("./images/cake1.jpg").then(() => {
-            this.setState({
-                loading: false
-            });
-            preloadImages([
-                "./images/cake1.jpg",
-                "./images/cake2.jpg",
-                "./images/cake3.jpg",
-                "./images/cake4.jpg",
-                "./images/cake5.jpg",
-                "./images/cut1.jpg",
-                "./images/cut2.jpg",
-                "./images/cut3.jpg",
-                "./images/cut4.jpg",
-                "./images/cut5.jpg",
-                "./images/macaron1.jpg",
-                "./images/macaron2.jpg",
-                "./images/macaron3.jpg",
-                "./images/macaron4.jpg",
-                "./images/macaron5.jpg",
-                "./images/macaron6.jpg",
-                "./images/macaron7.jpg",
-                "./images/macaron8.jpg",])
+        debugger;
+        await loadMainPageImage("./images/cake1.jpg");
+
+        this.setState({
+            loading: false
         });
+        await preloadImages([
+            "./images/cake1.jpg",
+            "./images/cake2.jpg",
+            "./images/cake3.jpg",
+            "./images/cake4.jpg",
+            "./images/cake5.jpg",
+            "./images/cut1.jpg",
+            "./images/cut2.jpg",
+            "./images/cut3.jpg",
+            "./images/cut4.jpg",
+            "./images/cut5.jpg",
+            "./images/macaron1.jpg",
+            "./images/macaron2.jpg",
+            "./images/macaron3.jpg",
+            "./images/macaron4.jpg",
+            "./images/macaron5.jpg",
+            "./images/macaron6.jpg",
+            "./images/macaron7.jpg",
+            "./images/macaron8.jpg",])
     }
 
     render() {
