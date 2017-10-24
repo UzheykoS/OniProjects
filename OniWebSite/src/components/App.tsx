@@ -37,7 +37,6 @@ export class App extends React.Component<any, IAppState>{
     async componentDidMount() {
         // preloads the rest
         // loadCakes(() => { })
-        debugger;
         await loadMainPageImage("./images/cake1.jpg");
 
         this.setState({

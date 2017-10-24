@@ -13,9 +13,8 @@ export function loadMainPageImage(url: string) {
         img.onload = () => {
             resolve();
         }
-        img.setAttribute("src", url);
-        // img.src = url;        
-
+        img.src = url;        
+        //ie fix
         if (img.complete) {
             resolve();
         }
