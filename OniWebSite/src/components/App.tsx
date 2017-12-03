@@ -37,7 +37,7 @@ export class App extends React.Component<any, IAppState>{
     async componentDidMount() {
         // preloads the rest
         // loadCakes(() => { })
-        await loadMainPageImage("./images/cake1.jpg");
+        await loadMainPageImage("./images/hire.jpg");
 
         this.setState({
             loading: false

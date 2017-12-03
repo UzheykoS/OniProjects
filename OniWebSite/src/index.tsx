@@ -39,6 +39,8 @@ require("./images/images_large/macarons/macaron8.jpg");
 require("./images/images_large/macarons/mac_large.png");
 require("./images/images_large/macarons/mac_small.png");
 
+require("./images/images_large/about/hire.jpg");
+
 require("./images/icons/close.png");
 require("./images/icons/menu-button.png");
 

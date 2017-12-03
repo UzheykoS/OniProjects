@@ -6,12 +6,12 @@ import { Carousel } from 'react-responsive-carousel';
 
 export class Main extends React.Component<any, any>{
     render() {
-        return <div className="app">
+        return <div className="app background">
             <Nav tab={Tabs.About} />
 
             <div className="main-body">
-                {/* <img src="./images/cake2_a.jpg" className="cake" /> */}
-                <div className="carousel-container">
+                {/* {<img src="./images/hire.jpg" className="cake" />} */}
+                {/* <div className="carousel-container">
                     <Carousel axis="horizontal"
                         showThumbs={false}
                         showArrows={false}
@@ -34,7 +34,7 @@ export class Main extends React.Component<any, any>{
                             <img src="./images/cake5.jpg" className="cake" />
                         </div>
                     </Carousel>
-                </div>
+                </div> */}
             </div>
 
             <div className="socials">
