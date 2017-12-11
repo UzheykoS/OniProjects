@@ -13,16 +13,20 @@ export class Macaroons extends React.Component<any, any>{
             <Nav tab={Tabs.Macarons} />
             <div className="macarons-header">
                 <div className="row">
-                    <div className="col-md-6">
-                        <div className="header-main">Макаруны</div>
-                        <div className="header-desc">Очень вкусные дессерты</div>
-                        <div className="header-body">А тут много текста
-                                Lorem ipsum dolor sit amet, congue gravida erat et nullam, quis habitant varius convallis pellentesque eros. Fringilla montes ut enim id pellentesque consectetuer, erat magna sed etiam a viverra ut, fringilla nec sit orci curabitur ut risus, tristique platea ultricies aliquam venenatis curabitur.
-
-In scelerisque nisl sit neque lorem, id integer ut commodo nunc purus neque, vel in leo, pede eos ipsum, dui commodo metus. </div>
+                    <div className="col-md-7">
+                        <div className="header-main">Макарон</div>
+                        {/* <div className="header-desc">Очень вкусные дессерты</div> */}
+                        <div className="header-body">
+                            Вы когда-то пробовали макарон? Мы про настоящий, правильный, с ярким вкусом, хорошо пропитанными миндальными половинками и тонкой хрустящей корочкой. Про тот, что не крошится в руках. И про тот, который невозможно забыть. Про такой, как у нас.
+<br /> <br />
+                            Каждый день мы делаем свежие макарон, для которых используем самые лучшие ингредиенты. Вы можете выбрать любые вкусы из нашего меню и сформировать свой набор на 12 или 24 штуки.
+                        </div>
                     </div>
-                    <div className="col-md-6">
-                        <div className="macarons-prices">
+                    <div className="col-md-5">
+                        <div className="macarons-photo">
+                            <img src="./images/mac_header.jpg" />
+                        </div>
+                        {/* <div className="macarons-prices">
                             <div className="macarons-small">
                                 <div className="price-small">
                                     <span className="large">270</span>
@@ -37,9 +41,10 @@ In scelerisque nisl sit neque lorem, id integer ut commodo nunc purus neque, vel
                                     <span className="small">.00</span>
                                     <div className="qty">24шт</div>
                                 </div>
-                                <img src="./images/mac_large.png" className="large-image" />
+
+                                <img src="./images/mac_header.jpg" className="large-image" />
                             </div>
-                        </div>
+                        </div> */}
                     </div>
                 </div>
             </div>

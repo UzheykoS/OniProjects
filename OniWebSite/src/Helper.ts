@@ -4,7 +4,7 @@ export const Tabs = {
     Macarons: "Макаруны",
     Marmalade: "Мармелад",
     Corporate: "Корпоративным клиентам",
-    Contacts: "Контакты"
+    Contacts: "Доставка и оплата"
 }
 
 export function loadMainPageImage(url: string) {

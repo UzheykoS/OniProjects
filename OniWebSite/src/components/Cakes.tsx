@@ -19,7 +19,7 @@ In scelerisque nisl sit neque lorem, id integer ut commodo nunc purus neque, vel
                     </div>
                     <div className="col-md-5">
                         <div className="cakes-photo">
-                            <img src="./images/mac_large.png" />
+                            <img src="./images/cake_header.jpg" />
                         </div>
                     </div>
                 </div>

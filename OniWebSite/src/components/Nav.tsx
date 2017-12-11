@@ -75,7 +75,7 @@ export class Nav extends React.Component<INavProps, INavState>{
                             <Link to="/contacts"
                                 className={activeTab == Tabs.Contacts ? "active" : ""}
                                 onClick={() => this.onLinkClick(Tabs.Contacts)}>
-                                КОНТАКТЫ
+                                ОПЛАТА И ДОСТАВКА 
                             </Link>
                         </span>
                         <div className="bm-socials">

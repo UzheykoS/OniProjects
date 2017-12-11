@@ -15,6 +15,8 @@ require("./images/icons/weight.png");
 require("./images/icons/diameter.png");
 require("./images/icons/team.png");
 
+require("./images/images_large/cakes/cake_header.jpg");
+
 require("./images/images_large/cakes/cake1.jpg");
 require("./images/images_large/cakes/cake2.jpg");
 require("./images/images_large/cakes/cake3.jpg");
@@ -38,6 +40,7 @@ require("./images/images_large/macarons/macaron8.jpg");
 
 require("./images/images_large/macarons/mac_large.png");
 require("./images/images_large/macarons/mac_small.png");
+require("./images/images_large/macarons/mac_header.jpg");
 
 require("./images/images_large/about/hire.jpg");
 
