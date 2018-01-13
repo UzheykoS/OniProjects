@@ -61,7 +61,7 @@ export class Nav extends React.Component<INavProps, INavState>{
                             <Link to="/macaroons"
                                 className={activeTab == Tabs.Macarons ? "active" : ""}
                                 onClick={() => this.onLinkClick(Tabs.Macarons)}>
-                                МАКАРУНЫ
+                                МАКАРОН
                             </Link>                        
                         </span>
                         <span className="menu-item">

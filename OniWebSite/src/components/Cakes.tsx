@@ -9,15 +9,18 @@ export default class Cakes extends React.Component<any, any>{
             <Nav tab={Tabs.Cakes} />
             <div className="cakes-header">
                 <div className="row">
-                    <div className="col-md-7">
+                    <div className="col-md-6">
                         <div className="header-main">Торты</div>
-                        <div className="header-desc">Очень вкусные дессерты</div>
-                        <div className="header-body">А тут много текста
-                                Lorem ipsum dolor sit amet, congue gravida erat et nullam, quis habitant varius convallis pellentesque eros. Fringilla montes ut enim id pellentesque consectetuer, erat magna sed etiam a viverra ut, fringilla nec sit orci curabitur ut risus, tristique platea ultricies aliquam venenatis curabitur.
-
-In scelerisque nisl sit neque lorem, id integer ut commodo nunc purus neque, vel in leo, pede eos ipsum, dui commodo metus. </div>
+                        {/* <div className="header-desc">Очень вкусные дессерты</div> */}
+                        <div className="header-body">
+                        Нас часто спрашивают: "Какой торт у Вас самый вкусный? Какой посоветуете?". И это, пожалуй, самый сложный вопрос. Мы создавали наше меню с одной главной целью - каждый должен найти здесь что-то для себя. Все рецептуры разработаны исходя из 4 основных принципов: 100% натуральный состав, сочетаемость вкусов и текстур, баланс сладости и  минималистичный декор, от которого получаешь эстетическое наслаждение.
+                        <br />
+                        <br />
+                        Наши торты представлены в двух стандартных размерах. Декор каждого из них тщательно продуман и не может быть изменён. Обязательно свяжитесь с нами, чтобы уточнить наличие торта и детали заказа (доставка возможна день в день). 
+                        Для заказа торта нестандартных размеров/дизайна  свяжитесь с нами и мы предоставим Вам всю необходимую информацию.
                     </div>
-                    <div className="col-md-5">
+                    </div>
+                    <div className="col-md-6">
                         <div className="cakes-photo">
                             <img src="./images/cake_header.jpg" />
                         </div>

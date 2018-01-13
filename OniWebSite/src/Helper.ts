@@ -1,7 +1,7 @@
 export const Tabs = {
     About: "О нас",
     Cakes: "Торты",
-    Macarons: "Макаруны",
+    Macarons: "Макарон",
     Marmalade: "Мармелад",
     Corporate: "Корпоративным клиентам",
     Contacts: "Доставка и оплата"

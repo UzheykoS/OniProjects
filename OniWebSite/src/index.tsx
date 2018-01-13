@@ -42,7 +42,9 @@ require("./images/images_large/macarons/mac_large.png");
 require("./images/images_large/macarons/mac_small.png");
 require("./images/images_large/macarons/mac_header.jpg");
 
+require("./images/images_large/main.jpg");
 require("./images/images_large/about/hire.jpg");
+require("./images/images_large/about/about_header.jpg");
 
 require("./images/icons/close.png");
 require("./images/icons/menu-button.png");
