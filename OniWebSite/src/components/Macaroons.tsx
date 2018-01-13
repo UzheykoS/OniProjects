@@ -50,6 +50,21 @@ export class Macaroons extends React.Component<any, any>{
                 </div>
             </div>
             <div className="macarons-body">
+
+                <div className="mixes">Наборы</div>
+                <div className="row">
+                    <div className="col-md-6">
+                        <div className="macarons-mix-photo">
+                            <img src="./images/mac_large.png" />
+                        </div>
+                    </div>
+                    <div className="col-md-6">
+                        <div className="macarons-mix-photo">
+                            <img src="./images/mac_small.png" />
+                        </div>
+                    </div>
+                </div>
+
                 <div className="tastes">Вкусы</div>
                 <div className="row">
                     <div className="col-md-6">

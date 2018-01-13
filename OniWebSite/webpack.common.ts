@@ -33,9 +33,9 @@ const config: Configuration = {
                 test: /\.(jpe?g|png|gif|svg)$/i,
                 loaders: [
                     "file-loader?name=/images/[name].[ext]",
-                    {
-                        loader: 'image-webpack-loader'
-                    }
+                    // {
+                    //     loader: 'image-webpack-loader'
+                    // }
                 ]
             },
             {

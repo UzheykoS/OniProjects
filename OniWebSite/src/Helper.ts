@@ -15,11 +15,11 @@ export function loadMainPageImage(url: string) {
         }
         img.src = url;        
         //ie fix
-        setTimeout(() => {
-            if (img.complete) {
-                resolve();
-            }
-        }, 500);        
+        // setTimeout(() => {
+        //     if (img.complete) {
+        //         resolve();
+        //     }
+        // }, 500);        
     });
 }
 
