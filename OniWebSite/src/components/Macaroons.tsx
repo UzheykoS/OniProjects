@@ -70,73 +70,82 @@ export class Macaroons extends React.Component<any, any>{
                     <div className="col-md-6">
                         <MacaronSingle name="Малина"
                             shortDescription=""
-                            fullDescription="Двойная начинка на основе натурального пюре малины с ярким центром"
+                            fullDescription="Двойная начинка на основе натурального пюре малины с ярким малиновым центром"
                             imageOnTheLeft={true}
+                            hoverImageUrl="./images/macaron1_hover.jpg"
                             imageUrl="./images/macaron1.jpg" />
                     </div>
                     <div className="col-md-6">
-                        <MacaronSingle name="Смородина"
+                        <MacaronSingle name="Манго-Маракуйя"
                             shortDescription=""
-                            fullDescription="Двойная начинка на основе натурального пюре смородины с ярким центром"
+                            fullDescription="Двойная начинка на основе натурального пюре манго и маракуйи с ярким центром манго-маракуйя"
                             imageOnTheLeft={true}
-                            imageUrl="./images/macaron7.jpg" />
+                            imageUrl="./images/macaron2.jpg"
+                            hoverImageUrl="./images/macaron2_hover.jpg" />
                     </div>
                 </div>
                 <div className="row">
-                    <div className="col-md-6">
-                        <MacaronSingle name="Манго - Маракуйя"
-                            shortDescription=""
-                            fullDescription="Двойная начинка на основе натурального пюре манго и маракуйи с ярким центром"
-                            imageOnTheLeft={false}
-                            imageUrl="./images/macaron8.jpg" />
-                    </div>
-                    <div className="col-md-6">
-                        <MacaronSingle name="Лаванда - Черника"
-                            shortDescription=""
-                            fullDescription="Двойная начинка на основе натуральных молочных сливок, настоянных на цветках лаванды, с ярким центром из натурального пюре черники"
-                            imageOnTheLeft={false}
-                            imageUrl="./images/macaron2.jpg" />
-                    </div>
-                </div>
-                <div className="row">
-                    <div className="col-md-6">
-                        <MacaronSingle name="Кокос - Ананас"
-                            shortDescription=""
-                            fullDescription="Двойная начинка на основе натуральных кокосовых сливок и ликёра Malibu с ярким центром из натурального пюре ананаса"
-                            imageOnTheLeft={true}
-                            imageUrl="./images/macaron8.jpg" />
-                    </div>
                     <div className="col-md-6">
                         <MacaronSingle name="Фисташка"
                             shortDescription=""
-                            fullDescription="Начинка на основе натуральной фисташковой пасты 100% без сахара"
-                            imageOnTheLeft={true}
-                            imageUrl="./images/macaron3.jpg" />
-                    </div>
-                </div>
-                <div className="row">
-                    <div className="col-md-6">
-                        <MacaronSingle name="Шоколад"
-                            shortDescription=""
-                            fullDescription="Начинка на основе натурального черного шоколада 60%"
+                            fullDescription="Начинка на основе натуральной  100% фисташковой пасты без сахара"
                             imageOnTheLeft={false}
-                            imageUrl="./images/macaron4.jpg" />
+                            imageUrl="./images/macaron3.jpg" 
+                            hoverImageUrl="./images/macaron3_hover.jpg"/>
                     </div>
                     <div className="col-md-6">
-                        <MacaronSingle name="Солёная карамель - Кофе"
-                            shortDescription=""
-                            fullDescription="Двойная начинка на основе натурального кофе эспрессо с центром из мягкой соленой карамели"
-                            imageOnTheLeft={false}
-                            imageUrl="./images/macaron5.jpg" />
-                    </div>
-                </div>
-                <div className="row">
-                    <div className="col-md-6">
-                        <MacaronSingle name="Дор Блю - Груша"
+                        <MacaronSingle name="Дор Блю-Груша"
                             shortDescription=""
                             fullDescription="Двойная начинка на основе сыра Дор Блю с центром из натурального грушевого пюре"
                             imageOnTheLeft={false}
-                            imageUrl="./images/macaron6.jpg" />
+                            imageUrl="./images/macaron4.jpg"
+                            hoverImageUrl="./images/macaron4_hover.jpg" />
+                    </div>
+                </div>
+                <div className="row">
+                    <div className="col-md-6">
+                        <MacaronSingle name="Кофе-Солёная карамель"
+                            shortDescription=""
+                            fullDescription="Двойная начинка на основе натурального кофе с центром из мягкой соленой карамели"
+                            imageOnTheLeft={true}
+                            imageUrl="./images/macaron5.jpg"
+                            hoverImageUrl="./images/macaron5_hover.jpg" />
+                    </div>
+                    <div className="col-md-6">
+                        <MacaronSingle name="Пармезан-Инжир"
+                            shortDescription=""
+                            fullDescription="Двойная начинка на основе сыра Пармезан с центром из натурального пюре инжира"
+                            imageOnTheLeft={true}
+                            imageUrl="./images/macaron6.jpg"
+                            hoverImageUrl="./images/macaron6_hover.jpg" />
+                    </div>
+                </div>
+                <div className="row">
+                    <div className="col-md-6">
+                        <MacaronSingle name="Смородина"
+                            shortDescription=""
+                            fullDescription="Двойная начинка на основе натурального пюре смородины с ярким смородиновым центром"
+                            imageOnTheLeft={false}
+                            imageUrl="./images/macaron7.jpg" 
+                            hoverImageUrl="./images/macaron7_hover.jpg"/>
+                    </div>
+                    <div className="col-md-6">
+                        <MacaronSingle name="Шоколад"
+                            shortDescription=""
+                            fullDescription="Начинка на основе натурального бельгийского черного шоколада 60%"
+                            imageOnTheLeft={false}
+                            imageUrl="./images/macaron8.jpg"
+                            hoverImageUrl="./images/macaron8_hover.jpg" />
+                    </div>
+                </div>
+                <div className="row">
+                    <div className="col-md-6">
+                        <MacaronSingle name="Лаванда-Черника"
+                            shortDescription=""
+                            fullDescription="Двойная начинка на основе молочных сливок, настоянных на цветках лаванды, с центром из натурального пюре черники"
+                            imageOnTheLeft={true}
+                            imageUrl="./images/macaron9.jpg"
+                            hoverImageUrl="./images/macaron9_hover.jpg" />
                     </div>
                     <div className="col-md-6">
                     </div>

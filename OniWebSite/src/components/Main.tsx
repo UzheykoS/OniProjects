@@ -7,7 +7,7 @@ import { Carousel } from 'react-responsive-carousel';
 export class Main extends React.Component<any, any>{
     render() {
         return <div className="app background">
-            <Nav tab={Tabs.About} />
+            <Nav tab={Tabs.Main} />
 
             <div className="main-body">
                 {/* {<img src="./images/hire.jpg" className="cake" />} */}

@@ -1,4 +1,5 @@
 export const Tabs = {
+    Main: "Главная",
     About: "О нас",
     Cakes: "Торты",
     Macarons: "Макарон",

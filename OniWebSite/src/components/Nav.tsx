@@ -22,7 +22,7 @@ export class Nav extends React.Component<INavProps, INavState>{
         super(props);
 
         this.state = {
-            activeTab: props.tab || Tabs.About
+            activeTab: props.tab || Tabs.Main
         }
     }
 
@@ -38,13 +38,22 @@ export class Nav extends React.Component<INavProps, INavState>{
         return <Media query={{ maxWidth: 800 }}>
             {matches => matches ? (
                 <div className="nav-bar">
-                    <img src="/images/Oni_w_black.png" className={activeTab == Tabs.About ? "logo" : "logo logo-small"} />
+                    <img src="/images/Oni_w_black.png" className={activeTab == Tabs.Main ? "logo" : "logo logo-small"} />
                     <Menu right
                         width={'100%'}
                         customBurgerIcon={<img src="/images/menu-button.png" />}
                         customCrossIcon={<img src="/images/close.png" />} >
+                        {activeTab !== Tabs.Main ?
+                            <span className="menu-item">
+                                <IndexLink to="/"
+                                    className={activeTab == Tabs.About ? "active" : ""}
+                                    onClick={() => this.onLinkClick(Tabs.About)}>
+                                    ГЛАВНАЯ
+                            </IndexLink>
+                            </span> :
+                            null}
                         <span className="menu-item">
-                            <IndexLink to="/"
+                            <IndexLink to="/about"
                                 className={activeTab == Tabs.About ? "active" : ""}
                                 onClick={() => this.onLinkClick(Tabs.About)}>
                                 О НАС
@@ -62,20 +71,20 @@ export class Nav extends React.Component<INavProps, INavState>{
                                 className={activeTab == Tabs.Macarons ? "active" : ""}
                                 onClick={() => this.onLinkClick(Tabs.Macarons)}>
                                 МАКАРОН
-                            </Link>                        
+                            </Link>
                         </span>
                         <span className="menu-item">
                             <Link to="/stub/Корпоративным"
                                 className={activeTab == Tabs.Corporate ? "active" : ""}
                                 onClick={() => this.onLinkClick(Tabs.Corporate)}>
                                 КОРПОРАТИВНЫМ КЛИЕНТАМ
-                            </Link>                        
+                            </Link>
                         </span>
                         <span className="menu-item">
                             <Link to="/contacts"
                                 className={activeTab == Tabs.Contacts ? "active" : ""}
                                 onClick={() => this.onLinkClick(Tabs.Contacts)}>
-                                ОПЛАТА И ДОСТАВКА 
+                                ОПЛАТА И ДОСТАВКА
                             </Link>
                         </span>
                         <div className="bm-socials">
@@ -89,14 +98,22 @@ export class Nav extends React.Component<INavProps, INavState>{
                                 <img className="social_network" src="images/twitter.png" />
                             </a>
                         </div>
-                    </Menu>                    
+                    </Menu>
                 </div>
             ) : (
                     <div className="nav-bar">
-                        <img src="/images/Oni_w_black.png" className={activeTab == Tabs.About ? "logo" : "logo logo-small"} />
+                        <img src="/images/Oni_w_black.png" className={activeTab == Tabs.Main ? "logo" : "logo logo-small"} />
                         <ul>
+                            {activeTab !== Tabs.Main ?
+                                <li>
+                                    <IndexLink to="/"
+                                        className={activeTab == Tabs.Main ? "active" : ""}
+                                        onClick={() => this.onLinkClick(Tabs.Main)}>{Tabs.Main}
+                                    </IndexLink>
+                                </li> :
+                                null}
                             <li>
-                                <IndexLink to="/"
+                                <IndexLink to="/about"
                                     className={activeTab == Tabs.About ? "active" : ""}
                                     onClick={() => this.onLinkClick(Tabs.About)}>{Tabs.About}
                                 </IndexLink>

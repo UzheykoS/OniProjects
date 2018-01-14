@@ -28,7 +28,7 @@ export class Contacts extends React.Component<any, any>{
                 <div className="row">
                     <div className="col-md-6">
                         <div className="contacts-photo">
-                            <img src="./images/about_header.jpg" />
+                            <img src="./images/contacts_header.jpg" />
                         </div>
                     </div>
                     <div className="col-md-6">

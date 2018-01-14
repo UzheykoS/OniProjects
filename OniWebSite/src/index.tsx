@@ -37,6 +37,17 @@ require("./images/images_large/macarons/macaron5.jpg");
 require("./images/images_large/macarons/macaron6.jpg");
 require("./images/images_large/macarons/macaron7.jpg");
 require("./images/images_large/macarons/macaron8.jpg");
+require("./images/images_large/macarons/macaron9.jpg");
+
+require("./images/images_large/macarons/macaron1_hover.jpg");
+require("./images/images_large/macarons/macaron2_hover.jpg");
+require("./images/images_large/macarons/macaron3_hover.jpg");
+require("./images/images_large/macarons/macaron4_hover.jpg");
+require("./images/images_large/macarons/macaron5_hover.jpg");
+require("./images/images_large/macarons/macaron6_hover.jpg");
+require("./images/images_large/macarons/macaron7_hover.jpg");
+require("./images/images_large/macarons/macaron8_hover.jpg");
+require("./images/images_large/macarons/macaron9_hover.jpg");
 
 require("./images/images_large/macarons/mac_large.png");
 require("./images/images_large/macarons/mac_small.png");
@@ -45,7 +56,7 @@ require("./images/images_large/macarons/mac_header.jpg");
 require("./images/images_large/main.jpg");
 require("./images/images_large/about/hire.jpg");
 require("./images/images_large/about/about_header.jpg");
-require("./images/images_large/about/about_header_web.jpg");
+require("./images/images_large/contacts/contacts_header.jpg");
 
 require("./images/icons/close.png");
 require("./images/icons/menu-button.png");
