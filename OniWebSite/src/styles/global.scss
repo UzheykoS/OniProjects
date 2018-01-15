@@ -197,58 +197,6 @@ body {
                 top: -23px;
             }
         }
-        .macarons-prices {
-            .macarons-large {
-                position: relative;
-                .price-large {
-                    position: absolute;
-                    top: 90px;
-                    left: 140px;
-                }
-                .large-image {
-                    width: 540px;
-                    height: auto;
-                    position: absolute;
-                    z-index: 2;
-                    left: 20px;
-                    top: -24px;
-                }
-            }
-            .macarons-small {
-                position: relative;
-                .price-small {
-                    position: absolute;
-                    top: -21px;
-                    left: 257px;
-                }
-                .small-image {
-                    width: 269px;
-                    height: 188px;
-                    position: absolute;
-                    bottom: -77px;
-                    z-index: 3;
-                    left: 239px;
-                    top: 37px;
-                }
-            }
-            .price-small,
-            .price-large {
-                color: #ffffff;
-                .large {
-                    font-size: 36px;
-                    font-family: 'Museo Sans Cyrl 500';
-                }
-                .small {
-                    font-size: 20px;
-                    font-family: 'Museo Sans Cyrl 500';
-                }
-                .qty {
-                    font-size: 14px;
-                    font-family: 'Museo Sans Cyrl 500';
-                    margin-top: -10px;
-                }
-            }
-        }
     }
     .macarons-body {
         display: table;
@@ -267,6 +215,22 @@ body {
             color: #535353;
             font-family: 'Museo Sans Cyrl 100';
             font-size: 36px;
+        }
+        .price {
+            font-family: 'Museo Sans Cyrl 500';
+            color: #ce97bd;
+            padding-top: 20px;
+            p {
+                font-size: 4vh;
+                margin: 0;
+                line-height: 4vh;
+                span {
+                    font-size: 6vh;
+                }
+            }
+            div {
+                font-size: 3vh;
+            }
         }
         .macaron-desc-container {
             margin-top: 1.3vh;

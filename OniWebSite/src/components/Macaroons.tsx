@@ -20,7 +20,7 @@ export class Macaroons extends React.Component<any, any>{
                             Вы когда-то пробовали макарон? Мы про настоящий, правильный, с ярким вкусом, хорошо пропитанными миндальными половинками и тонкой хрустящей корочкой. Про тот, что не крошится в руках. И про тот, который невозможно забыть. Про такой, как у нас.
                             <br />
                             <br />
-                            Каждый день мы делаем свежие макарон, для которых используем самые лучшие ингредиенты. Вы можете выбрать любые вкусы из нашего меню и сформировать свой набор на 12 или 24 штуки. Обязательно свяжитесь с нами, чтобы уточнить наличие вкусов и детали заказа (доставка возможна день в день).
+                            Каждый день мы делаем свежие макарон, для которых используем исключительно натуральные ингредиенты. Вы можете выбрать любые вкусы из нашего меню и сформировать свой набор на 12 или 24 штуки. Обязательно свяжитесь с нами, чтобы уточнить наличие вкусов и детали заказа (доставка возможна день в день).
                         </div>
                     </div>
                     <div className="col-md-6">
@@ -53,16 +53,28 @@ export class Macaroons extends React.Component<any, any>{
 
                 <div className="mixes">Наборы</div>
                 <div className="row">
-                    <div className="col-md-6">
-                        <div className="macarons-mix-photo">
-                            <img src="./images/mac_large.png" />
-                        </div>
-                    </div>
-                    <div className="col-md-6">
+                <div className="col-md-3">
                         <div className="macarons-mix-photo">
                             <img src="./images/mac_small.png" />
                         </div>
                     </div>
+                    <div className="col-md-2">
+                        <div className="price">
+                            <p><span>288</span>.00</p>
+                            <div>12 шт</div>
+                        </div>
+                    </div>
+                    <div className="col-md-5">
+                        <div className="macarons-mix-photo">
+                            <img src="./images/mac_large.png" />
+                        </div>
+                    </div>
+                    <div className="col-md-2">
+                        <div className="price">
+                        <p><span>576</span>.00</p>
+                        <div>24 шт</div>
+                        </div>
+                    </div>                    
                 </div>
 
                 <div className="tastes">Вкусы</div>
@@ -90,8 +102,8 @@ export class Macaroons extends React.Component<any, any>{
                             shortDescription=""
                             fullDescription="Начинка на основе натуральной  100% фисташковой пасты без сахара"
                             imageOnTheLeft={false}
-                            imageUrl="./images/macaron3.jpg" 
-                            hoverImageUrl="./images/macaron3_hover.jpg"/>
+                            imageUrl="./images/macaron3.jpg"
+                            hoverImageUrl="./images/macaron3_hover.jpg" />
                     </div>
                     <div className="col-md-6">
                         <MacaronSingle name="Дор Блю-Груша"
@@ -126,8 +138,8 @@ export class Macaroons extends React.Component<any, any>{
                             shortDescription=""
                             fullDescription="Двойная начинка на основе натурального пюре смородины с ярким смородиновым центром"
                             imageOnTheLeft={false}
-                            imageUrl="./images/macaron7.jpg" 
-                            hoverImageUrl="./images/macaron7_hover.jpg"/>
+                            imageUrl="./images/macaron7.jpg"
+                            hoverImageUrl="./images/macaron7_hover.jpg" />
                     </div>
                     <div className="col-md-6">
                         <MacaronSingle name="Шоколад"
