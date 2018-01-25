@@ -4,13 +4,64 @@ import { Nav } from "./Nav";
 import { Tabs } from "../Helper"
 import { Carousel } from 'react-responsive-carousel';
 
-export class Main extends React.Component<any, any>{
+interface IMainState {
+    backgroundImage?: string;
+    activeImage?: number;
+}
+
+export class Main extends React.Component<any, IMainState>{
+    private timer: any;
+
+    constructor(props) {
+        super(props);
+        this.state = {
+            backgroundImage: "../images/main.jpg",
+            activeImage: 0
+        }
+    }
+
+    componentDidMount() {
+        this.timer = setInterval(this.changeBackgroundImage, 5000);
+    }
+
+    componentWillUnmount() {
+        clearInterval(this.timer);
+    }
+
+    changeBackgroundImage = () => {
+        const { backgroundImage } = this.state;
+        
+        if (backgroundImage == "../images/main.jpg") {
+            this.setState({
+                backgroundImage: "../images/main2.jpg",
+                activeImage: 1
+            });
+        }
+        else if (backgroundImage == "../images/main2.jpg") {
+            this.setState({
+                backgroundImage: "../images/main3.jpg",
+                activeImage: 2
+            });
+        }
+        else if (backgroundImage == "../images/main3.jpg") {
+            this.setState({
+                backgroundImage: "../images/main.jpg",
+                activeImage: 0
+            });
+        }
+    }
+
     render() {
+        const { backgroundImage, activeImage } = this.state;
+
         return <div className="app background">
+        {/* return <div className="app background" style={{ backgroundImage: `url(${backgroundImage})`}}> */}
             <Nav tab={Tabs.Main} />
+            <img className="background-img" src="../images/main.jpg" style={{ opacity: activeImage == 0 ? 1 : 0 }} />
+            <img className="background-img" src="../images/main2.jpg" style={{ opacity: activeImage == 1 ? 1 : 0 }}/>
+            <img className="background-img" src="../images/main3.jpg" style={{ opacity: activeImage == 2 ? 1 : 0 }}/>
 
             <div className="main-body">
-                {/* {<img src="./images/hire.jpg" className="cake" />} */}
                 {/* <div className="carousel-container">
                     <Carousel axis="horizontal"
                         showThumbs={false}

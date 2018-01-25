@@ -60,7 +60,10 @@ export class App extends React.Component<any, IAppState>{
             "./images/macaron5.jpg",
             "./images/macaron6.jpg",
             "./images/macaron7.jpg",
-            "./images/macaron8.jpg",])
+            "./images/macaron8.jpg",
+            "./images/main.jpg",
+            "./images/main2.jpg",
+            "./images/main3.jpg",])
     }
 
     render() {
