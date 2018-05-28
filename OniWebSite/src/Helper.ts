@@ -14,7 +14,8 @@ export function loadMainPageImage(url: string) {
         img.onload = () => {
             resolve();
         }
-        img.src = url;        
+        img.src = url;   
+             
         //ie fix
         // setTimeout(() => {
         //     if (img.complete) {
