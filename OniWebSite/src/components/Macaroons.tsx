@@ -2,13 +2,33 @@ import * as React from 'react'
 import { Nav } from "./Nav";
 import { Tabs } from "../Helper"
 import { MacaronSingle } from './MacaronSingle'
+import { Busy } from './Busy';
 
-export class Macaroons extends React.Component<any, any>{
-    constructor(props: any) {
+interface IMacaroonsState {
+    loading?: any;
+    height?: string;
+}
+
+export class Macaroons extends React.Component<any, IMacaroonsState>{
+    constructor(props) {
         super(props);
+
+        this.state = {
+            loading: true,
+            height: '0px'
+        }
+    }
+
+    onImageLoaded = () => {
+        this.setState({
+            loading: false,
+            height: 'auto'
+        });
     }
 
     render() {
+        const { loading, height } = this.state;
+
         return <div className="macarons-container">
             <Nav tab={Tabs.Macarons} />
             <div className="macarons-header">
@@ -24,8 +44,8 @@ export class Macaroons extends React.Component<any, any>{
                         </div>
                     </div>
                     <div className="col-md-6">
-                        <div className="macarons-photo">
-                            <img src="./images/mac_header.jpg" />
+                        <div className="macarons-photo" style={{ height: height }} >
+                            <img src="./images/mac_header.jpg" onLoad={this.onImageLoaded} />
                         </div>
                         {/* <div className="macarons-prices">
                             <div className="macarons-small">
@@ -166,6 +186,7 @@ export class Macaroons extends React.Component<any, any>{
             <div className="macarons-footer">
                 <img src="/images/Oni_logo.png" />
             </div>
+            <Busy loading={loading} />
         </div>;
     }
 };

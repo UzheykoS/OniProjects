@@ -2,9 +2,33 @@ import * as React from 'react'
 import { Nav } from "./Nav";
 import { Tabs } from "../Helper"
 import { CakeSingle } from './CakeSingle'
+import { Busy } from './Busy';
 
-export default class Cakes extends React.Component<any, any>{
+interface ICakesState {
+    loading?: any;
+    height?: string;
+}
+
+export class Cakes extends React.Component<any, ICakesState>{
+    constructor(props) {
+        super(props);
+
+        this.state = {
+            loading: true,
+            height: '0px'
+        }
+    }
+
+    onImageLoaded = () => {
+        this.setState({
+            loading: false,
+            height: 'auto'
+        });
+    }
+
     render() {
+        const { loading, height } = this.state;
+
         return <div className="cakes-container">
             <Nav tab={Tabs.Cakes} />
             <div className="cakes-header">
@@ -21,8 +45,8 @@ export default class Cakes extends React.Component<any, any>{
                     </div>
                     </div>
                     <div className="col-md-6">
-                        <div className="cakes-photo">
-                            <img src="./images/cake_header.jpg" />
+                        <div className="cakes-photo" style={{ height: height }} >
+                            <img src="./images/cake_header.jpg" onLoad={this.onImageLoaded} />
                         </div>
                     </div>
                 </div>
@@ -93,6 +117,7 @@ export default class Cakes extends React.Component<any, any>{
             <div className="cakes-footer">
                 <img src="/images/Oni_logo.png" />
             </div>
+            <Busy loading={loading} />
         </div>;
     }
 };

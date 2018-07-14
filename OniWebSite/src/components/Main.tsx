@@ -1,12 +1,14 @@
 import * as React from 'react'
-import * as ReactDOM from 'react-dom'
 import { Nav } from "./Nav";
 import { Tabs } from "../Helper"
 import { Carousel } from 'react-responsive-carousel';
+import { preloadImages, loadMainPageImage } from "../Helper";
+import { Busy } from './Busy';
 
 interface IMainState {
     backgroundImage?: string;
     activeImage?: number;
+    loading?: boolean;
 }
 
 export class Main extends React.Component<any, IMainState>{
@@ -16,12 +18,43 @@ export class Main extends React.Component<any, IMainState>{
         super(props);
         this.state = {
             backgroundImage: "../images/main.jpg",
-            activeImage: 0
+            activeImage: 0,
+            loading: true
         }
     }
 
-    componentDidMount() {
+    async componentDidMount() {
         this.timer = setInterval(this.changeBackgroundImage, 5000);
+
+        // preloads the rest
+        // loadCakes(() => { })
+        await loadMainPageImage("./images/main.jpg");
+
+        this.setState({
+            loading: false
+        });
+        await preloadImages([
+            "./images/cake1.jpg",
+            "./images/cake2.jpg",
+            "./images/cake3.jpg",
+            "./images/cake4.jpg",
+            "./images/cake5.jpg",
+            "./images/cut1.jpg",
+            "./images/cut2.jpg",
+            "./images/cut3.jpg",
+            "./images/cut4.jpg",
+            "./images/cut5.jpg",
+            "./images/macaron1.jpg",
+            "./images/macaron2.jpg",
+            "./images/macaron3.jpg",
+            "./images/macaron4.jpg",
+            "./images/macaron5.jpg",
+            "./images/macaron6.jpg",
+            "./images/macaron7.jpg",
+            "./images/macaron8.jpg",
+            "./images/main.jpg",
+            "./images/main2.jpg",
+            "./images/main3.jpg",])
     }
 
     componentWillUnmount() {
@@ -52,7 +85,7 @@ export class Main extends React.Component<any, IMainState>{
     }
 
     render() {
-        const { backgroundImage, activeImage } = this.state;
+        const { backgroundImage, activeImage, loading } = this.state;
 
         return <div className="app background">
         {/* return <div className="app background" style={{ backgroundImage: `url(${backgroundImage})`}}> */}
@@ -99,6 +132,7 @@ export class Main extends React.Component<any, IMainState>{
                     <img className="social_network" src="images/twitter.png" />
                 </a>
             </div>
+            <Busy loading={loading} />
         </div>;
     }
 };

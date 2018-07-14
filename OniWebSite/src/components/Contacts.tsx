@@ -2,6 +2,7 @@ import * as React from 'react'
 import { Nav } from "./Nav";
 import { Tabs } from "../Helper"
 import { withGoogleMap, GoogleMap, Marker } from "react-google-maps";
+import { Busy } from './Busy';
 
 // const googleMapURL = "https://maps.googleapis.com/maps/api/js?v=3.27&libraries=places,geometry&key=AIzaSyDH_aHRsVOr_CMITd6m0Vuo1X2qSXMicdY"
 
@@ -20,15 +21,38 @@ const GoogleMapsWrapper = withGoogleMap(props => (
     </GoogleMap>
 ));
 
-export class Contacts extends React.Component<any, any>{
+interface IContactsState {
+    loading?: any;
+    height?: string;
+}
+
+export class Contacts extends React.Component<any, IContactsState>{
+    constructor(props) {
+        super(props);
+
+        this.state = {
+            loading: true,
+            height: '0px'
+        }
+    }
+
+    onImageLoaded = () => {
+        this.setState({
+            loading: false,
+            height: 'auto'
+        });
+    }
+
     render() {
+        const { loading, height } = this.state;
+
         return <div className="contacts-container">
             <Nav tab={Tabs.Contacts} />
             <div className="contacts-header">
                 <div className="row">
                     <div className="col-md-6">
-                        <div className="contacts-photo">
-                            <img src="./images/contacts_header.jpg" />
+                        <div className="contacts-photo" style={{ height: height }} >
+                            <img src="./images/contacts_header.jpg" onLoad={this.onImageLoaded} />
                         </div>
                     </div>
                     <div className="col-md-6">
@@ -68,6 +92,7 @@ export class Contacts extends React.Component<any, any>{
             <div className="contacts-footer">
                 <img src="/images/Oni_logo.png" />
             </div>
+            <Busy loading={loading} />
         </div>;
     }
 };
