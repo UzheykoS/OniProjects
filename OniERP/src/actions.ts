@@ -6,21 +6,24 @@ import {
     SHOW_BUSY
 } from './actionTypes';
 
-export const ProcessFetchData = (url: string) => {
+export const ProcessFetchData = (spreadsheetId: string) => {
     return async (dispatch) => {
         dispatch(itemsIsLoading(true));
         try {
-            const response = await fetch(url);
-            if (!response.ok) {
-                throw Error(response.statusText);
-            }
-            dispatch(itemsIsLoading(false));
-            const items = await response.json();
+            const response = await  window['gapi'].client.sheets.spreadsheets.values.get({
+                spreadsheetId: spreadsheetId,
+                range: 'A2:B4',
+            });
+            const items = await response.result.values;
             dispatch(itemsFetchDataSuccess(items));
         }
         catch (ex) {
             dispatch(itemsHasErrored(true));
             console.log(ex);
+            throw Error(ex);
+        }
+        finally {
+            dispatch(itemsIsLoading(false));
         }
     };
 };

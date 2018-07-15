@@ -63,24 +63,8 @@ class TestComponent extends React.Component<ITestComponentProps, any>{
         })
     }
 
-    processData = () => {
-        window['gapi'].client.sheets.spreadsheets.values.get({
-            spreadsheetId: SPREADSHEET_ID,
-            range: 'A2:B4',
-        }).then((response) => {
-            debugger;
-            var range = response.result;
-            if (range.values.length > 0) {
-
-            } else {
-                // appendPre('No data found.');
-            }
-        }, (response) => {
-        });
-    }
-
     componentWillReceiveProps(nextProps) {
-        const { isScriptLoaded, isScriptLoadSucceed } = nextProps;
+        const { isScriptLoaded } = nextProps;
 
         if (isScriptLoaded && !this.props.isScriptLoaded) {
             window['gapi'].load('client:auth2', this.initClient);
@@ -94,12 +78,12 @@ class TestComponent extends React.Component<ITestComponentProps, any>{
             discoveryDocs: DISCOVERY_DOCS,
             scope: SCOPES
         }).then(() => {
-            this.processData();
+            this.props.fetchData(SPREADSHEET_ID);
         });
     }
 
     componentDidMount() {
-        this.props.fetchData('http://5826ed963900d612000138bd.mockapi.io/items');
+        // this.props.fetchData('http://5826ed963900d612000138bd.mockapi.io/items');
     }
 
     render() {
@@ -121,9 +105,9 @@ class TestComponent extends React.Component<ITestComponentProps, any>{
                 </div>
             </div>
             <ul>
-                {items.map((item) => (
-                    <li key={item.id}>
-                        {item.label}
+                {items.map((item, index) => (
+                    <li key={index}>
+                        {item[0] + item[1]}
                     </li>
                 ))}
             </ul>
