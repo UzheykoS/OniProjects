@@ -78,7 +78,8 @@ const config: Configuration = {
         }),
         new IgnorePlugin(/^\.\/locale/, /moment/),
         new HtmlWebpackPlugin({
-            title: "Template Test"
+            title: "Template Test",
+            template: 'src/index.html'
         })
     ]
 }
