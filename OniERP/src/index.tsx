@@ -1,32 +1,19 @@
 import * as React from "react"
 import TestComponent from './components/TestComponent'
-import { configureOauth } from "./utils/oauth2";
-import Helper, { OAuth2Info } from "./utils/helper";
+import { render } from 'react-dom';
+import { Provider } from 'react-redux';
+import configureStore from './store/configureStore';
 import './styles/global.scss';
-import axios from 'axios';
 
-export interface AppProps {
-}
+const store = configureStore({}); // You can also pass in an initialState here
 
-export interface AppState {
-}
+const root = document.createElement('div');
+document.body.appendChild(root);
+root.style.height = "100%";
 
-export default class App extends React.Component<AppProps, AppState> {
-    constructor(props) {
-        super(props);
-    }
-
-    componentDidMount() {
-        var instance = axios.create({
-            baseURL: "",//WebApiUrl
-            headers: { 'X-Custom-Header': 'foobar' }
-        });
-    }
-
-    render() {
-        return <div>
-            <TestComponent label="Hello World!" />            
-        </div>;
-    }
-}
-
+render(
+    <Provider store={store}>
+        <TestComponent />
+    </Provider>,
+    root
+);

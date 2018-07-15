@@ -11,6 +11,9 @@
     "@types/enzyme": "",
     "@types/mocha": "",
     "@types/node": "",
+    "@types/react-redux": "",
+    "@types/redux": "",
+    "@types/redux-thunk": "",
     "@types/react": "",
     "@types/react-dom": "",
     "@types/webpack": "",
@@ -59,19 +62,21 @@
     "style-loader": "0.21.0",
     "ts-loader": "4.4.2",
     "ts-node": "7.0.0",
-    "typescript": "2.9.2",
+    "typescript": "2.8.4",
     "typings-for-css-modules-loader": "1.7.0",
     "uglifyjs-webpack-plugin": "1.2.7",
     "webpack": "4.16.0",
     "webpack-cli": "3.0.8"
   },
-  "dependencies": {},
+  "dependencies": {
+    "react-redux": "^5.0.7",
+    "redux": "^4.0.0",
+    "redux-thunk": "^2.3.0"
+  },
   "scripts": {
     "devpack": "SET NODE_ENV=development&& webpack --mode development",
     "devpack:watch": "SET NODE_ENV=development&& webpack --mode development --watch",
     "prodpack": "SET NODE_ENV=production&& webpack --mode production",
-    "test": "karma start",
-    "test-single": "karma start --singleRun",
     "start": "http-server -p 3000 dist"
   }
 }
