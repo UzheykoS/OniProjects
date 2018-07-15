@@ -99,7 +99,7 @@ class TestComponent extends React.Component<ITestComponentProps, any>{
     }
 
     componentDidMount() {
-        // this.props.fetchData('http://5826ed963900d612000138bd.mockapi.io/items');
+        this.props.fetchData('http://5826ed963900d612000138bd.mockapi.io/items');
     }
 
     render() {
