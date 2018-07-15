@@ -1,19 +1,20 @@
 ﻿
 import * as React from 'react'
 import { connect } from 'react-redux';
-import { itemsFetchData } from '../actions';
+import { ProcessFetchData, ProcessFetchDataFake } from '../actions';
 
 const mapStateToProps = (state) => {
     return {
         items: state.items,
-        hasErrored: state.itemsHasErrored,
-        isLoading: state.itemsIsLoading
+        hasErrored: state.hasErrored,
+        isLoading: state.isLoading,
+        label: state.label
     };
 };
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        fetchData: (url) => dispatch(itemsFetchData(url))
+        fetchData: (url) => dispatch(ProcessFetchData(url))
     };
 };
 
@@ -32,7 +33,7 @@ class TestComponent extends React.Component<ITestComponentProps, any>{
     }
 
     render() {
-        const { label, hasErrored, isLoading } = this.props;
+        const { label, hasErrored, isLoading, items } = this.props;
 
         if (hasErrored) {
             return <p>Sorry! There was an error loading the items</p>;
@@ -43,11 +44,11 @@ class TestComponent extends React.Component<ITestComponentProps, any>{
         return <>
             <div className="hello-world">
                 <div className="hello-world-child">
-                    HELLO WORLD
+                    {label}
                 </div>
             </div>
             <ul>
-                {this.props.items.map((item) => (
+                {items.map((item) => (
                     <li key={item.id}>
                         {item.label}
                     </li>

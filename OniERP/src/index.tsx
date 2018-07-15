@@ -4,8 +4,9 @@ import { render } from 'react-dom';
 import { Provider } from 'react-redux';
 import configureStore from './store/configureStore';
 import './styles/global.scss';
+import initialState from './store/initialState';
 
-const store = configureStore({}); // You can also pass in an initialState here
+const store = configureStore(initialState);
 
 const root = document.createElement('div');
 document.body.appendChild(root);

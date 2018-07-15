@@ -1,9 +1,9 @@
 
-import { combineReducers, AnyAction } from 'redux';
-import { items, itemsHasErrored, itemsIsLoading } from './reducers';
+// import { combineReducers, AnyAction } from 'redux';
+// import { items, itemsHasErrored, itemsIsLoading } from './reducers';
 
-export default combineReducers({
-    items,
-    itemsHasErrored,
-    itemsIsLoading
-});
+// export default combineReducers({
+//     items,
+//     itemsHasErrored,
+//     itemsIsLoading
+// });
