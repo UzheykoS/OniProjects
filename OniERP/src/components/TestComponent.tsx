@@ -91,27 +91,34 @@ class TestComponent extends Component<ITestComponentProps, ITestComponentState>{
         const { label, hasErrored, isLoading, items } = this.props;
         const { isSignedIn } = this.state;
 
+        let result;
         if (hasErrored) {
-            return <p>Sorry! There was an error loading the items</p>;
+            result = <p>Sorry! There was an error loading the items</p>;
         }
         if (isLoading) {
-            return <p>Loading…</p>;
+            result = <p>Loading…</p>;
         }
+        else {
+            result = <>
+                <div className="hello-world">
+                    <div className="hello-world-child">
+                        {label}
+                    </div>
+                </div>
+                <ul>
+                    {items.map((item, index) => (
+                        <li key={index}>
+                            {item[0] + item[1]}
+                        </li>
+                    ))}
+                </ul>
+            </>;
+        }
+
         return <>
+            {result}
             <button id="authorize_button" onClick={this.handleAuthClick} style={{ display: isSignedIn ? 'none' : 'block' }}>Authorize</button>
             <button id="signout_button" onClick={this.handleSignoutClick} style={{ display: isSignedIn ? 'block' : 'none' }}>Sign Out</button>
-            <div className="hello-world">
-                <div className="hello-world-child">
-                    {label}
-                </div>
-            </div>
-            <ul>
-                {items.map((item, index) => (
-                    <li key={index}>
-                        {item[0] + item[1]}
-                    </li>
-                ))}
-            </ul>
         </>;
     }
 }
