@@ -1,10 +1,11 @@
 import * as React from "react"
-import TestComponent from './components/TestComponent'
 import { render } from 'react-dom';
 import { Provider } from 'react-redux';
 import configureStore from './store/configureStore';
 import './styles/global.scss';
 import initialState from './store/initialState';
+import { HashRouter as Router } from 'react-router-dom';
+import App from './app';
 
 const store = configureStore(initialState);
 
@@ -14,7 +15,9 @@ root.style.height = "100%";
 
 render(
     <Provider store={store}>
-        <TestComponent />
+        <Router >
+            <App />
+        </Router>
     </Provider>,
     root
 );

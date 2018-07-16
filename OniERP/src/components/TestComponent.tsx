@@ -1,4 +1,5 @@
-﻿import * as React from 'react'
+﻿import * as React from 'react';
+import { Component } from 'react';
 import { connect } from 'react-redux';
 import { ProcessFetchData, ProcessFetchDataFake } from '../actions';
 import scriptLoader from 'react-async-script-loader';
@@ -40,7 +41,7 @@ export interface ITestComponentState {
     isSignedIn?: boolean;
 }
 
-class TestComponent extends React.Component<ITestComponentProps, any>{
+class TestComponent extends Component<ITestComponentProps, ITestComponentState>{
     constructor(props) {
         super(props);
 
