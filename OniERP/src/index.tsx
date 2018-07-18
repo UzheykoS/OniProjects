@@ -6,6 +6,7 @@ import './styles/global.scss';
 import initialState from './store/initialState';
 import { HashRouter as Router } from 'react-router-dom';
 import App from './app';
+import 'typeface-roboto';
 
 const store = configureStore(initialState);
 

@@ -1,9 +1,9 @@
 import * as React from 'react'
 
-const Header = () => (
+const NotFound = () => (
   <div>
     Not Found
     </div>
 )
 
-export default Header;
+export default NotFound;
