@@ -1,10 +1,10 @@
 import { Switch, Route, Redirect } from 'react-router-dom';
 import * as React from 'react';
-import TestComponent from './components/TestComponent';
-import NewOrderComponent from './components/NewOrderComponent';
-import NotFoundComponent from './components/NotFoundComponent';
-import HomeComponent from './components/HomeComponent';
-import { Link } from 'react-router-dom'
+import MainPage from './pages/MainPage';
+import CheckPage from './pages/CheckPage';
+import CheckoutPage from './pages/CheckoutPage';
+import NotFoundPage from './pages/NotFoundPage';
+import { Link } from 'react-router-dom';
 
 const Header = () => (
     <header>
@@ -20,12 +20,12 @@ const Header = () => (
 
 const Main = () => (
     <Switch>
-        <Route exact path='/' component={HomeComponent} />
-        <Route path='/test' component={TestComponent} />
-        <Route path='/newOrder' component={NewOrderComponent} />
+        <Route exact path='/' component={MainPage} />
+        <Route path='/check' component={CheckPage} />
+        <Route path='/checkOut' component={CheckoutPage} />
 
         {/* <Redirect to="/404" /> */}
-        <Route component={NotFoundComponent} />
+        <Route component={NotFoundPage} />
     </Switch>
 )
 

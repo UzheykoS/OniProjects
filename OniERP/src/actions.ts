@@ -3,8 +3,13 @@ import {
     LOAD_ITEMS,
     LOAD_ITEMS_FULFILLED,
     LOAD_ITEMS_REJECTED,
-    SHOW_BUSY
+    SHOW_BUSY,
+    CREATE_CHECK,
+    PROCESS_CHECKOUT,
+    ADD_DRINK,
+    ADD_DESSERT
 } from './actionTypes';
+import { Drink, Dessert, Payment } from './utils/types';
 
 export const ProcessFetchData = (spreadsheetId: string) => {
     return async (dispatch) => {
@@ -35,6 +40,14 @@ export const ProcessFetchDataFake = () => {
         }, 5000);
     };
 }
+
+export const CreateCheck = createAction(CREATE_CHECK);
+
+export const AddDrink = createAction(ADD_DRINK, (drink: Drink) => drink);
+
+export const AddDessert = createAction(ADD_DESSERT, (dessert: Dessert) => dessert);
+
+export const ProcessCheckout = createAction(PROCESS_CHECKOUT, (type: Payment) => type);
 
 export const itemsHasErrored = createAction(LOAD_ITEMS_REJECTED, (hasErrored: boolean) => hasErrored);
 

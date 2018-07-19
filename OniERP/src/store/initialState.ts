@@ -1,6 +1,9 @@
+import { Check } from '../utils/types';
+
 export default {
     hasErrored: false,
     isLoading: false,
     items: [],
-    label: 'HELLO WORLD'
+    check: null,
+    history: new Array<Check>()
 }

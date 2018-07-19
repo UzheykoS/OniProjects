@@ -9,7 +9,7 @@ const config: Configuration = {
         filename: "bundle.js",
         path: path.join(__dirname, 'dist')
     },
-    devtool:'inline-source-map',
+    devtool: 'inline-source-map',
     target: 'web',
     optimization: {
         splitChunks: {
@@ -82,6 +82,27 @@ const config: Configuration = {
             template: 'src/index.html'
         })
     ]
-}
+};
+[
+    ['woff', 'application/font-woff'],
+    ['woff2', 'application/font-woff2'],
+    ['otf', 'font/opentype'],
+    ['ttf', 'application/octet-stream'],
+    ['eot', 'application/vnd.ms-fontobject'],
+    // ['svg', 'image/svg+xml']
+].forEach((font) => {
+    const extension = font[0];
+    const mimetype = font[1];
+
+    config.module.rules.push({
+        test: new RegExp(`\\.${extension}$`),
+        loader: 'url-loader',
+        options: {
+            name: 'fonts/[name].[ext]',
+            limit: 10000,
+            mimetype
+        }
+    });
+});
 
 export default config;

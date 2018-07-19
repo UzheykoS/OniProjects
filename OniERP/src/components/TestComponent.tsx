@@ -100,8 +100,8 @@ class TestComponent extends Component<ITestComponentProps, ITestComponentState>{
         }
         else {
             result = <>
-                <div className="hello-world">
-                    <div className="hello-world-child">
+                <div className="container">
+                    <div className="container-child">
                         {label}
                     </div>
                 </div>

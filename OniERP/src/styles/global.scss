@@ -2,7 +2,7 @@
     font-family: 'Segoe UI';
 }
 
-.hello-world {
+.container {
     height: 100%;
     width: 100%;
     overflow: hidden;
@@ -13,8 +13,13 @@
     height: 200px;
     border: 1px solid #cccccc;
 
-    .hello-world-child {
+    .container-child {
         display: table-cell;
         vertical-align: middle;
     }
+}
+
+.avatar {
+    background-color: rgb(114, 195, 233);
+    color: rgb(29, 83, 163);
 }
