@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import Button from '@material-ui/core/Button';
 import { Link } from 'react-router-dom';
 import { CreateCheck } from '../actions';
-import { Check } from '../utils/types';
+import { Check, Payment, OrderType } from '../utils/types';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
@@ -39,7 +39,7 @@ class MainPage extends Component<IMainPageProps, any>{
     return <List component="nav">
       {history.map(h => {
         return <ListItem button key={h.id}>
-          <ListItemText inset primary={`Check #${h.id}, desserts count: ${h.desserts.length}, drinks count: ${h.drinks.length}`} />
+          <ListItemText inset primary={`Check #${h.id}, desserts count: ${h.desserts.length}, drinks count: ${h.drinks.length}, pay by ${Payment[h.payment]}, ordered in ${OrderType[h.type]}`} />
         </ListItem>
       })}
     </List>;

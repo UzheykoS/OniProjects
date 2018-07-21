@@ -47,7 +47,7 @@ export const CreateCheck = createAction(CREATE_CHECK);
 
 export const AddDrink = createAction(ADD_DRINK, (type: DrinksType, size: string) => [type, size]);
 
-export const AddDessert = createAction(ADD_DESSERT, (type: DessertType, taste: string) => [type, taste]);
+export const AddDessert = createAction(ADD_DESSERT, (type: DessertType, taste: string, size: string) => [type, taste, size]);
 
 export const SetPaymentType = createAction(SET_PAYMENT_TYPE, (type: Payment) => type);
 

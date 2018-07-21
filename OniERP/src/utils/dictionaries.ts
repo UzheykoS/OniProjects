@@ -26,6 +26,6 @@ DrinksDict[DrinksType.IceLatte] = ['400 мл'];
 DrinksDict[DrinksType.Syrop] = ['0 мл'];
 
 export const DessertsDict: { [id: string] : Array<string> } = {};
-DessertsDict[DessertType.Macaron] = ['6 шт', '12 шт', '24 шт'];
-DessertsDict[DessertType.Zephyr] = ['8 шт', '16 шт'];
+DessertsDict[DessertType.Macaron] = ['1 шт', '6 шт', '12 шт', '24 шт'];
+DessertsDict[DessertType.Zephyr] = ['1 шт', '8 шт', '16 шт'];
 DessertsDict[DessertType.Cake] = ['18 см', '22 см'];

@@ -1,7 +1,8 @@
 export interface Dessert {
     id: number,
     type: DessertType,
-    taste: string
+    taste: string,
+    size: string
 }
 
 export interface Drink {
