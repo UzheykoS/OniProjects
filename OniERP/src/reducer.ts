@@ -7,7 +7,9 @@ import {
     CREATE_CHECK,
     ADD_DRINK,
     ADD_DESSERT,
-    PROCESS_CHECKOUT
+    PROCESS_CHECKOUT,    
+    SET_PAYMENT_TYPE,
+    SET_ORDER_TYPE
 } from "./actionTypes";
 import { Check, Dessert, Drink, Payment, OrderType } from './utils/types';
 
@@ -44,13 +46,22 @@ export default handleActions({
     },
     [PROCESS_CHECKOUT]: (state, action) => {
         const { check, history } = state;
-        check.payment = action.payload;
         check.isFinished = true;
         history.push(check);
         return Object.assign({}, state, {
             check: null,
             history
         });        
+    },
+    [SET_PAYMENT_TYPE]: (state, action) => {
+        const { check } = state;
+        check.payment = action.payload;
+        return { ...state, check: {...check} };           
+    },
+    [SET_ORDER_TYPE]: (state, action) => {
+        const { check } = state;
+        check.type = action.payload;
+        return { ...state, check: {...check} };        
     },
     [LOAD_ITEMS]: (state, action) => {
         return Object.assign({}, state, {

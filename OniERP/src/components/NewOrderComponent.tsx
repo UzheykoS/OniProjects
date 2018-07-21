@@ -9,6 +9,7 @@ import DessertsComponent from './DessertsComponent';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
+import Divider from '@material-ui/core/Divider';
 
 const mapStateToProps = (state) => {
     return {
@@ -62,7 +63,7 @@ class NewOrderComponent extends Component<INewOrderComponentProps, INewOrderComp
                     <ListItemText inset primary={`${d.type} - ${d.size}`} />
                 </ListItem>
             })}
-            <br />
+            <Divider />
             {check.desserts.map(d => {
                 return <ListItem button key={d.id}>
                     <ListItemText inset primary={`${d.type} - ${d.taste}`} />
@@ -83,16 +84,16 @@ class NewOrderComponent extends Component<INewOrderComponentProps, INewOrderComp
 
         return <div className="container">
             {`Check #${check.id}`}
-            <br />
+            <Divider />
             {this.renderCheckContent()}
-            <br />
+            <Divider />
             <Button variant="contained" color="primary" title="Desserts" onClick={this.addDessertClick} >
                 Desserts
             </Button>
             <Button variant="contained" color="primary" title="Drinks" onClick={this.addDrinkClick}>
                 Drinks
             </Button>
-            <br />
+            <Divider />
             <Button variant="contained" color="secondary" title="Checkout" >
                 <Link to='/checkOut'>Check Out</Link>
             </Button>

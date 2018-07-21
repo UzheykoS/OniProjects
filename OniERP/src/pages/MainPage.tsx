@@ -8,6 +8,7 @@ import { Check } from '../utils/types';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
+import Divider from '@material-ui/core/Divider';
 
 const mapStateToProps = (state) => {
   return {
@@ -49,11 +50,11 @@ class MainPage extends Component<IMainPageProps, any>{
 
     return <div className="container">
       Main Page
-          <br />
+          <Divider />
       <Button variant="contained" color="primary" title="New Check" onClick={this.onNewCheckClick}>
         <Link to='/check'>New Check</Link>
       </Button>
-      <br />
+      <Divider />
       HISTORY
       {this.renderHistory()}
     </div>;

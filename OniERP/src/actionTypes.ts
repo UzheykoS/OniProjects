@@ -1,9 +1,10 @@
 export const CREATE_CHECK = 'CREATE_CHECK';
 
 export const ADD_DRINK = 'ADD_DRINK';
-
 export const ADD_DESSERT = 'ADD_DESSERT';
 
+export const SET_PAYMENT_TYPE = 'SET_PAYMENT_TYPE';
+export const SET_ORDER_TYPE = 'SET_ORDER_TYPE';
 export const PROCESS_CHECKOUT = 'PROCESS_CHECKOUT';
 
 export const LOAD_ITEMS = 'LOAD_ITEMS';
