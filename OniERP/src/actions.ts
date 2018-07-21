@@ -11,7 +11,7 @@ import {
     SET_PAYMENT_TYPE,
     SET_ORDER_TYPE
 } from './actionTypes';
-import { Drink, Dessert, Payment, OrderType } from './utils/types';
+import { DrinksType, DessertType, Payment, OrderType } from './utils/types';
 
 export const ProcessFetchData = (spreadsheetId: string) => {
     return async (dispatch) => {
@@ -45,9 +45,9 @@ export const ProcessFetchDataFake = () => {
 
 export const CreateCheck = createAction(CREATE_CHECK);
 
-export const AddDrink = createAction(ADD_DRINK, (drink: Drink) => drink);
+export const AddDrink = createAction(ADD_DRINK, (type: DrinksType, size: string) => [type, size]);
 
-export const AddDessert = createAction(ADD_DESSERT, (dessert: Dessert) => dessert);
+export const AddDessert = createAction(ADD_DESSERT, (type: DessertType, taste: string) => [type, taste]);
 
 export const SetPaymentType = createAction(SET_PAYMENT_TYPE, (type: Payment) => type);
 

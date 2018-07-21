@@ -32,13 +32,23 @@ export default handleActions({
     },
     [ADD_DRINK]: (state, action) => {
         const { check } = state;
-        check.drinks.push(action.payload);
+        const drink: Drink = {
+            id: check.drinks.length + 1,
+            type: action.payload[0],
+            size: action.payload[1]
+        };
+        check.drinks.push(drink);
         return Object.assign({}, state, {
             check
         });        
     },
     [ADD_DESSERT]: (state, action) => {
         const { check } = state;
+        const dessert: Dessert = {
+            id: check.drinks.length + 1,
+            type: action.payload[0],
+            taste: action.payload[1]
+        };
         check.desserts.push(action.payload);
         return Object.assign({}, state, {
             check

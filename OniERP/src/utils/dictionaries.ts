@@ -1,0 +1,31 @@
+import { DrinksType, DessertType } from './types';
+
+export const DrinksDict: { [id: string] : Array<string> } = {};
+DrinksDict[DrinksType.Espresso] = ['30 мл'];
+DrinksDict[DrinksType.Doppio] = ['60 мл'];
+DrinksDict[DrinksType.Americano] = ['120 мл'];
+DrinksDict[DrinksType.AmericanoMilk] = ['120 мл'];
+DrinksDict[DrinksType.Machiato] = ['90 мл'];
+DrinksDict[DrinksType.Cappucino] = ['175 мл', '340 мл'];
+DrinksDict[DrinksType.FlatWhite] = ['175 мл'];
+DrinksDict[DrinksType.Latte] = ['250 мл', '340 мл'];
+DrinksDict[DrinksType.LatteLavender] = ['250 мл', '340 мл'];
+DrinksDict[DrinksType.Raf] = ['250 мл', '340 мл'];
+DrinksDict[DrinksType.RafCitrus] = ['250 мл', '340 мл'];
+DrinksDict[DrinksType.TeaGreen] = ['400 мл'];
+DrinksDict[DrinksType.TeaBlack] = ['400 мл'];
+DrinksDict[DrinksType.TeaHerbal] = ['400 мл'];
+DrinksDict[DrinksType.SpeacialTeaPearLime] = ['400 мл'];
+DrinksDict[DrinksType.SpecialTeaOrange] = ['400 мл'];
+DrinksDict[DrinksType.Cacao] = ['250 мл', '340 мл'];
+DrinksDict[DrinksType.HotChocolate] = ['175 мл'];
+DrinksDict[DrinksType.LemonadeStrawberry] = ['400 мл'];
+DrinksDict[DrinksType.LemonadeCitrus] = ['400 мл'];
+DrinksDict[DrinksType.LemonadePassion] = ['400 мл'];
+DrinksDict[DrinksType.IceLatte] = ['400 мл'];
+DrinksDict[DrinksType.Syrop] = ['0 мл'];
+
+export const DessertsDict: { [id: string] : Array<string> } = {};
+DessertsDict[DessertType.Macaron] = ['6 шт', '12 шт', '24 шт'];
+DessertsDict[DessertType.Zephyr] = ['8 шт', '16 шт'];
+DessertsDict[DessertType.Cake] = ['18 см', '22 см'];

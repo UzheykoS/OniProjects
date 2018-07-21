@@ -32,31 +32,61 @@ export enum OrderType {
 }
 
 export enum DessertType {
-    Macaron = 'Macaron',
-    Zephyr = 'Zephyr',
-    Cake = 'Cake'
+    Macaron = 'Макаронс',
+    Zephyr = 'Зефир',
+    Cake = 'Торт'
 }
 
 export enum MacaronsEnum {
-    Mango = "Mango",
-    Caramel = "Caramel",
-    Chocolate = "Chocolate"
+    Chocolate = "Шоколад",
+    CoffeeCaramel = "Кофе - Солёная Карамель",
+    MangoPassion = "Манго - Маракуйя",
+    LimeBasil = "Лайм - Базилик",
+    Pistachio = "Фисташка",
+    DorBluePear = "Доб-Блю - Груша",
+    LavenderBlackberry = "Лаванда - Черника",
+    Currant = "Смородина",
+    StrawberryCheesecake = "Клубничный Чизкейк",
+    ParmesanFigue = "Пармезан - Инжир"
 }
 
 export enum ZephyrEnum {
-    Apple = "Apple",
-    Currant = "Currant",
-    Vanilla = "Vanilla"
+    Apple = "Яблоко",
+    Currant = "Смородина",
+    ApricotPassionFruit = "Абрикос - Маракуйя",
+    StrawberryCranberry = "Клубника - Клюква"
+}
+
+export enum CakesEnum {
+    Rio = "Rio",
+    CarrotCake = "Carrot Cake",
+    Soul = "Soul",
+    Pink = "Pink",
+    Infinity = "Infinity"
 }
 
 export enum DrinksType {
-    Cappucino = "Cappucino",
-    Espresso = "Espresso",
-    Lemonade = "Lemonade"
-}
-
-export enum DrinksSize {
-    Small = "Small",
-    Medium = "Medium",
-    Large = "Large"
+    Espresso = "Эспрессо",
+    Doppio = "Доппио",
+    Americano = "Американо",
+    AmericanoMilk = "Американо с молоком",
+    Machiato = "Макиато",
+    Cappucino = "Капучино",
+    FlatWhite = "Флет Вайт",
+    Latte = "Латте",
+    LatteLavender = "Латте Лаванда",
+    Raf = "Раф",
+    RafCitrus = "Раф Цитрус",
+    TeaGreen = "Чай Зелёный",
+    TeaBlack = "Чай Чёрный",
+    TeaHerbal = "Чай Травяной",
+    SpeacialTeaPearLime = "Чай Груша-Лайм",
+    SpecialTeaOrange = "Чай Апельсин-Облепиха",
+    Cacao = "Какао",
+    HotChocolate = "Гарячий шоколад",
+    LemonadeStrawberry = "Лимонад Клубника",
+    LemonadeCitrus = "Лимонад Цитрус",
+    LemonadePassion = "Лимонад Маракуйя",
+    IceLatte = "Айс Латте",
+    Syrop = "Сироп"
 }

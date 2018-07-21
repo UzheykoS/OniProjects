@@ -19,12 +19,12 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        addDessert: (dessert) => dispatch(AddDessert(dessert))
+        addDessert: (type: DessertType, taste: string) => dispatch(AddDessert(type, taste))
     };
 };
 
 export interface IDessertsComponentProps {
-    addDessert?: (dessert: Dessert) => void;
+    addDessert?: (type: DessertType, taste: string) => void;
     handleClose?: () => void;
 }
 
@@ -59,12 +59,7 @@ class DessertsComponent extends Component<IDessertsComponentProps, IDessertsComp
         });
 
         const { dessertType } = this.state;
-        const dessert: Dessert = {
-            id: 1,
-            taste: taste,
-            type: dessertType
-        };
-        await this.props.addDessert(dessert);
+        await this.props.addDessert(dessertType, taste);
         this.props.handleClose();
     }
 

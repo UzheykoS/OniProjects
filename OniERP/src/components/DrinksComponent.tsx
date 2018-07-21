@@ -8,7 +8,8 @@ import ListItemAvatar from '@material-ui/core/ListItemAvatar';
 import ListItemText from '@material-ui/core/ListItemText';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import Dialog from '@material-ui/core/Dialog';
-import { DrinksType, DrinksSize, Drink } from '../utils/types';
+import { DrinksType, Drink } from '../utils/types';
+import { DrinksDict } from '../utils/dictionaries';
 import { AddIcon } from 'mdi-react';
 import Avatar from '@material-ui/core/Avatar';
 
@@ -19,12 +20,12 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        addDrink: (drink) => dispatch(AddDrink(drink))
+        addDrink: (type: DrinksType, size: string) => dispatch(AddDrink(type, size))
     };
 };
 
 export interface IDrinksComponentProps {
-    addDrink?: (drink: Drink) => void;
+    addDrink?: (type: DrinksType, size: string) => void;
     handleClose?: () => void;
 }
 
@@ -59,12 +60,7 @@ class DrinksComponent extends Component<IDrinksComponentProps, IDrinksComponentS
         });
 
         const { drinkType } = this.state;
-        const drink: Drink = {
-            id: 1,
-            size: drinkSize,
-            type: drinkType
-        };
-        await this.props.addDrink(drink);
+        await this.props.addDrink(drinkSize, drinkType);
         this.props.handleClose();
     }
 
@@ -97,24 +93,19 @@ class DrinksComponent extends Component<IDrinksComponentProps, IDrinksComponentS
     };
 
     renderDrinkSizes() {
-        const drinkKeys = Object.keys(DrinksSize);
-        const drinkSizes = drinkKeys.map(d => {
-            return {
-                id: d,
-                value: DrinksSize[d]
-            }
-        })
+        const { drinkType } = this.state;
+        const drinkSizes = DrinksDict[drinkType];
 
         return <div>
             <List>
                 {drinkSizes.map(d => (
-                    <ListItem button onClick={() => this.handleDrinkSizeSelect(d.value)} key={d.id} >
+                    <ListItem button onClick={() => this.handleDrinkSizeSelect(d)} key={d} >
                         <ListItemAvatar>
                             <Avatar className='avatar'>
                                 <AddIcon />
                             </Avatar>
                         </ListItemAvatar>
-                        <ListItemText primary={d.value} />
+                        <ListItemText primary={d} />
                     </ListItem>
                 ))}
                 <ListItem button onClick={this.handleClose}>
