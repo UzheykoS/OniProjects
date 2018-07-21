@@ -45,7 +45,7 @@ export default handleActions({
     [ADD_DESSERT]: (state, action) => {
         const { check } = state;
         const dessert: Dessert = {
-            id: check.drinks.length + 1,
+            id: check.desserts.length + 1,
             type: action.payload[0],
             taste: action.payload[1]
         };
