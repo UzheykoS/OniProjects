@@ -49,7 +49,7 @@ export default handleActions({
             type: action.payload[0],
             taste: action.payload[1]
         };
-        check.desserts.push(action.payload);
+        check.desserts.push(dessert);
         return Object.assign({}, state, {
             check
         });        
