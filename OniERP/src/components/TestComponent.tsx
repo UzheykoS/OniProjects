@@ -1,11 +1,11 @@
 ﻿import * as React from 'react';
 import { Component } from 'react';
 import { connect } from 'react-redux';
-import { ProcessFetchData, ProcessFetchDataFake } from '../actions';
+import { ProcessFetchData, ProcessAppendData, ProcessUpdateData } from '../actions';
 import scriptLoader from 'react-async-script-loader';
 
 var DISCOVERY_DOCS = ["https://sheets.googleapis.com/$discovery/rest?version=v4"];
-var SCOPES = "https://www.googleapis.com/auth/spreadsheets.readonly";
+var SCOPES = "https://www.googleapis.com/auth/spreadsheets";
 const CLIENT_ID = '842417198767-7k42pt9ecgtu5f7oopng1oqu3a79i5i9.apps.googleusercontent.com';
 const API_KEY = 'AIzaSyAlI5i8OOtw8aEEMS48E9pouEptq8tEg2M';
 const SPREADSHEET_ID = '1ObMh87dNmizXbdWkH9TiqfrCfApk_rqxPGuQ_zNgJIM';
@@ -21,7 +21,9 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        fetchData: (url) => dispatch(ProcessFetchData(url))
+        fetchData: (url) => dispatch(ProcessFetchData(url)),
+        appendData: (url, data) => dispatch(ProcessAppendData(url, data)),
+        updateData: (url, data) => dispatch(ProcessUpdateData(url, data))
     };
 };
 
@@ -35,6 +37,8 @@ export interface ITestComponentProps {
     isScriptLoadSucceed?: boolean;
 
     fetchData?: (url: string) => void;
+    appendData?: (url: string, data: any[]) => void;
+    updateData?: (url: string, data: any[]) => void;
 }
 
 export interface ITestComponentState {
@@ -62,6 +66,28 @@ class TestComponent extends Component<ITestComponentProps, ITestComponentState>{
         this.setState({
             isSignedIn: false
         })
+    }
+
+    handleAppendClick = (event) => {
+        const data = [
+            ["Item1", "Cost", "Stocked", "Ship Date"],
+            ["Wheel1", "$20.50", "4", "3/1/2016"],
+            ["Door1", "$15", "2", "3/15/2016"],
+            ["Engine1", "$100", "1", "30/20/2016"],
+            ["Totals1", "=SUM(B2:B4)", "=SUM(C2:C4)", "=MAX(D2:D4)"]
+        ];
+        this.props.appendData(SPREADSHEET_ID, data);
+    }
+
+    handleUpdateClick = (event) => {
+        const data = [
+            ["Item1", "Cost", "Stocked", "Ship Date"],
+            ["Wheel1", "$20.50", "4", "3/1/2016"],
+            ["Door1", "$15", "2", "3/15/2016"],
+            ["Engine1", "$100", "1", "30/20/2016"],
+            ["Totals1", "=SUM(B2:B4)", "=SUM(C2:C4)", "=MAX(D2:D4)"]
+        ];
+        this.props.updateData(SPREADSHEET_ID, data);
     }
 
     componentWillReceiveProps(nextProps) {
@@ -117,6 +143,10 @@ class TestComponent extends Component<ITestComponentProps, ITestComponentState>{
 
         return <>
             {result}
+            <button onClick={this.handleAppendClick} style={{ display: isSignedIn ? 'block' : 'none' }}>Append Data</button>
+            <br />
+            <button onClick={this.handleUpdateClick} style={{ display: isSignedIn ? 'block' : 'none' }}>Update Data</button>
+            <br />
             <button id="authorize_button" onClick={this.handleAuthClick} style={{ display: isSignedIn ? 'none' : 'block' }}>Authorize</button>
             <button id="signout_button" onClick={this.handleSignoutClick} style={{ display: isSignedIn ? 'block' : 'none' }}>Sign Out</button>
         </>;

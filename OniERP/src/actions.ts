@@ -9,9 +9,12 @@ import {
     ADD_DRINK,
     ADD_DESSERT,
     SET_PAYMENT_TYPE,
-    SET_ORDER_TYPE
+    SET_ORDER_TYPE,
+    APPEND_DATA,
+    UPDATE_DATA
 } from './actionTypes';
-import { DrinksType, DessertType, Payment, OrderType } from './utils/types';
+import { DrinksType, DessertType, Payment, OrderType, 
+    ValueInputOption, InsertDataOption, ValueRenderOption, DateTimeRenderOption } from './utils/types';
 
 export const ProcessFetchData = (spreadsheetId: string) => {
     return async (dispatch) => {
@@ -22,6 +25,62 @@ export const ProcessFetchData = (spreadsheetId: string) => {
                 range: 'A2:B4',
             });
             const items = await response.result.values;
+            dispatch(itemsFetchDataSuccess(items));
+        }
+        catch (ex) {
+            dispatch(itemsHasErrored(true));
+            console.log(ex);
+            throw Error(ex);
+        }
+        finally {
+            dispatch(itemsIsLoading(false));
+        }
+    };
+};
+
+export const ProcessAppendData = (spreadsheetId: string, valueRange: any) => {
+    return async (dispatch) => {
+        dispatch(itemsIsLoading(true));
+        try {
+            const response = await window['gapi'].client.sheets.spreadsheets.values.append({
+                spreadsheetId: spreadsheetId,
+                range: 'A6:D9',
+                valueInputOption: ValueInputOption.USER_ENTERED,
+                insertDataOption: InsertDataOption.OVERWRITE,
+                includeValuesInResponse: true,
+                responseValueRenderOption: ValueRenderOption.FORMATTED_VALUE
+            }, { values: valueRange });
+            //TODO: Process response result
+            const items = await response.result.values;
+            debugger;
+            dispatch(itemsFetchDataSuccess(items));
+        }
+        catch (ex) {
+            dispatch(itemsHasErrored(true));
+            console.log(ex);
+            throw Error(ex);
+        }
+        finally {
+            dispatch(itemsIsLoading(false));
+        }
+    };
+};
+
+export const ProcessUpdateData = (spreadsheetId: string, valueRange: any) => {
+    return async (dispatch) => {
+        dispatch(itemsIsLoading(true));
+        try {
+            const response = await window['gapi'].client.sheets.spreadsheets.values.update({
+                spreadsheetId: spreadsheetId,
+                range: 'A6:D10',
+                valueInputOption: ValueInputOption.USER_ENTERED,
+                includeValuesInResponse: true,
+                responseValueRenderOption: ValueRenderOption.FORMATTED_VALUE,
+                responseDateTimeRenderOption: DateTimeRenderOption.FORMATTED_STRING
+            }, { values: valueRange });
+            //TODO: Process response result
+            const items = await response.result.values;
+            debugger;
             dispatch(itemsFetchDataSuccess(items));
         }
         catch (ex) {
