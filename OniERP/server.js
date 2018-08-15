@@ -8,7 +8,7 @@ app.use(express.static(__dirname + "/dist"));
 const PORT = process.env.PORT || 8080;
 
 app.listen(PORT, function () {    
-  console.log('Listening at http://localhost:3000');  
+  console.log('Listening at http://localhost:' + PORT);  
 });
 
 
