@@ -1,0 +1,16 @@
+export declare const CREATE_CHECK = "CREATE_CHECK";
+export declare const ADD_DRINK = "ADD_DRINK";
+export declare const ADD_DESSERT = "ADD_DESSERT";
+export declare const SET_PAYMENT_TYPE = "SET_PAYMENT_TYPE";
+export declare const SET_ORDER_TYPE = "SET_ORDER_TYPE";
+export declare const PROCESS_CHECKOUT = "PROCESS_CHECKOUT";
+export declare const LOAD_ITEMS = "LOAD_ITEMS";
+export declare const LOAD_ITEMS_FULFILLED = "LOAD_ITEMS_FULFILLED";
+export declare const LOAD_ITEMS_REJECTED = "LOAD_ITEMS_REJECTED";
+export declare const SHOW_BUSY = "SHOW_BUSY";
+export declare const APPEND_DATA = "APPEND_DATA";
+export declare const APPEND_DATA_FULFILLED = "APPEND_DATA_FULFILLED";
+export declare const APPEND_DATA_REJECTED = "APPEND_DATA_REJECTED";
+export declare const UPDATE_DATA = "UPDATE_DATA";
+export declare const UPDATE_DATA_FULFILLED = "UPDATE_DATA_FULFILLED";
+export declare const UPDATE_DATA_REJECTED = "UPDATE_DATA_REJECTED";
