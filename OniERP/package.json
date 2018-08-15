@@ -89,6 +89,6 @@
     "devpack:watch": "SET NODE_ENV=development&& webpack --mode development --watch",
     "prodpack": "SET NODE_ENV=production&& webpack --mode production",
     "startold": "http-server -p 3000 dist",
-    "start": "npm run devpack && node server.js"
+    "start": "node server.js"
   }
 }
