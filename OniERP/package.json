@@ -75,6 +75,7 @@
   "dependencies": {
     "@material-ui/core": "^1.4.0",
     "@types/material-ui": "^0.21.4",
+    "express": "^4.16.3",
     "mdi-react": "^4.0.0",
     "react-async-script-loader": "^0.3.0",
     "react-redux": "^5.0.7",
@@ -87,6 +88,7 @@
     "devpack": "SET NODE_ENV=development&& webpack --mode development",
     "devpack:watch": "SET NODE_ENV=development&& webpack --mode development --watch",
     "prodpack": "SET NODE_ENV=production&& webpack --mode production",
-    "start": "http-server -p 3000 dist"
+    "startold": "http-server -p 3000 dist",
+    "start": "node server.js"
   }
 }
