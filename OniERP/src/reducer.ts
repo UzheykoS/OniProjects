@@ -9,7 +9,9 @@ import {
     ADD_DESSERT,
     PROCESS_CHECKOUT,    
     SET_PAYMENT_TYPE,
-    SET_ORDER_TYPE
+    SET_ORDER_TYPE,
+    APPEND_DATA_FULFILLED,
+    APPEND_DATA_REJECTED
 } from "./actionTypes";
 import { Check, Dessert, Drink, Payment, OrderType } from './utils/types';
 
@@ -88,7 +90,18 @@ export default handleActions({
         return Object.assign({}, state, {
             hasErrored: action.payload
         });
-    },  
+    },
+    [APPEND_DATA_FULFILLED]: (state, action) => {
+        return Object.assign({}, state, {
+            items: [],
+            hasErrored: !action.payload
+        });
+    },
+    [APPEND_DATA_REJECTED]: (state, action) => {
+        return Object.assign({}, state, {
+            hasErrored: true
+        });
+    },
     [SHOW_BUSY]: (state, action: any) => {
         const isBusy = action.payload;
         return { ...state, isBusy };

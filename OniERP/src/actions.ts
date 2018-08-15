@@ -10,8 +10,8 @@ import {
     ADD_DESSERT,
     SET_PAYMENT_TYPE,
     SET_ORDER_TYPE,
-    APPEND_DATA,
-    UPDATE_DATA
+    APPEND_DATA_FULFILLED,
+    APPEND_DATA_REJECTED
 } from './actionTypes';
 import { DrinksType, DessertType, Payment, OrderType, 
     ValueInputOption, InsertDataOption, ValueRenderOption, DateTimeRenderOption } from './utils/types';
@@ -44,19 +44,18 @@ export const ProcessAppendData = (spreadsheetId: string, valueRange: any) => {
         try {
             const response = await window['gapi'].client.sheets.spreadsheets.values.append({
                 spreadsheetId: spreadsheetId,
-                range: 'A6:D9',
+                range: 'RawData!A:E',
                 valueInputOption: ValueInputOption.USER_ENTERED,
                 insertDataOption: InsertDataOption.OVERWRITE,
                 includeValuesInResponse: true,
                 responseValueRenderOption: ValueRenderOption.FORMATTED_VALUE
             }, { values: valueRange });
-            //TODO: Process response result
-            const items = await response.result.values;
-            debugger;
-            dispatch(itemsFetchDataSuccess(items));
+
+            const updatedCellsCount = await response.result.updates.updatedCells;
+            dispatch(itemsAppendSuccess(updatedCellsCount === valueRange[0].length));
         }
         catch (ex) {
-            dispatch(itemsHasErrored(true));
+            dispatch(itemsAppendErrored(true));
             console.log(ex);
             throw Error(ex);
         }
@@ -119,5 +118,9 @@ export const itemsHasErrored = createAction(LOAD_ITEMS_REJECTED, (hasErrored: bo
 export const itemsIsLoading = createAction(LOAD_ITEMS, (isLoading: boolean) => isLoading);
 
 export const itemsFetchDataSuccess = createAction(LOAD_ITEMS_FULFILLED, (items: any[]) => items);
+
+export const itemsAppendSuccess = createAction(APPEND_DATA_FULFILLED, (success: boolean) => success);
+
+export const itemsAppendErrored = createAction(APPEND_DATA_REJECTED);
 
 export const ShowBusy = createAction(SHOW_BUSY, (isBusy: boolean) => isBusy);

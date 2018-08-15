@@ -69,12 +69,9 @@ class TestComponent extends Component<ITestComponentProps, ITestComponentState>{
     }
 
     handleAppendClick = (event) => {
+        const dateTime = new Date();
         const data = [
-            ["Item1", "Cost", "Stocked", "Ship Date"],
-            ["Wheel1", "$20.50", "4", "3/1/2016"],
-            ["Door1", "$15", "2", "3/15/2016"],
-            ["Engine1", "$100", "1", "30/20/2016"],
-            ["Totals1", "=SUM(B2:B4)", "=SUM(C2:C4)", "=MAX(D2:D4)"]
+            ["Item1", "XL", "1", "0", dateTime.toUTCString()]
         ];
         this.props.appendData(SPREADSHEET_ID, data);
     }
