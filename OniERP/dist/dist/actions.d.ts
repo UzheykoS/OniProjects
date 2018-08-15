@@ -1,0 +1,16 @@
+import { Action } from "redux-actions";
+import { DrinksType, DessertType, Payment, OrderType } from './utils/types';
+export declare const ProcessFetchData: (spreadsheetId: string) => (dispatch: any) => Promise<void>;
+export declare const ProcessAppendData: (spreadsheetId: string, valueRange: any) => (dispatch: any) => Promise<void>;
+export declare const ProcessUpdateData: (spreadsheetId: string, valueRange: any) => (dispatch: any) => Promise<void>;
+export declare const ProcessFetchDataFake: () => (dispatch: any) => void;
+export declare const CreateCheck: (...args: any[]) => Action<any>;
+export declare const AddDrink: (t1: DrinksType, t2: string) => Action<string[]>;
+export declare const AddDessert: (t1: DessertType, t2: string, t3: string) => Action<string[]>;
+export declare const SetPaymentType: (t1: Payment) => Action<Payment>;
+export declare const SetOrderType: (t1: OrderType) => Action<OrderType>;
+export declare const ProcessCheckout: (...args: any[]) => Action<any>;
+export declare const itemsHasErrored: (t1: boolean) => Action<boolean>;
+export declare const itemsIsLoading: (t1: boolean) => Action<boolean>;
+export declare const itemsFetchDataSuccess: (t1: any[]) => Action<any[]>;
+export declare const ShowBusy: (t1: boolean) => Action<boolean>;
