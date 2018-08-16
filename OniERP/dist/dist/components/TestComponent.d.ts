@@ -6,7 +6,7 @@ export interface ITestComponentProps {
     isScriptLoaded?: boolean;
     isScriptLoadSucceed?: boolean;
     fetchData?: (url: string) => void;
-    appendData?: (url: string, data: any[]) => void;
+    appendData?: (url: string, range: string, data: any[]) => void;
     updateData?: (url: string, data: any[]) => void;
 }
 export interface ITestComponentState {

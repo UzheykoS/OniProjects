@@ -22,7 +22,7 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
     return {
         fetchData: (url) => dispatch(ProcessFetchData(url)),
-        appendData: (url, data) => dispatch(ProcessAppendData(url, data)),
+        appendData: (url, range, data) => dispatch(ProcessAppendData(url, range, data)),
         updateData: (url, data) => dispatch(ProcessUpdateData(url, data))
     };
 };
@@ -37,7 +37,7 @@ export interface ITestComponentProps {
     isScriptLoadSucceed?: boolean;
 
     fetchData?: (url: string) => void;
-    appendData?: (url: string, data: any[]) => void;
+    appendData?: (url: string, range: string, data: any[]) => void;
     updateData?: (url: string, data: any[]) => void;
 }
 
@@ -73,7 +73,8 @@ class TestComponent extends Component<ITestComponentProps, ITestComponentState>{
         const data = [
             ["Item1", "XL", "1", "0", dateTime.toUTCString()]
         ];
-        this.props.appendData(SPREADSHEET_ID, data);
+        const range = "RawData!A:E";
+        this.props.appendData(SPREADSHEET_ID, range, data);
     }
 
     handleUpdateClick = (event) => {

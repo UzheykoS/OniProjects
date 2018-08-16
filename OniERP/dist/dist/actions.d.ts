@@ -1,7 +1,8 @@
 import { Action } from "redux-actions";
 import { DrinksType, DessertType, Payment, OrderType } from './utils/types';
 export declare const ProcessFetchData: (spreadsheetId: string) => (dispatch: any) => Promise<void>;
-export declare const ProcessAppendData: (spreadsheetId: string, valueRange: any) => (dispatch: any) => Promise<void>;
+export declare const ProcessAppendData: (spreadsheetId: string, range: string, valueRange: any) => (dispatch: any) => Promise<void>;
+export declare const ProcessLog: (message: string) => Promise<void>;
 export declare const ProcessUpdateData: (spreadsheetId: string, valueRange: any) => (dispatch: any) => Promise<void>;
 export declare const ProcessFetchDataFake: () => (dispatch: any) => void;
 export declare const CreateCheck: (...args: any[]) => Action<any>;

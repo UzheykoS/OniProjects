@@ -14,3 +14,4 @@ export declare const APPEND_DATA_REJECTED = "APPEND_DATA_REJECTED";
 export declare const UPDATE_DATA = "UPDATE_DATA";
 export declare const UPDATE_DATA_FULFILLED = "UPDATE_DATA_FULFILLED";
 export declare const UPDATE_DATA_REJECTED = "UPDATE_DATA_REJECTED";
+export declare const LOG_DATA = "LOG_DATA";

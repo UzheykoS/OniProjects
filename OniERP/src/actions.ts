@@ -15,6 +15,7 @@ import {
 } from './actionTypes';
 import { DrinksType, DessertType, Payment, OrderType, 
     ValueInputOption, InsertDataOption, ValueRenderOption, DateTimeRenderOption } from './utils/types';
+const LOGS_SPREADSHEET_ID = '1NPYoV9Ys52zf9V_NklQ5JdXhjppBLe0dC9T433ZY7P8'
 
 export const ProcessFetchData = (spreadsheetId: string) => {
     return async (dispatch) => {
@@ -38,13 +39,13 @@ export const ProcessFetchData = (spreadsheetId: string) => {
     };
 };
 
-export const ProcessAppendData = (spreadsheetId: string, valueRange: any) => {
+export const ProcessAppendData = (spreadsheetId: string, range: string, valueRange: any) => {
     return async (dispatch) => {
         dispatch(itemsIsLoading(true));
         try {
             const response = await window['gapi'].client.sheets.spreadsheets.values.append({
                 spreadsheetId: spreadsheetId,
-                range: 'RawData!A:E',
+                range: range,
                 valueInputOption: ValueInputOption.USER_ENTERED,
                 insertDataOption: InsertDataOption.OVERWRITE,
                 includeValuesInResponse: true,
@@ -52,7 +53,8 @@ export const ProcessAppendData = (spreadsheetId: string, valueRange: any) => {
             }, { values: valueRange });
 
             const updatedCellsCount = await response.result.updates.updatedCells;
-            dispatch(itemsAppendSuccess(updatedCellsCount === valueRange[0].length));
+            await ProcessLog("TestLog");
+            dispatch(itemsAppendSuccess(updatedCellsCount === valueRange[0].length));            
         }
         catch (ex) {
             dispatch(itemsAppendErrored(true));
@@ -63,6 +65,28 @@ export const ProcessAppendData = (spreadsheetId: string, valueRange: any) => {
             dispatch(itemsIsLoading(false));
         }
     };
+};
+
+export const ProcessLog = async (message: string) => {
+    try {
+        const dateTime = new Date();
+        const data = [
+            [message, dateTime.toUTCString()]
+        ];
+
+        await window['gapi'].client.sheets.spreadsheets.values.append({
+            spreadsheetId: LOGS_SPREADSHEET_ID,
+            range: 'A:B',
+            valueInputOption: ValueInputOption.USER_ENTERED,
+            insertDataOption: InsertDataOption.OVERWRITE,
+            includeValuesInResponse: true,
+            responseValueRenderOption: ValueRenderOption.FORMATTED_VALUE
+        }, { values: data });
+    }
+    catch (ex) {
+        console.log(ex);
+        throw Error(ex);
+    }
 };
 
 export const ProcessUpdateData = (spreadsheetId: string, valueRange: any) => {
