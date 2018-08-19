@@ -3,12 +3,7 @@ import { Component } from 'react';
 import { connect } from 'react-redux';
 import { ProcessFetchData, ProcessAppendData, ProcessUpdateData } from '../actions';
 import scriptLoader from 'react-async-script-loader';
-
-var DISCOVERY_DOCS = ["https://sheets.googleapis.com/$discovery/rest?version=v4"];
-var SCOPES = "https://www.googleapis.com/auth/spreadsheets";
-const CLIENT_ID = '842417198767-7k42pt9ecgtu5f7oopng1oqu3a79i5i9.apps.googleusercontent.com';
-const API_KEY = 'AIzaSyAlI5i8OOtw8aEEMS48E9pouEptq8tEg2M';
-const SPREADSHEET_ID = '1ObMh87dNmizXbdWkH9TiqfrCfApk_rqxPGuQ_zNgJIM';
+import { DISCOVERY_DOCS, SCOPES, CLIENT_ID, API_KEY, TEST_SPREADSHEET_ID } from '../config';
 
 const mapStateToProps = (state) => {
     return {
@@ -74,7 +69,7 @@ class TestComponent extends Component<ITestComponentProps, ITestComponentState>{
             ["Item1", "XL", "1", "0", dateTime.toUTCString()]
         ];
         const range = "RawData!A:E";
-        this.props.appendData(SPREADSHEET_ID, range, data);
+        this.props.appendData(TEST_SPREADSHEET_ID, range, data);
     }
 
     handleUpdateClick = (event) => {
@@ -85,7 +80,7 @@ class TestComponent extends Component<ITestComponentProps, ITestComponentState>{
             ["Engine1", "$100", "1", "30/20/2016"],
             ["Totals1", "=SUM(B2:B4)", "=SUM(C2:C4)", "=MAX(D2:D4)"]
         ];
-        this.props.updateData(SPREADSHEET_ID, data);
+        this.props.updateData(TEST_SPREADSHEET_ID, data);
     }
 
     componentWillReceiveProps(nextProps) {
@@ -103,7 +98,7 @@ class TestComponent extends Component<ITestComponentProps, ITestComponentState>{
             discoveryDocs: DISCOVERY_DOCS,
             scope: SCOPES
         }).then(() => {
-            this.props.fetchData(SPREADSHEET_ID);
+            this.props.fetchData(TEST_SPREADSHEET_ID);
         });
     }
 

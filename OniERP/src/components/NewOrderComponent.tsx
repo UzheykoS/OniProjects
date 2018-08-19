@@ -58,9 +58,9 @@ class NewOrderComponent extends Component<INewOrderComponentProps, INewOrderComp
         const { check } = this.props;
 
         return <List component="nav">
-            {check.drinks.map(d => {
-                return <ListItem button key={d.id}>
-                    <ListItemText inset primary={`${d.type} - ${d.size}`} />
+            {check.drinks.map((d, index) => {
+                return <ListItem button key={index}>
+                    <ListItemText inset primary={`${d.id} - ${d.size}`} />
                 </ListItem>
             })}
             <Divider />

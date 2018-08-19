@@ -5,8 +5,7 @@ export interface Dessert {
     size: string;
 }
 export interface Drink {
-    id: number;
-    type: DrinksType;
+    id: DrinksType;
     size: string;
 }
 export interface Check {

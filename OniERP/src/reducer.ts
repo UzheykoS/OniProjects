@@ -35,8 +35,7 @@ export default handleActions({
     [ADD_DRINK]: (state, action) => {
         const { check } = state;
         const drink: Drink = {
-            id: check.drinks.length + 1,
-            type: action.payload[0],
+            id: action.payload[0],
             size: action.payload[1]
         };
         check.drinks.push(drink);
@@ -60,6 +59,7 @@ export default handleActions({
     [PROCESS_CHECKOUT]: (state, action) => {
         const { check, history } = state;
         check.isFinished = true;
+        debugger;
         history.push(check);
         return Object.assign({}, state, {
             check: null,

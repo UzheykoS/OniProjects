@@ -6,8 +6,7 @@ export interface Dessert {
 }
 
 export interface Drink {
-    id: number,
-    type: DrinksType,
+    id: DrinksType,
     size: string
 }
 

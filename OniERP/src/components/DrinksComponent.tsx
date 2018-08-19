@@ -60,7 +60,7 @@ class DrinksComponent extends Component<IDrinksComponentProps, IDrinksComponentS
         });
 
         const { drinkType } = this.state;
-        await this.props.addDrink(drinkSize, drinkType);
+        await this.props.addDrink(drinkType, drinkSize);
         this.props.handleClose();
     }
 

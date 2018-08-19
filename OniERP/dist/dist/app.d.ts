@@ -1,3 +1,5 @@
-/// <reference types="react" />
-declare const App: () => JSX.Element;
-export default App;
+export interface IAppState {
+    isSignedIn?: boolean;
+}
+declare const _default: any;
+export default _default;

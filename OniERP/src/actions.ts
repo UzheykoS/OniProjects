@@ -13,9 +13,9 @@ import {
     APPEND_DATA_FULFILLED,
     APPEND_DATA_REJECTED
 } from './actionTypes';
-import { DrinksType, DessertType, Payment, OrderType, 
+import { DrinksType, DessertType, Payment, OrderType, Check,
     ValueInputOption, InsertDataOption, ValueRenderOption, DateTimeRenderOption } from './utils/types';
-const LOGS_SPREADSHEET_ID = '1NPYoV9Ys52zf9V_NklQ5JdXhjppBLe0dC9T433ZY7P8'
+import { LOGS_SPREADSHEET_ID, SPREADSHEET_ID } from './config';
 
 export const ProcessFetchData = (spreadsheetId: string) => {
     return async (dispatch) => {
@@ -127,6 +127,45 @@ export const ProcessFetchDataFake = () => {
 
 export const CreateCheck = createAction(CREATE_CHECK);
 
+export const ProcessCheckout = () => {
+    return async (dispatch, getState) => {
+        dispatch(itemsIsLoading(true));
+        try {
+            let check: Check = getState().check;
+
+            const drinksRange = "RawDrinksData!A:E";
+            check.drinks.forEach(async d => {
+                const dateTime = new Date();
+                const data = [
+                    [d.id, d.size, check.payment, check.type, dateTime.toUTCString()]
+                ];
+                await dispatch(ProcessAppendData(SPREADSHEET_ID, drinksRange, data));
+            });
+            debugger;
+            const dessertsRange = "RawDessertsData!A:E";
+            check.desserts.forEach(async d => {
+                const dateTime = new Date();
+                const data = [
+                    [d.id, d.type, d.taste, 0, d.size, check.payment, check.type, dateTime.toUTCString()]
+                ];
+                await dispatch(ProcessAppendData(SPREADSHEET_ID, dessertsRange, data));
+            });
+            
+            dispatch(Checkout);            
+        }
+        catch (ex) {
+            dispatch(itemsAppendErrored(true));
+            console.log(ex);
+            throw Error(ex);
+        }
+        finally {
+            dispatch(itemsIsLoading(false));
+        }
+    };
+};
+
+export const Checkout = createAction(PROCESS_CHECKOUT);
+
 export const AddDrink = createAction(ADD_DRINK, (type: DrinksType, size: string) => [type, size]);
 
 export const AddDessert = createAction(ADD_DESSERT, (type: DessertType, taste: string, size: string) => [type, taste, size]);
@@ -134,8 +173,6 @@ export const AddDessert = createAction(ADD_DESSERT, (type: DessertType, taste: s
 export const SetPaymentType = createAction(SET_PAYMENT_TYPE, (type: Payment) => type);
 
 export const SetOrderType = createAction(SET_ORDER_TYPE, (type: OrderType) => type);
-
-export const ProcessCheckout = createAction(PROCESS_CHECKOUT);
 
 export const itemsHasErrored = createAction(LOAD_ITEMS_REJECTED, (hasErrored: boolean) => hasErrored);
 
