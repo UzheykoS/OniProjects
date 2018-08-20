@@ -51,7 +51,8 @@ export default handleActions({
             id: check.desserts.length + 1,
             type: action.payload[0],
             taste: action.payload[1],
-            size: action.payload[2]
+            size: action.payload[2],
+            quantity: action.payload[3]
         };
         check.desserts.push(dessert);
         return Object.assign({}, state, {

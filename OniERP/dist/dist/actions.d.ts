@@ -9,7 +9,7 @@ export declare const CreateCheck: (...args: any[]) => Action<any>;
 export declare const ProcessCheckout: () => (dispatch: any, getState: any) => Promise<void>;
 export declare const Checkout: (...args: any[]) => Action<any>;
 export declare const AddDrink: (t1: DrinksType, t2: string) => Action<string[]>;
-export declare const AddDessert: (t1: DessertType, t2: string, t3: string) => Action<string[]>;
+export declare const AddDessert: (t1: DessertType, t2: string, t3: string, t4: number) => Action<(string | number)[]>;
 export declare const SetPaymentType: (t1: Payment) => Action<Payment>;
 export declare const SetOrderType: (t1: OrderType) => Action<OrderType>;
 export declare const itemsHasErrored: (t1: boolean) => Action<boolean>;

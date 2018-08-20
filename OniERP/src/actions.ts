@@ -150,7 +150,7 @@ export const ProcessCheckout = () => {
             check.desserts.forEach(async d => {
                 const dateTime = moment(new Date()).format('DD.MM.YYYY HH:mm');
                 const data = [
-                    [d.id, d.type, d.taste, 0, d.size, check.payment, check.type, dateTime]
+                    [d.id, d.type, d.taste, d.quantity, d.size, check.payment, check.type, dateTime]
                 ];
                 await dispatch(ProcessAppendData(SPREADSHEET_ID, dessertsRange, data));
             });
@@ -176,7 +176,7 @@ export const Checkout = createAction(PROCESS_CHECKOUT);
 
 export const AddDrink = createAction(ADD_DRINK, (type: DrinksType, size: string) => [type, size]);
 
-export const AddDessert = createAction(ADD_DESSERT, (type: DessertType, taste: string, size: string) => [type, taste, size]);
+export const AddDessert = createAction(ADD_DESSERT, (type: DessertType, taste: string, size: string, quantity: number) => [type, taste, size, quantity]);
 
 export const SetPaymentType = createAction(SET_PAYMENT_TYPE, (type: Payment) => type);
 

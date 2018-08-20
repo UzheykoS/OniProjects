@@ -3,6 +3,7 @@ export interface Dessert {
     type: DessertType,
     taste: string,
     size: string
+    quantity: number;
 }
 
 export interface Drink {
