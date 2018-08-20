@@ -11,7 +11,9 @@ import {
     SET_PAYMENT_TYPE,
     SET_ORDER_TYPE,
     APPEND_DATA_FULFILLED,
-    APPEND_DATA_REJECTED
+    APPEND_DATA_REJECTED,
+    LOG_DATA,
+    CLEAR_LOG
 } from "./actionTypes";
 import { Check, Dessert, Drink, Payment, OrderType } from './utils/types';
 
@@ -105,5 +107,13 @@ export default handleActions({
     [SHOW_BUSY]: (state, action: any) => {
         const isBusy = action.payload;
         return { ...state, isBusy };
+    },
+    [LOG_DATA]: (state, action: any) => {
+        const text = action.payload;
+        const { log } = state;
+        return { ...state, log: `${log};${text}` };
+    },
+    [CLEAR_LOG]: (state, action: any) => {
+        return { ...state, log: '' };
     }
 }, initialState);

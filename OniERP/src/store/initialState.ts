@@ -5,5 +5,6 @@ export default {
     isLoading: false,
     items: [],
     check: null,
-    history: new Array<Check>()
+    history: new Array<Check>(),
+    log: ''
 }

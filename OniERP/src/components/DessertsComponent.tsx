@@ -1,14 +1,14 @@
 import * as React from 'react';
 import { Component } from 'react';
 import { connect } from 'react-redux';
-import { AddDessert } from '../actions';
+import { AddDessert, LogData } from '../actions';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemAvatar from '@material-ui/core/ListItemAvatar';
 import ListItemText from '@material-ui/core/ListItemText';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import Dialog from '@material-ui/core/Dialog';
-import { DessertType, Dessert, MacaronsEnum, CakesEnum, ZephyrEnum } from '../utils/types';
+import { DessertType, MacaronsEnum, CakesEnum, ZephyrEnum } from '../utils/types';
 import { DessertsDict } from '../utils/dictionaries';
 import { AddIcon } from 'mdi-react';
 import Avatar from '@material-ui/core/Avatar';
@@ -20,13 +20,15 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    addDessert: (type: DessertType, taste: string, size: string) => dispatch(AddDessert(type, taste, size))
+    addDessert: (type: DessertType, taste: string, size: string) => dispatch(AddDessert(type, taste, size)),
+    logData: (text: string) => dispatch(LogData(text))
   };
 };
 
 export interface IDessertsComponentProps {
   addDessert?: (type: DessertType, taste: string, size: string) => void;
   handleClose?: () => void;
+  logData?: (text: string) => void;
 }
 
 export interface IDessertsComponentState {
@@ -47,18 +49,21 @@ class DessertsComponent extends Component<IDessertsComponentProps, IDessertsComp
 
   handleClose = () => {
     this.props.handleClose();
+    this.props.logData('desserts->close');
   }
 
   handleDessertSelect = (dessert) => {
     this.setState({
       dessertType: dessert
     });
+    this.props.logData('desserts->dessertSelected->' + dessert);
   }
 
   handleDessertTasteSelect = (taste) => {
     this.setState({
       dessertTaste: taste
     });
+    this.props.logData('desserts->dessertTasteSelected->' + taste);
   }
 
   handleDessertSizeSelect = async (size) => {
@@ -69,6 +74,7 @@ class DessertsComponent extends Component<IDessertsComponentProps, IDessertsComp
     const { dessertType, dessertTaste } = this.state;
     await this.props.addDessert(dessertType, dessertTaste, size);
     this.props.handleClose();
+    this.props.logData('desserts->dessertSizeSelected->' + size);
   }
 
   renderDesserts() {

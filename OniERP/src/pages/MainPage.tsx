@@ -3,7 +3,7 @@ import * as React from 'react'
 import { connect } from 'react-redux';
 import Button from '@material-ui/core/Button';
 import { Link } from 'react-router-dom';
-import { CreateCheck } from '../actions';
+import { CreateCheck, LogData } from '../actions';
 import { Check, Payment, OrderType } from '../utils/types';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
@@ -18,7 +18,8 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    createCheck: (url) => dispatch(CreateCheck())
+    createCheck: () => dispatch(CreateCheck()),
+    logData: (text: string) => dispatch(LogData(text))
   };
 };
 
@@ -26,11 +27,13 @@ export interface IMainPageProps {
   history?: Array<Check>;
 
   createCheck?: () => void;
+  logData?: (text: string) => void;
 }
 
 class MainPage extends Component<IMainPageProps, any>{
   onNewCheckClick = () => {
     this.props.createCheck();
+    this.props.logData('mainPage->newCheck');
   }
 
   renderHistory() {

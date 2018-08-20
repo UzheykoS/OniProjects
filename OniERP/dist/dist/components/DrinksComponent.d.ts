@@ -5,6 +5,7 @@ import { DrinksType } from '../utils/types';
 export interface IDrinksComponentProps {
     addDrink?: (type: DrinksType, size: string) => void;
     handleClose?: () => void;
+    logData?: (text: string) => void;
 }
 export interface IDrinksComponentState {
     drinkType?: DrinksType;

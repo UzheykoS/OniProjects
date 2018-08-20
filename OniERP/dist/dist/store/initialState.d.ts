@@ -5,5 +5,6 @@ declare const _default: {
     items: any[];
     check: any;
     history: Check[];
+    log: string;
 };
 export default _default;

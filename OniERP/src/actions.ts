@@ -11,11 +11,14 @@ import {
     SET_PAYMENT_TYPE,
     SET_ORDER_TYPE,
     APPEND_DATA_FULFILLED,
-    APPEND_DATA_REJECTED
+    APPEND_DATA_REJECTED,
+    LOG_DATA,
+    CLEAR_LOG
 } from './actionTypes';
 import { DrinksType, DessertType, Payment, OrderType, Check,
     ValueInputOption, InsertDataOption, ValueRenderOption, DateTimeRenderOption } from './utils/types';
 import { LOGS_SPREADSHEET_ID, SPREADSHEET_ID } from './config';
+import * as moment from 'moment';
 
 export const ProcessFetchData = (spreadsheetId: string) => {
     return async (dispatch) => {
@@ -42,7 +45,7 @@ export const ProcessFetchData = (spreadsheetId: string) => {
 export const ProcessAppendData = (spreadsheetId: string, range: string, valueRange: any) => {
     return async (dispatch) => {
         dispatch(itemsIsLoading(true));
-        try {
+        try {            
             const response = await window['gapi'].client.sheets.spreadsheets.values.append({
                 spreadsheetId: spreadsheetId,
                 range: range,
@@ -52,8 +55,7 @@ export const ProcessAppendData = (spreadsheetId: string, range: string, valueRan
                 responseValueRenderOption: ValueRenderOption.FORMATTED_VALUE
             }, { values: valueRange });
 
-            const updatedCellsCount = await response.result.updates.updatedCells;
-            await ProcessLog("TestLog");
+            const updatedCellsCount = await response.result.updates.updatedCells;            
             dispatch(itemsAppendSuccess(updatedCellsCount === valueRange[0].length));            
         }
         catch (ex) {
@@ -131,27 +133,33 @@ export const ProcessCheckout = () => {
     return async (dispatch, getState) => {
         dispatch(itemsIsLoading(true));
         try {
-            let check: Check = getState().check;
+            const state = getState();
+            let check: Check = state.check;
+            const { log } = state;
 
             const drinksRange = "RawDrinksData!A:E";
             check.drinks.forEach(async d => {
-                const dateTime = new Date();
+                const dateTime = moment(new Date()).format('DD.MM.YYYY HH:mm');
                 const data = [
-                    [d.id, d.size, check.payment, check.type, dateTime.toUTCString()]
+                    [d.id, d.size, check.payment, check.type, dateTime]
                 ];
                 await dispatch(ProcessAppendData(SPREADSHEET_ID, drinksRange, data));
             });
             debugger;
             const dessertsRange = "RawDessertsData!A:E";
             check.desserts.forEach(async d => {
-                const dateTime = new Date();
+                const dateTime = moment(new Date()).format('DD.MM.YYYY HH:mm');
                 const data = [
-                    [d.id, d.type, d.taste, 0, d.size, check.payment, check.type, dateTime.toUTCString()]
+                    [d.id, d.type, d.taste, 0, d.size, check.payment, check.type, dateTime]
                 ];
                 await dispatch(ProcessAppendData(SPREADSHEET_ID, dessertsRange, data));
             });
+ 
+            dispatch(Checkout);
             
-            dispatch(Checkout);            
+            await ProcessLog(log);
+            await ProcessLog(JSON.stringify(check));
+            dispatch(ClearLog);  
         }
         catch (ex) {
             dispatch(itemsAppendErrored(true));
@@ -185,3 +193,7 @@ export const itemsAppendSuccess = createAction(APPEND_DATA_FULFILLED, (success: 
 export const itemsAppendErrored = createAction(APPEND_DATA_REJECTED);
 
 export const ShowBusy = createAction(SHOW_BUSY, (isBusy: boolean) => isBusy);
+
+export const LogData = createAction(LOG_DATA, (text: string) => text);
+
+export const ClearLog = createAction(CLEAR_LOG);

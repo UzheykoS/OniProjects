@@ -5,6 +5,7 @@ import { DessertType } from '../utils/types';
 export interface IDessertsComponentProps {
     addDessert?: (type: DessertType, taste: string, size: string) => void;
     handleClose?: () => void;
+    logData?: (text: string) => void;
 }
 export interface IDessertsComponentState {
     dessertType?: DessertType;

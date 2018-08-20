@@ -3,7 +3,7 @@ import * as React from 'react'
 import { connect } from 'react-redux';
 import Button from '@material-ui/core/Button';
 import { Payment, OrderType, Check } from '../utils/types';
-import { ProcessCheckout, SetPaymentType, SetOrderType } from '../actions';
+import { ProcessCheckout, SetPaymentType, SetOrderType, LogData } from '../actions';
 import { withRouter } from 'react-router-dom'
 import Divider from '@material-ui/core/Divider';
 import Radio from '@material-ui/core/Radio';
@@ -19,7 +19,8 @@ const mapDispatchToProps = (dispatch) => {
     return {
         handleCheckout: () => dispatch(ProcessCheckout()),
         setPaymentType: (type: Payment) => dispatch(SetPaymentType(type)),
-        setOrderType: (type: OrderType) => dispatch(SetOrderType(type))
+        setOrderType: (type: OrderType) => dispatch(SetOrderType(type)),
+        logData: (text: string) => dispatch(LogData(text))
     };
 };
 
@@ -30,20 +31,24 @@ export interface ICheckoutPageProps {
     setPaymentType?: (type: Payment) => void;
     setOrderType?: (type: OrderType) => void;
     handleCheckout?: () => void;
+    logData?: (text: string) => void;
 }
 
 class CheckoutPage extends Component<ICheckoutPageProps, any>{
     handleCheckout = () => {
         this.props.handleCheckout();
         this.props.history.push('/');
+        this.props.logData('checkoutPage->checkout');
     }
 
     handlePaymentTypeChange = (type: Payment) => {
         this.props.setPaymentType(type);
+        this.props.logData('checkoutPage->paymentTypeChanged->' + type);
     }
 
     handleOrderTypeChange = (type: OrderType) => {
         this.props.setOrderType(type);
+        this.props.logData('checkoutPage->orderTypeChanged->' + type);
     }
 
     render() {

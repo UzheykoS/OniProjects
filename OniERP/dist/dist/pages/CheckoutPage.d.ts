@@ -5,6 +5,7 @@ export interface ICheckoutPageProps {
     setPaymentType?: (type: Payment) => void;
     setOrderType?: (type: OrderType) => void;
     handleCheckout?: () => void;
+    logData?: (text: string) => void;
 }
 declare const _default: any;
 export default _default;

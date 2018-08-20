@@ -18,3 +18,5 @@ export declare const itemsFetchDataSuccess: (t1: any[]) => Action<any[]>;
 export declare const itemsAppendSuccess: (t1: boolean) => Action<boolean>;
 export declare const itemsAppendErrored: (...args: any[]) => Action<any>;
 export declare const ShowBusy: (t1: boolean) => Action<boolean>;
+export declare const LogData: (t1: string) => Action<string>;
+export declare const ClearLog: (...args: any[]) => Action<any>;
