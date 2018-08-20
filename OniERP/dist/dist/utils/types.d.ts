@@ -17,14 +17,14 @@ export interface Check {
     type: OrderType;
 }
 export declare enum Payment {
-    Card = 0,
-    Cash = 1,
-    Other = 2,
+    Card = "\u041A\u0430\u0440\u0442\u0430",
+    Cash = "\u041D\u0430\u043B\u0438\u0447\u043A\u0430",
+    Other = "\u0414\u0440\u0443\u0433\u043E\u0435",
 }
 export declare enum OrderType {
-    PreOrder = 0,
-    Shop = 1,
-    Other = 2,
+    PreOrder = "\u041F\u0440\u0435\u0434\u0437\u0430\u043A\u0430\u0437",
+    Shop = "\u0412\u0438\u0442\u0440\u0438\u043D\u0430",
+    Other = "\u0414\u0440\u0443\u0433\u043E\u0435",
 }
 export declare enum DessertType {
     Macaron = "\u041C\u0430\u043A\u0430\u0440\u043E\u043D\u0441",

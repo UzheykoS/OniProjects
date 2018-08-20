@@ -20,15 +20,15 @@ export interface Check {
 }
 
 export enum Payment {
-    Card,
-    Cash,
-    Other
+    Card = 'Карта',
+    Cash = 'Наличка',
+    Other = 'Другое'
 }
 
 export enum OrderType {
-    PreOrder,
-    Shop,
-    Other
+    PreOrder = 'Предзаказ',
+    Shop = 'Витрина',
+    Other = 'Другое'
 }
 
 export enum DessertType {
