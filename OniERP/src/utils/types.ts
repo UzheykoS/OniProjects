@@ -1,5 +1,4 @@
 export interface Dessert {
-    id: number,
     type: DessertType,
     taste: string,
     size: string
