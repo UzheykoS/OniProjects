@@ -106,7 +106,6 @@ export const ProcessUpdateData = (spreadsheetId: string, valueRange: any) => {
             }, { values: valueRange });
             //TODO: Process response result
             const items = await response.result.values;
-            debugger;
             dispatch(itemsFetchDataSuccess(items));
         }
         catch (ex) {
@@ -152,11 +151,11 @@ export const ProcessCheckout = () => {
                 await dispatch(ProcessAppendData(SPREADSHEET_ID, dessertsRange, dessertsData));
             }
 
-            dispatch(Checkout);
+            dispatch(Checkout());
             
             await ProcessLog(log);
             await ProcessLog(JSON.stringify(check));
-            dispatch(ClearLog);  
+            dispatch(ClearLog());  
         }
         catch (ex) {
             dispatch(itemsAppendErrored(true));

@@ -74,11 +74,10 @@ export default handleActions({
     [PROCESS_CHECKOUT]: (state, action) => {
         const { check, history } = state;
         check.isFinished = true;
-        debugger;
         history.push(check);
         return Object.assign({}, state, {
             check: null,
-            history
+            history: [...history]
         });        
     },
     [SET_PAYMENT_TYPE]: (state, action) => {
