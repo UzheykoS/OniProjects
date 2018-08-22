@@ -10,7 +10,6 @@ export interface IDessertsComponentProps {
 export interface IDessertsComponentState {
     dessertType?: DessertType;
     dessertTaste?: string;
-    dessertSize?: string;
     dessertQuantities?: {
         [id: string]: number;
     };

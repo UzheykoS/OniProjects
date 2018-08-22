@@ -3,7 +3,7 @@ import * as React from 'react'
 import { connect } from 'react-redux';
 import Button from '@material-ui/core/Button';
 import { Payment, OrderType, Check } from '../utils/types';
-import { ProcessCheckout, SetPaymentType, SetOrderType, LogData } from '../actions';
+import { ProcessCheckout, SetPaymentType, SetOrderType, LogData, Cancel } from '../actions';
 import { withRouter } from 'react-router-dom'
 import Divider from '@material-ui/core/Divider';
 import Radio from '@material-ui/core/Radio';
@@ -20,7 +20,8 @@ const mapDispatchToProps = (dispatch) => {
         handleCheckout: () => dispatch(ProcessCheckout()),
         setPaymentType: (type: Payment) => dispatch(SetPaymentType(type)),
         setOrderType: (type: OrderType) => dispatch(SetOrderType(type)),
-        logData: (text: string) => dispatch(LogData(text))
+        logData: (text: string) => dispatch(LogData(text)),
+        handleCancel: () => dispatch(Cancel())
     };
 };
 
@@ -31,6 +32,7 @@ export interface ICheckoutPageProps {
     setPaymentType?: (type: Payment) => void;
     setOrderType?: (type: OrderType) => void;
     handleCheckout?: () => void;
+    handleCancel?: () => void;
     logData?: (text: string) => void;
 }
 
@@ -39,6 +41,12 @@ class CheckoutPage extends Component<ICheckoutPageProps, any>{
         this.props.handleCheckout();
         this.props.history.push('/');
         this.props.logData('checkoutPage->checkout');
+    }
+
+    handleCancel = () => {
+        this.props.handleCancel();
+        this.props.history.push('/');
+        this.props.logData('checkoutPage->cancel');
     }
 
     handlePaymentTypeChange = (type: Payment) => {
@@ -112,7 +120,10 @@ class CheckoutPage extends Component<ICheckoutPageProps, any>{
             </div>
             <Divider />
             <Button variant="contained" color="primary" title="Check Out" onClick={this.handleCheckout}>
-            Check Out
+                Check Out
+            </Button>
+            <Button variant="contained" color="secondary" title="Cancel" onClick={this.handleCancel}>
+                Cancel
             </Button>
         </div>;
     }

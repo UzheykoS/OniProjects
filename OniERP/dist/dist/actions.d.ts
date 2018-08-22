@@ -4,7 +4,6 @@ export declare const ProcessFetchData: (spreadsheetId: string) => (dispatch: any
 export declare const ProcessAppendData: (spreadsheetId: string, range: string, valueRange: any) => (dispatch: any) => Promise<void>;
 export declare const ProcessLog: (message: string) => Promise<void>;
 export declare const ProcessUpdateData: (spreadsheetId: string, valueRange: any) => (dispatch: any) => Promise<void>;
-export declare const ProcessFetchDataFake: () => (dispatch: any) => void;
 export declare const CreateCheck: (...args: any[]) => Action<any>;
 export declare const ProcessCheckout: () => (dispatch: any, getState: any) => Promise<void>;
 export declare const Checkout: (...args: any[]) => Action<any>;
@@ -20,3 +19,4 @@ export declare const itemsAppendErrored: (...args: any[]) => Action<any>;
 export declare const ShowBusy: (t1: boolean) => Action<boolean>;
 export declare const LogData: (t1: string) => Action<string>;
 export declare const ClearLog: (...args: any[]) => Action<any>;
+export declare const Cancel: (...args: any[]) => Action<any>;

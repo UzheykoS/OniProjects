@@ -16,3 +16,4 @@ export declare const UPDATE_DATA_FULFILLED = "UPDATE_DATA_FULFILLED";
 export declare const UPDATE_DATA_REJECTED = "UPDATE_DATA_REJECTED";
 export declare const LOG_DATA = "LOG_DATA";
 export declare const CLEAR_LOG = "CLEAR_LOG";
+export declare const CANCEL = "CANCEL";

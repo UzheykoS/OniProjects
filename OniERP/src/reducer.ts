@@ -13,7 +13,8 @@ import {
     APPEND_DATA_FULFILLED,
     APPEND_DATA_REJECTED,
     LOG_DATA,
-    CLEAR_LOG
+    CLEAR_LOG,
+    CANCEL
 } from "./actionTypes";
 import { Check, Dessert, Drink, Payment, OrderType } from './utils/types';
 
@@ -47,14 +48,25 @@ export default handleActions({
     },
     [ADD_DESSERT]: (state, action) => {
         const { check } = state;
-        const dessert: Dessert = {
-            id: check.desserts.length + 1,
-            type: action.payload[0],
-            taste: action.payload[1],
-            size: action.payload[2],
-            quantity: action.payload[3]
-        };
-        check.desserts.push(dessert);
+
+        const existingDessert = check.desserts.find((d: Dessert) => 
+        d.type === action.payload[0] 
+        && d.taste === action.payload[1]
+        && d.size === action.payload[2]);
+
+        if (!!existingDessert) {
+            existingDessert.quantity += action.payload[3];
+        } else {
+            const dessert: Dessert = {
+                id: check.desserts.length + 1,
+                type: action.payload[0],
+                taste: action.payload[1],
+                size: action.payload[2],
+                quantity: action.payload[3]
+            };
+            check.desserts.push(dessert);
+        }
+        
         return Object.assign({}, state, {
             check
         });        
@@ -116,5 +128,8 @@ export default handleActions({
     },
     [CLEAR_LOG]: (state, action: any) => {
         return { ...state, log: '' };
+    },
+    [CANCEL]: (state, action: any) => {
+        return { ...state, check: null };
     }
 }, initialState);

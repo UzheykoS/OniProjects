@@ -66,7 +66,7 @@ class NewOrderComponent extends Component<INewOrderComponentProps, INewOrderComp
             <Divider />
             {check.desserts.map(d => {
                 return <ListItem button key={d.id}>
-                    <ListItemText inset primary={`${d.type} - ${d.taste} - ${d.size}`} />
+                    <ListItemText inset primary={`${d.type} - ${d.taste} - ${d.quantity} - ${d.size || ''}`} />
                 </ListItem>
             })}
         </List>;

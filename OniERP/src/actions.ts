@@ -13,7 +13,8 @@ import {
     APPEND_DATA_FULFILLED,
     APPEND_DATA_REJECTED,
     LOG_DATA,
-    CLEAR_LOG
+    CLEAR_LOG,
+    CANCEL
 } from './actionTypes';
 import { DrinksType, DessertType, Payment, OrderType, Check,
     ValueInputOption, InsertDataOption, ValueRenderOption, DateTimeRenderOption } from './utils/types';
@@ -55,8 +56,8 @@ export const ProcessAppendData = (spreadsheetId: string, range: string, valueRan
                 responseValueRenderOption: ValueRenderOption.FORMATTED_VALUE
             }, { values: valueRange });
 
-            const updatedCellsCount = await response.result.updates.updatedCells;            
-            dispatch(itemsAppendSuccess(updatedCellsCount === valueRange[0].length));            
+            // const updatedCellsCount = await response.result.updates.updatedCells;            
+            dispatch(itemsAppendSuccess(true));            
         }
         catch (ex) {
             dispatch(itemsAppendErrored(true));
@@ -119,14 +120,6 @@ export const ProcessUpdateData = (spreadsheetId: string, valueRange: any) => {
     };
 };
 
-export const ProcessFetchDataFake = () => {
-    return (dispatch) => {
-        setTimeout(() => {
-            dispatch(itemsHasErrored(true));
-        }, 5000);
-    };
-}
-
 export const CreateCheck = createAction(CREATE_CHECK);
 
 export const ProcessCheckout = () => {
@@ -138,23 +131,27 @@ export const ProcessCheckout = () => {
             const { log } = state;
 
             const drinksRange = "RawDrinksData!A:E";
+            const drinksData = [];
             check.drinks.forEach(async d => {
                 const dateTime = moment(new Date()).format('DD.MM.YYYY HH:mm');
-                const data = [
-                    [d.id, d.size, check.payment, check.type, dateTime]
-                ];
-                await dispatch(ProcessAppendData(SPREADSHEET_ID, drinksRange, data));
+                const data = [d.id, d.size, check.payment, check.type, dateTime];
+                drinksData.push(data);
             });
-            debugger;
+            if (drinksData.length) {
+                await dispatch(ProcessAppendData(SPREADSHEET_ID, drinksRange, drinksData));
+            }
+            
             const dessertsRange = "RawDessertsData!A:E";
+            const dessertsData = [];
             check.desserts.forEach(async d => {
                 const dateTime = moment(new Date()).format('DD.MM.YYYY HH:mm');
-                const data = [
-                    [d.id, d.type, d.taste, d.quantity, d.size, check.payment, check.type, dateTime]
-                ];
-                await dispatch(ProcessAppendData(SPREADSHEET_ID, dessertsRange, data));
+                const data = [d.id, d.type, d.taste, d.quantity, d.size, check.payment, check.type, dateTime];
+                dessertsData.push(data);
             });
- 
+            if (dessertsData.length) {
+                await dispatch(ProcessAppendData(SPREADSHEET_ID, dessertsRange, dessertsData));
+            }
+
             dispatch(Checkout);
             
             await ProcessLog(log);
@@ -197,3 +194,5 @@ export const ShowBusy = createAction(SHOW_BUSY, (isBusy: boolean) => isBusy);
 export const LogData = createAction(LOG_DATA, (text: string) => text);
 
 export const ClearLog = createAction(CLEAR_LOG);
+
+export const Cancel = createAction(CANCEL);
