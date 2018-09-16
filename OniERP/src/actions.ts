@@ -144,7 +144,7 @@ export const ProcessCheckout = () => {
             const dessertsData = [];
             check.desserts.forEach(async d => {
                 const dateTime = moment(new Date()).format('DD.MM.YYYY HH:mm');
-                const data = [d.id, d.type, d.taste, d.quantity, d.size, check.payment, check.type, dateTime];
+                const data = [d.type, d.taste, d.quantity, d.size, check.payment, check.type, dateTime];
                 dessertsData.push(data);
             });
             if (dessertsData.length) {

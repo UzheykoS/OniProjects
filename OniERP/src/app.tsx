@@ -5,21 +5,10 @@ import MainPage from './pages/MainPage';
 import CheckPage from './pages/CheckPage';
 import CheckoutPage from './pages/CheckoutPage';
 import NotFoundPage from './pages/NotFoundPage';
-import { Link } from 'react-router-dom';
 import TestComponent from './components/TestComponent';
 import scriptLoader from 'react-async-script-loader';
 import { DISCOVERY_DOCS, SCOPES, CLIENT_ID, API_KEY, SPREADSHEET_ID } from './config';
-
-const Header = () => (
-    <header>
-        <nav>
-            <ul>
-                <li><Link to='/'>Home</Link></li>
-                <li><Link to='/test'>Test</Link></li>
-            </ul>
-        </nav>
-    </header>
-)
+import AppBar from './components/AppBar';
 
 const Main = () => (
     <Switch>
@@ -64,14 +53,14 @@ class App extends Component<any, IAppState>{
         });
     }
 
-    handleAuthClick = (event) => {
+    handleAuthClick = () => {
         window['gapi'].auth2.getAuthInstance().signIn();
         this.setState({
             isSignedIn: true
         })
     }
 
-    handleSignoutClick = (event) => {
+    handleSignoutClick = () => {
         window['gapi'].auth2.getAuthInstance().signOut();
         this.setState({
             isSignedIn: false
@@ -82,10 +71,10 @@ class App extends Component<any, IAppState>{
         const { isSignedIn } = this.state;
 
         return <div>
-            <Header />
+            <AppBar title={'Главная'} isSignedIn={isSignedIn} onLoginClick={this.handleAuthClick} onLogoutClick={this.handleSignoutClick}/>
             <Main />
-            <button id="authorize_button" onClick={this.handleAuthClick} style={{ display: isSignedIn ? 'none' : 'block' }}>Authorize</button>
-            <button id="signout_button" onClick={this.handleSignoutClick} style={{ display: isSignedIn ? 'block' : 'none' }}>Sign Out</button>
+            {/* <button id="authorize_button" onClick={this.handleAuthClick} style={{ display: isSignedIn ? 'none' : 'block' }}>Authorize</button>
+            <button id="signout_button" onClick={this.handleSignoutClick} style={{ display: isSignedIn ? 'block' : 'none' }}>Sign Out</button> */}
         </div>;
     }
 }

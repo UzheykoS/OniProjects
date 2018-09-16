@@ -10,6 +10,8 @@ import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
 import Divider from '@material-ui/core/Divider';
+import LargeButton from './LargeButton';
+const imageUrl = require('../../public/images/macaron.jpg');
 
 const mapStateToProps = (state) => {
     return {
@@ -63,9 +65,8 @@ class NewOrderComponent extends Component<INewOrderComponentProps, INewOrderComp
                     <ListItemText inset primary={`${d.id} - ${d.size}`} />
                 </ListItem>
             })}
-            <Divider />
-            {check.desserts.map(d => {
-                return <ListItem button key={d.id}>
+            {check.desserts.map((d, index) => {
+                return <ListItem button key={index}>
                     <ListItemText inset primary={`${d.type} - ${d.taste} - ${d.quantity} - ${d.size || ''}`} />
                 </ListItem>
             })}
@@ -77,25 +78,25 @@ class NewOrderComponent extends Component<INewOrderComponentProps, INewOrderComp
         const { check } = this.props;
 
         if (!check) {
-            return <div className="container">
+            return <div>
                 Please create new check first
             </div>;
         }
 
-        return <div className="container">
-            {`Check #${check.id}`}
-            <Divider />
+        return <div>
+            {`Чек #${check.id}`}
             {this.renderCheckContent()}
             <Divider />
-            <Button variant="contained" color="primary" title="Desserts" onClick={this.addDessertClick} >
-                Desserts
-            </Button>
-            <Button variant="contained" color="primary" title="Drinks" onClick={this.addDrinkClick}>
-                Drinks
-            </Button>
-            <Divider />
+            <div className='newOrderButtonsWrapper'>
+                <div className='newOrderButton'>
+                    <LargeButton title={'Дессерты'} imageUrl={imageUrl} onClick={this.addDessertClick} />
+                </div>
+                <div className='newOrderButton'>
+                    <LargeButton title={'Напитки'} imageUrl={imageUrl} onClick={this.addDrinkClick} />
+                </div>
+            </div>
             <Button disabled={check.desserts.length === 0 && check.drinks.length === 0} variant="contained" color="secondary" title="Checkout" >
-                <Link to='/checkOut'>Check Out</Link>
+                <Link to='/checkOut'>Продолжить</Link>
             </Button>
             {showDrinks && <DrinksComponent handleClose={() => this.setState({ showDrinks: false })} />}
             {showDesserts && <DessertsComponent handleClose={() => this.setState({ showDesserts: false })} />}

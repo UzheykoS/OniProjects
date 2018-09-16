@@ -7,7 +7,7 @@ import {
     CREATE_CHECK,
     ADD_DRINK,
     ADD_DESSERT,
-    PROCESS_CHECKOUT,    
+    PROCESS_CHECKOUT,
     SET_PAYMENT_TYPE,
     SET_ORDER_TYPE,
     APPEND_DATA_FULFILLED,
@@ -33,7 +33,7 @@ export default handleActions({
         };
         return Object.assign({}, state, {
             check
-        });        
+        });
     },
     [ADD_DRINK]: (state, action) => {
         const { check } = state;
@@ -44,15 +44,15 @@ export default handleActions({
         check.drinks.push(drink);
         return Object.assign({}, state, {
             check
-        });        
+        });
     },
     [ADD_DESSERT]: (state, action) => {
         const { check } = state;
 
-        const existingDessert = check.desserts.find((d: Dessert) => 
-        d.type === action.payload[0] 
-        && d.taste === action.payload[1]
-        && d.size === action.payload[2]);
+        const existingDessert = check.desserts.find((d: Dessert) =>
+            d.type === action.payload[0]
+            && d.taste === action.payload[1]
+            && d.size === action.payload[2]);
 
         if (!!existingDessert) {
             existingDessert.quantity += action.payload[3];
@@ -65,10 +65,10 @@ export default handleActions({
             };
             check.desserts.push(dessert);
         }
-        
+
         return Object.assign({}, state, {
             check
-        });        
+        });
     },
     [PROCESS_CHECKOUT]: (state, action) => {
         const { check, history } = state;
@@ -77,27 +77,27 @@ export default handleActions({
         return Object.assign({}, state, {
             check: null,
             history: [...history]
-        });        
+        });
     },
     [SET_PAYMENT_TYPE]: (state, action) => {
         const { check } = state;
         check.payment = action.payload;
-        return { ...state, check: {...check} };           
+        return { ...state, check: { ...check } };
     },
     [SET_ORDER_TYPE]: (state, action) => {
         const { check } = state;
         check.type = action.payload;
-        return { ...state, check: {...check} };        
+        return { ...state, check: { ...check } };
     },
     [LOAD_ITEMS]: (state, action) => {
         return Object.assign({}, state, {
             isLoading: action.payload
-        });        
+        });
     },
     [LOAD_ITEMS_FULFILLED]: (state, action) => {
         return Object.assign({}, state, {
             items: action.payload
-        });        
+        });
     },
     [LOAD_ITEMS_REJECTED]: (state, action) => {
         return Object.assign({}, state, {

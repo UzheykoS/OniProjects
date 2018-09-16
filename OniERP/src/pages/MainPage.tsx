@@ -1,14 +1,15 @@
 import { Component } from 'react';
 import * as React from 'react'
 import { connect } from 'react-redux';
-import Button from '@material-ui/core/Button';
 import { Link } from 'react-router-dom';
 import { CreateCheck, LogData } from '../actions';
-import { Check, Payment, OrderType } from '../utils/types';
-import List from '@material-ui/core/List';
-import ListItem from '@material-ui/core/ListItem';
-import ListItemText from '@material-ui/core/ListItemText';
-import Divider from '@material-ui/core/Divider';
+import { Check } from '../utils/types';
+import LargeButton from '../components/LargeButton';
+import HistoryComponent from '../components/HistoryComponent';
+import Card from '@material-ui/core/Card';
+import CardContent from '@material-ui/core/CardContent';
+import Typography from '@material-ui/core/Typography';
+const imageUrl = require('../../public/images/macaron.jpg');
 
 const mapStateToProps = (state) => {
   return {
@@ -23,6 +24,8 @@ const mapDispatchToProps = (dispatch) => {
   };
 };
 
+const CkeckLink = props => <Link to="/check" {...props} />;
+
 export interface IMainPageProps {
   history?: Array<Check>;
 
@@ -36,30 +39,23 @@ class MainPage extends Component<IMainPageProps, any>{
     this.props.logData('mainPage->newCheck');
   }
 
-  renderHistory() {
-    const { history } = this.props;
-
-    return <List component="nav">
-      {history.map(h => {
-        return <ListItem button key={h.id}>
-          <ListItemText inset primary={`Check #${h.id}, desserts count: ${h.desserts.length}, drinks count: ${h.drinks.length}, pay by ${h.payment}, ordered in ${h.type}`} />
-        </ListItem>
-      })}
-    </List>;
-  }
-
   render() {
     const { } = this.props;
 
     return <div className="container">
-      Main Page
-          <Divider />
-      <Button variant="contained" color="primary" title="New Check" onClick={this.onNewCheckClick}>
-        <Link to='/check'>New Check</Link>
-      </Button>
-      <Divider />
-      HISTORY
-      {this.renderHistory()}
+      <Card className={'cardContainer'} raised>
+        <CardContent classes={{ root: 'cardRoot' }}>
+          <LargeButton title={'СОЗДАТЬ ЗАКАЗ'} component={CkeckLink} imageUrl={imageUrl} onClick={this.onNewCheckClick} />
+        </CardContent>
+      </Card>
+      <Card className={'cardContainer'} raised>
+        <CardContent>
+          <Typography gutterBottom variant="headline" component="h2">
+            История
+          </Typography>
+          <HistoryComponent />
+        </CardContent>
+      </Card>
     </div>;
   }
 }
