@@ -7,5 +7,6 @@ export default {
     check: null,
     history: new Array<Check>(),
     log: '',
-    errorMessage: ''
+    errorMessage: '',
+    lastId: 0
 }

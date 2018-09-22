@@ -7,5 +7,6 @@ declare const _default: {
     history: Check[];
     log: string;
     errorMessage: string;
+    lastId: number;
 };
 export default _default;

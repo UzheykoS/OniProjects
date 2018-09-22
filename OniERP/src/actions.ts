@@ -15,10 +15,13 @@ import {
     LOG_DATA,
     CLEAR_LOG,
     CANCEL,
-    CLEAR_ERROR
+    CLEAR_ERROR,
+    DELETE_DRINK,
+    DELETE_DESSERT,
+    SET_LAST_ID
 } from './actionTypes';
 import { DrinksType, DessertType, Payment, OrderType, Check,
-    ValueInputOption, InsertDataOption, ValueRenderOption, DateTimeRenderOption } from './utils/types';
+    ValueInputOption, InsertDataOption, ValueRenderOption, DateTimeRenderOption, Dessert, Drink } from './utils/types';
 import { LOGS_SPREADSHEET_ID, SPREADSHEET_ID } from './config';
 import * as moment from 'moment';
 
@@ -26,12 +29,37 @@ export const ProcessFetchData = (spreadsheetId: string) => {
     return async (dispatch) => {
         dispatch(itemsIsLoading(true));
         try {
-            const response = await  window['gapi'].client.sheets.spreadsheets.values.get({
+            const dessertsResponse = await window['gapi'].client.sheets.spreadsheets.values.get({
                 spreadsheetId: spreadsheetId,
-                range: 'A2:B4',
+                range: "RawDessertsData!A:H"
             });
-            const items = await response.result.values;
-            dispatch(itemsFetchDataSuccess(items));
+            const desserts = dessertsResponse.result.values.slice(1).map(d => {
+                const result: Dessert = {
+                    type: d[0],
+                    taste: d[1],
+                    quantity: d[2],
+                    size: d[3]
+                }
+                return result;
+            });
+
+            const drinksResponse = await window['gapi'].client.sheets.spreadsheets.values.get({
+                spreadsheetId: spreadsheetId,
+                range: "RawDrinksData!A:F"
+            });
+            const drinks = drinksResponse.result.values.slice(1).map(d => {
+                const result: Drink = {
+                    id: d[0],
+                    size: d[1]
+                }
+                return result;
+            });
+
+            let lastDessertOrderId = Math.max(...dessertsResponse.result.values.slice(1).map(d => d[7] ? Number(d[7]) : 0));
+            let lastDrinkOrderId = Math.max(...drinksResponse.result.values.slice(1).map(d => d[5] ? Number(d[5]) : 0));
+
+            dispatch(SetLastId(Math.max(lastDessertOrderId, lastDrinkOrderId)));
+            // dispatch(itemsFetchDataSuccess([...desserts, ...drinks]));
         }
         catch (ex) {
             dispatch(itemsHasErrored(true));
@@ -130,22 +158,22 @@ export const ProcessCheckout = () => {
             let check: Check = state.check;
             const { log } = state;
 
-            const drinksRange = "RawDrinksData!A:E";
+            const drinksRange = "RawDrinksData!A:F";
             const drinksData = [];
             check.drinks.forEach(async d => {
                 const dateTime = moment(new Date()).format('DD.MM.YYYY HH:mm');
-                const data = [d.id, d.size, check.payment, check.type, dateTime];
+                const data = [d.id, d.size, check.payment, check.type, dateTime, check.id];
                 drinksData.push(data);
             });
             if (drinksData.length) {
                 await dispatch(ProcessAppendData(SPREADSHEET_ID, drinksRange, drinksData));
             }
             
-            const dessertsRange = "RawDessertsData!A:E";
+            const dessertsRange = "RawDessertsData!A:H";
             const dessertsData = [];
             check.desserts.forEach(async d => {
                 const dateTime = moment(new Date()).format('DD.MM.YYYY HH:mm');
-                const data = [d.type, d.taste, d.quantity, d.size, check.payment, check.type, dateTime];
+                const data = [d.type, d.taste, d.quantity, d.size, check.payment, check.type, dateTime, check.id];
                 dessertsData.push(data);
             });
             if (dessertsData.length) {
@@ -175,6 +203,10 @@ export const AddDrink = createAction(ADD_DRINK, (type: DrinksType, size: string)
 
 export const AddDessert = createAction(ADD_DESSERT, (type: DessertType, taste: string, size: string, quantity: number) => [type, taste, size, quantity]);
 
+export const DeleteDrink = createAction(DELETE_DRINK, (type: DrinksType, size: string) => [type, size]);
+
+export const DeleteDessert = createAction(DELETE_DESSERT, (type: DessertType, taste: string, size: string) => [type, taste, size]);
+
 export const SetPaymentType = createAction(SET_PAYMENT_TYPE, (type: Payment) => type);
 
 export const SetOrderType = createAction(SET_ORDER_TYPE, (type: OrderType) => type);
@@ -198,3 +230,5 @@ export const ClearLog = createAction(CLEAR_LOG);
 export const Cancel = createAction(CANCEL);
 
 export const ClearError = createAction(CLEAR_ERROR);
+
+export const SetLastId = createAction(SET_LAST_ID);

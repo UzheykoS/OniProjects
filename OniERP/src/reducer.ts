@@ -15,7 +15,10 @@ import {
     LOG_DATA,
     CLEAR_LOG,
     CANCEL,
-    CLEAR_ERROR
+    CLEAR_ERROR,
+    DELETE_DESSERT,
+    DELETE_DRINK,
+    SET_LAST_ID
 } from "./actionTypes";
 import { Check, Dessert, Drink, Payment, OrderType } from './utils/types';
 
@@ -23,9 +26,9 @@ import initialState from './store/initialState';
 
 export default handleActions({
     [CREATE_CHECK]: (state, action) => {
-        const { history } = state;
+        const { lastId } = state;
         const check: Check = {
-            id: history.length + 1,
+            id: lastId + 1,
             desserts: new Array<Dessert>(),
             drinks: new Array<Drink>(),
             isFinished: false,
@@ -45,6 +48,22 @@ export default handleActions({
         check.drinks.push(drink);
         return Object.assign({}, state, {
             check
+        });
+    },
+    [DELETE_DRINK]: (state, action) => {
+        const { check } = state;
+        const newCheck = {...check};
+
+        const comparator = ({ id, size }) => {
+            if (id === action.payload[0] && size === action.payload[1]) {
+                return false;
+            }
+            return true;
+        }
+        newCheck.drinks = check.drinks.filter(d => comparator(d));
+
+        return Object.assign({}, state, {
+            check: newCheck
         });
     },
     [ADD_DESSERT]: (state, action) => {
@@ -71,13 +90,36 @@ export default handleActions({
             check
         });
     },
+    [DELETE_DESSERT]: (state, action) => {
+        const { check } = state;
+        const newCheck = {...check};
+
+        const comparator = ({ type, taste, size }) => {
+            if (type === action.payload[0] && taste === action.payload[1]) {
+                if (action.payload[3]) {
+                    return size !== action.payload[3];
+                } else {
+                    return false;
+                }
+                
+            }
+            return true;
+        }
+
+        newCheck.desserts = newCheck.desserts.filter(d => comparator(d));
+
+        return Object.assign({}, state, {
+            check: newCheck
+        });
+    },
     [PROCESS_CHECKOUT]: (state, action) => {
-        const { check, history } = state;
+        const { check, history, lastId } = state;
         check.isFinished = true;
         history.push(check);
         return Object.assign({}, state, {
             check: null,
-            history: [...history]
+            history: [...history],
+            lastId: lastId + 1
         });
     },
     [SET_PAYMENT_TYPE]: (state, action) => {
@@ -134,5 +176,8 @@ export default handleActions({
     },
     [CANCEL]: (state, action: any) => {
         return { ...state, check: null };
-    }
+    },
+    [SET_LAST_ID]: (state, action: any) => {
+        return { ...state, lastId: action.payload };
+    },
 }, initialState);

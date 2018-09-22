@@ -5,6 +5,7 @@ import MainPage from './pages/MainPage';
 import CheckPage from './pages/CheckPage';
 import CheckoutPage from './pages/CheckoutPage';
 import NotFoundPage from './pages/NotFoundPage';
+import PartnersPage from './pages/PartnersPage';
 import TestComponent from './components/TestComponent';
 import scriptLoader from 'react-async-script-loader';
 import { DISCOVERY_DOCS, SCOPES, CLIENT_ID, API_KEY, SPREADSHEET_ID } from './config';
@@ -15,6 +16,7 @@ const Main = () => (
         <Route exact path='/' component={MainPage} />
         <Route path='/check' component={CheckPage} />
         <Route path='/checkOut' component={CheckoutPage} />
+        <Route path='/partners' component={PartnersPage} />
 
         <Route path='/test' component={TestComponent} />
         <Route component={NotFoundPage} />
@@ -65,7 +67,6 @@ class App extends Component<IAppProps, IAppState>{
             this.setState({
                 isSignedIn: window['gapi'].auth2.getAuthInstance().isSignedIn.get()
             });
-            // this.props.fetchData(SPREADSHEET_ID);
         });
     }
 
@@ -95,7 +96,7 @@ class App extends Component<IAppProps, IAppState>{
 
         return <>
             <AppBar title={'Главная'} isSignedIn={isSignedIn} onLoginClick={this.handleAuthClick} onLogoutClick={this.handleSignoutClick} />
-            <Main />
+            {isSignedIn && <Main />}
             {/* <button id="authorize_button" onClick={this.handleAuthClick} style={{ display: isSignedIn ? 'none' : 'block' }}>Authorize</button>
             <button id="signout_button" onClick={this.handleSignoutClick} style={{ display: isSignedIn ? 'block' : 'none' }}>Sign Out</button> */}
         </>;

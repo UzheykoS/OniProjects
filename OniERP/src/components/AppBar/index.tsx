@@ -17,10 +17,10 @@ const options = [
         title: 'Домой',
         route: '/'
     },
-    {
-        title: 'Test',
-        route: '/test'
-    }
+    // {
+    //     title: 'Test',
+    //     route: '/test'
+    // }
 ];
 
 const ITEM_HEIGHT = 48;

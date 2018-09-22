@@ -3,6 +3,9 @@ export const CREATE_CHECK = 'CREATE_CHECK';
 export const ADD_DRINK = 'ADD_DRINK';
 export const ADD_DESSERT = 'ADD_DESSERT';
 
+export const DELETE_DRINK = 'DELETE_DRINK';
+export const DELETE_DESSERT = 'DELETE_DESSERT';
+
 export const SET_PAYMENT_TYPE = 'SET_PAYMENT_TYPE';
 export const SET_ORDER_TYPE = 'SET_ORDER_TYPE';
 export const PROCESS_CHECKOUT = 'PROCESS_CHECKOUT';
@@ -26,3 +29,5 @@ export const CLEAR_LOG = 'CLEAR_LOG';
 export const CANCEL = 'CANCEL';
 
 export const CLEAR_ERROR = 'CLEAR_ERROR';
+
+export const SET_LAST_ID = 'SET_LAST_ID';

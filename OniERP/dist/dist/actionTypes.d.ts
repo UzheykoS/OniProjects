@@ -1,6 +1,8 @@
 export declare const CREATE_CHECK = "CREATE_CHECK";
 export declare const ADD_DRINK = "ADD_DRINK";
 export declare const ADD_DESSERT = "ADD_DESSERT";
+export declare const DELETE_DRINK = "DELETE_DRINK";
+export declare const DELETE_DESSERT = "DELETE_DESSERT";
 export declare const SET_PAYMENT_TYPE = "SET_PAYMENT_TYPE";
 export declare const SET_ORDER_TYPE = "SET_ORDER_TYPE";
 export declare const PROCESS_CHECKOUT = "PROCESS_CHECKOUT";
@@ -18,3 +20,4 @@ export declare const LOG_DATA = "LOG_DATA";
 export declare const CLEAR_LOG = "CLEAR_LOG";
 export declare const CANCEL = "CANCEL";
 export declare const CLEAR_ERROR = "CLEAR_ERROR";
+export declare const SET_LAST_ID = "SET_LAST_ID";

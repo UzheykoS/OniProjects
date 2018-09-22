@@ -38,22 +38,23 @@ export enum DessertType {
 }
 
 export enum MacaronsEnum {
-    Chocolate = "Шоколад",
-    CoffeeCaramel = "Кофе - Солёная Карамель",
-    MangoPassion = "Манго - Маракуйя",
-    LimeBasil = "Лайм - Базилик",
-    Pistachio = "Фисташка",
     DorBluePear = "Доб-Блю - Груша",
-    LavenderBlackberry = "Лаванда - Черника",
-    Currant = "Смородина",
+    ParmesanFigue = "Пармезан - Инжир",
     StrawberryCheesecake = "Клубничный Чизкейк",
-    ParmesanFigue = "Пармезан - Инжир"
+    Raspberry = "Малина",
+    Currant = "Смородина",
+    LavenderBlackberry = "Лаванда - Черника",
+    MangoPassion = "Манго - Маракуйя",
+    CoffeeCaramel = "Кофе - Солёная Карамель",
+    Chocolate = "Шоколад",
+    Pistachio = "Фисташка",
+    LimeBasil = "Лайм - Базилик" 
 }
 
 export enum ZephyrEnum {
     Apple = "Яблоко",
-    Currant = "Смородина",
     ApricotPassionFruit = "Абрикос - Маракуйя",
+    Currant = "Смородина",    
     StrawberryCranberry = "Клубника - Клюква"
 }
 
@@ -66,29 +67,43 @@ export enum CakesEnum {
 }
 
 export enum DrinksType {
-    Espresso = "Эспрессо",
-    Doppio = "Доппио",
+    Cappucino = "Капучино",
+    Latte = "Латте",
+    FlatWhite = "Флет Вайт",
+    Raf = "Раф",
     Americano = "Американо",
     AmericanoMilk = "Американо с молоком",
+    LongBlack = "Лонг блэк",
+    Espresso = "Эспрессо",
+    Doppio = "Доппио",    
     Machiato = "Макиато",
-    Cappucino = "Капучино",
-    FlatWhite = "Флет Вайт",
-    Latte = "Латте",
     LatteLavender = "Латте Лаванда",
-    Raf = "Раф",
-    RafCitrus = "Раф Цитрус",
+    LatteCaramel = "Латте Карамель",
+    LatteOrange = "Латте Апельсин",
+    Cacao = "Какао",
     TeaGreen = "Чай Зелёный",
     TeaBlack = "Чай Чёрный",
     TeaHerbal = "Чай Травяной",
     SpeacialTeaPearLime = "Чай Груша-Лайм",
     SpecialTeaOrange = "Чай Апельсин-Облепиха",
-    Cacao = "Какао",
+    SpecialTeaGinger = "Чай Малина-Имбирь",
     HotChocolate = "Гарячий шоколад",
     LemonadeStrawberry = "Лимонад Клубника",
     LemonadeCitrus = "Лимонад Цитрус",
     LemonadePassion = "Лимонад Маракуйя",
     IceLatte = "Айс Латте",
     Syrop = "Сироп"
+}
+
+export enum PartnersEnum {
+    CoffeeIs = "Coffee is",
+    FirstPoint = "First Point",
+    CubaCoffee = "Cuba Coffee",
+    Progress = "Progress",
+    KlassnaKava = "Класна кава",
+    CoffeeAndTheCity = "Coffee and the city",
+    IlMio = "Il Mio",
+    StudioCoffee = "Студия кофе"
 }
 
 export enum ValueInputOption {
