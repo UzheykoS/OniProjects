@@ -21,11 +21,15 @@ const Main = () => (
     </Switch>
 )
 
+export interface IAppProps {
+    isScriptLoaded?: boolean;
+}
+
 export interface IAppState {
     isSignedIn?: boolean;
 }
 
-class App extends Component<any, IAppState>{
+class App extends Component<IAppProps, IAppState>{
     constructor(props) {
         super(props);
 
@@ -43,42 +47,61 @@ class App extends Component<any, IAppState>{
     }
 
     initClient = () => {
+        // const auth2 = window['gapi'].auth2.init({
+        //     client_id: CLIENT_ID,
+        //     scope: SCOPES,
+        //     discoveryDocs: DISCOVERY_DOCS,
+        //     apiKey: API_KEY,
+        // });
+        // auth2.isSignedIn.listen(this.signinChanged);
+
         window['gapi'].client.init({
             apiKey: API_KEY,
             clientId: CLIENT_ID,
             discoveryDocs: DISCOVERY_DOCS,
             scope: SCOPES
         }).then(() => {
+            window['gapi'].auth2.getAuthInstance().isSignedIn.listen(this.signinChanged);
+            this.setState({
+                isSignedIn: window['gapi'].auth2.getAuthInstance().isSignedIn.get()
+            });
             // this.props.fetchData(SPREADSHEET_ID);
+        });
+    }
+
+    signinChanged = (isSignedIn) => {
+        this.setState({
+            isSignedIn: isSignedIn
         });
     }
 
     handleAuthClick = () => {
         window['gapi'].auth2.getAuthInstance().signIn();
-        this.setState({
-            isSignedIn: true
-        })
     }
 
     handleSignoutClick = () => {
         window['gapi'].auth2.getAuthInstance().signOut();
-        this.setState({
-            isSignedIn: false
-        })
+    }
+
+    isSignedIn = () => {
+        if (!window['gapi'] || !window['gapi'].auth2 || !window['gapi'].auth2.getAuthInstance()) {
+            return false;
+        }
+        return window['gapi'].auth2.getAuthInstance().isSignedIn.get();
     }
 
     render() {
         const { isSignedIn } = this.state;
 
-        return <div>
-            <AppBar title={'Главная'} isSignedIn={isSignedIn} onLoginClick={this.handleAuthClick} onLogoutClick={this.handleSignoutClick}/>
+        return <>
+            <AppBar title={'Главная'} isSignedIn={isSignedIn} onLoginClick={this.handleAuthClick} onLogoutClick={this.handleSignoutClick} />
             <Main />
             {/* <button id="authorize_button" onClick={this.handleAuthClick} style={{ display: isSignedIn ? 'none' : 'block' }}>Authorize</button>
             <button id="signout_button" onClick={this.handleSignoutClick} style={{ display: isSignedIn ? 'block' : 'none' }}>Sign Out</button> */}
-        </div>;
+        </>;
     }
 }
 
 export default scriptLoader(
     'https://apis.google.com/js/api.js'
-)(App)
+)(App);

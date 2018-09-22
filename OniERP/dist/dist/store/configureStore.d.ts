@@ -7,6 +7,7 @@ export default function configureStore(initialState: any): Store<{
     check: any;
     history: Check[];
     log: string;
+    errorMessage: string;
 }, AnyAction> & {
     dispatch: {};
 };

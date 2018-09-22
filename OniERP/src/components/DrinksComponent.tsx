@@ -12,6 +12,7 @@ import { DrinksType, Drink } from '../utils/types';
 import { DrinksDict } from '../utils/dictionaries';
 import { AddIcon } from 'mdi-react';
 import Avatar from '@material-ui/core/Avatar';
+import Button from '@material-ui/core/Button';
 
 const mapStateToProps = (state) => {
     return {
@@ -51,11 +52,23 @@ class DrinksComponent extends Component<IDrinksComponentProps, IDrinksComponentS
         this.props.logData('drinks->close');
     }
 
-    handleDrinkSelect = (drink) => {
-        this.setState({
-            drinkType: drink
-        });
-        this.props.logData('drinks->drinkSelected->' + drink);
+    handleDrinkSelect = async (drink) => {
+        const drinkSizes = DrinksDict[drink];
+        if (drinkSizes && drinkSizes.length === 1) {
+            this.setState({
+                drinkType: drink,
+                drinkSize: drinkSizes[0]
+            });
+
+            await this.props.addDrink(drink, drinkSizes[0]);
+            this.props.handleClose();
+            this.props.logData(`drinks->drinkSelected->${drink}->drinkSizeSelected->${drinkSizes[0]}`);
+        } else {
+            this.setState({
+                drinkType: drink
+            });
+            this.props.logData('drinks->drinkSelected->' + drink);
+        }
     }
 
     handleDrinkSizeSelect = async (drinkSize) => {
@@ -83,16 +96,18 @@ class DrinksComponent extends Component<IDrinksComponentProps, IDrinksComponentS
                 {drinks.map(d => (
                     <ListItem button onClick={() => this.handleDrinkSelect(d.value)} key={d.id} >
                         <ListItemAvatar>
-                            <Avatar className='avatar'>
-                                <AddIcon />
+                            <Avatar className='drinkAvatar'>
+                                {d.value.charAt(0).toUpperCase()}
                             </Avatar>
                         </ListItemAvatar>
                         <ListItemText primary={d.value} />
                     </ListItem>
                 ))}
-                <ListItem button onClick={this.handleClose}>
-                    <ListItemText primary="Cancel" />
-                </ListItem>
+                <div className='buttonApplyWraper'>
+                    <Button variant="contained" color="secondary" onClick={this.handleClose}>
+                        Отмена
+                    </Button>
+                </div>
             </List>
         </div>;
     };
@@ -106,16 +121,18 @@ class DrinksComponent extends Component<IDrinksComponentProps, IDrinksComponentS
                 {drinkSizes.map(d => (
                     <ListItem button onClick={() => this.handleDrinkSizeSelect(d)} key={d} >
                         <ListItemAvatar>
-                            <Avatar className='avatar'>
-                                <AddIcon />
+                            <Avatar className='drinkAvatar'>
+                                {d.charAt(0).toUpperCase()}
                             </Avatar>
                         </ListItemAvatar>
                         <ListItemText primary={d} />
                     </ListItem>
                 ))}
-                <ListItem button onClick={this.handleClose}>
-                    <ListItemText primary="Cancel" />
-                </ListItem>
+                <div className='buttonApplyWraper'>
+                    <Button variant="contained" color="secondary" onClick={this.handleClose}>
+                        Отмена
+                    </Button>
+                </div>
             </List>
         </div>;
     };
@@ -123,8 +140,8 @@ class DrinksComponent extends Component<IDrinksComponentProps, IDrinksComponentS
     render() {
         const { drinkType } = this.state;
 
-        return <Dialog onClose={this.handleClose} aria-labelledby="simple-dialog-title" open={true} >
-            <DialogTitle id="simple-dialog-title">{!drinkType ? 'Select drink' : 'Select size'}</DialogTitle>
+        return <Dialog onClose={this.handleClose} aria-labelledby="simple-dialog-title" open fullScreen >
+            <DialogTitle id="simple-dialog-title">{!drinkType ? 'Выберите напиток' : 'Выберите размер'}</DialogTitle>
             {!drinkType ? this.renderDrinks() : this.renderDrinkSizes()}
         </Dialog>;
     }

@@ -14,7 +14,8 @@ import {
     APPEND_DATA_REJECTED,
     LOG_DATA,
     CLEAR_LOG,
-    CANCEL
+    CANCEL,
+    CLEAR_ERROR
 } from "./actionTypes";
 import { Check, Dessert, Drink, Payment, OrderType } from './utils/types';
 
@@ -112,7 +113,8 @@ export default handleActions({
     },
     [APPEND_DATA_REJECTED]: (state, action) => {
         return Object.assign({}, state, {
-            hasErrored: true
+            hasErrored: true,
+            errorMessage: action.payload
         });
     },
     [SHOW_BUSY]: (state, action: any) => {
@@ -126,6 +128,9 @@ export default handleActions({
     },
     [CLEAR_LOG]: (state, action: any) => {
         return { ...state, log: '' };
+    },
+    [CLEAR_ERROR]: (state, action: any) => {
+        return { ...state, errorMessage: '' };
     },
     [CANCEL]: (state, action: any) => {
         return { ...state, check: null };

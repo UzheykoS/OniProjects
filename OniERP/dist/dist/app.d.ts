@@ -1,3 +1,6 @@
+export interface IAppProps {
+    isScriptLoaded?: boolean;
+}
 export interface IAppState {
     isSignedIn?: boolean;
 }

@@ -14,7 +14,8 @@ import {
     APPEND_DATA_REJECTED,
     LOG_DATA,
     CLEAR_LOG,
-    CANCEL
+    CANCEL,
+    CLEAR_ERROR
 } from './actionTypes';
 import { DrinksType, DessertType, Payment, OrderType, Check,
     ValueInputOption, InsertDataOption, ValueRenderOption, DateTimeRenderOption } from './utils/types';
@@ -60,7 +61,7 @@ export const ProcessAppendData = (spreadsheetId: string, range: string, valueRan
             dispatch(itemsAppendSuccess(true));            
         }
         catch (ex) {
-            dispatch(itemsAppendErrored(true));
+            dispatch(itemsAppendErrored('Ошибка. Проверьте, что вы вошли в систему.'));
             console.log(ex);
             throw Error(ex);
         }
@@ -158,7 +159,7 @@ export const ProcessCheckout = () => {
             dispatch(ClearLog());  
         }
         catch (ex) {
-            dispatch(itemsAppendErrored(true));
+            dispatch(itemsAppendErrored('Ошибка. Проверьте, что вы вошли в систему.'));
             console.log(ex);
             throw Error(ex);
         }
@@ -186,7 +187,7 @@ export const itemsFetchDataSuccess = createAction(LOAD_ITEMS_FULFILLED, (items: 
 
 export const itemsAppendSuccess = createAction(APPEND_DATA_FULFILLED, (success: boolean) => success);
 
-export const itemsAppendErrored = createAction(APPEND_DATA_REJECTED);
+export const itemsAppendErrored = createAction(APPEND_DATA_REJECTED, (text: string) => text);
 
 export const ShowBusy = createAction(SHOW_BUSY, (isBusy: boolean) => isBusy);
 
@@ -195,3 +196,5 @@ export const LogData = createAction(LOG_DATA, (text: string) => text);
 export const ClearLog = createAction(CLEAR_LOG);
 
 export const Cancel = createAction(CANCEL);
+
+export const ClearError = createAction(CLEAR_ERROR);

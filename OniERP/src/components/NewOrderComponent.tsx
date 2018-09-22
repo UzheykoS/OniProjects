@@ -11,7 +11,11 @@ import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
 import Divider from '@material-ui/core/Divider';
 import LargeButton from './LargeButton';
-const imageUrl = require('../../public/images/macaron.jpg');
+import { withRouter } from 'react-router-dom';
+import Typography from '@material-ui/core/Typography';
+
+const dessertsImage = require('../../public/images/desserts_icon.jpg');
+const drinksImage = require('../../public/images/drinks_icon.jpg');
 
 const mapStateToProps = (state) => {
     return {
@@ -26,7 +30,8 @@ const mapDispatchToProps = (dispatch) => {
 };
 
 export interface INewOrderComponentProps {
-    check?: Check
+    check?: Check;
+    history?: any;
 }
 
 export interface INewOrderComponentState {
@@ -56,6 +61,11 @@ class NewOrderComponent extends Component<INewOrderComponentProps, INewOrderComp
         })
     }
 
+    handleNextClick = () => {
+        const { history } = this.props;
+        history.push('/checkOut');
+    }
+
     renderCheckContent() {
         const { check } = this.props;
 
@@ -67,7 +77,7 @@ class NewOrderComponent extends Component<INewOrderComponentProps, INewOrderComp
             })}
             {check.desserts.map((d, index) => {
                 return <ListItem button key={index}>
-                    <ListItemText inset primary={`${d.type} - ${d.taste} - ${d.quantity} - ${d.size || ''}`} />
+                    <ListItemText inset primary={`${d.type} - ${d.taste} - ${d.quantity}${d.size ? (' - ' + d.size) : ''}`} />
                 </ListItem>
             })}
         </List>;
@@ -78,31 +88,42 @@ class NewOrderComponent extends Component<INewOrderComponentProps, INewOrderComp
         const { check } = this.props;
 
         if (!check) {
-            return <div>
-                Please create new check first
+            return <div className="container">
+                Пожалуйста, создайте сначала чек
             </div>;
         }
 
         return <div>
+            <Typography gutterBottom variant="headline" component="h2">
+                Новый заказ
+            </Typography>
             {`Чек #${check.id}`}
             {this.renderCheckContent()}
             <Divider />
             <div className='newOrderButtonsWrapper'>
                 <div className='newOrderButton'>
-                    <LargeButton title={'Дессерты'} imageUrl={imageUrl} onClick={this.addDessertClick} />
+                    <LargeButton title={'Дессерты'} imageUrl={dessertsImage} onClick={this.addDessertClick} />
                 </div>
                 <div className='newOrderButton'>
-                    <LargeButton title={'Напитки'} imageUrl={imageUrl} onClick={this.addDrinkClick} />
+                    <LargeButton title={'Напитки'} imageUrl={drinksImage} onClick={this.addDrinkClick} />
                 </div>
             </div>
-            <Button disabled={check.desserts.length === 0 && check.drinks.length === 0} variant="contained" color="secondary" title="Checkout" >
-                <Link to='/checkOut'>Продолжить</Link>
+            <div className={'buttonsWraper'}>
+                <Button
+                    disabled={check.desserts.length === 0 && check.drinks.length === 0}
+                    variant="contained"
+                    size="large"
+                    color="primary"
+                    onClick={this.handleNextClick}
+                >
+                    Продолжить
             </Button>
+            </div>
             {showDrinks && <DrinksComponent handleClose={() => this.setState({ showDrinks: false })} />}
             {showDesserts && <DessertsComponent handleClose={() => this.setState({ showDesserts: false })} />}
         </div>;
     }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)
-    (NewOrderComponent)
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)
+    (NewOrderComponent));

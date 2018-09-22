@@ -6,5 +6,6 @@ declare const _default: {
     check: any;
     history: Check[];
     log: string;
+    errorMessage: string;
 };
 export default _default;

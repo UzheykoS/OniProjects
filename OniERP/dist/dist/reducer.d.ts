@@ -7,6 +7,7 @@ declare const _default: (state: {
     check: any;
     history: Check[];
     log: string;
+    errorMessage: string;
 }, action: Action<{
     hasErrored: boolean;
     isLoading: boolean;
@@ -14,6 +15,7 @@ declare const _default: (state: {
     check: any;
     history: Check[];
     log: string;
+    errorMessage: string;
 }>) => {
     hasErrored: boolean;
     isLoading: boolean;
@@ -21,5 +23,6 @@ declare const _default: (state: {
     check: any;
     history: Check[];
     log: string;
+    errorMessage: string;
 };
 export default _default;

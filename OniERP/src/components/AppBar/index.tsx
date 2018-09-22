@@ -14,7 +14,7 @@ import { withRouter } from 'react-router-dom';
 
 const options = [
     {
-        title: 'Home',
+        title: 'Домой',
         route: '/'
     },
     {

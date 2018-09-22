@@ -8,6 +8,9 @@ import { withRouter } from 'react-router-dom'
 import Divider from '@material-ui/core/Divider';
 import Radio from '@material-ui/core/Radio';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
+import Typography from '@material-ui/core/Typography';
+import Card from '@material-ui/core/Card';
+import CardContent from '@material-ui/core/CardContent';
 
 const mapStateToProps = (state) => {
     return {
@@ -49,6 +52,11 @@ class CheckoutPage extends Component<ICheckoutPageProps, any>{
         this.props.logData('checkoutPage->cancel');
     }
 
+    handleBack = () => {
+        this.props.history.push('/check');
+        this.props.logData('checkoutPage->back');
+    }
+
     handlePaymentTypeChange = (type: Payment) => {
         this.props.setPaymentType(type);
         this.props.logData('checkoutPage->paymentTypeChanged->' + type);
@@ -64,67 +72,78 @@ class CheckoutPage extends Component<ICheckoutPageProps, any>{
 
         if (!check) {
             return <div className="container">
-                Please create new check first
+                Пожалуйста, создайте сначала чек
             </div>;
         }
 
         return <div className="container">
-            Check out Page
-            <Divider />
-            <div>
-                Payment Type:
-                <FormControlLabel
-                    control={
-                        <Radio
-                            checked={check.payment === Payment.Card}
-                            onChange={() => this.handlePaymentTypeChange(Payment.Card)}
-                            value={Payment.Card.toString()}
+            <Card className={'cardContainer'} raised>
+                <CardContent>
+                    <Typography gutterBottom variant="headline" component="h2">
+                        Страница выбора параметров чека
+                    </Typography>
+                    <Divider />
+                    <div className="checkoutControlGroup">
+                        Тип платежа:
+                        <FormControlLabel
+                            control={
+                                <Radio
+                                    checked={check.payment === Payment.Card}
+                                    onChange={() => this.handlePaymentTypeChange(Payment.Card)}
+                                    value={Payment.Card.toString()}
+                                />
+                            }
+                            label="Карта"
                         />
-                    }
-                    label="Card"
-                />
-                <FormControlLabel
-                    control={
-                        <Radio
-                            checked={check.payment === Payment.Cash}
-                            onChange={() => this.handlePaymentTypeChange(Payment.Cash)}
-                            value={Payment.Cash.toString()}
+                        <FormControlLabel
+                            control={
+                                <Radio
+                                    checked={check.payment === Payment.Cash}
+                                    onChange={() => this.handlePaymentTypeChange(Payment.Cash)}
+                                    value={Payment.Cash.toString()}
+                                />
+                            }
+                            label="Наличные"
                         />
-                    }
-                    label="Cash"
-                />
-            </div>
-            <Divider />
-            <div>
-                Order Type:
-                <FormControlLabel
-                    control={
-                        <Radio
-                            checked={check.type === OrderType.PreOrder}
-                            onChange={() => this.handleOrderTypeChange(OrderType.PreOrder)}
-                            value={OrderType.PreOrder.toString()}
+                    </div>
+                    <Divider />
+                    <div className="checkoutControlGroup">
+                        Тип заказа:
+                        <FormControlLabel
+                            control={
+                                <Radio
+                                    checked={check.type === OrderType.PreOrder}
+                                    onChange={() => this.handleOrderTypeChange(OrderType.PreOrder)}
+                                    value={OrderType.PreOrder.toString()}
+                                />
+                            }
+                            label="Предзаказ"
                         />
-                    }
-                    label="Pre Order"
-                />
-                <FormControlLabel
-                    control={
-                        <Radio
-                            checked={check.type === OrderType.Shop}
-                            onChange={() => this.handleOrderTypeChange(OrderType.Shop)}
-                            value={OrderType.Shop.toString()}
+                        <FormControlLabel
+                            control={
+                                <Radio
+                                    checked={check.type === OrderType.Shop}
+                                    onChange={() => this.handleOrderTypeChange(OrderType.Shop)}
+                                    value={OrderType.Shop.toString()}
+                                />
+                            }
+                            label="Витрина"
                         />
-                    }
-                    label="Shop"
-                />
-            </div>
-            <Divider />
-            <Button variant="contained" color="primary" title="Check Out" onClick={this.handleCheckout}>
-                Check Out
-            </Button>
-            <Button variant="contained" color="secondary" title="Cancel" onClick={this.handleCancel}>
-                Cancel
-            </Button>
+                    </div>
+                    <Divider />
+                    <div className={'buttonsWraper'}>                        
+                        <Button variant="contained" color="secondary" title="Cancel" onClick={this.handleCancel}>
+                            Отмена
+                        </Button>
+                        <Button variant="contained" color="default" title="Back" onClick={this.handleBack}>
+                            Назад
+                        </Button>
+                        <Button variant="contained" color="primary" title="Check Out" onClick={this.handleCheckout}>
+                            Продолжить
+                        </Button>
+                    </div>
+                </CardContent>
+            </Card>
         </div>;
     }
 }

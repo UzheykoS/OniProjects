@@ -17,3 +17,4 @@ export declare const UPDATE_DATA_REJECTED = "UPDATE_DATA_REJECTED";
 export declare const LOG_DATA = "LOG_DATA";
 export declare const CLEAR_LOG = "CLEAR_LOG";
 export declare const CANCEL = "CANCEL";
+export declare const CLEAR_ERROR = "CLEAR_ERROR";

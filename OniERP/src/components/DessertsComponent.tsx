@@ -15,7 +15,6 @@ import Avatar from '@material-ui/core/Avatar';
 import ListItemSecondaryAction from '@material-ui/core/ListItemSecondaryAction';
 import IconButton from '@material-ui/core/IconButton';
 import Button from '@material-ui/core/Button';
-const Macaron = require('../../public/images/macaron.jpg');
 
 const mapStateToProps = (state) => {
   return {
@@ -87,7 +86,7 @@ class DessertsComponent extends Component<IDessertsComponentProps, IDessertsComp
 
   handleFinish = async () => {
     const { dessertType, dessertQuantities } = this.state;
-   
+
     for (const key in dessertQuantities) {
       const dessertTaste = key.split('/')[1];
       const qty = dessertQuantities[key];
@@ -118,6 +117,18 @@ class DessertsComponent extends Component<IDessertsComponentProps, IDessertsComp
     this.props.logData('desserts->dessertQtyIncrease->' + id);
   }
 
+  countTotalDessertQuantity() {
+    const { dessertQuantities, dessertType } = this.state;
+
+    let result = 0;
+    for (const key in dessertQuantities) {
+      if (key.startsWith(dessertType)) {
+        result += dessertQuantities[key];
+      }      
+    }
+    return result;
+  }
+
   getArrayFromEnum(en: any) {
     const keys = Object.keys(en);
     const values = keys.map(d => {
@@ -143,14 +154,18 @@ class DessertsComponent extends Component<IDessertsComponentProps, IDessertsComp
         {desserts.map(d => (
           <ListItem button onClick={() => this.handleDessertSelect(d.value)} key={d.id} >
             <ListItemAvatar>
-              <Avatar className='avatar' src={Macaron} />
+              <Avatar className='macaronAvatar'>
+                {d.value.charAt(0).toUpperCase()}
+              </Avatar>
             </ListItemAvatar>
             <ListItemText primary={d.value} />
           </ListItem>
         ))}
-        <ListItem button onClick={this.handleClose}>
-          <ListItemText primary="Cancel" />
-        </ListItem>
+        <div className='buttonApplyWraper'>
+          <Button variant="contained" color="secondary" onClick={this.handleClose}>
+            Отмена
+          </Button>
+        </div>
       </List>
     </div>;
   };
@@ -176,15 +191,19 @@ class DessertsComponent extends Component<IDessertsComponentProps, IDessertsComp
 
     return <div>
       {dessertType !== DessertType.Cake && (
-        <Button variant="contained" color="primary" title="Check Out" onClick={this.handleFinish}>
-          Finish
-        </Button>
+        <div className='buttonApplyWraper'>
+          <Button variant="contained" color="primary" title="Check Out" onClick={this.handleFinish}>
+            Применить
+          </Button>
+        </div>
       )}
       <List>
         {dessertTastes.map(d => (
           <ListItem button onClick={() => this.handleDessertTasteSelect(d.value)} key={d.id} >
             <ListItemAvatar>
-              <Avatar className='avatar' src={Macaron} />
+              <Avatar className='macaronAvatar'>
+                {d.value.charAt(0).toUpperCase()}
+              </Avatar>
             </ListItemAvatar>
             <ListItemText primary={d.value + (dessertType !== DessertType.Cake ? `(${dessertQuantities[this.getId(dessertType, d.value)] || 0})` : '')} />
             {dessertType !== DessertType.Cake && (
@@ -196,9 +215,11 @@ class DessertsComponent extends Component<IDessertsComponentProps, IDessertsComp
             )}
           </ListItem>
         ))}
-        <ListItem button onClick={this.handleClose}>
-          <ListItemText primary="Cancel" />
-        </ListItem>
+        <div className='buttonApplyWraper'>
+          <Button variant="contained" color="secondary" onClick={this.handleClose}>
+            Отмена
+          </Button>
+        </div>
       </List>
     </div>;
   };
@@ -219,9 +240,11 @@ class DessertsComponent extends Component<IDessertsComponentProps, IDessertsComp
             <ListItemText primary={d} />
           </ListItem>
         ))}
-        <ListItem button onClick={this.handleClose}>
-          <ListItemText primary="Cancel" />
-        </ListItem>
+        <div className='buttonApplyWraper'>
+          <Button variant="contained" color="secondary" onClick={this.handleClose}>
+            Отмена
+          </Button>
+        </div>
       </List>
     </div>;
   };
@@ -229,9 +252,9 @@ class DessertsComponent extends Component<IDessertsComponentProps, IDessertsComp
   render() {
     const { dessertType, dessertTaste } = this.state;
 
-    return <Dialog onClose={this.handleClose} aria-labelledby="simple-dialog-title" open={true} >
+    return <Dialog onClose={this.handleClose} aria-labelledby="simple-dialog-title" open fullScreen >
       <DialogTitle id="simple-dialog-title">
-        {!dessertType ? 'Select dessert' : (!dessertTaste ? 'Select taste' : 'Select size')}
+        {!dessertType ? 'Выберите дессерт' : (!dessertTaste ? `Выберите вкус (${this.countTotalDessertQuantity()})` : 'Выберите вкус')}
       </DialogTitle>
       {!dessertType ? this.renderDesserts() : (!dessertTaste ? this.renderDessertTastes() : this.renderDessertSizeOrQuantity())}
     </Dialog>;

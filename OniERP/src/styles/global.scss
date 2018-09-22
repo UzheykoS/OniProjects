@@ -33,3 +33,43 @@
     width: 100%;
     height: 100%;
 }
+
+.buttonsWraper {
+    display: flex;
+    justify-content: space-evenly;
+    margin: 1rem;
+}
+
+.checkoutTitle {
+    text-align: center;
+    margin: 1rem;
+    font-weight: 450;
+}
+
+.checkoutControlGroup {
+    display: flex;
+    justify-content: space-between;
+    margin: 1rem 2rem 1rem 2rem;
+}
+
+.notificationClose { 
+    width: 4rem;
+    height: 4rem;
+}
+
+.macaronAvatar {
+    margin: 10px;
+    color: #fff !important;
+    background-color: #dd73e2 !important;
+}
+
+.drinkAvatar {
+    margin: 10px;
+    color: #fff !important;
+    background-color: #74482f !important;
+}
+
+.buttonApplyWraper {
+    display: flex;
+    justify-content: space-evenly;
+}

@@ -31,8 +31,8 @@ class HistoryComponent extends Component<IHistoryComponentProps, IHistoryCompone
 
         return <List component="nav">
             {history.map(h => {
-                return <ListItem button key={h.id}>
-                    <ListItemText inset primary={`Check #${h.id}, desserts count: ${h.desserts.length}, drinks count: ${h.drinks.length}, pay by ${h.payment}, ordered in ${h.type}`} />
+                return <ListItem key={h.id}>
+                    <ListItemText inset primary={`Чек #${h.id}, дессерты: ${h.desserts.length}, напитки: ${h.drinks.length}, оплата: ${h.payment}, тип заказа: ${h.type}`} />
                 </ListItem>
             })}
         </List>;

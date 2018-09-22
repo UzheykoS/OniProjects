@@ -6,5 +6,6 @@ export default {
     items: [],
     check: null,
     history: new Array<Check>(),
-    log: ''
+    log: '',
+    errorMessage: ''
 }

@@ -24,3 +24,5 @@ export const UPDATE_DATA_REJECTED = 'UPDATE_DATA_REJECTED';
 export const LOG_DATA = 'LOG_DATA';
 export const CLEAR_LOG = 'CLEAR_LOG';
 export const CANCEL = 'CANCEL';
+
+export const CLEAR_ERROR = 'CLEAR_ERROR';
