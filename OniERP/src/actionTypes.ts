@@ -31,3 +31,5 @@ export const CANCEL = 'CANCEL';
 export const CLEAR_ERROR = 'CLEAR_ERROR';
 
 export const SET_LAST_ID = 'SET_LAST_ID';
+
+export const SHOW_NOTIFICATION = 'SHOW_NOTIFICATION';

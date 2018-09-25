@@ -21,3 +21,4 @@ export declare const CLEAR_LOG = "CLEAR_LOG";
 export declare const CANCEL = "CANCEL";
 export declare const CLEAR_ERROR = "CLEAR_ERROR";
 export declare const SET_LAST_ID = "SET_LAST_ID";
+export declare const SHOW_NOTIFICATION = "SHOW_NOTIFICATION";

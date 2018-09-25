@@ -8,5 +8,6 @@ declare const _default: {
     log: string;
     errorMessage: string;
     lastId: number;
+    notificationType: number;
 };
 export default _default;

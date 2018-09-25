@@ -127,7 +127,7 @@ class NewOrderComponent extends Component<INewOrderComponentProps, INewOrderComp
             <Divider />
             <div className='newOrderButtonsWrapper'>
                 <div className='newOrderButton'>
-                    <LargeButton title={'ДЕССЕРТЫ'} imageUrl={dessertsImage} onClick={this.addDessertClick} />
+                    <LargeButton title={'ДЕСЕРТЫ'} imageUrl={dessertsImage} onClick={this.addDessertClick} />
                 </div>
                 <div className='newOrderButton'>
                     <LargeButton title={'НАПИТКИ'} imageUrl={drinksImage} onClick={this.addDrinkClick} />

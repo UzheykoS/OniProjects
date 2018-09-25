@@ -2,10 +2,10 @@
 import * as React from 'react'
 import { connect } from 'react-redux';
 import Button from '@material-ui/core/Button';
-import { Check, DessertType, DrinksType, PartnersEnum } from '../utils/types';
+import { PartnersEnum } from '../utils/types';
 import { withRouter } from 'react-router-dom';
 import Typography from '@material-ui/core/Typography';
-import { DeleteDessert, DeleteDrink } from '../actions';
+import { ProcessPartnersOrderSubmit } from '../actions'
 import InputLabel from '@material-ui/core/InputLabel';
 import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
@@ -17,12 +17,16 @@ const mapStateToProps = (state) => {
     };
 };
 
+
 const mapDispatchToProps = (dispatch) => {
     return {
+        processPartnersOrderSubmit: (partner: string, macQty: number, zepQty: number) => dispatch(ProcessPartnersOrderSubmit(partner, macQty, zepQty))
     };
 };
 
 export interface IPartnersComponentProps {
+    history?: any;
+    processPartnersOrderSubmit?: (partner: string, macQty: number, zepQty: number) => void;
 }
 
 export interface IPartnersComponentState {
@@ -37,8 +41,8 @@ class PartnersComponent extends Component<IPartnersComponentProps, IPartnersComp
 
         this.state = {
             partner: '',
-            macaronsQty: undefined,
-            zephyrQty: undefined
+            macaronsQty: 0,
+            zephyrQty: 0
         }
     }
 
@@ -71,8 +75,10 @@ class PartnersComponent extends Component<IPartnersComponentProps, IPartnersComp
     }
 
     handleNextClick = () => {
-        // const { history } = this.props;
-        // history.push('/checkOut');
+        const { processPartnersOrderSubmit, history } = this.props;
+        const { partner, macaronsQty, zephyrQty} = this.state;
+        processPartnersOrderSubmit(partner, macaronsQty, zephyrQty);
+        history.push('/');
     }
 
     render() {

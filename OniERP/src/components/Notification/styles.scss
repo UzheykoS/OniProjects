@@ -1,0 +1,24 @@
+.success {
+    background-color: green !important;
+};
+
+.error {
+    background-color: darkslategray !important;
+};
+.info {
+    background-color: darkslategray !important; 
+};
+.warning {
+    background-color: orange !important;
+};
+.icon {
+    font-size: 20;
+};
+.icon-variant {
+    opacity: 0.9;
+    margin-right: 8px,
+};
+.message {
+    display: flex;
+    align-items: center;
+};

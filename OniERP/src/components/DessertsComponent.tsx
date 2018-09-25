@@ -303,7 +303,7 @@ class DessertsComponent extends Component<IDessertsComponentProps, IDessertsComp
 
     return <Dialog onClose={this.handleClose} aria-labelledby="simple-dialog-title" open fullScreen >
       <DialogTitle id="simple-dialog-title">
-        {!dessertType ? 'Выберите дессерт' : (!dessertTaste ? `Выберите вкус (${this.countTotalDessertQuantity()})` : 'Выберите размер')}
+        {!dessertType ? 'Выберите Десерт' : (!dessertTaste ? `Выберите вкус (${this.countTotalDessertQuantity()})` : 'Выберите размер')}
       </DialogTitle>
       {!dessertType ? this.renderDesserts() : (!dessertTaste ? this.renderDessertTastes() : this.renderDessertSize())}
     </Dialog>;

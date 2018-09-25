@@ -18,7 +18,8 @@ import {
     CLEAR_ERROR,
     DELETE_DESSERT,
     DELETE_DRINK,
-    SET_LAST_ID
+    SET_LAST_ID,
+    SHOW_NOTIFICATION
 } from "./actionTypes";
 import { Check, Dessert, Drink, Payment, OrderType } from './utils/types';
 
@@ -178,6 +179,15 @@ export default handleActions({
         return { ...state, check: null };
     },
     [SET_LAST_ID]: (state, action: any) => {
-        return { ...state, lastId: action.payload };
+        return Object.assign({}, state, {
+            history: [action.payload[1]],
+            lastId: action.payload[0]
+        });
+    },
+    [SHOW_NOTIFICATION]: (state, action: any) => {
+        return Object.assign({}, state, {
+            errorMessage: action.payload[1],
+            notificationType: action.payload[0]
+        });
     },
 }, initialState);

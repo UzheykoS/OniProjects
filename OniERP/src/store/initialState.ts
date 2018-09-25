@@ -8,5 +8,6 @@ export default {
     history: new Array<Check>(),
     log: '',
     errorMessage: '',
-    lastId: 0
+    lastId: 0,
+    notificationType: 0
 }

@@ -18,10 +18,13 @@ import {
     CLEAR_ERROR,
     DELETE_DRINK,
     DELETE_DESSERT,
-    SET_LAST_ID
+    SET_LAST_ID,
+    SHOW_NOTIFICATION
 } from './actionTypes';
-import { DrinksType, DessertType, Payment, OrderType, Check,
-    ValueInputOption, InsertDataOption, ValueRenderOption, DateTimeRenderOption, Dessert, Drink } from './utils/types';
+import {
+    DrinksType, DessertType, Payment, OrderType, Check,
+    ValueInputOption, InsertDataOption, ValueRenderOption, DateTimeRenderOption, Dessert, Drink
+} from './utils/types';
 import { LOGS_SPREADSHEET_ID, SPREADSHEET_ID } from './config';
 import * as moment from 'moment';
 
@@ -33,32 +36,50 @@ export const ProcessFetchData = (spreadsheetId: string) => {
                 spreadsheetId: spreadsheetId,
                 range: "RawDessertsData!A:H"
             });
-            const desserts = dessertsResponse.result.values.slice(1).map(d => {
-                const result: Dessert = {
-                    type: d[0],
-                    taste: d[1],
-                    quantity: d[2],
-                    size: d[3]
-                }
-                return result;
-            });
-
             const drinksResponse = await window['gapi'].client.sheets.spreadsheets.values.get({
                 spreadsheetId: spreadsheetId,
                 range: "RawDrinksData!A:F"
             });
-            const drinks = drinksResponse.result.values.slice(1).map(d => {
-                const result: Drink = {
-                    id: d[0],
-                    size: d[1]
-                }
-                return result;
-            });
 
             let lastDessertOrderId = Math.max(...dessertsResponse.result.values.slice(1).map(d => d[7] ? Number(d[7]) : 0));
             let lastDrinkOrderId = Math.max(...drinksResponse.result.values.slice(1).map(d => d[5] ? Number(d[5]) : 0));
+            const lastId = Math.max(lastDessertOrderId, lastDrinkOrderId);
 
-            dispatch(SetLastId(Math.max(lastDessertOrderId, lastDrinkOrderId)));
+            const lastOrder: Check = {
+                id: lastId,
+                desserts: [],
+                drinks: [],
+                isFinished: true,
+                payment: Payment.Other,
+                type: OrderType.Other
+            };
+            let lastOrderPayment = null;
+            let lastOrderType = null;
+
+            lastOrder.desserts = dessertsResponse.result.values.slice(1).filter(v => v[7] === lastId.toString()).map(d => {
+                lastOrderPayment = d[4] === 'Наличка' ? Payment.Cash : Payment.Card;
+                lastOrderType = d[5] === 'Витрина' ? OrderType.Shop : OrderType.PreOrder;
+                const dessert: Dessert = {
+                    type: d[0],
+                    taste: d[1],
+                    quantity: d[2],
+                    size: d[3]
+                };
+                return dessert;
+            });
+
+            lastOrder.drinks = drinksResponse.result.values.slice(1).filter(v => v[5] === lastId.toString()).map(d => {
+                lastOrderPayment = d[2] === 'Наличка' ? Payment.Cash : Payment.Card;
+                lastOrderType = d[3] === 'Витрина' ? OrderType.Shop : OrderType.PreOrder;
+                const dessert: Drink = {
+                    id: d[0],
+                    size: d[1]
+                };
+                return dessert;
+            });
+            lastOrder.payment = lastOrderPayment;
+            lastOrder.type = lastOrderType;
+            dispatch(SetLastId(lastId, lastOrder));
             // dispatch(itemsFetchDataSuccess([...desserts, ...drinks]));
         }
         catch (ex) {
@@ -75,7 +96,7 @@ export const ProcessFetchData = (spreadsheetId: string) => {
 export const ProcessAppendData = (spreadsheetId: string, range: string, valueRange: any) => {
     return async (dispatch) => {
         dispatch(itemsIsLoading(true));
-        try {            
+        try {
             const response = await window['gapi'].client.sheets.spreadsheets.values.append({
                 spreadsheetId: spreadsheetId,
                 range: range,
@@ -86,7 +107,7 @@ export const ProcessAppendData = (spreadsheetId: string, range: string, valueRan
             }, { values: valueRange });
 
             // const updatedCellsCount = await response.result.updates.updatedCells;            
-            dispatch(itemsAppendSuccess(true));            
+            dispatch(itemsAppendSuccess(true));
         }
         catch (ex) {
             dispatch(itemsAppendErrored('Ошибка. Проверьте, что вы вошли в систему.'));
@@ -168,7 +189,7 @@ export const ProcessCheckout = () => {
             if (drinksData.length) {
                 await dispatch(ProcessAppendData(SPREADSHEET_ID, drinksRange, drinksData));
             }
-            
+
             const dessertsRange = "RawDessertsData!A:H";
             const dessertsData = [];
             check.desserts.forEach(async d => {
@@ -181,10 +202,31 @@ export const ProcessCheckout = () => {
             }
 
             dispatch(Checkout());
-            
+
             await ProcessLog(log);
             await ProcessLog(JSON.stringify(check));
-            dispatch(ClearLog());  
+            dispatch(ClearLog());
+        }
+        catch (ex) {
+            dispatch(itemsAppendErrored('Ошибка. Проверьте, что вы вошли в систему.'));
+            console.log(ex);
+            throw Error(ex);
+        }
+        finally {
+            dispatch(itemsIsLoading(false));
+        }
+    };
+};
+
+export const ProcessPartnersOrderSubmit = (partner: string, macQty: number, zepQty: number) => {
+    return async (dispatch) => {
+        dispatch(itemsIsLoading(true));
+        try {
+            const partnersRange = "RawPartnersData!A:D";
+            const partnersData = [[partner, macQty, zepQty, moment(new Date()).format('DD.MM.YYYY HH:mm')]];
+            await dispatch(ProcessAppendData(SPREADSHEET_ID, partnersRange, partnersData));
+            await ProcessLog(JSON.stringify(partnersData));
+            await dispatch(ShowNotification(0, 'Заказ сохранён!'));
         }
         catch (ex) {
             dispatch(itemsAppendErrored('Ошибка. Проверьте, что вы вошли в систему.'));
@@ -231,4 +273,6 @@ export const Cancel = createAction(CANCEL);
 
 export const ClearError = createAction(CLEAR_ERROR);
 
-export const SetLastId = createAction(SET_LAST_ID);
+export const SetLastId = createAction(SET_LAST_ID, (lastId: number, lastCheck: Check) => [lastId, lastCheck]);
+
+export const ShowNotification = createAction(SHOW_NOTIFICATION, (type: number, message: string) => [type, message]);

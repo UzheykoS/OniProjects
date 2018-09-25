@@ -1,7 +1,6 @@
 import { AnyAction, Store } from 'redux';
 import { Check } from '../utils/types';
 export default function configureStore(initialState: any): Store<{
-    lastId: any;
     hasErrored: boolean;
     isLoading: boolean;
     items: any[];
@@ -9,6 +8,8 @@ export default function configureStore(initialState: any): Store<{
     history: Check[];
     log: string;
     errorMessage: string;
+    lastId: number;
+    notificationType: number;
 }, AnyAction> & {
     dispatch: {};
 };
