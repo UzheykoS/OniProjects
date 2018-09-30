@@ -131,15 +131,15 @@ class CheckoutPage extends Component<ICheckoutPageProps, any>{
                         />
                     </div>
                     <Divider />
-                    <div className={'buttonsWraper'}>                        
-                        <Button variant="contained" color="secondary" title="Cancel" onClick={this.handleCancel}>
-                            Отмена
+                    <div className={'buttonsWraper'}>
+                        <Button classes={{ root: 'button' }} variant="contained" color="primary" title="Check Out" onClick={this.handleCheckout}>
+                            Продолжить
                         </Button>
-                        <Button variant="contained" color="default" title="Back" onClick={this.handleBack}>
+                        <Button classes={{ root: 'button' }} variant="contained" color="default" title="Back" onClick={this.handleBack}>
                             Назад
                         </Button>
-                        <Button variant="contained" color="primary" title="Check Out" onClick={this.handleCheckout}>
-                            Продолжить
+                        <Button classes={{ root: 'button' }} variant="contained" color="secondary" title="Cancel" onClick={this.handleCancel}>
+                            Отмена
                         </Button>
                     </div>
                 </CardContent>

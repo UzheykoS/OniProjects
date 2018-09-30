@@ -50,8 +50,8 @@ const config: Configuration = {
                 use: "source-map-loader"
             },
             {
-                test: /\.(jpg|png|gif)$/,
-                loaders: ['file-loader'],
+                test: /\.(jpe?g|png|gif|svg)$/i,
+                loaders: ['file-loader?name=/images/[name].[ext]'],
             },
             // {
             //     test: /\.(png|jpg|gif)$/,

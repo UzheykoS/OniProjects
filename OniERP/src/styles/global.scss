@@ -1,5 +1,6 @@
-﻿body {
+﻿html, body {
     font-family: 'Segoe UI';
+    height: 100%;
 }
 
 .container {
@@ -7,7 +8,6 @@
     width: 100%;
     font-size: 40px;
     font-weight: 300;
-    height: 200px;
 }
 
 .avatar {
@@ -17,6 +17,11 @@
 
 .cardContainer {
     margin: 16px;
+}
+
+.cardContainerHistory {
+    margin: 16px;
+    // height: 50vh;
 }
 
 .cardRoot {
@@ -38,6 +43,11 @@
     display: flex;
     justify-content: space-evenly;
     margin: 1rem;
+    flex-direction: column;
+
+    .button {
+        margin: 1rem 0rem;
+    }
 }
 
 .checkoutTitle {
@@ -50,6 +60,7 @@
     display: flex;
     justify-content: space-between;
     margin: 1rem 2rem 1rem 2rem;
+    flex-direction: column;
 }
 
 .notificationClose { 

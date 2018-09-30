@@ -2,12 +2,11 @@ export default theme => ({
     root: {
         display: 'flex',
         flexWrap: 'wrap',
-        // minWidth: 300,
         width: '100%',
+        height: '25vh'
     },
     image: {
         position: 'relative',
-        height: 200,
         width: '100%',
         [theme.breakpoints.down('xs')]: {
             width: '100% !important', // Overrides inline-style

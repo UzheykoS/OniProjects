@@ -75,7 +75,7 @@ class MainPage extends Component<IMainPageProps, any>{
           <LargeButton title={'ОПТОВЫЙ ЗАКАЗ'} component={PartnersLink} imageUrl={partnerUrl} onClick={this.onNewPartnersCheckClick} />
         </CardContent>
       </Card>
-      <Card className={'cardContainer'} raised>
+      <Card className={'cardContainerHistory'} raised>
         <CardContent>
           <Typography gutterBottom variant="headline" component="h2">
             История
