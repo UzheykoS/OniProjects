@@ -2,7 +2,7 @@ import { Component } from 'react';
 import * as React from 'react'
 import { connect } from 'react-redux';
 import Button from '@material-ui/core/Button';
-import { Payment, OrderType, Check } from '../utils/types';
+import { Payment, OrderType, Check, Dessert, Drink } from '../utils/types';
 import { ProcessCheckout, SetPaymentType, SetOrderType, LogData, Cancel } from '../actions';
 import { withRouter } from 'react-router-dom'
 import Divider from '@material-ui/core/Divider';
@@ -11,6 +11,8 @@ import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Typography from '@material-ui/core/Typography';
 import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
+import { MACARONS_PRICE, ZEPHYR_PRICE, DrinkPricesDict, DrinksDict, CakesPricesDict } from '../utils/dictionaries';
+import { DessertType } from '../utils/types';
 
 const mapStateToProps = (state) => {
     return {
@@ -67,6 +69,43 @@ class CheckoutPage extends Component<ICheckoutPageProps, any>{
         this.props.logData('checkoutPage->orderTypeChanged->' + type);
     }
 
+    calculatePrice() {
+        const { check } = this.props;
+        let totalPrice = 0;
+        check.desserts.forEach((d: Dessert) => {
+            switch (d.type) {
+                case DessertType.Cake:
+                    const cakePrices = CakesPricesDict[d.taste];
+                    if (d.size === '18 см') {
+                        totalPrice += cakePrices[0];
+                    } else if (d.size === '22 см') {
+                        totalPrice += cakePrices[1];
+                    }
+                    break;
+                case DessertType.Macaron:
+                    totalPrice += MACARONS_PRICE * d.quantity;
+                    break;
+                case DessertType.Zephyr:
+                    totalPrice += ZEPHYR_PRICE * d.quantity;
+                    break;
+                default:
+                    break;
+            }
+        });
+
+        check.drinks.forEach((d: Drink) => {
+            const prices = DrinkPricesDict[d.id];
+            if (prices.length === 1) {
+                totalPrice += prices[0];
+            } else {
+                const index = DrinksDict[d.id].findIndex(x => x === d.size);
+                totalPrice += prices[index];
+            }
+        });
+
+        return totalPrice;
+    }
+
     render() {
         const { check } = this.props;
 
@@ -82,6 +121,10 @@ class CheckoutPage extends Component<ICheckoutPageProps, any>{
                     <Typography gutterBottom variant="headline" component="h2">
                         Страница выбора параметров чека
                     </Typography>
+                    <Divider />
+                    <div className="checkoutControlGroup">
+                        Итого: {this.calculatePrice()} грн.
+                    </div>
                     <Divider />
                     <div className="checkoutControlGroup">
                         Тип платежа:

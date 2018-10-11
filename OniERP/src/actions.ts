@@ -202,7 +202,8 @@ export const ProcessCheckout = () => {
             }
 
             dispatch(Checkout());
-
+            await dispatch(ShowNotification(0, 'Заказ сохранён!'));
+            
             await ProcessLog(log);
             await ProcessLog(JSON.stringify(check));
             dispatch(ClearLog());

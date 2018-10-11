@@ -11,6 +11,8 @@ import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
 import MenuItem from '@material-ui/core/MenuItem';
 import TextField from '@material-ui/core/TextField';
+import Divider from '@material-ui/core/Divider';
+import { CaffeePrices, ZEPHYR_PRICE } from '../utils/dictionaries';
 
 const mapStateToProps = (state) => {
     return {
@@ -81,6 +83,21 @@ class PartnersComponent extends Component<IPartnersComponentProps, IPartnersComp
         history.push('/');
     }
 
+    calculateTotalPrice() {
+        const { partner, macaronsQty, zephyrQty } = this.state;
+        let totalPrice = 0;
+        if (!partner) {
+            return totalPrice;
+        }
+
+        const macaronPrice = CaffeePrices[partner];
+        totalPrice += macaronsQty * macaronPrice;
+
+        totalPrice += ZEPHYR_PRICE * zephyrQty;
+
+        return totalPrice;
+    }
+
     render() {
         const { partner, macaronsQty, zephyrQty } = this.state;
         const partners = this.getArrayFromEnum(PartnersEnum);
@@ -134,6 +151,16 @@ class PartnersComponent extends Component<IPartnersComponentProps, IPartnersComp
                 fullWidth
                 disabled={!partner}
                 placeholder="Введите количество зефира"
+            />
+            <Divider />
+            <TextField
+                label="Итого"
+                value={`${this.calculateTotalPrice()} грн.`}
+                InputLabelProps={{
+                    shrink: true
+                }}
+                margin="normal"
+                fullWidth
             />
             <div className={'buttonsWraper'}>
                 <Button

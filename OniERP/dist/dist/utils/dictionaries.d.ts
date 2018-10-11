@@ -5,12 +5,16 @@ export declare const DessertsDict: {
     [id: string]: Array<any>;
 };
 export declare const DrinkPricesDict: {
-    [id: string]: Array<string>;
+    [id: string]: Array<number>;
 };
 export declare const CaffeePrices: {
     [id: string]: number;
 };
+export declare const CakesPricesDict: {
+    [id: string]: Array<number>;
+};
 export declare const ZEPHYR_PRICE = 11;
+export declare const MACARONS_PRICE = 28;
 export declare const MacaronsColors: {
     [id: string]: string;
 };

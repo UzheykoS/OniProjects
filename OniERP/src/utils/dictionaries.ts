@@ -1,4 +1,4 @@
-import { DrinksType, DessertType, MacaronsEnum, ZephyrEnum, PartnersEnum } from './types';
+import { DrinksType, DessertType, MacaronsEnum, ZephyrEnum, PartnersEnum, CakesEnum } from './types';
 
 export const DrinksDict: { [id: string] : Array<string> } = {};
 DrinksDict[DrinksType.Cappucino] = ['175 мл', '340 мл'];
@@ -33,33 +33,33 @@ DessertsDict[DessertType.Macaron] = [1, 6, 12, 24];
 DessertsDict[DessertType.Zephyr] = [1, 8, 16];
 DessertsDict[DessertType.Cake] = ['18 см', '22 см'];
 
-export const DrinkPricesDict: { [id: string] : Array<string> } = {};
-DrinkPricesDict[DrinksType.Cappucino] = ['25', '40'];
-DrinkPricesDict[DrinksType.Latte] = ['28', '35'];
-DrinkPricesDict[DrinksType.FlatWhite] = ['35'];
-DrinkPricesDict[DrinksType.Raf] = ['38', '45'];
-DrinkPricesDict[DrinksType.Americano] = ['20'];
-DrinkPricesDict[DrinksType.AmericanoMilk] = ['25'];
-DrinkPricesDict[DrinksType.LongBlack] = ['30'];
-DrinkPricesDict[DrinksType.Espresso] = ['20'];
-DrinkPricesDict[DrinksType.Doppio] = ['30'];
-DrinkPricesDict[DrinksType.Machiato] = ['22'];
-DrinkPricesDict[DrinksType.LatteLavender] = ['32', '40'];
-DrinkPricesDict[DrinksType.LatteCaramel] = ['32', '40'];
-DrinkPricesDict[DrinksType.LatteOrange] = ['32', '40'];
-DrinkPricesDict[DrinksType.Cacao] = ['28', '35'];
-DrinkPricesDict[DrinksType.TeaGreen] = ['25'];
-DrinkPricesDict[DrinksType.TeaBlack] = ['25'];
-DrinkPricesDict[DrinksType.TeaHerbal] = ['25'];
-DrinkPricesDict[DrinksType.SpeacialTeaPearLime] = ['35'];
-DrinkPricesDict[DrinksType.SpecialTeaOrange] = ['35'];
-DrinkPricesDict[DrinksType.SpecialTeaGinger] = ['35'];
-DrinkPricesDict[DrinksType.HotChocolate] = ['55'];
-DrinkPricesDict[DrinksType.LemonadeStrawberry] = ['35'];
-DrinkPricesDict[DrinksType.LemonadeCitrus] = ['35'];
-DrinkPricesDict[DrinksType.LemonadePassion] = ['35'];
-DrinkPricesDict[DrinksType.IceLatte] = ['40'];
-DrinkPricesDict[DrinksType.Syrop] = ['5'];
+export const DrinkPricesDict: { [id: string] : Array<number> } = {};
+DrinkPricesDict[DrinksType.Cappucino] = [25, 40];
+DrinkPricesDict[DrinksType.Latte] = [28, 35];
+DrinkPricesDict[DrinksType.FlatWhite] = [35];
+DrinkPricesDict[DrinksType.Raf] = [38, 45];
+DrinkPricesDict[DrinksType.Americano] = [20];
+DrinkPricesDict[DrinksType.AmericanoMilk] = [25];
+DrinkPricesDict[DrinksType.LongBlack] = [30];
+DrinkPricesDict[DrinksType.Espresso] = [20];
+DrinkPricesDict[DrinksType.Doppio] = [30];
+DrinkPricesDict[DrinksType.Machiato] = [22];
+DrinkPricesDict[DrinksType.LatteLavender] = [32, 40];
+DrinkPricesDict[DrinksType.LatteCaramel] = [32, 40];
+DrinkPricesDict[DrinksType.LatteOrange] = [32, 40];
+DrinkPricesDict[DrinksType.Cacao] = [28, 35];
+DrinkPricesDict[DrinksType.TeaGreen] = [25];
+DrinkPricesDict[DrinksType.TeaBlack] = [25];
+DrinkPricesDict[DrinksType.TeaHerbal] = [25];
+DrinkPricesDict[DrinksType.SpeacialTeaPearLime] = [35];
+DrinkPricesDict[DrinksType.SpecialTeaOrange] = [35];
+DrinkPricesDict[DrinksType.SpecialTeaGinger] = [35];
+DrinkPricesDict[DrinksType.HotChocolate] = [55];
+DrinkPricesDict[DrinksType.LemonadeStrawberry] = [35];
+DrinkPricesDict[DrinksType.LemonadeCitrus] = [35];
+DrinkPricesDict[DrinksType.LemonadePassion] = [35];
+DrinkPricesDict[DrinksType.IceLatte] = [40];
+DrinkPricesDict[DrinksType.Syrop] = [5];
 
 export const CaffeePrices: { [id: string] : number } = {};
 CaffeePrices[PartnersEnum.CoffeeIs] = 17;
@@ -71,7 +71,16 @@ CaffeePrices[PartnersEnum.CoffeeAndTheCity] = 19;
 CaffeePrices[PartnersEnum.IlMio] = 19;
 CaffeePrices[PartnersEnum.StudioCoffee] = 20;
 
+export const CakesPricesDict: { [id: string] : Array<number> } = {};
+CakesPricesDict[CakesEnum.CarrotCake] = [650, 980];
+CakesPricesDict[CakesEnum.Pink] = [630, 970];
+CakesPricesDict[CakesEnum.Infinity] = [640, 970];
+CakesPricesDict[CakesEnum.Rio] = [630, 970];
+CakesPricesDict[CakesEnum.Soul] = [620, 960];
+
 export const ZEPHYR_PRICE = 11;
+
+export const MACARONS_PRICE = 28;
 
 export const MacaronsColors: { [id: string] : string } = {};
 MacaronsColors[MacaronsEnum.DorBluePear] = '#b7e4f7';
