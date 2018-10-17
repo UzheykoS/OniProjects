@@ -103,7 +103,9 @@ class DessertsComponent extends Component<IDessertsComponentProps, IDessertsComp
     for (const key in dessertQuantities) {
       const dessertTaste = key.split('/')[1];
       const qty = dessertQuantities[key];
-      await this.props.addDessert(dessertType, dessertTaste, null, qty || 0);
+      if (qty) {
+        await this.props.addDessert(dessertType, dessertTaste, null, qty || 0);
+      }      
     }
 
     this.props.handleClose();
@@ -122,6 +124,20 @@ class DessertsComponent extends Component<IDessertsComponentProps, IDessertsComp
       dessertQuantities[id] = qty;
     } else {
       dessertQuantities[id] += qty;
+    }
+
+    this.setState({
+      dessertQuantities
+    });
+    this.props.logData('desserts->dessertQtyIncrease->' + id);
+  }
+
+  handleDessertDecrease = (taste, qty = 1) => {
+    const { dessertQuantities, dessertType } = this.state;
+
+    const id = this.getId(dessertType, taste);
+    if (dessertQuantities[id]) {
+      dessertQuantities[id] -= qty;
     }
 
     this.setState({
@@ -223,7 +239,7 @@ class DessertsComponent extends Component<IDessertsComponentProps, IDessertsComp
         break;
     };
 
-    return <div>
+    return <div className='dessertsTastesWrapper'>
       {dessertType !== DessertType.Cake && (
         <div className='buttonApplyWraper'>
           <Button variant="contained" color="primary" title="Check Out" onClick={this.handleFinish}>
@@ -231,7 +247,7 @@ class DessertsComponent extends Component<IDessertsComponentProps, IDessertsComp
           </Button>
         </div>
       )}
-      <List>
+      <List className='dessertsTastesListWrapper'>
         {
           dessertTastes.map(d => (
             <ListItem button onClick={() => this.handleDessertTasteSelect(d.value)} key={d.id} >
@@ -243,8 +259,8 @@ class DessertsComponent extends Component<IDessertsComponentProps, IDessertsComp
               <ListItemText primary={d.value + (dessertType !== DessertType.Cake ? `(${dessertQuantities[this.getId(dessertType, d.value)] || 0})` : '')} />
               {dessertType !== DessertType.Cake && (
                 <ListItemSecondaryAction >
-                  <IconButton aria-label="Add" onClick={() => this.handleDessertIncrease(d.value)}>
-                    +
+                  <IconButton aria-label="Add" onClick={() => this.handleDessertDecrease(d.value)}>
+                    {'\u2014'}
                   </IconButton>
                 </ListItemSecondaryAction>
               )}
@@ -263,12 +279,12 @@ class DessertsComponent extends Component<IDessertsComponentProps, IDessertsComp
             </ListItem>
           ))
         }
-        <div className='buttonApplyWraper'>
-          <Button variant="contained" color="secondary" onClick={this.handleClose}>
-            Отмена
-          </Button>
-        </div>
       </List>
+      <div className='buttonCancelWraper'>
+        <Button variant="contained" color="secondary" onClick={this.handleClose}>
+          Отмена
+          </Button>
+      </div>
     </div>;
   };
 

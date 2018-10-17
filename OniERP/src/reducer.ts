@@ -157,7 +157,8 @@ export default handleActions({
     [APPEND_DATA_REJECTED]: (state, action) => {
         return Object.assign({}, state, {
             hasErrored: true,
-            errorMessage: action.payload
+            errorMessage: action.payload,
+            notificationType: 2
         });
     },
     [SHOW_BUSY]: (state, action: any) => {

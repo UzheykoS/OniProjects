@@ -90,8 +90,8 @@ class DrinksComponent extends Component<IDrinksComponentProps, IDrinksComponentS
             }
         })
 
-        return <div>
-            <List>
+        return <div className='drinksWrapper'>
+            <List className='drinksListWrapper'>
                 {drinks.map(d => (
                     <ListItem button onClick={() => this.handleDrinkSelect(d.value)} key={d.id} >
                         <ListItemAvatar>
@@ -101,13 +101,13 @@ class DrinksComponent extends Component<IDrinksComponentProps, IDrinksComponentS
                         </ListItemAvatar>
                         <ListItemText primary={d.value} />
                     </ListItem>
-                ))}
-                <div className='buttonApplyWraper'>
+                ))}                
+            </List>
+            <div className='buttonApplyWraper'>
                     <Button variant="contained" color="secondary" onClick={this.handleClose}>
                         Отмена
                     </Button>
                 </div>
-            </List>
         </div>;
     };
 

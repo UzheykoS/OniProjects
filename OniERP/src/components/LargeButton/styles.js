@@ -3,7 +3,7 @@ export default theme => ({
         display: 'flex',
         flexWrap: 'wrap',
         width: '100%',
-        height: '25vh'
+        height: '30vh'
     },
     image: {
         position: 'relative',

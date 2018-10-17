@@ -16,5 +16,6 @@ declare class Helper {
     static guid: () => string;
     static getParameterByNameFromUri: (name: any, url: any) => string;
     static getQueryVariable: (variable: string) => string | false;
+    static calculatePrice(check: any): number;
 }
 export default Helper;

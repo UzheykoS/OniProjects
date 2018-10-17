@@ -16,6 +16,7 @@ import DeleteIcon from '@material-ui/icons/Delete';
 import ListItemSecondaryAction from '@material-ui/core/ListItemSecondaryAction';
 import IconButton from '@material-ui/core/IconButton';
 import { DeleteDessert, DeleteDrink } from '../actions';
+import Helper from '../utils/helper';
 
 const dessertsImage = require('../../public/images/desserts_icon.jpg');
 const drinksImage = require('../../public/images/drinks_icon.jpg');
@@ -56,6 +57,11 @@ class NewOrderComponent extends Component<INewOrderComponentProps, INewOrderComp
         }
     }
 
+    calculatePrice() {
+        const { check } = this.props;
+        return Helper.calculatePrice(check);
+    }
+
     addDrinkClick = () => {
         this.setState({
             showDrinks: true
@@ -84,28 +90,33 @@ class NewOrderComponent extends Component<INewOrderComponentProps, INewOrderComp
     renderCheckContent() {
         const { check } = this.props;
 
-        return <List component="nav">
-            {check.drinks.map((d, index) => {
-                return <ListItem button key={index}>
-                    <ListItemText inset primary={`${d.id} - ${d.size}`} />
-                    <ListItemSecondaryAction>
-                      <IconButton aria-label="Delete" onClick={() => this.handleDeleteDrink(d)}>
-                        <DeleteIcon />
-                      </IconButton>
-                    </ListItemSecondaryAction>
-                </ListItem>
-            })}
-            {check.desserts.map((d, index) => {
-                return <ListItem button key={index}>
-                    <ListItemText inset primary={`${d.type} - ${d.taste} - ${d.quantity}${d.size ? (' - ' + d.size) : ''}`} />
-                    <ListItemSecondaryAction>
-                      <IconButton aria-label="Delete" onClick={() => this.handleDeleteDessert(d)}>
-                        <DeleteIcon />
-                      </IconButton>
-                    </ListItemSecondaryAction>
-                </ListItem>
-            })}
-        </List>;
+        return <>
+            <div className="checkoutControlGroup">
+                Итого: {this.calculatePrice()} грн.
+            </div>
+            <List component="nav">
+                {check.drinks.map((d, index) => {
+                    return <ListItem button key={index}>
+                        <ListItemText inset primary={`${d.id} - ${d.size}`} />
+                        <ListItemSecondaryAction>
+                            <IconButton aria-label="Delete" onClick={() => this.handleDeleteDrink(d)}>
+                                <DeleteIcon />
+                            </IconButton>
+                        </ListItemSecondaryAction>
+                    </ListItem>
+                })}
+                {check.desserts.map((d, index) => {
+                    return <ListItem button key={index}>
+                        <ListItemText inset primary={`${d.type} - ${d.taste} - ${d.quantity}${d.size ? (' - ' + d.size) : ''}`} />
+                        <ListItemSecondaryAction>
+                            <IconButton aria-label="Delete" onClick={() => this.handleDeleteDessert(d)}>
+                                <DeleteIcon />
+                            </IconButton>
+                        </ListItemSecondaryAction>
+                    </ListItem>
+                })}
+            </List>
+        </>;
     }
 
     render() {
@@ -123,8 +134,6 @@ class NewOrderComponent extends Component<INewOrderComponentProps, INewOrderComp
                 Новый заказ
             </Typography>
             {`Чек #${check.id}`}
-            {this.renderCheckContent()}
-            <Divider />
             <div className='newOrderButtonsWrapper'>
                 <div className='newOrderButton'>
                     <LargeButton title={'ДЕСЕРТЫ'} imageUrl={dessertsImage} onClick={this.addDessertClick} />
@@ -133,6 +142,8 @@ class NewOrderComponent extends Component<INewOrderComponentProps, INewOrderComp
                     <LargeButton title={'НАПИТКИ'} imageUrl={drinksImage} onClick={this.addDrinkClick} />
                 </div>
             </div>
+            <Divider />
+            {this.renderCheckContent()}
             <div className={'buttonsWraper'}>
                 <Button
                     disabled={check.desserts.length === 0 && check.drinks.length === 0}

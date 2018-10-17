@@ -6,7 +6,7 @@
 .container {
     height: 100%;
     width: 100%;
-    font-size: 40px;
+    font-size: 36px;
     font-weight: 300;
 }
 
@@ -79,9 +79,32 @@
     background-color: #74482f !important;
 }
 
+.dessertsTastesWrapper {
+    height: calc(100% - 68px);
+}
+
+.dessertsTastesListWrapper {
+    height: calc(100% - 110px);
+    overflow: auto;
+}
+
 .buttonApplyWraper {
     display: flex;
     justify-content: space-evenly;
+}
+
+.buttonCancelWraper {
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.drinksWrapper {
+    height: calc(100% - 68px);
+}
+
+.drinksListWrapper {
+    height: calc(100% - 65px);
+    overflow: auto;
 }
 
 .partnerSelectWrapper {

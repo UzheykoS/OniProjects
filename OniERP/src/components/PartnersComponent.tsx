@@ -12,7 +12,7 @@ import Select from '@material-ui/core/Select';
 import MenuItem from '@material-ui/core/MenuItem';
 import TextField from '@material-ui/core/TextField';
 import Divider from '@material-ui/core/Divider';
-import { CaffeePrices, ZEPHYR_PRICE } from '../utils/dictionaries';
+import { CaffeePrices, ZEPHYR_PARTNERS_PRICE } from '../utils/dictionaries';
 
 const mapStateToProps = (state) => {
     return {
@@ -93,7 +93,7 @@ class PartnersComponent extends Component<IPartnersComponentProps, IPartnersComp
         const macaronPrice = CaffeePrices[partner];
         totalPrice += macaronsQty * macaronPrice;
 
-        totalPrice += ZEPHYR_PRICE * zephyrQty;
+        totalPrice += ZEPHYR_PARTNERS_PRICE * zephyrQty;
 
         return totalPrice;
     }

@@ -13,7 +13,8 @@ export declare const CaffeePrices: {
 export declare const CakesPricesDict: {
     [id: string]: Array<number>;
 };
-export declare const ZEPHYR_PRICE = 11;
+export declare const ZEPHYR_PRICE = 12;
+export declare const ZEPHYR_PARTNERS_PRICE = 11;
 export declare const MACARONS_PRICE = 28;
 export declare const MacaronsColors: {
     [id: string]: string;
