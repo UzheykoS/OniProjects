@@ -1,0 +1,27 @@
+{
+  "presets": [
+    ["env", {
+      "modules": false,
+      "targets": {
+        "ie": "11"
+      },
+      "production": {
+        "plugins": ["transform-react-remove-prop-types"]
+      }
+    }], "react"
+  ],
+  "plugins": [
+    "transform-object-rest-spread",
+    "babel-plugin-transform-class-properties",
+    "syntax-dynamic-import",
+    "syntax-trailing-function-commas",
+    [
+      "babel-plugin-transform-runtime",
+      {
+        "helpers": true,
+        "polyfill": false,
+        "regenerator": true
+      }
+    ]
+  ]
+}

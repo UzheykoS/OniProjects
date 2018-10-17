@@ -10,7 +10,6 @@ import DialogTitle from '@material-ui/core/DialogTitle';
 import Dialog from '@material-ui/core/Dialog';
 import { DessertType, MacaronsEnum, CakesEnum, ZephyrEnum } from '../utils/types';
 import { DessertsDict, MacaronsColors, ZephyrColors } from '../utils/dictionaries';
-import { AddIcon } from 'mdi-react';
 import Avatar from '@material-ui/core/Avatar';
 import ListItemSecondaryAction from '@material-ui/core/ListItemSecondaryAction';
 import IconButton from '@material-ui/core/IconButton';
@@ -245,7 +244,7 @@ class DessertsComponent extends Component<IDessertsComponentProps, IDessertsComp
               {dessertType !== DessertType.Cake && (
                 <ListItemSecondaryAction >
                   <IconButton aria-label="Add" onClick={() => this.handleDessertIncrease(d.value)}>
-                    <AddIcon />
+                    +
                   </IconButton>
                 </ListItemSecondaryAction>
               )}
@@ -283,7 +282,7 @@ class DessertsComponent extends Component<IDessertsComponentProps, IDessertsComp
           <ListItem button onClick={() => this.handleDessertSizeOrQuantitySelect(d)} key={d} >
             <ListItemAvatar>
               <Avatar className='avatar'>
-                <AddIcon />
+                +
               </Avatar>
             </ListItemAvatar>
             <ListItemText primary={d} />

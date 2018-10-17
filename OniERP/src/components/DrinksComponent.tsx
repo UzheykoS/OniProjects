@@ -8,9 +8,8 @@ import ListItemAvatar from '@material-ui/core/ListItemAvatar';
 import ListItemText from '@material-ui/core/ListItemText';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import Dialog from '@material-ui/core/Dialog';
-import { DrinksType, Drink } from '../utils/types';
+import { DrinksType } from '../utils/types';
 import { DrinksDict } from '../utils/dictionaries';
-import { AddIcon } from 'mdi-react';
 import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
 
