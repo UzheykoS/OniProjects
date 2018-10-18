@@ -16,7 +16,7 @@ const mapDispatchToProps = (dispatch) => {
 export interface INotFoundPageProps {
 }
 
-class NotFoundPage extends Component<INotFoundPageProps, any>{
+export class NotFoundPage extends Component<INotFoundPageProps, any>{
     render() {
         const { } = this.props;
 

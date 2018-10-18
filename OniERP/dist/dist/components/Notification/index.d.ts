@@ -22,7 +22,7 @@ export declare class NotificationComponent extends Component<INotificationCompon
     handleClose: () => void;
     render(): JSX.Element;
 }
-declare const _default: React.ComponentClass<Pick<INotificationComponentProps, never>> & {
-    WrappedComponent: React.ComponentType<INotificationComponentProps>;
+declare const _default: React.ComponentClass<Pick<INotificationComponentProps, never>, any> & {
+    WrappedComponent: typeof NotificationComponent;
 };
 export default _default;

@@ -40,7 +40,7 @@ export interface ICheckoutPageProps {
     logData?: (text: string) => void;
 }
 
-class CheckoutPage extends Component<ICheckoutPageProps, any>{
+export class CheckoutPage extends Component<ICheckoutPageProps, any>{
     handleCheckout = () => {
         this.props.handleCheckout();
         this.props.history.push('/');

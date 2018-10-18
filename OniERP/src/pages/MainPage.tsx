@@ -43,7 +43,7 @@ export interface IMainPageProps {
   fetchData?: (url: string) => void;
 }
 
-class MainPage extends Component<IMainPageProps, any>{
+export class MainPage extends Component<IMainPageProps, any>{
   componentDidMount() {
     const { history } = this.props;
     if (!history || !history.length) {

@@ -41,7 +41,7 @@ export interface IDessertsComponentState {
   dessertQuantities?: { [id: string]: number; };
 }
 
-class DessertsComponent extends Component<IDessertsComponentProps, IDessertsComponentState>{
+export class DessertsComponent extends Component<IDessertsComponentProps, IDessertsComponentState>{
   constructor(props) {
     super(props);
 

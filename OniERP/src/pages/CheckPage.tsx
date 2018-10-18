@@ -20,7 +20,7 @@ const mapDispatchToProps = (dispatch) => {
 export interface ICheckPageProps {
 }
 
-class CheckPage extends Component<ICheckPageProps, any>{
+export class CheckPage extends Component<ICheckPageProps, any>{
   render() {
     return <div>
       <Card className={'cardContainer'} raised>

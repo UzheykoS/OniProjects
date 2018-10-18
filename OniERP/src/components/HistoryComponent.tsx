@@ -30,7 +30,7 @@ export interface IHistoryComponentProps {
 export interface IHistoryComponentState {
 }
 
-class HistoryComponent extends Component<IHistoryComponentProps, IHistoryComponentState>{
+export class HistoryComponent extends Component<IHistoryComponentProps, IHistoryComponentState>{
     render() {
         const { history } = this.props;
 

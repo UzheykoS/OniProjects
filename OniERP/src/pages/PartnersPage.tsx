@@ -20,7 +20,7 @@ const mapDispatchToProps = (dispatch) => {
 export interface IPartnersPageProps {
 }
 
-class PartnersPage extends Component<IPartnersPageProps, any>{
+export class PartnersPage extends Component<IPartnersPageProps, any>{
   render() {
     return <div>
       <Card className={'cardContainer'} raised>

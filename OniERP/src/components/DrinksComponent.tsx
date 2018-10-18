@@ -36,7 +36,7 @@ export interface IDrinksComponentState {
     drinkSize?: string;
 }
 
-class DrinksComponent extends Component<IDrinksComponentProps, IDrinksComponentState>{
+export class DrinksComponent extends Component<IDrinksComponentProps, IDrinksComponentState>{
     constructor(props) {
         super(props);
 
