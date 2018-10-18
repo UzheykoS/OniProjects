@@ -104,6 +104,6 @@
     "start": "node server.js",
     "stats": "SET NODE_ENV=production &&node ./node_modules/webpack/bin/webpack.js --profile --json > stats.json",
     "browser_stats": "node ./node_modules/webpack-bundle-analyzer/lib/bin/analyzer.js stats.json",
-    "deploy": "npm install && webpack --config webpack.prod.js"
+    "deploy": "NODE_ENV=production&& npm install && webpack --config webpack.prod.js"
   }
 }
