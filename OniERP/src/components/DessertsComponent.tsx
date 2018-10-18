@@ -83,6 +83,11 @@ class DessertsComponent extends Component<IDessertsComponentProps, IDessertsComp
     this.props.logData('desserts->handleDessertMixSelect->' + qty);
   }
 
+  handleDessertMixDecrease = (qty) => {
+    this.handleDessertDecrease(MIX_TASTE_NAME, qty);
+    this.props.logData('desserts->handleDessertMixDecrease->' + qty);
+  }
+
   handleDessertSizeOrQuantitySelect = async (sizeOrQty) => {
     const { dessertType, dessertTaste } = this.state;
 
@@ -105,7 +110,7 @@ class DessertsComponent extends Component<IDessertsComponentProps, IDessertsComp
       const qty = dessertQuantities[key];
       if (qty) {
         await this.props.addDessert(dessertType, dessertTaste, null, qty || 0);
-      }      
+      }
     }
 
     this.props.handleClose();
@@ -259,7 +264,7 @@ class DessertsComponent extends Component<IDessertsComponentProps, IDessertsComp
               <ListItemText primary={d.value + (dessertType !== DessertType.Cake ? `(${dessertQuantities[this.getId(dessertType, d.value)] || 0})` : '')} />
               {dessertType !== DessertType.Cake && (
                 <ListItemSecondaryAction >
-                  <IconButton aria-label="Add" onClick={() => this.handleDessertDecrease(d.value)}>
+                  <IconButton aria-label="Add" classes={{ root: 'decreaseButton' }} onClick={() => this.handleDessertDecrease(d.value)}>
                     {'\u2014'}
                   </IconButton>
                 </ListItemSecondaryAction>
@@ -276,6 +281,11 @@ class DessertsComponent extends Component<IDessertsComponentProps, IDessertsComp
                 </Avatar>
               </ListItemAvatar>
               <ListItemText primary={`${o.title}(${dessertQuantities[this.getId(dessertType, MIX_TASTE_NAME)] || 0})`} />
+              <ListItemSecondaryAction >
+                <IconButton aria-label="Add" classes={{ root: 'decreaseButton' }} onClick={() => this.handleDessertMixDecrease(o.value)}>
+                  {'\u2014'}
+                </IconButton>
+              </ListItemSecondaryAction>
             </ListItem>
           ))
         }
@@ -283,7 +293,7 @@ class DessertsComponent extends Component<IDessertsComponentProps, IDessertsComp
       <div className='buttonCancelWraper'>
         <Button variant="contained" color="secondary" onClick={this.handleClose}>
           Отмена
-          </Button>
+        </Button>
       </div>
     </div>;
   };
