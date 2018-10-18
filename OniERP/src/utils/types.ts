@@ -42,6 +42,8 @@ export enum MacaronsEnum {
     ParmesanFigue = "Пармезан - Инжир",
     StrawberryCheesecake = "Клубничный Чизкейк",
     Raspberry = "Малина",
+    CherryTonko = "Вишня - Бобы Тонко",
+    Oblepiha = "Облепиха",
     Currant = "Смородина",
     LavenderBlackberry = "Лаванда - Черника",
     MangoPassion = "Манго - Маракуйя",
