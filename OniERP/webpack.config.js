@@ -1,4 +1,4 @@
-﻿const environment = process.env.NODE_ENV.trim();
+﻿const environment = process.env.NODE_ENV ? process.env.NODE_ENV.trim() : 'development';
 const webpack = require('webpack');
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
