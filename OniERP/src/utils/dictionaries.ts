@@ -78,7 +78,7 @@ CakesPricesDict[CakesEnum.Infinity] = [640, 970];
 CakesPricesDict[CakesEnum.Rio] = [630, 970];
 CakesPricesDict[CakesEnum.Soul] = [620, 960];
 
-export const ZEPHYR_PRICE = 12;
+export const ZEPHYR_PRICE = 15;
 export const ZEPHYR_PARTNERS_PRICE = 11;
 
 export const MACARONS_PRICE = 28;
