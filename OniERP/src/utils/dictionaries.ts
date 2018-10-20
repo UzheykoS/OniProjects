@@ -2,7 +2,7 @@ import { DrinksType, DessertType, MacaronsEnum, ZephyrEnum, PartnersEnum, CakesE
 
 export const DrinksDict: { [id: string] : Array<string> } = {};
 DrinksDict[DrinksType.Cappucino] = ['175 мл', '340 мл'];
-DrinksDict[DrinksType.Latte] = ['250 мл', '340 мл'];
+DrinksDict[DrinksType.Latte] = ['250 мл', '340 мл', '400 мл'];
 DrinksDict[DrinksType.FlatWhite] = ['175 мл'];
 DrinksDict[DrinksType.Raf] = ['250 мл', '340 мл'];
 DrinksDict[DrinksType.Americano] = ['120 мл'];
@@ -35,7 +35,7 @@ DessertsDict[DessertType.Cake] = ['18 см', '22 см'];
 
 export const DrinkPricesDict: { [id: string] : Array<number> } = {};
 DrinkPricesDict[DrinksType.Cappucino] = [25, 40];
-DrinkPricesDict[DrinksType.Latte] = [28, 35];
+DrinkPricesDict[DrinksType.Latte] = [28, 35, 45];
 DrinkPricesDict[DrinksType.FlatWhite] = [35];
 DrinkPricesDict[DrinksType.Raf] = [38, 45];
 DrinkPricesDict[DrinksType.Americano] = [20];

@@ -33,8 +33,8 @@ export interface IPartnersComponentProps {
 
 export interface IPartnersComponentState {
     partner?: string;
-    macaronsQty?: number;
-    zephyrQty?: number;
+    macaronsQty?: string;
+    zephyrQty?: string;
 }
 
 class PartnersComponent extends Component<IPartnersComponentProps, IPartnersComponentState>{
@@ -43,8 +43,8 @@ class PartnersComponent extends Component<IPartnersComponentProps, IPartnersComp
 
         this.state = {
             partner: '',
-            macaronsQty: 0,
-            zephyrQty: 0
+            macaronsQty: '',
+            zephyrQty: ''
         }
     }
 
@@ -79,7 +79,7 @@ class PartnersComponent extends Component<IPartnersComponentProps, IPartnersComp
     handleNextClick = () => {
         const { processPartnersOrderSubmit, history } = this.props;
         const { partner, macaronsQty, zephyrQty} = this.state;
-        processPartnersOrderSubmit(partner, macaronsQty, zephyrQty);
+        processPartnersOrderSubmit(partner, Number(macaronsQty), Number(zephyrQty));
         history.push('/');
     }
 
@@ -91,9 +91,9 @@ class PartnersComponent extends Component<IPartnersComponentProps, IPartnersComp
         }
 
         const macaronPrice = CaffeePrices[partner];
-        totalPrice += macaronsQty * macaronPrice;
+        totalPrice += Number(macaronsQty) * macaronPrice;
 
-        totalPrice += ZEPHYR_PARTNERS_PRICE * zephyrQty;
+        totalPrice += ZEPHYR_PARTNERS_PRICE * Number(zephyrQty);
 
         return totalPrice;
     }

@@ -129,3 +129,10 @@ export enum DateTimeRenderOption {
     SERIAL_NUMBER = 'SERIAL_NUMBER',
     FORMATTED_STRING = 'FORMATTED_STRING'
 }
+
+export const MIX_MACARONS_6 = 'Набор на 6 шт.';
+export const MIX_MACARONS_12 = 'Набор на 12 шт.';
+export const MIX_MACARONS_24 = 'Набор на 24 шт.';
+
+export const MIX_ZEPHYR_8 = 'Набор на 8 шт.';
+export const MIX_ZEPHYR_16 = 'Набор на 16 шт.';

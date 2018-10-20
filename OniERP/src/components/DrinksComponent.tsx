@@ -51,6 +51,12 @@ export class DrinksComponent extends Component<IDrinksComponentProps, IDrinksCom
         this.props.logData('drinks->close');
     }
 
+    handleBack = () => {
+        this.setState({
+            drinkType: null
+        });
+    }
+
     handleDrinkSelect = async (drink) => {
         const drinkSizes = DrinksDict[drink];
         if (drinkSizes && drinkSizes.length === 1) {
@@ -93,7 +99,7 @@ export class DrinksComponent extends Component<IDrinksComponentProps, IDrinksCom
         return <div className='drinksWrapper'>
             <List className='drinksListWrapper'>
                 {drinks.map(d => (
-                    <ListItem button onClick={() => this.handleDrinkSelect(d.value)} key={d.id} >
+                    <ListItem classes={{ container: 'listItemContainer' }} button onClick={() => this.handleDrinkSelect(d.value)} key={d.id} >
                         <ListItemAvatar>
                             <Avatar className='drinkAvatar'>
                                 {d.value.charAt(0).toUpperCase()}
@@ -101,13 +107,13 @@ export class DrinksComponent extends Component<IDrinksComponentProps, IDrinksCom
                         </ListItemAvatar>
                         <ListItemText primary={d.value} />
                     </ListItem>
-                ))}                
+                ))}
             </List>
             <div className='buttonApplyWraper'>
-                    <Button variant="contained" color="secondary" onClick={this.handleClose}>
-                        Отмена
+                <Button variant="contained" color="secondary" onClick={this.handleClose}>
+                    Отмена
                     </Button>
-                </div>
+            </div>
         </div>;
     };
 
@@ -118,7 +124,7 @@ export class DrinksComponent extends Component<IDrinksComponentProps, IDrinksCom
         return <div>
             <List>
                 {drinkSizes.map(d => (
-                    <ListItem button onClick={() => this.handleDrinkSizeSelect(d)} key={d} >
+                    <ListItem classes={{ container: 'listItemContainer' }} button onClick={() => this.handleDrinkSizeSelect(d)} key={d} >
                         <ListItemAvatar>
                             <Avatar className='drinkAvatar'>
                                 {d.charAt(0).toUpperCase()}
@@ -128,6 +134,9 @@ export class DrinksComponent extends Component<IDrinksComponentProps, IDrinksCom
                     </ListItem>
                 ))}
                 <div className='buttonApplyWraper'>
+                    <Button classes={{ root: 'button' }} variant="contained" color="default" title="Back" onClick={this.handleBack}>
+                        Назад
+                    </Button>
                     <Button variant="contained" color="secondary" onClick={this.handleClose}>
                         Отмена
                     </Button>

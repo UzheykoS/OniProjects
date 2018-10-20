@@ -8,14 +8,13 @@ import ListItemAvatar from '@material-ui/core/ListItemAvatar';
 import ListItemText from '@material-ui/core/ListItemText';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import Dialog from '@material-ui/core/Dialog';
-import { DessertType, MacaronsEnum, CakesEnum, ZephyrEnum } from '../utils/types';
+import { DessertType, MacaronsEnum, CakesEnum, ZephyrEnum, 
+  MIX_MACARONS_6, MIX_MACARONS_12, MIX_MACARONS_24, MIX_ZEPHYR_8, MIX_ZEPHYR_16 } from '../utils/types';
 import { DessertsDict, MacaronsColors, ZephyrColors } from '../utils/dictionaries';
 import Avatar from '@material-ui/core/Avatar';
 import ListItemSecondaryAction from '@material-ui/core/ListItemSecondaryAction';
 import IconButton from '@material-ui/core/IconButton';
 import Button from '@material-ui/core/Button';
-
-const MIX_TASTE_NAME = 'Набор';
 
 const mapStateToProps = (state) => {
   return {
@@ -77,15 +76,50 @@ export class DessertsComponent extends Component<IDessertsComponentProps, IDesse
     }
   }
 
-  handleDessertMixSelect = async (qty) => {
-    this.handleDessertIncrease(MIX_TASTE_NAME, qty);
-    // await this.props.addDessert(dessertType, MIX_TASTE_NAME, null, qty);
-    this.props.logData('desserts->handleDessertMixSelect->' + qty);
+  handleDessertMixSelect = async (mixType) => {
+    switch (mixType) {
+      case MIX_MACARONS_6:
+        this.handleDessertIncrease(mixType, 6);
+        break;
+      case MIX_MACARONS_12:
+        this.handleDessertIncrease(mixType, 12);
+        break;
+      case MIX_MACARONS_24:
+        this.handleDessertIncrease(mixType, 24);
+        break;
+      case MIX_ZEPHYR_8:
+        this.handleDessertIncrease(mixType, 8);
+        break;
+      case MIX_ZEPHYR_16:
+        this.handleDessertIncrease(mixType, 16);
+        break;
+      default:
+        break;
+    }
+    this.props.logData('desserts->handleDessertMixSelect->' + mixType);
   }
 
-  handleDessertMixDecrease = (qty) => {
-    this.handleDessertDecrease(MIX_TASTE_NAME, qty);
-    this.props.logData('desserts->handleDessertMixDecrease->' + qty);
+  handleDessertMixDecrease = (mixType) => {
+    switch (mixType) {
+      case MIX_MACARONS_6:
+        this.handleDessertDecrease(mixType, 6);
+        break;
+      case MIX_MACARONS_12:
+        this.handleDessertDecrease(mixType, 12);
+        break;
+      case MIX_MACARONS_24:
+        this.handleDessertDecrease(mixType, 24);
+        break;
+      case MIX_ZEPHYR_8:
+        this.handleDessertDecrease(mixType, 8);
+        break;
+      case MIX_ZEPHYR_16:
+        this.handleDessertDecrease(mixType, 16);
+        break;
+      default:
+        break;
+    }
+    this.props.logData('desserts->handleDessertMixDecrease->' + mixType);
   }
 
   handleDessertSizeOrQuantitySelect = async (sizeOrQty) => {
@@ -174,6 +208,31 @@ export class DessertsComponent extends Component<IDessertsComponentProps, IDesse
     return values;
   }
 
+  getDessertMixQty(value) {
+    const { dessertType, dessertQuantities } = this.state;
+    let result = 0;
+    switch (value) {
+      case MIX_MACARONS_6:
+        result = dessertQuantities[this.getId(dessertType, value)] / 6;
+        break;
+      case MIX_MACARONS_12:
+        result = dessertQuantities[this.getId(dessertType, value)] / 12;
+        break;
+      case MIX_MACARONS_24:
+        result = dessertQuantities[this.getId(dessertType, value)] / 24;
+        break;
+      case MIX_ZEPHYR_8:
+        result = dessertQuantities[this.getId(dessertType, value)] / 8;
+        break;
+      case MIX_ZEPHYR_16:
+        result = dessertQuantities[this.getId(dessertType, value)] / 16;
+        break;
+      default:
+        break;
+    }
+    return isNaN(result) ? 0 : result;
+  }
+
   renderDesserts() {
     const dessertKeys = Object.keys(DessertType);
     const desserts = dessertKeys.map(d => {
@@ -186,7 +245,7 @@ export class DessertsComponent extends Component<IDessertsComponentProps, IDesse
     return <div>
       <List>
         {desserts.map(d => (
-          <ListItem button onClick={() => this.handleDessertSelect(d.value)} key={d.id} >
+          <ListItem classes={{ root: 'listItemContainer' }} button onClick={() => this.handleDessertSelect(d.value)} key={d.id} >
             <ListItemAvatar>
               <Avatar className='macaronAvatar' style={{ backgroundColor: '#dd73e2' }}>
                 {d.value.charAt(0).toUpperCase()}
@@ -216,27 +275,27 @@ export class DessertsComponent extends Component<IDessertsComponentProps, IDesse
       case DessertType.Macaron:
         dessertTastes = this.getArrayFromEnum(MacaronsEnum);
         extraOptions.push({
-          value: 6,
-          title: 'Набор на 6 шт.'
+          value: MIX_MACARONS_6,
+          title: MIX_MACARONS_6
         });
         extraOptions.push({
-          value: 12,
-          title: 'Набор на 12 шт.'
+          value: MIX_MACARONS_12,
+          title: MIX_MACARONS_12
         });
         extraOptions.push({
-          value: 24,
-          title: 'Набор на 24 шт.'
+          value: MIX_MACARONS_24,
+          title: MIX_MACARONS_24
         });
         break;
       case DessertType.Zephyr:
         dessertTastes = this.getArrayFromEnum(ZephyrEnum);
         extraOptions.push({
-          value: 8,
-          title: 'Набор на 8 шт.'
+          value: MIX_ZEPHYR_8,
+          title: MIX_ZEPHYR_8
         });
         extraOptions.push({
-          value: 16,
-          title: 'Набор на 16 шт.'
+          value: MIX_ZEPHYR_16,
+          title: MIX_ZEPHYR_16
         });
         break;
       default:
@@ -255,7 +314,7 @@ export class DessertsComponent extends Component<IDessertsComponentProps, IDesse
       <List className='dessertsTastesListWrapper'>
         {
           dessertTastes.map(d => (
-            <ListItem button onClick={() => this.handleDessertTasteSelect(d.value)} key={d.id} >
+            <ListItem classes={{ container: 'listItemContainer' }} button onClick={() => this.handleDessertTasteSelect(d.value)} key={d.id} >
               <ListItemAvatar>
                 <Avatar className='macaronAvatar' style={{ backgroundColor: dessertType === DessertType.Macaron ? MacaronsColors[d.value] : ZephyrColors[d.value] }}>
                   {d.value.charAt(0).toUpperCase()}
@@ -274,13 +333,13 @@ export class DessertsComponent extends Component<IDessertsComponentProps, IDesse
         }
         {
           extraOptions.map(o => (
-            <ListItem button onClick={() => this.handleDessertMixSelect(o.value)} key={o.value} >
+            <ListItem classes={{ container: 'listItemContainer' }} button onClick={() => this.handleDessertMixSelect(o.value)} key={o.value} >
               <ListItemAvatar>
                 <Avatar className='macaronAvatar' style={{ backgroundColor: '#dd73e2' }}>
                   {o.value}
                 </Avatar>
               </ListItemAvatar>
-              <ListItemText primary={`${o.title}(${dessertQuantities[this.getId(dessertType, MIX_TASTE_NAME)] || 0})`} />
+              <ListItemText primary={`${o.title}(${this.getDessertMixQty(o.value)})`} />
               <ListItemSecondaryAction >
                 <IconButton aria-label="Add" classes={{ root: 'decreaseButton' }} onClick={() => this.handleDessertMixDecrease(o.value)}>
                   {'\u2014'}
@@ -305,7 +364,7 @@ export class DessertsComponent extends Component<IDessertsComponentProps, IDesse
     return <div>
       <List>
         {dessertSizes.map(d => (
-          <ListItem button onClick={() => this.handleDessertSizeOrQuantitySelect(d)} key={d} >
+          <ListItem classes={{ container: 'listItemContainer' }} button onClick={() => this.handleDessertSizeOrQuantitySelect(d)} key={d} >
             <ListItemAvatar>
               <Avatar className='avatar'>
                 +

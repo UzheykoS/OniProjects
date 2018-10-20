@@ -2,7 +2,10 @@
 import * as React from 'react'
 import { connect } from 'react-redux';
 import Button from '@material-ui/core/Button';
-import { Check, Dessert, Drink, DessertType, DrinksType } from '../utils/types';
+import {
+    Check, Dessert, Drink, DessertType, DrinksType,
+    MIX_MACARONS_6, MIX_MACARONS_12, MIX_MACARONS_24, MIX_ZEPHYR_8, MIX_ZEPHYR_16
+} from '../utils/types';
 import DrinksComponent from './DrinksComponent';
 import DessertsComponent from './DessertsComponent';
 import List from '@material-ui/core/List';
@@ -87,6 +90,27 @@ class NewOrderComponent extends Component<INewOrderComponentProps, INewOrderComp
         this.props.deleteDessert(dessert.type, dessert.taste, dessert.size);
     }
 
+    getContentItemText(dessert: Dessert) {
+        if (dessert.type === DessertType.Cake) {
+            return `${dessert.type}, ${dessert.taste} - ${dessert.quantity} шт.(${dessert.size})`;
+        }
+
+        switch (dessert.taste) {
+            case MIX_MACARONS_6:
+                return `${dessert.type}, ${dessert.taste} (${dessert.quantity / 6})`;
+            case MIX_MACARONS_12:
+                return `${dessert.type}, ${dessert.taste} (${dessert.quantity / 12})`;
+            case MIX_MACARONS_24:
+                return `${dessert.type}, ${dessert.taste} (${dessert.quantity / 24})`;
+            case MIX_ZEPHYR_8:
+                return `${dessert.type}, ${dessert.taste} (${dessert.quantity / 8})`;
+            case MIX_ZEPHYR_16:
+                return `${dessert.type}, ${dessert.taste} (${dessert.quantity / 16})`;
+            default:
+                return `${dessert.type}, ${dessert.taste} (${dessert.quantity})`;
+        }
+    }
+
     renderCheckContent() {
         const { check } = this.props;
 
@@ -107,7 +131,7 @@ class NewOrderComponent extends Component<INewOrderComponentProps, INewOrderComp
                 })}
                 {check.desserts.map((d, index) => {
                     return <ListItem button key={index}>
-                        <ListItemText inset primary={`${d.type} - ${d.taste} - ${d.quantity}${d.size ? (' - ' + d.size) : ''}`} />
+                        <ListItemText inset primary={this.getContentItemText(d)} />
                         <ListItemSecondaryAction>
                             <IconButton aria-label="Delete" onClick={() => this.handleDeleteDessert(d)}>
                                 <DeleteIcon />
@@ -143,7 +167,6 @@ class NewOrderComponent extends Component<INewOrderComponentProps, INewOrderComp
                 </div>
             </div>
             <Divider />
-            {this.renderCheckContent()}
             <div className={'buttonsWraper'}>
                 <Button
                     disabled={check.desserts.length === 0 && check.drinks.length === 0}
@@ -153,8 +176,9 @@ class NewOrderComponent extends Component<INewOrderComponentProps, INewOrderComp
                     onClick={this.handleNextClick}
                 >
                     Продолжить
-            </Button>
+                </Button>
             </div>
+            {this.renderCheckContent()}
             {showDrinks && <DrinksComponent handleClose={() => this.setState({ showDrinks: false })} />}
             {showDesserts && <DessertsComponent handleClose={() => this.setState({ showDesserts: false })} />}
         </div>;
