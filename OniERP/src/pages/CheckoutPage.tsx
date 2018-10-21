@@ -71,7 +71,7 @@ export class CheckoutPage extends Component<ICheckoutPageProps, any>{
     handleOrderTypeChange = (type: OrderType) => {
         this.props.setOrderType(type);
         this.props.logData('checkoutPage->orderTypeChanged->' + type);
-    }   
+    }
 
     handleSaleSelect = (ev) => {
         const sale = ev.target.value;
@@ -97,16 +97,20 @@ export class CheckoutPage extends Component<ICheckoutPageProps, any>{
         return <div className="container">
             <Card className={'cardContainer'} raised>
                 <CardContent>
-                    <Typography gutterBottom variant="headline" >
-                        Страница выбора параметров чека
+                    <Typography gutterBottom variant="title" >
+                        Параметры чека
                     </Typography>
                     <Divider />
                     <div className="checkoutControlGroup">
-                        Итого: {this.calculatePrice()} грн.
+                        <Typography gutterBottom variant="subheading">
+                            Итого: {this.calculatePrice()} грн.
+                        </Typography>
                     </div>
                     <Divider />
                     <div className="checkoutControlGroup">
-                        Тип платежа:
+                        <Typography gutterBottom variant="subheading">
+                            Тип платежа:
+                        </Typography>
                         <FormControlLabel
                             control={
                                 <Radio
@@ -130,7 +134,9 @@ export class CheckoutPage extends Component<ICheckoutPageProps, any>{
                     </div>
                     <Divider />
                     <div className="checkoutControlGroup">
-                        Тип заказа:
+                        <Typography gutterBottom variant="subheading">
+                            Тип заказа:
+                        </Typography>
                         <FormControlLabel
                             control={
                                 <Radio
@@ -154,7 +160,7 @@ export class CheckoutPage extends Component<ICheckoutPageProps, any>{
                     </div>
                     <Divider />
                     <div className="saleContainer">
-                        <Typography gutterBottom variant="headline" classes={{ root: '' }} style={{ paddingRight: '2rem' }}>
+                        <Typography gutterBottom variant="subheading" style={{ paddingRight: '2rem' }}>
                             Скидка:
                         </Typography>
                         <FormControl className='partnerSelectWrapper'>

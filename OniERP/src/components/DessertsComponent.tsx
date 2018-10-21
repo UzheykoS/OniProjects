@@ -266,26 +266,31 @@ export class DessertsComponent extends Component<IDessertsComponentProps, IDesse
         dessertTastes = Helper.getArrayFromEnum(MacaronsEnum);
         extraOptions.push({
           value: MIX_MACARONS_6,
-          title: MIX_MACARONS_6
+          title: MIX_MACARONS_6,
+          avatar: 6
         });
         extraOptions.push({
           value: MIX_MACARONS_12,
-          title: MIX_MACARONS_12
+          title: MIX_MACARONS_12,
+          avatar: 12
         });
         extraOptions.push({
           value: MIX_MACARONS_24,
-          title: MIX_MACARONS_24
+          title: MIX_MACARONS_24,
+          avatar: 24
         });
         break;
       case DessertType.Zephyr:
         dessertTastes = Helper.getArrayFromEnum(ZephyrEnum);
         extraOptions.push({
           value: MIX_ZEPHYR_8,
-          title: MIX_ZEPHYR_8
+          title: MIX_ZEPHYR_8,
+          avatar: 8
         });
         extraOptions.push({
           value: MIX_ZEPHYR_16,
-          title: MIX_ZEPHYR_16
+          title: MIX_ZEPHYR_16,
+          avatar: 16
         });
         break;
       default:
@@ -326,7 +331,7 @@ export class DessertsComponent extends Component<IDessertsComponentProps, IDesse
             <ListItem classes={{ container: 'listItemContainer' }} button onClick={() => this.handleDessertMixSelect(o.value)} key={o.value} >
               <ListItemAvatar>
                 <Avatar className='macaronAvatar' style={{ backgroundColor: '#dd73e2' }}>
-                  {o.value}
+                  {o.avatar}
                 </Avatar>
               </ListItemAvatar>
               <ListItemText primary={`${o.title}(${this.getDessertMixQty(o.value)})`} />

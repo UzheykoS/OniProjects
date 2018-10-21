@@ -121,7 +121,7 @@ class NewOrderComponent extends Component<INewOrderComponentProps, INewOrderComp
             <List component="nav">
                 {check.drinks.map((d, index) => {
                     return <ListItem button key={index}>
-                        <ListItemText inset primary={`${d.id} - ${d.size}`} />
+                        <ListItemText primary={`${d.id} - ${d.size}`} />
                         <ListItemSecondaryAction>
                             <IconButton aria-label="Delete" onClick={() => this.handleDeleteDrink(d)}>
                                 <DeleteIcon />
@@ -131,7 +131,7 @@ class NewOrderComponent extends Component<INewOrderComponentProps, INewOrderComp
                 })}
                 {check.desserts.map((d, index) => {
                     return <ListItem button key={index}>
-                        <ListItemText inset primary={this.getContentItemText(d)} />
+                        <ListItemText primary={this.getContentItemText(d)} />
                         <ListItemSecondaryAction>
                             <IconButton aria-label="Delete" onClick={() => this.handleDeleteDessert(d)}>
                                 <DeleteIcon />
