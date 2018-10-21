@@ -1,4 +1,6 @@
 ﻿const environment = process.env.NODE_ENV ? process.env.NODE_ENV.trim() : 'development';
+const apiKey = process.env.API_KEY;
+const clientId = process.env.CLIENT_ID;
 const webpack = require('webpack');
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
@@ -126,7 +128,9 @@ module.exports = {
     plugins: [
         new webpack.DefinePlugin({
             'process.env': {
-                'NODE_ENV': JSON.stringify(environment)
+                'NODE_ENV': JSON.stringify(environment),
+                'API_KEY': JSON.stringify(apiKey),
+                'CLIENT_ID': JSON.stringify(clientId)
             }
         }),
         new webpack.IgnorePlugin(/^\.\/locale/, /moment/),
