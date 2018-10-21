@@ -58,8 +58,6 @@ class App extends Component<IAppProps, IAppState>{
         //     apiKey: API_KEY,
         // });
         // auth2.isSignedIn.listen(this.signinChanged);
-console.log(`CLIENT_ID: ${CLIENT_ID}`);
-console.log(`API_KEY: ${API_KEY}`);
 
         window['gapi'].client.init({
             apiKey: API_KEY,
