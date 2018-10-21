@@ -16,7 +16,8 @@ export interface Check {
     drinks: Array<Drink>,
     isFinished: boolean,
     payment: Payment,
-    type: OrderType
+    type: OrderType,
+    sale: SaleType
 }
 
 export enum Payment {
@@ -35,6 +36,14 @@ export enum DessertType {
     Macaron = 'Макаронс',
     Zephyr = 'Зефир',
     Cake = 'Торт'
+}
+
+export enum SaleType {
+    Empty = '0 %',
+    Ten = '10 %',
+    Twenty = '20 %',
+    Fourty = '40 %',
+    Full = '100 %'
 }
 
 export enum MacaronsEnum {

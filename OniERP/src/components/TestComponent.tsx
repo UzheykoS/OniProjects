@@ -3,7 +3,7 @@ import { Component } from 'react';
 import { connect } from 'react-redux';
 import { ProcessFetchData, ProcessAppendData, ProcessUpdateData } from '../actions';
 import scriptLoader from 'react-async-script-loader';
-import { DISCOVERY_DOCS, SCOPES, CLIENT_ID, API_KEY, TEST_SPREADSHEET_ID } from '../config';
+import { DISCOVERY_DOCS, SCOPES, CLIENT_ID, API_KEY, TEST_SPREADSHEET_ID } from '../config/keys';
 
 const mapStateToProps = (state) => {
     return {

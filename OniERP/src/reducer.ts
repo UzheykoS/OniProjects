@@ -10,6 +10,7 @@ import {
     PROCESS_CHECKOUT,
     SET_PAYMENT_TYPE,
     SET_ORDER_TYPE,
+    SELECT_SALE,
     APPEND_DATA_FULFILLED,
     APPEND_DATA_REJECTED,
     LOG_DATA,
@@ -21,7 +22,7 @@ import {
     SET_LAST_ID,
     SHOW_NOTIFICATION
 } from "./actionTypes";
-import { Check, Dessert, Drink, Payment, OrderType } from './utils/types';
+import { Check, Dessert, Drink, Payment, OrderType, SaleType } from './utils/types';
 
 import initialState from './store/initialState';
 
@@ -34,7 +35,8 @@ export default handleActions({
             drinks: new Array<Drink>(),
             isFinished: false,
             payment: Payment.Cash,
-            type: OrderType.Shop
+            type: OrderType.Shop,
+            sale: SaleType.Empty
         };
         return Object.assign({}, state, {
             check
@@ -131,6 +133,11 @@ export default handleActions({
     [SET_ORDER_TYPE]: (state, action) => {
         const { check } = state;
         check.type = action.payload;
+        return { ...state, check: { ...check } };
+    },
+    [SELECT_SALE]: (state, action) => {
+        const { check } = state;
+        check.sale = action.payload;
         return { ...state, check: { ...check } };
     },
     [LOAD_ITEMS]: (state, action) => {

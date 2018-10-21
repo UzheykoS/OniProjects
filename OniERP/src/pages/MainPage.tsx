@@ -11,7 +11,8 @@ import { Busy } from '../components/Busy';
 import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
 import Typography from '@material-ui/core/Typography';
-import { SPREADSHEET_ID } from '../config';
+import { SPREADSHEET_ID } from '../config/keys';
+import Button from '@material-ui/core/Button';
 
 const imageUrl = require('../../public/images/main_icon.jpg');
 const partnerUrl = require('../../public/images/partners_icon.jpg');
@@ -33,6 +34,7 @@ const mapDispatchToProps = (dispatch) => {
 
 const CkeckLink = props => <Link to="/check" {...props} />;
 const PartnersLink = props => <Link to="/partners" {...props} />;
+const OtherLink = props => <Link to="/other" {...props} />;
 
 export interface IMainPageProps {
   history?: Array<Check>;
@@ -57,8 +59,9 @@ export class MainPage extends Component<IMainPageProps, any>{
   }
 
   onNewPartnersCheckClick = () => {
-    this.props.createCheck();
-    this.props.logData('mainPage->onNewPartnersCheckClick');
+  }
+
+  onOtherClick = () => {
   }
 
   render() {
@@ -75,6 +78,11 @@ export class MainPage extends Component<IMainPageProps, any>{
           <LargeButton title={'ОПТОВЫЙ ЗАКАЗ'} component={PartnersLink} imageUrl={partnerUrl} onClick={this.onNewPartnersCheckClick} />
         </CardContent>
       </Card>
+      <div className='buttonApplyWraper'>
+        <Button component={OtherLink} variant="contained" color="secondary" onClick={this.onOtherClick}>
+          Другое
+        </Button>
+      </div>
       <Card className={'cardContainerHistory'} raised>
         <CardContent>
           <Typography gutterBottom variant="headline" component="h2">
@@ -83,8 +91,8 @@ export class MainPage extends Component<IMainPageProps, any>{
           <HistoryComponent />
         </CardContent>
       </Card>
-        <NotificationComponent />
-        <Busy loading={isLoading} />
+      <NotificationComponent />
+      <Busy loading={isLoading} />
     </div>;
   }
 }

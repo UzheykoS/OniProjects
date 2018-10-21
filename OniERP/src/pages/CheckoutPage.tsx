@@ -2,16 +2,19 @@ import { Component } from 'react';
 import * as React from 'react'
 import { connect } from 'react-redux';
 import Button from '@material-ui/core/Button';
-import { Payment, OrderType, Check } from '../utils/types';
-import { ProcessCheckout, SetPaymentType, SetOrderType, LogData, Cancel } from '../actions';
+import { Payment, OrderType, Check, SaleType } from '../utils/types';
+import { ProcessCheckout, SetPaymentType, SetOrderType, LogData, Cancel, SelectSale } from '../actions';
 import { withRouter } from 'react-router-dom'
 import Divider from '@material-ui/core/Divider';
 import Radio from '@material-ui/core/Radio';
+import FormControl from '@material-ui/core/FormControl';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Typography from '@material-ui/core/Typography';
 import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
 import Helper from '../utils/helper';
+import Select from '@material-ui/core/Select';
+import MenuItem from '@material-ui/core/MenuItem';
 
 const mapStateToProps = (state) => {
     return {
@@ -24,6 +27,7 @@ const mapDispatchToProps = (dispatch) => {
         handleCheckout: () => dispatch(ProcessCheckout()),
         setPaymentType: (type: Payment) => dispatch(SetPaymentType(type)),
         setOrderType: (type: OrderType) => dispatch(SetOrderType(type)),
+        selectSale: (sale: SaleType) => dispatch(SelectSale(sale)),
         logData: (text: string) => dispatch(LogData(text)),
         handleCancel: () => dispatch(Cancel())
     };
@@ -35,6 +39,7 @@ export interface ICheckoutPageProps {
 
     setPaymentType?: (type: Payment) => void;
     setOrderType?: (type: OrderType) => void;
+    selectSale?: (sale: SaleType) => void;
     handleCheckout?: () => void;
     handleCancel?: () => void;
     logData?: (text: string) => void;
@@ -66,6 +71,12 @@ export class CheckoutPage extends Component<ICheckoutPageProps, any>{
     handleOrderTypeChange = (type: OrderType) => {
         this.props.setOrderType(type);
         this.props.logData('checkoutPage->orderTypeChanged->' + type);
+    }   
+
+    handleSaleSelect = (ev) => {
+        const sale = ev.target.value;
+        this.props.selectSale(sale);
+        this.props.logData('checkoutPage->handleSaleSelect->' + sale);
     }
 
     calculatePrice() {
@@ -81,11 +92,12 @@ export class CheckoutPage extends Component<ICheckoutPageProps, any>{
                 Пожалуйста, создайте сначала чек
             </div>;
         }
+        const saleTypes = Helper.getArrayFromEnum(SaleType);
 
         return <div className="container">
             <Card className={'cardContainer'} raised>
                 <CardContent>
-                    <Typography gutterBottom variant="headline" component="h2">
+                    <Typography gutterBottom variant="headline" >
                         Страница выбора параметров чека
                     </Typography>
                     <Divider />
@@ -139,6 +151,28 @@ export class CheckoutPage extends Component<ICheckoutPageProps, any>{
                             }
                             label="Витрина"
                         />
+                    </div>
+                    <Divider />
+                    <div className="saleContainer">
+                        <Typography gutterBottom variant="headline" classes={{ root: '' }} style={{ paddingRight: '2rem' }}>
+                            Скидка:
+                        </Typography>
+                        <FormControl className='partnerSelectWrapper'>
+                            <Select
+                                value={check.sale}
+                                onChange={this.handleSaleSelect}
+                                inputProps={{
+                                    name: 'sale',
+                                    id: 'sale-select',
+                                }}
+                            >
+                                {
+                                    saleTypes.map(p => {
+                                        return <MenuItem key={p.id} value={p.value}>{p.value}</MenuItem>;
+                                    })
+                                }
+                            </Select>
+                        </FormControl>
                     </div>
                     <Divider />
                     <div className={'buttonsWraper'}>

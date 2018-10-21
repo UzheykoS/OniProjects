@@ -8,7 +8,7 @@ import NotFoundPage from './pages/NotFoundPage';
 import PartnersPage from './pages/PartnersPage';
 import TestComponent from './components/TestComponent';
 import scriptLoader from 'react-async-script-loader';
-import { DISCOVERY_DOCS, SCOPES, CLIENT_ID, API_KEY, SPREADSHEET_ID } from './config';
+import { DISCOVERY_DOCS, SCOPES, CLIENT_ID, API_KEY } from './config/keys';
 import AppBar from './components/AppBar';
 
 const Main = () => (
@@ -17,6 +17,7 @@ const Main = () => (
         <Route path='/check' component={CheckPage} />
         <Route path='/checkOut' component={CheckoutPage} />
         <Route path='/partners' component={PartnersPage} />
+        <Route path='/other' component={PartnersPage} />
 
         <Route path='/test' component={TestComponent} />
         <Route component={NotFoundPage} />

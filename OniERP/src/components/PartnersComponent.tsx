@@ -13,6 +13,7 @@ import MenuItem from '@material-ui/core/MenuItem';
 import TextField from '@material-ui/core/TextField';
 import Divider from '@material-ui/core/Divider';
 import { CaffeePrices, ZEPHYR_PARTNERS_PRICE } from '../utils/dictionaries';
+import Helper from '../utils/helper';
 
 const mapStateToProps = (state) => {
     return {
@@ -46,17 +47,6 @@ class PartnersComponent extends Component<IPartnersComponentProps, IPartnersComp
             macaronsQty: '',
             zephyrQty: ''
         }
-    }
-
-    getArrayFromEnum(en: any) {
-        const keys = Object.keys(en);
-        const values = keys.map(d => {
-            return {
-                id: d,
-                value: en[d]
-            }
-        })
-        return values;
     }
 
     handlePartnerSelect = (ev) => {
@@ -100,7 +90,7 @@ class PartnersComponent extends Component<IPartnersComponentProps, IPartnersComp
 
     render() {
         const { partner, macaronsQty, zephyrQty } = this.state;
-        const partners = this.getArrayFromEnum(PartnersEnum);
+        const partners = Helper.getArrayFromEnum(PartnersEnum);
 
         return <div>
             <Typography gutterBottom variant="headline" component="h2">

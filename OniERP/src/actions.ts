@@ -10,6 +10,7 @@ import {
     ADD_DESSERT,
     SET_PAYMENT_TYPE,
     SET_ORDER_TYPE,
+    SELECT_SALE,
     APPEND_DATA_FULFILLED,
     APPEND_DATA_REJECTED,
     LOG_DATA,
@@ -23,9 +24,9 @@ import {
 } from './actionTypes';
 import {
     DrinksType, DessertType, Payment, OrderType, Check,
-    ValueInputOption, InsertDataOption, ValueRenderOption, DateTimeRenderOption, Dessert, Drink
+    ValueInputOption, InsertDataOption, ValueRenderOption, DateTimeRenderOption, Dessert, Drink, SaleType
 } from './utils/types';
-import { LOGS_SPREADSHEET_ID, SPREADSHEET_ID } from './config';
+import { LOGS_SPREADSHEET_ID, SPREADSHEET_ID } from './config/keys';
 import * as moment from 'moment';
 
 export const ProcessFetchData = (spreadsheetId: string) => {
@@ -51,7 +52,8 @@ export const ProcessFetchData = (spreadsheetId: string) => {
                 drinks: [],
                 isFinished: true,
                 payment: Payment.Other,
-                type: OrderType.Other
+                type: OrderType.Other,
+                sale: SaleType.Empty
             };
             let lastOrderPayment = null;
             let lastOrderType = null;
@@ -179,22 +181,22 @@ export const ProcessCheckout = () => {
             let check: Check = state.check;
             const { log } = state;
 
-            const drinksRange = "RawDrinksData!A:F";
+            const drinksRange = "RawDrinksData!A:G";
             const drinksData = [];
             check.drinks.forEach(async d => {
                 const dateTime = moment(new Date()).format('DD.MM.YYYY HH:mm');
-                const data = [d.id, d.size, check.payment, check.type, dateTime, check.id];
+                const data = [d.id, d.size, check.payment, check.type, dateTime, check.id, check.sale];
                 drinksData.push(data);
             });
             if (drinksData.length) {
                 await dispatch(ProcessAppendData(SPREADSHEET_ID, drinksRange, drinksData));
             }
 
-            const dessertsRange = "RawDessertsData!A:H";
+            const dessertsRange = "RawDessertsData!A:I";
             const dessertsData = [];
             check.desserts.forEach(async d => {
                 const dateTime = moment(new Date()).format('DD.MM.YYYY HH:mm');
-                const data = [d.type, d.taste, d.quantity, d.size, check.payment, check.type, dateTime, check.id];
+                const data = [d.type, d.taste, d.quantity, d.size, check.payment, check.type, dateTime, check.id, check.sale];
                 dessertsData.push(data);
             });
             if (dessertsData.length) {
@@ -253,6 +255,8 @@ export const DeleteDessert = createAction(DELETE_DESSERT, (type: DessertType, ta
 export const SetPaymentType = createAction(SET_PAYMENT_TYPE, (type: Payment) => type);
 
 export const SetOrderType = createAction(SET_ORDER_TYPE, (type: OrderType) => type);
+
+export const SelectSale = createAction(SELECT_SALE, (sale: SaleType) => sale);
 
 export const itemsHasErrored = createAction(LOAD_ITEMS_REJECTED, (hasErrored: boolean) => hasErrored);
 

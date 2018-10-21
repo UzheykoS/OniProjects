@@ -15,6 +15,7 @@ import Avatar from '@material-ui/core/Avatar';
 import ListItemSecondaryAction from '@material-ui/core/ListItemSecondaryAction';
 import IconButton from '@material-ui/core/IconButton';
 import Button from '@material-ui/core/Button';
+import Helper from '../utils/helper';
 
 const mapStateToProps = (state) => {
   return {
@@ -197,17 +198,6 @@ export class DessertsComponent extends Component<IDessertsComponentProps, IDesse
     return result;
   }
 
-  getArrayFromEnum(en: any) {
-    const keys = Object.keys(en);
-    const values = keys.map(d => {
-      return {
-        id: d,
-        value: en[d]
-      }
-    })
-    return values;
-  }
-
   getDessertMixQty(value) {
     const { dessertType, dessertQuantities } = this.state;
     let result = 0;
@@ -270,10 +260,10 @@ export class DessertsComponent extends Component<IDessertsComponentProps, IDesse
     let extraOptions = [];
     switch (dessertType) {
       case DessertType.Cake:
-        dessertTastes = this.getArrayFromEnum(CakesEnum);
+        dessertTastes = Helper.getArrayFromEnum(CakesEnum);
         break;
       case DessertType.Macaron:
-        dessertTastes = this.getArrayFromEnum(MacaronsEnum);
+        dessertTastes = Helper.getArrayFromEnum(MacaronsEnum);
         extraOptions.push({
           value: MIX_MACARONS_6,
           title: MIX_MACARONS_6
@@ -288,7 +278,7 @@ export class DessertsComponent extends Component<IDessertsComponentProps, IDesse
         });
         break;
       case DessertType.Zephyr:
-        dessertTastes = this.getArrayFromEnum(ZephyrEnum);
+        dessertTastes = Helper.getArrayFromEnum(ZephyrEnum);
         extraOptions.push({
           value: MIX_ZEPHYR_8,
           title: MIX_ZEPHYR_8

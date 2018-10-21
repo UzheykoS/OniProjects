@@ -8,6 +8,7 @@ export const DELETE_DESSERT = 'DELETE_DESSERT';
 
 export const SET_PAYMENT_TYPE = 'SET_PAYMENT_TYPE';
 export const SET_ORDER_TYPE = 'SET_ORDER_TYPE';
+export const SELECT_SALE = 'SELECT_SALE';
 export const PROCESS_CHECKOUT = 'PROCESS_CHECKOUT';
 
 export const LOAD_ITEMS = 'LOAD_ITEMS';

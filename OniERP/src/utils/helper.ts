@@ -1,5 +1,5 @@
 ﻿import { MACARONS_PRICE, ZEPHYR_PRICE, DrinkPricesDict, DrinksDict, CakesPricesDict } from './dictionaries';
-import { DessertType , Dessert, Drink } from './types';
+import { DessertType, Dessert, Drink, Check, SaleType } from './types';
 
 export interface BearerToken {
     AccessToken: any;
@@ -41,8 +41,7 @@ class Helper {
         return decodeURIComponent(results[2].replace(/\+/g, " "));
     }
 
-    static getQueryVariable = (variable: string) =>
-    {
+    static getQueryVariable = (variable: string) => {
         var query = window.location.search.substring(1);
         if (!query && window.location.pathname.indexOf("%3F") > -1) {
             query = window.location.pathname.split("%3F")[1];
@@ -52,13 +51,13 @@ class Helper {
             var pair = vars[i].split("=");
             if (pair[0] == variable) {
                 var value = pair[1];
-                return value? decodeURI(value) : null;
+                return value ? decodeURI(value) : null;
             }
         }
         return (false);
     }
 
-    static calculatePrice(check) {
+    static calculatePrice(check: Check) {
         let totalPrice = 0;
         check.desserts.forEach((d: Dessert) => {
             switch (d.type) {
@@ -91,7 +90,38 @@ class Helper {
             }
         });
 
-        return totalPrice;
+        let sale = 0;
+        switch (check.sale) {
+            case SaleType.Full:
+                sale = 100;
+                break;
+            case SaleType.Ten:
+                sale = 10;
+                break;
+            case SaleType.Twenty:
+                sale = 20;
+                break;
+            case SaleType.Fourty:
+                sale = 40;
+                break;
+            case SaleType.Empty:
+            default:
+                break;
+
+        }
+
+        return totalPrice * (100 - sale) / 100;
+    }
+
+    static getArrayFromEnum(en: any) {
+        const keys = Object.keys(en);
+        const values = keys.map(d => {
+            return {
+                id: d,
+                value: en[d]
+            }
+        })
+        return values;
     }
 }
 
