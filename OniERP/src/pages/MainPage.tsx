@@ -80,7 +80,7 @@ export class MainPage extends Component<IMainPageProps, any>{
       </Card>
       <div className='buttonApplyWraper'>
         <Button component={OtherLink} variant="contained" color="secondary" onClick={this.onOtherClick}>
-          Другое
+          Другие расходы
         </Button>
       </div>
       <Card className={'cardContainerHistory'} raised>

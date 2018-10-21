@@ -6,6 +6,7 @@ import CheckPage from './pages/CheckPage';
 import CheckoutPage from './pages/CheckoutPage';
 import NotFoundPage from './pages/NotFoundPage';
 import PartnersPage from './pages/PartnersPage';
+import OtherPage from './pages/OtherPage';
 import TestComponent from './components/TestComponent';
 import scriptLoader from 'react-async-script-loader';
 import { DISCOVERY_DOCS, SCOPES, CLIENT_ID, API_KEY } from './config/keys';
@@ -17,7 +18,7 @@ const Main = () => (
         <Route path='/check' component={CheckPage} />
         <Route path='/checkOut' component={CheckoutPage} />
         <Route path='/partners' component={PartnersPage} />
-        <Route path='/other' component={PartnersPage} />
+        <Route path='/other' component={OtherPage} />
 
         <Route path='/test' component={TestComponent} />
         <Route component={NotFoundPage} />

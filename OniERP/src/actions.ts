@@ -23,7 +23,7 @@ import {
     SHOW_NOTIFICATION
 } from './actionTypes';
 import {
-    DrinksType, DessertType, Payment, OrderType, Check,
+    DrinksType, DessertType, Payment, OrderType, Check, PaymentTypeEnum,
     ValueInputOption, InsertDataOption, ValueRenderOption, DateTimeRenderOption, Dessert, Drink, SaleType
 } from './utils/types';
 import { LOGS_SPREADSHEET_ID, SPREADSHEET_ID } from './config/keys';
@@ -230,6 +230,27 @@ export const ProcessPartnersOrderSubmit = (partner: string, macQty: number, zepQ
             await dispatch(ProcessAppendData(SPREADSHEET_ID, partnersRange, partnersData));
             await ProcessLog(JSON.stringify(partnersData));
             await dispatch(ShowNotification(0, 'Заказ сохранён!'));
+        }
+        catch (ex) {
+            dispatch(itemsAppendErrored('Ошибка. Проверьте, что вы вошли в систему.'));
+            console.log(ex);
+            throw Error(ex);
+        }
+        finally {
+            dispatch(itemsIsLoading(false));
+        }
+    };
+};
+
+export const ProcessOtherPaymentSubmit = (paymentType: PaymentTypeEnum, price: number, notes: string) => {
+    return async (dispatch) => {
+        dispatch(itemsIsLoading(true));
+        try {
+            const range = "OtherPayments!A:D";
+            const data = [[paymentType, price, notes, moment(new Date()).format('DD.MM.YYYY HH:mm')]];
+            await dispatch(ProcessAppendData(SPREADSHEET_ID, range, data));
+            await ProcessLog(JSON.stringify(data));
+            await dispatch(ShowNotification(0, 'Платёж сохранён!'));
         }
         catch (ex) {
             dispatch(itemsAppendErrored('Ошибка. Проверьте, что вы вошли в систему.'));

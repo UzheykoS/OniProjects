@@ -1,7 +1,7 @@
 import { Component } from 'react';
 import * as React from 'react'
 import { connect } from 'react-redux';
-import PartnersComponent from '../components/PartnersComponent';
+import OtherComponent from '../components/OtherComponent';
 import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
 
@@ -25,7 +25,7 @@ export class OtherPage extends Component<IOtherPageProps, any>{
     return <div>
       <Card className={'cardContainer'} raised>
         <CardContent>          
-          <PartnersComponent />
+          <OtherComponent />
         </CardContent>
       </Card>
     </div>;

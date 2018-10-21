@@ -145,3 +145,7 @@ export const MIX_MACARONS_24 = 'Набор на 24 шт.';
 
 export const MIX_ZEPHYR_8 = 'Набор на 8 шт.';
 export const MIX_ZEPHYR_16 = 'Набор на 16 шт.';
+
+export enum PaymentTypeEnum {
+    Other = "Другое"
+}
