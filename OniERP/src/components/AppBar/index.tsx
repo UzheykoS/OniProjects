@@ -17,6 +17,18 @@ const options = [
         title: 'Домой',
         route: '/'
     },
+    {
+        title: 'Розничный заказ',
+        route: '/check'
+    },
+    {
+        title: 'Оптовый заказ',
+        route: '/partners'
+    },
+    {
+        title: 'Расходы',
+        route: '/other'
+    },
     // {
     //     title: 'Test',
     //     route: '/test'

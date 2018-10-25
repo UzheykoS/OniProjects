@@ -95,11 +95,11 @@ export class DrinksComponent extends Component<IDrinksComponentProps, IDrinksCom
                 value: DrinksType[d]
             }
         })
-
+        
         return <div className='drinksWrapper'>
             <List className='drinksListWrapper'>
                 {drinks.map(d => (
-                    <ListItem classes={{ container: 'listItemContainer' }} button onClick={() => this.handleDrinkSelect(d.value)} key={d.id} >
+                    <ListItem divider button onClick={() => this.handleDrinkSelect(d.value)} key={d.id} >
                         <ListItemAvatar>
                             <Avatar className='drinkAvatar'>
                                 {d.value.charAt(0).toUpperCase()}
@@ -112,7 +112,7 @@ export class DrinksComponent extends Component<IDrinksComponentProps, IDrinksCom
             <div className='buttonApplyWraper'>
                 <Button variant="contained" color="secondary" onClick={this.handleClose}>
                     Отмена
-                    </Button>
+                </Button>
             </div>
         </div>;
     };
@@ -124,7 +124,7 @@ export class DrinksComponent extends Component<IDrinksComponentProps, IDrinksCom
         return <div>
             <List>
                 {drinkSizes.map(d => (
-                    <ListItem classes={{ container: 'listItemContainer' }} button onClick={() => this.handleDrinkSizeSelect(d)} key={d} >
+                    <ListItem divider button onClick={() => this.handleDrinkSizeSelect(d)} key={d} >
                         <ListItemAvatar>
                             <Avatar className='drinkAvatar'>
                                 {d.charAt(0).toUpperCase()}
@@ -133,15 +133,15 @@ export class DrinksComponent extends Component<IDrinksComponentProps, IDrinksCom
                         <ListItemText primary={d} />
                     </ListItem>
                 ))}
-                <div className='buttonApplyWraper'>
-                    <Button classes={{ root: 'button' }} variant="contained" color="default" title="Back" onClick={this.handleBack}>
-                        Назад
-                    </Button>
-                    <Button variant="contained" color="secondary" onClick={this.handleClose}>
-                        Отмена
-                    </Button>
-                </div>
             </List>
+            <div className='buttonApplyWraper'>
+                <Button classes={{ root: 'button' }} variant="contained" color="default" title="Back" onClick={this.handleBack}>
+                    Назад
+                </Button>
+                <Button variant="contained" color="secondary" onClick={this.handleClose}>
+                    Отмена
+                </Button>
+            </div>
         </div>;
     };
 

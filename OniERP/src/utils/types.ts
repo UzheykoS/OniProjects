@@ -51,7 +51,7 @@ export enum MacaronsEnum {
     ParmesanFigue = "Пармезан - Инжир",
     StrawberryCheesecake = "Клубничный Чизкейк",
     Raspberry = "Малина",
-    CherryTonko = "Вишня - Бобы Тонко",
+    CherryTonko = "Вишня - Бобы Тонка",
     Oblepiha = "Облепиха",
     Currant = "Смородина",
     LavenderBlackberry = "Лаванда - Черника",
@@ -78,27 +78,27 @@ export enum CakesEnum {
 }
 
 export enum DrinksType {
-    Cappucino = "Капучино",
-    Latte = "Латте",
-    FlatWhite = "Флет Вайт",
-    Raf = "Раф",
+    Cacao = "Какао",
     Americano = "Американо",
     AmericanoMilk = "Американо с молоком",
-    LongBlack = "Лонг блэк",
-    Espresso = "Эспрессо",
-    Doppio = "Доппио",    
-    Machiato = "Макиато",
+    Cappucino = "Капучино",
+    FlatWhite = "Флет Вайт",
+    Latte = "Латте",
+    Raf = "Раф",
     LatteLavender = "Латте Лаванда",
     LatteCaramel = "Латте Карамель",
     LatteOrange = "Латте Апельсин",
-    Cacao = "Какао",
+    Espresso = "Эспрессо",
+    Doppio = "Доппио",
+    LongBlack = "Лонг блэк",
+    Machiato = "Макиато",
     TeaGreen = "Чай Зелёный",
     TeaBlack = "Чай Чёрный",
     TeaHerbal = "Чай Травяной",
     SpeacialTeaPearLime = "Чай Груша-Лайм",
     SpecialTeaOrange = "Чай Апельсин-Облепиха",
     SpecialTeaGinger = "Чай Малина-Имбирь",
-    HotChocolate = "Гарячий шоколад",
+    HotChocolate = "Горячий шоколад",
     LemonadeStrawberry = "Лимонад Клубника",
     LemonadeCitrus = "Лимонад Цитрус",
     LemonadePassion = "Лимонад Маракуйя",
@@ -114,7 +114,8 @@ export enum PartnersEnum {
     KlassnaKava = "Класна кава",
     CoffeeAndTheCity = "Coffee and the city",
     IlMio = "Il Mio",
-    StudioCoffee = "Студия кофе"
+    StudioCoffee = "Студия кофе",
+    Other = "Другое"
 }
 
 export enum ValueInputOption {
@@ -147,5 +148,9 @@ export const MIX_ZEPHYR_8 = 'Набор на 8 шт.';
 export const MIX_ZEPHYR_16 = 'Набор на 16 шт.';
 
 export enum PaymentTypeEnum {
+    Package = "Упаковка",
+    Household = "Коммуналка",
+    Suppliers = "Поставщики",
+    Delivery = "Доставка",
     Other = "Другое"
 }

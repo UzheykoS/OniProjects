@@ -235,7 +235,7 @@ export class DessertsComponent extends Component<IDessertsComponentProps, IDesse
     return <div>
       <List>
         {desserts.map(d => (
-          <ListItem classes={{ root: 'listItemContainer' }} button onClick={() => this.handleDessertSelect(d.value)} key={d.id} >
+          <ListItem divider button onClick={() => this.handleDessertSelect(d.value)} key={d.id} >
             <ListItemAvatar>
               <Avatar className='macaronAvatar' style={{ backgroundColor: '#dd73e2' }}>
                 {d.value.charAt(0).toUpperCase()}
@@ -309,7 +309,7 @@ export class DessertsComponent extends Component<IDessertsComponentProps, IDesse
       <List className='dessertsTastesListWrapper'>
         {
           dessertTastes.map(d => (
-            <ListItem classes={{ container: 'listItemContainer' }} button onClick={() => this.handleDessertTasteSelect(d.value)} key={d.id} >
+            <ListItem divider button onClick={() => this.handleDessertTasteSelect(d.value)} key={d.id} >
               <ListItemAvatar>
                 <Avatar className='macaronAvatar' style={{ backgroundColor: dessertType === DessertType.Macaron ? MacaronsColors[d.value] : ZephyrColors[d.value] }}>
                   {d.value.charAt(0).toUpperCase()}
@@ -328,7 +328,7 @@ export class DessertsComponent extends Component<IDessertsComponentProps, IDesse
         }
         {
           extraOptions.map(o => (
-            <ListItem classes={{ container: 'listItemContainer' }} button onClick={() => this.handleDessertMixSelect(o.value)} key={o.value} >
+            <ListItem divider button onClick={() => this.handleDessertMixSelect(o.value)} key={o.value} >
               <ListItemAvatar>
                 <Avatar className='macaronAvatar' style={{ backgroundColor: '#dd73e2' }}>
                   {o.avatar}
@@ -359,7 +359,7 @@ export class DessertsComponent extends Component<IDessertsComponentProps, IDesse
     return <div>
       <List>
         {dessertSizes.map(d => (
-          <ListItem classes={{ container: 'listItemContainer' }} button onClick={() => this.handleDessertSizeOrQuantitySelect(d)} key={d} >
+          <ListItem divider button onClick={() => this.handleDessertSizeOrQuantitySelect(d)} key={d} >
             <ListItemAvatar>
               <Avatar className='avatar'>
                 +

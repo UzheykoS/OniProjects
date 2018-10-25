@@ -221,12 +221,12 @@ export const ProcessCheckout = () => {
     };
 };
 
-export const ProcessPartnersOrderSubmit = (partner: string, macQty: number, zepQty: number) => {
+export const ProcessPartnersOrderSubmit = (partner: string, macQty: number, zepQty: number, buyer?: string, macaronsPrice?: number, zephyrPrice?: number) => {
     return async (dispatch) => {
         dispatch(itemsIsLoading(true));
         try {
-            const partnersRange = "RawPartnersData!A:D";
-            const partnersData = [[partner, macQty, zepQty, moment(new Date()).format('DD.MM.YYYY HH:mm')]];
+            const partnersRange = "RawPartnersData!A:G";
+            const partnersData = [[partner, macQty, zepQty, moment(new Date()).format('DD.MM.YYYY HH:mm'), buyer, macaronsPrice, zephyrPrice]];
             await dispatch(ProcessAppendData(SPREADSHEET_ID, partnersRange, partnersData));
             await ProcessLog(JSON.stringify(partnersData));
             await dispatch(ShowNotification(0, 'Заказ сохранён!'));
