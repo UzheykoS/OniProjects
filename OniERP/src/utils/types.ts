@@ -115,6 +115,7 @@ export enum PartnersEnum {
     CoffeeAndTheCity = "Coffee and the city",
     IlMio = "Il Mio",
     StudioCoffee = "Студия кофе",
+    Ptaha = "Ptaha",
     Other = "Другое"
 }
 
