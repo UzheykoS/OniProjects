@@ -68,17 +68,17 @@ export class Ingredients extends React.Component<any, IIngredientsState>{
             pending: true
         })
 
-        for (let i of ingredients.filter(ing => ing.status == Status.Removed)) {
+        for (let i of ingredients.filter(ing => ing.status === Status.Removed)) {
             await Helper.deleteIngredient(i.id);
         }
 
-        for (let i of ingredients.filter(ing => ing.status == Status.Changed)) {
+        for (let i of ingredients.filter(ing => ing.status === Status.Changed)) {
             if (i.id) {
                 await Helper.putIngredient(i.id, i);
             }
         }
 
-        const newIngredients = ingredients.filter(i => i.status == Status.Added);
+        const newIngredients = ingredients.filter(i => i.status === Status.Added);
         if (newIngredients.length) {
             await Helper.saveIngredients(newIngredients);    
         }          
@@ -91,8 +91,10 @@ export class Ingredients extends React.Component<any, IIngredientsState>{
     onNameChanged = (ev: any, ingredient: Ingredient) => {
         const { ingredients } = this.state;
 
-        ingredients.find(i => i == ingredient).name = ev.target.value;
-        ingredients.find(i => i == ingredient).status = Status.Changed;
+        ingredients.find(i => i === ingredient).name = ev.target.value;
+        if (ingredient.status !== Status.Added) {
+            ingredients.find(i => i === ingredient).status = Status.Changed;
+        }        
 
         this.setState({
             ingredients
@@ -102,8 +104,10 @@ export class Ingredients extends React.Component<any, IIngredientsState>{
     onPriceChanged = (ev: any, ingredient: Ingredient) => {
         const { ingredients } = this.state;
 
-        ingredients.find(i => i == ingredient).price = ev.target.value;
-        ingredients.find(i => i == ingredient).status = Status.Changed;
+        ingredients.find(i => i === ingredient).price = ev.target.value;
+        if (ingredient.status !== Status.Added) {
+            ingredients.find(i => i === ingredient).status = Status.Changed;
+        }
 
         this.setState({
             ingredients
@@ -113,8 +117,10 @@ export class Ingredients extends React.Component<any, IIngredientsState>{
     onSupplierChanged = (ev: any, ingredient: Ingredient) => {
         const { ingredients } = this.state;
 
-        ingredients.find(i => i == ingredient).supplier = ev.target.value;
-        ingredients.find(i => i == ingredient).status = Status.Changed;
+        ingredients.find(i => i === ingredient).supplier = ev.target.value;
+        if (ingredient.status !== Status.Added) {
+            ingredients.find(i => i === ingredient).status = Status.Changed;
+        }
 
         this.setState({
             ingredients
@@ -125,7 +131,7 @@ export class Ingredients extends React.Component<any, IIngredientsState>{
         const { ingredients } = this.state;
 
         if (ingredient.id) {
-            ingredients.find(i => i == ingredient).status = Status.Removed;
+            ingredients.find(i => i === ingredient).status = Status.Removed;
         }
         else {
             const index = ingredients.indexOf(ingredient);
