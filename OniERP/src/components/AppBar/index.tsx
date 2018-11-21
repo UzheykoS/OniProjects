@@ -1,6 +1,5 @@
 import * as React from 'react'
 import { Component } from 'react';
-import { withStyles } from '@material-ui/core/styles';
 import AppBarComponent from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
@@ -28,11 +27,7 @@ const options = [
     {
         title: 'Расходы',
         route: '/other'
-    },
-    // {
-    //     title: 'Test',
-    //     route: '/test'
-    // }
+    }
 ];
 
 const ITEM_HEIGHT = 48;

@@ -16,7 +16,7 @@ module.exports = env => {
         {
             entry: ['@babel/polyfill', APP_DIR],
             output: {
-                filename: "bundle.js",
+                filename: "[name].bundle.js",
                 path: path.join(APP_DIR, '..', 'dist')
             },
             devtool: 'inline-source-map',

@@ -7,7 +7,6 @@ import CheckoutPage from './pages/CheckoutPage';
 import NotFoundPage from './pages/NotFoundPage';
 import PartnersPage from './pages/PartnersPage';
 import OtherPage from './pages/OtherPage';
-import TestComponent from './components/TestComponent';
 import scriptLoader from 'react-async-script-loader';
 import AppBar from './components/AppBar';
 
@@ -21,7 +20,6 @@ const Main = () => (
         <Route path='/partners' component={PartnersPage} />
         <Route path='/other' component={OtherPage} />
 
-        <Route path='/test' component={TestComponent} />
         <Route component={NotFoundPage} />
     </Switch>
 )

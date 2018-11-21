@@ -34,7 +34,6 @@ export enum VariantIcon {
 }
 
 export interface INotificationComponentProps {
-    // classes: any;
     message: string;
     type: VariantIcon;
 

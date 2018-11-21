@@ -12,7 +12,7 @@ const prodConfiguration = env => {
   return merge([
     {
       output: {
-        filename: "bundle.js",
+        filename: "[name].bundle.js",
         path: path.join(APP_DIR, 'build')
       },
       mode: 'production',

@@ -3,6 +3,7 @@ import { withStyles } from '@material-ui/core/styles';
 import ButtonBase from '@material-ui/core/ButtonBase';
 import Typography from '@material-ui/core/Typography';
 import styles from './styles.js';
+import { StyledComponentProps } from '@material-ui/core';
 
 const LargeButton = (props) => {
     const { classes, component, onClick, title, imageUrl } = props;
