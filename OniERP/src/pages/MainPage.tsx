@@ -14,9 +14,6 @@ import Typography from '@material-ui/core/Typography';
 import { SPREADSHEET_ID } from '../config/keys';
 import Button from '@material-ui/core/Button';
 
-const imageUrl = require('../../public/images/main_icon.jpg');
-const partnerUrl = require('../../public/images/partners_icon.jpg');
-
 const mapStateToProps = (state) => {
   return {
     history: state.history,
@@ -70,12 +67,12 @@ export class MainPage extends Component<IMainPageProps, any>{
     return <div className="container">
       <Card className={'cardContainer'} raised>
         <CardContent classes={{ root: 'cardRoot' }}>
-          <LargeButton title={'РОЗНИЧНЫЙ ЗАКАЗ'} component={CkeckLink} imageUrl={imageUrl} onClick={this.onNewCheckClick} />
+          <LargeButton title={'РОЗНИЧНЫЙ ЗАКАЗ'} component={CkeckLink} imageUrl={'/images/main_icon.jpg'} onClick={this.onNewCheckClick} />
         </CardContent>
       </Card>
       <Card className={'cardContainer'} raised>
         <CardContent classes={{ root: 'cardRoot' }}>
-          <LargeButton title={'ОПТОВЫЙ ЗАКАЗ'} component={PartnersLink} imageUrl={partnerUrl} onClick={this.onNewPartnersCheckClick} />
+          <LargeButton title={'ОПТОВЫЙ ЗАКАЗ'} component={PartnersLink} imageUrl={'/images/partners_icon.jpg'} onClick={this.onNewPartnersCheckClick} />
         </CardContent>
       </Card>
       <div className='buttonApplyWraper'>

@@ -7,8 +7,6 @@ import initialState from './store/initialState';
 import { HashRouter as Router } from 'react-router-dom';
 import App from './app';
 import 'typeface-roboto';
-require('../public/images/favicon.png');
-// require("babel-polyfill");
 
 const store = configureStore(initialState);
 

@@ -21,9 +21,6 @@ import IconButton from '@material-ui/core/IconButton';
 import { DeleteDessert, DeleteDrink } from '../actions';
 import Helper from '../utils/helper';
 
-const dessertsImage = require('../../public/images/desserts_icon.jpg');
-const drinksImage = require('../../public/images/drinks_icon.jpg');
-
 const mapStateToProps = (state) => {
     return {
         check: state.check
@@ -160,10 +157,10 @@ class NewOrderComponent extends Component<INewOrderComponentProps, INewOrderComp
             {`Чек #${check.id}`}
             <div className='newOrderButtonsWrapper'>
                 <div className='newOrderButton'>
-                    <LargeButton title={'ДЕСЕРТЫ'} imageUrl={dessertsImage} onClick={this.addDessertClick} />
+                    <LargeButton title={'ДЕСЕРТЫ'} imageUrl={'/images/desserts_icon.jpg'} onClick={this.addDessertClick} />
                 </div>
                 <div className='newOrderButton'>
-                    <LargeButton title={'НАПИТКИ'} imageUrl={drinksImage} onClick={this.addDrinkClick} />
+                    <LargeButton title={'НАПИТКИ'} imageUrl={'/images/drinks_icon.jpg'} onClick={this.addDrinkClick} />
                 </div>
             </div>
             <Divider />

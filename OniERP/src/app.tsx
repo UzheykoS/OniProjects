@@ -1,4 +1,4 @@
-import { Switch, Route, Redirect } from 'react-router-dom';
+import { Switch, Route } from 'react-router-dom';
 import { Component } from 'react';
 import * as React from 'react';
 import MainPage from './pages/MainPage';
@@ -9,8 +9,9 @@ import PartnersPage from './pages/PartnersPage';
 import OtherPage from './pages/OtherPage';
 import TestComponent from './components/TestComponent';
 import scriptLoader from 'react-async-script-loader';
-import { DISCOVERY_DOCS, SCOPES, CLIENT_ID, API_KEY } from './config/keys';
 import AppBar from './components/AppBar';
+
+import { DISCOVERY_DOCS, SCOPES, CLIENT_ID, API_KEY } from './config/keys';
 
 const Main = () => (
     <Switch>

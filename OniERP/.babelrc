@@ -1,27 +1,12 @@
 {
   "presets": [
-    ["env", {
-      "modules": false,
-      "targets": {
-        "ie": "11"
-      },
-      "production": {
-        "plugins": ["transform-react-remove-prop-types"]
-      }
-    }], "react"
+    "@babel/preset-env",
+    "@babel/preset-react"
   ],
   "plugins": [
-    "transform-object-rest-spread",
-    "babel-plugin-transform-class-properties",
-    "syntax-dynamic-import",
-    "syntax-trailing-function-commas",
-    [
-      "babel-plugin-transform-runtime",
-      {
-        "helpers": true,
-        "polyfill": false,
-        "regenerator": true
-      }
-    ]
+    "@babel/plugin-syntax-dynamic-import",
+    "@babel/plugin-proposal-class-properties",
+    "@babel/plugin-proposal-export-namespace-from",
+    "@babel/plugin-proposal-throw-expressions"
   ]
 }
