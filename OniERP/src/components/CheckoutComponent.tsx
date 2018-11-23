@@ -91,6 +91,11 @@ class CheckoutComponent extends Component<ICheckoutComponentProps, ICheckoutComp
         return Helper.calculatePrice(check);
     }
 
+    calculateBlackFridayPrice() {
+        const { check } = this.props;
+        return Helper.calculateBlackFridayPrice(check);
+    }    
+
     render() {
         const { check } = this.props;
 
@@ -106,6 +111,12 @@ class CheckoutComponent extends Component<ICheckoutComponentProps, ICheckoutComp
                 Параметры чека
             </Typography>
             <Divider />
+            <div className="checkoutBlackFridayGroup">
+                <div className="blackFridayTitle">
+                    <img src={'/images/black_friday.jpg'} />
+                </div>
+                <div className="blackFridayPrice">: {this.calculateBlackFridayPrice()} грн.</div>
+            </div><Divider />
             <div className="checkoutControlGroup">
                 <Typography gutterBottom variant="subheading">
                     Итого: {this.calculatePrice()} грн.

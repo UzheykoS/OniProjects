@@ -28,6 +28,7 @@ import {
 } from './utils/types';
 import { LOGS_SPREADSHEET_ID, SPREADSHEET_ID } from './config/keys';
 import * as moment from 'moment';
+const BLACK_FRIDAY_DATES = [23, 24];
 
 export const ProcessFetchData = (spreadsheetId: string) => {
     return async (dispatch) => {
@@ -195,8 +196,10 @@ export const ProcessCheckout = () => {
             const dessertsRange = "RawDessertsData!A:I";
             const dessertsData = [];
             check.desserts.forEach(async d => {
-                const dateTime = moment(new Date()).format('DD.MM.YYYY HH:mm');
-                const data = [d.type, d.taste, d.quantity, d.size, check.payment, check.type, dateTime, check.id, check.sale];
+                const now = new Date();
+                const dateTime = moment(now).format('DD.MM.YYYY HH:mm');
+                const sale = BLACK_FRIDAY_DATES.indexOf(now.getDate()) > -1 ? '20 %' : check.sale;
+                const data = [d.type, d.taste, d.quantity, d.size, check.payment, check.type, dateTime, check.id, sale];
                 dessertsData.push(data);
             });
             if (dessertsData.length) {

@@ -113,6 +113,44 @@ class Helper {
         return totalPrice * (100 - sale) / 100;
     }
 
+    static calculateBlackFridayPrice(check: Check) {
+        let totalDessertsPrice = 0;
+        check.desserts.forEach((d: Dessert) => {
+            switch (d.type) {
+                case DessertType.Cake:
+                    const cakePrices = CakesPricesDict[d.taste];
+                    if (d.size === '18 см') {
+                        totalDessertsPrice += cakePrices[0];
+                    } else if (d.size === '22 см') {
+                        totalDessertsPrice += cakePrices[1];
+                    }
+                    break;
+                case DessertType.Macaron:
+                    totalDessertsPrice += MACARONS_PRICE * d.quantity;
+                    break;
+                case DessertType.Zephyr:
+                    totalDessertsPrice += ZEPHYR_PRICE * d.quantity;
+                    break;
+                default:
+                    break;
+            }
+        });
+
+        let totalDrinksPrice = 0;
+        check.drinks.forEach((d: Drink) => {
+            const prices = DrinkPricesDict[d.id];
+            if (prices.length === 1) {
+                totalDrinksPrice += prices[0];
+            } else {
+                const index = DrinksDict[d.id].findIndex(x => x === d.size);
+                totalDrinksPrice += prices[index];
+            }
+        });
+
+        const sale = 20;
+        return totalDessertsPrice * (100 - sale) / 100 + totalDrinksPrice;
+    }
+
     static getArrayFromEnum(en: any) {
         const keys = Object.keys(en);
         const values = keys.map(d => {
