@@ -198,8 +198,8 @@ export const ProcessCheckout = () => {
             check.desserts.forEach(async d => {
                 const now = new Date();
                 const dateTime = moment(now).format('DD.MM.YYYY HH:mm');
-                const sale = BLACK_FRIDAY_DATES.indexOf(now.getDate()) > -1 ? '20 %' : check.sale;
-                const data = [d.type, d.taste, d.quantity, d.size, check.payment, check.type, dateTime, check.id, sale];
+                // const sale = BLACK_FRIDAY_DATES.indexOf(now.getDate()) > -1 ? '20 %' : check.sale;
+                const data = [d.type, d.taste, d.quantity, d.size, check.payment, check.type, dateTime, check.id, check.sale];
                 dessertsData.push(data);
             });
             if (dessertsData.length) {

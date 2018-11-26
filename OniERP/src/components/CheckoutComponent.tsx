@@ -110,13 +110,14 @@ class CheckoutComponent extends Component<ICheckoutComponentProps, ICheckoutComp
             <Typography gutterBottom variant="title" >
                 Параметры чека
             </Typography>
-            <Divider />
+            {/* <Divider />
             <div className="checkoutBlackFridayGroup">
                 <div className="blackFridayTitle">
                     <img src={'/images/black_friday.jpg'} />
                 </div>
                 <div className="blackFridayPrice">: {this.calculateBlackFridayPrice()} грн.</div>
-            </div><Divider />
+            </div> */}
+            <Divider />
             <div className="checkoutControlGroup">
                 <Typography gutterBottom variant="subheading">
                     Итого: {this.calculatePrice()} грн.
