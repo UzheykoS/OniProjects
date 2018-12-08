@@ -8,7 +8,7 @@ import ListItemAvatar from '@material-ui/core/ListItemAvatar';
 import ListItemText from '@material-ui/core/ListItemText';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import Dialog from '@material-ui/core/Dialog';
-import { DessertType, MacaronsEnum, CakesEnum, ZephyrEnum, 
+import { DessertType, MacaronsEnum, CakesEnum, ZephyrEnum, ChouxEnum,
   MIX_MACARONS_6, MIX_MACARONS_12, MIX_MACARONS_24, MIX_ZEPHYR_8, MIX_ZEPHYR_16 } from '../utils/types';
 import { DessertsDict, MacaronsColors, ZephyrColors } from '../utils/dictionaries';
 import Avatar from '@material-ui/core/Avatar';
@@ -293,6 +293,9 @@ export class DessertsComponent extends Component<IDessertsComponentProps, IDesse
           avatar: 16
         });
         break;
+      case DessertType.Choux:
+        dessertTastes = Helper.getArrayFromEnum(ChouxEnum);
+        break;
       default:
         dessertTastes = [];
         break;
@@ -330,7 +333,7 @@ export class DessertsComponent extends Component<IDessertsComponentProps, IDesse
           extraOptions.map(o => (
             <ListItem divider button onClick={() => this.handleDessertMixSelect(o.value)} key={o.value} >
               <ListItemAvatar>
-                <Avatar className='macaronAvatar' style={{ backgroundColor: '#dd73e2' }}>
+                <Avatar className='macaronAvatar' style={{ backgroundColor: '#B3B3B3' }}>
                   {o.avatar}
                 </Avatar>
               </ListItemAvatar>

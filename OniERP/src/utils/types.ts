@@ -35,7 +35,8 @@ export enum OrderType {
 export enum DessertType {
     Macaron = 'Макаронс',
     Zephyr = 'Зефир',
-    Cake = 'Торт'
+    Cake = 'Торт',
+    Choux = 'Шу'
 }
 
 export enum SaleType {
@@ -47,19 +48,20 @@ export enum SaleType {
 }
 
 export enum MacaronsEnum {
+    CoffeeCaramel = "Кофе - Солёная Карамель",
+    MandarinVanil = "Мандарин - Ваниль",
     DorBluePear = "Доб-Блю - Груша",
     ParmesanFigue = "Пармезан - Инжир",
     StrawberryCheesecake = "Клубничный Чизкейк",
     Raspberry = "Малина",
     CherryTonko = "Вишня - Бобы Тонка",
     Oblepiha = "Облепиха",
-    Currant = "Смородина",
-    LavenderBlackberry = "Лаванда - Черника",
+    Currant = "Смородина",    
     MangoPassion = "Манго - Маракуйя",
-    CoffeeCaramel = "Кофе - Солёная Карамель",
     Chocolate = "Шоколад",
     Pistachio = "Фисташка",
-    LimeBasil = "Лайм - Базилик" 
+    LavenderBlackberry = "Лаванда - Черника",
+    LimeBasil = "Лайм - Базилик"
 }
 
 export enum ZephyrEnum {
@@ -75,6 +77,16 @@ export enum CakesEnum {
     Soul = "Soul",
     Pink = "Pink",
     Infinity = "Infinity"
+}
+
+export enum ChouxEnum {
+    SaltedCaramel = 'Солёная карамель',
+    LemonStrawberry = 'Лимон - Клубника',
+    VanillaPeach = 'Ваниль - Персик',
+    ChocolateCherry = 'Шоколад - Вишня',
+    CoconutMango = 'Манго - Кокос',
+    PistachioOrange = 'Фисташка - Апельсин',
+    RaspberryRose = 'Малина - Личи - Роза'
 }
 
 export enum DrinksType {
@@ -112,11 +124,11 @@ export enum PartnersEnum {
     CubaCoffee = "Cuba Coffee",
     Progress = "Progress",
     KlassnaKava = "Класна кава",
-    CoffeeAndTheCity = "Coffee and the city",
     IlMio = "Il Mio",
     StudioCoffee = "Студия кофе",
     Ptaha = "Ptaha",
     StarKava = "StarKава",
+    Parle = "Parle",
     Other = "Другое"
 }
 

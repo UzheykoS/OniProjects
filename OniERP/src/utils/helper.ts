@@ -1,4 +1,4 @@
-﻿import { MACARONS_PRICE, ZEPHYR_PRICE, DrinkPricesDict, DrinksDict, CakesPricesDict } from './dictionaries';
+﻿import { MACARONS_PRICE, ZEPHYR_PRICE, CHOUX_PRICE, DrinkPricesDict, DrinksDict, CakesPricesDict } from './dictionaries';
 import { DessertType, Dessert, Drink, Check, SaleType } from './types';
 
 export interface BearerToken {
@@ -74,6 +74,9 @@ class Helper {
                     break;
                 case DessertType.Zephyr:
                     totalPrice += ZEPHYR_PRICE * d.quantity;
+                    break;
+                case DessertType.Choux:
+                    totalPrice += CHOUX_PRICE * d.quantity;
                     break;
                 default:
                     break;

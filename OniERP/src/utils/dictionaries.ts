@@ -67,7 +67,6 @@ CaffeePrices[PartnersEnum.FirstPoint] = 19;
 CaffeePrices[PartnersEnum.CubaCoffee] = 19;
 CaffeePrices[PartnersEnum.Progress] = 20;
 CaffeePrices[PartnersEnum.KlassnaKava] = 19;
-CaffeePrices[PartnersEnum.CoffeeAndTheCity] = 19;
 CaffeePrices[PartnersEnum.IlMio] = 19;
 CaffeePrices[PartnersEnum.StudioCoffee] = 20;
 CaffeePrices[PartnersEnum.Ptaha] = 20;
@@ -85,6 +84,8 @@ export const ZEPHYR_PARTNERS_PRICE = 11;
 
 export const MACARONS_PRICE = 28;
 
+export const CHOUX_PRICE = 35;
+
 export const MacaronsColors: { [id: string] : string } = {};
 MacaronsColors[MacaronsEnum.DorBluePear] = '#b7e4f7';
 MacaronsColors[MacaronsEnum.ParmesanFigue] = '#fcf7e8';
@@ -96,9 +97,10 @@ MacaronsColors[MacaronsEnum.Currant] = '#bc45c6';
 MacaronsColors[MacaronsEnum.LavenderBlackberry] = '#b587ff';
 MacaronsColors[MacaronsEnum.MangoPassion] = '#ffdd87';
 MacaronsColors[MacaronsEnum.CoffeeCaramel] = '#a87301';
-MacaronsColors[MacaronsEnum.Chocolate] = '#492908';
+MacaronsColors[MacaronsEnum.Chocolate] = '#853c13';
 MacaronsColors[MacaronsEnum.Pistachio] = '#85dd93';
 MacaronsColors[MacaronsEnum.LimeBasil] = '#9ff25c';
+MacaronsColors[MacaronsEnum.MandarinVanil] = '#FF8200';
 
 export const ZephyrColors: { [id: string] : string } = {};
 ZephyrColors[ZephyrEnum.Apple] = '#fffbf2';
