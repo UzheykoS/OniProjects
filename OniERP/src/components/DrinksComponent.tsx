@@ -12,6 +12,8 @@ import { DrinksType } from '../utils/types';
 import { DrinksDict } from '../utils/dictionaries';
 import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
+import ListItemSecondaryAction from '@material-ui/core/ListItemSecondaryAction';
+import IconButton from '@material-ui/core/IconButton';
 
 const mapStateToProps = (state) => {
     return {
@@ -20,13 +22,13 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        addDrink: (type: DrinksType, size: string) => dispatch(AddDrink(type, size)),
+        addDrink: (type: DrinksType | string, size: string, quantity: number) => dispatch(AddDrink(type, size, quantity)),
         logData: (text: string) => dispatch(LogData(text))
     };
 };
 
 export interface IDrinksComponentProps {
-    addDrink?: (type: DrinksType, size: string) => void;
+    addDrink?: (type: DrinksType | string , size: string, quantity: number) => void;
     handleClose?: () => void;
     logData?: (text: string) => void;
 }
@@ -34,6 +36,7 @@ export interface IDrinksComponentProps {
 export interface IDrinksComponentState {
     drinkType?: DrinksType;
     drinkSize?: string;
+    drinkQuantities?: { [id: string]: number; };
 }
 
 export class DrinksComponent extends Component<IDrinksComponentProps, IDrinksComponentState>{
@@ -42,8 +45,25 @@ export class DrinksComponent extends Component<IDrinksComponentProps, IDrinksCom
 
         this.state = {
             drinkType: null,
-            drinkSize: null
+            drinkSize: null,
+            drinkQuantities: {}
         }
+    }
+
+    getId(drinkType, drinkSize) {
+        return `${drinkType}/${drinkSize}`;
+    }
+
+    getCountByDrinkType(drinkType) {
+        const { drinkQuantities } = this.state;
+
+        let result = 0;
+        for (const key in drinkQuantities) {
+            if (key.split('/')[0] === drinkType) {
+                result += drinkQuantities[key];
+            }
+        }
+        return result;
     }
 
     handleClose = () => {
@@ -58,33 +78,86 @@ export class DrinksComponent extends Component<IDrinksComponentProps, IDrinksCom
     }
 
     handleDrinkSelect = async (drink) => {
+        const { drinkQuantities } = this.state;
         const drinkSizes = DrinksDict[drink];
-        if (drinkSizes && drinkSizes.length === 1) {
-            this.setState({
-                drinkType: drink,
-                drinkSize: drinkSizes[0]
-            });
 
-            await this.props.addDrink(drink, drinkSizes[0]);
-            this.props.handleClose();
-            this.props.logData(`drinks->drinkSelected->${drink}->drinkSizeSelected->${drinkSizes[0]}`);
+        if (drinkSizes && drinkSizes.length === 1) {
+            const id = this.getId(drink, drinkSizes[0]);
+            if (!drinkQuantities[id]) {
+                drinkQuantities[id] = 1;
+            } else {
+                drinkQuantities[id] += 1;
+            }
+
+            this.setState({
+                drinkQuantities
+            });
         } else {
             this.setState({
                 drinkType: drink
             });
-            this.props.logData('drinks->drinkSelected->' + drink);
         }
     }
 
-    handleDrinkSizeSelect = async (drinkSize) => {
-        this.setState({
-            drinkSize
-        });
+    handleApply = async () => {
+        const { drinkQuantities } = this.state;
 
-        const { drinkType } = this.state;
-        await this.props.addDrink(drinkType, drinkSize);
+        for (const key in drinkQuantities) {
+            const drinkType = key.split('/')[0];
+            const drinkSize = key.split('/')[1];
+            const qty = drinkQuantities[key];
+            if (qty) {
+                await this.props.addDrink(drinkType, drinkSize,  qty || 0);
+            }
+        }
+
         this.props.handleClose();
-        this.props.logData('drinks->drinkSizeSelected->' + drinkSize);
+        this.props.logData('drinks->handleApply');
+    }
+
+    handleDrinkIncrease = (drinkSize, qty = 1) => {
+        const { drinkQuantities, drinkType } = this.state;
+
+        const id = this.getId(drinkType, drinkSize);
+        if (!drinkQuantities[id]) {
+            drinkQuantities[id] = qty;
+        } else {
+            drinkQuantities[id] += qty;
+        }
+
+        this.setState({
+            drinkQuantities
+        });
+    }
+
+    handleDrinkDecrease = (drinkType, size = null) => {
+        const { drinkQuantities } = this.state;
+
+        let id;
+        if (!size) {
+            const drinkSizes = DrinksDict[drinkType];
+            id = this.getId(drinkType, drinkSizes[0]);
+        } else {
+            id = this.getId(drinkType, size);
+        }
+        
+        if (drinkQuantities[id]) {
+            drinkQuantities[id] -= 1;
+        }
+
+        this.setState({
+            drinkQuantities
+        });
+    }
+
+    countTotalDrinkQuantity() {
+        const { drinkQuantities } = this.state;
+
+        let result = 0;
+        for (const key in drinkQuantities) {
+            result += drinkQuantities[key];
+        }
+        return result;
     }
 
     renderDrinks() {
@@ -95,8 +168,13 @@ export class DrinksComponent extends Component<IDrinksComponentProps, IDrinksCom
                 value: DrinksType[d]
             }
         })
-        
+
         return <div className='drinksWrapper'>
+            <div className='buttonApplyWraper'>
+                <Button variant="contained" color="primary" title="Check Out" onClick={this.handleApply}>
+                    Применить
+                </Button>
+            </div>
             <List className='drinksListWrapper'>
                 {drinks.map(d => (
                     <ListItem divider button onClick={() => this.handleDrinkSelect(d.value)} key={d.id} >
@@ -105,7 +183,12 @@ export class DrinksComponent extends Component<IDrinksComponentProps, IDrinksCom
                                 {d.value.charAt(0).toUpperCase()}
                             </Avatar>
                         </ListItemAvatar>
-                        <ListItemText primary={d.value} />
+                        <ListItemText primary={`${d.value}(${this.getCountByDrinkType(d.value)})`} />
+                        <ListItemSecondaryAction>
+                            <IconButton aria-label="Add" classes={{ root: 'decreaseButton' }} onClick={() => this.handleDrinkDecrease(d.value)}>
+                                {'\u2014'}
+                            </IconButton>
+                        </ListItemSecondaryAction>
                     </ListItem>
                 ))}
             </List>
@@ -118,19 +201,29 @@ export class DrinksComponent extends Component<IDrinksComponentProps, IDrinksCom
     };
 
     renderDrinkSizes() {
-        const { drinkType } = this.state;
+        const { drinkType, drinkQuantities } = this.state;
         const drinkSizes = DrinksDict[drinkType];
 
         return <div>
+            <div className='buttonApplyWraper'>
+                <Button variant="contained" color="primary" title="Check Out" onClick={this.handleApply}>
+                    Применить
+                </Button>
+            </div>
             <List>
                 {drinkSizes.map(d => (
-                    <ListItem divider button onClick={() => this.handleDrinkSizeSelect(d)} key={d} >
+                    <ListItem divider button onClick={() => this.handleDrinkIncrease(d)} key={d} >
                         <ListItemAvatar>
                             <Avatar className='drinkAvatar'>
                                 {d.charAt(0).toUpperCase()}
                             </Avatar>
                         </ListItemAvatar>
-                        <ListItemText primary={d} />
+                        <ListItemText primary={`${d}(${drinkQuantities[this.getId(drinkType, d)] || 0})`} />
+                        <ListItemSecondaryAction >
+                            <IconButton aria-label="Add" classes={{ root: 'decreaseButton' }} onClick={() => this.handleDrinkDecrease(drinkType, d)}>
+                                {'\u2014'}
+                            </IconButton>
+                        </ListItemSecondaryAction>
                     </ListItem>
                 ))}
             </List>
@@ -149,7 +242,9 @@ export class DrinksComponent extends Component<IDrinksComponentProps, IDrinksCom
         const { drinkType } = this.state;
 
         return <Dialog onClose={this.handleClose} aria-labelledby="simple-dialog-title" open fullScreen >
-            <DialogTitle id="simple-dialog-title">{!drinkType ? 'Выберите напиток' : 'Выберите размер'}</DialogTitle>
+            <DialogTitle id="simple-dialog-title">
+                {!drinkType ? `Выберите напиток (${this.countTotalDrinkQuantity()})` : 'Выберите размер'}
+            </DialogTitle>
             {!drinkType ? this.renderDrinks() : this.renderDrinkSizes()}
         </Dialog>;
     }

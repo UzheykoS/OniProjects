@@ -1,7 +1,7 @@
 export interface Dessert {
     type: DessertType,
     taste: string,
-    size: string
+    size: string,
     quantity: number;
 }
 
@@ -76,7 +76,8 @@ export enum CakesEnum {
     CarrotCake = "Carrot Cake",
     Soul = "Soul",
     Pink = "Pink",
-    Infinity = "Infinity"
+    Infinity = "Infinity",
+    Cake_2019 = "2019"
 }
 
 export enum ChouxEnum {

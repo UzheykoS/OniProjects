@@ -44,27 +44,40 @@ export default handleActions({
     },
     [ADD_DRINK]: (state, action) => {
         const { check } = state;
-        const drink: Drink = {
-            id: action.payload[0],
-            size: action.payload[1]
-        };
-        check.drinks.push(drink);
+        const existingDrink = check.drinks.find((d: Drink) =>
+            d.id === action.payload[0]
+            && d.size === action.payload[1]);
+
+        if (!!existingDrink) {
+            existingDrink.quantity += action.payload[3];
+        } else {
+            const drink: Drink = {
+                id: action.payload[0],
+                size: action.payload[1]
+            };
+            for (let i = 0; i < action.payload[2]; i++) {
+                check.drinks.push(drink);
+            }
+        }
+
         return Object.assign({}, state, {
             check
         });
     },
     [DELETE_DRINK]: (state, action) => {
         const { check } = state;
-        const newCheck = {...check};
-
-        const comparator = ({ id, size }) => {
-            if (id === action.payload[0] && size === action.payload[1]) {
-                return false;
+        const newCheck = { ...check };
+        let index = -1;
+        for (let d of newCheck.drinks) {
+            index++;
+            if (d.id === action.payload[0] && d.size === action.payload[1]) {
+                break;
             }
-            return true;
         }
-        newCheck.drinks = check.drinks.filter(d => comparator(d));
 
+        if (index > -1) {
+            newCheck.drinks.splice(index, 1);
+        }
         return Object.assign({}, state, {
             check: newCheck
         });
@@ -95,7 +108,7 @@ export default handleActions({
     },
     [DELETE_DESSERT]: (state, action) => {
         const { check } = state;
-        const newCheck = {...check};
+        const newCheck = { ...check };
 
         const comparator = ({ type, taste, size }) => {
             if (type === action.payload[0] && taste === action.payload[1]) {
@@ -104,7 +117,7 @@ export default handleActions({
                 } else {
                     return false;
                 }
-                
+
             }
             return true;
         }

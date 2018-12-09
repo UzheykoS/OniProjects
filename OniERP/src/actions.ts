@@ -268,7 +268,7 @@ export const ProcessOtherPaymentSubmit = (paymentType: PaymentTypeEnum, price: n
 
 export const Checkout = createAction(PROCESS_CHECKOUT);
 
-export const AddDrink = createAction(ADD_DRINK, (type: DrinksType, size: string) => [type, size]);
+export const AddDrink = createAction(ADD_DRINK, (type: DrinksType | string, size: string, quantity: number) => [type, size, quantity]);
 
 export const AddDessert = createAction(ADD_DESSERT, (type: DessertType, taste: string, size: string, quantity: number) => [type, taste, size, quantity]);
 
