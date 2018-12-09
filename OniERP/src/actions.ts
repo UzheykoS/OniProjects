@@ -20,10 +20,11 @@ import {
     DELETE_DRINK,
     DELETE_DESSERT,
     SET_LAST_ID,
-    SHOW_NOTIFICATION
+    SHOW_NOTIFICATION,
+    CHANGE_PROFILE
 } from './actionTypes';
 import {
-    DrinksType, DessertType, Payment, OrderType, Check, PaymentTypeEnum,
+    DrinksType, DessertType, Payment, OrderType, Check, PaymentTypeEnum, ProfilesEnum,
     ValueInputOption, InsertDataOption, ValueRenderOption, DateTimeRenderOption, Dessert, Drink, SaleType
 } from './utils/types';
 import { LOGS_SPREADSHEET_ID, SPREADSHEET_ID } from './config/keys';
@@ -180,26 +181,26 @@ export const ProcessCheckout = () => {
         try {
             const state = getState();
             let check: Check = state.check;
-            const { log } = state;
+            const { log, currentProfile } = state;
 
-            const drinksRange = "RawDrinksData!A:G";
+            const drinksRange = "RawDrinksData!A:H";
             const drinksData = [];
             check.drinks.forEach(async d => {
                 const dateTime = moment(new Date()).format('DD.MM.YYYY HH:mm');
-                const data = [d.id, d.size, check.payment, check.type, dateTime, check.id, check.sale];
+                const data = [d.id, d.size, check.payment, check.type, dateTime, check.id, check.sale, currentProfile];
                 drinksData.push(data);
             });
             if (drinksData.length) {
                 await dispatch(ProcessAppendData(SPREADSHEET_ID, drinksRange, drinksData));
             }
 
-            const dessertsRange = "RawDessertsData!A:I";
+            const dessertsRange = "RawDessertsData!A:J";
             const dessertsData = [];
             check.desserts.forEach(async d => {
                 const now = new Date();
                 const dateTime = moment(now).format('DD.MM.YYYY HH:mm');
                 // const sale = BLACK_FRIDAY_DATES.indexOf(now.getDate()) > -1 ? '20 %' : check.sale;
-                const data = [d.type, d.taste, d.quantity, d.size, check.payment, check.type, dateTime, check.id, check.sale];
+                const data = [d.type, d.taste, d.quantity, d.size, check.payment, check.type, dateTime, check.id, check.sale, currentProfile];
                 dessertsData.push(data);
             });
             if (dessertsData.length) {
@@ -305,3 +306,5 @@ export const ClearError = createAction(CLEAR_ERROR);
 export const SetLastId = createAction(SET_LAST_ID, (lastId: number, lastCheck: Check) => [lastId, lastCheck]);
 
 export const ShowNotification = createAction(SHOW_NOTIFICATION, (type: number, message: string) => [type, message]);
+
+export const ChangeProfile = createAction(CHANGE_PROFILE, (profile: string) => profile);

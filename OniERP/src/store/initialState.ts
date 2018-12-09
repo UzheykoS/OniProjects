@@ -1,4 +1,4 @@
-import { Check } from '../utils/types';
+import { Check, ProfilesEnum } from '../utils/types';
 
 export default {
     hasErrored: false,
@@ -9,5 +9,6 @@ export default {
     log: '',
     errorMessage: '',
     lastId: 0,
-    notificationType: 0
+    notificationType: 0,
+    currentProfile: ProfilesEnum.Alina
 }

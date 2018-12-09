@@ -95,7 +95,10 @@ class App extends Component<IAppProps, IAppState>{
         const { isSignedIn } = this.state;
 
         return <>
-            <AppBar title={'ONI'} isSignedIn={isSignedIn} onLoginClick={this.handleAuthClick} onLogoutClick={this.handleSignoutClick} />
+            <AppBar title={'ONI'} 
+            isSignedIn={isSignedIn}
+            onLoginClick={this.handleAuthClick} 
+            onLogoutClick={this.handleSignoutClick} />
             {isSignedIn && <Main />}
             {/* <button id="authorize_button" onClick={this.handleAuthClick} style={{ display: isSignedIn ? 'none' : 'block' }}>Authorize</button>
             <button id="signout_button" onClick={this.handleSignoutClick} style={{ display: isSignedIn ? 'block' : 'none' }}>Sign Out</button> */}

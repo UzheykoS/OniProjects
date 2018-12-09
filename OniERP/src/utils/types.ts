@@ -169,3 +169,8 @@ export enum PaymentTypeEnum {
     Delivery = "Доставка",
     Other = "Другое"
 }
+
+export enum ProfilesEnum {
+    Alina = "Алина",
+    Irene = "Ира"
+}

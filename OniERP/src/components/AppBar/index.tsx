@@ -7,9 +7,14 @@ import './styles.scss';
 import Button from '@material-ui/core/Button';
 import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
+import AccountCircleIcon from '@material-ui/icons/AccountCircle';
 import MenuItem from '@material-ui/core/MenuItem';
 import Menu from '@material-ui/core/Menu';
 import { withRouter } from 'react-router-dom';
+import { ProfilesEnum } from '../../utils/types';
+import Helper from '../../utils/helper';
+import { connect } from 'react-redux';
+import { ChangeProfile } from '../../actions';
 
 const options = [
     {
@@ -32,18 +37,33 @@ const options = [
 
 const ITEM_HEIGHT = 48;
 
+const mapStateToProps = (state) => {
+    return {
+        currentProfile: state.currentProfile
+    };
+};
+
+const mapDispatchToProps = (dispatch) => {
+    return {
+        changeProfile: (profile: string) => dispatch(ChangeProfile(profile))
+    };
+};
+
 export interface IAppBarComponentProps {
     classes?: any;
     title?: string;
     isSignedIn?: boolean;
     history?: any;
+    currentProfile?: ProfilesEnum;
 
     onLoginClick?: () => void;
     onLogoutClick?: () => void;
+    changeProfile?: (profile: string) => void;
 }
 
 export interface IAppBarComponentState {
     anchorEl?: any;
+    anchorProfileEl?: any;
 }
 
 export class AppBar extends Component<IAppBarComponentProps, IAppBarComponentState>{
@@ -51,7 +71,8 @@ export class AppBar extends Component<IAppBarComponentProps, IAppBarComponentSta
         super(props);
 
         this.state = {
-            anchorEl: null
+            anchorEl: null,
+            anchorProfileEl: null
         }
     }
 
@@ -59,15 +80,33 @@ export class AppBar extends Component<IAppBarComponentProps, IAppBarComponentSta
         this.setState({ anchorEl: event.currentTarget });
     };
 
+    handleProfileClick = event => {
+        this.setState({ anchorProfileEl: event.currentTarget });
+    };
+
     handleClose = (option) => {
         const { history } = this.props;
         const currentRoute = location.hash.slice(1);
         if (currentRoute !== option.route) {
             history.push(option.route);
-        }        
+        }
 
-        this.setState({ 
-            anchorEl: null 
+        this.setState({
+            anchorEl: null
+        });
+    };
+
+    handleProfileClose = () => {
+        this.setState({
+            anchorProfileEl: null
+        });
+    };
+
+    handleProfileChange = (profile: string) => {
+        const { changeProfile } = this.props;
+        changeProfile(profile);
+        this.setState({
+            anchorProfileEl: null
         });
     };
 
@@ -123,6 +162,55 @@ export class AppBar extends Component<IAppBarComponentProps, IAppBarComponentSta
         );
     }
 
+    renderProfileMenu() {
+        const { anchorProfileEl } = this.state;
+        const { currentProfile, isSignedIn } = this.props;
+
+        const open = Boolean(anchorProfileEl);
+        const profiles = Helper.getArrayFromEnum(ProfilesEnum);
+
+        return (
+            <div>
+                <IconButton
+                    className={'appbar_menuButton'}
+                    color="inherit"
+                    aria-label="Menu"
+                    aria-owns={open ? 'long-menu' : null}
+                    aria-haspopup="true"
+                    disabled={!isSignedIn}
+                    onClick={this.handleProfileClick}
+                >
+                    <Typography variant="subheading" color="inherit" className={'profile-name'}>
+                        {currentProfile}
+                    </Typography>
+                    <AccountCircleIcon />
+                </IconButton>
+                <Menu
+                    id="long-menu"
+                    anchorEl={anchorProfileEl}
+                    open={open}
+                    onClose={this.handleProfileClose}
+                    PaperProps={{
+                        style: {
+                            maxHeight: ITEM_HEIGHT * 4.5,
+                            width: 200
+                        }
+                    }}
+                >
+                    {profiles.map(profile => (
+                        <MenuItem
+                            key={profile.id}
+                            selected={profile.value === currentProfile}
+                            onClick={() => this.handleProfileChange(profile.value)}>
+                            <AccountCircleIcon className={'profile-name'}/>
+                            {profile.value}
+                        </MenuItem>
+                    ))}
+                </Menu>
+            </div>
+        );
+    }
+
     render() {
         const { title, isSignedIn } = this.props;
 
@@ -134,6 +222,7 @@ export class AppBar extends Component<IAppBarComponentProps, IAppBarComponentSta
                         <Typography variant="title" color="inherit" className={'appbar_grow'}>
                             {title}
                         </Typography>
+                        {this.renderProfileMenu()}
                         <Button color="inherit" onClick={this.handleLoginClick}>{isSignedIn ? 'Выйти' : 'Войти'}</Button>
                     </Toolbar>
                 </AppBarComponent>
@@ -142,4 +231,5 @@ export class AppBar extends Component<IAppBarComponentProps, IAppBarComponentSta
     }
 }
 
-export default withRouter(AppBar);
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)
+    (AppBar));

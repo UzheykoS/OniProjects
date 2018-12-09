@@ -20,9 +20,10 @@ import {
     DELETE_DESSERT,
     DELETE_DRINK,
     SET_LAST_ID,
-    SHOW_NOTIFICATION
+    SHOW_NOTIFICATION,
+    CHANGE_PROFILE
 } from "./actionTypes";
-import { Check, Dessert, Drink, Payment, OrderType, SaleType } from './utils/types';
+import { Check, Dessert, Drink, Payment, OrderType, SaleType, ProfilesEnum } from './utils/types';
 
 import initialState from './store/initialState';
 
@@ -211,4 +212,10 @@ export default handleActions({
             notificationType: action.payload[0]
         });
     },
+    [CHANGE_PROFILE]: (state, action: any) => {
+        const profile = action.payload;        
+        return Object.assign({}, state, {
+            currentProfile: profile
+        });
+    }
 }, initialState);
