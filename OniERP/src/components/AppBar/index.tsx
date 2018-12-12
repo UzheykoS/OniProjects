@@ -32,6 +32,10 @@ const options = [
     {
         title: 'Расходы',
         route: '/other'
+    },
+    {
+        title: 'Касса',
+        route: '/cashbox'
     }
 ];
 
@@ -144,7 +148,7 @@ export class AppBar extends Component<IAppBarComponentProps, IAppBarComponentSta
                     onClose={this.handleClose}
                     PaperProps={{
                         style: {
-                            maxHeight: ITEM_HEIGHT * 4.5,
+                            maxHeight: ITEM_HEIGHT * 5.5,
                             width: 200
                         }
                     }}
@@ -192,7 +196,7 @@ export class AppBar extends Component<IAppBarComponentProps, IAppBarComponentSta
                     onClose={this.handleProfileClose}
                     PaperProps={{
                         style: {
-                            maxHeight: ITEM_HEIGHT * 4.5,
+                            maxHeight: ITEM_HEIGHT * 5.5,
                             width: 200
                         }
                     }}

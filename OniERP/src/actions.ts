@@ -246,15 +246,36 @@ export const ProcessPartnersOrderSubmit = (partner: string, macQty: number, zepQ
     };
 };
 
-export const ProcessOtherPaymentSubmit = (paymentType: PaymentTypeEnum, price: number, notes: string) => {
+export const ProcessOtherPaymentSubmit = (paymentType: PaymentTypeEnum, price: number, notes: string, payment: Payment) => {
     return async (dispatch) => {
         dispatch(itemsIsLoading(true));
         try {
-            const range = "OtherPayments!A:D";
-            const data = [[paymentType, price, notes, moment(new Date()).format('DD.MM.YYYY HH:mm')]];
+            const range = "OtherPayments!A:F";
+            const data = [[paymentType, price, notes, moment(new Date()).format('DD.MM.YYYY HH:mm'), payment]];
             await dispatch(ProcessAppendData(SPREADSHEET_ID, range, data));
             await ProcessLog(JSON.stringify(data));
             await dispatch(ShowNotification(0, 'Платёж сохранён!'));
+        }
+        catch (ex) {
+            dispatch(itemsAppendErrored('Ошибка. Проверьте, что вы вошли в систему.'));
+            console.log(ex);
+            throw Error(ex);
+        }
+        finally {
+            dispatch(itemsIsLoading(false));
+        }
+    };
+};
+
+export const ProcessCashboxSubmit = (cash: number, notes: string) => {
+    return async (dispatch) => {
+        dispatch(itemsIsLoading(true));
+        try {
+            const range = "Finance!H:J";
+            const data = [[cash, notes, moment(new Date()).format('DD.MM.YYYY HH:mm')]];
+            await dispatch(ProcessAppendData(SPREADSHEET_ID, range, data));
+            await ProcessLog(JSON.stringify(data));
+            await dispatch(ShowNotification(0, 'Данные сохранены!'));
         }
         catch (ex) {
             dispatch(itemsAppendErrored('Ошибка. Проверьте, что вы вошли в систему.'));

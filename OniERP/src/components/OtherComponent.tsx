@@ -2,7 +2,7 @@
 import * as React from 'react'
 import { connect } from 'react-redux';
 import Button from '@material-ui/core/Button';
-import { PaymentTypeEnum } from '../utils/types';
+import { PaymentTypeEnum, Payment } from '../utils/types';
 import { withRouter } from 'react-router-dom';
 import Typography from '@material-ui/core/Typography';
 import { ProcessOtherPaymentSubmit } from '../actions'
@@ -11,7 +11,6 @@ import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
 import MenuItem from '@material-ui/core/MenuItem';
 import TextField from '@material-ui/core/TextField';
-import Divider from '@material-ui/core/Divider';
 import Helper from '../utils/helper';
 
 const mapStateToProps = (state) => {
@@ -22,17 +21,18 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        processOtherPaymentSubmit: (paymentType: PaymentTypeEnum, price: number, notes: string) => dispatch(ProcessOtherPaymentSubmit(paymentType, price, notes))
+        processOtherPaymentSubmit: (paymentType: PaymentTypeEnum, price: number, notes: string, payment: Payment) => dispatch(ProcessOtherPaymentSubmit(paymentType, price, notes, payment))
     };
 };
 
 export interface IOtherComponentProps {
     history?: any;
-    processOtherPaymentSubmit?: (paymentType: PaymentTypeEnum, price: number, notes: string) => void;
+    processOtherPaymentSubmit?: (paymentType: PaymentTypeEnum, price: number, notes: string, payment: Payment) => void;
 }
 
 export interface IOtherComponentState {
     paymentType?: PaymentTypeEnum;
+    payment?: Payment;
     price?: string;
     notes?: string;
 }
@@ -43,6 +43,7 @@ class OtherComponent extends Component<IOtherComponentProps, IOtherComponentStat
 
         this.state = {
             paymentType: PaymentTypeEnum.Other,
+            payment: Payment.Cash,
             price: '',
             notes: ''
         }
@@ -51,6 +52,11 @@ class OtherComponent extends Component<IOtherComponentProps, IOtherComponentStat
     handlePaymentTypeSelect = (ev) => {
         const paymentType = ev.target.value;
         this.setState({ paymentType });
+    }
+
+    handlePaymentSelect = (ev) => {
+        const payment = ev.target.value;
+        this.setState({ payment });
     }
 
     handlePriceChange = (ev) => {
@@ -67,14 +73,15 @@ class OtherComponent extends Component<IOtherComponentProps, IOtherComponentStat
 
     handleNextClick = () => {
         const { processOtherPaymentSubmit, history } = this.props;
-        const { paymentType, price, notes } = this.state;
-        processOtherPaymentSubmit(paymentType, Number(price), notes);
+        const { paymentType, price, notes, payment } = this.state;
+        processOtherPaymentSubmit(paymentType, Number(price), notes, payment);
         history.push('/');
     }
 
     render() {
-        const { paymentType, price, notes } = this.state;
+        const { paymentType, price, notes, payment } = this.state;
         const paymentTypes = Helper.getArrayFromEnum(PaymentTypeEnum);
+        const payments = Helper.getArrayFromEnum(Payment);
 
         return <div>
             <Typography gutterBottom variant="headline" component="h2">
@@ -92,6 +99,23 @@ class OtherComponent extends Component<IOtherComponentProps, IOtherComponentStat
                 >
                     {
                         paymentTypes.map(p => {
+                            return <MenuItem key={p.id} value={p.value}>{p.value}</MenuItem>;
+                        })
+                    }
+                </Select>
+            </FormControl>
+            <FormControl className='partnerSelectWrapper'>
+                <InputLabel htmlFor="partner-select">Тип оплаты</InputLabel>
+                <Select
+                    value={payment}
+                    onChange={this.handlePaymentSelect}
+                    inputProps={{
+                        name: 'payment-type',
+                        id: 'payment-type-select',
+                    }}
+                >
+                    {
+                        payments.map(p => {
                             return <MenuItem key={p.id} value={p.value}>{p.value}</MenuItem>;
                         })
                     }

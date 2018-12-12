@@ -32,6 +32,7 @@ const mapDispatchToProps = (dispatch) => {
 const CkeckLink = props => <Link to="/check" {...props} />;
 const PartnersLink = props => <Link to="/partners" {...props} />;
 const OtherLink = props => <Link to="/other" {...props} />;
+const CashboxLink = props => <Link to="/cashbox" {...props} />;
 
 export interface IMainPageProps {
   history?: Array<Check>;
@@ -55,12 +56,6 @@ export class MainPage extends Component<IMainPageProps, any>{
     this.props.logData('mainPage->newCheck');
   }
 
-  onNewPartnersCheckClick = () => {
-  }
-
-  onOtherClick = () => {
-  }
-
   render() {
     const { isLoading } = this.props;
 
@@ -72,12 +67,15 @@ export class MainPage extends Component<IMainPageProps, any>{
       </Card>
       <Card className={'cardContainer'} raised>
         <CardContent classes={{ root: 'cardRoot' }}>
-          <LargeButton title={'ОПТОВЫЙ ЗАКАЗ'} component={PartnersLink} imageUrl={'/images/partners_icon.jpg'} onClick={this.onNewPartnersCheckClick} />
+          <LargeButton title={'ОПТОВЫЙ ЗАКАЗ'} component={PartnersLink} imageUrl={'/images/partners_icon.jpg'} />
         </CardContent>
       </Card>
       <div className='buttonApplyWraper'>
-        <Button component={OtherLink} variant="contained" color="secondary" onClick={this.onOtherClick}>
+        <Button component={OtherLink} variant="contained" color="secondary">
           Расходы
+        </Button>
+        <Button component={CashboxLink} variant="contained" color="secondary">
+          Касса
         </Button>
       </div>
       <Card className={'cardContainerHistory'} raised>

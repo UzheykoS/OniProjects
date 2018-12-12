@@ -7,6 +7,7 @@ import CheckoutPage from './pages/CheckoutPage';
 import NotFoundPage from './pages/NotFoundPage';
 import PartnersPage from './pages/PartnersPage';
 import OtherPage from './pages/OtherPage';
+import CashboxPage from './pages/CashboxPage';
 import scriptLoader from 'react-async-script-loader';
 import AppBar from './components/AppBar';
 
@@ -19,6 +20,7 @@ const Main = () => (
         <Route path='/checkOut' component={CheckoutPage} />
         <Route path='/partners' component={PartnersPage} />
         <Route path='/other' component={OtherPage} />
+        <Route path='/cashbox' component={CashboxPage} />
 
         <Route component={NotFoundPage} />
     </Switch>
