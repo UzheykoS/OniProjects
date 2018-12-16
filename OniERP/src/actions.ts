@@ -267,12 +267,13 @@ export const ProcessOtherPaymentSubmit = (paymentType: PaymentTypeEnum, price: n
     };
 };
 
-export const ProcessCashboxSubmit = (cash: number, notes: string) => {
+export const ProcessCashboxSubmit = (cash: number, notes: string, date?: moment.Moment) => {
     return async (dispatch) => {
         dispatch(itemsIsLoading(true));
         try {
             const range = "Finance!H:J";
-            const data = [[cash, notes, moment(new Date()).format('DD.MM.YYYY HH:mm')]];
+            debugger;
+            const data = [[cash, notes, date ? date.format('DD.MM.YYYY HH:mm') : moment(new Date()).format('DD.MM.YYYY HH:mm')]];
             await dispatch(ProcessAppendData(SPREADSHEET_ID, range, data));
             await ProcessLog(JSON.stringify(data));
             await dispatch(ShowNotification(0, 'Данные сохранены!'));

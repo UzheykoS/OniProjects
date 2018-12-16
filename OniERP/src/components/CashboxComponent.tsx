@@ -8,6 +8,8 @@ import Typography from '@material-ui/core/Typography';
 import { ProcessCashboxSubmit } from '../actions'
 import TextField from '@material-ui/core/TextField';
 import Helper from '../utils/helper';
+import { InlineDatePicker } from './material-ui-pickers';
+import * as moment from 'moment';
 
 const mapStateToProps = (state) => {
     return {
@@ -17,18 +19,19 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        processCashboxSubmit: (cash: number, notes: string) => dispatch(ProcessCashboxSubmit(cash, notes))
+        processCashboxSubmit: (cash: number, notes: string, date?: moment.Moment) => dispatch(ProcessCashboxSubmit(cash, notes, date))
     };
 };
 
 export interface ICashboxComponentProps {
     history?: any;
-    processCashboxSubmit?: (cash: number, notes: string) => void;
+    processCashboxSubmit?: (cash: number, notes: string, date?: moment.Moment) => void;
 }
 
 export interface ICashboxComponentState {
     cash?: string;
     notes?: string;
+    selectedDate?: moment.Moment;
 }
 
 class CashboxComponent extends Component<ICashboxComponentProps, ICashboxComponentState>{
@@ -37,7 +40,8 @@ class CashboxComponent extends Component<ICashboxComponentProps, ICashboxCompone
 
         this.state = {
             cash: '',
-            notes: ''
+            notes: '',
+            selectedDate: moment(new Date())
         }
     }
 
@@ -53,21 +57,34 @@ class CashboxComponent extends Component<ICashboxComponentProps, ICashboxCompone
         });
     }
 
+    handleDateChange = date => {
+        this.setState({
+            selectedDate: date
+        });
+    };
+
     handleNextClick = () => {
         const { processCashboxSubmit, history } = this.props;
-        const { cash, notes } = this.state;
-        processCashboxSubmit(Number(cash), notes);
+        const { cash, notes, selectedDate } = this.state;
+        processCashboxSubmit(Number(cash), notes, selectedDate);
         history.push('/');
     }
 
     render() {
-        const { cash, notes } = this.state;
+        const { cash, notes, selectedDate } = this.state;
         const paymentTypes = Helper.getArrayFromEnum(PaymentTypeEnum);
 
         return <div>
             <Typography gutterBottom variant="headline" component="h2">
                 Касса
             </Typography>
+            <InlineDatePicker
+                onlyCalendar
+                label="Дата"
+                value={selectedDate}
+                className={'date-picker'}
+                onChange={this.handleDateChange}
+            />
             <TextField
                 label="Сумма"
                 value={cash}

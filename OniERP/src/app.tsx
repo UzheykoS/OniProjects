@@ -10,6 +10,8 @@ import OtherPage from './pages/OtherPage';
 import CashboxPage from './pages/CashboxPage';
 import scriptLoader from 'react-async-script-loader';
 import AppBar from './components/AppBar';
+import MomentUtils from '@date-io/moment';
+import { MuiPickersUtilsProvider } from './components/material-ui-pickers';
 
 import { DISCOVERY_DOCS, SCOPES, CLIENT_ID, API_KEY } from './config/keys';
 
@@ -96,15 +98,17 @@ class App extends Component<IAppProps, IAppState>{
     render() {
         const { isSignedIn } = this.state;
 
-        return <>
-            <AppBar title={'ONI'} 
-            isSignedIn={isSignedIn}
-            onLoginClick={this.handleAuthClick} 
-            onLogoutClick={this.handleSignoutClick} />
-            {isSignedIn && <Main />}
-            {/* <button id="authorize_button" onClick={this.handleAuthClick} style={{ display: isSignedIn ? 'none' : 'block' }}>Authorize</button>
+        return <MuiPickersUtilsProvider utils={MomentUtils}>
+            <>
+                <AppBar title={'ONI'}
+                    isSignedIn={isSignedIn}
+                    onLoginClick={this.handleAuthClick}
+                    onLogoutClick={this.handleSignoutClick} />
+                {isSignedIn && <Main />}
+            </>
+        </MuiPickersUtilsProvider>;
+        {/* <button id="authorize_button" onClick={this.handleAuthClick} style={{ display: isSignedIn ? 'none' : 'block' }}>Authorize</button>
             <button id="signout_button" onClick={this.handleSignoutClick} style={{ display: isSignedIn ? 'block' : 'none' }}>Sign Out</button> */}
-        </>;
     }
 }
 
