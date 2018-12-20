@@ -130,6 +130,7 @@ export enum PartnersEnum {
     Ptaha = "Ptaha",
     StarKava = "StarKава",
     Parle = "Parle",
+    LiaDezi = "Lia Dezi",
     Other = "Другое"
 }
 
