@@ -2,7 +2,7 @@
 import * as React from 'react'
 import { connect } from 'react-redux';
 import Button from '@material-ui/core/Button';
-import { PartnersEnum } from '../utils/types';
+import { PartnersEnum, Payment } from '../utils/types';
 import { withRouter } from 'react-router-dom';
 import Typography from '@material-ui/core/Typography';
 import { ProcessPartnersOrderSubmit } from '../actions'
@@ -23,8 +23,8 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        processPartnersOrderSubmit: (partner: string, macQty: number, zepQty: number, buyer?: string, macaronsPrice?: number, zephyrPrice?: number) =>
-            dispatch(ProcessPartnersOrderSubmit(partner, macQty, zepQty, buyer, macaronsPrice, zephyrPrice))
+        processPartnersOrderSubmit: (partner: string, macQty: number, zepQty: number, buyer?: string, macaronsPrice?: number, zephyrPrice?: number, payment?: Payment) =>
+            dispatch(ProcessPartnersOrderSubmit(partner, macQty, zepQty, buyer, macaronsPrice, zephyrPrice, payment))
     };
 };
 
@@ -35,7 +35,8 @@ export interface IPartnersComponentProps {
         zepQty: number,
         buyer?: string,
         macaronsPrice?: number,
-        zephyrPrice?: number) => void;
+        zephyrPrice?: number,
+        payment?: Payment) => void;
 }
 
 export interface IPartnersComponentState {
@@ -45,6 +46,7 @@ export interface IPartnersComponentState {
     buyer?: string;
     macaronsPrice?: string;
     zephyrPrice?: string;
+    payment?: Payment;
 }
 
 class PartnersComponent extends Component<IPartnersComponentProps, IPartnersComponentState>{
@@ -57,7 +59,8 @@ class PartnersComponent extends Component<IPartnersComponentProps, IPartnersComp
             zephyrQty: '',
             buyer: '',
             macaronsPrice: '',
-            zephyrPrice: ''
+            zephyrPrice: '',
+            payment: Payment.Cash
         }
     }
 
@@ -95,15 +98,21 @@ class PartnersComponent extends Component<IPartnersComponentProps, IPartnersComp
         });
     }
 
+    handlePaymentSelect = (ev) => {
+        const payment = ev.target.value;
+        this.setState({ payment });
+    }
+
     handleNextClick = () => {
         const { processPartnersOrderSubmit, history } = this.props;
-        const { partner, macaronsQty, zephyrQty, buyer, macaronsPrice, zephyrPrice } = this.state;
+        const { partner, macaronsQty, zephyrQty, buyer, macaronsPrice, zephyrPrice, payment } = this.state;
         processPartnersOrderSubmit(partner,
             Number(macaronsQty),
             Number(zephyrQty),
             buyer,
             Number(macaronsPrice),
-            Number(zephyrPrice));
+            Number(zephyrPrice),
+            payment);
         history.push('/');
     }
 
@@ -131,10 +140,12 @@ class PartnersComponent extends Component<IPartnersComponentProps, IPartnersComp
     }
 
     render() {
-        const { partner, macaronsQty, zephyrQty, buyer, macaronsPrice, zephyrPrice } = this.state;
+        const { partner, macaronsQty, zephyrQty, buyer, macaronsPrice, zephyrPrice, payment } = this.state;
         const partners = Helper.getArrayFromEnum(PartnersEnum);
         const submitEnabled = (!!partner && partner !== PartnersEnum.Other) ||
             (partner && buyer && (macaronsPrice || zephyrPrice) && (macaronsQty || zephyrQty));
+        const payments = Helper.getArrayFromEnum(Payment);
+
         return <div>
             <Typography gutterBottom variant="headline" component="h2">
                 Оптовый заказ
@@ -187,7 +198,7 @@ class PartnersComponent extends Component<IPartnersComponentProps, IPartnersComp
                     disabled={!partner}
                     placeholder="Введите цену макаронс"
                 />
-            }
+            }            
             <TextField
                 label="Макароны"
                 value={macaronsQty}
@@ -229,6 +240,23 @@ class PartnersComponent extends Component<IPartnersComponentProps, IPartnersComp
                 disabled={!partner}
                 placeholder="Введите количество зефира"
             />
+            <FormControl className='partnerSelectWrapper'>
+                <InputLabel htmlFor="partner-select">Тип оплаты</InputLabel>
+                <Select
+                    value={payment}
+                    onChange={this.handlePaymentSelect}
+                    inputProps={{
+                        name: 'payment-type',
+                        id: 'payment-type-select',
+                    }}
+                >
+                    {
+                        payments.map(p => {
+                            return <MenuItem key={p.id} value={p.value}>{p.value}</MenuItem>;
+                        })
+                    }
+                </Select>
+            </FormControl>
             <Divider />
             <TextField
                 label="Итого"
