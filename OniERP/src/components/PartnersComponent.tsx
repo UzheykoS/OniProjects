@@ -60,7 +60,7 @@ class PartnersComponent extends Component<IPartnersComponentProps, IPartnersComp
             buyer: '',
             macaronsPrice: '',
             zephyrPrice: '',
-            payment: Payment.Cash
+            payment: Payment.Card
         }
     }
 
