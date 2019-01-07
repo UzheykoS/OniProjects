@@ -17,7 +17,8 @@ export interface Check {
     isFinished: boolean,
     payment: Payment,
     type: OrderType,
-    sale: SaleType
+    sale: SaleType,
+    isPaid: boolean
 }
 
 export enum Payment {
@@ -169,7 +170,8 @@ export enum PaymentTypeEnum {
     Household = "Коммуналка",
     Suppliers = "Поставщики",
     Delivery = "Доставка",
-    Other = "Другое"
+    Other = "Другое",
+    Collection = "Инкассация"
 }
 
 export enum ProfilesEnum {

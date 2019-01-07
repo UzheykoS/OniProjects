@@ -12,6 +12,8 @@ import Select from '@material-ui/core/Select';
 import MenuItem from '@material-ui/core/MenuItem';
 import TextField from '@material-ui/core/TextField';
 import Divider from '@material-ui/core/Divider';
+import Checkbox from '@material-ui/core/Checkbox';
+import FormControlLabel from '@material-ui/core/FormControlLabel';
 import { CaffeePrices, ZEPHYR_PARTNERS_PRICE } from '../utils/dictionaries';
 import Helper from '../utils/helper';
 
@@ -23,8 +25,8 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        processPartnersOrderSubmit: (partner: string, macQty: number, zepQty: number, buyer?: string, macaronsPrice?: number, zephyrPrice?: number, payment?: Payment) =>
-            dispatch(ProcessPartnersOrderSubmit(partner, macQty, zepQty, buyer, macaronsPrice, zephyrPrice, payment))
+        processPartnersOrderSubmit: (partner: string, macQty: number, zepQty: number, buyer?: string, macaronsPrice?: number, zephyrPrice?: number, payment?: Payment, isPaid?: boolean) =>
+            dispatch(ProcessPartnersOrderSubmit(partner, macQty, zepQty, buyer, macaronsPrice, zephyrPrice, payment, isPaid))
     };
 };
 
@@ -36,7 +38,8 @@ export interface IPartnersComponentProps {
         buyer?: string,
         macaronsPrice?: number,
         zephyrPrice?: number,
-        payment?: Payment) => void;
+        payment?: Payment,
+        isPaid?: boolean) => void;
 }
 
 export interface IPartnersComponentState {
@@ -47,6 +50,7 @@ export interface IPartnersComponentState {
     macaronsPrice?: string;
     zephyrPrice?: string;
     payment?: Payment;
+    isPaid?: boolean;
 }
 
 class PartnersComponent extends Component<IPartnersComponentProps, IPartnersComponentState>{
@@ -60,7 +64,8 @@ class PartnersComponent extends Component<IPartnersComponentProps, IPartnersComp
             buyer: '',
             macaronsPrice: '',
             zephyrPrice: '',
-            payment: Payment.Card
+            payment: Payment.Card,
+            isPaid: false
         }
     }
 
@@ -103,16 +108,22 @@ class PartnersComponent extends Component<IPartnersComponentProps, IPartnersComp
         this.setState({ payment });
     }
 
+    handleIsPaidChecked = (ev) => {
+        const isPaid = ev.target.checked ;
+        this.setState({ isPaid });
+    }
+
     handleNextClick = () => {
         const { processPartnersOrderSubmit, history } = this.props;
-        const { partner, macaronsQty, zephyrQty, buyer, macaronsPrice, zephyrPrice, payment } = this.state;
+        const { partner, macaronsQty, zephyrQty, buyer, macaronsPrice, zephyrPrice, payment, isPaid } = this.state;
         processPartnersOrderSubmit(partner,
             Number(macaronsQty),
             Number(zephyrQty),
             buyer,
             Number(macaronsPrice),
             Number(zephyrPrice),
-            payment);
+            payment,
+            isPaid);
         history.push('/');
     }
 
@@ -140,7 +151,7 @@ class PartnersComponent extends Component<IPartnersComponentProps, IPartnersComp
     }
 
     render() {
-        const { partner, macaronsQty, zephyrQty, buyer, macaronsPrice, zephyrPrice, payment } = this.state;
+        const { partner, macaronsQty, zephyrQty, buyer, macaronsPrice, zephyrPrice, payment, isPaid } = this.state;
         const partners = Helper.getArrayFromEnum(PartnersEnum);
         const submitEnabled = (!!partner && partner !== PartnersEnum.Other) ||
             (partner && buyer && (macaronsPrice || zephyrPrice) && (macaronsQty || zephyrQty));
@@ -266,6 +277,17 @@ class PartnersComponent extends Component<IPartnersComponentProps, IPartnersComp
                 }}
                 margin="normal"
                 fullWidth
+            />
+            <FormControlLabel
+                classes={{ root: 'checkboxLabel' }}
+                control={
+                    <Checkbox
+                        checked={isPaid}
+                        onChange={this.handleIsPaidChecked}
+                    />
+                }
+                label="Оплачено:"
+                labelPlacement="start"
             />
             <div className={'buttonsWraper'}>
                 <Button

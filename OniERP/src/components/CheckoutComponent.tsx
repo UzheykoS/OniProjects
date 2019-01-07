@@ -10,8 +10,9 @@ import MenuItem from '@material-ui/core/MenuItem';
 import Divider from '@material-ui/core/Divider';
 import Helper from '../utils/helper';
 import { Payment, OrderType, Check, SaleType } from '../utils/types';
-import { ProcessCheckout, SetPaymentType, SetOrderType, LogData, Cancel, SelectSale } from '../actions';
+import { ProcessCheckout, SetPaymentType, SetOrderType, LogData, Cancel, SelectSale, SetIsPaid } from '../actions';
 import Radio from '@material-ui/core/Radio';
+import Checkbox from '@material-ui/core/Checkbox';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 
 const mapStateToProps = (state) => {
@@ -26,6 +27,7 @@ const mapDispatchToProps = (dispatch) => {
         setPaymentType: (type: Payment) => dispatch(SetPaymentType(type)),
         setOrderType: (type: OrderType) => dispatch(SetOrderType(type)),
         selectSale: (sale: SaleType) => dispatch(SelectSale(sale)),
+        setIsPaid: (isPaid: boolean) => dispatch(SetIsPaid(isPaid)),
         logData: (text: string) => dispatch(LogData(text)),
         handleCancel: () => dispatch(Cancel())
     };
@@ -38,6 +40,7 @@ export interface ICheckoutComponentProps {
     setPaymentType?: (type: Payment) => void;
     setOrderType?: (type: OrderType) => void;
     selectSale?: (sale: SaleType) => void;
+    setIsPaid?: (isPaid: boolean) => void;
     handleCheckout?: () => void;
     handleCancel?: () => void;
     logData?: (text: string) => void;
@@ -50,9 +53,10 @@ export interface ICheckoutComponentState {
     buyer?: string;
     macaronsPrice?: string;
     zephyrPrice?: string;
+    isPaid?: boolean;
 }
 
-class CheckoutComponent extends Component<ICheckoutComponentProps, ICheckoutComponentState>{
+class CheckoutComponent extends Component<ICheckoutComponentProps, any>{
     handleCheckout = () => {
         this.props.handleCheckout();
         this.props.history.push('/');
@@ -84,6 +88,11 @@ class CheckoutComponent extends Component<ICheckoutComponentProps, ICheckoutComp
         const sale = ev.target.value;
         this.props.selectSale(sale);
         this.props.logData('checkoutPage->handleSaleSelect->' + sale);
+    }
+
+    handleIsPaidChange = (ev) => {
+        const isPaid = ev.target.checked;
+        this.props.setIsPaid(isPaid);
     }
 
     calculatePrice() {
@@ -125,7 +134,7 @@ class CheckoutComponent extends Component<ICheckoutComponentProps, ICheckoutComp
             </div>
             <Divider />
             <div className="checkoutControlGroup">
-                <Typography gutterBottom variant="subheading">
+                <Typography classes={{ root: 'checkoutLabel' }} gutterBottom variant="subheading">
                     Тип платежа:
                 </Typography>
                 <FormControlLabel
@@ -151,7 +160,7 @@ class CheckoutComponent extends Component<ICheckoutComponentProps, ICheckoutComp
             </div>
             <Divider />
             <div className="checkoutControlGroup">
-                <Typography gutterBottom variant="subheading">
+                <Typography classes={{ root: 'checkoutLabel' }} gutterBottom variant="subheading">
                     Тип заказа:
                 </Typography>
                 <FormControlLabel
@@ -197,6 +206,18 @@ class CheckoutComponent extends Component<ICheckoutComponentProps, ICheckoutComp
                     </Select>
                 </FormControl>
             </div>
+            <Divider />
+            <FormControlLabel
+                classes={{ root: 'checkboxLabel' }}
+                control={
+                    <Checkbox
+                        checked={check.isPaid}
+                        onChange={this.handleIsPaidChange}
+                    />
+                }
+                label="Оплачено:"
+                labelPlacement="start"
+            />
             <Divider />
             <div className={'buttonsWraper'}>
                 <Button classes={{ root: 'button' }} variant="contained" color="primary" title="Check Out" onClick={this.handleCheckout}>

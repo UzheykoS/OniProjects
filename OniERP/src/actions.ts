@@ -21,7 +21,8 @@ import {
     DELETE_DESSERT,
     SET_LAST_ID,
     SHOW_NOTIFICATION,
-    CHANGE_PROFILE
+    CHANGE_PROFILE,
+    SET_IS_PAID
 } from './actionTypes';
 import {
     DrinksType, DessertType, Payment, OrderType, Check, PaymentTypeEnum, ProfilesEnum,
@@ -55,14 +56,17 @@ export const ProcessFetchData = (spreadsheetId: string) => {
                 isFinished: true,
                 payment: Payment.Other,
                 type: OrderType.Other,
-                sale: SaleType.Empty
+                sale: SaleType.Empty,
+                isPaid: true
             };
             let lastOrderPayment = null;
             let lastOrderType = null;
+            let isPaid = null;
 
             lastOrder.desserts = dessertsResponse.result.values.slice(1).filter(v => v[7] === lastId.toString()).map(d => {
                 lastOrderPayment = d[4] === 'Наличка' ? Payment.Cash : Payment.Card;
                 lastOrderType = d[5] === 'Витрина' ? OrderType.Shop : OrderType.PreOrder;
+                isPaid = d[6] === 'Да';
                 const dessert: Dessert = {
                     type: d[0],
                     taste: d[1],
@@ -75,6 +79,7 @@ export const ProcessFetchData = (spreadsheetId: string) => {
             lastOrder.drinks = drinksResponse.result.values.slice(1).filter(v => v[5] === lastId.toString()).map(d => {
                 lastOrderPayment = d[2] === 'Наличка' ? Payment.Cash : Payment.Card;
                 lastOrderType = d[3] === 'Витрина' ? OrderType.Shop : OrderType.PreOrder;
+                isPaid = d[4] === 'Да';
                 const dessert: Drink = {
                     id: d[0],
                     size: d[1]
@@ -83,6 +88,7 @@ export const ProcessFetchData = (spreadsheetId: string) => {
             });
             lastOrder.payment = lastOrderPayment;
             lastOrder.type = lastOrderType;
+            lastOrder.isPaid = isPaid;
             dispatch(SetLastId(lastId, lastOrder));
             // dispatch(itemsFetchDataSuccess([...desserts, ...drinks]));
         }
@@ -183,24 +189,24 @@ export const ProcessCheckout = () => {
             let check: Check = state.check;
             const { log, currentProfile } = state;
 
-            const drinksRange = "RawDrinksData!A:H";
+            const drinksRange = "RawDrinksData!A:I";
             const drinksData = [];
             check.drinks.forEach(async d => {
                 const dateTime = moment(new Date()).format('DD.MM.YYYY HH:mm');
-                const data = [d.id, d.size, check.payment, check.type, dateTime, check.id, check.sale, currentProfile];
+                const data = [d.id, d.size, check.payment, check.type, dateTime, check.id, check.sale, currentProfile, check.isPaid ? 'Да' : 'Нет'];
                 drinksData.push(data);
             });
             if (drinksData.length) {
                 await dispatch(ProcessAppendData(SPREADSHEET_ID, drinksRange, drinksData));
             }
 
-            const dessertsRange = "RawDessertsData!A:J";
+            const dessertsRange = "RawDessertsData!A:K";
             const dessertsData = [];
             check.desserts.forEach(async d => {
                 const now = new Date();
                 const dateTime = moment(now).format('DD.MM.YYYY HH:mm');
                 // const sale = BLACK_FRIDAY_DATES.indexOf(now.getDate()) > -1 ? '20 %' : check.sale;
-                const data = [d.type, d.taste, d.quantity, d.size, check.payment, check.type, dateTime, check.id, check.sale, currentProfile];
+                const data = [d.type, d.taste, d.quantity, d.size, check.payment, check.type, dateTime, check.id, check.sale, currentProfile, check.isPaid ? 'Да' : 'Нет'];
                 dessertsData.push(data);
             });
             if (dessertsData.length) {
@@ -225,12 +231,12 @@ export const ProcessCheckout = () => {
     };
 };
 
-export const ProcessPartnersOrderSubmit = (partner: string, macQty: number, zepQty: number, buyer?: string, macaronsPrice?: number, zephyrPrice?: number, payment?: Payment) => {
+export const ProcessPartnersOrderSubmit = (partner: string, macQty: number, zepQty: number, buyer?: string, macaronsPrice?: number, zephyrPrice?: number, payment?: Payment, isPaid?: boolean) => {
     return async (dispatch) => {
         dispatch(itemsIsLoading(true));
         try {
             const partnersRange = "RawPartnersData!A:H";
-            const partnersData = [[partner, macQty, zepQty, moment(new Date()).format('DD.MM.YYYY HH:mm'), buyer, macaronsPrice, zephyrPrice, payment]];
+            const partnersData = [[partner, macQty, zepQty, moment(new Date()).format('DD.MM.YYYY HH:mm'), buyer, macaronsPrice, zephyrPrice, payment, isPaid ? 'Да' : 'Нет']];
             await dispatch(ProcessAppendData(SPREADSHEET_ID, partnersRange, partnersData));
             await ProcessLog(JSON.stringify(partnersData));
             await dispatch(ShowNotification(0, 'Заказ сохранён!'));
@@ -304,6 +310,8 @@ export const SetPaymentType = createAction(SET_PAYMENT_TYPE, (type: Payment) => 
 export const SetOrderType = createAction(SET_ORDER_TYPE, (type: OrderType) => type);
 
 export const SelectSale = createAction(SELECT_SALE, (sale: SaleType) => sale);
+
+export const SetIsPaid = createAction(SET_IS_PAID, (isPaid: boolean) => isPaid);
 
 export const itemsHasErrored = createAction(LOAD_ITEMS_REJECTED, (hasErrored: boolean) => hasErrored);
 

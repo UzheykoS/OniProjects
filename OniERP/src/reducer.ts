@@ -21,7 +21,8 @@ import {
     DELETE_DRINK,
     SET_LAST_ID,
     SHOW_NOTIFICATION,
-    CHANGE_PROFILE
+    CHANGE_PROFILE,
+    SET_IS_PAID
 } from "./actionTypes";
 import { Check, Dessert, Drink, Payment, OrderType, SaleType, ProfilesEnum } from './utils/types';
 
@@ -37,7 +38,8 @@ export default handleActions({
             isFinished: false,
             payment: Payment.Cash,
             type: OrderType.Shop,
-            sale: SaleType.Empty
+            sale: SaleType.Empty,
+            isPaid: true
         };
         return Object.assign({}, state, {
             check
@@ -152,6 +154,11 @@ export default handleActions({
     [SELECT_SALE]: (state, action) => {
         const { check } = state;
         check.sale = action.payload;
+        return { ...state, check: { ...check } };
+    },
+    [SET_IS_PAID]: (state, action) => {
+        const { check } = state;
+        check.isPaid = action.payload;
         return { ...state, check: { ...check } };
     },
     [LOAD_ITEMS]: (state, action) => {
