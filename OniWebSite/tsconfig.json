@@ -1,19 +1,21 @@
 {
-    "compilerOptions": {
-      "target": "es5",
-      "module": "commonjs",
-      "sourceMap": true,
-      "jsx": "react",
-      "declaration": false,
-      "experimentalDecorators": true,
-      "noImplicitAny": false,
-      "lib": ["es6", "dom", "scripthost"]
-    },
-    "exclude": [
-      "node_modules",
-      "!node_modules/@types"
-    ],
-    "include": [
-      "src"
-    ]
-  }
+  "compilerOptions": {
+    "outDir": "dist/",
+    "target": "es6",
+    "module": "es6",
+    "sourceMap": true,
+    "jsx": "react",
+    "declaration": true,
+    "experimentalDecorators": true,
+    "noImplicitAny": false,
+    "lib": ["es6", "dom"],
+    "moduleResolution": "node"
+  },
+  "exclude": [
+    "node_modules",
+    "!node_modules/@types"
+  ],
+  "include": [
+    "src"
+  ]
+}

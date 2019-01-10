@@ -4,7 +4,7 @@ const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 
 const baseConfig = require("./webpack.config");
-const APP_DIR = path.resolve(__dirname, '..');
+const APP_DIR = path.resolve(__dirname);
 
 const prodConfiguration = env => {
   return merge([
