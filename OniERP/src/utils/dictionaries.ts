@@ -111,3 +111,5 @@ ZephyrColors[ZephyrEnum.Apple] = '#fffbf2';
 ZephyrColors[ZephyrEnum.ApricotPassionFruit] = '#ffe6bf';
 ZephyrColors[ZephyrEnum.Currant] = '#d978еd';
 ZephyrColors[ZephyrEnum.StrawberryCranberry] = '#f497b9';
+
+export const DATE_FORMAT = 'DD.MM.YYYY HH:mm';

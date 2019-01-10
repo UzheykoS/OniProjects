@@ -171,7 +171,8 @@ export enum PaymentTypeEnum {
     Suppliers = "Поставщики",
     Delivery = "Доставка",
     Other = "Другое",
-    Collection = "Инкассация"
+    Collection = "Инкассация",
+    Salary = "Зарплата"
 }
 
 export enum ProfilesEnum {

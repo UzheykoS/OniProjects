@@ -2,7 +2,7 @@ import { Component } from 'react';
 import * as React from 'react'
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
-import { CreateCheck, LogData, ClearError, ProcessFetchData } from '../actions';
+import { CreateCheck, LogData, ProcessFetchData, CalculateDailyPercent } from '../actions';
 import { Check } from '../utils/types';
 import LargeButton from '../components/LargeButton';
 import HistoryComponent from '../components/HistoryComponent';
@@ -25,7 +25,8 @@ const mapDispatchToProps = (dispatch) => {
   return {
     createCheck: () => dispatch(CreateCheck()),
     logData: (text: string) => dispatch(LogData(text)),
-    fetchData: (url) => dispatch(ProcessFetchData(url))
+    fetchData: (url) => dispatch(ProcessFetchData(url)),
+    calculateDailyPercent: (url) => dispatch(CalculateDailyPercent())
   };
 };
 
@@ -41,6 +42,7 @@ export interface IMainPageProps {
   createCheck?: () => void;
   logData?: (text: string) => void;
   fetchData?: (url: string) => void;
+  calculateDailyPercent?: () => void;
 }
 
 export class MainPage extends Component<IMainPageProps, any>{
@@ -49,6 +51,7 @@ export class MainPage extends Component<IMainPageProps, any>{
     if (!history || !history.length) {
       this.props.fetchData(SPREADSHEET_ID);
     };
+    this.props.calculateDailyPercent();
   }
 
   onNewCheckClick = () => {

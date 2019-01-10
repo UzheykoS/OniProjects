@@ -23,7 +23,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        handleCheckout: () => dispatch(ProcessCheckout()),
+        handleCheckout: (callback) => dispatch(ProcessCheckout(callback)),
         setPaymentType: (type: Payment) => dispatch(SetPaymentType(type)),
         setOrderType: (type: OrderType) => dispatch(SetOrderType(type)),
         selectSale: (sale: SaleType) => dispatch(SelectSale(sale)),
@@ -41,7 +41,7 @@ export interface ICheckoutComponentProps {
     setOrderType?: (type: OrderType) => void;
     selectSale?: (sale: SaleType) => void;
     setIsPaid?: (isPaid: boolean) => void;
-    handleCheckout?: () => void;
+    handleCheckout?: (callback: any) => void;
     handleCancel?: () => void;
     logData?: (text: string) => void;
 }
@@ -58,9 +58,10 @@ export interface ICheckoutComponentState {
 
 class CheckoutComponent extends Component<ICheckoutComponentProps, any>{
     handleCheckout = () => {
-        this.props.handleCheckout();
-        this.props.history.push('/');
-        this.props.logData('checkoutPage->checkout');
+        this.props.handleCheckout(() => {
+            this.props.history.push('/');
+            this.props.logData('checkoutPage->checkout');
+        });        
     }
 
     handleCancel = () => {

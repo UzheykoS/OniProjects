@@ -10,5 +10,6 @@ export default {
     errorMessage: '',
     lastId: 0,
     notificationType: 0,
-    currentProfile: ProfilesEnum.Alina
+    currentProfile: ProfilesEnum.Alina,
+    dailyBonus: 0
 }

@@ -22,7 +22,8 @@ import {
     SET_LAST_ID,
     SHOW_NOTIFICATION,
     CHANGE_PROFILE,
-    SET_IS_PAID
+    SET_IS_PAID,
+    SET_DAILY_PERCENT
 } from './actionTypes';
 import {
     DrinksType, DessertType, Payment, OrderType, Check, PaymentTypeEnum, ProfilesEnum,
@@ -30,7 +31,11 @@ import {
 } from './utils/types';
 import { LOGS_SPREADSHEET_ID, SPREADSHEET_ID } from './config/keys';
 import * as moment from 'moment';
+import { MACARONS_PRICE, ZEPHYR_PRICE, DATE_FORMAT } from "./utils/dictionaries";
+import Helper from './utils/helper';
+
 const BLACK_FRIDAY_DATES = [23, 24];
+const BONUS_PERCENT = 0.02;
 
 export const ProcessFetchData = (spreadsheetId: string) => {
     return async (dispatch) => {
@@ -181,7 +186,7 @@ export const ProcessUpdateData = (spreadsheetId: string, valueRange: any) => {
 
 export const CreateCheck = createAction(CREATE_CHECK);
 
-export const ProcessCheckout = () => {
+export const ProcessCheckout = (callback) => {
     return async (dispatch, getState) => {
         dispatch(itemsIsLoading(true));
         try {
@@ -192,7 +197,7 @@ export const ProcessCheckout = () => {
             const drinksRange = "RawDrinksData!A:I";
             const drinksData = [];
             check.drinks.forEach(async d => {
-                const dateTime = moment(new Date()).format('DD.MM.YYYY HH:mm');
+                const dateTime = moment(new Date()).format(DATE_FORMAT);
                 const data = [d.id, d.size, check.payment, check.type, dateTime, check.id, check.sale, currentProfile, check.isPaid ? 'Да' : 'Нет'];
                 drinksData.push(data);
             });
@@ -204,13 +209,18 @@ export const ProcessCheckout = () => {
             const dessertsData = [];
             check.desserts.forEach(async d => {
                 const now = new Date();
-                const dateTime = moment(now).format('DD.MM.YYYY HH:mm');
+                const dateTime = moment(now).format(DATE_FORMAT);
                 // const sale = BLACK_FRIDAY_DATES.indexOf(now.getDate()) > -1 ? '20 %' : check.sale;
                 const data = [d.type, d.taste, d.quantity, d.size, check.payment, check.type, dateTime, check.id, check.sale, currentProfile, check.isPaid ? 'Да' : 'Нет'];
                 dessertsData.push(data);
             });
             if (dessertsData.length) {
                 await dispatch(ProcessAppendData(SPREADSHEET_ID, dessertsRange, dessertsData));
+            }
+
+            if (callback) {
+                // redirect after data save and before check is cleared
+                callback();
             }
 
             dispatch(Checkout());
@@ -236,7 +246,7 @@ export const ProcessPartnersOrderSubmit = (partner: string, macQty: number, zepQ
         dispatch(itemsIsLoading(true));
         try {
             const partnersRange = "RawPartnersData!A:H";
-            const partnersData = [[partner, macQty, zepQty, moment(new Date()).format('DD.MM.YYYY HH:mm'), buyer, macaronsPrice, zephyrPrice, payment, isPaid ? 'Да' : 'Нет']];
+            const partnersData = [[partner, macQty, zepQty, moment(new Date()).format(DATE_FORMAT), buyer, macaronsPrice, zephyrPrice, payment, isPaid ? 'Да' : 'Нет']];
             await dispatch(ProcessAppendData(SPREADSHEET_ID, partnersRange, partnersData));
             await ProcessLog(JSON.stringify(partnersData));
             await dispatch(ShowNotification(0, 'Заказ сохранён!'));
@@ -257,7 +267,7 @@ export const ProcessOtherPaymentSubmit = (paymentType: PaymentTypeEnum, price: n
         dispatch(itemsIsLoading(true));
         try {
             const range = "OtherPayments!A:F";
-            const data = [[paymentType, price, notes, moment(new Date()).format('DD.MM.YYYY HH:mm'), payment]];
+            const data = [[paymentType, price, notes, moment(new Date()).format(DATE_FORMAT), payment]];
             await dispatch(ProcessAppendData(SPREADSHEET_ID, range, data));
             await ProcessLog(JSON.stringify(data));
             await dispatch(ShowNotification(0, 'Платёж сохранён!'));
@@ -278,8 +288,7 @@ export const ProcessCashboxSubmit = (cash: number, notes: string, date?: moment.
         dispatch(itemsIsLoading(true));
         try {
             const range = "Finance!H:J";
-            debugger;
-            const data = [[cash, notes, date ? date.format('DD.MM.YYYY HH:mm') : moment(new Date()).format('DD.MM.YYYY HH:mm')]];
+            const data = [[cash, notes, date ? date.format(DATE_FORMAT) : moment(new Date()).format(DATE_FORMAT)]];
             await dispatch(ProcessAppendData(SPREADSHEET_ID, range, data));
             await ProcessLog(JSON.stringify(data));
             await dispatch(ShowNotification(0, 'Данные сохранены!'));
@@ -338,3 +347,42 @@ export const SetLastId = createAction(SET_LAST_ID, (lastId: number, lastCheck: C
 export const ShowNotification = createAction(SHOW_NOTIFICATION, (type: number, message: string) => [type, message]);
 
 export const ChangeProfile = createAction(CHANGE_PROFILE, (profile: string) => profile);
+
+export const SetDailyPercent = createAction(SET_DAILY_PERCENT, (bonus: string) => bonus);
+
+export const CalculateDailyPercent = () => {
+    return async (dispatch, getState) => {
+        dispatch(itemsIsLoading(true));
+        try {
+            const state = getState();
+            const dessertsResponse = await window['gapi'].client.sheets.spreadsheets.values.get({
+                spreadsheetId: SPREADSHEET_ID,
+                range: "RawDessertsData!A:J"
+            });
+            let totalBonus = 0;
+
+            const todayDesserts = dessertsResponse.result.values.slice(1).filter(v => 
+                [DessertType.Macaron, DessertType.Zephyr].indexOf(v[0]) > -1 
+                && Helper.isToday(v[6])
+                && v[9] === state.currentProfile);     
+
+            todayDesserts.forEach(d => {
+                if (d[0] === DessertType.Macaron) {
+                    totalBonus += d[2] * MACARONS_PRICE * BONUS_PERCENT * (100 - parseInt(d[8])) / 100;
+                } else {
+                    totalBonus += d[2] * ZEPHYR_PRICE * BONUS_PERCENT * (100 - parseInt(d[8])) / 100;
+                }
+            });
+
+            dispatch(SetDailyPercent(totalBonus.toFixed(2)));
+        }
+        catch (ex) {
+            dispatch(itemsHasErrored(true));
+            console.log(ex);
+            throw Error(ex);
+        }
+        finally {
+            dispatch(itemsIsLoading(false));
+        }
+    };
+};

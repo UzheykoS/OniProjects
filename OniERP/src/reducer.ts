@@ -22,7 +22,8 @@ import {
     SET_LAST_ID,
     SHOW_NOTIFICATION,
     CHANGE_PROFILE,
-    SET_IS_PAID
+    SET_IS_PAID,
+    SET_DAILY_PERCENT
 } from "./actionTypes";
 import { Check, Dessert, Drink, Payment, OrderType, SaleType, ProfilesEnum } from './utils/types';
 
@@ -224,5 +225,9 @@ export default handleActions({
         return Object.assign({}, state, {
             currentProfile: profile
         });
-    }
+    },
+    [SET_DAILY_PERCENT]: (state, action: any) => {
+        const dailyBonus = action.payload;
+        return { ...state, dailyBonus };
+    },
 }, initialState);

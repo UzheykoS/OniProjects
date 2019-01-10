@@ -43,7 +43,8 @@ const ITEM_HEIGHT = 48;
 
 const mapStateToProps = (state) => {
     return {
-        currentProfile: state.currentProfile
+        currentProfile: state.currentProfile,
+        dailyBonus: state.dailyBonus
     };
 };
 
@@ -59,6 +60,7 @@ export interface IAppBarComponentProps {
     isSignedIn?: boolean;
     history?: any;
     currentProfile?: ProfilesEnum;
+    dailyBonus?: string;
 
     onLoginClick?: () => void;
     onLogoutClick?: () => void;
@@ -168,7 +170,7 @@ export class AppBar extends Component<IAppBarComponentProps, IAppBarComponentSta
 
     renderProfileMenu() {
         const { anchorProfileEl } = this.state;
-        const { currentProfile, isSignedIn } = this.props;
+        const { currentProfile, isSignedIn, dailyBonus } = this.props;
 
         const open = Boolean(anchorProfileEl);
         const profiles = Helper.getArrayFromEnum(ProfilesEnum);
@@ -185,7 +187,7 @@ export class AppBar extends Component<IAppBarComponentProps, IAppBarComponentSta
                     onClick={this.handleProfileClick}
                 >
                     <Typography variant="subheading" color="inherit" className={'profile-name'}>
-                        {currentProfile}
+                        {`Процент: ${dailyBonus} грн `}<b>{currentProfile}</b>
                     </Typography>
                     <AccountCircleIcon />
                 </IconButton>

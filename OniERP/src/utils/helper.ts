@@ -1,4 +1,5 @@
-﻿import { MACARONS_PRICE, ZEPHYR_PRICE, CHOUX_PRICE, DrinkPricesDict, DrinksDict, CakesPricesDict } from './dictionaries';
+﻿import * as moment from 'moment';
+import { DATE_FORMAT, MACARONS_PRICE, ZEPHYR_PRICE, CHOUX_PRICE, DrinkPricesDict, DrinksDict, CakesPricesDict } from './dictionaries';
 import { DessertType, Dessert, Drink, Check, SaleType } from './types';
 
 export interface BearerToken {
@@ -163,6 +164,12 @@ class Helper {
             }
         })
         return values;
+    }
+    
+    static isToday(dateStr: string) {
+        var date = moment(dateStr, DATE_FORMAT);
+        var today = moment(new Date());
+        return date.date() == today.date() && date.month() == today.month() && date.year() == today.year();
     }
 }
 
