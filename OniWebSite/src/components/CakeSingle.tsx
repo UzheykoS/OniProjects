@@ -48,15 +48,15 @@ export class CakeSingle extends React.Component<ICakeSingleProps, any>{
                                                 <p><span>{priceSmall}</span>.00</p>
                                             </div>
                                             <div className="info">
-                                                <img src="/images/weight.png" />
+                                                <img src="/images/icons/weight.png" />
                                                 <span>{weightSmall}</span>
                                             </div>
                                             <div className="info">
-                                                <img src="/images/diameter.png" />
+                                                <img src="/images/icons/diameter.png" />
                                                 <span>20 см</span>
                                             </div>
                                             <div className="info">
-                                                <img src="/images/team.png" />
+                                                <img src="/images/icons/team.png" />
                                                 <span>7-8</span>
                                             </div>
                                         </div>
@@ -67,15 +67,15 @@ export class CakeSingle extends React.Component<ICakeSingleProps, any>{
                                                 <p><span>{priceLarge}</span>.00</p>
                                             </div>
                                             <div className="info">
-                                                <img src="/images/weight.png" />
+                                                <img src="/images/icons/weight.png" />
                                                 <span>{weightLarge}</span>
                                             </div>
                                             <div className="info">
-                                                <img src="/images/diameter.png" />
+                                                <img src="/images/icons/diameter.png" />
                                                 <span>35 см</span>
                                             </div>
                                             <div className="info">
-                                                <img src="/images/team.png" />
+                                                <img src="/images/icons/team.png" />
                                                 <span>10-12</span>
                                             </div>
                                         </div>
@@ -120,15 +120,15 @@ export class CakeSingle extends React.Component<ICakeSingleProps, any>{
                                                 <p><span>{priceSmall}</span>.00</p>
                                             </div>
                                             <div className="info">
-                                                <img src="/images/weight.png" />
+                                                <img src="/images/icons/weight.png" />
                                                 <span>{weightSmall}</span>
                                             </div>
                                             <div className="info">
-                                                <img src="/images/diameter.png" />
+                                                <img src="/images/icons/diameter.png" />
                                                 <span>20 см</span>
                                             </div>
                                             <div className="info">
-                                                <img src="/images/team.png" />
+                                                <img src="/images/icons/team.png" />
                                                 <span>7-8</span>
                                             </div>
                                         </div>
@@ -139,15 +139,15 @@ export class CakeSingle extends React.Component<ICakeSingleProps, any>{
                                                 <p><span>{priceLarge}</span>.00</p>
                                             </div>
                                             <div className="info">
-                                                <img src="/images/weight.png" />
+                                                <img src="/images/icons/weight.png" />
                                                 <span>{weightLarge}</span>
                                             </div>
                                             <div className="info">
-                                                <img src="/images/diameter.png" />
+                                                <img src="/images/icons/diameter.png" />
                                                 <span>35 см</span>
                                             </div>
                                             <div className="info">
-                                                <img src="/images/team.png" />
+                                                <img src="/images/icons/team.png" />
                                                 <span>10-12</span>
                                             </div>
                                         </div>

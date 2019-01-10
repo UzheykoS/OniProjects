@@ -1,7 +1,6 @@
 declare var require: any;
-import * as React from 'react'
-import * as ReactDOM from 'react-dom'
-import { Router, Route, IndexRoute, IndexRedirect, Redirect, browserHistory, hashHistory } from 'react-router';
+import * as React from 'react';
+import { Switch, Route, hashHistory } from 'react-router';
 
 import { Cakes } from "./Cakes";
 import { Macaroons } from "./Macaroons";
@@ -23,14 +22,14 @@ export class App extends React.Component<any, any>{
 
     render() {
         return <div className="app">
-            <Router history={hashHistory}>
+            <Switch>
                 <Route exact path="/" component={Main} />
-                <Route path="about" component={About} />
-                <Route path="cakes" component={CakesWrapper} />
-                <Route path="macaroons" component={Macaroons} />
-                <Route path="stub/:id" component={Stub} />
-                <Route path="contacts" component={Contacts} />
-            </Router>
+                <Route path="/about" component={About} />
+                <Route path="/cakes" component={CakesWrapper} />
+                <Route path="/macaroons" component={Macaroons} />
+                <Route path="/stub/:id" component={Stub} />
+                <Route path="/contacts" component={Contacts} />
+            </Switch>
         </div>;
     }
 };

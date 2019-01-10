@@ -46,7 +46,7 @@ export class Cakes extends React.Component<any, ICakesState>{
                     </div>
                     <div className="col-md-6">
                         <div className="cakes-photo" style={{ height: height }} >
-                            <img src="./images/cake_header.jpg" onLoad={this.onImageLoaded} />
+                            <img src="./images/images_large/cakes/cake_header.jpg" onLoad={this.onImageLoaded} />
                         </div>
                     </div>
                 </div>
@@ -62,8 +62,8 @@ export class Cakes extends React.Component<any, ICakesState>{
                     weightSmall="1200 г"
                     weightLarge="1600 г"
                     fullCakeOnTheLeft={false}
-                    imageSmallUrl="/images/cut1.jpg"
-                    imageLargeUrl="/images/cake1.jpg" 
+                    imageSmallUrl="/images/images_large/cakes/cut1.jpg"
+                    imageLargeUrl="/images/images_large/cakes/cake1.jpg" 
                     paddingTop="14vh" />
                 <CakeSingle
                     name="Carrot Cake"
@@ -74,8 +74,8 @@ export class Cakes extends React.Component<any, ICakesState>{
                     weightSmall="1200 г"
                     weightLarge="1600 г"
                     fullCakeOnTheLeft={true}
-                    imageSmallUrl="/images/cut2.jpg"
-                    imageLargeUrl="/images/cake2.jpg"
+                    imageSmallUrl="/images/images_large/cakes/cut2.jpg"
+                    imageLargeUrl="/images/images_large/cakes/cake2.jpg"
                     paddingTop="16vh" />
                 <CakeSingle
                     name="Pink"
@@ -86,8 +86,8 @@ export class Cakes extends React.Component<any, ICakesState>{
                     weightSmall="1200 г"
                     weightLarge="1600 г"
                     fullCakeOnTheLeft={false}
-                    imageSmallUrl="/images/cut3.jpg"
-                    imageLargeUrl="/images/cake3.jpg" 
+                    imageSmallUrl="/images/images_large/cakes/cut3.jpg"
+                    imageLargeUrl="/images/images_large/cakes/cake3.jpg" 
                     paddingTop="19vh" />
                 <CakeSingle
                     name="No Name"
@@ -98,8 +98,8 @@ export class Cakes extends React.Component<any, ICakesState>{
                     weightSmall="1200 г"
                     weightLarge="1600 г"
                     fullCakeOnTheLeft={true}
-                    imageSmallUrl="/images/cut4.jpg"
-                    imageLargeUrl="/images/cake4.jpg" 
+                    imageSmallUrl="/images/images_large/cakes/cut4.jpg"
+                    imageLargeUrl="/images/images_large/cakes/cake4.jpg" 
                     paddingTop="22vh" />
                 <CakeSingle
                     name="Rio"
@@ -110,12 +110,12 @@ export class Cakes extends React.Component<any, ICakesState>{
                     weightSmall="1200 г"
                     weightLarge="1600 г"
                     fullCakeOnTheLeft={false}
-                    imageSmallUrl="/images/cut5.jpg"
-                    imageLargeUrl="/images/cake5.jpg"
+                    imageSmallUrl="/images/images_large/cakes/cut5.jpg"
+                    imageLargeUrl="/images/images_large/cakes/cake5.jpg"
                     paddingTop="22vh" />
             </div>
             <div className="cakes-footer">
-                <img src="/images/Oni_logo.png" />
+                <img src="/images/icons/Oni_logo.png" />
             </div>
             <Busy loading={loading} />
         </div>;

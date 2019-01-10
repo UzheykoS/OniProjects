@@ -31,6 +31,6 @@ export class Bundle extends React.Component<any, any>{
     }
 
     render() {
-        return this.state.mod ? this.props.children(this.state.mod) : null
+        return this.state.mod ? (this.props.children as any)(this.state.mod) : null
     }
 };

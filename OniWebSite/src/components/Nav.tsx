@@ -1,8 +1,8 @@
-import * as React from 'react'
-import { Link, IndexLink } from 'react-router';
+import * as React from 'react';
+import { Link, NavLink } from 'react-router-dom';
 import { Tabs } from "../Helper"
 import { slide as Menu } from 'react-burger-menu'
-import * as Media from 'react-media'
+import * as Media from 'react-media';
 
 const activeStyle = {
     'font-family': 'Museo Sans Cyrl 500 !important',
@@ -38,26 +38,26 @@ export class Nav extends React.Component<INavProps, INavState>{
         return <Media query={{ maxWidth: 800 }}>
             {matches => matches ? (
                 <div className="nav-bar">
-                    <img src="/images/Oni_w_black.png" className={activeTab == Tabs.Main ? "logo" : "logo logo-small"} />
+                    <img src="/images/icons/Oni_w_black.png" className={activeTab == Tabs.Main ? "logo" : "logo logo-small"} />
                     <Menu right
                         width={'100%'}
-                        customBurgerIcon={<img src="/images/menu-button.png" />}
-                        customCrossIcon={<img src="/images/close.png" />} >
+                        customBurgerIcon={<img src="/images/icons/menu-button.png" />}
+                        customCrossIcon={<img src="/images/icons/close.png" />} >
                         {activeTab !== Tabs.Main ?
                             <span className="menu-item">
-                                <IndexLink to="/"
+                                <Link to="/"
                                     className={activeTab == Tabs.About ? "active" : ""}
                                     onClick={() => this.onLinkClick(Tabs.About)}>
                                     ГЛАВНАЯ
-                            </IndexLink>
+                            </Link>
                             </span> :
                             null}
                         <span className="menu-item">
-                            <IndexLink to="/about"
+                            <Link to="/about"
                                 className={activeTab == Tabs.About ? "active" : ""}
                                 onClick={() => this.onLinkClick(Tabs.About)}>
                                 О НАС
-                            </IndexLink>
+                            </Link>
                         </span>
                         <span className="menu-item">
                             <Link to="/cakes"
@@ -89,34 +89,34 @@ export class Nav extends React.Component<INavProps, INavState>{
                         </span>
                         <div className="bm-socials">
                             <a target="_blank" href="https://www.facebook.com/">
-                                <img className="social_network" src="images/facebook.png" />
+                                <img className="social_network" src="images/icons/facebook.png" />
                             </a>
                             <a target="_blank" href="https://www.instagram.com">
-                                <img className="social_network" src="images/instagram.png" />
+                                <img className="social_network" src="images/icons/instagram.png" />
                             </a>
                             <a target="_blank" href="https://www.telegram.com">
-                                <img className="social_network" src="images/twitter.png" />
+                                <img className="social_network" src="images/icons/twitter.png" />
                             </a>
                         </div>
                     </Menu>
                 </div>
             ) : (
                     <div className="nav-bar">
-                        <img src="/images/Oni_w_black.png" className={activeTab == Tabs.Main ? "logo" : "logo logo-small"} />
+                        <img src="/images/icons/Oni_w_black.png" className={activeTab == Tabs.Main ? "logo" : "logo logo-small"} />
                         <ul>
                             {activeTab !== Tabs.Main ?
                                 <li>
-                                    <IndexLink to="/"
+                                    <Link to="/"
                                         className={activeTab == Tabs.Main ? "active" : ""}
                                         onClick={() => this.onLinkClick(Tabs.Main)}>{Tabs.Main}
-                                    </IndexLink>
+                                    </Link>
                                 </li> :
                                 null}
                             <li>
-                                <IndexLink to="/about"
+                                <Link to="/about"
                                     className={activeTab == Tabs.About ? "active" : ""}
                                     onClick={() => this.onLinkClick(Tabs.About)}>{Tabs.About}
-                                </IndexLink>
+                                </Link>
                             </li>
                             <li>
                                 <Link to="/cakes"

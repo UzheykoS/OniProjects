@@ -34,7 +34,7 @@ export class About extends React.Component<any, IAboutState>{
                 <div className="row">
                     <div className="col-md-6">
                         <div className="about-photo" style={{ height: height }} >
-                            <img src="./images/about_header.jpg" onLoad={this.onImageLoaded} />
+                            <img src="./images/images_large/about/about_header.jpg" onLoad={this.onImageLoaded} />
                         </div>
                     </div>
                     <div className="col-md-6">
@@ -54,7 +54,7 @@ export class About extends React.Component<any, IAboutState>{
                 <div style={{ height: "500px" }} />
             </div>
             <div className="about-footer">
-                <img src="/images/Oni_logo.png" />
+                <img src="/images/icons/Oni_logo.png" />
             </div>
             <Busy loading={loading} />
         </div>;

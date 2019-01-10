@@ -6,7 +6,7 @@ import { Busy } from './Busy';
 
 // const googleMapURL = "https://maps.googleapis.com/maps/api/js?v=3.27&libraries=places,geometry&key=AIzaSyDH_aHRsVOr_CMITd6m0Vuo1X2qSXMicdY"
 
-const GoogleMapsWrapper = withGoogleMap(props => (
+const GoogleMapsWrapper = withGoogleMap((props: any) => (
     <GoogleMap
         ref={props.onMapLoad}
         defaultZoom={17}
@@ -52,7 +52,7 @@ export class Contacts extends React.Component<any, IContactsState>{
                 <div className="row">
                     <div className="col-md-6">
                         <div className="contacts-photo" style={{ height: height }} >
-                            <img src="./images/contacts_header.jpg" onLoad={this.onImageLoaded} />
+                            <img src="./images/images_large/contacts/contacts_header.jpg" onLoad={this.onImageLoaded} />
                         </div>
                     </div>
                     <div className="col-md-6">
@@ -90,7 +90,7 @@ export class Contacts extends React.Component<any, IContactsState>{
                 </div>
             </div>
             <div className="contacts-footer">
-                <img src="/images/Oni_logo.png" />
+                <img src="/images/icons/Oni_logo.png" />
             </div>
             <Busy loading={loading} />
         </div>;

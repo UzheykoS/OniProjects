@@ -17,7 +17,7 @@ export class Main extends React.Component<any, IMainState>{
     constructor(props) {
         super(props);
         this.state = {
-            backgroundImage: "../images/main.jpg",
+            backgroundImage: "./images/images_large/main.jpg",
             activeImage: 0,
             loading: true
         }
@@ -28,33 +28,33 @@ export class Main extends React.Component<any, IMainState>{
 
         // preloads the rest
         // loadCakes(() => { })
-        await loadMainPageImage("./images/main.jpg");
+        await loadMainPageImage("./images/images_large/main.jpg");
 
         this.setState({
             loading: false
         });
         await preloadImages([
-            "./images/cake1.jpg",
-            "./images/cake2.jpg",
-            "./images/cake3.jpg",
-            "./images/cake4.jpg",
-            "./images/cake5.jpg",
-            "./images/cut1.jpg",
-            "./images/cut2.jpg",
-            "./images/cut3.jpg",
-            "./images/cut4.jpg",
-            "./images/cut5.jpg",
-            "./images/macaron1.jpg",
-            "./images/macaron2.jpg",
-            "./images/macaron3.jpg",
-            "./images/macaron4.jpg",
-            "./images/macaron5.jpg",
-            "./images/macaron6.jpg",
-            "./images/macaron7.jpg",
-            "./images/macaron8.jpg",
-            "./images/main.jpg",
-            "./images/main2.jpg",
-            "./images/main3.jpg",])
+            "./images/images_large/cakes/cake1.jpg",
+            "./images/images_large/cakes/cake2.jpg",
+            "./images/images_large/cakes/cake3.jpg",
+            "./images/images_large/cakes/cake4.jpg",
+            "./images/images_large/cakes/cake5.jpg",
+            "./images/images_large/cakes/cut1.jpg",
+            "./images/images_large/cakes/cut2.jpg",
+            "./images/images_large/cakes/cut3.jpg",
+            "./images/images_large/cakes/cut4.jpg",
+            "./images/images_large/cakes/cut5.jpg",
+            "./images/images_large/macarons/macaron1.jpg",
+            "./images/images_large/macarons/macaron2.jpg",
+            "./images/images_large/macarons/macaron3.jpg",
+            "./images/images_large/macarons/macaron4.jpg",
+            "./images/images_large/macarons/macaron5.jpg",
+            "./images/images_large/macarons/macaron6.jpg",
+            "./images/images_large/macarons/macaron7.jpg",
+            "./images/images_large/macarons/macaron8.jpg",
+            "./images/images_large/main.jpg",
+            "./images/images_large/main2.jpg",
+            "./images/images_large/main3.jpg",])
     }
 
     componentWillUnmount() {
@@ -64,21 +64,21 @@ export class Main extends React.Component<any, IMainState>{
     changeBackgroundImage = () => {
         const { backgroundImage } = this.state;
         
-        if (backgroundImage == "../images/main.jpg") {
+        if (backgroundImage == "./images/images_large/main.jpg") {
             this.setState({
-                backgroundImage: "../images/main2.jpg",
+                backgroundImage: "./images/images_large/main2.jpg",
                 activeImage: 1
             });
         }
-        else if (backgroundImage == "../images/main2.jpg") {
+        else if (backgroundImage == "./images/images_large/main2.jpg") {
             this.setState({
-                backgroundImage: "../images/main3.jpg",
+                backgroundImage: "./images/images_large/main3.jpg",
                 activeImage: 2
             });
         }
-        else if (backgroundImage == "../images/main3.jpg") {
+        else if (backgroundImage == "./images/images_large/main3.jpg") {
             this.setState({
-                backgroundImage: "../images/main.jpg",
+                backgroundImage: "./images/images_large/main.jpg",
                 activeImage: 0
             });
         }
@@ -90,9 +90,9 @@ export class Main extends React.Component<any, IMainState>{
         return <div className="app background">
         {/* return <div className="app background" style={{ backgroundImage: `url(${backgroundImage})`}}> */}
             <Nav tab={Tabs.Main} />
-            <img className="background-img" src="../images/main.jpg" style={{ opacity: activeImage == 0 ? 1 : 0 }} />
-            <img className="background-img" src="../images/main2.jpg" style={{ opacity: activeImage == 1 ? 1 : 0 }}/>
-            <img className="background-img" src="../images/main3.jpg" style={{ opacity: activeImage == 2 ? 1 : 0 }}/>
+            <img className="background-img" src="./images/images_large/main.jpg" style={{ opacity: activeImage == 0 ? 1 : 0 }} />
+            <img className="background-img" src="./images/images_large/main2.jpg" style={{ opacity: activeImage == 1 ? 1 : 0 }}/>
+            <img className="background-img" src="./images/images_large/main3.jpg" style={{ opacity: activeImage == 2 ? 1 : 0 }}/>
 
             <div className="main-body">
                 {/* <div className="carousel-container">
@@ -123,13 +123,13 @@ export class Main extends React.Component<any, IMainState>{
 
             <div className="socials">
                 <a target="_blank" href="https://www.facebook.com/">
-                    <img className="social_network" src="images/facebook.png" />
+                    <img className="social_network" src="images/icons/facebook.png" />
                 </a>
                 <a target="_blank" href="https://www.instagram.com">
-                    <img className="social_network" src="images/instagram.png" />
+                    <img className="social_network" src="images/icons/instagram.png" />
                 </a>
                 <a target="_blank" href="https://www.telegram.com">
-                    <img className="social_network" src="images/twitter.png" />
+                    <img className="social_network" src="images/icons/twitter.png" />
                 </a>
             </div>
             <Busy loading={loading} />

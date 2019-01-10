@@ -45,7 +45,7 @@ export class Macaroons extends React.Component<any, IMacaroonsState>{
                     </div>
                     <div className="col-md-6">
                         <div className="macarons-photo" style={{ height: height }} >
-                            <img src="./images/mac_header.jpg" onLoad={this.onImageLoaded} />
+                            <img src="./images/images_large/macarons/mac_header.jpg" onLoad={this.onImageLoaded} />
                         </div>
                         {/* <div className="macarons-prices">
                             <div className="macarons-small">
@@ -54,7 +54,7 @@ export class Macaroons extends React.Component<any, IMacaroonsState>{
                                     <span className="small">.00</span>
                                     <div className="qty">12шт</div>
                                 </div>
-                                <img src="./images/mac_small.png" className="small-image" />
+                                <img src="./images/images_large/macarons/mac_small.png" className="small-image" />
                             </div>
                             <div className="macarons-large">
                                 <div className="price-large">
@@ -63,7 +63,7 @@ export class Macaroons extends React.Component<any, IMacaroonsState>{
                                     <div className="qty">24шт</div>
                                 </div>
 
-                                <img src="./images/mac_header.jpg" className="large-image" />
+                                <img src="./images/images_large/macarons/mac_header.jpg" className="large-image" />
                             </div>
                         </div> */}
                     </div>
@@ -75,7 +75,7 @@ export class Macaroons extends React.Component<any, IMacaroonsState>{
                 <div className="row">
                 <div className="col-md-3">
                         <div className="macarons-mix-photo">
-                            <img src="./images/mac_small.png" />
+                            <img src="./images/images_large/macarons/mac_small.png" />
                         </div>
                     </div>
                     <div className="col-md-2">
@@ -86,7 +86,7 @@ export class Macaroons extends React.Component<any, IMacaroonsState>{
                     </div>
                     <div className="col-md-5">
                         <div className="macarons-mix-photo">
-                            <img src="./images/mac_large.png" />
+                            <img src="./images/images_large/macarons/mac_large.png" />
                         </div>
                     </div>
                     <div className="col-md-2">
@@ -104,16 +104,16 @@ export class Macaroons extends React.Component<any, IMacaroonsState>{
                             shortDescription=""
                             fullDescription="Двойная начинка на основе натурального пюре малины с ярким малиновым центром"
                             imageOnTheLeft={true}
-                            hoverImageUrl="./images/macaron1_hover.jpg"
-                            imageUrl="./images/macaron1.jpg" />
+                            hoverImageUrl="./images/images_large/macarons/macaron1_hover.jpg"
+                            imageUrl="./images/images_large/macarons/macaron1.jpg" />
                     </div>
                     <div className="col-md-6">
                         <MacaronSingle name="Манго-Маракуйя"
                             shortDescription=""
                             fullDescription="Двойная начинка на основе натурального пюре манго и маракуйи с ярким центром манго-маракуйя"
                             imageOnTheLeft={true}
-                            imageUrl="./images/macaron2.jpg"
-                            hoverImageUrl="./images/macaron2_hover.jpg" />
+                            imageUrl="./images/images_large/macarons/macaron2.jpg"
+                            hoverImageUrl="./images/images_large/macarons/macaron2_hover.jpg" />
                     </div>
                 </div>
                 <div className="row">
@@ -122,16 +122,16 @@ export class Macaroons extends React.Component<any, IMacaroonsState>{
                             shortDescription=""
                             fullDescription="Начинка на основе натуральной  100% фисташковой пасты без сахара"
                             imageOnTheLeft={false}
-                            imageUrl="./images/macaron3.jpg"
-                            hoverImageUrl="./images/macaron3_hover.jpg" />
+                            imageUrl="./images/images_large/macarons/macaron3.jpg"
+                            hoverImageUrl="./images/images_large/macarons/macaron3_hover.jpg" />
                     </div>
                     <div className="col-md-6">
                         <MacaronSingle name="Дор Блю-Груша"
                             shortDescription=""
                             fullDescription="Двойная начинка на основе сыра Дор Блю с центром из натурального грушевого пюре"
                             imageOnTheLeft={false}
-                            imageUrl="./images/macaron4.jpg"
-                            hoverImageUrl="./images/macaron4_hover.jpg" />
+                            imageUrl="./images/images_large/macarons/macaron4.jpg"
+                            hoverImageUrl="./images/images_large/macarons/macaron4_hover.jpg" />
                     </div>
                 </div>
                 <div className="row">
@@ -140,16 +140,16 @@ export class Macaroons extends React.Component<any, IMacaroonsState>{
                             shortDescription=""
                             fullDescription="Двойная начинка на основе натурального кофе с центром из мягкой соленой карамели"
                             imageOnTheLeft={true}
-                            imageUrl="./images/macaron5.jpg"
-                            hoverImageUrl="./images/macaron5_hover.jpg" />
+                            imageUrl="./images/images_large/macarons/macaron5.jpg"
+                            hoverImageUrl="./images/images_large/macarons/macaron5_hover.jpg" />
                     </div>
                     <div className="col-md-6">
                         <MacaronSingle name="Пармезан-Инжир"
                             shortDescription=""
                             fullDescription="Двойная начинка на основе сыра Пармезан с центром из натурального пюре инжира"
                             imageOnTheLeft={true}
-                            imageUrl="./images/macaron6.jpg"
-                            hoverImageUrl="./images/macaron6_hover.jpg" />
+                            imageUrl="./images/images_large/macarons/macaron6.jpg"
+                            hoverImageUrl="./images/images_large/macarons/macaron6_hover.jpg" />
                     </div>
                 </div>
                 <div className="row">
@@ -158,16 +158,16 @@ export class Macaroons extends React.Component<any, IMacaroonsState>{
                             shortDescription=""
                             fullDescription="Двойная начинка на основе натурального пюре смородины с ярким смородиновым центром"
                             imageOnTheLeft={false}
-                            imageUrl="./images/macaron7.jpg"
-                            hoverImageUrl="./images/macaron7_hover.jpg" />
+                            imageUrl="./images/images_large/macarons/macaron7.jpg"
+                            hoverImageUrl="./images/images_large/macarons/macaron7_hover.jpg" />
                     </div>
                     <div className="col-md-6">
                         <MacaronSingle name="Шоколад"
                             shortDescription=""
                             fullDescription="Начинка на основе натурального бельгийского черного шоколада 60%"
                             imageOnTheLeft={false}
-                            imageUrl="./images/macaron8.jpg"
-                            hoverImageUrl="./images/macaron8_hover.jpg" />
+                            imageUrl="./images/images_large/macarons/macaron8.jpg"
+                            hoverImageUrl="./images/images_large/macarons/macaron8_hover.jpg" />
                     </div>
                 </div>
                 <div className="row">
@@ -176,15 +176,15 @@ export class Macaroons extends React.Component<any, IMacaroonsState>{
                             shortDescription=""
                             fullDescription="Двойная начинка на основе молочных сливок, настоянных на цветках лаванды, с центром из натурального пюре черники"
                             imageOnTheLeft={true}
-                            imageUrl="./images/macaron9.jpg"
-                            hoverImageUrl="./images/macaron9_hover.jpg" />
+                            imageUrl="./images/images_large/macarons/macaron9.jpg"
+                            hoverImageUrl="./images/images_large/macarons/macaron9_hover.jpg" />
                     </div>
                     <div className="col-md-6">
                     </div>
                 </div>
             </div>
             <div className="macarons-footer">
-                <img src="/images/Oni_logo.png" />
+                <img src="/images/icons/Oni_logo.png" />
             </div>
             <Busy loading={loading} />
         </div>;
