@@ -1,13 +1,12 @@
 import * as React from 'react'
 import { Nav } from '../components/Nav';
 import { Tabs } from '../utils/Helper'
-import { Carousel } from 'react-responsive-carousel';
 import { preloadImages, loadMainPageImage } from '../utils/Helper';
 import { Busy } from '../components/Busy';
+import Slider from 'react-slick';
 
 interface IMainState {
     backgroundImage?: string;
-    activeImage?: number;
     loading?: boolean;
 }
 
@@ -17,15 +16,11 @@ export class Main extends React.Component<any, IMainState>{
     constructor(props) {
         super(props);
         this.state = {
-            backgroundImage: './images/images_large/main.jpg',
-            activeImage: 0,
             loading: true
         }
     }
 
     async componentDidMount() {
-        this.timer = setInterval(this.changeBackgroundImage, 5000);
-
         // preloads the rest
         // loadCakes(() => { })
         await loadMainPageImage('./images/images_large/main.jpg');
@@ -57,79 +52,72 @@ export class Main extends React.Component<any, IMainState>{
             './images/images_large/main3.jpg',])
     }
 
-    componentWillUnmount() {
-        clearInterval(this.timer);
+    onImageLoaded = () => {
+        this.setState({
+            loading: false
+        });
     }
 
-    changeBackgroundImage = () => {
-        const { backgroundImage } = this.state;
+    renderInfo() {
+        return <div className='info-section'>
+            <div className='image-section'>
+                <img src='./images/images_large/about/MF2A8377.jpg' onLoad={this.onImageLoaded} />
+            </div>
+            <div className='text-section'>
+                <h2>КАЖДЫЙ ДЕНЬ МЫ СОЗДАЁМ ДЕСЕРТЫ, КОТОРЫЕ ВДОХНОВЛЯЮТ!</h2>
+                <p>Наша главная цель – показать, что современное кондитерское  искусство – это больше, чем просто «что-то сладкое». Это – интересные сочетания вкусов и текстур, натуральные ингредиенты высокого качества, авторские рецептуры и внимание к деталям. </p>
+                <p>Все десерты в нашей кондитерской изготавливаются вручную. За каждым изделием стоят десятки теоретических и практических мастер-классов. Мы перенимаем опыт ведущих шефов мира и получаем знания из первых рук, чтобы привезти всё самое лучшее в Украину.   </p>
+                <p>Для нас идеальный десерт – это 100% натуральный состав, честный вкус и современная подача. Мы работаем в своем стиле и уверенны, что люди, которые выбирают наш продукт, знают толк в кондитерском искусстве!</p>
+            </div>
+        </div>
+    }
 
-        if (backgroundImage == './images/images_large/main.jpg') {
-            this.setState({
-                backgroundImage: './images/images_large/main2.jpg',
-                activeImage: 1
-            });
-        }
-        else if (backgroundImage == './images/images_large/main2.jpg') {
-            this.setState({
-                backgroundImage: './images/images_large/main3.jpg',
-                activeImage: 2
-            });
-        }
-        else if (backgroundImage == './images/images_large/main3.jpg') {
-            this.setState({
-                backgroundImage: './images/images_large/main.jpg',
-                activeImage: 0
-            });
-        }
+    renderSocials() {
+        return <div className='socials'>
+            <a target='_blank' href='https://www.facebook.com/'>
+                <img className='social_network' src='images/icons/facebook.png' />
+            </a>
+            <a target='_blank' href='https://www.instagram.com'>
+                <img className='social_network' src='images/icons/instagram.png' />
+            </a>
+            <a target='_blank' href='https://www.telegram.com'>
+                <img className='social_network' src='images/icons/twitter.png' />
+            </a>
+        </div>;
+    }
+
+    renderImages() {
+        var settings = {
+            className: '',
+            dots: false,
+            fade: true,
+            infinite: true,
+            slidesToShow: 1,
+            slidesToScroll: 1,
+            adaptiveHeight: true,
+            autoplay: false,
+            speed: 500,
+            autoplaySpeed: 3000,
+            cssEase: 'linear',
+            arrows: false
+        };
+
+        return <div className='images-container'>
+            <Slider {...settings}>
+                <img className='background-img' src='./images/images_large/main1.jpg' />
+                <img className='background-img' src='./images/images_large/main2.jpg' />
+            </Slider>
+        </div>;
     }
 
     render() {
-        const { backgroundImage, activeImage, loading } = this.state;
+        const { loading } = this.state;
 
         return <div className='main-container'>
             <Nav tab={Tabs.Main} />
-            <div className='main-image'>
-                <img className='background-img' src='./images/images_large/main.jpg' style={{ opacity: activeImage == 0 ? 1 : 0 }} />
-                <img className='background-img' src='./images/images_large/main2.jpg' style={{ opacity: activeImage == 1 ? 1 : 0 }} />
-                <img className='background-img' src='./images/images_large/main3.jpg' style={{ opacity: activeImage == 2 ? 1 : 0 }} />
-                {/* <div className='carousel-container'>
-                    <Carousel axis='horizontal'
-                        showThumbs={false}
-                        showArrows={false}
-                        showStatus={false}
-                        infiniteLoop={true}
-                        dynamicHeight emulateTouch>
-                        <div className='cake-container'>
-                            <img src='./images/cake1.jpg' className='cake' />
-                        </div>
-                        <div className='cake-container'>
-                            <img src='./images/cake2.jpg' className='cake' />
-                        </div>
-                        <div className='cake-container'>
-                            <img src='./images/cake3.jpg' className='cake' />
-                        </div>
-                        <div className='cake-container'>
-                            <img src='./images/cake4.jpg' className='cake' />
-                        </div>
-                        <div className='cake-container'>
-                            <img src='./images/cake5.jpg' className='cake' />
-                        </div>
-                    </Carousel>
-                </div> */}
-            </div>
-
-            <div className='socials'>
-                <a target='_blank' href='https://www.facebook.com/'>
-                    <img className='social_network' src='images/icons/facebook.png' />
-                </a>
-                <a target='_blank' href='https://www.instagram.com'>
-                    <img className='social_network' src='images/icons/instagram.png' />
-                </a>
-                <a target='_blank' href='https://www.telegram.com'>
-                    <img className='social_network' src='images/icons/twitter.png' />
-                </a>
-            </div>
+            {this.renderImages()}
+            {this.renderInfo()}
+            {this.renderSocials()}
             <Busy loading={loading} />
         </div>;
     }

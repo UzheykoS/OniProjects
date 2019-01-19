@@ -86,14 +86,15 @@ export class Nav extends React.Component<INavProps, INavState>{
                         onClick={() => this.onLinkClick(Tabs.News)}>{Tabs.News}
                     </Link>
                 </li>
-            </ul>;
-        </div>
+            </ul>
+        </div>;
     }
 
     renderSubNavBar() {
         const { activeTab, activeSubTab } = this.state;
 
-        return <div className={activeTab == Tabs.Products ? 'nav-bar-sub with-space' : 'nav-bar-sub'}>
+        return <> 
+        <div className={activeTab == Tabs.Products ? 'nav-bar-sub with-space' : 'nav-bar-sub'}>
             <ul>
                 <li>
                     <Link to='/products/macarons'
@@ -124,7 +125,9 @@ export class Nav extends React.Component<INavProps, INavState>{
                     </Link>
                 </li>
             </ul>
-        </div>;
+        </div>
+        <div className='clearfix'></div>
+        </>;
     }
 
     render() {
