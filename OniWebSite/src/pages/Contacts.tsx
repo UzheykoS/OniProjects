@@ -1,10 +1,10 @@
 import * as React from 'react'
-import { Nav } from "../components/Nav";
-import { Tabs } from "../utils/Helper"
-import { withGoogleMap, GoogleMap, Marker } from "react-google-maps";
+import { Nav } from '../components/Nav';
+import { Tabs } from '../utils/Helper'
+import { withGoogleMap, GoogleMap, Marker } from 'react-google-maps';
 import { Busy } from '../components/Busy';
 
-// const googleMapURL = "https://maps.googleapis.com/maps/api/js?v=3.27&libraries=places,geometry&key=AIzaSyDH_aHRsVOr_CMITd6m0Vuo1X2qSXMicdY"
+// const googleMapURL = 'https://maps.googleapis.com/maps/api/js?v=3.27&libraries=places,geometry&key=AIzaSyDH_aHRsVOr_CMITd6m0Vuo1X2qSXMicdY'
 
 const GoogleMapsWrapper = withGoogleMap((props: any) => (
     <GoogleMap
@@ -46,19 +46,19 @@ export class Contacts extends React.Component<any, IContactsState>{
     render() {
         const { loading, height } = this.state;
 
-        return <div className="contacts-container">
+        return <div className='contacts-container'>
             <Nav tab={Tabs.Contacts} />
-            <div className="contacts-header">
-                <div className="row">
-                    <div className="col-md-6">
-                        <div className="contacts-photo" style={{ height: height }} >
-                            <img src="./images/images_large/contacts/contacts_header.jpg" onLoad={this.onImageLoaded} />
+            <div className='contacts-header'>
+                <div className='row'>
+                    <div className='col-md-6'>
+                        <div className='contacts-photo' style={{ height: height }} >
+                            <img src='./images/images_large/contacts/contacts_header.jpg' onLoad={this.onImageLoaded} />
                         </div>
                     </div>
-                    <div className="col-md-6">
-                        <div className="header-main">Оплата и доставка</div>
-                        {/* <div className="header-desc"></div> */}
-                        <div className="header-body">
+                    <div className='col-md-6'>
+                        <div className='header-main'>Оплата и доставка</div>
+                        {/* <div className='header-desc'></div> */}
+                        <div className='header-body'>
                         Наш кондитерский цех находится в г. Киев по адресу бульвар Вацлава Гавела, 9А (бывший бульвар Ивана Лепсе). Вы можете забрать свой заказ самостоятельно или заказать доставку курьером. Стоимость доставки по Киеву – 60 грн. Доставка в другие города Украины обсуждается индивидуально.
                         <br />
                         <br />
@@ -70,12 +70,12 @@ export class Contacts extends React.Component<any, IContactsState>{
                     </div>
                 </div>
             </div>
-            <div className="contacts-body">
-                {/* <div className="contacts-body-text">
+            <div className='contacts-body'>
+                {/* <div className='contacts-body-text'>
                     <div>               
                     </div>
                 </div> */}
-                <div className="contacts-body-map">
+                <div className='contacts-body-map'>
                     <GoogleMapsWrapper
                         containerElement={
                             <div style={{ height: `100%` }} />
@@ -89,8 +89,8 @@ export class Contacts extends React.Component<any, IContactsState>{
                     />
                 </div>
             </div>
-            <div className="contacts-footer">
-                <img src="/images/icons/Oni_logo.png" />
+            <div className='contacts-footer'>
+                <img src='/images/icons/Oni_logo.png' />
             </div>
             <Busy loading={loading} />
         </div>;

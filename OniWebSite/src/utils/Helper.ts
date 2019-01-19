@@ -1,11 +1,11 @@
 export const Tabs = {
-    Main: "Главная",
-    About: "О нас",
-    Cakes: "Торты",
-    Macarons: "Макарон",
-    Marmalade: "Мармелад",
-    Corporate: "Корпоративным клиентам",
-    Contacts: "Доставка и оплата"
+    Main: 'Главная',
+    About: 'О нас',
+    Cakes: 'Торты',
+    Macarons: 'Макарон',
+    Marmalade: 'Мармелад',
+    Corporate: 'Корпоративным клиентам',
+    Contacts: 'Доставка и оплата'
 }
 
 export function loadMainPageImage(url: string) {

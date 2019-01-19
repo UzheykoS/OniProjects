@@ -6,8 +6,8 @@ interface IBusyProps {
 }
 
 export const Busy: React.SFC<IBusyProps> = (props) => {
-    return <div className={"busy-container" + (props.loading ? "" : " invisible")}>
-        <div className="busy">
+    return <div className={'busy-container' + (props.loading ? '' : ' invisible')}>
+        <div className='busy'>
             <GridLoader
                 color={'#d0006f'}
                 loading={props.loading}

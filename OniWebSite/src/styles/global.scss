@@ -6,7 +6,7 @@ body {
 }
 
 .background {
-    // background-image: url("../images/images_large/main.jpg");
+    // background-image: url('../images/images_large/main.jpg');
     background-size: cover;
     background-repeat: no-repeat;
     background-position: top center;
@@ -30,9 +30,9 @@ body {
 // /* Safari and Chrome */
 // @-webkit-keyframes changeBg
 // {
-//    0%   {background-image: url("../images/images_large/main.jpg");}
-//    33%  {background-image: url("../images/images_large/main2.jpg");}
-//    66%  {background-image: url("../images/images_large/main3.jpg");}
+//    0%   {background-image: url('../images/images_large/main.jpg');}
+//    33%  {background-image: url('../images/images_large/main2.jpg');}
+//    66%  {background-image: url('../images/images_large/main3.jpg');}
 // }
 
 // .background
@@ -84,7 +84,7 @@ body {
 // @media only screen and (min-width: 320px),
 // only screen and (min-device-width: 374px) and (max-device-width: 376px) {
 //     .main-body img {
-//         // src: url("/images/cite_680.png");
+//         // src: url('/images/cite_680.png');
 //         // background-size: cover;
 //     }
 //     .logo {
@@ -641,7 +641,7 @@ body {
 
 .clearfix:before,
 .clearfix:after {
-    content: "";
+    content: '';
     display: table;
 }
 
@@ -866,7 +866,7 @@ only screen and (max-width: 800px) {
 }
 
 .bm-burger-button::before {
-    content: "МЕНЮ";
+    content: 'МЕНЮ';
     font-family: 'Museo Sans Cyrl 100';
     font-size: 14px;
     color: #848484;

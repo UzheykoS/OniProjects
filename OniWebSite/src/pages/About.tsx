@@ -1,6 +1,6 @@
-import * as React from 'react'
-import { Nav } from "../components/Nav";
-import { Tabs } from "../utils/Helper"
+import * as React from 'react';
+import { Nav } from '../components/Nav';
+import { Tabs } from '../utils/Helper'
 import { Busy } from '../components/Busy';
 
 interface IAboutState {
@@ -28,19 +28,19 @@ export class About extends React.Component<any, IAboutState>{
     render() {
         const { loading, height } = this.state;
 
-        return <div className="about-container">
+        return <div className='about-container'>
             <Nav tab={Tabs.About} />
-            <div className="about-header">
-                <div className="row">
-                    <div className="col-md-6">
-                        <div className="about-photo" style={{ height: height }} >
-                            <img src="./images/images_large/about/about_header.jpg" onLoad={this.onImageLoaded} />
+            <div className='about-header'>
+                <div className='row'>
+                    <div className='col-md-6'>
+                        <div className='about-photo' style={{ height: height }} >
+                            <img src='./images/images_large/about/about_header.jpg' onLoad={this.onImageLoaded} />
                         </div>
                     </div>
-                    <div className="col-md-6">
-                        <div className="header-main">О нас</div>
-                        {/* <div className="header-desc"></div> */}
-                        <div className="header-body">
+                    <div className='col-md-6'>
+                        <div className='header-main'>О нас</div>
+                        {/* <div className='header-desc'></div> */}
+                        <div className='header-body'>
                             Привет! Меня зовут Ирина Ужейко и я – основатель кондитерской ONI. Каждый день мы создаём десерты, которые вдохновляют. Наша главная цель – показать, что современное кондитерское  искусство – это больше, чем просто «что-то сладкое». Это – интересные сочетания вкусов и текстур, натуральные ингредиенты высочайшего качества, авторские рецептуры и внимание к деталям.
                         <br />
                             <br />
@@ -50,11 +50,11 @@ export class About extends React.Component<any, IAboutState>{
                     </div>
                 </div>
             </div>
-            <div className="about-body">
-                <div style={{ height: "500px" }} />
+            <div className='about-body'>
+                <div style={{ height: '500px' }} />
             </div>
-            <div className="about-footer">
-                <img src="/images/icons/Oni_logo.png" />
+            <div className='about-footer'>
+                <img src='/images/icons/Oni_logo.png' />
             </div>
             <Busy loading={loading} />
         </div>;
