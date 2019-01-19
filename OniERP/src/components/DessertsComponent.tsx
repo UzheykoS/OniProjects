@@ -187,7 +187,7 @@ export class DessertsComponent extends Component<IDessertsComponentProps, IDesse
     this.setState({
       dessertQuantities
     });
-    this.props.logData('desserts->dessertQtyIncrease->' + id);
+    this.props.logData('desserts->handleDessertDecrease->' + id);
   }
 
   countTotalDessertQuantity() {
