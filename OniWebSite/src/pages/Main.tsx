@@ -63,7 +63,7 @@ export class Main extends React.Component<any, IMainState>{
 
     changeBackgroundImage = () => {
         const { backgroundImage } = this.state;
-        
+
         if (backgroundImage == './images/images_large/main.jpg') {
             this.setState({
                 backgroundImage: './images/images_large/main2.jpg',
@@ -87,14 +87,12 @@ export class Main extends React.Component<any, IMainState>{
     render() {
         const { backgroundImage, activeImage, loading } = this.state;
 
-        return <div className='app background'>
-        {/* return <div className='app background' style={{ backgroundImage: `url(${backgroundImage})`}}> */}
+        return <div className='main-container'>
             <Nav tab={Tabs.Main} />
-            <img className='background-img' src='./images/images_large/main.jpg' style={{ opacity: activeImage == 0 ? 1 : 0 }} />
-            <img className='background-img' src='./images/images_large/main2.jpg' style={{ opacity: activeImage == 1 ? 1 : 0 }}/>
-            <img className='background-img' src='./images/images_large/main3.jpg' style={{ opacity: activeImage == 2 ? 1 : 0 }}/>
-
-            <div className='main-body'>
+            <div className='main-image'>
+                <img className='background-img' src='./images/images_large/main.jpg' style={{ opacity: activeImage == 0 ? 1 : 0 }} />
+                <img className='background-img' src='./images/images_large/main2.jpg' style={{ opacity: activeImage == 1 ? 1 : 0 }} />
+                <img className='background-img' src='./images/images_large/main3.jpg' style={{ opacity: activeImage == 2 ? 1 : 0 }} />
                 {/* <div className='carousel-container'>
                     <Carousel axis='horizontal'
                         showThumbs={false}

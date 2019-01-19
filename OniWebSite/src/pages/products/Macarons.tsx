@@ -1,8 +1,8 @@
 import * as React from 'react'
-import { Nav } from '../components/Nav';
-import { Tabs } from '../utils/Helper'
-import { MacaronSingle } from '../components/MacaronSingle'
-import { Busy } from '../components/Busy';
+import { Nav } from '../../components/Nav';
+import { Tabs, ProductTabs } from '../../utils/Helper'
+import { MacaronSingle } from '../../components/MacaronSingle'
+import { Busy } from '../../components/Busy';
 
 interface IMacaronsState {
     loading?: any;
@@ -30,7 +30,7 @@ export class Macarons extends React.Component<any, IMacaronsState>{
         const { loading, height } = this.state;
 
         return <div className='macarons-container'>
-            <Nav tab={Tabs.Macarons} />
+            <Nav tab={Tabs.Products} subTab={ProductTabs.Macarons} />
             <div className='macarons-header'>
                 <div className='row'>
                     <div className='col-md-6'>

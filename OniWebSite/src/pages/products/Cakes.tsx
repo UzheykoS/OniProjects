@@ -1,8 +1,8 @@
 import * as React from 'react';
-import { Nav } from '../components/Nav';
-import { Tabs } from '../utils/Helper'
-import { CakeSingle } from '../components/CakeSingle'
-import { Busy } from '../components/Busy';
+import { Nav } from '../../components/Nav';
+import { Tabs, ProductTabs } from '../../utils/Helper'
+import { CakeSingle } from '../../components/CakeSingle'
+import { Busy } from '../../components/Busy';
 
 interface ICakesState {
     loading?: any;
@@ -30,7 +30,7 @@ export class Cakes extends React.Component<any, ICakesState>{
         const { loading, height } = this.state;
 
         return <div className='cakes-container'>
-            <Nav tab={Tabs.Cakes} />
+            <Nav tab={Tabs.Products} subTab={ProductTabs.Cakes}/>
             <div className='cakes-header'>
                 <div className='row'>
                     <div className='col-md-6'>

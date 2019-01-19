@@ -1,55 +1,7 @@
 html,
-body {
-    margin: 0px;
-    min-width: 100%;
-    height: 100%;
-}
-
-.background {
-    // background-image: url('../images/images_large/main.jpg');
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-position: top center;
-    background-attachment: fixed;    
-}
-
-.background-img {
-    position: absolute;
-    top: 0;
-    left: 0;
-    height: auto;
-    width: 100%;
-    -webkit-transition: opacity 2s ease-in-out;
-    -moz-transition: opacity 2s ease-in-out;
-    -ms-transition: opacity 2s ease-in-out;
-    -o-transition: opacity 2s ease-in-out;
-    transition: opacity 2s ease-in-out;
-    z-index: -1;
-}
-
-// /* Safari and Chrome */
-// @-webkit-keyframes changeBg
-// {
-//    0%   {background-image: url('../images/images_large/main.jpg');}
-//    33%  {background-image: url('../images/images_large/main2.jpg');}
-//    66%  {background-image: url('../images/images_large/main3.jpg');}
-// }
-
-// .background
-// {
-//    -webkit-animation: changeBg 15s infinite;
-// }
-
+body,
 .root {
     height: 100%;
-}
-
-html {
-    height: 100%;
-}
-
-body {
-    min-height: 100%;
 }
 
 .app {
@@ -60,74 +12,52 @@ body {
     margin-bottom: -142px;
 }
 
-.invisible {
-    display: none;
-}
-
-.busy-container {
-    width: 100%;
-    height: 100%;
-    position: fixed;
-    top: 0px;
-    left: 0px;
-    z-index: 9999;
-    background-color: #e6e6e6;
-    opacity: 0.8;
-    .busy {
-        position: absolute;
-        left: 50%;
-        top: 44%;
-        margin-left: -18px;
-    }
-}
-
-// @media only screen and (min-width: 320px),
-// only screen and (min-device-width: 374px) and (max-device-width: 376px) {
-//     .main-body img {
-//         // src: url('/images/cite_680.png');
-//         // background-size: cover;
-//     }
-//     .logo {
-//         height: 18vh;
-//     }
-// }
 .nav-bar {
-    position: relative;
-    max-height: 200px;
-    ul {
-        overflow: hidden;
-        list-style-type: none;
-        display: inline-block;
-        position: absolute;
-        right: 0;
-        top: 20px;
+    display: flex;
+    flex-direction: column;
+    .nav-bar-main {
+        display: flex;
+        justify-content: center;
     }
-    ul li {
+    .nav-bar-sub {
+        display: flex;
+        justify-content: center;
+        padding-top: 15px;
+    }
+    ul {
+        list-style-type: none;
+        margin: 0;
+        padding: 0 0 0 0;
+        display: flex;
+        justify-content: space-between;
+    }
+    .nav-bar-main ul li {
         float: left;
-        margin: 0px 20px;
-        position: relative;
+        margin: 100px 20px 0 20px;
+    }
+    .nav-bar-sub ul li {
+        float: left;
+        margin: 20px 20px 0 20px;
     }
     ul li a {
         display: inline-block;
-        font-family: 'Museo Sans Cyrl 500';
-        font-size: 18px;
-        font-weight: 300;
+        font-family: 'Open Sans';
+        font-weight: 400;
+        font-size: 15px;
         line-height: 30px;
         color: #333333;
         text-decoration: none;
+        text-transform: uppercase;
+    }
+    .logolink {
+        margin: 0px !important;
+    }
+    .with-space {
+        padding-bottom: 30px;
     }
     ul li a:focus,
     .active {
-        font-family: 'Museo Sans Cyrl 900';
-    }
-    li:not(:last-child) a:before {
-        content: '';
-        width: 15px;
-        border-bottom: solid 1px #333333;
-        position: absolute;
-        right: -28px;
-        top: 50%;
-        z-index: 1;
+        font-weight: 900;
     }
     .logo {
         max-width: 100%;
@@ -142,47 +72,40 @@ body {
     }
 }
 
-.socials {
-    position: absolute;
-    right: 10px;
-    bottom: 10px;
-    a {
-        width: 2rem;
-        padding: 5px 10px;
-        img {
-            height: 27px;
-        }
+.main-container {
+    display: flex;
+    flex-direction: column;
+    .main-image {
+        height: 600px;
+        position: relative;
     }
-}
-
-.main-body {
-    position: absolute;
-    left: 0;
-    bottom: 0; // background-size: contain;
-    // background-position: center;
-    // background-repeat: no-repeat;
-    // background-attachment: fixed;
-    max-height: calc(100% - 175px);
-    width: 100%;
-    height: 100%;
-    overflow: hidden;
-    .carousel-container {
-        .cake-container {
-            position: relative;
-            height: 100%;
-            width: 100%;
-            background-color: white;
-            .cake {
-                max-width: 100%;
-                height: auto;
-                position: absolute;
-                top: -75px;
-                left: 0;
-                width: 75%;
+    .background-img {
+        position: absolute;
+        top: 0;
+        left: 0;
+        height: auto;
+        width: 100%;
+        -webkit-transition: opacity 2s ease-in-out;
+        -moz-transition: opacity 2s ease-in-out;
+        -ms-transition: opacity 2s ease-in-out;
+        -o-transition: opacity 2s ease-in-out;
+        transition: opacity 2s ease-in-out;
+        z-index: -1;
+    }
+    .socials {
+        position: absolute;
+        right: 10px;
+        bottom: 10px;
+        a {
+            width: 2rem;
+            padding: 5px 10px;
+            img {
+                height: 27px;
             }
         }
     }
 }
+
 
 .macarons-container {
     height: 100%;
@@ -854,6 +777,53 @@ only screen and (max-width: 800px) {
             height: 70px;
             margin: 5px 10px 10px 20px;
         }
+    }
+}
+
+
+.background {
+    // background-image: url('../images/images_large/main.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: top center;
+    background-attachment: fixed;    
+}
+
+.invisible {
+    display: none;
+}
+
+.busy-container {
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    z-index: 9999;
+    background-color: #e6e6e6;
+    opacity: 0.8;
+    .busy {
+        position: absolute;
+        left: 50%;
+        top: 44%;
+        margin-left: -18px;
+    }
+}
+
+.footer {
+    position: relative;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    width: 100%;
+    height: 80px; 
+    background-color: rgba(113, 50, 155, 0.95);
+    img {
+        width: 67px;
+        height: 52px;
+        position: absolute;
+        right: 10px;
+        bottom: 15px;
     }
 }
 

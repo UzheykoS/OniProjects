@@ -2,6 +2,7 @@ import * as React from 'react';
 import { Nav } from '../components/Nav';
 import { Tabs } from '../utils/Helper'
 import { Busy } from '../components/Busy';
+import { Footer } from '../components/Footer';
 
 interface IAboutState {
     loading?: any;
@@ -53,9 +54,7 @@ export class About extends React.Component<any, IAboutState>{
             <div className='about-body'>
                 <div style={{ height: '500px' }} />
             </div>
-            <div className='about-footer'>
-                <img src='/images/icons/Oni_logo.png' />
-            </div>
+            <Footer />
             <Busy loading={loading} />
         </div>;
     }

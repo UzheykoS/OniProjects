@@ -1,8 +1,9 @@
-import * as React from 'react'
+import * as React from 'react';
 import { Nav } from '../components/Nav';
 import { Tabs } from '../utils/Helper'
 import { withGoogleMap, GoogleMap, Marker } from 'react-google-maps';
 import { Busy } from '../components/Busy';
+import { Footer } from '../components/Footer';
 
 // const googleMapURL = 'https://maps.googleapis.com/maps/api/js?v=3.27&libraries=places,geometry&key=AIzaSyDH_aHRsVOr_CMITd6m0Vuo1X2qSXMicdY'
 
@@ -21,12 +22,12 @@ const GoogleMapsWrapper = withGoogleMap((props: any) => (
     </GoogleMap>
 ));
 
-interface IContactsState {
+interface IDeliveryAndPaymentState {
     loading?: any;
     height?: string;
 }
 
-export class Contacts extends React.Component<any, IContactsState>{
+export class DeliveryAndPayment extends React.Component<any, IDeliveryAndPaymentState>{
     constructor(props) {
         super(props);
 
@@ -47,7 +48,7 @@ export class Contacts extends React.Component<any, IContactsState>{
         const { loading, height } = this.state;
 
         return <div className='contacts-container'>
-            <Nav tab={Tabs.Contacts} />
+            <Nav tab={Tabs.DeliveryAndPayment} />
             <div className='contacts-header'>
                 <div className='row'>
                     <div className='col-md-6'>
@@ -89,9 +90,7 @@ export class Contacts extends React.Component<any, IContactsState>{
                     />
                 </div>
             </div>
-            <div className='contacts-footer'>
-                <img src='/images/icons/Oni_logo.png' />
-            </div>
+            <Footer />
             <Busy loading={loading} />
         </div>;
     }
