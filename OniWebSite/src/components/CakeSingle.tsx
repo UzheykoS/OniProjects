@@ -1,6 +1,6 @@
 import * as React from 'react'
 import { Nav } from "./Nav";
-import { Tabs } from "../Helper"
+import { Tabs } from "../utils/Helper"
 
 interface ICakeSingleProps {
     name: string;

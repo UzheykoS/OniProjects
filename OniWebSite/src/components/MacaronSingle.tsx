@@ -1,6 +1,6 @@
 import * as React from 'react'
 import { Nav } from "./Nav";
-import { Tabs } from "../Helper"
+import { Tabs } from "../utils/Helper"
 import * as Media from 'react-media';
 
 interface IMacaronSingleProps {

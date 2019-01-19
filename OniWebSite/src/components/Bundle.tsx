@@ -1,10 +1,7 @@
-import * as React from 'react'
-import { Nav } from "./Nav";
-import { Tabs } from "../Helper"
+import * as React from 'react';
 
 export class Bundle extends React.Component<any, any>{
     state = {
-        // short for "module" but that's a keyword in js, so "mod"
         mod: null
     }
 

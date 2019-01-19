@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { Link, NavLink } from 'react-router-dom';
-import { Tabs } from "../Helper"
+import { Tabs } from "../utils/Helper"
 import { slide as Menu } from 'react-burger-menu'
 import * as Media from 'react-media';
 
