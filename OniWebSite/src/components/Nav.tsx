@@ -12,17 +12,48 @@ interface INavProps {
 interface INavState {
     activeTab?: string;
     activeSubTab?: string;
+    smallHeader?: boolean;
 }
 
 export class Nav extends React.Component<INavProps, INavState>{
+    _isMounted = false;
+
     constructor(props) {
         super(props);
 
+        window.scrollTo(0, 0);
         this.state = {
             activeTab: props.tab || Tabs.Main,
-            activeSubTab: props.subTab || ProductTabs.Macarons
+            activeSubTab: props.subTab || ProductTabs.Macarons,
+            smallHeader: false
         }
     }
+
+    componentDidMount() {
+        window.addEventListener('scroll', this.handleScroll, true);
+        this._isMounted = true;
+    }
+
+    componentWillUnmount() {
+        window.removeEventListener('scroll', this.handleScroll);
+        this._isMounted = false;
+    }
+
+    handleScroll = () => {
+        if (!this._isMounted) {
+            return;
+        }
+        const { smallHeader } = this.state;
+        if (window.scrollY > 100 && !smallHeader) {
+            this.setState({
+                smallHeader: true
+            });
+        } else if (window.scrollY <= 100 && smallHeader) {
+            this.setState({
+                smallHeader: false
+            });
+        }
+    };
 
     onLinkClick = (tab: string) => {
         this.setState({
@@ -37,15 +68,20 @@ export class Nav extends React.Component<INavProps, INavState>{
     }
 
     renderLogo() {
-        const { activeTab } = this.state;
+        const { smallHeader } = this.state;
 
-        return <img src='/images/icons/Oni_w_black.png' className={'logo'} />;
+        return <img src='/images/icons/Oni_w_black.png' className={smallHeader ? 'logo-small' : 'logo'} />;
     }
 
     renderNavBar() {
-        const { activeTab } = this.state;
+        const { activeTab, smallHeader } = this.state;
 
-        return <div className={activeTab == Tabs.Products ? 'nav-bar-main' : 'nav-bar-main with-space'}>
+        let mainClassName = activeTab == Tabs.Products ? 'nav-bar-main' : 'nav-bar-main with-space';
+        if (smallHeader) {
+            mainClassName = mainClassName + ' small-nav-bar';
+        }
+
+        return <div className={mainClassName}>
             <ul>
                 <li>
                     <Link to='/products/macarons'
@@ -131,7 +167,7 @@ export class Nav extends React.Component<INavProps, INavState>{
     }
 
     render() {
-        const { activeTab } = this.state;
+        const { activeTab, smallHeader } = this.state;
 
         return <Media query={{ maxWidth: 800 }}>
             {matches => matches ? (
@@ -199,7 +235,7 @@ export class Nav extends React.Component<INavProps, INavState>{
                     </Menu>
                 </div>
             ) : (
-                    <div className='nav-bar'>
+                    <div className={smallHeader ? 'nav-bar small-nav-bar-container' : 'nav-bar'}>
                         {this.renderNavBar()}
                         {
                             activeTab === Tabs.Products && this.renderSubNavBar()
