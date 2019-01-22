@@ -15,6 +15,7 @@
   "author": "Sergey Uzheyko",
   "license": "ISC",
   "dependencies": {
+    "instafeed.js": "^1.4.1",
     "react": "16.7.0",
     "react-burger-menu": "2.6.1",
     "react-dom": "16.7.0",

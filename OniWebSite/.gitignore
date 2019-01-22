@@ -11,3 +11,4 @@
 node_modules/*
 typings/*
 dist/*
+config/dev.ts

@@ -5,7 +5,6 @@ import { HashRouter as Router } from 'react-router-dom';
 
 require('./styles/global.scss');
 require('./styles/fonts.scss');
-require('../node_modules/react-responsive-carousel/lib/styles/carousel.css');
 
 ReactDOM.render(
     <Router >
