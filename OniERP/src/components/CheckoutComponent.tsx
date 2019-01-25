@@ -14,6 +14,7 @@ import { ProcessCheckout, SetPaymentType, SetOrderType, LogData, Cancel, SelectS
 import Radio from '@material-ui/core/Radio';
 import Checkbox from '@material-ui/core/Checkbox';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
+import ButtonWithProgress from './ButtonWithProgress';
 
 const mapStateToProps = (state) => {
     return {
@@ -47,20 +48,28 @@ export interface ICheckoutComponentProps {
 }
 
 export interface ICheckoutComponentState {
-    partner?: string;
-    macaronsQty?: string;
-    zephyrQty?: string;
-    buyer?: string;
-    macaronsPrice?: string;
-    zephyrPrice?: string;
-    isPaid?: boolean;
+    isLoading?: boolean;
 }
 
-class CheckoutComponent extends Component<ICheckoutComponentProps, any>{
+class CheckoutComponent extends Component<ICheckoutComponentProps, ICheckoutComponentState>{
+    constructor(props) {
+        super(props);
+        this.state = {
+            isLoading: false
+        };
+    }
+
     handleCheckout = () => {
+        this.setState({
+            isLoading: true
+        });
         this.props.handleCheckout(() => {
-            this.props.history.push('/');
-            this.props.logData('checkoutPage->checkout');
+            this.setState({
+                isLoading: false
+            }, () => {
+                this.props.history.push('/');
+                this.props.logData('checkoutPage->checkout');
+            });
         });        
     }
 
@@ -108,6 +117,7 @@ class CheckoutComponent extends Component<ICheckoutComponentProps, any>{
 
     render() {
         const { check } = this.props;
+        const { isLoading } = this.state;
 
         if (!check) {
             return <div className="container">
@@ -221,9 +231,9 @@ class CheckoutComponent extends Component<ICheckoutComponentProps, any>{
             />
             <Divider />
             <div className={'buttonsWraper'}>
-                <Button classes={{ root: 'button' }} variant="contained" color="primary" title="Check Out" onClick={this.handleCheckout}>
+                <ButtonWithProgress loading={isLoading} classes={{ root: 'button' }} variant="contained" color="primary" title="Check Out" onClick={this.handleCheckout}>
                     Продолжить
-                </Button>
+                </ButtonWithProgress>
                 <Button classes={{ root: 'button' }} variant="contained" color="default" title="Back" onClick={this.handleBack}>
                     Назад
                 </Button>
