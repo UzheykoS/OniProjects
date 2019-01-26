@@ -123,14 +123,21 @@ export class Nav extends React.Component<INavProps, INavState>{
                     </Link>
                 </li>
             </ul>
+            {
+                activeTab === Tabs.Products && this.renderSubNavBar()
+            }
         </div>;
     }
 
     renderSubNavBar() {
-        const { activeTab, activeSubTab } = this.state;
+        const { activeTab, activeSubTab, smallHeader } = this.state;
 
-        return <> 
-        <div className={activeTab == Tabs.Products ? 'nav-bar-sub with-space' : 'nav-bar-sub'}>
+        let mainClassName = activeTab == Tabs.Products ? 'nav-bar-sub with-nav-bar-space' : 'nav-bar-sub';
+        if (smallHeader) {
+            mainClassName = mainClassName + ' small-sub-nav-bar';
+        }
+
+        return <div className={mainClassName}>
             <ul>
                 <li>
                     <Link to='/products/macarons'
@@ -161,14 +168,11 @@ export class Nav extends React.Component<INavProps, INavState>{
                     </Link>
                 </li>
             </ul>
-        </div>
-        <div className='clearfix'></div>
-        </>;
+        </div>;
     }
 
     render() {
         const { activeTab, smallHeader } = this.state;
-
         return <Media query={{ maxWidth: 800 }}>
             {matches => matches ? (
                 <div className='nav-bar'>
@@ -235,11 +239,8 @@ export class Nav extends React.Component<INavProps, INavState>{
                     </Menu>
                 </div>
             ) : (
-                    <div className={smallHeader ? 'nav-bar small-nav-bar-container' : 'nav-bar'}>
+                    <div className={smallHeader ? (activeTab === Tabs.Products ? 'nav-bar small-nav-bar-container-with-subbar' : 'nav-bar small-nav-bar-container') : 'nav-bar'}>
                         {this.renderNavBar()}
-                        {
-                            activeTab === Tabs.Products && this.renderSubNavBar()
-                        }
                     </div>
                 )}
         </Media>;

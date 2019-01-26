@@ -14,7 +14,7 @@ export class Macarons extends React.Component<any, IMacaronsState>{
         super(props);
 
         this.state = {
-            loading: true,
+            loading: false,
             height: '0px'
         }
     }
@@ -31,11 +31,10 @@ export class Macarons extends React.Component<any, IMacaronsState>{
 
         return <div className='macarons-container'>
             <Nav tab={Tabs.Products} subTab={ProductTabs.Macarons} />
-            <div className='macarons-header'>
+            {/* <div className='macarons-header'>
                 <div className='row'>
                     <div className='col-md-6'>
                         <div className='header-main'>Макарон</div>
-                        {/* <div className='header-desc'>Очень вкусные дессерты</div> */}
                         <div className='header-body'>
                             Вы когда-то пробовали макарон? Мы про настоящий, правильный, с ярким вкусом, хорошо пропитанными миндальными половинками и тонкой хрустящей корочкой. Про тот, что не крошится в руках. И про тот, который невозможно забыть. Про такой, как у нас.
                             <br />
@@ -47,31 +46,12 @@ export class Macarons extends React.Component<any, IMacaronsState>{
                         <div className='macarons-photo' style={{ height: height }} >
                             <img src='./images/images_large/macarons/mac_header.jpg' onLoad={this.onImageLoaded} />
                         </div>
-                        {/* <div className='macarons-prices'>
-                            <div className='macarons-small'>
-                                <div className='price-small'>
-                                    <span className='large'>270</span>
-                                    <span className='small'>.00</span>
-                                    <div className='qty'>12шт</div>
-                                </div>
-                                <img src='./images/images_large/macarons/mac_small.png' className='small-image' />
-                            </div>
-                            <div className='macarons-large'>
-                                <div className='price-large'>
-                                    <span className='large'>540</span>
-                                    <span className='small'>.00</span>
-                                    <div className='qty'>24шт</div>
-                                </div>
-
-                                <img src='./images/images_large/macarons/mac_header.jpg' className='large-image' />
-                            </div>
-                        </div> */}
                     </div>
                 </div>
-            </div>
+            </div> */}
             <div className='macarons-body'>
 
-                <div className='mixes'>Наборы</div>
+                {/* <div className='mixes'>Наборы</div>
                 <div className='row'>
                 <div className='col-md-3'>
                         <div className='macarons-mix-photo'>
@@ -95,7 +75,7 @@ export class Macarons extends React.Component<any, IMacaronsState>{
                         <div>24 шт</div>
                         </div>
                     </div>                    
-                </div>
+                </div> */}
 
                 <div className='tastes'>Вкусы</div>
                 <div className='row'>

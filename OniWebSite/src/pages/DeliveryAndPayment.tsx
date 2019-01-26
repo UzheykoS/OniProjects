@@ -50,32 +50,23 @@ export class DeliveryAndPayment extends React.Component<any, IDeliveryAndPayment
         return <div className='contacts-container'>
             <Nav tab={Tabs.DeliveryAndPayment} />
             <div className='contacts-header'>
-                <div className='row'>
-                    <div className='col-md-6'>
-                        <div className='contacts-photo' style={{ height: height }} >
-                            <img src='./images/images_large/contacts/contacts_header.jpg' onLoad={this.onImageLoaded} />
-                        </div>
-                    </div>
-                    <div className='col-md-6'>
-                        <div className='header-main'>Оплата и доставка</div>
-                        {/* <div className='header-desc'></div> */}
-                        <div className='header-body'>
-                        Наш кондитерский цех находится в г. Киев по адресу бульвар Вацлава Гавела, 9А (бывший бульвар Ивана Лепсе). Вы можете забрать свой заказ самостоятельно или заказать доставку курьером. Стоимость доставки по Киеву – 60 грн. Доставка в другие города Украины обсуждается индивидуально.
+                <div className='contacts-photo' style={{ height: height }} >
+                    <img src='./images/images_large/contacts/contacts_header.jpg' onLoad={this.onImageLoaded} />
+                </div>
+                <div className='header-text'>
+                    <div className='header-main'>ДОСТАВКА И ОПЛАТА</div>
+                    <div className='header-body'>
+                        Наш кондитерский цех находится в г.Киев по адресу бульвар Вацлава Гавела, 9А (бывший бульвар Ивана Лепсе). Вы можете забрать свой заказ самостоятельно или заказать доставку курьером по Киеву. Стоимость доставки составляет 70 грн. Минимальная сумма заказа для доставки – 200 грн. Доставка в другие города Украины обсуждается индивидуально.
                         <br />
                         <br />
-                        При условии наличия желаемых изделий возможна доставка в день заказа. Все детали Вы можете уточнить по тел.+380975985860 (Viber/Telegram) или написав нам на почту info@oni.ua.
+                        При условии наличия желаемых изделий возможна доставка в день заказа. Все детали Вы можете уточнить по тел.+380962490430 или написав нам на почту info@oni.ua.
                         <br />
                         <br />
                         Оплата осуществляется наличными при получении или на карту ПриватБанк. Предоплата необходима только для индивидуальных и корпоративных заказов.
                         </div>
-                    </div>
                 </div>
             </div>
             <div className='contacts-body'>
-                {/* <div className='contacts-body-text'>
-                    <div>               
-                    </div>
-                </div> */}
                 <div className='contacts-body-map'>
                     <GoogleMapsWrapper
                         containerElement={
