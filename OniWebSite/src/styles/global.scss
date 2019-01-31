@@ -76,7 +76,7 @@
         padding-bottom: 15px;
     }
     .with-nav-bar-space {
-        border-bottom: 1px solid;
+        border-bottom: 1px solid rgb(206,0,88);
         margin: 0px 150px 20px 150px;
         padding-bottom: 2px;
     }
@@ -502,6 +502,7 @@
         flex-direction: row;
         padding: 20px 0px;
         justify-content: center;
+        margin-bottom: 50px;
         .header-text {
             width: 670px;
             padding: 14px 0px 0px 70px;
@@ -509,7 +510,7 @@
         .header-main {
             color: rgba(0,0,0,0.6);
             font-size: 34px;
-            border-bottom: 1px solid;
+            border-bottom: 1px solid rgb(206,0,88);
             margin-right: 10px;
         }
         .header-body {
