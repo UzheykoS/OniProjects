@@ -52,7 +52,7 @@ export const ProcessFetchData = (spreadsheetId: string) => {
 
             let lastDessertOrderId = Math.max(...dessertsResponse.result.values.slice(1).map(d => d[7] ? Number(d[7]) : 0));
             let lastDrinkOrderId = Math.max(...drinksResponse.result.values.slice(1).map(d => d[5] ? Number(d[5]) : 0));
-            const lastId = Math.max(lastDessertOrderId, lastDrinkOrderId);
+            const lastId = Math.max(lastDessertOrderId, lastDrinkOrderId) || 0;
 
             const lastOrder: Check = {
                 id: lastId,
