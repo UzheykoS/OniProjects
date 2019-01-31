@@ -31,7 +31,7 @@ import {
 } from './utils/types';
 import { LOGS_SPREADSHEET_ID, SPREADSHEET_ID } from './config/keys';
 import * as moment from 'moment';
-import { MACARONS_PRICE, ZEPHYR_PRICE, DATE_FORMAT } from "./utils/dictionaries";
+import { MACARONS_PRICE, ZEPHYR_PRICE, DATE_FORMAT, CHOUX_PRICE, CHEESECAKE_PRICE } from "./utils/dictionaries";
 import Helper from './utils/helper';
 
 const BLACK_FRIDAY_DATES = [23, 24];
@@ -362,15 +362,19 @@ export const CalculateDailyPercent = () => {
             let totalBonus = 0;
 
             const todayDesserts = dessertsResponse.result.values.slice(1).filter(v => 
-                [DessertType.Macaron, DessertType.Zephyr].indexOf(v[0]) > -1 
+                [DessertType.Macaron, DessertType.Zephyr, DessertType.Choux, DessertType.Cheesecake].indexOf(v[0]) > -1 
                 && Helper.isToday(v[6])
                 && v[9] === state.currentProfile);     
 
             todayDesserts.forEach(d => {
                 if (d[0] === DessertType.Macaron) {
                     totalBonus += d[2] * MACARONS_PRICE * BONUS_PERCENT * (100 - parseInt(d[8])) / 100;
-                } else {
+                } else if (d[0] === DessertType.Zephyr) {
                     totalBonus += d[2] * ZEPHYR_PRICE * BONUS_PERCENT * (100 - parseInt(d[8])) / 100;
+                } else if (d[0] === DessertType.Choux) {
+                    totalBonus += d[2] * CHOUX_PRICE * BONUS_PERCENT * (100 - parseInt(d[8])) / 100;
+                } else if (d[0] === DessertType.Cheesecake) {
+                    totalBonus += d[2] * CHEESECAKE_PRICE * BONUS_PERCENT * (100 - parseInt(d[8])) / 100;
                 }
             });
 

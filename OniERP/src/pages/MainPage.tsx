@@ -26,7 +26,7 @@ const mapDispatchToProps = (dispatch) => {
     createCheck: () => dispatch(CreateCheck()),
     logData: (text: string) => dispatch(LogData(text)),
     fetchData: (url) => dispatch(ProcessFetchData(url)),
-    calculateDailyPercent: (url) => dispatch(CalculateDailyPercent())
+    calculateDailyPercent: () => dispatch(CalculateDailyPercent())
   };
 };
 

@@ -37,7 +37,8 @@ export enum DessertType {
     Macaron = 'Макаронс',
     Zephyr = 'Зефир',
     Cake = 'Торт',
-    Choux = 'Шу'
+    Choux = 'Шу',
+    Cheesecake = 'Чизкейк'
 }
 
 export enum SaleType {
@@ -89,6 +90,11 @@ export enum ChouxEnum {
     CoconutMango = 'Манго - Кокос',
     PistachioOrange = 'Фисташка - Апельсин',
     RaspberryRose = 'Малина - Личи - Роза'
+}
+
+export enum CheesecakeEnum {
+    Gorgonzola = 'Горгонзола',
+    Vanilla = 'Ваниль'
 }
 
 export enum DrinksType {

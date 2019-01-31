@@ -89,7 +89,9 @@ export const ZEPHYR_PARTNERS_PRICE = 11;
 
 export const MACARONS_PRICE = 28;
 
-export const CHOUX_PRICE = 35;
+export const CHOUX_PRICE = 40;
+
+export const CHEESECAKE_PRICE = 75;
 
 export const MacaronsColors: { [id: string] : string } = {};
 MacaronsColors[MacaronsEnum.DorBluePear] = '#b7e4f7';

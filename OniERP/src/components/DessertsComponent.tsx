@@ -8,8 +8,10 @@ import ListItemAvatar from '@material-ui/core/ListItemAvatar';
 import ListItemText from '@material-ui/core/ListItemText';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import Dialog from '@material-ui/core/Dialog';
-import { DessertType, MacaronsEnum, CakesEnum, ZephyrEnum, ChouxEnum,
-  MIX_MACARONS_6, MIX_MACARONS_12, MIX_MACARONS_24, MIX_ZEPHYR_8, MIX_ZEPHYR_16 } from '../utils/types';
+import {
+  DessertType, MacaronsEnum, CakesEnum, ZephyrEnum, ChouxEnum, CheesecakeEnum,
+  MIX_MACARONS_6, MIX_MACARONS_12, MIX_MACARONS_24, MIX_ZEPHYR_8, MIX_ZEPHYR_16
+} from '../utils/types';
 import { DessertsDict, MacaronsColors, ZephyrColors } from '../utils/dictionaries';
 import Avatar from '@material-ui/core/Avatar';
 import ListItemSecondaryAction from '@material-ui/core/ListItemSecondaryAction';
@@ -70,7 +72,7 @@ export class DessertsComponent extends Component<IDessertsComponentProps, IDesse
     if (dessertType === DessertType.Cake) {
       if (taste === CakesEnum.Cake_2019) {
         await this.props.addDessert(dessertType, taste, "18 см", 1);
-          this.props.handleClose();
+        this.props.handleClose();
       }
       this.setState({
         dessertTaste: taste
@@ -299,6 +301,9 @@ export class DessertsComponent extends Component<IDessertsComponentProps, IDesse
         break;
       case DessertType.Choux:
         dessertTastes = Helper.getArrayFromEnum(ChouxEnum);
+        break;
+      case DessertType.Cheesecake:
+        dessertTastes = Helper.getArrayFromEnum(CheesecakeEnum);
         break;
       default:
         dessertTastes = [];

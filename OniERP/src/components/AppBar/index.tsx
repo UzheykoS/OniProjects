@@ -14,7 +14,7 @@ import { withRouter } from 'react-router-dom';
 import { ProfilesEnum } from '../../utils/types';
 import Helper from '../../utils/helper';
 import { connect } from 'react-redux';
-import { ChangeProfile } from '../../actions';
+import { ChangeProfile, CalculateDailyPercent } from '../../actions';
 
 const options = [
     {
@@ -50,7 +50,8 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        changeProfile: (profile: string) => dispatch(ChangeProfile(profile))
+        changeProfile: (profile: string) => dispatch(ChangeProfile(profile)),
+        calculateDailyPercent: () => dispatch(CalculateDailyPercent())
     };
 };
 
@@ -65,6 +66,7 @@ export interface IAppBarComponentProps {
     onLoginClick?: () => void;
     onLogoutClick?: () => void;
     changeProfile?: (profile: string) => void;
+    calculateDailyPercent?: () => void;
 }
 
 export interface IAppBarComponentState {
@@ -109,8 +111,9 @@ export class AppBar extends Component<IAppBarComponentProps, IAppBarComponentSta
     };
 
     handleProfileChange = (profile: string) => {
-        const { changeProfile } = this.props;
+        const { changeProfile, calculateDailyPercent } = this.props;
         changeProfile(profile);
+        calculateDailyPercent();
         this.setState({
             anchorProfileEl: null
         });
@@ -187,7 +190,7 @@ export class AppBar extends Component<IAppBarComponentProps, IAppBarComponentSta
                     onClick={this.handleProfileClick}
                 >
                     <Typography variant="subheading" color="inherit" className={'profile-name'}>
-                        {`Процент: ${dailyBonus} грн `}<b>{currentProfile}</b>
+                        {`Процент:${dailyBonus}₴ `}<b>{currentProfile}</b>
                     </Typography>
                     <AccountCircleIcon />
                 </IconButton>
