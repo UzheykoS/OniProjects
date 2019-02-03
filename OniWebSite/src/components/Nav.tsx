@@ -10,8 +10,6 @@ interface INavProps {
 }
 
 interface INavState {
-    activeTab?: string;
-    activeSubTab?: string;
     smallHeader?: boolean;
 }
 
@@ -23,8 +21,6 @@ export class Nav extends React.Component<INavProps, INavState>{
 
         window.scrollTo(0, 0);
         this.state = {
-            activeTab: props.tab || Tabs.Main,
-            activeSubTab: props.subTab || ProductTabs.Macarons,
             smallHeader: false
         }
     }
@@ -55,18 +51,6 @@ export class Nav extends React.Component<INavProps, INavState>{
         }
     };
 
-    onLinkClick = (tab: string) => {
-        this.setState({
-            activeTab: tab
-        });
-    }
-
-    onSubLinkClick = (tab: string) => {
-        this.setState({
-            activeSubTab: tab
-        })
-    }
-
     renderLogo() {
         const { smallHeader } = this.state;
 
@@ -74,9 +58,10 @@ export class Nav extends React.Component<INavProps, INavState>{
     }
 
     renderNavBar() {
-        const { activeTab, smallHeader } = this.state;
+        const { smallHeader } = this.state;
+        const { tab } = this.props;
 
-        let mainClassName = activeTab == Tabs.Products ? 'nav-bar-main' : 'nav-bar-main with-space';
+        let mainClassName = tab == Tabs.Products ? 'nav-bar-main' : 'nav-bar-main with-space';
         if (smallHeader) {
             mainClassName = mainClassName + ' small-nav-bar';
         }
@@ -85,54 +70,49 @@ export class Nav extends React.Component<INavProps, INavState>{
             <ul>
                 <li>
                     <Link to='/products/macarons'
-                        className={activeTab == Tabs.Products ? 'active' : ''}
-                        onClick={() => this.onLinkClick(Tabs.Products)}>
+                        className={tab == Tabs.Products ? 'active' : ''}>
                         {Tabs.Products}
                     </Link>
                 </li>
                 <li>
                     <Link to='/clients'
-                        className={activeTab == Tabs.CorporateClients ? 'active' : ''}
-                        onClick={() => this.onLinkClick(Tabs.CorporateClients)}>
+                        className={tab == Tabs.CorporateClients ? 'active' : ''}>
                         {Tabs.CorporateClients}
                     </Link>
                 </li>
                 <li className={'logolink'}>
                     <Link to='/'
-                        className={activeTab == Tabs.Main ? 'active' : ''}
-                        onClick={() => this.onLinkClick(Tabs.Main)}>
+                        className={tab == Tabs.Main ? 'active' : ''}>
                         {this.renderLogo()}
                     </Link>
                 </li>
                 <li>
                     <Link to='/delivery'
-                        className={activeTab == Tabs.DeliveryAndPayment ? 'active' : ''}
-                        onClick={() => this.onLinkClick(Tabs.DeliveryAndPayment)}>{Tabs.DeliveryAndPayment}
+                        className={tab == Tabs.DeliveryAndPayment ? 'active' : ''}>{Tabs.DeliveryAndPayment}
                     </Link>
                 </li>
                 <li>
                     <Link to='/about'
-                        className={activeTab == Tabs.About ? 'active' : ''}
-                        onClick={() => this.onLinkClick(Tabs.About)}>{Tabs.About}
+                        className={tab == Tabs.About ? 'active' : ''}>{Tabs.About}
                     </Link>
                 </li>
                 <li>
                     <Link to='/news'
-                        className={activeTab == Tabs.News ? 'active' : ''}
-                        onClick={() => this.onLinkClick(Tabs.News)}>{Tabs.News}
+                        className={tab == Tabs.News ? 'active' : ''}>{Tabs.News}
                     </Link>
                 </li>
             </ul>
             {
-                activeTab === Tabs.Products && this.renderSubNavBar()
+                tab === Tabs.Products && this.renderSubNavBar()
             }
         </div>;
     }
 
     renderSubNavBar() {
-        const { activeTab, activeSubTab, smallHeader } = this.state;
+        const { smallHeader } = this.state;
+        const { tab, subTab } = this.props;
 
-        let mainClassName = activeTab == Tabs.Products ? 'nav-bar-sub with-nav-bar-space' : 'nav-bar-sub';
+        let mainClassName = tab == Tabs.Products ? 'nav-bar-sub with-nav-bar-space' : 'nav-bar-sub';
         if (smallHeader) {
             mainClassName = mainClassName + ' small-sub-nav-bar';
         }
@@ -141,29 +121,25 @@ export class Nav extends React.Component<INavProps, INavState>{
             <ul>
                 <li>
                     <Link to='/products/macarons'
-                        className={activeSubTab == ProductTabs.Macarons ? 'active' : ''}
-                        onClick={() => this.onLinkClick(ProductTabs.Macarons)}>
+                        className={subTab == ProductTabs.Macarons ? 'active' : ''}>
                         {ProductTabs.Macarons}
                     </Link>
                 </li>
                 <li>
                     <Link to='/products/zephyr'
-                        className={activeSubTab == ProductTabs.Zephyr ? 'active' : ''}
-                        onClick={() => this.onLinkClick(ProductTabs.Zephyr)}>
+                        className={subTab == ProductTabs.Zephyr ? 'active' : ''}>
                         {ProductTabs.Zephyr}
                     </Link>
                 </li>
                 <li>
                     <Link to='/products/cakes'
-                        className={activeSubTab == ProductTabs.Cakes ? 'active' : ''}
-                        onClick={() => this.onLinkClick(ProductTabs.Cakes)}>
+                        className={subTab == ProductTabs.Cakes ? 'active' : ''}>
                         {ProductTabs.Cakes}
                     </Link>
                 </li>
                 <li>
                     <Link to='/products/choux'
-                        className={activeSubTab == ProductTabs.Choux ? 'active' : ''}
-                        onClick={() => this.onLinkClick(ProductTabs.Choux)}>
+                        className={subTab == ProductTabs.Choux ? 'active' : ''}>
                         {ProductTabs.Choux}
                     </Link>
                 </li>
@@ -172,56 +148,52 @@ export class Nav extends React.Component<INavProps, INavState>{
     }
 
     render() {
-        const { activeTab, smallHeader } = this.state;
+        const { smallHeader } = this.state;
+        const { tab } = this.props;
+
         return <Media query={{ maxWidth: 800 }}>
             {matches => matches ? (
                 <div className='nav-bar'>
-                    <img src='/images/icons/Oni_w_black.png' className={activeTab == Tabs.Main ? 'logo' : 'logo logo-small'} />
+                    <img src='/images/icons/Oni_w_black.png' className={tab == Tabs.Main ? 'logo' : 'logo logo-small'} />
                     <Menu right
                         width={'100%'}
                         customBurgerIcon={<img src='/images/icons/menu-button.png' />}
                         customCrossIcon={<img src='/images/icons/close.png' />} >
-                        {activeTab !== Tabs.Main ?
+                        {tab !== Tabs.Main ?
                             <span className='menu-item'>
                                 <Link to='/'
-                                    className={activeTab == Tabs.Main ? 'active' : ''}
-                                    onClick={() => this.onLinkClick(Tabs.Main)}>
+                                    className={tab == Tabs.Main ? 'active' : ''}>
                                     {Tabs.Main}
                                 </Link>
                             </span> :
                             null}
                         <span className='menu-item'>
                             <Link to='/products/macarons'
-                                className={activeTab == Tabs.Products ? 'active' : ''}
-                                onClick={() => this.onLinkClick(Tabs.Products)}>
+                                className={tab == Tabs.Products ? 'active' : ''}>
                                 {Tabs.Products}
                             </Link>
                         </span>
                         <span className='menu-item'>
                             <Link to='/clients'
-                                className={activeTab == Tabs.CorporateClients ? 'active' : ''}
-                                onClick={() => this.onLinkClick(Tabs.CorporateClients)}>
+                                className={tab == Tabs.CorporateClients ? 'active' : ''}>
                                 {Tabs.CorporateClients}
                             </Link>
                         </span>
                         <span className='menu-item'>
                             <Link to='/delivery'
-                                className={activeTab == Tabs.DeliveryAndPayment ? 'active' : ''}
-                                onClick={() => this.onLinkClick(Tabs.DeliveryAndPayment)}>
+                                className={tab == Tabs.DeliveryAndPayment ? 'active' : ''}>
                                 {Tabs.DeliveryAndPayment}
                             </Link>
                         </span>
                         <span className='menu-item'>
                             <Link to='/about'
-                                className={activeTab == Tabs.About ? 'active' : ''}
-                                onClick={() => this.onLinkClick(Tabs.About)}>
+                                className={tab == Tabs.About ? 'active' : ''}>
                                 {Tabs.About}
                             </Link>
                         </span>
                         <span className='menu-item'>
                             <Link to='/news'
-                                className={activeTab == Tabs.News ? 'active' : ''}
-                                onClick={() => this.onLinkClick(Tabs.News)}>
+                                className={tab == Tabs.News ? 'active' : ''}>
                                 {Tabs.News}
                             </Link>
                         </span>
@@ -239,7 +211,7 @@ export class Nav extends React.Component<INavProps, INavState>{
                     </Menu>
                 </div>
             ) : (
-                    <div className={smallHeader ? (activeTab === Tabs.Products ? 'nav-bar small-nav-bar-container-with-subbar' : 'nav-bar small-nav-bar-container') : 'nav-bar'}>
+                    <div className={smallHeader ? (tab === Tabs.Products ? 'nav-bar small-nav-bar-container-with-subbar' : 'nav-bar small-nav-bar-container') : 'nav-bar'}>
                         {this.renderNavBar()}
                     </div>
                 )}

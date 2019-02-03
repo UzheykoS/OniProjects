@@ -31,51 +31,62 @@ export class Macarons extends React.Component<any, IMacaronsState>{
 
         return <div className='macarons-container'>
             <Nav tab={Tabs.Products} subTab={ProductTabs.Macarons} />
-            {/* <div className='macarons-header'>
-                <div className='row'>
-                    <div className='col-md-6'>
-                        <div className='header-main'>Макарон</div>
-                        <div className='header-body'>
-                            Вы когда-то пробовали макарон? Мы про настоящий, правильный, с ярким вкусом, хорошо пропитанными миндальными половинками и тонкой хрустящей корочкой. Про тот, что не крошится в руках. И про тот, который невозможно забыть. Про такой, как у нас.
-                            <br />
-                            <br />
-                            Каждый день мы делаем свежие макарон, для которых используем исключительно натуральные ингредиенты. Вы можете выбрать любые вкусы из нашего меню и сформировать свой набор на 12 или 24 штуки. Обязательно свяжитесь с нами, чтобы уточнить наличие вкусов и детали заказа (доставка возможна день в день).
-                        </div>
-                    </div>
-                    <div className='col-md-6'>
-                        <div className='macarons-photo' style={{ height: height }} >
-                            <img src='./images/images_large/macarons/mac_header.jpg' onLoad={this.onImageLoaded} />
-                        </div>
-                    </div>
-                </div>
-            </div> */}
             <div className='macarons-body'>
 
-                {/* <div className='mixes'>Наборы</div>
-                <div className='row'>
-                <div className='col-md-3'>
+                <div className='macarons-header'>
+                    <div className='macarons-info'>
+                        <div className='title'>Макарон</div>
+                        <div className='description'>
+                            Макарон – это маленькое пирожное, которое состоит из двух миндальных половинок, пропитанных начинкой. Яркий вкус, нежная текстура внутри и хрустящая корочка снаружи. У нас можно выбрать любые вкусы из меню и сформировать свой набор на 6, 12 или 24 макарон.
+                    </div>
+                    </div>
+
+                    <div className='macarons-mix-section'>
                         <div className='macarons-mix-photo'>
-                            <img src='./images/images_large/macarons/mac_small.png' />
+                            <img src='./images/images_large/macarons/mac_small.jpg' />
+                        </div>
+                        <div className='single-section-info'>
+                            <div className='price'>
+                                <div className='value'>168</div>
+                                <div className='currency'> грн</div>
+                            </div>
+                            <div className='quantity'>
+                                <div>6 шт</div>
+                            </div>
                         </div>
                     </div>
-                    <div className='col-md-2'>
-                        <div className='price'>
-                            <p><span>288</span>.00</p>
-                            <div>12 шт</div>
-                        </div>
-                    </div>
-                    <div className='col-md-5'>
+
+                    <div className='macarons-mix-section'>
                         <div className='macarons-mix-photo'>
-                            <img src='./images/images_large/macarons/mac_large.png' />
+                            <img src='./images/images_large/macarons/mac_medium.jpg' />
+                        </div>
+                        <div className='single-section-info'>
+                            <div className='price'>
+                                <div className='value'>336</div>
+                                <div className='currency'> грн</div>
+                            </div>
+                            <div className='quantity'>
+                                <div>12 шт</div>
+                            </div>
                         </div>
                     </div>
-                    <div className='col-md-2'>
-                        <div className='price'>
-                        <p><span>576</span>.00</p>
-                        <div>24 шт</div>
+
+                    <div className='macarons-mix-section'>
+                        <div className='macarons-mix-photo'>
+                            <img src='./images/images_large/macarons/mac_large.jpg' />
                         </div>
-                    </div>                    
-                </div> */}
+                        <div className='single-section-info'>
+                            <div className='price'>
+                                <div className='value'>672</div>
+                                <div className='currency'> грн</div>
+                            </div>
+                            <div className='quantity'>
+                                <div>24 шт</div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
 
                 <div className='tastes'>Вкусы</div>
                 <div className='row'>
