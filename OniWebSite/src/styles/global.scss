@@ -204,7 +204,7 @@
             padding-right: 20px;
             .title {
                 color: rgba(0, 0, 0, 0.6);
-                font-size: 32px;
+                font-size: 28px;
                 border-bottom: 1px solid rgb(206, 0, 88);
                 margin-right: 10px;
                 text-transform: uppercase;
@@ -270,16 +270,12 @@
         img.top {
             position: absolute;
         }
-        .tastes {
-            color: rgba(0, 0, 0, 0.6);
-            font-size: 36px;
-            margin-bottom: 50px;
-        }
         .taste-name {
             color: #555555;
-            font-size: 32px;
+            font-size: 28px;
             line-height: 34px;
             margin-bottom: 10px;
+            text-transform: uppercase;
         }
         .taste-desc {
             color: #555555;
@@ -326,7 +322,7 @@
             padding-right: 20px;
             .title {
                 color: rgba(0, 0, 0, 0.6);
-                font-size: 32px;
+                font-size: 28px;
                 border-bottom: 1px solid rgb(206, 0, 88);
                 margin-right: 10px;
                 text-transform: uppercase;
@@ -406,7 +402,7 @@
         }
         .taste-name {
             color: #555555;
-            font-size: 32px;
+            font-size: 28px;
             line-height: 34px;
             margin-bottom: 10px;
         }
@@ -422,6 +418,120 @@
         }
     }
     .choux-footer {
+        position: relative;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        width: 100%;
+        height: 80px;
+        background-color: rgba(132, 50, 155, 0.85);
+        img {
+            width: 67px;
+            height: 52px;
+            position: absolute;
+            right: 10px;
+            bottom: 15px;
+        }
+    }
+}
+
+.zephyr-container {
+    height: 100%;
+    overflow-x: hidden;
+    position: relative;
+    font-family: 'Open Sans';
+    .zephyr-header {
+        display: flex;
+        justify-content: space-evenly;
+        margin-bottom: 50px;
+        .zephyr-info {
+            display: flex;
+            flex-direction: column;
+            max-width: 320px;
+            padding-right: 20px;
+            .title {
+                color: rgba(0, 0, 0, 0.6);
+                font-size: 28px;
+                border-bottom: 1px solid rgb(206, 0, 88);
+                margin-right: 10px;
+                text-transform: uppercase;
+            }
+            .description {
+                color: rgba(0, 0, 0, 0.60);
+                font-size: 15px;
+                padding-top: 20px;
+            }
+        }
+        .zephyr-mix-section-container {
+            display: flex;
+            .zephyr-mix-section {
+                display: flex;
+                padding-right: 50px;
+                .zephyr-mix-photo {
+                    img {
+                        width: auto;
+                        height: 270px;
+                    }
+                }
+                .single-section-info {
+                    display: flex;
+                    flex-direction: column;
+                    padding: 0px 0px 0px 5px;
+                    .price {
+                        display: flex;
+                        color: rgb(206, 0, 88);
+                        .value {
+                            font-size: 30px;
+                            font-weight: 500;
+                        }
+                        .currency {
+                            font-size: 21px;
+                            padding: 11px 0px 0px 3px;
+                        }
+                    }
+                    .quantity {
+                        color: rgba(0, 0, 0, 0.60);
+                        font-size: 21px;
+                        line-height: 14px;
+                    }
+                }
+            }
+        }
+    }
+    .zephyr-body {
+        display: table;
+        height: 100%;
+        width: 100%;
+        padding: 50px 50px 50px 100px;
+        .zephyr-desc-container {
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            .taste-name {
+                color: #555555;
+                font-size: 28px;
+                line-height: 34px;
+                margin-bottom: 5px;
+            }
+            .taste-body {
+                color: #555555;
+                font-size: 15px;
+                line-height: 22px;
+                margin-bottom: 25px;
+            }
+        }
+        img {
+            max-width: 100%;
+            height: auto;
+        }
+        .tastes {
+            color: rgba(0, 0, 0, 0.6);
+            font-size: 36px;
+            margin-bottom: 50px;
+        }
+    }
+    .zephyr-footer {
         position: relative;
         bottom: 0;
         left: 0;

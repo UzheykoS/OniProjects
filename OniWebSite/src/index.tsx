@@ -4,7 +4,6 @@ import { App } from './App';
 import { HashRouter as Router } from 'react-router-dom';
 
 require('./styles/global.scss');
-require('./styles/fonts.scss');
 
 ReactDOM.render(
     <Router >

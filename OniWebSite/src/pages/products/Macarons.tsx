@@ -88,7 +88,6 @@ export class Macarons extends React.Component<any, IMacaronsState>{
 
                 </div>
 
-                <div className='tastes'>Вкусы</div>
                 <div className='row'>
                     <div className='col-md-6'>
                         <MacaronSingle name='Малина'

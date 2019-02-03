@@ -73,23 +73,21 @@ export class Choux extends React.Component<any, IChouxState>{
                         </div>
                     </div>
 
-
                 </div>
 
-                <div className='tastes'>Вкусы</div>
                 <div className='row'>
                     <div className='col-md-6'>
-                        <ChouxSingle name='Малина'
+                        <ChouxSingle name='ФИСТАШКА-АПЕЛЬСИН'
                             shortDescription=''
-                            fullDescription='Двойная начинка на основе натурального пюре малины с ярким малиновым центром'
+                            fullDescription='Крем с натуральной 100% фисташковой пастой и цедрой апельсина в сочетании с конфи из натурального пюре апельсина'
                             imageOnTheLeft={true}
                             hoverImageUrl='./images/images_large/choux/choux_1_hover.jpg'
                             imageUrl='./images/images_large/choux/choux_1.jpg' />
                     </div>
                     <div className='col-md-6'>
-                        <ChouxSingle name='Манго-Маракуйя'
+                        <ChouxSingle name='СОЛЁНАЯ КАРАМЕЛЬ'
                             shortDescription=''
-                            fullDescription='Двойная начинка на основе натурального пюре манго и маракуйи с ярким центром манго-маракуйя'
+                            fullDescription='Мягкая солёная карамель в сочетании с нежным карамельным кремом'
                             imageOnTheLeft={true}
                             imageUrl='./images/images_large/choux/choux_2.jpg'
                             hoverImageUrl='./images/images_large/choux/choux_2_hover.jpg' />
@@ -97,17 +95,17 @@ export class Choux extends React.Component<any, IChouxState>{
                 </div>
                 <div className='row'>
                     <div className='col-md-6'>
-                        <ChouxSingle name='Фисташка'
+                        <ChouxSingle name='МАЛИНА-ЛИЧИ-РОЗА'
                             shortDescription=''
-                            fullDescription='Начинка на основе натуральной  100% фисташковой пасты без сахара'
+                            fullDescription='Крем с натуральным пюре личи и лепестками чайной розы в сочетании с конфи из натурального пюре малины'
                             imageOnTheLeft={false}
                             imageUrl='./images/images_large/choux/choux_3.jpg'
                             hoverImageUrl='./images/images_large/choux/choux_3_hover.jpg' />
                     </div>
                     <div className='col-md-6'>
-                        <ChouxSingle name='Дор Блю-Груша'
+                        <ChouxSingle name='ВАНИЛЬ-ПЕРСИК'
                             shortDescription=''
-                            fullDescription='Двойная начинка на основе сыра Дор Блю с центром из натурального грушевого пюре'
+                            fullDescription='Крем с добавлением натуральных стручков ванили из Мадагаскара в сочетании с конфи из натурального пюре персика'
                             imageOnTheLeft={false}
                             imageUrl='./images/images_large/choux/choux_4.jpg'
                             hoverImageUrl='./images/images_large/choux/choux_4_hover.jpg' />

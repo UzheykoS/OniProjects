@@ -11,6 +11,7 @@ import { News } from './pages/News';
 import { Cakes } from './pages/products/Cakes';
 import { Macarons } from './pages/products/Macarons';
 import { Choux } from './pages/products/Choux';
+import { Zephyr } from './pages/products/Zephyr';
 
 import { Stub } from './pages/Stub';
 import { Bundle } from './components/Bundle';
@@ -36,7 +37,7 @@ export class App extends React.Component<any, any>{
                 <Route path='/news' component={News} />
 
                 <Route path='/products/macarons' component={Macarons} />
-                <Route path='/products/zephyr' component={CakesWrapper} />
+                <Route path='/products/zephyr' component={Zephyr} />
                 <Route path='/products/cakes' component={CakesWrapper} />
                 <Route path='/products/choux' component={Choux} />
             </Switch>
