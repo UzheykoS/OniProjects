@@ -10,6 +10,7 @@ import ExpansionPanelDetails from '@material-ui/core/ExpansionPanelDetails';
 import Typography from '@material-ui/core/Typography';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import Divider from '@material-ui/core/Divider';
+import { DATE_FORMAT } from '../utils/dictionaries';
 
 const mapStateToProps = (state) => {
     return {
@@ -39,7 +40,7 @@ export class HistoryComponent extends Component<IHistoryComponentProps, IHistory
                 return <ListItem key={h.id}>
                     <ExpansionPanel className='historyContainer'>
                         <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />}>
-                            <Typography>{`Чек #${h.id}`}</Typography>
+                            <Typography>{`Чек #${h.id} (${h.date.format(DATE_FORMAT)})`}</Typography>
                         </ExpansionPanelSummary>
                         <ExpansionPanelDetails style={{ flexDirection: 'column' }}>
                             <Typography variant={'subheading'}>

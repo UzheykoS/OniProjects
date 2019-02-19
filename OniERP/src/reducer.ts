@@ -26,6 +26,7 @@ import {
     SET_DAILY_PERCENT
 } from "./actionTypes";
 import { Check, Dessert, Drink, Payment, OrderType, SaleType, ProfilesEnum } from './utils/types';
+import * as moment from 'moment';
 
 import initialState from './store/initialState';
 
@@ -40,7 +41,8 @@ export default handleActions({
             payment: Payment.Cash,
             type: OrderType.Shop,
             sale: SaleType.Empty,
-            isPaid: true
+            isPaid: true,
+            date: moment(new Date())
         };
         return Object.assign({}, state, {
             check

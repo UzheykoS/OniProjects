@@ -1,3 +1,5 @@
+import * as moment from 'moment';
+
 export interface Dessert {
     type: DessertType,
     taste: string,
@@ -18,7 +20,8 @@ export interface Check {
     payment: Payment,
     type: OrderType,
     sale: SaleType,
-    isPaid: boolean
+    isPaid: boolean,
+    date: moment.Moment
 }
 
 export enum Payment {
@@ -184,5 +187,6 @@ export enum PaymentTypeEnum {
 
 export enum ProfilesEnum {
     Alina = "Алина",
-    Irene = "Ира"
+    Irene = "Ира",
+    Julia = "Юля"
 }

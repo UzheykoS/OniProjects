@@ -43,11 +43,11 @@ export const ProcessFetchData = (spreadsheetId: string) => {
         try {
             const dessertsResponse = await window['gapi'].client.sheets.spreadsheets.values.get({
                 spreadsheetId: spreadsheetId,
-                range: "RawDessertsData!A:H"
+                range: "RawDessertsData!A:K"
             });
             const drinksResponse = await window['gapi'].client.sheets.spreadsheets.values.get({
                 spreadsheetId: spreadsheetId,
-                range: "RawDrinksData!A:F"
+                range: "RawDrinksData!A:I"
             });
 
             let lastDessertOrderId = Math.max(...dessertsResponse.result.values.slice(1).map(d => d[7] ? Number(d[7]) : 0));
@@ -62,16 +62,19 @@ export const ProcessFetchData = (spreadsheetId: string) => {
                 payment: Payment.Other,
                 type: OrderType.Other,
                 sale: SaleType.Empty,
-                isPaid: true
+                isPaid: true,
+                date: null
             };
             let lastOrderPayment = null;
             let lastOrderType = null;
             let isPaid = null;
+            let lastOrderDate = null;
 
             lastOrder.desserts = dessertsResponse.result.values.slice(1).filter(v => v[7] === lastId.toString()).map(d => {
                 lastOrderPayment = d[4] === 'Наличка' ? Payment.Cash : Payment.Card;
                 lastOrderType = d[5] === 'Витрина' ? OrderType.Shop : OrderType.PreOrder;
-                isPaid = d[6] === 'Да';
+                isPaid = d[10] === 'Да';
+                lastOrderDate = moment(d[6], DATE_FORMAT);
                 const dessert: Dessert = {
                     type: d[0],
                     taste: d[1],
@@ -84,7 +87,8 @@ export const ProcessFetchData = (spreadsheetId: string) => {
             lastOrder.drinks = drinksResponse.result.values.slice(1).filter(v => v[5] === lastId.toString()).map(d => {
                 lastOrderPayment = d[2] === 'Наличка' ? Payment.Cash : Payment.Card;
                 lastOrderType = d[3] === 'Витрина' ? OrderType.Shop : OrderType.PreOrder;
-                isPaid = d[4] === 'Да';
+                isPaid = d[8] === 'Да';
+                lastOrderDate = moment(d[4], DATE_FORMAT);
                 const dessert: Drink = {
                     id: d[0],
                     size: d[1]
@@ -94,6 +98,7 @@ export const ProcessFetchData = (spreadsheetId: string) => {
             lastOrder.payment = lastOrderPayment;
             lastOrder.type = lastOrderType;
             lastOrder.isPaid = isPaid;
+            lastOrder.date = lastOrderDate;
             dispatch(SetLastId(lastId, lastOrder));
             // dispatch(itemsFetchDataSuccess([...desserts, ...drinks]));
         }
