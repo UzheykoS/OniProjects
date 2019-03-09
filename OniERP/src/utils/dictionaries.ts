@@ -108,6 +108,7 @@ MacaronsColors[MacaronsEnum.Chocolate] = '#853c13';
 MacaronsColors[MacaronsEnum.Pistachio] = '#85dd93';
 MacaronsColors[MacaronsEnum.LimeBasil] = '#9ff25c';
 MacaronsColors[MacaronsEnum.MandarinVanil] = '#FF8200';
+MacaronsColors[MacaronsEnum.GrapefruitRose] = '#CB5382';
 
 export const ZephyrColors: { [id: string] : string } = {};
 ZephyrColors[ZephyrEnum.Apple] = '#fffbf2';

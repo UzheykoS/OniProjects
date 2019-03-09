@@ -58,6 +58,7 @@ export enum MacaronsEnum {
     DorBluePear = "Доб-Блю - Груша",
     ParmesanFigue = "Пармезан - Инжир",
     StrawberryCheesecake = "Клубничный Чизкейк",
+    GrapefruitRose = "Грейпфрут - Роза",
     Raspberry = "Малина",
     CherryTonko = "Вишня - Бобы Тонка",
     Oblepiha = "Облепиха",
