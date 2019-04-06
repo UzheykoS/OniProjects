@@ -1,0 +1,10 @@
+.appbar_root {
+    flex-grow: 1;
+    .appbar_grow {
+        flex-grow: 1;
+    }
+    .appbar_menuButton {
+        margin-left: -12;
+        margin-right: 20;
+    }
+}

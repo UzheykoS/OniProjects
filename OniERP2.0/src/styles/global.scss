@@ -1,0 +1,195 @@
+﻿html, body {
+    font-family: 'Segoe UI';
+    height: 100%;
+}
+
+.container {
+    height: 100%;
+    width: 100%;
+    font-size: 36px;
+    font-weight: 300;
+}
+
+.avatar {
+    background-color: rgb(114, 195, 233);
+    color: rgb(29, 83, 163);
+}
+
+.cardContainer {
+    margin: 16px;
+}
+
+.cardContainerHistory {
+    margin: 16px;
+}
+
+.cardRoot {
+    padding: 16px 0 16px 0 !important;
+}
+
+.newOrderButtonsWrapper {
+    display: flex;
+    flex-direction: row;
+}
+
+.newOrderButton {
+    padding: 5px;
+    width: 100%;
+    height: 100%;
+}
+
+.buttonsWraper {
+    display: flex;
+    justify-content: space-evenly;
+    margin: 0.5rem;
+    flex-direction: column;
+
+    .button {
+        margin: 0.4rem 0rem;
+    }
+}
+
+.saleContainer { 
+    display: flex;
+    justify-content: space-between;
+    margin: 0.5rem 0.5rem 0.5rem 0;
+    flex-direction: row;
+    font-size: 24px;
+    font-weight: 400;
+    line-height: 42px;
+}
+
+.checkoutTitle {
+    text-align: center;
+    margin: 1rem;
+    font-weight: 450;
+}
+
+.checkoutControlGroup {
+    display: flex;
+    justify-content: space-between;
+    margin: 0.5rem 0.5rem 0.5rem 0;
+    flex-direction: row;
+    font-size: 24px;
+    font-weight: 400;
+    line-height: 42px;
+}
+
+.notificationClose { 
+    width: 4rem;
+    height: 4rem;
+}
+
+.macaronAvatar {
+    margin: 2px;
+    color: black !important;
+}
+
+.drinkAvatar {
+    margin: 2px;
+    color: #fff !important;
+    background-color: #74482f !important;
+}
+
+.dessertsTastesWrapper {
+    height: calc(100% - 68px);
+}
+
+.dessertsTastesListWrapper {
+    height: calc(100% - 110px);
+    overflow: auto;
+    -webkit-overflow-scrolling: touch;
+}
+
+.buttonApplyWraper {
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.buttonCancelWraper {
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.drinksWrapper {
+    height: calc(100% - 68px);
+}
+
+.drinksListWrapper {
+    height: calc(100% - 95px);
+    overflow: auto;
+    -webkit-overflow-scrolling: touch;
+}
+
+.partnerSelectWrapper {
+    width: 100%;
+    padding: 1rem;
+}
+
+.busy-container {
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    z-index: 9999;
+    background-color: #e6e6e6;
+    opacity: 0.8;
+    .busy {
+        position: absolute;
+        left: 50%;
+        top: 44%;
+        margin-left: -18px;
+    }
+}
+
+.invisible {
+    display: none;
+}
+
+.historyContainer {
+    width: 100%;
+}
+
+.decreaseButton {
+    border: 1px solid grey !important;
+}
+
+.checkoutBlackFridayGroup {
+    display: flex;
+    justify-content: flex-start;
+    margin: 0.5rem 0.5rem 0.5rem 0;
+    flex-direction: row;
+    font-size: 24px;
+    font-weight: 400;
+    line-height: 42px;
+}
+
+.blackFridayTitle {
+    height: 50px;
+    img {
+        height: 100%;
+    }
+}
+
+.blackFridayPrice
+ {
+    font-size: 16px;
+    font-weight: 400;
+}
+
+.profile-name {
+    padding-right: 8px;
+}
+
+.date-picker {
+    width: 100%;
+}
+
+.checkboxLabel {
+    margin-left: 0px !important;
+}
+
+.checkoutLabel {
+    line-height: 42px !important;
+}
