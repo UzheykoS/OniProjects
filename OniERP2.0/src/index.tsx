@@ -8,9 +8,7 @@ import App from './App';
 import { createStore } from './models'
 
 const history = createBrowserHistory();
-
 const store = createStore({}, { history });
-
 
 const root = document.createElement('div');
 document.body.appendChild(root);
@@ -21,10 +19,6 @@ function renderApp() {
     <App history={history} store={store} />,
     root
   );
-}
-
-export function getStore() {
-  return store;
 }
 
 renderApp();

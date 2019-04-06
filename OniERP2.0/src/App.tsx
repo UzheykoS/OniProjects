@@ -1,5 +1,4 @@
 import * as React from 'react';
-import { hot } from 'react-hot-loader';
 import { renderRoutes } from 'react-router-config';
 import { Instance } from 'mobx-state-tree';
 import { History } from 'history';
@@ -24,7 +23,6 @@ interface IState {
   appState: AppState;
 }
 
-@hot(module)
 class App extends React.Component<IProps, IState> {
   state = {
     appState: AppState.loading,

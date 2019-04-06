@@ -1,18 +1,14 @@
-import React, {
-  Component,
-  useState,
-  FunctionComponent,
-  useEffect,
-} from 'react';
+import React, { useState, FunctionComponent, useEffect } from 'react';
 import { Router } from 'react-router';
 import { History, createMemoryHistory } from 'history';
-import { Provider } from 'mobx-react';
 import { Instance } from 'mobx-state-tree';
 import { StoreContext } from './models';
 import RootStore from './models/root.store';
 
 import scriptLoader from 'react-async-script-loader';
 import AppBar from './components/core/AppBar';
+import { ThemeProvider } from '@styled-components';
+import defaultTheme from './styled/theme';
 // import MomentUtils from '@date-io/moment';
 // import { MuiPickersUtilsProvider } from './components/core/material-ui-pickers';
 
@@ -82,17 +78,19 @@ const Wrapper: FunctionComponent<IAppProps> = ({
   };
 
   return isScriptLoaded && checkIsSignedIn() ? (
-    <StoreContext.Provider value={store}>
-      <>
-        <Router history={history}>{children}</Router>
-        <AppBar
-          title={'ONI'}
-          isSignedIn={isSignedIn}
-          onLoginClick={handleAuthClick}
-          onLogoutClick={handleSignoutClick}
-        />
-      </>
-    </StoreContext.Provider>
+    <ThemeProvider theme={defaultTheme}>
+      <StoreContext.Provider value={store}>
+        <>
+          <AppBar
+            title={'ONI'}
+            isSignedIn={isSignedIn}
+            onLoginClick={handleAuthClick}
+            onLogoutClick={handleSignoutClick}
+          />
+          <Router history={history}>{children}</Router>
+        </>
+      </StoreContext.Provider>
+    </ThemeProvider>
   ) : (
     <Loading />
   );

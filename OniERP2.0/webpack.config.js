@@ -6,6 +6,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin');
 const autoprefixer = require('autoprefixer');
+const aliases = require('./aliases');
 
 const apiKey = process.env.API_KEY;
 const clientId = process.env.CLIENT_ID;
@@ -214,7 +215,8 @@ module.exports = env => {
                 ]
             },
             resolve: {
-                extensions: [".webpack.js", ".web.js", ".ts", ".tsx", ".js", ".json"]
+                extensions: [".webpack.js", ".web.js", ".ts", ".tsx", ".js", ".json"],
+                alias: aliases
             },
             plugins: [
                 new webpack.DefinePlugin({

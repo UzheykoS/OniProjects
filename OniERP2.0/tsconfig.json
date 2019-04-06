@@ -20,7 +20,25 @@
       "es6",
       "dom",
       "es2017.object"
-    ]
+    ],
+    "baseUrl": "./src",
+    "paths": {
+      "@components/*": ["components/*"],
+      "@core/*": ["components/core/*"],
+      "@configs/*": ["configs/*"],
+      "@pages": ["pages"],
+      "@pages/*": ["pages/*"],
+      "@routes/*": ["routes/*"],
+      "@utils/*": ["utils/*"],
+      "@hooks": ["hooks"],
+      "@hooks/*": ["hooks/*"],
+      "@models": ["models"],
+      "@models/*": ["models/*"],
+      "@api": ["api"],
+      "@src/*": ["./*"],
+      "@styled-components": ["./styled"],
+      "@styled-components/*": ["./styled/*"],
+    }
   },
   "include": [
     "src"

@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import LargeButton from '../components/core/LargeButton';
 import HistoryComponent from '../components/HistoryComponent';
 import NotificationComponent from '../components/core/Notification';
-import { Busy } from '../components/Busy';
+import { Busy } from '../components/core/Busy';
 import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
 import Typography from '@material-ui/core/Typography';
@@ -18,12 +18,11 @@ const OtherLink = props => <Link to='/other' {...props} />;
 const CashboxLink = props => <Link to='/cashbox' {...props} />;
 
 const MainPage: React.FunctionComponent = () => {
-  const { app } = useStore();
+  const { app, snackbar } = useStore();
   const history = getSnapshot(app.history);
   // const [load, state] = useLoader(app.init);
 
   // useEffect(() => {
-  //   debugger;
   //   if (!history || !history.length) {
   //     load();
   //   }
@@ -31,6 +30,7 @@ const MainPage: React.FunctionComponent = () => {
 
   const onNewCheckClick = () => {
     app.createCheck();
+    snackbar.showSnackBar({ message: 'Test' });
   };
 
   return (

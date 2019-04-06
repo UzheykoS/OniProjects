@@ -1,13 +1,13 @@
 import React from 'react';
 import { RouteConfigComponentProps, renderRoutes } from 'react-router-config';
-// import Snackbar from '@components/Snackbar';
-import { GlobalStyle } from '../global-style';
+import Snackbar from '@core/Snackbar';
+import { GlobalStyle } from '../styles/global-style';
 
 function RootComponent(props: RouteConfigComponentProps) {
   return (
     <>
       <GlobalStyle />
-      {/* <Snackbar /> */}
+      <Snackbar />
       {renderRoutes(props.route!.routes)}
     </>
   );
