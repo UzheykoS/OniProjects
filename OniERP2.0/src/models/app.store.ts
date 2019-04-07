@@ -566,7 +566,7 @@ const AppStore = types
       type: DessertType;
       taste: string;
       size: string | null;
-      quantity: number;
+      quantity?: number;
     }) => {
       if (!self.check) {
         return;
@@ -576,8 +576,8 @@ const AppStore = types
         d => d.type === type && d.taste === taste && d.size === size
       );
 
-      if (!!existingDessert) {
-        existingDessert.quantity += 1;
+      if (existingDessert) {
+        existingDessert.quantity += quantity || 1;
       } else {
         self.check.desserts.push({
           type,
@@ -592,10 +592,12 @@ const AppStore = types
       type,
       size,
       taste,
+      quantity
     }: {
       type: DessertType;
       taste: string;
       size: string | null;
+      quantity?: number;
     }) => {
       if (!self.check) {
         return;
@@ -606,7 +608,7 @@ const AppStore = types
       );
 
       if (existingDessert && existingDessert.quantity > 0) {
-        existingDessert.quantity -= 1;
+        existingDessert.quantity -= quantity || 1;
       }
     };
 
