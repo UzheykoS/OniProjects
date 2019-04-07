@@ -12,7 +12,7 @@ import {
   MIX_ZEPHYR_16,
 } from '../utils/types';
 import DrinksComponent from './DrinksComponent';
-import DessertsComponent from './DessertsComponent';
+import DessertsComponent from './DessertsContainer';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
@@ -24,16 +24,18 @@ import ListItemSecondaryAction from '@material-ui/core/ListItemSecondaryAction';
 import IconButton from '@material-ui/core/IconButton';
 import { useStore } from '../hooks';
 import { getSnapshot } from 'mobx-state-tree';
+import { observer } from 'mobx-react-lite';
 
 const NewOrderComponent: FunctionComponent = () => {
   const [showDrinks, setShowDrinks] = useState(false);
   const [showDesserts, setShowDesserts] = useState(false);
   const { app, router } = useStore();
-  const check = getSnapshot(app.check!)!;
 
-  if (!check) {
+  if (!app.check) {
     return <div className='container'>Пожалуйста, создайте сначала чек</div>;
   }
+
+  const check = getSnapshot(app.check)!;
 
   const addDrinkClick = () => {
     setShowDrinks(true);
@@ -47,14 +49,14 @@ const NewOrderComponent: FunctionComponent = () => {
     router.push('/checkOut');
   };
 
-  const handleDeleteDrink = (drink) => {
+  const handleDeleteDrink = drink => {
     if (!drink) {
       return;
     }
     app.deleteDrink({ type: drink.id, size: drink.size });
   };
 
-  const handleDeleteDessert = (dessert) => {
+  const handleDeleteDessert = dessert => {
     if (!dessert) {
       return;
     }
@@ -65,7 +67,7 @@ const NewOrderComponent: FunctionComponent = () => {
     });
   };
 
-  const getContentItemText = (dessert) => {
+  const getContentItemText = dessert => {
     if (dessert.type === DessertType.Cake) {
       return `${dessert.type}, ${dessert.taste} - ${dessert.quantity} шт.(${
         dessert.size
@@ -173,4 +175,4 @@ const NewOrderComponent: FunctionComponent = () => {
   );
 };
 
-export default NewOrderComponent;
+export default observer(NewOrderComponent);

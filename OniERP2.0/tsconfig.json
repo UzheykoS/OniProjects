@@ -36,8 +36,7 @@
       "@models/*": ["models/*"],
       "@api": ["api"],
       "@src/*": ["./*"],
-      "@styled-components": ["./styled"],
-      "@styled-components/*": ["./styled/*"],
+      "@styled-components": ["styled"],
     }
   },
   "include": [

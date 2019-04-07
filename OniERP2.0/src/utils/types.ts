@@ -82,8 +82,7 @@ export enum CakesEnum {
     CarrotCake = "Carrot Cake",
     Soul = "Soul",
     Pink = "Pink",
-    Infinity = "Infinity",
-    Cake_2019 = "2019"
+    Infinity = "Infinity"
 }
 
 export enum ChouxEnum {

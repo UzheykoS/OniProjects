@@ -53,15 +53,6 @@ const DessertsComponent: FunctionComponent<IDessertsComponentProps> = ({
 
   const handleDessertTasteSelect = taste => {
     if (dessertType === DessertType.Cake) {
-      if (taste === CakesEnum.Cake_2019) {
-        app.addDessert({
-          type: dessertType,
-          taste,
-          size: '18 см',
-          quantity: 1,
-        });
-        handleClose();
-      }
       setDessertTaste(taste);
     } else {
       handleDessertIncrease(taste);

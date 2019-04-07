@@ -10,6 +10,7 @@ import Divider from '@material-ui/core/Divider';
 import { DATE_FORMAT } from '../utils/dictionaries';
 import { useStore } from '../hooks';
 import { getSnapshot } from 'mobx-state-tree';
+import { observer } from 'mobx-react-lite';
 
 const HistoryComponent: React.FunctionComponent = () => {
   const { app } = useStore();
@@ -77,4 +78,4 @@ const HistoryComponent: React.FunctionComponent = () => {
   );
 };
 
-export default HistoryComponent;
+export default observer(HistoryComponent);

@@ -34,8 +34,9 @@ class App extends React.Component<IProps, IState> {
     history.listen(store.router.locationChanged);
 
     try {
-      await store.app.init();
-      this.setState({ appState: AppState.loaded });
+      this.setState({ appState: AppState.loaded }, () => {
+        store.app.init();
+      });
     } catch (e) {
       this.setState({ appState: AppState.fail });
     }

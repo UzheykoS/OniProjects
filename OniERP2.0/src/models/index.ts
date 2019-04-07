@@ -2,6 +2,7 @@ import { createContext } from 'react';
 import { destroy, Instance, SnapshotIn } from 'mobx-state-tree';
 import { History } from 'history';
 import RootStore from './root.store';
+import { connectReduxDevtools } from 'mst-middlewares';
 
 export interface IEnv {
   history: History;
@@ -25,15 +26,11 @@ export function createStore(
     !/MSIE \d|Trident.*rv:/.test(navigator.userAgent) &&
     process.env.NODE_ENV !== 'production'
   ) {
-    require('mst-middlewares').connectReduxDevtools(
-      require('remotedev'),
-      store,
-      {
-        logArgsNearName: false,
-        logChildActions: false,
-        logIdempotentActionSteps: false,
-      }
-    );
+    connectReduxDevtools(require('remotedev'), store, {
+      logArgsNearName: false,
+      logChildActions: false,
+      logIdempotentActionSteps: false,
+    });
   }
   return store;
 }

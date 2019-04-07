@@ -1,7 +1,5 @@
-import { types, getRoot, flow, Instance, getSnapshot, cast } from 'mobx-state-tree';
-import RootStore from './root.store';
+import { types, flow, getSnapshot, cast } from 'mobx-state-tree';
 import { getRawDessertsData, getRawDrinksData, appendData } from '../api';
-import RouterStore from './router.store';
 import DateType from './custom-types/DateType';
 import {
   DessertType,
@@ -103,7 +101,7 @@ const DrinkModel = types.model('DrinkModel', {
   quantity: 0,
 });
 
-const CheckModel = types.model('CheckModel', {
+export const CheckModel = types.model('CheckModel', {
   id: 0,
   desserts: types.optional(types.array(DessertModel), []),
   drinks: types.optional(types.array(DrinkModel), []),
@@ -132,7 +130,7 @@ const AppStore = types
     lastId: 0,
     notificationType: 0,
     currentProfile: ProfilesEnum.Alina,
-    dailyBonus: '--'
+    dailyBonus: '--',
   })
   .views(self => ({
     get totalPrice() {
@@ -234,6 +232,22 @@ const AppStore = types
       const sale = 20;
       return (totalDessertsPrice * (100 - sale)) / 100 + totalDrinksPrice;
     },
+    dessertQuantity(type, taste) {
+      const dessert = self.check!.desserts.find(
+        d => d.type === type && d.taste === taste
+      );
+      return dessert ? dessert.quantity : 0;
+    },
+    get totalDessertQuantity() {
+      if (!self.check) {
+        return 0;
+      }
+      let count = 0;
+      self.check.desserts.forEach(d => {
+        count += d.quantity;
+      });
+      return count;
+    },
   }))
   .actions(self => {
     const init = flow(function*() {
@@ -277,7 +291,7 @@ const AppStore = types
             const dessert = {
               type: d[0],
               taste: d[1],
-              quantity: d[2],
+              quantity: Number(d[2]),
               size: d[3],
             };
             return dessert;
@@ -554,54 +568,67 @@ const AppStore = types
       size: string | null;
       quantity: number;
     }) => {
-      const check = getSnapshot(self.check!)!;
-      const newCheck = { ...check };
+      if (!self.check) {
+        return;
+      }
 
-      const existingDessert = newCheck.desserts.find(
+      const existingDessert = self.check.desserts.find(
         d => d.type === type && d.taste === taste && d.size === size
       );
 
       if (!!existingDessert) {
-        existingDessert.quantity += quantity;
+        existingDessert.quantity += 1;
       } else {
-        newCheck.desserts.push({
+        self.check.desserts.push({
           type,
           taste,
           size: size || '',
           quantity,
         });
       }
+    };
 
-      self.check = cast(newCheck);
+    const removeDessertItem = ({
+      type,
+      size,
+      taste,
+    }: {
+      type: DessertType;
+      taste: string;
+      size: string | null;
+    }) => {
+      if (!self.check) {
+        return;
+      }
+
+      const existingDessert = self.check.desserts.find(
+        d => d.type === type && d.taste === taste && d.size === size
+      );
+
+      if (existingDessert && existingDessert.quantity > 0) {
+        existingDessert.quantity -= 1;
+      }
     };
 
     const deleteDessert = ({
-      type: checkType,
-      size: checkSize,
-      taste: checkTaste,
+      type,
+      size,
+      taste,
     }: {
       type: DessertType;
       taste: string;
       size: string;
     }) => {
-      const check = getSnapshot(self.check!)!;
+      if (!self.check) {
+        return;
+      }
 
-      const newCheck = { ...check };
-
-      const comparator = ({ type, taste, size }) => {
-        if (type === checkType && taste === checkTaste) {
-          if (checkSize) {
-            return size !== checkSize;
-          } else {
-            return false;
-          }
-        }
-        return true;
-      };
-
-      newCheck.desserts = newCheck.desserts.filter(d => comparator(d));
-
-      self.check = cast(newCheck);
+      const dessert = self.check.desserts.find(
+        d => d.type === type && d.size === size && d.taste === taste
+      );
+      if (dessert) {
+        self.check.desserts.remove(dessert);
+      }
     };
 
     const getDailyBonus = flow(function*() {
@@ -625,7 +652,10 @@ const AppStore = types
       todayDesserts.forEach(d => {
         if (d[0] === DessertType.Macaron) {
           totalBonus +=
-            (d[2] * MACARONS_PRICE * BONUS_PERCENT * (100 - parseInt(d[8], 10))) /
+            (d[2] *
+              MACARONS_PRICE *
+              BONUS_PERCENT *
+              (100 - parseInt(d[8], 10))) /
             100;
         } else if (d[0] === DessertType.Zephyr) {
           totalBonus +=
@@ -633,10 +663,14 @@ const AppStore = types
             100;
         } else if (d[0] === DessertType.Choux) {
           totalBonus +=
-            (d[2] * CHOUX_PRICE * BONUS_PERCENT * (100 - parseInt(d[8], 10))) / 100;
+            (d[2] * CHOUX_PRICE * BONUS_PERCENT * (100 - parseInt(d[8], 10))) /
+            100;
         } else if (d[0] === DessertType.Cheesecake) {
           totalBonus +=
-            (d[2] * CHEESECAKE_PRICE * BONUS_PERCENT * (100 - parseInt(d[8], 10))) /
+            (d[2] *
+              CHEESECAKE_PRICE *
+              BONUS_PERCENT *
+              (100 - parseInt(d[8], 10))) /
             100;
         }
       });
@@ -655,7 +689,8 @@ const AppStore = types
       deleteDrink,
       addDessert,
       deleteDessert,
-      getDailyBonus
+      getDailyBonus,
+      removeDessertItem,
     };
   });
 
