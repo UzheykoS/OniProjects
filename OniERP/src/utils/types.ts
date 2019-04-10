@@ -105,6 +105,7 @@ export enum DrinksType {
     Cacao = "Какао",
     Americano = "Американо",
     AmericanoMilk = "Американо с молоком",
+    FilterCoffee = "Фильтр",
     Cappucino = "Капучино",
     FlatWhite = "Флет Вайт",
     Raf = "Раф",
@@ -127,7 +128,8 @@ export enum DrinksType {
     LemonadeCitrus = "Лимонад Цитрус",
     LemonadePassion = "Лимонад Маракуйя",
     IceLatte = "Айс Латте",
-    Syrop = "Сироп"
+    Syrop = "Сироп",
+    VeganMilk = "Молоко растительное"
 }
 
 export enum PartnersEnum {

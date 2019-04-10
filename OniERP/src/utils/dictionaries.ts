@@ -27,6 +27,8 @@ DrinksDict[DrinksType.LemonadeCitrus] = ['400 мл'];
 DrinksDict[DrinksType.LemonadePassion] = ['400 мл'];
 DrinksDict[DrinksType.IceLatte] = ['400 мл'];
 DrinksDict[DrinksType.Syrop] = ['0 мл'];
+DrinksDict[DrinksType.FilterCoffee] = ['200 мл'];
+DrinksDict[DrinksType.VeganMilk] = ['S', 'M'];
 
 export const DessertsDict: { [id: string] : Array<any> } = {};
 DessertsDict[DessertType.Macaron] = [1, 6, 12, 24];
@@ -60,6 +62,8 @@ DrinkPricesDict[DrinksType.LemonadeCitrus] = [35];
 DrinkPricesDict[DrinksType.LemonadePassion] = [35];
 DrinkPricesDict[DrinksType.IceLatte] = [40];
 DrinkPricesDict[DrinksType.Syrop] = [5];
+DrinkPricesDict[DrinksType.FilterCoffee] = [30];
+DrinkPricesDict[DrinksType.VeganMilk] = [20, 30];
 
 export const CaffeePrices: { [id: string] : number } = {};
 CaffeePrices[PartnersEnum.CoffeeIs] = 17;
