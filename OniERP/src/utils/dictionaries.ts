@@ -88,6 +88,8 @@ CakesPricesDict[CakesEnum.Rio] = [630, 970];
 CakesPricesDict[CakesEnum.Soul] = [620, 960];
 CakesPricesDict[CakesEnum.Cake_2019] = [650];
 
+export const EasterCakesPrices = [280, 360];
+
 export const ZEPHYR_PRICE = 15;
 export const ZEPHYR_PARTNERS_PRICE = 11;
 

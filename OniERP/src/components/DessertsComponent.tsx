@@ -10,7 +10,7 @@ import DialogTitle from '@material-ui/core/DialogTitle';
 import Dialog from '@material-ui/core/Dialog';
 import {
   DessertType, MacaronsEnum, CakesEnum, ZephyrEnum, ChouxEnum, CheesecakeEnum,
-  MIX_MACARONS_6, MIX_MACARONS_12, MIX_MACARONS_24, MIX_ZEPHYR_8, MIX_ZEPHYR_16
+  MIX_MACARONS_6, MIX_MACARONS_12, MIX_MACARONS_24, MIX_ZEPHYR_8, MIX_ZEPHYR_16, EasterCakeEnum
 } from '../utils/types';
 import { DessertsDict, MacaronsColors, ZephyrColors } from '../utils/dictionaries';
 import Avatar from '@material-ui/core/Avatar';
@@ -304,6 +304,9 @@ export class DessertsComponent extends Component<IDessertsComponentProps, IDesse
         break;
       case DessertType.Cheesecake:
         dessertTastes = Helper.getArrayFromEnum(CheesecakeEnum);
+        break;
+        case DessertType.EasterCake:
+        dessertTastes = Helper.getArrayFromEnum(EasterCakeEnum);
         break;
       default:
         dessertTastes = [];
