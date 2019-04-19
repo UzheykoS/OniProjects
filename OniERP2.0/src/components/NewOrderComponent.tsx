@@ -11,7 +11,7 @@ import {
   MIX_ZEPHYR_8,
   MIX_ZEPHYR_16,
 } from '../utils/types';
-import DrinksComponent from './DrinksComponent';
+import DrinksComponent from './DrinksContainer';
 import DessertsComponent from './DessertsContainer';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
