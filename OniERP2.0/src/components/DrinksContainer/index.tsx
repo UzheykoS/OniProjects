@@ -37,7 +37,7 @@ const DrinksContainer: FunctionComponent<IDrinksContainerProps> = ({
     <Dialog onClose={() => {}} open fullScreen>
       <DialogTitle>
         {!type
-          ? `Выберите напиток (${app.totalDrinkQuantity})`
+          ? `Выберите напиток (${app.totalDrinksQuantity})`
           : 'Выберите размер'}
       </DialogTitle>
       <ButtonsContainer>

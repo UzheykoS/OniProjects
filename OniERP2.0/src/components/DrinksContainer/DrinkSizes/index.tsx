@@ -26,6 +26,15 @@ const DrinkSizesComponent: FunctionComponent<IDrinkSizesComponent> = ({
     handleClose();
   };
 
+  // const handleDrinkSizeOrQuantitySelectDecrease = taste => {
+  //   const dessert = check.desserts.find(
+  //     d => d.type === type && d.taste === taste
+  //   );
+  //   if (dessert) {
+  //     app.removeDessertItem(dessert as any);
+  //   }
+  // };
+
   return (
     <Wrap>
       {drinkSizes.map(size => {

@@ -248,6 +248,16 @@ const AppStore = types
       });
       return count;
     },
+    get totalDrinksQuantity() {
+      if (!self.check) {
+        return 0;
+      }
+      let count = 0;
+      self.check.drinks.forEach(d => {
+        count += d.quantity;
+      });
+      return count;
+    },
   }))
   .actions(self => {
     const init = flow(function*() {
