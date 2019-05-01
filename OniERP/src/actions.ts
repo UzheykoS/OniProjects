@@ -74,73 +74,80 @@ export const ProcessFetchData = (spreadsheetId: string) => {
         range: 'RawDrinksData!A:I',
       });
 
-      let lastDessertOrderId = Math.max(
-        ...dessertsResponse.result.values
+      if (
+        dessertsResponse.result.values.length <= 1 &&
+        drinksResponse.result.values.length <= 1
+      ) {
+        dispatch(SetLastId(0, null));
+      } else {
+        let lastDessertOrderId = Math.max(
+          ...dessertsResponse.result.values
+            .slice(1)
+            .map(d => (d[7] ? Number(d[7]) : 0))
+        );
+        let lastDrinkOrderId = Math.max(
+          ...drinksResponse.result.values
+            .slice(1)
+            .map(d => (d[5] ? Number(d[5]) : 0))
+        );
+        const lastId = Math.max(lastDessertOrderId, lastDrinkOrderId) || 0;
+
+        const lastOrder: Check = {
+          id: lastId,
+          desserts: [],
+          drinks: [],
+          isFinished: true,
+          payment: Payment.Other,
+          type: OrderType.Other,
+          sale: SaleType.Empty,
+          isPaid: true,
+          date: null,
+        };
+        let lastOrderPayment = null;
+        let lastOrderType = null;
+        let isPaid = null;
+        let lastOrderDate = null;
+
+        lastOrder.desserts = dessertsResponse.result.values
           .slice(1)
-          .map(d => (d[7] ? Number(d[7]) : 0))
-      );
-      let lastDrinkOrderId = Math.max(
-        ...drinksResponse.result.values
+          .filter(v => v[7] === lastId.toString())
+          .map(d => {
+            lastOrderPayment = d[4] === 'Наличка' ? Payment.Cash : (d[4] === 'Карта' ? Payment.Card : Payment.Terminal);
+            lastOrderType =
+              d[5] === 'Витрина' ? OrderType.Shop : OrderType.PreOrder;
+            isPaid = d[10] === 'Да';
+            lastOrderDate = moment(d[6], DATE_FORMAT);
+            const dessert: Dessert = {
+              type: d[0],
+              taste: d[1],
+              quantity: d[2],
+              size: d[3],
+            };
+            return dessert;
+          });
+
+        lastOrder.drinks = drinksResponse.result.values
           .slice(1)
-          .map(d => (d[5] ? Number(d[5]) : 0))
-      );
-      const lastId = Math.max(lastDessertOrderId, lastDrinkOrderId) || 0;
-
-      const lastOrder: Check = {
-        id: lastId,
-        desserts: [],
-        drinks: [],
-        isFinished: true,
-        payment: Payment.Other,
-        type: OrderType.Other,
-        sale: SaleType.Empty,
-        isPaid: true,
-        date: null,
-      };
-      let lastOrderPayment = null;
-      let lastOrderType = null;
-      let isPaid = null;
-      let lastOrderDate = null;
-
-      lastOrder.desserts = dessertsResponse.result.values
-        .slice(1)
-        .filter(v => v[7] === lastId.toString())
-        .map(d => {
-          lastOrderPayment = d[4] === 'Наличка' ? Payment.Cash : Payment.Card;
-          lastOrderType =
-            d[5] === 'Витрина' ? OrderType.Shop : OrderType.PreOrder;
-          isPaid = d[10] === 'Да';
-          lastOrderDate = moment(d[6], DATE_FORMAT);
-          const dessert: Dessert = {
-            type: d[0],
-            taste: d[1],
-            quantity: d[2],
-            size: d[3],
-          };
-          return dessert;
-        });
-
-      lastOrder.drinks = drinksResponse.result.values
-        .slice(1)
-        .filter(v => v[5] === lastId.toString())
-        .map(d => {
-          lastOrderPayment = d[2] === 'Наличка' ? Payment.Cash : Payment.Card;
-          lastOrderType =
-            d[3] === 'Витрина' ? OrderType.Shop : OrderType.PreOrder;
-          isPaid = d[8] === 'Да';
-          lastOrderDate = moment(d[4], DATE_FORMAT);
-          const dessert: Drink = {
-            id: d[0],
-            size: d[1],
-          };
-          return dessert;
-        });
-      lastOrder.payment = lastOrderPayment;
-      lastOrder.type = lastOrderType;
-      lastOrder.isPaid = isPaid;
-      lastOrder.date = lastOrderDate;
-      dispatch(SetLastId(lastId, lastOrder));
-      // dispatch(itemsFetchDataSuccess([...desserts, ...drinks]));
+          .filter(v => v[5] === lastId.toString())
+          .map(d => {
+            lastOrderPayment = d[2] === 'Наличка' ? Payment.Cash : (d[2] === 'Карта' ? Payment.Card : Payment.Terminal);
+            lastOrderType =
+              d[3] === 'Витрина' ? OrderType.Shop : OrderType.PreOrder;
+            isPaid = d[8] === 'Да';
+            lastOrderDate = moment(d[4], DATE_FORMAT);
+            const dessert: Drink = {
+              id: d[0],
+              size: d[1],
+            };
+            return dessert;
+          });
+        lastOrder.payment = lastOrderPayment;
+        lastOrder.type = lastOrderType;
+        lastOrder.isPaid = isPaid;
+        lastOrder.date = lastOrderDate;
+        dispatch(SetLastId(lastId, lastOrder));
+        // dispatch(itemsFetchDataSuccess([...desserts, ...drinks]));
+      }
     } catch (ex) {
       dispatch(itemsHasErrored(true));
       console.log(ex);

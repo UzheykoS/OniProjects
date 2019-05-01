@@ -161,6 +161,16 @@ class CheckoutComponent extends Component<ICheckoutComponentProps, ICheckoutComp
                 <FormControlLabel
                     control={
                         <Radio
+                            checked={check.payment === Payment.Terminal}
+                            onChange={() => this.handlePaymentTypeChange(Payment.Terminal)}
+                            value={Payment.Terminal.toString()}
+                        />
+                    }
+                    label="Терминал"
+                />
+                <FormControlLabel
+                    control={
+                        <Radio
                             checked={check.payment === Payment.Cash}
                             onChange={() => this.handlePaymentTypeChange(Payment.Cash)}
                             value={Payment.Cash.toString()}

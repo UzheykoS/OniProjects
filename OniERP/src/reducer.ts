@@ -212,7 +212,7 @@ export default handleActions({
     },
     [SET_LAST_ID]: (state, action: any) => {
         return Object.assign({}, state, {
-            history: [action.payload[1]],
+            history: !!action.payload[1] ? [action.payload[1]] : [],
             lastId: action.payload[0]
         });
     },

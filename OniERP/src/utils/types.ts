@@ -27,6 +27,7 @@ export interface Check {
 export enum Payment {
   Card = 'Карта',
   Cash = 'Наличка',
+  Terminal = 'Терминал',
   Other = 'Другое',
 }
 
