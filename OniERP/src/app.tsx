@@ -8,6 +8,7 @@ import NotFoundPage from './pages/NotFoundPage';
 import PartnersPage from './pages/PartnersPage';
 import OtherPage from './pages/OtherPage';
 import CashboxPage from './pages/CashboxPage';
+import ProductPage from './pages/ProductPage';
 import scriptLoader from 'react-async-script-loader';
 import AppBar from './components/AppBar';
 import MomentUtils from '@date-io/moment';
@@ -23,6 +24,7 @@ const Main = () => (
         <Route path='/partners' component={PartnersPage} />
         <Route path='/other' component={OtherPage} />
         <Route path='/cashbox' component={CashboxPage} />
+        <Route path='/product' component={ProductPage} />
 
         <Route component={NotFoundPage} />
     </Switch>

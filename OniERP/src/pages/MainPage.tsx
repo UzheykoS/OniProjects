@@ -34,6 +34,7 @@ const CkeckLink = props => <Link to="/check" {...props} />;
 const PartnersLink = props => <Link to="/partners" {...props} />;
 const OtherLink = props => <Link to="/other" {...props} />;
 const CashboxLink = props => <Link to="/cashbox" {...props} />;
+const ProductLink = props => <Link to="/product" {...props} />;
 
 export interface IMainPageProps {
   history?: Array<Check>;
@@ -76,6 +77,9 @@ export class MainPage extends Component<IMainPageProps, any>{
       <div className='buttonApplyWraper'>
         <Button component={OtherLink} variant="contained" color="secondary">
           Расходы
+        </Button>
+        <Button component={ProductLink} variant="contained" color="secondary">
+          Продукция
         </Button>
         <Button component={CashboxLink} variant="contained" color="secondary">
           Касса

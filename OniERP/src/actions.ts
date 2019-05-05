@@ -112,7 +112,12 @@ export const ProcessFetchData = (spreadsheetId: string) => {
           .slice(1)
           .filter(v => v[7] === lastId.toString())
           .map(d => {
-            lastOrderPayment = d[4] === 'Наличка' ? Payment.Cash : (d[4] === 'Карта' ? Payment.Card : Payment.Terminal);
+            lastOrderPayment =
+              d[4] === 'Наличка'
+                ? Payment.Cash
+                : d[4] === 'Карта'
+                ? Payment.Card
+                : Payment.Terminal;
             lastOrderType =
               d[5] === 'Витрина' ? OrderType.Shop : OrderType.PreOrder;
             isPaid = d[10] === 'Да';
@@ -130,7 +135,12 @@ export const ProcessFetchData = (spreadsheetId: string) => {
           .slice(1)
           .filter(v => v[5] === lastId.toString())
           .map(d => {
-            lastOrderPayment = d[2] === 'Наличка' ? Payment.Cash : (d[2] === 'Карта' ? Payment.Card : Payment.Terminal);
+            lastOrderPayment =
+              d[2] === 'Наличка'
+                ? Payment.Cash
+                : d[2] === 'Карта'
+                ? Payment.Card
+                : Payment.Terminal;
             lastOrderType =
               d[3] === 'Витрина' ? OrderType.Shop : OrderType.PreOrder;
             isPaid = d[8] === 'Да';
@@ -419,6 +429,45 @@ export const ProcessCashboxSubmit = (
       const data = [
         [
           cash,
+          notes,
+          date
+            ? date.format(DATE_FORMAT)
+            : moment(new Date()).format(DATE_FORMAT),
+        ],
+      ];
+      await dispatch(ProcessAppendData(SPREADSHEET_ID, range, data));
+      await ProcessLog(JSON.stringify(data));
+      await dispatch(ShowNotification(0, 'Данные сохранены!'));
+    } catch (ex) {
+      dispatch(
+        itemsAppendErrored('Ошибка. Проверьте, что вы вошли в систему.')
+      );
+      console.log(ex);
+      throw Error(ex);
+    } finally {
+      dispatch(itemsIsLoading(false));
+    }
+  };
+};
+
+export const ProcessProductSubmit = (
+  macarons: number,
+  choux: number,
+  zephyr: number,
+  cakes: number,
+  notes: string,
+  date?: moment.Moment
+) => {
+  return async dispatch => {
+    dispatch(itemsIsLoading(true));
+    try {
+      const range = 'Products!A:F';
+      const data = [
+        [
+          macarons,
+          choux,
+          zephyr,
+          cakes,
           notes,
           date
             ? date.format(DATE_FORMAT)
