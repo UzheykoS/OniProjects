@@ -132,15 +132,15 @@ export class Nav extends React.Component<INavProps, INavState>{
                     </Link>
                 </li>
                 <li>
-                    <Link to='/products/cakes'
-                        className={subTab == ProductTabs.Cakes ? 'active' : ''}>
-                        {ProductTabs.Cakes}
-                    </Link>
-                </li>
-                <li>
                     <Link to='/products/choux'
                         className={subTab == ProductTabs.Choux ? 'active' : ''}>
                         {ProductTabs.Choux}
+                    </Link>
+                </li>
+                <li>
+                    <Link to='/products/cakes'
+                        className={subTab == ProductTabs.Cakes ? 'active' : ''}>
+                        {ProductTabs.Cakes}
                     </Link>
                 </li>
             </ul>
