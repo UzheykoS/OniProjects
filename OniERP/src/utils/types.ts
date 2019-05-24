@@ -44,10 +44,12 @@ export enum DessertType {
   Choux = 'Шу',
   Cheesecake = 'Чизкейк',
   EasterCake = 'Кулич',
+  IceCream = 'Мороженное'
 }
 
 export enum SaleType {
   Empty = '0 %',
+  Five = '5 %',
   Ten = '10 %',
   Twenty = '20 %',
   Fourty = '40 %',
@@ -99,8 +101,17 @@ export enum ChouxEnum {
 }
 
 export enum CheesecakeEnum {
-  Gorgonzola = 'Горгонзола',
+  Gorgonzola = 'Горгонзола - Айва',
+  Vanilla = 'Ваниль - Карамель',
+  Lemon = 'Лимон'
+}
+
+export enum IceCreamEnum {
+  SaltedCaramel = 'Солёная карамель',
   Vanilla = 'Ваниль',
+  WildStrawberry = 'Земляника',
+  CherryMascarpone = 'Вишня - Маскарпоне',
+  Pistachio = 'Фисташка'
 }
 
 export enum EasterCakeEnum {

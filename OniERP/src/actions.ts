@@ -51,6 +51,7 @@ import {
   CHEESECAKE_PRICE,
   CakesPricesDict,
   EasterCakesPrices,
+  ICE_CREAM_PRICE,
 } from './utils/dictionaries';
 import Helper from './utils/helper';
 
@@ -656,7 +657,11 @@ export const CalculateDailyPercent = () => {
           totalBonus +=
             (d[2] * easterCakePrice * BONUS_PERCENT * (100 - parseInt(d[8]))) /
             100;
-        }
+        } else if (d[0] === DessertType.IceCream) {
+            totalBonus +=
+              (d[2] * ICE_CREAM_PRICE * BONUS_PERCENT * (100 - parseInt(d[8]))) /
+              100;
+          }
       });
 
       dispatch(SetDailyPercent(totalBonus.toFixed(2)));

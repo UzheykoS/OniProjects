@@ -99,6 +99,8 @@ export const CHOUX_PRICE = 40;
 
 export const CHEESECAKE_PRICE = 75;
 
+export const ICE_CREAM_PRICE = 65;
+
 export const MacaronsColors: { [id: string] : string } = {};
 MacaronsColors[MacaronsEnum.DorBluePear] = '#b7e4f7';
 MacaronsColors[MacaronsEnum.ParmesanFigue] = '#fcf7e8';

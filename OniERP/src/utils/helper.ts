@@ -9,8 +9,16 @@ import {
   DrinksDict,
   CakesPricesDict,
   EasterCakesPrices,
+  ICE_CREAM_PRICE,
 } from './dictionaries';
-import { DessertType, Dessert, Drink, Check, SaleType, EasterCakeEnum } from './types';
+import {
+  DessertType,
+  Dessert,
+  Drink,
+  Check,
+  SaleType,
+  EasterCakeEnum,
+} from './types';
 
 export interface BearerToken {
   AccessToken: any;
@@ -108,6 +116,9 @@ class Helper {
           } else if (d.taste === EasterCakeEnum.Large) {
             totalPrice += EasterCakesPrices[1] * d.quantity;
           }
+          break;
+        case DessertType.IceCream:
+          totalPrice += ICE_CREAM_PRICE * d.quantity;
           break;
         default:
           break;
