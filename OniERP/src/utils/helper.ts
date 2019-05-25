@@ -126,10 +126,10 @@ class Helper {
       }
     });
 
-    const birthdaySale = 20;
-    if (check.type === OrderType.Shop) {
-      totalPrice = (totalPrice * (100 - birthdaySale)) / 100;
-    }
+    // const birthdaySale = 20;
+    // if (check.type === OrderType.Shop) {
+    //   totalPrice = (totalPrice * (100 - birthdaySale)) / 100;
+    // }
 
     check.drinks.forEach((d: Drink) => {
       const prices = DrinkPricesDict[d.id];
