@@ -128,8 +128,8 @@ class Helper {
 
     const birthdaySale = 20;
     if (check.type === OrderType.Shop) {
-        totalPrice = (totalPrice * (100 - birthdaySale)) / 100;
-    }    
+      totalPrice = (totalPrice * (100 - birthdaySale)) / 100;
+    }
 
     check.drinks.forEach((d: Drink) => {
       const prices = DrinkPricesDict[d.id];
@@ -145,6 +145,9 @@ class Helper {
     switch (check.sale) {
       case SaleType.Full:
         sale = 100;
+        break;
+      case SaleType.Five:
+        sale = 5;
         break;
       case SaleType.Ten:
         sale = 10;
