@@ -44,7 +44,7 @@ export enum DessertType {
   Choux = 'Шу',
   Cheesecake = 'Чизкейк',
   EasterCake = 'Кулич',
-  IceCream = 'Мороженное'
+  IceCream = 'Мороженое'
 }
 
 export enum SaleType {
