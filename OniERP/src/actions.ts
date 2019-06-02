@@ -616,6 +616,7 @@ export const CalculateDailyPercent = () => {
               DessertType.Cheesecake,
               DessertType.Cake,
               DessertType.EasterCake,
+              DessertType.IceCream,
             ].indexOf(v[0]) > -1 &&
             Helper.isToday(v[6]) &&
             v[9] === state.currentProfile
@@ -660,10 +661,10 @@ export const CalculateDailyPercent = () => {
             (d[2] * easterCakePrice * BONUS_PERCENT * (100 - parseInt(d[8]))) /
             100;
         } else if (d[0] === DessertType.IceCream) {
-            totalBonus +=
-              (d[2] * ICE_CREAM_PRICE * BONUS_PERCENT * (100 - parseInt(d[8]))) /
-              100;
-          }
+          totalBonus +=
+            (d[2] * ICE_CREAM_PRICE * BONUS_PERCENT * (100 - parseInt(d[8]))) /
+            100;
+        }
       });
 
       dispatch(SetDailyPercent(totalBonus.toFixed(2)));
