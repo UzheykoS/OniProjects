@@ -23,7 +23,8 @@ import {
     SHOW_NOTIFICATION,
     CHANGE_PROFILE,
     SET_IS_PAID,
-    SET_DAILY_PERCENT
+    SET_DAILY_PERCENT,
+    SELECT_STAFF
 } from "./actionTypes";
 import { Check, Dessert, Drink, Payment, OrderType, SaleType, ProfilesEnum } from './utils/types';
 import * as moment from 'moment';
@@ -42,7 +43,8 @@ export default handleActions({
             type: OrderType.Shop,
             sale: SaleType.Empty,
             isPaid: true,
-            date: moment(new Date())
+            date: moment(new Date()),
+            staff: null
         };
         return Object.assign({}, state, {
             check
@@ -162,6 +164,11 @@ export default handleActions({
     [SET_IS_PAID]: (state, action) => {
         const { check } = state;
         check.isPaid = action.payload;
+        return { ...state, check: { ...check } };
+    },
+    [SELECT_STAFF]: (state, action) => {
+        const { check } = state;
+        check.staff = action.payload;
         return { ...state, check: { ...check } };
     },
     [LOAD_ITEMS]: (state, action) => {

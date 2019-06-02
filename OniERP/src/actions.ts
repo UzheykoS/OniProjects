@@ -24,6 +24,7 @@ import {
   CHANGE_PROFILE,
   SET_IS_PAID,
   SET_DAILY_PERCENT,
+  SELECT_STAFF,
 } from './actionTypes';
 import {
   DrinksType,
@@ -40,6 +41,7 @@ import {
   Drink,
   SaleType,
   EasterCakeEnum,
+  Staff,
 } from './utils/types';
 import { LOGS_SPREADSHEET_ID, SPREADSHEET_ID } from './config/keys';
 import * as moment from 'moment';
@@ -103,6 +105,7 @@ export const ProcessFetchData = (spreadsheetId: string) => {
           sale: SaleType.Empty,
           isPaid: true,
           date: null,
+          staff: null
         };
         let lastOrderPayment = null;
         let lastOrderType = null;
@@ -267,7 +270,7 @@ export const ProcessCheckout = callback => {
       let check: Check = state.check;
       const { log, currentProfile } = state;
 
-      const drinksRange = 'RawDrinksData!A:I';
+      const drinksRange = 'RawDrinksData!A:J';
       const drinksData = [];
       check.drinks.forEach(async d => {
         const dateTime = moment(new Date()).format(DATE_FORMAT);
@@ -281,6 +284,7 @@ export const ProcessCheckout = callback => {
           check.sale,
           currentProfile,
           check.isPaid ? 'Да' : 'Нет',
+          check.staff
         ];
         drinksData.push(data);
       });
@@ -290,7 +294,7 @@ export const ProcessCheckout = callback => {
         );
       }
 
-      const dessertsRange = 'RawDessertsData!A:K';
+      const dessertsRange = 'RawDessertsData!A:L';
       const dessertsData = [];
       check.desserts.forEach(async d => {
         const now = new Date();
@@ -308,6 +312,7 @@ export const ProcessCheckout = callback => {
           check.sale,
           currentProfile,
           check.isPaid ? 'Да' : 'Нет',
+          check.staff
         ];
         dessertsData.push(data);
       });
@@ -537,6 +542,8 @@ export const SelectSale = createAction(SELECT_SALE, (sale: SaleType) => sale);
 
 export const SetIsPaid = createAction(SET_IS_PAID, (isPaid: boolean) => isPaid);
 
+export const SelectStaff = createAction(SELECT_STAFF, (staff: Staff) => staff);
+
 export const itemsHasErrored = createAction(
   LOAD_ITEMS_REJECTED,
   (hasErrored: boolean) => hasErrored
@@ -592,6 +599,10 @@ export const SetDailyPercent = createAction(
   (bonus: string) => bonus
 );
 
+const getSale = (sale) => {
+  return sale === SaleType.Staff ? 100 : parseInt(sale);
+}
+
 export const CalculateDailyPercent = () => {
   return async (dispatch, getState) => {
     dispatch(itemsIsLoading(true));
@@ -625,18 +636,18 @@ export const CalculateDailyPercent = () => {
       todayDesserts.forEach(d => {
         if (d[0] === DessertType.Macaron) {
           totalBonus +=
-            (d[2] * MACARONS_PRICE * BONUS_PERCENT * (100 - parseInt(d[8]))) /
+            (d[2] * MACARONS_PRICE * BONUS_PERCENT * (100 - getSale(d[8]))) /
             100;
         } else if (d[0] === DessertType.Zephyr) {
           totalBonus +=
-            (d[2] * ZEPHYR_PRICE * BONUS_PERCENT * (100 - parseInt(d[8]))) /
+            (d[2] * ZEPHYR_PRICE * BONUS_PERCENT * (100 - getSale(d[8]))) /
             100;
         } else if (d[0] === DessertType.Choux) {
           totalBonus +=
-            (d[2] * CHOUX_PRICE * BONUS_PERCENT * (100 - parseInt(d[8]))) / 100;
+            (d[2] * CHOUX_PRICE * BONUS_PERCENT * (100 - getSale(d[8]))) / 100;
         } else if (d[0] === DessertType.Cheesecake) {
           totalBonus +=
-            (d[2] * CHEESECAKE_PRICE * BONUS_PERCENT * (100 - parseInt(d[8]))) /
+            (d[2] * CHEESECAKE_PRICE * BONUS_PERCENT * (100 - getSale(d[8]))) /
             100;
         } else if (d[0] === DessertType.Cake) {
           let cakePrice = 0;
@@ -648,7 +659,7 @@ export const CalculateDailyPercent = () => {
               cakePrice += cakePrices[1];
             }
             totalBonus +=
-              (d[2] * cakePrice * BONUS_PERCENT * (100 - parseInt(d[8]))) / 100;
+              (d[2] * cakePrice * BONUS_PERCENT * (100 - getSale(d[8]))) / 100;
           }
         } else if (d[0] === DessertType.EasterCake) {
           let easterCakePrice = 0;
@@ -658,11 +669,11 @@ export const CalculateDailyPercent = () => {
             easterCakePrice += EasterCakesPrices[1];
           }
           totalBonus +=
-            (d[2] * easterCakePrice * BONUS_PERCENT * (100 - parseInt(d[8]))) /
+            (d[2] * easterCakePrice * BONUS_PERCENT * (100 - getSale(d[8]))) /
             100;
         } else if (d[0] === DessertType.IceCream) {
           totalBonus +=
-            (d[2] * ICE_CREAM_PRICE * BONUS_PERCENT * (100 - parseInt(d[8]))) /
+            (d[2] * ICE_CREAM_PRICE * BONUS_PERCENT * (100 - getSale(d[8]))) /
             100;
         }
       });

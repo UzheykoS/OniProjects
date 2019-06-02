@@ -88,82 +88,90 @@ class Helper {
   };
 
   static calculatePrice(check: Check) {
-    let totalPrice = 0;
-    check.desserts.forEach((d: Dessert) => {
-      switch (d.type) {
-        case DessertType.Cake:
-          const cakePrices = CakesPricesDict[d.taste];
-          if (d.size === '18 см') {
-            totalPrice += cakePrices[0];
-          } else if (d.size === '22 см') {
-            totalPrice += cakePrices[1];
-          }
-          break;
-        case DessertType.Macaron:
-          totalPrice += MACARONS_PRICE * d.quantity;
-          break;
-        case DessertType.Zephyr:
-          totalPrice += ZEPHYR_PRICE * d.quantity;
-          break;
-        case DessertType.Choux:
-          totalPrice += CHOUX_PRICE * d.quantity;
-          break;
-        case DessertType.Cheesecake:
-          totalPrice += CHEESECAKE_PRICE * d.quantity;
-          break;
-        case DessertType.EasterCake:
-          if (d.taste === EasterCakeEnum.Small) {
-            totalPrice += EasterCakesPrices[0] * d.quantity;
-          } else if (d.taste === EasterCakeEnum.Large) {
-            totalPrice += EasterCakesPrices[1] * d.quantity;
-          }
-          break;
-        case DessertType.IceCream:
-          totalPrice += ICE_CREAM_PRICE * d.quantity;
-          break;
-        default:
-          break;
-      }
-    });
+    let totalDrinksPrice = 0;
+    let totalDessertsPrice = 0;
 
-    // const birthdaySale = 20;
-    // if (check.type === OrderType.Shop) {
-    //   totalPrice = (totalPrice * (100 - birthdaySale)) / 100;
-    // }
+    let drinkSale = 0;
+    let dessertSale = 0;
 
-    check.drinks.forEach((d: Drink) => {
-      const prices = DrinkPricesDict[d.id];
-      if (prices.length === 1) {
-        totalPrice += prices[0];
-      } else {
-        const index = DrinksDict[d.id].findIndex(x => x === d.size);
-        totalPrice += prices[index];
-      }
-    });
-
-    let sale = 0;
     switch (check.sale) {
       case SaleType.Full:
-        sale = 100;
+        drinkSale = 100;
+        dessertSale = 100;
         break;
       case SaleType.Five:
-        sale = 5;
+        drinkSale = 5;
+        dessertSale = 5;
         break;
       case SaleType.Ten:
-        sale = 10;
+        drinkSale = 10;
+        dessertSale = 10;
         break;
       case SaleType.Twenty:
-        sale = 20;
+        drinkSale = 20;
+        dessertSale = 20;
         break;
-      case SaleType.Fourty:
-        sale = 40;
+      case SaleType.Staff:
+        drinkSale = 70;
+        dessertSale = 40;
         break;
       case SaleType.Empty:
       default:
         break;
     }
 
-    return (totalPrice * (100 - sale)) / 100;
+    check.desserts.forEach((d: Dessert) => {
+      switch (d.type) {
+        case DessertType.Cake:
+          const cakePrices = CakesPricesDict[d.taste];
+          if (d.size === '18 см') {
+            totalDessertsPrice += cakePrices[0];
+          } else if (d.size === '22 см') {
+            totalDessertsPrice += cakePrices[1];
+          }
+          break;
+        case DessertType.Macaron:
+          totalDessertsPrice += MACARONS_PRICE * d.quantity;
+          break;
+        case DessertType.Zephyr:
+          totalDessertsPrice += ZEPHYR_PRICE * d.quantity;
+          break;
+        case DessertType.Choux:
+          totalDessertsPrice += CHOUX_PRICE * d.quantity;
+          break;
+        case DessertType.Cheesecake:
+          totalDessertsPrice += CHEESECAKE_PRICE * d.quantity;
+          break;
+        case DessertType.EasterCake:
+          if (d.taste === EasterCakeEnum.Small) {
+            totalDessertsPrice += EasterCakesPrices[0] * d.quantity;
+          } else if (d.taste === EasterCakeEnum.Large) {
+            totalDessertsPrice += EasterCakesPrices[1] * d.quantity;
+          }
+          break;
+        case DessertType.IceCream:
+          totalDessertsPrice += ICE_CREAM_PRICE * d.quantity;
+          break;
+        default:
+          break;
+      }
+    });
+
+    totalDessertsPrice = (totalDessertsPrice * (100 - dessertSale)) / 100;
+
+    check.drinks.forEach((d: Drink) => {
+      const prices = DrinkPricesDict[d.id];
+      if (prices.length === 1) {
+        totalDrinksPrice += prices[0];
+      } else {
+        const index = DrinksDict[d.id].findIndex(x => x === d.size);
+        totalDrinksPrice += prices[index];
+      }
+    });
+
+    totalDrinksPrice = (totalDrinksPrice * (100 - drinkSale)) / 100;
+
+    return totalDessertsPrice + totalDrinksPrice;
   }
 
   static calculateBlackFridayPrice(check: Check) {

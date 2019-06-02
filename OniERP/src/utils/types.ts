@@ -22,6 +22,7 @@ export interface Check {
   sale: SaleType;
   isPaid: boolean;
   date: moment.Moment;
+  staff?: Staff;
 }
 
 export enum Payment {
@@ -52,8 +53,17 @@ export enum SaleType {
   Five = '5 %',
   Ten = '10 %',
   Twenty = '20 %',
-  Fourty = '40 %',
+  Staff = 'Персонал',
   Full = '100 %',
+}
+
+export enum Staff {
+  Veronica = 'Вероника',
+  Zhenya = 'Женя',
+  Lena = 'Лена',
+  Miroslava = 'Мирослава',
+  Alina = 'Алина',
+  Julia = 'Юля'
 }
 
 export enum MacaronsEnum {
@@ -153,18 +163,18 @@ export enum DrinksType {
 
 export enum PartnersEnum {
   CoffeeIs = 'Coffee is',
-  FirstPoint = 'First Point',
   CubaCoffee = 'Cuba Coffee',
   Progress = 'Progress',
   KlassnaKava = 'Класна кава',
   IlMio = 'Il Mio',
   StudioCoffee = 'Студия кофе',
-  Ptaha = 'Ptaha',
   StarKava = 'StarKава',
   Parle = 'Parle',
   LiaDezi = 'Lia Dezi',
-  Journalist = 'Журналист',
-  Biblecoffee = 'Biblecoffee',
+  GolodnaPtashka = 'Голодна пташка',
+  Pitcher = 'Питчер',
+  BlinAndPanini = 'Blin and panini',
+  Pitkoffee = 'Pitkoffee',
   Other = 'Другое',
 }
 
