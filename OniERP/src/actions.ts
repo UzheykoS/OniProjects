@@ -455,6 +455,7 @@ export const ProcessProductSubmit = (
   macarons: number,
   choux: number,
   zephyr: number,
+  iceCream: number,
   cakes: number,
   notes: string,
   date?: moment.Moment
@@ -468,6 +469,7 @@ export const ProcessProductSubmit = (
           macarons,
           choux,
           zephyr,
+          iceCream,
           cakes,
           notes,
           date

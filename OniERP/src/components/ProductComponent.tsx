@@ -19,12 +19,13 @@ const mapDispatchToProps = dispatch => {
       macarons: number,
       choux: number,
       zephyr: number,
-      cakes: number,
+      iceCream: number,
+      cakes: number,      
       notes: string,
       date?: moment.Moment
     ) =>
       dispatch(
-        ProcessProductSubmit(macarons, choux, zephyr, cakes, notes, date)
+        ProcessProductSubmit(macarons, choux, zephyr, iceCream, cakes, notes, date)
       ),
   };
 };
@@ -35,6 +36,7 @@ export interface IProductComponentProps {
     macarons: number,
     choux: number,
     zephyr: number,
+    iceCream: number,
     cakes: number,
     notes: string,
     date?: moment.Moment
@@ -45,6 +47,7 @@ export interface IProductComponentState {
   macarons?: string;
   choux?: string;
   zephyr?: string;
+  iceCream?: string;
   cakes?: string;
   notes?: string;
   selectedDate?: moment.Moment;
@@ -61,6 +64,7 @@ class ProductComponent extends Component<
       macarons: '',
       choux: '',
       zephyr: '',
+      iceCream: '',
       cakes: '',
       notes: '',
       selectedDate: moment(new Date()),
@@ -87,11 +91,12 @@ class ProductComponent extends Component<
 
   handleNextClick = () => {
     const { processProductSubmit, history } = this.props;
-    const { macarons, choux, zephyr, cakes, notes, selectedDate } = this.state;
+    const { macarons, choux, zephyr, iceCream, cakes, notes, selectedDate } = this.state;
     processProductSubmit(
       Number(macarons),
       Number(choux),
       Number(zephyr),
+      Number(iceCream),
       Number(cakes),
       notes,
       selectedDate
@@ -100,7 +105,7 @@ class ProductComponent extends Component<
   };
 
   render() {
-    const { macarons, zephyr, choux, cakes, notes, selectedDate } = this.state;
+    const { macarons, zephyr, choux, iceCream, cakes, notes, selectedDate } = this.state;
 
     return (
       <div>
@@ -142,6 +147,18 @@ class ProductComponent extends Component<
           label='Зефир'
           value={zephyr}
           onChange={ev => this.handleQuanityChange(ev, 'zephyr')}
+          type='number'
+          InputLabelProps={{
+            shrink: true,
+          }}
+          margin='normal'
+          fullWidth
+          placeholder='Введите количество'
+        />
+        <TextField
+          label='Мороженое'
+          value={iceCream}
+          onChange={ev => this.handleQuanityChange(ev, 'iceCream')}
           type='number'
           InputLabelProps={{
             shrink: true,
