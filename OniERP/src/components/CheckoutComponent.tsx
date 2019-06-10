@@ -24,6 +24,7 @@ import Radio from '@material-ui/core/Radio';
 import Checkbox from '@material-ui/core/Checkbox';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import ButtonWithProgress from './ButtonWithProgress';
+import TextField from '@material-ui/core/TextField';
 
 const mapStateToProps = state => {
   return {
@@ -60,6 +61,7 @@ export interface ICheckoutComponentProps {
 
 export interface ICheckoutComponentState {
   isLoading?: boolean;
+  cash: string;
 }
 
 class CheckoutComponent extends Component<
@@ -70,6 +72,7 @@ class CheckoutComponent extends Component<
     super(props);
     this.state = {
       isLoading: false,
+      cash: '',
     };
   }
 
@@ -116,7 +119,7 @@ class CheckoutComponent extends Component<
     this.props.selectSale(sale);
     this.props.logData('checkoutPage->handleSaleSelect->' + sale);
     if (sale !== SaleType.Staff) {
-        this.props.selectStaff(null);
+      this.props.selectStaff(null);
     }
   };
 
@@ -130,10 +133,11 @@ class CheckoutComponent extends Component<
     this.props.selectStaff(staff);
   };
 
-  calculatePrice() {
-    const { check } = this.props;
-    return Helper.calculatePrice(check);
-  }
+  handleCashSelect = ev => {
+    this.setState({
+      cash: ev.target.value,
+    });
+  };
 
   calculateBlackFridayPrice() {
     const { check } = this.props;
@@ -142,13 +146,14 @@ class CheckoutComponent extends Component<
 
   render() {
     const { check } = this.props;
-    const { isLoading } = this.state;
+    const { isLoading, cash } = this.state;
 
     if (!check) {
       return <div className='container'>Пожалуйста, создайте сначала чек</div>;
     }
     const saleTypes = Helper.getArrayFromEnum(SaleType);
     const staff = Helper.getArrayFromEnum(Staff);
+    const price = Helper.calculatePrice(check);
 
     return (
       <>
@@ -165,7 +170,7 @@ class CheckoutComponent extends Component<
         <Divider />
         <div className='checkoutControlGroup'>
           <Typography gutterBottom variant='subheading'>
-            Итого: {this.calculatePrice()} грн.
+            Итого: {price} грн.
           </Typography>
         </div>
         <Divider />
@@ -299,17 +304,40 @@ class CheckoutComponent extends Component<
             <Divider />
           </>
         )}
-        <FormControlLabel
-          classes={{ root: 'checkboxLabel' }}
-          control={
-            <Checkbox
-              checked={check.isPaid}
-              onChange={this.handleIsPaidChange}
-            />
-          }
-          label='Оплачено:'
-          labelPlacement='start'
-        />
+        <div className='flex-box-container'>
+          <FormControlLabel
+            classes={{ root: 'checkboxLabel' }}
+            control={
+              <Checkbox
+                checked={check.isPaid}
+                onChange={this.handleIsPaidChange}
+              />
+            }
+            label='Оплачено:'
+            labelPlacement='start'
+          />
+          {check.payment === Payment.Cash && (
+            <div className='flex-box-container'>
+              <TextField
+                //   label='Торты'
+                value={cash}
+                onChange={this.handleCashSelect}
+                type='number'
+                InputLabelProps={{
+                  shrink: true,
+                }}
+                margin='normal'
+                fullWidth
+                placeholder='Введите сумму'
+              />
+              <div className='change-wrapper'>
+                <Typography noWrap gutterBottom variant='subheading'>
+                  Сдача: {!!cash ? (Number(cash) - price) : '-'} грн.
+                </Typography>
+              </div>
+            </div>
+          )}
+        </div>
         <Divider />
         <div className={'buttonsWraper'}>
           <ButtonWithProgress

@@ -192,7 +192,7 @@ class ProductComponent extends Component<
         />
         <div className={'buttonsWraper'}>
           <Button
-            disabled={!macarons && !choux && !zephyr && !cakes}
+            disabled={!macarons && !choux && !zephyr && !cakes && !iceCream}
             variant='contained'
             size='large'
             color='primary'
