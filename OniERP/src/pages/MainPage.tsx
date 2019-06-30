@@ -35,6 +35,7 @@ const PartnersLink = props => <Link to="/partners" {...props} />;
 const OtherLink = props => <Link to="/other" {...props} />;
 const CashboxLink = props => <Link to="/cashbox" {...props} />;
 const ProductLink = props => <Link to="/product" {...props} />;
+const WriteOffLink = props => <Link to="/writeoff" {...props} />;
 
 export interface IMainPageProps {
   history?: Array<Check>;
@@ -80,6 +81,9 @@ export class MainPage extends Component<IMainPageProps, any>{
         </Button>
         <Button component={ProductLink} variant="contained" color="secondary">
           Продукция
+        </Button>
+        <Button component={WriteOffLink} variant="contained" color="secondary">
+          Списание
         </Button>
         <Button component={CashboxLink} variant="contained" color="secondary">
           Касса

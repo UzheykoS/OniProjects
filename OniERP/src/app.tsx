@@ -13,8 +13,8 @@ import scriptLoader from 'react-async-script-loader';
 import AppBar from './components/AppBar';
 import MomentUtils from '@date-io/moment';
 import { MuiPickersUtilsProvider } from './components/material-ui-pickers';
-
 import { DISCOVERY_DOCS, SCOPES, CLIENT_ID, API_KEY } from './config/keys';
+import { WriteOffPage } from './pages/WriteOffPage';
 
 const Main = () => (
     <Switch>
@@ -25,6 +25,7 @@ const Main = () => (
         <Route path='/other' component={OtherPage} />
         <Route path='/cashbox' component={CashboxPage} />
         <Route path='/product' component={ProductPage} />
+        <Route path='/writeoff' component={WriteOffPage} />        
 
         <Route component={NotFoundPage} />
     </Switch>

@@ -469,7 +469,7 @@ export const ProcessProductSubmit = (
   return async dispatch => {
     dispatch(itemsIsLoading(true));
     try {
-      const range = 'Products!A:F';
+      const range = 'Products!A:H';
       const data = [
         [
           macarons,
@@ -477,6 +477,50 @@ export const ProcessProductSubmit = (
           zephyr,
           iceCream,
           cakes,
+          null,
+          notes,
+          date
+            ? date.format(DATE_FORMAT)
+            : moment(new Date()).format(DATE_FORMAT),
+        ],
+      ];
+      await dispatch(ProcessAppendData(SPREADSHEET_ID, range, data));
+      await ProcessLog(JSON.stringify(data));
+      await dispatch(ShowNotification(0, 'Данные сохранены!'));
+    } catch (ex) {
+      dispatch(
+        itemsAppendErrored('Ошибка. Проверьте, что вы вошли в систему.')
+      );
+      console.log(ex);
+      throw Error(ex);
+    } finally {
+      dispatch(itemsIsLoading(false));
+    }
+  };
+};
+
+export const ProcessWriteOffSubmit = (
+  macarons: number,
+  choux: number,
+  zephyr: number,
+  iceCream: number,
+  cakes: number,
+  coffee: number,
+  notes: string,
+  date?: moment.Moment
+) => {
+  return async dispatch => {
+    dispatch(itemsIsLoading(true));
+    try {
+      const range = 'Products!A:H';
+      const data = [
+        [
+          -macarons,
+          -choux,
+          -zephyr,
+          -iceCream,
+          -cakes,
+          -coffee,
           notes,
           date
             ? date.format(DATE_FORMAT)

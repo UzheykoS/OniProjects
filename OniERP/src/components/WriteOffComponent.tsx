@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import Button from '@material-ui/core/Button';
 import { withRouter } from 'react-router-dom';
 import Typography from '@material-ui/core/Typography';
-import { ProcessProductSubmit } from '../actions';
+import { ProcessWriteOffSubmit } from '../actions';
 import TextField from '@material-ui/core/TextField';
 import { InlineDatePicker } from './material-ui-pickers';
 import * as moment from 'moment';
@@ -15,47 +15,59 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    processProductSubmit: (
+    processWriteOffSubmit: (
       macarons: number,
       choux: number,
       zephyr: number,
       iceCream: number,
-      cakes: number,      
+      cakes: number,
+      coffee: number,
       notes: string,
       date?: moment.Moment
     ) =>
       dispatch(
-        ProcessProductSubmit(macarons, choux, zephyr, iceCream, cakes, notes, date)
+        ProcessWriteOffSubmit(
+          macarons,
+          choux,
+          zephyr,
+          iceCream,
+          cakes,
+          coffee,
+          notes,
+          date
+        )
       ),
   };
 };
 
-export interface IProductComponentProps {
+export interface IWriteOffComponentProps {
   history?: any;
-  processProductSubmit?: (
+  processWriteOffSubmit?: (
     macarons: number,
     choux: number,
     zephyr: number,
     iceCream: number,
     cakes: number,
+    coffee: number,
     notes: string,
     date?: moment.Moment
   ) => void;
 }
 
-export interface IProductComponentState {
+export interface IWriteOffComponentState {
   macarons?: string;
   choux?: string;
   zephyr?: string;
   iceCream?: string;
   cakes?: string;
+  coffee?: string;
   notes?: string;
   selectedDate?: moment.Moment;
 }
 
-class ProductComponent extends Component<
-  IProductComponentProps,
-  IProductComponentState
+class WriteOffComponent extends Component<
+  IWriteOffComponentProps,
+  IWriteOffComponentState
 > {
   constructor(props) {
     super(props);
@@ -66,6 +78,7 @@ class ProductComponent extends Component<
       zephyr: '',
       iceCream: '',
       cakes: '',
+      coffee: '',
       notes: '',
       selectedDate: moment(new Date()),
     };
@@ -90,14 +103,24 @@ class ProductComponent extends Component<
   };
 
   handleNextClick = () => {
-    const { processProductSubmit, history } = this.props;
-    const { macarons, choux, zephyr, iceCream, cakes, notes, selectedDate } = this.state;
-    processProductSubmit(
+    const { processWriteOffSubmit, history } = this.props;
+    const {
+      macarons,
+      choux,
+      zephyr,
+      iceCream,
+      cakes,
+      coffee,
+      notes,
+      selectedDate,
+    } = this.state;
+    processWriteOffSubmit(
       Number(macarons),
       Number(choux),
       Number(zephyr),
       Number(iceCream),
       Number(cakes),
+      Number(coffee),
       notes,
       selectedDate
     );
@@ -105,12 +128,21 @@ class ProductComponent extends Component<
   };
 
   render() {
-    const { macarons, zephyr, choux, iceCream, cakes, notes, selectedDate } = this.state;
+    const {
+      macarons,
+      zephyr,
+      choux,
+      iceCream,
+      cakes,
+      coffee,
+      notes,
+      selectedDate,
+    } = this.state;
 
     return (
       <div>
         <Typography gutterBottom variant='headline' component='h2'>
-          Продукция
+          Списание
         </Typography>
         <InlineDatePicker
           onlyCalendar
@@ -180,6 +212,18 @@ class ProductComponent extends Component<
           placeholder='Введите количество'
         />
         <TextField
+          label='Кофе'
+          value={coffee}
+          onChange={ev => this.handleQuanityChange(ev, 'coffee')}
+          type='number'
+          InputLabelProps={{
+            shrink: true,
+          }}
+          margin='normal'
+          fullWidth
+          placeholder='Введите количество, кг'
+        />
+        <TextField
           label='Заметки'
           value={notes}
           onChange={this.handleNotesChange}
@@ -192,7 +236,7 @@ class ProductComponent extends Component<
         />
         <div className={'buttonsWraper'}>
           <Button
-            disabled={!macarons && !choux && !zephyr && !cakes && !iceCream}
+            disabled={!macarons && !choux && !zephyr && !cakes && !iceCream && !coffee}
             variant='contained'
             size='large'
             color='primary'
@@ -210,5 +254,5 @@ export default withRouter(
   connect(
     mapStateToProps,
     mapDispatchToProps
-  )(ProductComponent)
+  )(WriteOffComponent)
 );
