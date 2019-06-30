@@ -22,6 +22,7 @@ import {
   MIX_ZEPHYR_16,
   EasterCakeEnum,
   IceCreamEnum,
+  SorbetEnum
 } from '../utils/types';
 import {
   DessertsDict,
@@ -352,6 +353,9 @@ export class DessertsComponent extends Component<
       case DessertType.IceCream:
         dessertTastes = Helper.getArrayFromEnum(IceCreamEnum);
         break;
+      case DessertType.Sorbet:
+        dessertTastes = Helper.getArrayFromEnum(SorbetEnum);
+        break
       default:
         dessertTastes = [];
         break;

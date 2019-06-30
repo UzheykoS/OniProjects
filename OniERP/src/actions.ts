@@ -54,6 +54,7 @@ import {
   CakesPricesDict,
   EasterCakesPrices,
   ICE_CREAM_PRICE,
+  SORBET_PRICE,
 } from './utils/dictionaries';
 import Helper from './utils/helper';
 
@@ -105,7 +106,7 @@ export const ProcessFetchData = (spreadsheetId: string) => {
           sale: SaleType.Empty,
           isPaid: true,
           date: null,
-          staff: null
+          staff: null,
         };
         let lastOrderPayment = null;
         let lastOrderType = null;
@@ -284,7 +285,7 @@ export const ProcessCheckout = callback => {
           check.sale,
           currentProfile,
           check.isPaid ? 'Да' : 'Нет',
-          check.staff
+          check.staff,
         ];
         drinksData.push(data);
       });
@@ -312,7 +313,7 @@ export const ProcessCheckout = callback => {
           check.sale,
           currentProfile,
           check.isPaid ? 'Да' : 'Нет',
-          check.staff
+          check.staff,
         ];
         dessertsData.push(data);
       });
@@ -599,9 +600,9 @@ export const SetDailyPercent = createAction(
   (bonus: string) => bonus
 );
 
-const getSale = (sale) => {
+const getSale = sale => {
   return sale === SaleType.Staff ? 100 : parseInt(sale);
-}
+};
 
 export const CalculateDailyPercent = () => {
   return async (dispatch, getState) => {
@@ -640,8 +641,7 @@ export const CalculateDailyPercent = () => {
             100;
         } else if (d[0] === DessertType.Zephyr) {
           totalBonus +=
-            (d[2] * ZEPHYR_PRICE * BONUS_PERCENT * (100 - getSale(d[8]))) /
-            100;
+            (d[2] * ZEPHYR_PRICE * BONUS_PERCENT * (100 - getSale(d[8]))) / 100;
         } else if (d[0] === DessertType.Choux) {
           totalBonus +=
             (d[2] * CHOUX_PRICE * BONUS_PERCENT * (100 - getSale(d[8]))) / 100;
@@ -675,6 +675,9 @@ export const CalculateDailyPercent = () => {
           totalBonus +=
             (d[2] * ICE_CREAM_PRICE * BONUS_PERCENT * (100 - getSale(d[8]))) /
             100;
+        } else if (d[0] === DessertType.Sorbet) {
+          totalBonus +=
+            (d[2] * SORBET_PRICE * BONUS_PERCENT * (100 - getSale(d[8]))) / 100;
         }
       });
 

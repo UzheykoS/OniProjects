@@ -45,7 +45,8 @@ export enum DessertType {
   Choux = 'Шу',
   Cheesecake = 'Чизкейк',
   EasterCake = 'Кулич',
-  IceCream = 'Мороженое'
+  IceCream = 'Мороженое',
+  Sorbet = 'Сорбет'
 }
 
 export enum SaleType {
@@ -121,7 +122,16 @@ export enum IceCreamEnum {
   Vanilla = 'Ваниль',
   WildStrawberry = 'Земляника',
   CherryMascarpone = 'Вишня - Маскарпоне',
-  Pistachio = 'Фисташка'
+  Pistachio = 'Фисташка',
+  Chocolate = 'Шоколад',
+  LemonMint = 'Лимон - Мята'
+}
+
+export enum SorbetEnum {
+  Mango = 'Манго',
+  AnanasCoconut = 'Ананас - Кокос',
+  Orange = 'Апельсин',
+  AvocadoKivi = 'Авокадо - Киви'
 }
 
 export enum EasterCakeEnum {
