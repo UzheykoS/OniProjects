@@ -221,7 +221,7 @@ class WriteOffComponent extends Component<
           }}
           margin='normal'
           fullWidth
-          placeholder='Введите количество, кг'
+          placeholder='Введите количество, г'
         />
         <TextField
           label='Заметки'

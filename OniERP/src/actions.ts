@@ -673,6 +673,7 @@ export const CalculateDailyPercent = () => {
               DessertType.Cake,
               DessertType.EasterCake,
               DessertType.IceCream,
+              DessertType.Sorbet,
             ].indexOf(v[0]) > -1 &&
             Helper.isToday(v[6]) &&
             v[9] === state.currentProfile
