@@ -25,6 +25,7 @@ import {
   SET_IS_PAID,
   SET_DAILY_PERCENT,
   SELECT_STAFF,
+  SET_DRINKS_COUNT,
 } from './actionTypes';
 import {
   DrinksType,
@@ -644,6 +645,11 @@ export const SetDailyPercent = createAction(
   (bonus: string) => bonus
 );
 
+export const SetDrinksCount = createAction(
+  SET_DRINKS_COUNT,
+  (count: number) => count
+);
+
 const getSale = sale => {
   return sale === SaleType.Staff ? 100 : parseInt(sale);
 };
@@ -727,6 +733,37 @@ export const CalculateDailyPercent = () => {
       });
 
       dispatch(SetDailyPercent(totalBonus.toFixed(2)));
+    } catch (ex) {
+      dispatch(itemsHasErrored(true));
+      console.log(ex);
+      throw Error(ex);
+    } finally {
+      dispatch(itemsIsLoading(false));
+    }
+  };
+};
+
+export const CountDailyDrinks = () => {
+  return async (dispatch, getState) => {
+    dispatch(itemsIsLoading(true));
+    try {
+      const state = getState();
+      const drinksResponse = await window[
+        'gapi'
+      ].client.sheets.spreadsheets.values.get({
+        spreadsheetId: SPREADSHEET_ID,
+        range: 'RawDrinksData!A:J',
+      });
+
+      const todayDrinks = drinksResponse.result.values
+        .slice(1)
+        .filter(
+          v =>
+            [DrinksType.Syrop, DrinksType.VeganMilk].indexOf(v[0]) < 0 &&
+            Helper.isToday(v[4]) &&
+            v[7] === state.currentProfile
+        );
+      dispatch(SetDrinksCount(todayDrinks.length));
     } catch (ex) {
       dispatch(itemsHasErrored(true));
       console.log(ex);

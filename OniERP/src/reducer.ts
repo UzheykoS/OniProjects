@@ -24,6 +24,7 @@ import {
     CHANGE_PROFILE,
     SET_IS_PAID,
     SET_DAILY_PERCENT,
+    SET_DRINKS_COUNT,
     SELECT_STAFF
 } from "./actionTypes";
 import { Check, Dessert, Drink, Payment, OrderType, SaleType, ProfilesEnum } from './utils/types';
@@ -238,5 +239,9 @@ export default handleActions({
     [SET_DAILY_PERCENT]: (state, action: any) => {
         const dailyBonus = action.payload;
         return { ...state, dailyBonus };
+    },
+    [SET_DRINKS_COUNT]: (state, action: any) => {
+        const drinksCount = action.payload;
+        return { ...state, drinksCount };
     },
 }, initialState);

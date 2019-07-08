@@ -185,6 +185,7 @@ export enum PartnersEnum {
   Pitcher = 'Питчер',
   BlinAndPanini = 'Blin and panini',
   Pitkoffee = 'Pitkoffee',
+  Journalist = 'Журналист',
   Other = 'Другое',
 }
 

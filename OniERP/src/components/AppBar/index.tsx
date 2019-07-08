@@ -14,7 +14,7 @@ import { withRouter } from 'react-router-dom';
 import { ProfilesEnum } from '../../utils/types';
 import Helper from '../../utils/helper';
 import { connect } from 'react-redux';
-import { ChangeProfile, CalculateDailyPercent } from '../../actions';
+import { ChangeProfile, CalculateDailyPercent, CountDailyDrinks } from '../../actions';
 
 const options = [
     {
@@ -51,7 +51,8 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
     return {
         changeProfile: (profile: string) => dispatch(ChangeProfile(profile)),
-        calculateDailyPercent: () => dispatch(CalculateDailyPercent())
+        calculateDailyPercent: () => dispatch(CalculateDailyPercent()),
+        countDailyDrinks: () => dispatch(CountDailyDrinks())
     };
 };
 
@@ -67,6 +68,7 @@ export interface IAppBarComponentProps {
     onLogoutClick?: () => void;
     changeProfile?: (profile: string) => void;
     calculateDailyPercent?: () => void;
+    countDailyDrinks?: () => void;
 }
 
 export interface IAppBarComponentState {
@@ -111,9 +113,10 @@ export class AppBar extends Component<IAppBarComponentProps, IAppBarComponentSta
     };
 
     handleProfileChange = (profile: string) => {
-        const { changeProfile, calculateDailyPercent } = this.props;
+        const { changeProfile, calculateDailyPercent, countDailyDrinks } = this.props;
         changeProfile(profile);
         calculateDailyPercent();
+        countDailyDrinks();
         this.setState({
             anchorProfileEl: null
         });
