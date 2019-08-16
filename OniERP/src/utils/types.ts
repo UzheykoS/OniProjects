@@ -232,4 +232,5 @@ export enum ProfilesEnum {
   Alina = 'Алина',
   Irene = 'Ира',
   Julia = 'Юля',
+  Kate = 'Катя'
 }
