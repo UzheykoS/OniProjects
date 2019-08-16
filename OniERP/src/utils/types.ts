@@ -64,7 +64,8 @@ export enum Staff {
   Lena = 'Лена',
   Miroslava = 'Мирослава',
   Alina = 'Алина',
-  Julia = 'Юля'
+  Julia = 'Юля',
+  Kate = 'Катя'
 }
 
 export enum MacaronsEnum {
@@ -232,5 +233,4 @@ export enum ProfilesEnum {
   Alina = 'Алина',
   Irene = 'Ира',
   Julia = 'Юля',
-  Kate = 'Катя'
 }
