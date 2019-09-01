@@ -428,17 +428,15 @@ export const ProcessOtherPaymentSubmit = (
 
 export const ProcessCashboxSubmit = (
   cash: number,
-  notes: string,
   date?: moment.Moment
 ) => {
   return async dispatch => {
     dispatch(itemsIsLoading(true));
     try {
-      const range = 'Finance!H:J';
+      const range = 'Finance!H:I';
       const data = [
         [
           cash,
-          notes,
           date
             ? date.format(DATE_FORMAT)
             : moment(new Date()).format(DATE_FORMAT),

@@ -131,3 +131,5 @@ ZephyrColors[ZephyrEnum.Currant] = '#d978еd';
 ZephyrColors[ZephyrEnum.StrawberryCranberry] = '#f497b9';
 
 export const DATE_FORMAT = 'DD.MM.YYYY HH:mm';
+
+export const DATE_FORMAT_SHORT = 'YYYY-MM-DD';
