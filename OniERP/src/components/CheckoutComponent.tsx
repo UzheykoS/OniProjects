@@ -120,6 +120,8 @@ class CheckoutComponent extends Component<
     this.props.logData('checkoutPage->handleSaleSelect->' + sale);
     if (sale !== SaleType.Staff) {
       this.props.selectStaff(null);
+    } else {
+      this.props.setIsPaid(false);
     }
   };
 
@@ -332,7 +334,7 @@ class CheckoutComponent extends Component<
               />
               <div className='change-wrapper'>
                 <Typography noWrap gutterBottom variant='subheading'>
-                  Сдача: {!!cash ? (Number(cash) - price) : '-'} грн.
+                  Сдача: {!!cash ? Number(cash) - price : '-'} грн.
                 </Typography>
               </div>
             </div>

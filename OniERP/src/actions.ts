@@ -60,7 +60,8 @@ import {
 import Helper from './utils/helper';
 
 const BLACK_FRIDAY_DATES = [23, 24];
-const BONUS_PERCENT = 0.02;
+const BONUS_PERCENT_DRINKS = 0.02;
+const BONUS_PERCENT_DESSERTS = 0.02;
 
 export const ProcessFetchData = (spreadsheetId: string) => {
   return async dispatch => {
@@ -659,13 +660,33 @@ export const CalculateDailyPercent = () => {
     dispatch(itemsIsLoading(true));
     try {
       const state = getState();
+      let totalBonus = 0;
+
+      const drinksResponse = await window[
+        'gapi'
+      ].client.sheets.spreadsheets.values.get({
+        spreadsheetId: SPREADSHEET_ID,
+        range: 'RawDrinksData!A:J',
+      });
+
+      const todayDrinks = drinksResponse.result.values
+        .slice(1)
+        .filter(v => Helper.isToday(v[4]) && v[7] === state.currentProfile);
+
       const dessertsResponse = await window[
         'gapi'
       ].client.sheets.spreadsheets.values.get({
         spreadsheetId: SPREADSHEET_ID,
         range: 'RawDessertsData!A:J',
       });
-      let totalBonus = 0;
+
+      todayDrinks.forEach(d => {
+        totalBonus +=
+          (Helper.getDrinkPrice(d[0], d[1]) *
+            BONUS_PERCENT_DRINKS *
+            (100 - getSale(d[6]))) /
+          100;
+      });
 
       const todayDesserts = dessertsResponse.result.values
         .slice(1)
@@ -682,23 +703,38 @@ export const CalculateDailyPercent = () => {
               DessertType.Sorbet,
             ].indexOf(v[0]) > -1 &&
             Helper.isToday(v[6]) &&
-            v[9] === state.currentProfile
+            v[9] === state.currentProfile &&
+            v[5] === OrderType.Shop
         );
 
       todayDesserts.forEach(d => {
         if (d[0] === DessertType.Macaron) {
           totalBonus +=
-            (d[2] * MACARONS_PRICE * BONUS_PERCENT * (100 - getSale(d[8]))) /
+            (d[2] *
+              MACARONS_PRICE *
+              BONUS_PERCENT_DESSERTS *
+              (100 - getSale(d[8]))) /
             100;
         } else if (d[0] === DessertType.Zephyr) {
           totalBonus +=
-            (d[2] * ZEPHYR_PRICE * BONUS_PERCENT * (100 - getSale(d[8]))) / 100;
+            (d[2] *
+              ZEPHYR_PRICE *
+              BONUS_PERCENT_DESSERTS *
+              (100 - getSale(d[8]))) /
+            100;
         } else if (d[0] === DessertType.Choux) {
           totalBonus +=
-            (d[2] * CHOUX_PRICE * BONUS_PERCENT * (100 - getSale(d[8]))) / 100;
+            (d[2] *
+              CHOUX_PRICE *
+              BONUS_PERCENT_DESSERTS *
+              (100 - getSale(d[8]))) /
+            100;
         } else if (d[0] === DessertType.Cheesecake) {
           totalBonus +=
-            (d[2] * CHEESECAKE_PRICE * BONUS_PERCENT * (100 - getSale(d[8]))) /
+            (d[2] *
+              CHEESECAKE_PRICE *
+              BONUS_PERCENT_DESSERTS *
+              (100 - getSale(d[8]))) /
             100;
         } else if (d[0] === DessertType.Cake) {
           let cakePrice = 0;
@@ -710,7 +746,11 @@ export const CalculateDailyPercent = () => {
               cakePrice += cakePrices[1];
             }
             totalBonus +=
-              (d[2] * cakePrice * BONUS_PERCENT * (100 - getSale(d[8]))) / 100;
+              (d[2] *
+                cakePrice *
+                BONUS_PERCENT_DESSERTS *
+                (100 - getSale(d[8]))) /
+              100;
           }
         } else if (d[0] === DessertType.EasterCake) {
           let easterCakePrice = 0;
@@ -720,15 +760,25 @@ export const CalculateDailyPercent = () => {
             easterCakePrice += EasterCakesPrices[1];
           }
           totalBonus +=
-            (d[2] * easterCakePrice * BONUS_PERCENT * (100 - getSale(d[8]))) /
+            (d[2] *
+              easterCakePrice *
+              BONUS_PERCENT_DESSERTS *
+              (100 - getSale(d[8]))) /
             100;
         } else if (d[0] === DessertType.IceCream) {
           totalBonus +=
-            (d[2] * ICE_CREAM_PRICE * BONUS_PERCENT * (100 - getSale(d[8]))) /
+            (d[2] *
+              ICE_CREAM_PRICE *
+              BONUS_PERCENT_DESSERTS *
+              (100 - getSale(d[8]))) /
             100;
         } else if (d[0] === DessertType.Sorbet) {
           totalBonus +=
-            (d[2] * SORBET_PRICE * BONUS_PERCENT * (100 - getSale(d[8]))) / 100;
+            (d[2] *
+              SORBET_PRICE *
+              BONUS_PERCENT_DESSERTS *
+              (100 - getSale(d[8]))) /
+            100;
         }
       });
 

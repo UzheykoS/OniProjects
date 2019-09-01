@@ -20,6 +20,7 @@ import {
   SaleType,
   EasterCakeEnum,
   OrderType,
+  DrinksType,
 } from './types';
 
 export interface BearerToken {
@@ -235,6 +236,16 @@ class Helper {
       date.month() == today.month() &&
       date.year() == today.year()
     );
+  }
+
+  static getDrinkPrice(drinkType: DrinksType, drinkSize: string) {
+    const prices = DrinkPricesDict[drinkType];
+    if (prices.length === 1) {
+      return prices[0];
+    } else {
+      const index = DrinksDict[drinkType].findIndex(x => x === drinkSize);
+      return prices[index];
+    }
   }
 }
 

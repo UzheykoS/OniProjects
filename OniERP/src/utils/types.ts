@@ -46,7 +46,7 @@ export enum DessertType {
   Cheesecake = 'Чизкейк',
   EasterCake = 'Кулич',
   IceCream = 'Мороженое',
-  Sorbet = 'Сорбет'
+  Sorbet = 'Сорбет',
 }
 
 export enum SaleType {
@@ -65,7 +65,8 @@ export enum Staff {
   Miroslava = 'Мирослава',
   Alina = 'Алина',
   Julia = 'Юля',
-  Kate = 'Катя'
+  Kate = 'Катя',
+  Margo = 'Марго',
 }
 
 export enum MacaronsEnum {
@@ -115,7 +116,7 @@ export enum ChouxEnum {
 export enum CheesecakeEnum {
   Gorgonzola = 'Горгонзола - Айва',
   Vanilla = 'Ваниль - Карамель',
-  Lemon = 'Лимон'
+  Lemon = 'Лимон',
 }
 
 export enum IceCreamEnum {
@@ -125,14 +126,14 @@ export enum IceCreamEnum {
   CherryMascarpone = 'Вишня - Маскарпоне',
   Pistachio = 'Фисташка',
   Chocolate = 'Шоколад',
-  LemonMint = 'Лимон - Мята'
+  LemonMint = 'Лимон - Мята',
 }
 
 export enum SorbetEnum {
   Mango = 'Манго',
   AnanasCoconut = 'Ананас - Кокос',
   Orange = 'Апельсин',
-  AvocadoKivi = 'Авокадо - Киви'
+  AvocadoKivi = 'Авокадо - Киви',
 }
 
 export enum EasterCakeEnum {
@@ -174,6 +175,7 @@ export enum DrinksType {
 
 export enum PartnersEnum {
   CoffeeIs = 'Coffee is',
+  WCoffee = 'WCoffee',
   CubaCoffee = 'Cuba Coffee',
   Progress = 'Progress',
   KlassnaKava = 'Класна кава',

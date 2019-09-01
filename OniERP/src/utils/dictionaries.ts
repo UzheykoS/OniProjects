@@ -69,6 +69,7 @@ DrinkPricesDict[DrinksType.VeganMilk] = [20, 30];
 
 export const CaffeePrices: { [id: string] : number } = {};
 CaffeePrices[PartnersEnum.CoffeeIs] = 17;
+CaffeePrices[PartnersEnum.WCoffee] = 20;
 CaffeePrices[PartnersEnum.CubaCoffee] = 19;
 CaffeePrices[PartnersEnum.Progress] = 20;
 CaffeePrices[PartnersEnum.KlassnaKava] = 19;
