@@ -88,7 +88,7 @@ export const CakesPricesDict: { [id: string] : Array<number> } = {};
 CakesPricesDict[CakesEnum.CarrotCake] = [650, 980];
 CakesPricesDict[CakesEnum.Pink] = [630, 970];
 CakesPricesDict[CakesEnum.Infinity] = [640, 970];
-CakesPricesDict[CakesEnum.Rio] = [630, 970];
+CakesPricesDict[CakesEnum.Rio] = [620, 960];
 CakesPricesDict[CakesEnum.Soul] = [620, 960];
 CakesPricesDict[CakesEnum.Cake_2019] = [650];
 

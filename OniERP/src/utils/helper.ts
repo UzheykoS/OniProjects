@@ -127,9 +127,9 @@ class Helper {
         case DessertType.Cake:
           const cakePrices = CakesPricesDict[d.taste];
           if (d.size === '18 см') {
-            totalDessertsPrice += cakePrices[0];
+            totalDessertsPrice += cakePrices[0] * d.quantity;
           } else if (d.size === '22 см') {
-            totalDessertsPrice += cakePrices[1];
+            totalDessertsPrice += cakePrices[1] * d.quantity;
           }
           break;
         case DessertType.Macaron:
