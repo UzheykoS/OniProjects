@@ -68,21 +68,19 @@ DrinkPricesDict[DrinksType.FilterCoffee] = [30];
 DrinkPricesDict[DrinksType.VeganMilk] = [20, 30];
 
 export const CaffeePrices: { [id: string] : number } = {};
-CaffeePrices[PartnersEnum.CoffeeIs] = 17;
-CaffeePrices[PartnersEnum.WCoffee] = 20;
-CaffeePrices[PartnersEnum.CubaCoffee] = 19;
-CaffeePrices[PartnersEnum.Progress] = 20;
-CaffeePrices[PartnersEnum.KlassnaKava] = 19;
-CaffeePrices[PartnersEnum.IlMio] = 19;
-CaffeePrices[PartnersEnum.StudioCoffee] = 20;
-CaffeePrices[PartnersEnum.StarKava] = 19;
-CaffeePrices[PartnersEnum.Parle] = 20;
-CaffeePrices[PartnersEnum.LiaDezi] = 20;
-CaffeePrices[PartnersEnum.GolodnaPtashka] = 20;
-CaffeePrices[PartnersEnum.Pitcher] = 20;
-CaffeePrices[PartnersEnum.BlinAndPanini] = 20;
-CaffeePrices[PartnersEnum.Pitkoffee] = 20;
-CaffeePrices[PartnersEnum.Journalist] = 20;
+CaffeePrices[PartnersEnum.CoffeeIs] = 18;
+CaffeePrices[PartnersEnum.WCoffee] = 22;
+CaffeePrices[PartnersEnum.DoubleLab] = 22;
+CaffeePrices[PartnersEnum.GolodnaPtashka] = 22;
+CaffeePrices[PartnersEnum.GrayCafe] = 22;
+CaffeePrices[PartnersEnum.VsiSvoi] = 22;
+CaffeePrices[PartnersEnum.LiaDezi] = 22;
+CaffeePrices[PartnersEnum.Parle] = 22;
+CaffeePrices[PartnersEnum.IlMio] = 22;
+CaffeePrices[PartnersEnum.CubaCoffee] = 22;
+CaffeePrices[PartnersEnum.Progress] = 22;
+CaffeePrices[PartnersEnum.KlassnaKava] = 22;
+CaffeePrices[PartnersEnum.StudioCoffee] = 22;
 
 export const CakesPricesDict: { [id: string] : Array<number> } = {};
 CakesPricesDict[CakesEnum.CarrotCake] = [650, 980];
@@ -94,12 +92,12 @@ CakesPricesDict[CakesEnum.Cake_2019] = [650];
 
 export const EasterCakesPrices = [280, 360];
 
-export const ZEPHYR_PRICE = 15;
+export const ZEPHYR_PRICE = 16;
 export const ZEPHYR_PARTNERS_PRICE = 12;
 
-export const MACARONS_PRICE = 28;
+export const MACARONS_PRICE = 30;
 
-export const CHOUX_PRICE = 40;
+export const CHOUX_PRICE = 45;
 
 export const CHEESECAKE_PRICE = 75;
 
