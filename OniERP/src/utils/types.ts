@@ -71,20 +71,19 @@ export enum Staff {
 
 export enum MacaronsEnum {
   CoffeeCaramel = 'Кофе - Солёная Карамель',
-  MandarinVanil = 'Мандарин - Ваниль',
+  YuzuBanana = 'Банан - Юзу',
+  CherryBrandy = 'Вишня - Бренди',
+  OrangeMilkChocolate = 'Апельсин - Молочный',
   DorBluePear = 'Доб-Блю - Груша',
   ParmesanFigue = 'Пармезан - Инжир',
   StrawberryCheesecake = 'Клубничный Чизкейк',
   GrapefruitRose = 'Грейпфрут - Роза',
   Raspberry = 'Малина',
-  CherryTonko = 'Вишня - Бобы Тонка',
-  Oblepiha = 'Облепиха',
   Currant = 'Смородина',
   MangoPassion = 'Манго - Маракуйя',
   Chocolate = 'Шоколад',
   Pistachio = 'Фисташка',
   LavenderBlackberry = 'Лаванда - Черника',
-  LimeBasil = 'Лайм - Базилик',
 }
 
 export enum ZephyrEnum {
