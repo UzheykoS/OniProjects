@@ -9,7 +9,7 @@ import useMediaQuery from '@material-ui/core/useMediaQuery';
 import { useTheme } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
 import { ProfilesEnum } from '../../../utils/types';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import TextField from '@material-ui/core/TextField';
 import InputAdornment from '@material-ui/core/InputAdornment';
 import IconButton from '@material-ui/core/IconButton';
@@ -40,6 +40,16 @@ export default function Profile({
   const theme = useTheme();
   const fullScreen = useMediaQuery(theme.breakpoints.down('sm'));
 
+  useEffect(() => {
+    if (!open) {
+      setAuthorized(false);
+    }
+  }, [open]);
+
+  if (!open) {
+    return null;
+  }
+
   const changePassword = (value: string) => {
     setPassword(value);
   };
@@ -62,100 +72,93 @@ export default function Profile({
       setAuthorized(true);
     }
   };
-
-  const handleCloseWrapper = () => {
-    setAuthorized(false);
-    handleClose();
-  };
-
-  if (!authorized) {
-    return (
-      <Dialog
-        fullScreen={fullScreen}
-        open={open}
-        onClose={handleCloseWrapper}
-        aria-labelledby='responsive-dialog-title'
-      >
-        <DialogTitle id='responsive-dialog-title'>
-          {'Введите ваш пароль'}
-        </DialogTitle>
-        <DialogContent>
-          {wrongPassword && (
-            <DialogContentText style={{ color: 'red' }}>
-              Введите правильный пароль
-            </DialogContentText>
-          )}
-          <TextField
-            variant='outlined'
-            label='Имя'
-            disabled
-            value={currentProfile}
-            fullWidth
-            margin={'normal'}
-          />
-          <TextField
-            variant='outlined'
-            fullWidth
-            margin={'normal'}
-            type={showPassword ? 'text' : 'password'}
-            label='Пароль'
-            value={password}
-            onChange={ev => changePassword(ev.target.value)}
-            inputProps={{
-              pattern: '[0-9]*',
-            }}
-            InputProps={{
-              endAdornment: (
-                <InputAdornment position='end'>
-                  <IconButton
-                    edge='end'
-                    aria-label='toggle password visibility'
-                    onClick={handleClickShowPassword}
-                    onMouseDown={handleMouseDownPassword}
-                  >
-                    {showPassword ? <VisibilityOff /> : <Visibility />}
-                  </IconButton>
-                </InputAdornment>
-              ),
-            }}
-          />
-        </DialogContent>
-        <DialogActions>
-          <Button onClick={handleCloseWrapper} color='primary'>
-            Отмена
-          </Button>
-          <Button onClick={handlePasswordCheck} color='primary' autoFocus>
-            Далее
-          </Button>
-        </DialogActions>
-      </Dialog>
-    );
-  }
+  console.log('authorized', authorized);
 
   return (
     <Dialog
       fullScreen={fullScreen}
       open={open}
-      onClose={handleCloseWrapper}
+      onClose={handleClose}
       aria-labelledby='responsive-dialog-title'
     >
-      <DialogTitle id='responsive-dialog-title'>{'Личный кабинет'}</DialogTitle>
-      <DialogContent>
-        <Typography variant={'subtitle1'}>
-          {`Имя: ${currentProfile}`}
-        </Typography>
-        <Typography variant={'subtitle1'}>
-          {`Процент: ${dailyBonus} ₴`}
-        </Typography>
-        <Typography variant={'subtitle1'}>
-          {`Чашек: ${drinksCount} `}
-        </Typography>
-      </DialogContent>
-      <DialogActions>
-        <Button onClick={handleCloseWrapper} color='primary' autoFocus>
-          Готово
-        </Button>
-      </DialogActions>
+      {authorized ? (
+        <>
+          <DialogTitle id='responsive-dialog-title'>
+            {'Личный кабинет'}
+          </DialogTitle>
+          <DialogContent>
+            <Typography variant={'subtitle1'}>
+              {`Имя: ${currentProfile}`}
+            </Typography>
+            <Typography variant={'subtitle1'}>
+              {`Процент: ${dailyBonus} ₴`}
+            </Typography>
+            <Typography variant={'subtitle1'}>
+              {`Чашек: ${drinksCount} `}
+            </Typography>
+          </DialogContent>
+          <DialogActions>
+            <Button onClick={handleClose} color='primary' autoFocus>
+              Готово
+            </Button>
+          </DialogActions>
+        </>
+      ) : (
+        <>
+          <DialogTitle id='responsive-dialog-title'>
+            {'Введите ваш пароль'}
+          </DialogTitle>
+          <DialogContent>
+            {wrongPassword && (
+              <DialogContentText style={{ color: 'red' }}>
+                Введите правильный пароль
+              </DialogContentText>
+            )}
+            <TextField
+              variant='outlined'
+              label='Имя'
+              disabled
+              value={currentProfile}
+              fullWidth
+              margin={'normal'}
+            />
+            <TextField
+              variant='outlined'
+              fullWidth
+              margin={'normal'}
+              type={showPassword ? 'text' : 'password'}
+              label='Пароль'
+              value={password}
+              onChange={ev => changePassword(ev.target.value)}
+              inputProps={{
+                pattern: '[0-9]*',
+              }}
+              InputProps={{
+                endAdornment: (
+                  <InputAdornment position='end'>
+                    <IconButton
+                      edge='end'
+                      aria-label='toggle password visibility'
+                      onClick={handleClickShowPassword}
+                      onMouseDown={handleMouseDownPassword}
+                    >
+                      {showPassword ? <VisibilityOff /> : <Visibility />}
+                    </IconButton>
+                  </InputAdornment>
+                ),
+              }}
+            />
+          </DialogContent>
+          <DialogActions>
+            <Button onClick={handleClose} color='primary'>
+              Отмена
+            </Button>
+            <Button onClick={handlePasswordCheck} color='primary' autoFocus>
+              Далее
+            </Button>
+          </DialogActions>
+        </>
+      )}
     </Dialog>
   );
 }
