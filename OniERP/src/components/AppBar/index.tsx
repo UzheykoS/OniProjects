@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Component } from 'react';
+import { Component, useState } from 'react';
 import AppBarComponent from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
@@ -19,6 +19,8 @@ import {
   CalculateDailyPercent,
   CountDailyDrinks,
 } from '../../actions';
+import Profile from './Profile';
+import ChangeProfileDialog from './ChangeProfileDialog';
 
 const options = [
   {
@@ -77,67 +79,54 @@ export interface IAppBarComponentProps {
   countDailyDrinks?: () => void;
 }
 
-export interface IAppBarComponentState {
-  anchorEl?: any;
-  anchorProfileEl?: any;
-}
+function AppBar({
+  history,
+  changeProfile,
+  calculateDailyPercent,
+  countDailyDrinks,
+  isSignedIn,
+  onLoginClick,
+  onLogoutClick,
+  title,
+  currentProfile,
+  dailyBonus,
+  drinksCount,
+}: IAppBarComponentProps) {
+  const [anchorEl, setAnchorEl] = useState(null);
+  const [anchorProfileEl, setAnchorProfileEl] = useState(null);
+  const [changeProfileDialogOpen, setChangeProfileDialogOpen] = useState(false);
+  const [profileDialogOpen, setProfileDialogOpen] = useState(false);
 
-export class AppBar extends Component<
-  IAppBarComponentProps,
-  IAppBarComponentState
-> {
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      anchorEl: null,
-      anchorProfileEl: null,
-    };
-  }
-
-  handleClick = event => {
-    this.setState({ anchorEl: event.currentTarget });
+  const handleClick = event => {
+    setAnchorEl(event.currentTarget);
   };
 
-  handleProfileClick = event => {
-    this.setState({ anchorProfileEl: event.currentTarget });
+  const handleProfileClick = event => {
+    setAnchorProfileEl(event.currentTarget);
   };
 
-  handleClose = option => {
-    const { history } = this.props;
+  const handleClose = option => {
     const currentRoute = location.hash.slice(1);
     if (currentRoute !== option.route) {
       history.push(option.route);
     }
 
-    this.setState({
-      anchorEl: null,
-    });
+    setAnchorEl(null);
   };
 
-  handleProfileClose = () => {
-    this.setState({
-      anchorProfileEl: null,
-    });
+  const handleProfileClose = () => {
+    setAnchorProfileEl(null);
   };
 
-  handleProfileChange = (profile: string) => {
-    const {
-      changeProfile,
-      calculateDailyPercent,
-      countDailyDrinks,
-    } = this.props;
+  const handleProfileChange = (profile: string) => {
     changeProfile(profile);
     calculateDailyPercent();
     countDailyDrinks();
-    this.setState({
-      anchorProfileEl: null,
-    });
+    setAnchorProfileEl(null);
+    setChangeProfileDialogOpen(false);
   };
 
-  handleLoginClick = () => {
-    const { isSignedIn, onLoginClick, onLogoutClick } = this.props;
-
+  const handleLoginClick = () => {
     if (isSignedIn) {
       onLogoutClick();
     } else {
@@ -145,8 +134,16 @@ export class AppBar extends Component<
     }
   };
 
-  renderMenu() {
-    const { anchorEl } = this.state;
+  function handleProfileDialogOpen() {
+    setProfileDialogOpen(true);
+    setAnchorProfileEl(null);
+  }
+
+  function handleProfileDialogClose() {
+    setProfileDialogOpen(false);
+  }
+
+  const renderMenu = () => {
     const open = Boolean(anchorEl);
     const currentRoute = location.hash.slice(1);
 
@@ -158,7 +155,7 @@ export class AppBar extends Component<
           aria-label='Menu'
           aria-owns={open ? 'long-menu' : null}
           aria-haspopup='true'
-          onClick={this.handleClick}
+          onClick={handleClick}
         >
           <MenuIcon />
         </IconButton>
@@ -166,7 +163,7 @@ export class AppBar extends Component<
           id='long-menu'
           anchorEl={anchorEl}
           open={open}
-          onClose={this.handleClose}
+          onClose={handleClose}
           PaperProps={{
             style: {
               maxHeight: ITEM_HEIGHT * 5.5,
@@ -178,7 +175,7 @@ export class AppBar extends Component<
             <MenuItem
               key={option.title}
               selected={option.route === currentRoute}
-              onClick={() => this.handleClose(option)}
+              onClick={() => handleClose(option)}
             >
               {option.title}
             </MenuItem>
@@ -186,27 +183,43 @@ export class AppBar extends Component<
         </Menu>
       </div>
     );
-  }
+  };
 
-  renderProfileMenu() {
-    const { anchorProfileEl } = this.state;
-    const { currentProfile, isSignedIn, dailyBonus, drinksCount } = this.props;
-
+  const renderProfileMenu = () => {
     const open = Boolean(anchorProfileEl);
-    const profiles = Helper.getArrayFromEnum(ProfilesEnum);
 
+    if (!isSignedIn) {
+      return (
+        <Button color='inherit' onClick={handleLoginClick}>
+          {'Войти'}
+        </Button>
+      );
+    }
     return (
       <div className='appbar-percent-profile-wrapper'>
-        <Typography
-          variant='subtitle1'
-          color='inherit'
-          className={'profile-name'}
-        >
-          {`Процент:${dailyBonus}₴ `}
-          {`Чашек:${drinksCount} `}
-          <br />
-          <b>{currentProfile}</b>
-        </Typography>
+        <div>
+          <Typography
+            variant='subtitle1'
+            color='inherit'
+            className={'profile-name'}
+          >
+            {currentProfile}
+          </Typography>
+          <Typography
+            variant='subtitle2'
+            color='inherit'
+            className={'profile-name'}
+          >
+            {`Чашек: ${drinksCount} `}
+          </Typography>
+        </div>
+        <Profile
+          open={profileDialogOpen}
+          currentProfile={currentProfile}
+          dailyBonus={dailyBonus}
+          drinksCount={drinksCount}
+          handleClose={handleProfileDialogClose}
+        />
         <IconButton
           className={'appbar_menuButton'}
           color='inherit'
@@ -214,7 +227,7 @@ export class AppBar extends Component<
           aria-owns={open ? 'long-menu' : null}
           aria-haspopup='true'
           disabled={!isSignedIn}
-          onClick={this.handleProfileClick}
+          onClick={handleProfileClick}
         >
           <AccountCircleIcon />
         </IconButton>
@@ -222,7 +235,7 @@ export class AppBar extends Component<
           id='long-menu'
           anchorEl={anchorProfileEl}
           open={open}
-          onClose={this.handleProfileClose}
+          onClose={handleProfileClose}
           PaperProps={{
             style: {
               maxHeight: ITEM_HEIGHT * 5.5,
@@ -230,45 +243,46 @@ export class AppBar extends Component<
             },
           }}
         >
-          {profiles.map(profile => (
-            <MenuItem
-              key={profile.id}
-              selected={profile.value === currentProfile}
-              onClick={() => this.handleProfileChange(profile.value)}
-            >
-              <AccountCircleIcon className={'profile-name'} />
-              {profile.value}
-            </MenuItem>
-          ))}
+          <MenuItem key={'profile'} onClick={handleProfileDialogOpen}>
+            Профиль
+          </MenuItem>
+          <MenuItem
+            key={'change_profile'}
+            onClick={() => {
+              setChangeProfileDialogOpen(true);
+              setAnchorProfileEl(null);
+            }}
+          >
+            Сменить профиль
+          </MenuItem>
+          <MenuItem key={'logout'} onClick={handleLoginClick}>
+            {isSignedIn ? 'Выйти' : 'Войти'}
+          </MenuItem>
         </Menu>
       </div>
     );
-  }
+  };
 
-  render() {
-    const { title, isSignedIn } = this.props;
-
-    return (
-      <div className={'appbar_root'}>
-        <AppBarComponent position='static'>
-          <Toolbar>
-            {this.renderMenu()}
-            <Typography
-              variant='h6'
-              color='inherit'
-              className={'appbar_grow'}
-            >
-              {title}
-            </Typography>
-            {this.renderProfileMenu()}
-            <Button color='inherit' onClick={this.handleLoginClick}>
-              {isSignedIn ? 'Выйти' : 'Войти'}
-            </Button>
-          </Toolbar>
-        </AppBarComponent>
-      </div>
-    );
-  }
+  return (
+    <div className={'appbar_root'}>
+      <AppBarComponent position='static'>
+        <Toolbar>
+          {renderMenu()}
+          <Typography variant='h6' color='inherit' className={'appbar_grow'}>
+            {title}
+          </Typography>
+          {renderProfileMenu()}
+        </Toolbar>
+      </AppBarComponent>
+      <ChangeProfileDialog
+        open={changeProfileDialogOpen}
+        profiles={Helper.getArrayFromEnum(ProfilesEnum)}
+        currentProfile={currentProfile}
+        handleClose={() => setChangeProfileDialogOpen(false)}
+        handleProfileChange={handleProfileChange}
+      />
+    </div>
+  );
 }
 
 export default withRouter(
