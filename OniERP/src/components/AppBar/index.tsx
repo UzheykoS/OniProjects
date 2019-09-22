@@ -198,7 +198,7 @@ export class AppBar extends Component<
     return (
       <div className='appbar-percent-profile-wrapper'>
         <Typography
-          variant='subheading'
+          variant='subtitle1'
           color='inherit'
           className={'profile-name'}
         >
@@ -254,7 +254,7 @@ export class AppBar extends Component<
           <Toolbar>
             {this.renderMenu()}
             <Typography
-              variant='title'
+              variant='h6'
               color='inherit'
               className={'appbar_grow'}
             >

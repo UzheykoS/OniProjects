@@ -159,7 +159,7 @@ class CheckoutComponent extends Component<
 
     return (
       <>
-        <Typography gutterBottom variant='title'>
+        <Typography gutterBottom variant='h6'>
           Параметры чека
         </Typography>
         {/* <Divider />
@@ -171,7 +171,7 @@ class CheckoutComponent extends Component<
             </div> */}
         <Divider />
         <div className='checkoutControlGroup'>
-          <Typography gutterBottom variant='subheading'>
+          <Typography gutterBottom variant='subtitle1'>
             Итого: {price} грн.
           </Typography>
         </div>
@@ -180,7 +180,7 @@ class CheckoutComponent extends Component<
           <Typography
             classes={{ root: 'checkoutLabel' }}
             gutterBottom
-            variant='subheading'
+            variant='subtitle1'
           >
             Тип платежа:
           </Typography>
@@ -220,7 +220,7 @@ class CheckoutComponent extends Component<
           <Typography
             classes={{ root: 'checkoutLabel' }}
             gutterBottom
-            variant='subheading'
+            variant='subtitle1'
           >
             Тип заказа:
           </Typography>
@@ -249,7 +249,7 @@ class CheckoutComponent extends Component<
         <div className='saleContainer'>
           <Typography
             gutterBottom
-            variant='subheading'
+            variant='subtitle1'
             style={{ paddingRight: '2rem' }}
           >
             Скидка:
@@ -279,7 +279,7 @@ class CheckoutComponent extends Component<
             <div className='saleContainer'>
               <Typography
                 gutterBottom
-                variant='subheading'
+                variant='subtitle1'
                 style={{ paddingRight: '2rem' }}
               >
                 Работник:
@@ -333,7 +333,7 @@ class CheckoutComponent extends Component<
                 placeholder='Введите сумму'
               />
               <div className='change-wrapper'>
-                <Typography noWrap gutterBottom variant='subheading'>
+                <Typography noWrap gutterBottom variant='subtitle1'>
                   Сдача: {!!cash ? Number(cash) - price : '-'} грн.
                 </Typography>
               </div>

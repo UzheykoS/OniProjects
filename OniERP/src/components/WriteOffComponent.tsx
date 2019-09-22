@@ -6,7 +6,7 @@ import { withRouter } from 'react-router-dom';
 import Typography from '@material-ui/core/Typography';
 import { ProcessWriteOffSubmit } from '../actions';
 import TextField from '@material-ui/core/TextField';
-import { InlineDatePicker } from './material-ui-pickers';
+import { DatePicker } from '@material-ui/pickers';
 import * as moment from 'moment';
 
 const mapStateToProps = state => {
@@ -141,11 +141,11 @@ class WriteOffComponent extends Component<
 
     return (
       <div>
-        <Typography gutterBottom variant='headline' component='h2'>
+        <Typography gutterBottom variant='h5' component='h2'>
           Списание
         </Typography>
-        <InlineDatePicker
-          onlyCalendar
+        <DatePicker
+          autoOk
           label='Дата'
           value={selectedDate}
           className={'date-picker'}
@@ -236,7 +236,9 @@ class WriteOffComponent extends Component<
         />
         <div className={'buttonsWraper'}>
           <Button
-            disabled={!macarons && !choux && !zephyr && !cakes && !iceCream && !coffee}
+            disabled={
+              !macarons && !choux && !zephyr && !cakes && !iceCream && !coffee
+            }
             variant='contained'
             size='large'
             color='primary'

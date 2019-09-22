@@ -6,7 +6,7 @@ import { withRouter } from 'react-router-dom';
 import Typography from '@material-ui/core/Typography';
 import { ProcessProductSubmit } from '../actions';
 import TextField from '@material-ui/core/TextField';
-import { InlineDatePicker } from './material-ui-pickers';
+import { DatePicker } from '@material-ui/pickers';
 import * as moment from 'moment';
 
 const mapStateToProps = state => {
@@ -20,12 +20,20 @@ const mapDispatchToProps = dispatch => {
       choux: number,
       zephyr: number,
       iceCream: number,
-      cakes: number,      
+      cakes: number,
       notes: string,
       date?: moment.Moment
     ) =>
       dispatch(
-        ProcessProductSubmit(macarons, choux, zephyr, iceCream, cakes, notes, date)
+        ProcessProductSubmit(
+          macarons,
+          choux,
+          zephyr,
+          iceCream,
+          cakes,
+          notes,
+          date
+        )
       ),
   };
 };
@@ -91,7 +99,15 @@ class ProductComponent extends Component<
 
   handleNextClick = () => {
     const { processProductSubmit, history } = this.props;
-    const { macarons, choux, zephyr, iceCream, cakes, notes, selectedDate } = this.state;
+    const {
+      macarons,
+      choux,
+      zephyr,
+      iceCream,
+      cakes,
+      notes,
+      selectedDate,
+    } = this.state;
     processProductSubmit(
       Number(macarons),
       Number(choux),
@@ -105,15 +121,23 @@ class ProductComponent extends Component<
   };
 
   render() {
-    const { macarons, zephyr, choux, iceCream, cakes, notes, selectedDate } = this.state;
+    const {
+      macarons,
+      zephyr,
+      choux,
+      iceCream,
+      cakes,
+      notes,
+      selectedDate,
+    } = this.state;
 
     return (
       <div>
-        <Typography gutterBottom variant='headline' component='h2'>
+        <Typography gutterBottom variant='h5' component='h2'>
           Продукция
         </Typography>
-        <InlineDatePicker
-          onlyCalendar
+        <DatePicker
+          autoOk
           label='Дата'
           value={selectedDate}
           className={'date-picker'}

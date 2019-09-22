@@ -52,15 +52,13 @@ interface ICashboxSubmit {
 }
 
 const DessertModel = types.model('DessertModel', {
-  type: types.maybe(
-    types.enumeration('DessertType', [
-      'Макаронс',
-      'Зефир',
-      'Торт',
-      'Шу',
-      'Чизкейк',
-    ])
-  ),
+  type: types.enumeration('DessertType', [
+    DessertType.Macaron,
+    DessertType.Zephyr,
+    DessertType.Cake,
+    DessertType.Choux,
+    DessertType.Cheesecake,
+  ]),
   taste: '',
   size: '',
   quantity: 0,
@@ -592,7 +590,7 @@ const AppStore = types
       type,
       size,
       taste,
-      quantity
+      quantity,
     }: {
       type: DessertType;
       taste: string;
@@ -608,7 +606,11 @@ const AppStore = types
       );
 
       if (existingDessert && existingDessert.quantity > 0) {
-        existingDessert.quantity -= quantity || 1;
+        if (existingDessert.quantity === quantity) {
+          deleteDessert(existingDessert);
+        } else {
+          existingDessert.quantity -= quantity || 1;
+        }        
       }
     };
 
@@ -633,7 +635,7 @@ const AppStore = types
       }
     };
 
-    const getDailyBonus = flow(function*() {
+    const getDailyBonus = flow(function* getDailyBonus() {
       const { result } = yield getRawDessertsData();
       let totalBonus = 0;
 

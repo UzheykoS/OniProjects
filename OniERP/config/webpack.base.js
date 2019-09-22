@@ -143,7 +143,7 @@ module.exports = env => {
                     }
                 }),
                 new CopyWebpackPlugin([{ from: 'public' }]),
-                new webpack.IgnorePlugin(/^\.\/locale/, /moment/),
+                // new webpack.IgnorePlugin(/^\.\/locale/, /moment/),
                 new HtmlWebpackPlugin({
                     template: 'src/index.html',
                     filename: './index.html'

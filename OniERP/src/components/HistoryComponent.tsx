@@ -43,26 +43,26 @@ export class HistoryComponent extends Component<IHistoryComponentProps, IHistory
                             <Typography>{`Чек #${h.id} (${h.date.format(DATE_FORMAT)})`}</Typography>
                         </ExpansionPanelSummary>
                         <ExpansionPanelDetails style={{ flexDirection: 'column' }}>
-                            <Typography variant={'subheading'}>
+                            <Typography variant={'subtitle1'}>
                                 <b>Десерты</b>
                             </Typography>
                             <div className='historyItemRow'>
                                 {
                                     h.desserts.map((d, index) => {
-                                        return <Typography key={index} variant={'subheading'}>
+                                        return <Typography key={index} variant={'subtitle1'}>
                                             {`${d.type} ${d.taste}: ${d.quantity ? d.quantity : d.size}`}
                                         </Typography>;
                                     })
                                 }
                             </div>
                             <Divider />
-                            <Typography variant={'subheading'}>
+                            <Typography variant={'subtitle1'}>
                                 <b>Напитки</b>
                             </Typography>
                             <div className='historyItemRow'>
                                 {
                                     h.drinks.map((d, index) => {
-                                        return <Typography key={index} variant={'subheading'}>
+                                        return <Typography key={index} variant={'subtitle1'}>
                                             {`${d.id}: ${d.size}`}
                                         </Typography>;
                                     })
@@ -70,12 +70,12 @@ export class HistoryComponent extends Component<IHistoryComponentProps, IHistory
                             </div>
                             <Divider />
                             <div className='historyItemRow'>
-                                <Typography variant={'subheading'}>
+                                <Typography variant={'subtitle1'}>
                                     <b>Тип оплаты: </b>{h.payment}
                                 </Typography>
                             </div>
                             <div className='historyItemRow'>
-                                <Typography variant={'subheading'}>
+                                <Typography variant={'subtitle1'}>
                                     <b>Тип заказа: </b>{h.type}
                                 </Typography>
                             </div>

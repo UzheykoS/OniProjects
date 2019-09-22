@@ -8,7 +8,7 @@ import Typography from '@material-ui/core/Typography';
 import { ProcessCashboxSubmit } from '../actions'
 import TextField from '@material-ui/core/TextField';
 import Helper from '../utils/helper';
-import { InlineDatePicker } from './material-ui-pickers';
+import { DatePicker } from '@material-ui/pickers';
 import * as moment from 'moment';
 
 const mapStateToProps = (state) => {
@@ -67,11 +67,11 @@ class CashboxComponent extends Component<ICashboxComponentProps, ICashboxCompone
         const paymentTypes = Helper.getArrayFromEnum(PaymentTypeEnum);
 
         return <div>
-            <Typography gutterBottom variant="headline" component="h2">
+            <Typography gutterBottom variant="h5" component="h2">
                 Касса
             </Typography>
-            <InlineDatePicker
-                onlyCalendar
+            <DatePicker
+                autoOk
                 label="Дата"
                 value={selectedDate}
                 className={'date-picker'}

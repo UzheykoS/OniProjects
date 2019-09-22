@@ -13,6 +13,7 @@ export interface ICardComponentProps {
   description?: string;
   count?: number;
   decreaseCount?: () => void;
+  resetCount?: () => void;
   onClick: () => void;
 }
 
@@ -22,6 +23,7 @@ const CardComponent = ({
   description,
   count,
   decreaseCount,
+  resetCount,
   onClick
 }: ICardComponentProps) => {
   return (
@@ -44,8 +46,11 @@ const CardComponent = ({
       {count !== undefined && (
         <CardActions>
           <Typography component='p'>{count}</Typography>
-          <Button size='small' color='primary' onClick={decreaseCount}>
+          <Button size='small' color='primary' onClick={resetCount}>
             Remove
+          </Button>
+          <Button size='small' color='primary' onClick={decreaseCount}>
+            Decrease
           </Button>
         </CardActions>
       )}

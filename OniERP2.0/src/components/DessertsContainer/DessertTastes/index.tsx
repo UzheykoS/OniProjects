@@ -67,7 +67,21 @@ const DessertTastesComponent: FunctionComponent<IDessertTastesComponent> = ({
       d => d.type === type && d.taste === taste
     );
     if (dessert) {
-      app.removeDessertItem(dessert as any);
+      app.removeDessertItem({
+        quantity: 1,
+        size: dessert.size,
+        taste: dessert.taste,
+        type: dessert.type
+      });
+    }
+  };
+
+  const onDessertTasteReset = taste => {
+    const dessert = check.desserts.find(
+      d => d.type === type && d.taste === taste
+    );
+    if (dessert) {
+      app.removeDessertItem(dessert);
     }
   };
 
@@ -220,6 +234,7 @@ const DessertTastesComponent: FunctionComponent<IDessertTastesComponent> = ({
             onClick={() => onDessertTasteClick(taste.value)}
             count={app.dessertQuantity(type, taste.value)}
             decreaseCount={() => onDessertTasteDecrease(taste.value)}
+            resetCount={() => onDessertTasteReset(taste.value)}
           />
         );
       })}

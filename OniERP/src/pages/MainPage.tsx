@@ -1,8 +1,14 @@
 import { Component } from 'react';
-import * as React from 'react'
+import * as React from 'react';
 import { connect } from 'react-redux';
-import { Link } from 'react-router-dom';
-import { CreateCheck, LogData, ProcessFetchData, CalculateDailyPercent, CountDailyDrinks } from '../actions';
+import { Link, LinkProps } from 'react-router-dom';
+import {
+  CreateCheck,
+  LogData,
+  ProcessFetchData,
+  CalculateDailyPercent,
+  CountDailyDrinks,
+} from '../actions';
 import { Check } from '../utils/types';
 import LargeButton from '../components/LargeButton';
 import HistoryComponent from '../components/HistoryComponent';
@@ -14,29 +20,47 @@ import Typography from '@material-ui/core/Typography';
 import { SPREADSHEET_ID } from '../config/keys';
 import Button from '@material-ui/core/Button';
 
-const mapStateToProps = (state) => {
+const mapStateToProps = state => {
   return {
     history: state.history,
-    isLoading: state.isLoading
+    isLoading: state.isLoading,
   };
 };
 
-const mapDispatchToProps = (dispatch) => {
+const mapDispatchToProps = dispatch => {
   return {
     createCheck: () => dispatch(CreateCheck()),
     logData: (text: string) => dispatch(LogData(text)),
-    fetchData: (url) => dispatch(ProcessFetchData(url)),
+    fetchData: url => dispatch(ProcessFetchData(url)),
     calculateDailyPercent: () => dispatch(CalculateDailyPercent()),
-    countDailyDrinks: () => dispatch(CountDailyDrinks())
+    countDailyDrinks: () => dispatch(CountDailyDrinks()),
   };
 };
 
-const CkeckLink = props => <Link to="/check" {...props} />;
-const PartnersLink = props => <Link to="/partners" {...props} />;
-const OtherLink = props => <Link to="/other" {...props} />;
-const CashboxLink = props => <Link to="/cashbox" {...props} />;
-const ProductLink = props => <Link to="/product" {...props} />;
-const WriteOffLink = props => <Link to="/writeoff" {...props} />;
+const CkeckLink = React.forwardRef<
+  HTMLAnchorElement,
+  Omit<LinkProps, 'innerRef' | 'to'>
+>((props, ref) => <Link innerRef={ref} to='/check' {...props} />);
+const PartnersLink = React.forwardRef<
+  HTMLAnchorElement,
+  Omit<LinkProps, 'innerRef' | 'to'>
+>((props, ref) => <Link innerRef={ref} to='/partners' {...props} />);
+const OtherLink = React.forwardRef<
+  HTMLAnchorElement,
+  Omit<LinkProps, 'innerRef' | 'to'>
+>((props, ref) => <Link innerRef={ref} to='/other' {...props} />);
+const CashboxLink = React.forwardRef<
+  HTMLAnchorElement,
+  Omit<LinkProps, 'innerRef' | 'to'>
+>((props, ref) => <Link innerRef={ref} to='/cashbox' {...props} />);
+const ProductLink = React.forwardRef<
+  HTMLAnchorElement,
+  Omit<LinkProps, 'innerRef' | 'to'>
+>((props, ref) => <Link innerRef={ref} to='/product' {...props} />);
+const WriteOffLink = React.forwardRef<
+  HTMLAnchorElement,
+  Omit<LinkProps, 'innerRef' | 'to'>
+>((props, ref) => <Link innerRef={ref} to='/writeoff' {...props} />);
 
 export interface IMainPageProps {
   history?: Array<Check>;
@@ -49,12 +73,12 @@ export interface IMainPageProps {
   countDailyDrinks?: () => void;
 }
 
-export class MainPage extends Component<IMainPageProps, any>{
+export class MainPage extends Component<IMainPageProps, any> {
   componentDidMount() {
     const { history } = this.props;
     if (!history || !history.length) {
       this.props.fetchData(SPREADSHEET_ID);
-    };
+    }
     this.props.calculateDailyPercent();
     this.props.countDailyDrinks();
   }
@@ -62,49 +86,66 @@ export class MainPage extends Component<IMainPageProps, any>{
   onNewCheckClick = () => {
     this.props.createCheck();
     this.props.logData('mainPage->newCheck');
-  }
+  };
 
   render() {
     const { isLoading } = this.props;
 
-    return <div className="container">
-      <Card className={'cardContainer'} raised>
-        <CardContent classes={{ root: 'cardRoot' }}>
-          <LargeButton title={'РОЗНИЧНЫЙ ЗАКАЗ'} component={CkeckLink} imageUrl={'/images/main_icon.jpg'} onClick={this.onNewCheckClick} />
-        </CardContent>
-      </Card>
-      <Card className={'cardContainer'} raised>
-        <CardContent classes={{ root: 'cardRoot' }}>
-          <LargeButton title={'ОПТОВЫЙ ЗАКАЗ'} component={PartnersLink} imageUrl={'/images/partners_icon.jpg'} />
-        </CardContent>
-      </Card>
-      <div className='buttonApplyWraper'>
-        <Button component={OtherLink} variant="contained" color="secondary">
-          Расходы
-        </Button>
-        <Button component={ProductLink} variant="contained" color="secondary">
-          Продукция
-        </Button>
-        <Button component={WriteOffLink} variant="contained" color="secondary">
-          Списание
-        </Button>
-        <Button component={CashboxLink} variant="contained" color="secondary">
-          Касса
-        </Button>
+    return (
+      <div className='container'>
+        <Card className={'cardContainer'} raised>
+          <CardContent classes={{ root: 'cardRoot' }}>
+            <LargeButton
+              title={'РОЗНИЧНЫЙ ЗАКАЗ'}
+              component={CkeckLink}
+              imageUrl={'/images/main_icon.jpg'}
+              onClick={this.onNewCheckClick}
+            />
+          </CardContent>
+        </Card>
+        <Card className={'cardContainer'} raised>
+          <CardContent classes={{ root: 'cardRoot' }}>
+            <LargeButton
+              title={'ОПТОВЫЙ ЗАКАЗ'}
+              component={PartnersLink}
+              imageUrl={'/images/partners_icon.jpg'}
+            />
+          </CardContent>
+        </Card>
+        <div className='buttonApplyWraper'>
+          <Button component={OtherLink} variant='contained' color='secondary'>
+            Расходы
+          </Button>
+          <Button component={ProductLink} variant='contained' color='secondary'>
+            Продукция
+          </Button>
+          <Button
+            component={WriteOffLink}
+            variant='contained'
+            color='secondary'
+          >
+            Списание
+          </Button>
+          <Button component={CashboxLink} variant='contained' color='secondary'>
+            Касса
+          </Button>
+        </div>
+        <Card className={'cardContainerHistory'} raised>
+          <CardContent>
+            <Typography gutterBottom variant='h5' component='h2'>
+              История
+            </Typography>
+            <HistoryComponent />
+          </CardContent>
+        </Card>
+        <NotificationComponent />
+        <Busy loading={isLoading} />
       </div>
-      <Card className={'cardContainerHistory'} raised>
-        <CardContent>
-          <Typography gutterBottom variant="headline" component="h2">
-            История
-          </Typography>
-          <HistoryComponent />
-        </CardContent>
-      </Card>
-      <NotificationComponent />
-      <Busy loading={isLoading} />
-    </div>;
+    );
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)
-  (MainPage)
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(MainPage);

@@ -27,7 +27,7 @@ export const getRawDessertsData = (): Promise<ISpreadsheetResponse> => {
   });
 };
 
-export const getRawDrinksData = async (): Promise<ISpreadsheetResponse> => {
+export const getRawDrinksData = (): Promise<ISpreadsheetResponse> => {
   return new Promise(async (resolve, reject) => {
     try {
       const result = await (window as any).gapi.client.sheets.spreadsheets.values.get(
