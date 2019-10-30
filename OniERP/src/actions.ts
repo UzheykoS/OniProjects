@@ -56,6 +56,7 @@ import {
   EasterCakesPrices,
   ICE_CREAM_PRICE,
   SORBET_PRICE,
+  SMALL_CAKE_PRICE,
 } from './utils/dictionaries';
 import Helper from './utils/helper';
 
@@ -426,10 +427,7 @@ export const ProcessOtherPaymentSubmit = (
   };
 };
 
-export const ProcessCashboxSubmit = (
-  cash: number,
-  date?: moment.Moment
-) => {
+export const ProcessCashboxSubmit = (cash: number, date?: moment.Moment) => {
   return async dispatch => {
     dispatch(itemsIsLoading(true));
     try {
@@ -699,6 +697,7 @@ export const CalculateDailyPercent = () => {
               DessertType.EasterCake,
               DessertType.IceCream,
               DessertType.Sorbet,
+              DessertType.SmallCake,
             ].indexOf(v[0]) > -1 &&
             Helper.isToday(v[6]) &&
             v[9] === state.currentProfile &&
@@ -731,6 +730,13 @@ export const CalculateDailyPercent = () => {
           totalBonus +=
             (d[2] *
               CHEESECAKE_PRICE *
+              BONUS_PERCENT_DESSERTS *
+              (100 - getSale(d[8]))) /
+            100;
+        } else if (d[0] === DessertType.SmallCake) {
+          totalBonus +=
+            (d[2] *
+              SMALL_CAKE_PRICE *
               BONUS_PERCENT_DESSERTS *
               (100 - getSale(d[8]))) /
             100;

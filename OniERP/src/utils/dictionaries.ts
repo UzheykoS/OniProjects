@@ -105,6 +105,8 @@ export const ICE_CREAM_PRICE = 44;
 
 export const SORBET_PRICE = 44;
 
+export const SMALL_CAKE_PRICE = 90;
+
 export const MacaronsColors: { [id: string] : string } = {};
 MacaronsColors[MacaronsEnum.DorBluePear] = '#b7e4f7';
 MacaronsColors[MacaronsEnum.ParmesanFigue] = '#fcf7e8';

@@ -11,6 +11,7 @@ import {
   EasterCakesPrices,
   ICE_CREAM_PRICE,
   SORBET_PRICE,
+  SMALL_CAKE_PRICE,
 } from './dictionaries';
 import {
   DessertType,
@@ -143,6 +144,9 @@ class Helper {
           break;
         case DessertType.Cheesecake:
           totalDessertsPrice += CHEESECAKE_PRICE * d.quantity;
+          break;
+        case DessertType.SmallCake:
+          totalDessertsPrice += SMALL_CAKE_PRICE * d.quantity;
           break;
         case DessertType.EasterCake:
           if (d.taste === EasterCakeEnum.Small) {
