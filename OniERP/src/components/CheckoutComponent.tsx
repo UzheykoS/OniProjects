@@ -162,13 +162,15 @@ class CheckoutComponent extends Component<
         <Typography gutterBottom variant='h6'>
           Параметры чека
         </Typography>
-        {/* <Divider />
-            <div className="checkoutBlackFridayGroup">
-                <div className="blackFridayTitle">
-                    <img src={'/images/black_friday.jpg'} />
-                </div>
-                <div className="blackFridayPrice">: {this.calculateBlackFridayPrice()} грн.</div>
-            </div> */}
+        <Divider />
+        <div className='checkoutBlackFridayGroup'>
+          <div className='blackFridayTitle'>
+            <img src={'/images/black_friday.jpg'} />
+          </div>
+          <div className='blackFridayPrice'>
+            : {this.calculateBlackFridayPrice()} грн.
+          </div>
+        </div>
         <Divider />
         <div className='checkoutControlGroup'>
           <Typography gutterBottom variant='subtitle1'>
@@ -378,8 +380,5 @@ class CheckoutComponent extends Component<
 }
 
 export default withRouter(
-  connect(
-    mapStateToProps,
-    mapDispatchToProps
-  )(CheckoutComponent)
+  connect(mapStateToProps, mapDispatchToProps)(CheckoutComponent)
 );

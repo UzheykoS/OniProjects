@@ -60,7 +60,7 @@ import {
 } from './utils/dictionaries';
 import Helper from './utils/helper';
 
-const BLACK_FRIDAY_DATES = [23, 24];
+const BLACK_FRIDAY_DATES = [29, 30];
 const BONUS_PERCENT_DRINKS = 0.02;
 const BONUS_PERCENT_DESSERTS = 0.02;
 
@@ -303,7 +303,7 @@ export const ProcessCheckout = callback => {
       check.desserts.forEach(async d => {
         const now = new Date();
         const dateTime = moment(now).format(DATE_FORMAT);
-        // const sale = BLACK_FRIDAY_DATES.indexOf(now.getDate()) > -1 ? '20 %' : check.sale;
+        const sale = BLACK_FRIDAY_DATES.indexOf(now.getDate()) > -1 ? '20 %' : check.sale;
         const data = [
           d.type,
           d.taste,
@@ -313,7 +313,7 @@ export const ProcessCheckout = callback => {
           check.type,
           dateTime,
           check.id,
-          check.sale,
+          sale,
           currentProfile,
           check.isPaid ? 'Да' : 'Нет',
           check.staff,

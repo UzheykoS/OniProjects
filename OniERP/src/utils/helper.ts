@@ -201,6 +201,12 @@ class Helper {
         case DessertType.Zephyr:
           totalDessertsPrice += ZEPHYR_PRICE * d.quantity;
           break;
+        case DessertType.Choux:
+          totalDessertsPrice += CHOUX_PRICE * d.quantity;
+          break;
+        case DessertType.Cheesecake:
+          totalDessertsPrice += CHEESECAKE_PRICE * d.quantity;
+          break;
         default:
           break;
       }
