@@ -141,11 +141,6 @@ class CheckoutComponent extends Component<
     });
   };
 
-  calculateBlackFridayPrice() {
-    const { check } = this.props;
-    return Helper.calculateBlackFridayPrice(check);
-  }
-
   render() {
     const { check } = this.props;
     const { isLoading, cash } = this.state;
@@ -156,6 +151,7 @@ class CheckoutComponent extends Component<
     const saleTypes = Helper.getArrayFromEnum(SaleType);
     const staff = Helper.getArrayFromEnum(Staff);
     const price = Helper.calculatePrice(check);
+    const blackFridayPrice = Helper.calculateBlackFridayPrice(check);
 
     return (
       <>
@@ -167,9 +163,7 @@ class CheckoutComponent extends Component<
           <div className='blackFridayTitle'>
             <img src={'/images/black_friday.jpg'} />
           </div>
-          <div className='blackFridayPrice'>
-            : {this.calculateBlackFridayPrice()} грн.
-          </div>
+          <div className='blackFridayPrice'>: {blackFridayPrice} грн.</div>
         </div>
         <Divider />
         <div className='checkoutControlGroup'>
@@ -336,7 +330,7 @@ class CheckoutComponent extends Component<
               />
               <div className='change-wrapper'>
                 <Typography noWrap gutterBottom variant='subtitle1'>
-                  Сдача: {!!cash ? Number(cash) - price : '-'} грн.
+                  Сдача: {!!cash ? Number(cash) - blackFridayPrice : '-'} грн.
                 </Typography>
               </div>
             </div>
