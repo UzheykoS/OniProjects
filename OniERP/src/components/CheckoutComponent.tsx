@@ -151,20 +151,20 @@ class CheckoutComponent extends Component<
     const saleTypes = Helper.getArrayFromEnum(SaleType);
     const staff = Helper.getArrayFromEnum(Staff);
     const price = Helper.calculatePrice(check);
-    const blackFridayPrice = Helper.calculateBlackFridayPrice(check);
+    // const blackFridayPrice = Helper.calculateBlackFridayPrice(check);
 
     return (
       <>
         <Typography gutterBottom variant='h6'>
           Параметры чека
         </Typography>
-        <Divider />
+        {/* <Divider />
         <div className='checkoutBlackFridayGroup'>
           <div className='blackFridayTitle'>
             <img src={'/images/black_friday.jpg'} />
           </div>
           <div className='blackFridayPrice'>: {blackFridayPrice} грн.</div>
-        </div>
+        </div> */}
         <Divider />
         <div className='checkoutControlGroup'>
           <Typography gutterBottom variant='subtitle1'>
@@ -330,7 +330,7 @@ class CheckoutComponent extends Component<
               />
               <div className='change-wrapper'>
                 <Typography noWrap gutterBottom variant='subtitle1'>
-                  Сдача: {!!cash ? Number(cash) - blackFridayPrice : '-'} грн.
+                  Сдача: {!!cash ? Number(cash) - price : '-'} грн.
                 </Typography>
               </div>
             </div>
