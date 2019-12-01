@@ -64,9 +64,7 @@ export enum Staff {
   Zhenya = 'Женя',
   Lena = 'Лена',
   Miroslava = 'Мирослава',
-  Alina = 'Алина',
   Julia = 'Юля',
-  Kate = 'Катя',
   Margo = 'Марго',
   Nika = 'Ника',
 }
@@ -235,7 +233,6 @@ export enum PaymentTypeEnum {
 }
 
 export enum ProfilesEnum {
-  Alina = 'Алина',
   Irene = 'Ира',
   Julia = 'Юля',
   Nika = 'Ника',
