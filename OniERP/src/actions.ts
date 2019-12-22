@@ -461,13 +461,14 @@ export const ProcessProductSubmit = (
   zephyr: number,
   iceCream: number,
   cakes: number,
+  cheesecake: number, 
   notes: string,
   date?: moment.Moment
 ) => {
   return async dispatch => {
     dispatch(itemsIsLoading(true));
     try {
-      const range = 'Products!A:H';
+      const range = 'Products!A:I';
       const data = [
         [
           macarons,
@@ -475,6 +476,7 @@ export const ProcessProductSubmit = (
           zephyr,
           iceCream,
           cakes,
+          cheesecake,
           null,
           notes,
           date

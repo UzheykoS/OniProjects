@@ -21,6 +21,7 @@ const mapDispatchToProps = dispatch => {
       zephyr: number,
       iceCream: number,
       cakes: number,
+      cheesecake: number,
       notes: string,
       date?: moment.Moment
     ) =>
@@ -31,6 +32,7 @@ const mapDispatchToProps = dispatch => {
           zephyr,
           iceCream,
           cakes,
+          cheesecake,
           notes,
           date
         )
@@ -46,6 +48,7 @@ export interface IProductComponentProps {
     zephyr: number,
     iceCream: number,
     cakes: number,
+    cheesecake: number,
     notes: string,
     date?: moment.Moment
   ) => void;
@@ -57,6 +60,7 @@ export interface IProductComponentState {
   zephyr?: string;
   iceCream?: string;
   cakes?: string;
+  cheesecake?: string;
   notes?: string;
   selectedDate?: moment.Moment;
 }
@@ -74,6 +78,7 @@ class ProductComponent extends Component<
       zephyr: '',
       iceCream: '',
       cakes: '',
+      cheesecake: '',
       notes: '',
       selectedDate: moment(new Date()),
     };
@@ -105,6 +110,7 @@ class ProductComponent extends Component<
       zephyr,
       iceCream,
       cakes,
+      cheesecake,
       notes,
       selectedDate,
     } = this.state;
@@ -114,6 +120,7 @@ class ProductComponent extends Component<
       Number(zephyr),
       Number(iceCream),
       Number(cakes),
+      Number(cheesecake),
       notes,
       selectedDate
     );
@@ -127,6 +134,7 @@ class ProductComponent extends Component<
       choux,
       iceCream,
       cakes,
+      cheesecake,
       notes,
       selectedDate,
     } = this.state;
@@ -204,6 +212,19 @@ class ProductComponent extends Component<
           placeholder='Введите количество'
         />
         <TextField
+          label='Чизкейки'
+          value={cheesecake}
+          onChange={ev => this.handleQuanityChange(ev, 'cheesecake')}
+          type='number'
+          InputLabelProps={{
+            shrink: true,
+          }}
+          margin='normal'
+          fullWidth
+          placeholder='Введите количество'
+        />
+
+        <TextField
           label='Заметки'
           value={notes}
           onChange={this.handleNotesChange}
@@ -216,7 +237,14 @@ class ProductComponent extends Component<
         />
         <div className={'buttonsWraper'}>
           <Button
-            disabled={!macarons && !choux && !zephyr && !cakes && !iceCream}
+            disabled={
+              !macarons &&
+              !choux &&
+              !zephyr &&
+              !cakes &&
+              !iceCream &&
+              !cheesecake
+            }
             variant='contained'
             size='large'
             color='primary'
@@ -231,8 +259,5 @@ class ProductComponent extends Component<
 }
 
 export default withRouter(
-  connect(
-    mapStateToProps,
-    mapDispatchToProps
-  )(ProductComponent)
+  connect(mapStateToProps, mapDispatchToProps)(ProductComponent)
 );
