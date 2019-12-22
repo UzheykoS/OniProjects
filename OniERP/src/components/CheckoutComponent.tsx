@@ -120,6 +120,7 @@ class CheckoutComponent extends Component<
     this.props.logData('checkoutPage->handleSaleSelect->' + sale);
     if (sale !== SaleType.Staff) {
       this.props.selectStaff(null);
+      this.props.setIsPaid(true);
     } else {
       this.props.setIsPaid(false);
     }

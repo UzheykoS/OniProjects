@@ -174,6 +174,8 @@ export enum DrinksType {
   EspressoTonic = 'Эспрессо Тоник',
   Syrop = 'Сироп',
   VeganMilk = 'Молоко растительное',
+  Milk = 'Молоко',
+  Cream = 'Сливки',
 }
 
 export enum PartnersEnum {
@@ -190,6 +192,7 @@ export enum PartnersEnum {
   Progress = 'Progress',
   KlassnaKava = 'Класна кава',
   StudioCoffee = 'Студия кофе',
+  Chicago44 = 'Чикаго 44',
   Other = 'Другое',
 }
 

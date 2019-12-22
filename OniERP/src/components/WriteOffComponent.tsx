@@ -21,6 +21,7 @@ const mapDispatchToProps = dispatch => {
       zephyr: number,
       iceCream: number,
       cakes: number,
+      cheesecake: number,
       coffee: number,
       notes: string,
       date?: moment.Moment
@@ -32,6 +33,7 @@ const mapDispatchToProps = dispatch => {
           zephyr,
           iceCream,
           cakes,
+          cheesecake,
           coffee,
           notes,
           date
@@ -48,6 +50,7 @@ export interface IWriteOffComponentProps {
     zephyr: number,
     iceCream: number,
     cakes: number,
+    cheesecake: number,
     coffee: number,
     notes: string,
     date?: moment.Moment
@@ -60,6 +63,7 @@ export interface IWriteOffComponentState {
   zephyr?: string;
   iceCream?: string;
   cakes?: string;
+  cheesecake?: string;
   coffee?: string;
   notes?: string;
   selectedDate?: moment.Moment;
@@ -78,6 +82,7 @@ class WriteOffComponent extends Component<
       zephyr: '',
       iceCream: '',
       cakes: '',
+      cheesecake: '',
       coffee: '',
       notes: '',
       selectedDate: moment(new Date()),
@@ -110,6 +115,7 @@ class WriteOffComponent extends Component<
       zephyr,
       iceCream,
       cakes,
+      cheesecake,
       coffee,
       notes,
       selectedDate,
@@ -120,6 +126,7 @@ class WriteOffComponent extends Component<
       Number(zephyr),
       Number(iceCream),
       Number(cakes),
+      Number(cheesecake),
       Number(coffee),
       notes,
       selectedDate
@@ -134,6 +141,7 @@ class WriteOffComponent extends Component<
       choux,
       iceCream,
       cakes,
+      cheesecake,
       coffee,
       notes,
       selectedDate,
@@ -212,6 +220,18 @@ class WriteOffComponent extends Component<
           placeholder='Введите количество'
         />
         <TextField
+          label='Чизкейки'
+          value={cheesecake}
+          onChange={ev => this.handleQuanityChange(ev, 'cheesecake')}
+          type='number'
+          InputLabelProps={{
+            shrink: true,
+          }}
+          margin='normal'
+          fullWidth
+          placeholder='Введите количество'
+        />
+        <TextField
           label='Кофе'
           value={coffee}
           onChange={ev => this.handleQuanityChange(ev, 'coffee')}
@@ -237,7 +257,7 @@ class WriteOffComponent extends Component<
         <div className={'buttonsWraper'}>
           <Button
             disabled={
-              !macarons && !choux && !zephyr && !cakes && !iceCream && !coffee
+              !macarons && !choux && !zephyr && !cakes && !iceCream && !coffee && !cheesecake
             }
             variant='contained'
             size='large'

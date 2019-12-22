@@ -503,6 +503,7 @@ export const ProcessWriteOffSubmit = (
   zephyr: number,
   iceCream: number,
   cakes: number,
+  cheesecake: number,
   coffee: number,
   notes: string,
   date?: moment.Moment
@@ -510,7 +511,7 @@ export const ProcessWriteOffSubmit = (
   return async dispatch => {
     dispatch(itemsIsLoading(true));
     try {
-      const range = 'Products!A:H';
+      const range = 'Products!A:I';
       const data = [
         [
           -macarons,
@@ -518,6 +519,7 @@ export const ProcessWriteOffSubmit = (
           -zephyr,
           -iceCream,
           -cakes,
+          -cheesecake,
           -coffee,
           notes,
           date
@@ -813,7 +815,12 @@ export const CountDailyDrinks = () => {
         .slice(1)
         .filter(
           v =>
-            [DrinksType.Syrop, DrinksType.VeganMilk].indexOf(v[0]) < 0 &&
+            [
+              DrinksType.Syrop,
+              DrinksType.VeganMilk,
+              DrinksType.Milk,
+              DrinksType.Cream,
+            ].indexOf(v[0]) < 0 &&
             Helper.isToday(v[4]) &&
             v[7] === state.currentProfile
         );

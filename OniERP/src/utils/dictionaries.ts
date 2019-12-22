@@ -1,6 +1,13 @@
-import { DrinksType, DessertType, MacaronsEnum, ZephyrEnum, PartnersEnum, CakesEnum } from './types';
+import {
+  DrinksType,
+  DessertType,
+  MacaronsEnum,
+  ZephyrEnum,
+  PartnersEnum,
+  CakesEnum,
+} from './types';
 
-export const DrinksDict: { [id: string] : Array<string> } = {};
+export const DrinksDict: { [id: string]: Array<string> } = {};
 DrinksDict[DrinksType.Cappucino] = ['175 мл', '340 мл'];
 DrinksDict[DrinksType.Latte] = ['250 мл', '340 мл', '400 мл'];
 DrinksDict[DrinksType.FlatWhite] = ['175 мл'];
@@ -30,13 +37,15 @@ DrinksDict[DrinksType.EspressoTonic] = ['200 мл'];
 DrinksDict[DrinksType.Syrop] = ['0 мл'];
 DrinksDict[DrinksType.FilterCoffee] = ['200 мл'];
 DrinksDict[DrinksType.VeganMilk] = ['S', 'M'];
+DrinksDict[DrinksType.Milk] = ['N'];
+DrinksDict[DrinksType.Cream] = ['N'];
 
-export const DessertsDict: { [id: string] : Array<any> } = {};
+export const DessertsDict: { [id: string]: Array<any> } = {};
 DessertsDict[DessertType.Macaron] = [1, 6, 12, 24];
 DessertsDict[DessertType.Zephyr] = [1, 8, 16];
 DessertsDict[DessertType.Cake] = ['18 см', '22 см'];
 
-export const DrinkPricesDict: { [id: string] : Array<number> } = {};
+export const DrinkPricesDict: { [id: string]: Array<number> } = {};
 DrinkPricesDict[DrinksType.Cappucino] = [25, 40];
 DrinkPricesDict[DrinksType.Latte] = [28, 35, 45];
 DrinkPricesDict[DrinksType.FlatWhite] = [35];
@@ -66,8 +75,10 @@ DrinkPricesDict[DrinksType.EspressoTonic] = [40];
 DrinkPricesDict[DrinksType.Syrop] = [5];
 DrinkPricesDict[DrinksType.FilterCoffee] = [30];
 DrinkPricesDict[DrinksType.VeganMilk] = [20, 30];
+DrinkPricesDict[DrinksType.Milk] = [5];
+DrinkPricesDict[DrinksType.Cream] = [10];
 
-export const CaffeePrices: { [id: string] : number } = {};
+export const CaffeePrices: { [id: string]: number } = {};
 CaffeePrices[PartnersEnum.CoffeeIs] = 18;
 CaffeePrices[PartnersEnum.WCoffee] = 22;
 CaffeePrices[PartnersEnum.DoubleLab] = 22;
@@ -81,8 +92,9 @@ CaffeePrices[PartnersEnum.CubaCoffee] = 22;
 CaffeePrices[PartnersEnum.Progress] = 22;
 CaffeePrices[PartnersEnum.KlassnaKava] = 22;
 CaffeePrices[PartnersEnum.StudioCoffee] = 22;
+CaffeePrices[PartnersEnum.Chicago44] = 22;
 
-export const CakesPricesDict: { [id: string] : Array<number> } = {};
+export const CakesPricesDict: { [id: string]: Array<number> } = {};
 CakesPricesDict[CakesEnum.CarrotCake] = [650, 980];
 CakesPricesDict[CakesEnum.Pink] = [630, 970];
 CakesPricesDict[CakesEnum.Infinity] = [640, 970];
@@ -107,7 +119,7 @@ export const SORBET_PRICE = 44;
 
 export const SMALL_CAKE_PRICE = 90;
 
-export const MacaronsColors: { [id: string] : string } = {};
+export const MacaronsColors: { [id: string]: string } = {};
 MacaronsColors[MacaronsEnum.DorBluePear] = '#b7e4f7';
 MacaronsColors[MacaronsEnum.ParmesanFigue] = '#fcf7e8';
 MacaronsColors[MacaronsEnum.StrawberryCheesecake] = '#ffdddd';
@@ -123,7 +135,7 @@ MacaronsColors[MacaronsEnum.Pistachio] = '#85dd93';
 MacaronsColors[MacaronsEnum.OrangeMilkChocolate] = '#FF8200';
 MacaronsColors[MacaronsEnum.GrapefruitRose] = '#CB5382';
 
-export const ZephyrColors: { [id: string] : string } = {};
+export const ZephyrColors: { [id: string]: string } = {};
 ZephyrColors[ZephyrEnum.Apple] = '#fffbf2';
 ZephyrColors[ZephyrEnum.ApricotPassionFruit] = '#ffe6bf';
 ZephyrColors[ZephyrEnum.Currant] = '#d978еd';
