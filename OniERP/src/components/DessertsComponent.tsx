@@ -99,7 +99,7 @@ export class DessertsComponent extends Component<
     const { dessertType } = this.state;
 
     if (dessertType === DessertType.Cake) {
-      if (taste === CakesEnum.Cake_2019) {
+      if (taste === CakesEnum.Cake_2020) {
         await this.props.addDessert(dessertType, taste, '18 см', 1);
         this.props.handleClose();
       }
