@@ -67,6 +67,7 @@ export enum Staff {
   Julia = 'Юля',
   Margo = 'Марго',
   Nika = 'Ника',
+  Ira = 'Ира'
 }
 
 export enum MacaronsEnum {
@@ -99,7 +100,7 @@ export enum CakesEnum {
   Soul = 'Soul',
   Pink = 'Pink',
   Infinity = 'Infinity',
-  Cake_2019 = '2019',
+  Cake_2020 = '2020',
 }
 
 export enum ChouxEnum {

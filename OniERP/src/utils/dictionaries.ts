@@ -100,7 +100,7 @@ CakesPricesDict[CakesEnum.Pink] = [630, 970];
 CakesPricesDict[CakesEnum.Infinity] = [640, 970];
 CakesPricesDict[CakesEnum.Rio] = [620, 960];
 CakesPricesDict[CakesEnum.Soul] = [620, 960];
-CakesPricesDict[CakesEnum.Cake_2019] = [650];
+CakesPricesDict[CakesEnum.Cake_2020] = [690];
 
 export const EasterCakesPrices = [280, 360];
 
