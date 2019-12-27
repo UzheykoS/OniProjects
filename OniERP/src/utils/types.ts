@@ -57,6 +57,7 @@ export enum SaleType {
   Twenty = '20 %',
   Staff = 'Персонал',
   Full = '100 %',
+  NewYear2020 = 'Новый Год 2020',
 }
 
 export enum Staff {
@@ -67,7 +68,7 @@ export enum Staff {
   Julia = 'Юля',
   Margo = 'Марго',
   Nika = 'Ника',
-  Ira = 'Ира'
+  Ira = 'Ира',
 }
 
 export enum MacaronsEnum {
