@@ -33,11 +33,10 @@
       "@routes/*": ["routes/*"],
       "@utils": ["utils/index"],
       "@utils/*": ["utils/*"],
-      "@icons/*": ["icons/*"],
       "@hooks": ["hooks"],
       "@hooks/*": ["hooks/*"],
-      "@styled-components": ["./styled"],
-      "@styled-components/*": ["./styled/*"],
+      "@styles": ["styles"],
+      "@styles/*": ["styles/*"],
       "@src/*": ["./*"]
     }
   },

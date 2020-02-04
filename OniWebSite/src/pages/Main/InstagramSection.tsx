@@ -1,5 +1,6 @@
 import React from 'react';
+import { InfoSection } from './styled';
 
 export function InstagramSection() {
-  return <div className='info-section'>Instagram Section</div>;
+  return <InfoSection>Instagram Section</InfoSection>;
 }

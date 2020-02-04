@@ -1,12 +1,13 @@
 import React from 'react';
+import { InfoSection, ImageSection, TextSection } from './styled';
 
 export function AboutSection() {
   return (
-    <div className='info-section'>
-      <div className='image-section'>
+    <InfoSection>
+      <ImageSection>
         <img src='./images/images_large/about/MF2A8377.jpg' />
-      </div>
-      <div className='text-section'>
+      </ImageSection>
+      <TextSection>
         <h2>КАЖДЫЙ ДЕНЬ МЫ СОЗДАЁМ ДЕСЕРТЫ, КОТОРЫЕ ВДОХНОВЛЯЮТ!</h2>
         <p>
           Наша главная цель – показать, что современное кондитерское искусство –
@@ -25,7 +26,7 @@ export function AboutSection() {
           современная подача. Мы работаем в своем стиле и уверенны, что люди,
           которые выбирают наш продукт, знают толк в кондитерском искусстве!
         </p>
-      </div>
-    </div>
+      </TextSection>
+    </InfoSection>
   );
 }

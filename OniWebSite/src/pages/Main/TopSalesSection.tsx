@@ -1,5 +1,6 @@
 import React from 'react';
+import { InfoSection } from './styled';
 
 export function TopSalesSection() {
-  return <div className='info-section'>Top Sales Section</div>;
+  return <InfoSection>Top Sales Section</InfoSection>;
 }

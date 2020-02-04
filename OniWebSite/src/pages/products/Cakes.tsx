@@ -20,7 +20,6 @@ export function Cakes() {
         <div className='row'>
           <div className='col-md-6'>
             <div className='header-main'>Торты</div>
-            {/* <div className='header-desc'>Очень вкусные дессерты</div> */}
             <div className='header-body'>
               Нас часто спрашивают: 'Какой торт у Вас самый вкусный? Какой
               посоветуете?'. И это, пожалуй, самый сложный вопрос. Мы создавали

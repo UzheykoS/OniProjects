@@ -5,7 +5,7 @@ import { Pages } from '@constants/routes';
 
 export function CorporateClients() {
   return (
-    <div className='clients-container'>
+    <div>
       <Nav tab={Pages.Clients} />
       CorporateClients
       <Footer />

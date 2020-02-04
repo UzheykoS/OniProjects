@@ -1,5 +1,6 @@
 import Slider from 'react-slick';
 import React from 'react';
+import { ImagesContainer, BackgroundImage } from './styled';
 
 export function BannerSection() {
   const settings = {
@@ -18,11 +19,11 @@ export function BannerSection() {
   };
 
   return (
-    <div className='images-container'>
+    <ImagesContainer>
       <Slider {...settings}>
-        <img className='background-img' src='./images/images_large/main1.jpg' />
-        <img className='background-img' src='./images/images_large/main2.jpg' />
+        <BackgroundImage src='./images/images_large/main1.jpg' />
+        <BackgroundImage src='./images/images_large/main2.jpg' />
       </Slider>
-    </div>
+    </ImagesContainer>
   );
 }

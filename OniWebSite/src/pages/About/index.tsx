@@ -1,8 +1,10 @@
 import React, { useState } from 'react';
-import { Nav } from '../components/Nav';
-import { Busy } from '../components/common/Busy';
-import { Footer } from '../components/Footer';
+import { Nav } from '../../components/Nav';
+import { Busy } from '../../components/common/Busy';
+import { Footer } from '../../components/Footer';
 import { Pages } from '@constants/routes';
+import { AboutContainer, AboutHeader, AboutPhoto, AboutBody } from './styled';
+import { HeaderBody, HeaderMain } from '@styles/styled';
 
 export function About() {
   const [loading, setLoading] = useState(true);
@@ -14,22 +16,21 @@ export function About() {
   };
 
   return (
-    <div className='about-container'>
+    <AboutContainer>
       <Nav tab={Pages.About} />
-      <div className='about-header'>
+      <AboutHeader>
         <div className='row'>
           <div className='col-md-6'>
-            <div className='about-photo' style={{ height: height }}>
+            <AboutPhoto style={{ height: height }}>
               <img
                 src='./images/images_large/about/about_header.jpg'
                 onLoad={onImageLoaded}
               />
-            </div>
+            </AboutPhoto>
           </div>
           <div className='col-md-6'>
-            <div className='header-main'>О нас</div>
-            {/* <div className='header-desc'></div> */}
-            <div className='header-body'>
+            <HeaderMain>О нас</HeaderMain>
+            <HeaderBody>
               Привет! Меня зовут Ирина Ужейко и я – основатель кондитерской ONI.
               Каждый день мы создаём десерты, которые вдохновляют. Наша главная
               цель – показать, что современное кондитерское искусство – это
@@ -46,15 +47,15 @@ export function About() {
               опыт ведущих шефов мира, чтобы привезти все самое лучшее в
               Украину.
               <br />
-            </div>
+            </HeaderBody>
           </div>
         </div>
-      </div>
-      <div className='about-body'>
+      </AboutHeader>
+      <AboutBody>
         <div style={{ height: '500px' }} />
-      </div>
+      </AboutBody>
       <Footer />
       <Busy loading={loading} />
-    </div>
+    </AboutContainer>
   );
 }
