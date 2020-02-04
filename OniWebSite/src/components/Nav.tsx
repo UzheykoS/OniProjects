@@ -1,220 +1,218 @@
-import * as React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { Tabs, ProductTabs } from '../utils/Helper';
 import { slide as Menu } from 'react-burger-menu';
-import * as Media from 'react-media';
+import { useMediaQuery } from 'react-responsive';
+import { useRefMounted } from '@hooks/useRefMounted';
+import { Pages, ProductPages } from '@constants/routes';
 
 interface INavProps {
-    tab: string;
-    subTab?: string;
+  tab: Pages;
+  subTab?: ProductPages;
 }
 
-interface INavState {
-    smallHeader?: boolean;
+export function Nav({ tab, subTab }: INavProps) {
+  const [isSmallHeader, setIsSmallHeader] = useState(false);
+  const refMounted = useRefMounted();
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+    window.addEventListener('scroll', handleScroll, true);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  const handleScroll = () => {
+    if (!refMounted.current) {
+      return;
+    }
+    if (window.scrollY > 100 && !isSmallHeader) {
+      setIsSmallHeader(true);
+    } else if (window.scrollY <= 100 && isSmallHeader) {
+      setIsSmallHeader(false);
+    }
+  };
+
+  const logo = (
+    <img
+      src='/images/icons/Oni_w_black.png'
+      className={isSmallHeader ? 'logo-small' : 'logo'}
+    />
+  );
+
+  let mainClassName =
+    tab == Pages.Products ? 'nav-bar-main' : 'nav-bar-main with-space';
+  if (isSmallHeader) {
+    mainClassName = mainClassName + ' small-nav-bar';
+  }
+
+  const subNavBar = (
+    <div className={mainClassName}>
+      <ul>
+        <li>
+          <Link
+            to='/products/macarons'
+            className={subTab == ProductPages.Macarons ? 'active' : ''}
+          >
+            {ProductPages.Macarons}
+          </Link>
+        </li>
+        <li>
+          <Link
+            to='/products/zephyr'
+            className={subTab == ProductPages.Zephyr ? 'active' : ''}
+          >
+            {ProductPages.Zephyr}
+          </Link>
+        </li>
+        <li>
+          <Link
+            to='/products/choux'
+            className={subTab == ProductPages.Choux ? 'active' : ''}
+          >
+            {ProductPages.Choux}
+          </Link>
+        </li>
+        <li>
+          <Link
+            to='/products/cakes'
+            className={subTab == ProductPages.Cakes ? 'active' : ''}
+          >
+            {ProductPages.Cakes}
+          </Link>
+        </li>
+      </ul>
+    </div>
+  );
+
+  const navBar = (
+    <div className={mainClassName}>
+      <ul>
+        <li>
+          <Link
+            to='/products/macarons'
+            className={tab == Pages.Products ? 'active' : ''}
+          >
+            {Pages.Products}
+          </Link>
+        </li>
+        <li>
+          <Link to='/clients' className={tab == Pages.Clients ? 'active' : ''}>
+            {Pages.Clients}
+          </Link>
+        </li>
+        <li className={'logolink'}>
+          <Link to='/' className={tab == Pages.Main ? 'active' : ''}>
+            {logo}
+          </Link>
+        </li>
+        <li>
+          <Link
+            to='/delivery'
+            className={tab == Pages.Delivery ? 'active' : ''}
+          >
+            {Pages.Delivery}
+          </Link>
+        </li>
+        <li>
+          <Link to='/about' className={tab == Pages.About ? 'active' : ''}>
+            {Pages.About}
+          </Link>
+        </li>
+      </ul>
+      {tab === Pages.Products && subNavBar}
+    </div>
+  );
+
+  mainClassName =
+    tab == Pages.Products ? 'nav-bar-sub with-nav-bar-space' : 'nav-bar-sub';
+  if (isSmallHeader) {
+    mainClassName = mainClassName + ' small-sub-nav-bar';
+  }
+
+  const isTabletOrMobile = useMediaQuery({ query: '(max-width: 1224px)' });
+
+  return (
+    <>
+      {isTabletOrMobile ? (
+        <div className='nav-bar'>
+          <img
+            src='/images/icons/Oni_w_black.png'
+            className={tab == Pages.Main ? 'logo' : 'logo logo-small'}
+          />
+          <Menu
+            right
+            width={'100%'}
+            customBurgerIcon={<img src='/images/icons/menu-button.png' />}
+            customCrossIcon={<img src='/images/icons/close.png' />}
+          >
+            {tab !== Pages.Main ? (
+              <span className='menu-item'>
+                <Link to='/'>{Pages.Main}</Link>
+              </span>
+            ) : null}
+            <span className='menu-item'>
+              <Link
+                to='/products/macarons'
+                className={tab == Pages.Products ? 'active' : ''}
+              >
+                {Pages.Products}
+              </Link>
+            </span>
+            <span className='menu-item'>
+              <Link
+                to='/clients'
+                className={tab == Pages.Clients ? 'active' : ''}
+              >
+                {Pages.Clients}
+              </Link>
+            </span>
+            <span className='menu-item'>
+              <Link
+                to='/delivery'
+                className={tab == Pages.Delivery ? 'active' : ''}
+              >
+                {Pages.Delivery}
+              </Link>
+            </span>
+            <span className='menu-item'>
+              <Link to='/about' className={tab == Pages.About ? 'active' : ''}>
+                {Pages.About}
+              </Link>
+            </span>
+            <div className='bm-socials'>
+              <a target='_blank' href='https://www.facebook.com/'>
+                <img
+                  className='social_network'
+                  src='images/icons/facebook.png'
+                />
+              </a>
+              <a target='_blank' href='https://www.instagram.com'>
+                <img
+                  className='social_network'
+                  src='images/icons/instagram.png'
+                />
+              </a>
+              <a target='_blank' href='https://www.telegram.com'>
+                <img
+                  className='social_network'
+                  src='images/icons/twitter.png'
+                />
+              </a>
+            </div>
+          </Menu>
+        </div>
+      ) : (
+        <div
+          className={
+            isSmallHeader
+              ? tab === Pages.Products
+                ? 'nav-bar small-nav-bar-container-with-subbar'
+                : 'nav-bar small-nav-bar-container'
+              : 'nav-bar'
+          }
+        >
+          {navBar}
+        </div>
+      )}
+    </>
+  );
 }
-
-export class Nav extends React.Component<INavProps, INavState>{
-    _isMounted = false;
-
-    constructor(props) {
-        super(props);
-
-        window.scrollTo(0, 0);
-        this.state = {
-            smallHeader: false
-        }
-    }
-
-    componentDidMount() {
-        window.addEventListener('scroll', this.handleScroll, true);
-        this._isMounted = true;
-    }
-
-    componentWillUnmount() {
-        window.removeEventListener('scroll', this.handleScroll);
-        this._isMounted = false;
-    }
-
-    handleScroll = () => {
-        if (!this._isMounted) {
-            return;
-        }
-        const { smallHeader } = this.state;
-        if (window.scrollY > 100 && !smallHeader) {
-            this.setState({
-                smallHeader: true
-            });
-        } else if (window.scrollY <= 100 && smallHeader) {
-            this.setState({
-                smallHeader: false
-            });
-        }
-    };
-
-    renderLogo() {
-        const { smallHeader } = this.state;
-
-        return <img src='/images/icons/Oni_w_black.png' className={smallHeader ? 'logo-small' : 'logo'} />;
-    }
-
-    renderNavBar() {
-        const { smallHeader } = this.state;
-        const { tab } = this.props;
-
-        let mainClassName = tab == Tabs.Products ? 'nav-bar-main' : 'nav-bar-main with-space';
-        if (smallHeader) {
-            mainClassName = mainClassName + ' small-nav-bar';
-        }
-
-        return <div className={mainClassName}>
-            <ul>
-                <li>
-                    <Link to='/products/macarons'
-                        className={tab == Tabs.Products ? 'active' : ''}>
-                        {Tabs.Products}
-                    </Link>
-                </li>
-                <li>
-                    <Link to='/clients'
-                        className={tab == Tabs.CorporateClients ? 'active' : ''}>
-                        {Tabs.CorporateClients}
-                    </Link>
-                </li>
-                <li className={'logolink'}>
-                    <Link to='/'
-                        className={tab == Tabs.Main ? 'active' : ''}>
-                        {this.renderLogo()}
-                    </Link>
-                </li>
-                <li>
-                    <Link to='/delivery'
-                        className={tab == Tabs.DeliveryAndPayment ? 'active' : ''}>{Tabs.DeliveryAndPayment}
-                    </Link>
-                </li>
-                <li>
-                    <Link to='/about'
-                        className={tab == Tabs.About ? 'active' : ''}>{Tabs.About}
-                    </Link>
-                </li>
-                <li>
-                    <Link to='/news'
-                        className={tab == Tabs.News ? 'active' : ''}>{Tabs.News}
-                    </Link>
-                </li>
-            </ul>
-            {
-                tab === Tabs.Products && this.renderSubNavBar()
-            }
-        </div>;
-    }
-
-    renderSubNavBar() {
-        const { smallHeader } = this.state;
-        const { tab, subTab } = this.props;
-
-        let mainClassName = tab == Tabs.Products ? 'nav-bar-sub with-nav-bar-space' : 'nav-bar-sub';
-        if (smallHeader) {
-            mainClassName = mainClassName + ' small-sub-nav-bar';
-        }
-
-        return <div className={mainClassName}>
-            <ul>
-                <li>
-                    <Link to='/products/macarons'
-                        className={subTab == ProductTabs.Macarons ? 'active' : ''}>
-                        {ProductTabs.Macarons}
-                    </Link>
-                </li>
-                <li>
-                    <Link to='/products/zephyr'
-                        className={subTab == ProductTabs.Zephyr ? 'active' : ''}>
-                        {ProductTabs.Zephyr}
-                    </Link>
-                </li>
-                <li>
-                    <Link to='/products/choux'
-                        className={subTab == ProductTabs.Choux ? 'active' : ''}>
-                        {ProductTabs.Choux}
-                    </Link>
-                </li>
-                <li>
-                    <Link to='/products/cakes'
-                        className={subTab == ProductTabs.Cakes ? 'active' : ''}>
-                        {ProductTabs.Cakes}
-                    </Link>
-                </li>
-            </ul>
-        </div>;
-    }
-
-    render() {
-        const { smallHeader } = this.state;
-        const { tab } = this.props;
-
-        return <Media query={{ maxWidth: 800 }}>
-            {matches => matches ? (
-                <div className='nav-bar'>
-                    <img src='/images/icons/Oni_w_black.png' className={tab == Tabs.Main ? 'logo' : 'logo logo-small'} />
-                    <Menu right
-                        width={'100%'}
-                        customBurgerIcon={<img src='/images/icons/menu-button.png' />}
-                        customCrossIcon={<img src='/images/icons/close.png' />} >
-                        {tab !== Tabs.Main ?
-                            <span className='menu-item'>
-                                <Link to='/'
-                                    className={tab == Tabs.Main ? 'active' : ''}>
-                                    {Tabs.Main}
-                                </Link>
-                            </span> :
-                            null}
-                        <span className='menu-item'>
-                            <Link to='/products/macarons'
-                                className={tab == Tabs.Products ? 'active' : ''}>
-                                {Tabs.Products}
-                            </Link>
-                        </span>
-                        <span className='menu-item'>
-                            <Link to='/clients'
-                                className={tab == Tabs.CorporateClients ? 'active' : ''}>
-                                {Tabs.CorporateClients}
-                            </Link>
-                        </span>
-                        <span className='menu-item'>
-                            <Link to='/delivery'
-                                className={tab == Tabs.DeliveryAndPayment ? 'active' : ''}>
-                                {Tabs.DeliveryAndPayment}
-                            </Link>
-                        </span>
-                        <span className='menu-item'>
-                            <Link to='/about'
-                                className={tab == Tabs.About ? 'active' : ''}>
-                                {Tabs.About}
-                            </Link>
-                        </span>
-                        <span className='menu-item'>
-                            <Link to='/news'
-                                className={tab == Tabs.News ? 'active' : ''}>
-                                {Tabs.News}
-                            </Link>
-                        </span>
-                        <div className='bm-socials'>
-                            <a target='_blank' href='https://www.facebook.com/'>
-                                <img className='social_network' src='images/icons/facebook.png' />
-                            </a>
-                            <a target='_blank' href='https://www.instagram.com'>
-                                <img className='social_network' src='images/icons/instagram.png' />
-                            </a>
-                            <a target='_blank' href='https://www.telegram.com'>
-                                <img className='social_network' src='images/icons/twitter.png' />
-                            </a>
-                        </div>
-                    </Menu>
-                </div>
-            ) : (
-                    <div className={smallHeader ? (tab === Tabs.Products ? 'nav-bar small-nav-bar-container-with-subbar' : 'nav-bar small-nav-bar-container') : 'nav-bar'}>
-                        {this.renderNavBar()}
-                    </div>
-                )}
-        </Media>;
-    }
-};

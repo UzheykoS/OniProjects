@@ -1,21 +1,46 @@
 {
   "compilerOptions": {
-    "outDir": "dist/",
-    "target": "es6",
+    "outDir": "./dist",
+    "allowJs": true,
+    "moduleResolution": "node",
+    "noImplicitAny": true,
+    "target": "es5",
     "module": "es6",
     "sourceMap": true,
     "jsx": "react",
-    "declaration": true,
+    "noEmit": true,
+    "strict": true,
+    "allowSyntheticDefaultImports": true,
+    "esModuleInterop": true,
+    "noImplicitReturns": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "noFallthroughCasesInSwitch": true,
     "experimentalDecorators": true,
-    "noImplicitAny": false,
-    "lib": ["es6", "dom"],
-    "moduleResolution": "node"
+    "strictNullChecks": true,
+    "resolveJsonModule": true,
+    "lib": ["es6", "dom", "es2017.object"],
+    "baseUrl": "./src",
+    "skipLibCheck": true,
+    "paths": {
+      "@common": ["components/common"],
+      "@common/*": ["components/common/*"],
+      "@components/*": ["components/*"],
+      "@constants": ["constants"],
+      "@constants/*": ["constants/*"],
+      "@pages": ["pages"],
+      "@pages/*": ["pages/*"],
+      "@routes/*": ["routes/*"],
+      "@utils": ["utils/index"],
+      "@utils/*": ["utils/*"],
+      "@icons/*": ["icons/*"],
+      "@hooks": ["hooks"],
+      "@hooks/*": ["hooks/*"],
+      "@styled-components": ["./styled"],
+      "@styled-components/*": ["./styled/*"],
+      "@src/*": ["./*"]
+    }
   },
-  "exclude": [
-    "node_modules",
-    "!node_modules/@types"
-  ],
-  "include": [
-    "src"
-  ]
+  "include": ["./src/**/*"],
+  "exclude": ["node_modules", "!node_modules/@types"]
 }
