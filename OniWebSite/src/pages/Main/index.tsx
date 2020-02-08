@@ -1,4 +1,3 @@
-import { Nav } from '@components/Nav';
 import { loadMainPageImage, preloadImages } from '@utils/Helper';
 import { Busy } from '@common/Busy';
 import { Container, Row, Col } from 'react-bootstrap';
@@ -8,13 +7,12 @@ import { Footer } from '@components/Footer';
 import { TopSalesSection } from './TopSalesSection';
 import { AboutSection } from './AboutSection';
 import { InstagramSection } from './InstagramSection';
-import { Pages } from '@constants/routes';
 
 export const Main = () => {
   const [loading, setLoading] = useState(true);
 
   const loadImages = async () => {
-    await loadMainPageImage('./images/images_large/main.jpg');
+    await loadMainPageImage('./images/images_large/main1.jpg');
 
     setLoading(false);
 
@@ -49,28 +47,28 @@ export const Main = () => {
 
   return (
     <>
-      <Nav tab={Pages.Main} />
-      <Container>
+     
+      <Container fluid>
         <Row>
-          <Col md='auto'>
+          <Col>
             <BannerSection />
           </Col>
         </Row>
 
         <Row>
-          <Col md={{ span: 6, offset: 3 }}>
+          <Col md={{ span: 8, offset: 2 }}>
             <TopSalesSection />
           </Col>
         </Row>
 
         <Row>
-          <Col md={{ span: 6, offset: 3 }}>
+          <Col md={{ span: 8, offset: 2 }}>
             <AboutSection />
           </Col>
         </Row>
 
         <Row>
-          <Col md={{ span: 6, offset: 3 }}>
+          <Col md={{ span: 8, offset: 2 }}>
             <InstagramSection />
           </Col>
         </Row>

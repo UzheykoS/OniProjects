@@ -11,11 +11,16 @@ import { Macarons } from './pages/products/Macarons';
 import { Choux } from './pages/products/Choux';
 import { Zephyr } from './pages/products/Zephyr';
 import { Main } from '@pages/Main';
+import { hot } from 'react-hot-loader';
+import { AppStyled } from '@styles/styled';
+import { NavBar } from '@components/NavBar';
 
+@hot(module)
 export class App extends React.Component<any, any> {
   render() {
     return (
-      <div className='app'>
+      <AppStyled>
+         <NavBar />
         <Switch>
           <Route exact path='/products' component={Products} />
           <Route path='/clients' component={CorporateClients} />
@@ -28,7 +33,7 @@ export class App extends React.Component<any, any> {
           <Route path='/products/cakes' component={Cakes} />
           <Route path='/products/choux' component={Choux} />
         </Switch>
-      </div>
+      </AppStyled>
     );
   }
 }

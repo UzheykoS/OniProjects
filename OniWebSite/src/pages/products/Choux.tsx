@@ -1,12 +1,9 @@
 import React from 'react';
-import { Nav } from '../../components/Nav';
 import { ChouxSingle } from '../../components/ChouxSingle';
-import { Pages, ProductPages } from '@constants/routes';
 
 export function Choux() {
   return (
     <div className='choux-container'>
-      <Nav tab={Pages.Products} subTab={ProductPages.Choux} />
       <div className='choux-body'>
         <div className='choux-header'>
           <div className='choux-info'>

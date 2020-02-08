@@ -1,12 +1,9 @@
 import React from 'react';
-import { Nav } from '../../components/Nav';
 import { MacaronSingle } from '../../components/MacaronSingle';
-import { Pages, ProductPages } from '@constants/routes';
 
 export function Macarons() {
   return (
     <div className='macarons-container'>
-      <Nav tab={Pages.Products} subTab={ProductPages.Macarons} />
       <div className='macarons-body'>
         <div className='macarons-header'>
           <div className='macarons-info'>

@@ -1,12 +1,9 @@
 import React from 'react';
-import { Nav } from '../../components/Nav';
 import { ZephyrSingle } from '../../components/ZephyrSingle';
-import { Pages, ProductPages } from '@constants/routes';
 
 export function Zephyr() {
   return (
     <div className='zephyr-container'>
-      <Nav tab={Pages.Products} subTab={ProductPages.Zephyr} />
       <div className='zephyr-body'>
         <div className='zephyr-header'>
           <div className='zephyr-info'>

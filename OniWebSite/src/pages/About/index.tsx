@@ -1,8 +1,6 @@
 import React, { useState } from 'react';
-import { Nav } from '../../components/Nav';
 import { Busy } from '../../components/common/Busy';
 import { Footer } from '../../components/Footer';
-import { Pages } from '@constants/routes';
 import { AboutContainer, AboutHeader, AboutPhoto, AboutBody } from './styled';
 import { HeaderBody, HeaderMain } from '@styles/styled';
 
@@ -17,7 +15,6 @@ export function About() {
 
   return (
     <AboutContainer>
-      <Nav tab={Pages.About} />
       <AboutHeader>
         <div className='row'>
           <div className='col-md-6'>

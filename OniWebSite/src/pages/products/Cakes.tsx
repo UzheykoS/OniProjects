@@ -1,8 +1,6 @@
 import React, { useState } from 'react';
-import { Nav } from '../../components/Nav';
 import { CakeSingle } from '../../components/CakeSingle';
 import { Busy } from '../../components/common/Busy';
-import { Pages, ProductPages } from '@constants/routes';
 
 export function Cakes() {
   const [loading, setLoading] = useState(true);
@@ -15,7 +13,6 @@ export function Cakes() {
 
   return (
     <div className='cakes-container'>
-      <Nav tab={Pages.Products} subTab={ProductPages.Cakes} />
       <div className='cakes-header'>
         <div className='row'>
           <div className='col-md-6'>

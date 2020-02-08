@@ -36,18 +36,6 @@ export const routes: routeType = {
     path: '/about',
     label: 'О нас',
   },
-  [Pages.Clients]: {
-    path: '/clients',
-    label: 'Клиентам',
-  },
-  [Pages.Delivery]: {
-    path: '/delivery',
-    label: 'Доставка и оплата',
-  },
-  [Pages.Contacts]: {
-    path: '/contacts',
-    label: 'Контакты',
-  },
   [Pages.Products]: {
     path: '/products',
     label: 'Продукция',
@@ -69,5 +57,17 @@ export const routes: routeType = {
         label: 'Торты',
       },
     },
+  },
+  [Pages.Clients]: {
+    path: '/clients',
+    label: 'Корпоративным клиентам',
+  },
+  [Pages.Delivery]: {
+    path: '/delivery',
+    label: 'Доставка и оплата',
+  },
+  [Pages.Contacts]: {
+    path: '/contacts',
+    label: 'Контакты',
   },
 };

@@ -1,9 +1,7 @@
 import React, { useState } from 'react';
-import { Nav } from '../components/Nav';
 import { withGoogleMap, GoogleMap, Marker } from 'react-google-maps';
 import { Busy } from '../components/common/Busy';
 import { Footer } from '../components/Footer';
-import { Pages } from '@constants/routes';
 
 // const googleMapURL = 'https://maps.googleapis.com/maps/api/js?v=3.27&libraries=places,geometry&key=AIzaSyDH_aHRsVOr_CMITd6m0Vuo1X2qSXMicdY'
 
@@ -33,7 +31,6 @@ export function DeliveryAndPayment() {
 
   return (
     <div className='contacts-container'>
-      <Nav tab={Pages.Delivery} />
       <div className='contacts-header'>
         <div className='contacts-photo' style={{ height: height }}>
           <img
