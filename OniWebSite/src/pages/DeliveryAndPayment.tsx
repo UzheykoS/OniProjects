@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { withGoogleMap, GoogleMap, Marker } from 'react-google-maps';
-import { Busy } from '../components/common/Busy';
+import { useLoading } from '@hooks/useLoading';
 
 // const googleMapURL = 'https://maps.googleapis.com/maps/api/js?v=3.27&libraries=places,geometry&key=AIzaSyDH_aHRsVOr_CMITd6m0Vuo1X2qSXMicdY'
 
@@ -20,11 +20,15 @@ const GoogleMapsWrapper = withGoogleMap((props: any) => (
 ));
 
 export function DeliveryAndPayment() {
-  const [loading, setLoading] = useState(true);
+  const { showLoading, closeLoading } = useLoading();
   const [height, setHeight] = useState('0px');
 
+  useEffect(() => {
+    showLoading();
+  }, []);
+
   const onImageLoaded = () => {
-    setLoading(false);
+    closeLoading();
     setHeight('auto');
   };
 
@@ -70,7 +74,6 @@ export function DeliveryAndPayment() {
           />
         </div>
       </div>
-      <Busy loading={loading} />
     </div>
   );
 }

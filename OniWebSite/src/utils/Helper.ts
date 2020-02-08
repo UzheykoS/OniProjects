@@ -1,5 +1,3 @@
-
-
 export function loadMainPageImage(url: string) {
   return new Promise(resolve => {
     let img = new Image();
@@ -26,3 +24,9 @@ export function preloadImages(urls: string[]) {
     resolve();
   });
 }
+
+export const SEPARATORS = {
+  SPACE_DASH_SPACE: '\u2007\u2014\u2007',
+  DASH: '\u2014',
+  RIGHT_SINGLE_QUOTE: '\u2019',
+};

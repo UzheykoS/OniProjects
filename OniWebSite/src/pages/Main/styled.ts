@@ -49,3 +49,64 @@ export const BackgroundImage = styled.img`
   height: auto;
   width: 100%;
 `;
+
+export const InstagramContainer = styled.div`
+  #instafeed {
+    width: 100%;
+    margin: auto;
+    display: flex;
+    flex-wrap: wrap;
+    padding: 0px 100px;
+    justify-content: center;
+    a {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      img {
+        display: block;
+        width: 300px;
+        height: 300px;
+        padding: 10px;
+        object-fit: cover;
+      }
+    }
+  }
+`;
+
+export const InstagramSubtitle = styled.div`
+  font-family: 'Roboto', sans-serif;
+  font-weight: 400;
+  text-transform: uppercase;
+  font-size: 19px;
+  color: gold;
+`;
+
+export const InstagramTitle = styled.div`
+  font-family: 'Yeseva One', cursive;
+  font-size: 38px;
+  color: black;
+`;
+
+export const InstagramDescriptionWrapper = styled.div`
+  display: flex;
+  justify-content: space-between;
+`;
+
+export const InstagramDescriptionText = styled.div`
+  p {
+    font-family: 'Roboto', sans-serif;
+    font-weight: 400;
+    font-size: 14px;
+    color: black;
+    margin: 0;
+  }
+`;
+
+export const InstagramDescriptionLink = styled.a`
+  font-family: 'Roboto', sans-serif;
+  font-weight: 400;
+  font-size: 16px;
+  color: red;
+  text-transform: uppercase;
+  text-decoration: none;
+`;

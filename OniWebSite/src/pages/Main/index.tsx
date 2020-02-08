@@ -1,19 +1,19 @@
 import { loadMainPageImage, preloadImages } from '@utils/Helper';
-import { Busy } from '@common/Busy';
 import { Container, Row, Col } from 'react-bootstrap';
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import { BannerSection } from './BannerSection';
 import { TopSalesSection } from './TopSalesSection';
 import { AboutSection } from './AboutSection';
 import { InstagramSection } from './InstagramSection';
+import { useLoading } from '@hooks/useLoading';
 
 export const Main = () => {
-  const [loading, setLoading] = useState(true);
+  const { showLoading, closeLoading } = useLoading();
 
   const loadImages = async () => {
     await loadMainPageImage('./images/images_large/main1.jpg');
 
-    setLoading(false);
+    closeLoading();
 
     await preloadImages([
       './images/images_large/cakes/cake1.jpg',
@@ -41,12 +41,12 @@ export const Main = () => {
   };
 
   useEffect(() => {
+    showLoading();
     loadImages();
   }, []);
 
   return (
     <>
-     
       <Container fluid>
         <Row>
           <Col>
@@ -72,7 +72,6 @@ export const Main = () => {
           </Col>
         </Row>
       </Container>
-      <Busy loading={loading} />
     </>
   );
 };

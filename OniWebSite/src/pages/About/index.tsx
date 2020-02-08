@@ -1,14 +1,18 @@
-import React, { useState } from 'react';
-import { Busy } from '../../components/common/Busy';
+import React, { useState, useEffect } from 'react';
 import { AboutContainer, AboutHeader, AboutPhoto, AboutBody } from './styled';
 import { HeaderBody, HeaderMain } from '@styles/styled';
+import { useLoading } from '@hooks/useLoading';
 
 export function About() {
-  const [loading, setLoading] = useState(true);
+  const { showLoading, closeLoading } = useLoading();
   const [height, setHeight] = useState('0px');
 
+  useEffect(() => {
+    showLoading();
+  }, []);
+
   const onImageLoaded = () => {
-    setLoading(false);
+    closeLoading();
     setHeight('auto');
   };
 
@@ -50,7 +54,6 @@ export function About() {
       <AboutBody>
         <div style={{ height: '500px' }} />
       </AboutBody>
-      <Busy loading={loading} />
     </AboutContainer>
   );
 }

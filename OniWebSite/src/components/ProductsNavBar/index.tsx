@@ -18,7 +18,6 @@ export function ProductsNavBar() {
   const productRoutes = routes[Pages.Products]!.nestedRoutes!;
   Object.keys(productRoutes).forEach(key => {
     const value = productRoutes[key as ProductPages];
-    debugger;
     if (value && value.path === match.path) {
       currentProductPage = key as ProductPages;
     }

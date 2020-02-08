@@ -1,13 +1,17 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { CakeSingle } from '../../components/CakeSingle';
-import { Busy } from '../../components/common/Busy';
+import { useLoading } from '@hooks/useLoading';
 
 export function Cakes() {
-  const [loading, setLoading] = useState(true);
+  const { showLoading, closeLoading } = useLoading();
   const [height, setHeight] = useState('0px');
 
+  useEffect(() => {
+    showLoading();
+  }, []);
+
   const onImageLoaded = () => {
-    setLoading(false);
+    closeLoading();
     setHeight('auto');
   };
 
@@ -116,7 +120,6 @@ export function Cakes() {
       <div className='cakes-footer'>
         <img src='/images/icons/Oni_logo.png' />
       </div>
-      <Busy loading={loading} />
     </div>
   );
 }
