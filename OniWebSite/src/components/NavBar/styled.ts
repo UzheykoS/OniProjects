@@ -2,7 +2,6 @@ import styled from 'styled-components';
 
 export const NavBarWrapper = styled.div`
   display: flex;
-  flex-direction: column;
   justify-content: center;
   width: 100%;
 `;
@@ -12,9 +11,9 @@ export const RoutesList = styled.ul`
   margin: 0;
   padding: 0 0 0 0;
   display: flex;
-  justify-content: center;
   height: 101px;
   justify-content: space-between;
+  width: 100%;
 `;
 
 interface IRoutesListItem {

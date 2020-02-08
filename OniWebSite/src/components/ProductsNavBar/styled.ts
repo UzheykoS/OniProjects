@@ -36,7 +36,7 @@ export const RoutesListItem = styled.li<IRoutesListItem>`
     color: #333333;
     text-decoration: none;
     text-transform: uppercase;
-    &: focus {
+    &:focus {
       font-weight: 900;
     }
     ${({ active }) =>

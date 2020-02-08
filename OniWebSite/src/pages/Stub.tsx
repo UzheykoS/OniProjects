@@ -1,5 +1,4 @@
 import React from 'react';
-import { Footer } from '../components/Footer';
 
 export class Stub extends React.Component<any, any> {
   render() {
@@ -8,7 +7,6 @@ export class Stub extends React.Component<any, any> {
     return (
       <div>
         Stub for {match.params.id}
-        <Footer />
       </div>
     );
   }

@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { Busy } from '../../components/common/Busy';
-import { Footer } from '../../components/Footer';
 import { AboutContainer, AboutHeader, AboutPhoto, AboutBody } from './styled';
 import { HeaderBody, HeaderMain } from '@styles/styled';
 
@@ -51,7 +50,6 @@ export function About() {
       <AboutBody>
         <div style={{ height: '500px' }} />
       </AboutBody>
-      <Footer />
       <Busy loading={loading} />
     </AboutContainer>
   );

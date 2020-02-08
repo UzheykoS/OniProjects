@@ -3,7 +3,6 @@ import { Busy } from '@common/Busy';
 import { Container, Row, Col } from 'react-bootstrap';
 import React, { useState, useEffect } from 'react';
 import { BannerSection } from './BannerSection';
-import { Footer } from '@components/Footer';
 import { TopSalesSection } from './TopSalesSection';
 import { AboutSection } from './AboutSection';
 import { InstagramSection } from './InstagramSection';
@@ -74,7 +73,6 @@ export const Main = () => {
         </Row>
       </Container>
       <Busy loading={loading} />
-      <Footer />
     </>
   );
 };

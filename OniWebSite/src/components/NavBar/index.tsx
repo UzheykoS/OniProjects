@@ -41,7 +41,6 @@ export function NavBar() {
             if (!route) {
               return null;
             }
-            console.log('currentPage', currentPage);
 
             return (
               <RoutesListItem

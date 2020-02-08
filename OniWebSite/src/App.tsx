@@ -14,13 +14,14 @@ import { Main } from '@pages/Main';
 import { hot } from 'react-hot-loader';
 import { AppStyled } from '@styles/styled';
 import { NavBar } from '@components/NavBar';
+import { Footer } from '@components/Footer';
 
 @hot(module)
 export class App extends React.Component<any, any> {
   render() {
     return (
       <AppStyled>
-         <NavBar />
+        <NavBar />
         <Switch>
           <Route exact path='/products' component={Products} />
           <Route path='/clients' component={CorporateClients} />
@@ -33,6 +34,7 @@ export class App extends React.Component<any, any> {
           <Route path='/products/cakes' component={Cakes} />
           <Route path='/products/choux' component={Choux} />
         </Switch>
+        <Footer />
       </AppStyled>
     );
   }
