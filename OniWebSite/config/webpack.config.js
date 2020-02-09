@@ -1,6 +1,7 @@
 const webpack = require('webpack');
 const path = require('path');
 const merge = require('webpack-merge');
+const hash = require('string-hash');
 
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
@@ -52,7 +53,20 @@ module.exports = env => {
           },
           {
             test: /\.svg$/,
-            use: ['@svgr/webpack'],
+            use: ({ resource }) => ({
+              loader: '@svgr/webpack',
+              options: {
+                svgoConfig: {
+                  plugins: [
+                    {
+                      cleanupIDs: {
+                        prefix: `svg-${hash(resource)}`,
+                      },
+                    },
+                  ],
+                },
+              },
+            }),
           },
           {
             test: /\.css$/,

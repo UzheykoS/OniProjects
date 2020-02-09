@@ -21,7 +21,7 @@ export function NavBar() {
 
   Object.keys(routes).forEach(key => {
     const value = routes[key as Pages];
-    if (value && value.path === location.pathname) {
+    if (value && location.pathname.startsWith(value.path)) {
       currentPage = key as Pages;
     }
   });

@@ -1,6 +1,5 @@
 import React from 'react';
-import { Switch, Route } from 'react-router';
-import { Products } from './pages/Products';
+import { Switch, Route, Redirect } from 'react-router';
 import { CorporateClients } from './pages/CorporateClients';
 import { DeliveryAndPayment } from './pages/DeliveryAndPayment';
 import { About } from './pages/About';
@@ -14,14 +13,21 @@ import { NavBar } from '@components/NavBar';
 import { Footer } from '@components/Footer';
 import { useLoading } from '@hooks/useLoading';
 import { Busy } from '@common/Busy';
+import NotFoundPage from '@pages/NotFound';
+import { ProductsNavBar } from '@components/ProductsNavBar';
 
 export function Wrapper() {
   const { loading } = useLoading();
   return (
     <AppStyled>
       <NavBar />
+      <ProductsNavBar />
       <Switch>
-        <Route exact path='/products' component={Products} />
+        <Route
+          exact
+          path='/products'
+          component={() => <Redirect to='/products/macarons' />}
+        />
         <Route path='/clients' component={CorporateClients} />
         <Route exact path='/' component={Main} />
         <Route path='/delivery' component={DeliveryAndPayment} />
@@ -31,6 +37,8 @@ export function Wrapper() {
         <Route path='/products/zephyr' component={Zephyr} />
         <Route path='/products/cakes' component={Cakes} />
         <Route path='/products/choux' component={Choux} />
+        <Route path='/404' component={NotFoundPage} />
+        <Route path='*' component={() => <Redirect to='/404' />} />
       </Switch>
       <Footer />
       <Busy loading={loading} />

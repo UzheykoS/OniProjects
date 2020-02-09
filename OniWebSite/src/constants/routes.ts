@@ -41,19 +41,19 @@ export const routes: routeType = {
     label: 'Продукция',
     nestedRoutes: {
       [ProductPages.Zephyr]: {
-        path: '/zephyr',
+        path: '/products/zephyr',
         label: 'Зефир',
       },
       [ProductPages.Choux]: {
-        path: '/choux',
+        path: '/products/choux',
         label: 'Шу',
       },
       [ProductPages.Macarons]: {
-        path: '/macarons',
+        path: '/products/macarons',
         label: 'Макарон',
       },
       [ProductPages.Cakes]: {
-        path: '/cakes',
+        path: '/products/cakes',
         label: 'Торты',
       },
     },

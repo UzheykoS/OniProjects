@@ -1,13 +1,14 @@
 import styled from 'styled-components';
 
-export const NavBarWrapper = styled.div`
-  display: flex;
-  flex-direction: column;
+export const ProductsNavBarWrapper = styled.div`
+  position: absolute;
+  left: 130px;
+  top: 250px;
+  z-index: 1;
 `;
 
-export const NavBarMain = styled.div`
+export const ProductsNavBarMain = styled.div`
   display: flex;
-  flex-direction: column;
   justify-content: center;
   width: 100%;
   -webkit-transition: all 0.2s ease-in-out;
@@ -20,6 +21,7 @@ export const RoutesList = styled.ul`
   margin: 0;
   padding: 0 0 0 0;
   display: flex;
+  flex-direction: column;
   justify-content: center;
 `;
 
@@ -28,33 +30,32 @@ interface IRoutesListItem {
 }
 
 export const RoutesListItem = styled.li<IRoutesListItem>`
-  &a {
+  margin: 10px 25px;
+  height: 100%;
+  align-items: center;
+  display: flex;
+  a {
     display: inline-block;
+    font-family: 'Roboto', sans-serif;
     font-weight: 400;
     font-size: 14px;
-    line-height: 30px;
+    line-height: 22px;
     color: #333333;
     text-decoration: none;
-    text-transform: uppercase;
-    &:focus {
-      font-weight: 900;
-    }
-    ${({ active }) =>
-      active &&
-      `
-        font-weight: 900;
-        `}
+    margin-left: 35px;
   }
-`;
-
-export const LogoLink = styled(RoutesListItem)`
-  margin: 0px !important;
-`;
-
-export const Logo = styled.img`
-  max-width: 100%;
-  height: auto;
-  display: inline-block;
-  margin: 26px 30px 0px 30px;
-  height: 120px;
+  &:hover {
+    a {
+      color: #edb92c;
+    }
+  }
+  ${({ active }) =>
+    active &&
+    `
+      border-left: 3px solid #edb92c;
+      a {
+          color: #edb92c;
+          margin-left: 32px;
+        }
+      `}
 `;

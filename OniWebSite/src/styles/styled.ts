@@ -19,4 +19,5 @@ export const AppStyled = styled.div`
   min-height: 100%;
   margin-bottom: -142px;
   font-family: 'Yeseva One', cursive;
+  position: relative;
 `;

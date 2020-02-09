@@ -4,6 +4,7 @@ export const NavBarWrapper = styled.div`
   display: flex;
   justify-content: center;
   width: 100%;
+  border-bottom: 1px solid #cccccc;
 `;
 
 export const RoutesList = styled.ul`

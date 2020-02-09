@@ -1,45 +1,43 @@
 import React from 'react';
-import { Link, useRouteMatch } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import { slide as Menu } from 'react-burger-menu';
 import { useMediaQuery } from 'react-responsive';
 import { Pages, ProductPages, routes } from '@constants/routes';
 import {
-  NavBarWrapper,
-  NavBarMain,
+  ProductsNavBarWrapper,
+  ProductsNavBarMain,
   RoutesList,
-  LogoLink,
-  Logo,
   RoutesListItem,
 } from './styled';
 
 export function ProductsNavBar() {
-  const match = useRouteMatch();
+  const location = useLocation();
+  if (!location.pathname.startsWith(routes[Pages.Products]!.path)) {
+    return null;
+  }
   let currentProductPage: ProductPages;
   const productRoutes = routes[Pages.Products]!.nestedRoutes!;
   Object.keys(productRoutes).forEach(key => {
     const value = productRoutes[key as ProductPages];
-    if (value && value.path === match.path) {
+    if (value && value.path === location.pathname) {
       currentProductPage = key as ProductPages;
     }
   });
 
   const productsNavBar = (
-    <NavBarWrapper>
-      <NavBarMain>
+    <ProductsNavBarWrapper>
+      <ProductsNavBarMain>
         <RoutesList>
-          <LogoLink>
-            <Link to={routes[Pages.Main]!.path}>
-              <Logo src='/images/icons/Oni_w_black.png' />
-            </Link>
-          </LogoLink>
           {Object.keys(productRoutes).map(key => {
             const page = key as ProductPages;
             const route = productRoutes[page];
             if (!route) {
               return null;
             }
+
             return (
               <RoutesListItem
+                key={route.path}
                 active={currentProductPage == page ? 'active' : ''}
               >
                 <Link to={route.path}>{route.label}</Link>
@@ -47,8 +45,8 @@ export function ProductsNavBar() {
             );
           })}
         </RoutesList>
-      </NavBarMain>
-    </NavBarWrapper>
+      </ProductsNavBarMain>
+    </ProductsNavBarWrapper>
   );
 
   const productsNavBarMobile = (
@@ -60,14 +58,14 @@ export function ProductsNavBar() {
         customBurgerIcon={<img src='/images/icons/menu-button.png' />}
         customCrossIcon={<img src='/images/icons/close.png' />}
       >
-        {Object.keys(productRoutes).map(key => {
+        {Object.keys(productRoutes).map((key, i) => {
           const page = key as ProductPages;
           const route = productRoutes[page];
           if (!route) {
             return null;
           }
           return (
-            <span className='menu-item'>
+            <span className='menu-item' key={i}>
               <Link
                 to={route.path}
                 className={currentProductPage == page ? 'active' : ''}
@@ -94,7 +92,5 @@ export function ProductsNavBar() {
 
   const isTabletOrMobile = useMediaQuery({ query: '(max-width: 1224px)' });
 
-  return (
-    <>{isTabletOrMobile ? { productsNavBarMobile } : { productsNavBar }}</>
-  );
+  return <>{isTabletOrMobile ? productsNavBarMobile : productsNavBar}</>;
 }

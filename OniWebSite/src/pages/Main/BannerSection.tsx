@@ -1,6 +1,7 @@
 import Slider from 'react-slick';
 import React from 'react';
 import { ImagesContainer, BackgroundImage } from './styled';
+import OvalIcon from '@icons/oval-2.svg';
 
 export function BannerSection() {
   const settings = {
@@ -20,6 +21,7 @@ export function BannerSection() {
 
   return (
     <ImagesContainer>
+      <OvalIcon />
       <Slider {...settings}>
         <BackgroundImage src='./images/images_large/main1.jpg' />
         <BackgroundImage src='./images/images_large/main2.jpg' />

@@ -46,32 +46,30 @@ export const Main = () => {
   }, []);
 
   return (
-    <>
-      <Container fluid>
-        <Row>
-          <Col>
-            <BannerSection />
-          </Col>
-        </Row>
+    <Container fluid>
+      <Row>
+        <Col>
+          <BannerSection />
+        </Col>
+      </Row>
 
-        <Row>
-          <Col md={{ span: 8, offset: 2 }}>
-            <TopSalesSection />
-          </Col>
-        </Row>
+      <Row>
+        <Col md={{ span: 8, offset: 2 }}>
+          <TopSalesSection />
+        </Col>
+      </Row>
 
-        <Row>
-          <Col md={{ span: 8, offset: 2 }}>
-            <AboutSection />
-          </Col>
-        </Row>
+      <Row>
+        <Col md={{ span: 8, offset: 2 }}>
+          <AboutSection />
+        </Col>
+      </Row>
 
-        <Row>
-          <Col md={{ span: 8, offset: 2 }}>
-            <InstagramSection />
-          </Col>
-        </Row>
-      </Container>
-    </>
+      <Row>
+        <Col md={{ span: 8, offset: 2 }}>
+          <InstagramSection />
+        </Col>
+      </Row>
+    </Container>
   );
 };
