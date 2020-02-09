@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { slide as Menu } from 'react-burger-menu';
 import { useMediaQuery } from 'react-responsive';
@@ -12,6 +12,23 @@ import {
 
 export function ProductsNavBar() {
   const location = useLocation();
+  const [isSticky, setIsSticky] = useState(false);
+
+  const handleScroll = () => {
+    if (window.scrollY > 200) {
+      setIsSticky(true);
+    } else if (window.scrollY < 200) {
+      setIsSticky(false);
+    }
+  };
+
+  useEffect(() => {
+    window.addEventListener('scroll', handleScroll);
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, []);
+
   if (!location.pathname.startsWith(routes[Pages.Products]!.path)) {
     return null;
   }
@@ -25,7 +42,7 @@ export function ProductsNavBar() {
   });
 
   const productsNavBar = (
-    <ProductsNavBarWrapper>
+    <ProductsNavBarWrapper isSticky={isSticky}>
       <ProductsNavBarMain>
         <RoutesList>
           {Object.keys(productRoutes).map(key => {

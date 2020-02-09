@@ -1,10 +1,21 @@
 import styled from 'styled-components';
 
-export const ProductsNavBarWrapper = styled.div`
+interface IProductsNavBarWrapper {
+  isSticky?: boolean;
+}
+
+export const ProductsNavBarWrapper = styled.div<IProductsNavBarWrapper>`
   position: absolute;
   left: 130px;
   top: 250px;
   z-index: 1;
+
+  ${({ isSticky }) =>
+    isSticky &&
+    `
+    top: 50px;
+    position: fixed;
+      `}
 `;
 
 export const ProductsNavBarMain = styled.div`
