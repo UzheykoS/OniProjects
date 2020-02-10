@@ -357,7 +357,8 @@ export const ProcessPartnersOrderSubmit = (
   macaronsPrice?: number,
   zephyrPrice?: number,
   payment?: Payment,
-  isPaid?: boolean
+  isPaid?: boolean,
+  date?: moment.Moment
 ) => {
   return async dispatch => {
     dispatch(itemsIsLoading(true));
@@ -368,7 +369,9 @@ export const ProcessPartnersOrderSubmit = (
           partner,
           macQty,
           zepQty,
-          moment(new Date()).format(DATE_FORMAT),
+          date
+            ? date.format(DATE_FORMAT)
+            : moment(new Date()).format(DATE_FORMAT),
           buyer,
           macaronsPrice,
           zephyrPrice,
@@ -461,7 +464,7 @@ export const ProcessProductSubmit = (
   zephyr: number,
   iceCream: number,
   cakes: number,
-  cheesecake: number, 
+  cheesecake: number,
   notes: string,
   date?: moment.Moment
 ) => {
