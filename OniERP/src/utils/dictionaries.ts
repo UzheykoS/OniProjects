@@ -93,6 +93,9 @@ CaffeePrices[PartnersEnum.Progress] = 22;
 CaffeePrices[PartnersEnum.KlassnaKava] = 22;
 CaffeePrices[PartnersEnum.StudioCoffee] = 22;
 CaffeePrices[PartnersEnum.Chicago44] = 22;
+CaffeePrices[PartnersEnum.RedBerry] = 22;
+CaffeePrices[PartnersEnum.Crucobar] = 22;
+CaffeePrices[PartnersEnum.ProCoffeee] = 22;
 
 export const CakesPricesDict: { [id: string]: Array<number> } = {};
 CakesPricesDict[CakesEnum.CarrotCake] = [650, 980];

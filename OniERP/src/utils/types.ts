@@ -195,6 +195,9 @@ export enum PartnersEnum {
   KlassnaKava = 'Класна кава',
   StudioCoffee = 'Студия кофе',
   Chicago44 = 'Чикаго 44',
+  RedBerry = 'Red Berry',
+  Crucobar = 'Crucobar',
+  ProCoffeee = 'Pro Coffee',
   Other = 'Другое',
 }
 
