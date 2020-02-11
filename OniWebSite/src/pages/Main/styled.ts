@@ -36,16 +36,19 @@ export const TextSection = styled.div`
 
 export const ImagesContainer = styled.div`
   margin-bottom: 25px;
-
   width: 100%;
-  height: 802px;
+  height: 500px;
   object-fit: cover;
-  clip-path: url(#svgPath);
 `;
 
 export const BackgroundImage = styled.img`
   height: auto;
   width: 100%;
+  clip-path: url('#banner-wrapper_svg__banner-shape');
+  top: 0;
+  left: 0;
+  position: absolute;
+  z-index: 0;
 `;
 
 export const InstagramContainer = styled.div`

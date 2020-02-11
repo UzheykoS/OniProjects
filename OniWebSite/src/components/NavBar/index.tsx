@@ -17,7 +17,7 @@ import BinIcon from '@icons/bin.svg';
 
 export function NavBar() {
   const location = useLocation();
-  let currentPage: Pages;
+  let currentPage = Pages.Main;
 
   Object.keys(routes).forEach(key => {
     const value = routes[key as Pages];
@@ -31,7 +31,10 @@ export function NavBar() {
       <RoutesList>
         <LogoLink>
           <Link to={routes[Pages.Main]!.path}>
-            <Logo src='/images/icons/Oni_w_black.png' />
+            <Logo
+              src='/images/icons/Oni_w_black.png'
+              whiteMode={currentPage === Pages.Main}
+            />
           </Link>
         </LogoLink>
         <RoutesWrapper>
@@ -44,6 +47,7 @@ export function NavBar() {
 
             return (
               <RoutesListItem
+                whiteMode={currentPage === Pages.Main}
                 key={page}
                 active={currentPage == page ? 'active' : ''}
               >

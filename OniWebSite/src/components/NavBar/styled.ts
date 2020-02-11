@@ -15,10 +15,12 @@ export const RoutesList = styled.ul`
   height: 101px;
   justify-content: space-between;
   width: 100%;
+  z-index: 100;
 `;
 
 interface IRoutesListItem {
   active?: boolean;
+  whiteMode?: boolean;
 }
 
 export const RoutesListItem = styled.li<IRoutesListItem>`
@@ -48,14 +50,30 @@ export const RoutesListItem = styled.li<IRoutesListItem>`
           font-weight: 500;
         }
       `}
+  ${({ whiteMode }) =>
+    whiteMode &&
+    `
+      a {
+          color: #ffffff;
+        }
+      `}
 `;
 
 export const LogoLink = styled(RoutesListItem)`
   margin: 0px 150px;
 `;
 
-export const Logo = styled.img`
+interface ILogo {
+  whiteMode?: boolean;
+}
+
+export const Logo = styled.img<ILogo>`
   height: 67px;
+  ${({ whiteMode }) =>
+    whiteMode &&
+    `
+      filter: invert();
+    `}
 `;
 
 export const MenuItem = styled.span``;

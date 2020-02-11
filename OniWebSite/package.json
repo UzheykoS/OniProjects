@@ -6,10 +6,6 @@
   "scripts": {
     "start": "node scripts/start.js",
     "server": "http-server -p 9040 dist",
-    "watch": "webpack --watch --env.NODE_ENV=development",
-    "webpack-dev": "webpack -d --env.NODE_ENV=development",
-    "webpack-watch": "webpack -d --progress --colors --watch --env.NODE_ENV=development",
-    "webpack-rel": "webpack -p --env.NODE_ENV=production",
     "profile": "webpack --profile --json > stats.json",
     "deploy": "npm install && npm run prebuild",
     "prebuild": "webpack --mode production --config webpack.prod.js --progress --env.NODE_ENV=production"
