@@ -143,7 +143,7 @@ export enum EasterCakeEnum {
   Large = 'L 750 гр',
 }
 export enum SmallCakeEnum {
-  Tykva = 'Тыквочка',
+  Valentin = 'Валентинка',
 }
 
 export enum DrinksType {
@@ -178,6 +178,9 @@ export enum DrinksType {
   VeganMilk = 'Молоко растительное',
   Milk = 'Молоко',
   Cream = 'Сливки',
+  Cup240 = 'Чашка 240мл',
+  Cup355 = 'Чашка 355мл',
+  Cup470 = 'Чашка 470мл',
 }
 
 export enum PartnersEnum {

@@ -825,6 +825,9 @@ export const CountDailyDrinks = () => {
               DrinksType.VeganMilk,
               DrinksType.Milk,
               DrinksType.Cream,
+              DrinksType.Cup240,
+              DrinksType.Cup355,
+              DrinksType.Cup470,
             ].indexOf(v[0]) < 0 &&
             Helper.isToday(v[4]) &&
             v[7] === state.currentProfile

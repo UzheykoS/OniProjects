@@ -39,6 +39,9 @@ DrinksDict[DrinksType.FilterCoffee] = ['200 мл'];
 DrinksDict[DrinksType.VeganMilk] = ['S', 'M'];
 DrinksDict[DrinksType.Milk] = ['N'];
 DrinksDict[DrinksType.Cream] = ['N'];
+DrinksDict[DrinksType.Cup240] = ['240 мл'];
+DrinksDict[DrinksType.Cup355] = ['355 мл'];
+DrinksDict[DrinksType.Cup470] = ['470 мл'];
 
 export const DessertsDict: { [id: string]: Array<any> } = {};
 DessertsDict[DessertType.Macaron] = [1, 6, 12, 24];
@@ -77,6 +80,9 @@ DrinkPricesDict[DrinksType.FilterCoffee] = [30];
 DrinkPricesDict[DrinksType.VeganMilk] = [20, 30];
 DrinkPricesDict[DrinksType.Milk] = [5];
 DrinkPricesDict[DrinksType.Cream] = [10];
+DrinkPricesDict[DrinksType.Cup240] = [450];
+DrinkPricesDict[DrinksType.Cup355] = [550];
+DrinkPricesDict[DrinksType.Cup470] = [650];
 
 export const CaffeePrices: { [id: string]: number } = {};
 CaffeePrices[PartnersEnum.CoffeeIs] = 18;
@@ -120,7 +126,7 @@ export const ICE_CREAM_PRICE = 44;
 
 export const SORBET_PRICE = 44;
 
-export const SMALL_CAKE_PRICE = 90;
+export const SMALL_CAKE_PRICE = 85;
 
 export const MacaronsColors: { [id: string]: string } = {};
 MacaronsColors[MacaronsEnum.DorBluePear] = '#b7e4f7';

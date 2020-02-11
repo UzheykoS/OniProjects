@@ -273,6 +273,13 @@ class Helper {
   }
 
   static getDrinkPrice(drinkType: DrinksType, drinkSize: string) {
+    if (
+      drinkType === DrinksType.Cup240 ||
+      drinkType === DrinksType.Cup355 ||
+      drinkType === DrinksType.Cup470
+    ) {
+      return 0;
+    }
     const prices = DrinkPricesDict[drinkType];
     if (prices.length === 1) {
       return prices[0];
