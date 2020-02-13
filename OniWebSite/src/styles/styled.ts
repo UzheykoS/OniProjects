@@ -19,3 +19,27 @@ export const AppStyled = styled.div`
   font-family: 'Yeseva One', cursive;
   position: relative;
 `;
+
+export const FlexRow = styled.div`
+  display: flex;
+  justify-content: left;
+`;
+
+interface IColumn {
+  bordered: boolean;
+}
+export const FlexColumn = styled.div<IColumn>`
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
+  padding: 0;
+  margin-top: -1px;
+  ${({ bordered }) =>
+    bordered &&
+    `
+    border: 1px solid #cccccc;
+    border-right: 0px;
+    &:last-child {
+      border-right: 1px solid #cccccc;
+    }`}
+`;

@@ -23,9 +23,14 @@ export const Button = styled(
     containedPrimary: 'containedPrimary',
   },
 })<IButtonProps>`
+  border-radius: 0px;
+  ${({ rounded }) =>
+    rounded &&
+    `
+      border-radius: 50px;
+    `}
   &.containedPrimary {
     outline: none;
-    border-radius: 50px;
     &:hover {
       background-color: ${colors.primary.white};
       color: ${colors.primary.black};

@@ -46,6 +46,12 @@ export default createMuiTheme({
       fontFamily: 'Roboto',
       fontWeight: 400,
       fontSize: 11,
+      opacity: 0.6,
+    },
+    caption: {
+      fontFamily: 'Yeseva One',
+      fontWeight: 400,
+      fontSize: 16,
     },
   },
   breakpoints: {
