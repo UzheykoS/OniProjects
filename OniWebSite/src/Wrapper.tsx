@@ -15,33 +15,36 @@ import { useLoading } from '@hooks/useLoading';
 import { Busy } from '@common/Busy';
 import NotFoundPage from '@pages/NotFound';
 import { ProductsNavBar } from '@components/ProductsNavBar';
+import { BrowserRouter as Router } from 'react-router-dom';
 
 export function Wrapper() {
   const { loading } = useLoading();
   return (
     <AppStyled>
-      <NavBar />
-      <ProductsNavBar />
-      <Switch>
-        <Route
-          exact
-          path='/products'
-          component={() => <Redirect to='/products/macarons' />}
-        />
-        <Route path='/clients' component={CorporateClients} />
-        <Route exact path='/' component={Main} />
-        <Route path='/delivery' component={DeliveryAndPayment} />
-        <Route path='/about' component={About} />
+      <Router>
+        <NavBar />
+        <ProductsNavBar />
+        <Switch>
+          <Route
+            exact
+            path='/products'
+            component={() => <Redirect to='/products/macarons' />}
+          />
+          <Route path='/clients' component={CorporateClients} />
+          <Route exact path='/' component={Main} />
+          <Route path='/delivery' component={DeliveryAndPayment} />
+          <Route path='/about' component={About} />
 
-        <Route path='/products/macarons' component={Macarons} />
-        <Route path='/products/zephyr' component={Zephyr} />
-        <Route path='/products/cakes' component={Cakes} />
-        <Route path='/products/choux' component={Choux} />
-        <Route path='/404' component={NotFoundPage} />
-        <Route path='*' component={() => <Redirect to='/404' />} />
-      </Switch>
-      <Footer />
-      <Busy loading={loading} />
+          <Route path='/products/macarons' component={Macarons} />
+          <Route path='/products/zephyr' component={Zephyr} />
+          <Route path='/products/cakes' component={Cakes} />
+          <Route path='/products/choux' component={Choux} />
+          <Route path='/404' component={NotFoundPage} />
+          <Route path='*' component={() => <Redirect to='/404' />} />
+        </Switch>
+        <Footer />
+        <Busy loading={loading} />
+      </Router>
     </AppStyled>
   );
 }

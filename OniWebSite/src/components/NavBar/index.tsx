@@ -1,7 +1,6 @@
 import React from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { slide as Menu } from 'react-burger-menu';
-import { useMediaQuery } from 'react-responsive';
 import { Pages, routes } from '@constants/routes';
 import {
   NavBarWrapper,
@@ -14,6 +13,7 @@ import {
   RightSide,
 } from './styled';
 import BinIcon from '@icons/bin.svg';
+import { useMobile } from '@hooks/useMobile';
 
 export function NavBar() {
   const location = useLocation();
@@ -104,7 +104,7 @@ export function NavBar() {
     </NavBarWrapper>
   );
 
-  const isTabletOrMobile = useMediaQuery({ query: '(max-width: 1224px)' });
+  const { isMobile } = useMobile();
 
-  return <>{isTabletOrMobile ? navBarMobile : navBar}</>;
+  return <>{isMobile ? navBarMobile : navBar}</>;
 }

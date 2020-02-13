@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useMediaQuery } from 'react-responsive';
+import { useMobile } from '@hooks/useMobile';
 
 interface IChouxSingleProps {
   name: string;
@@ -30,12 +30,12 @@ export function ChouxSingle({
     setMouseOver(false);
   };
 
-  const isTabletOrMobile = useMediaQuery({ query: '(max-width: 1224px)' });
+  const { isMobile } = useMobile();
 
   if (imageOnTheLeft) {
     return (
       <div>
-        {isTabletOrMobile ? (
+        {isMobile ? (
           <div className='row'>
             <div className='col-md-4'>
               <div className='choux-image-container'>
@@ -82,7 +82,7 @@ export function ChouxSingle({
   } else {
     return (
       <div>
-        {isTabletOrMobile ? (
+        {isMobile ? (
           <div className='row'>
             <div className='col-md-4'>
               <div className='choux-image-container'>

@@ -1,5 +1,5 @@
 import React from 'react';
-import { useMediaQuery } from 'react-responsive';
+import { useMobile } from '@hooks/useMobile';
 
 interface IZephyrSingleProps {
   name: string;
@@ -14,12 +14,12 @@ export function ZephyrSingle({
   imageOnTheLeft,
   imageUrl,
 }: IZephyrSingleProps) {
-  const isTabletOrMobile = useMediaQuery({ query: '(max-width: 1224px)' });
+  const { isMobile } = useMobile();
 
   if (imageOnTheLeft) {
     return (
       <div>
-        {isTabletOrMobile ? (
+        {isMobile ? (
           <div className='row'>
             <div className='col-md-6'>
               <div className='zephyr-image-container'>
@@ -58,7 +58,7 @@ export function ZephyrSingle({
   } else {
     return (
       <div>
-        {isTabletOrMobile ? (
+        {isMobile ? (
           <div className='row'>
             <div className='col-md-6'>
               <div className='zephyr-image-container'>

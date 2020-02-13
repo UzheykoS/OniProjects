@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { slide as Menu } from 'react-burger-menu';
-import { useMediaQuery } from 'react-responsive';
 import { Pages, ProductPages, routes } from '@constants/routes';
 import {
   ProductsNavBarWrapper,
@@ -9,6 +8,7 @@ import {
   RoutesList,
   RoutesListItem,
 } from './styled';
+import { useMobile } from '@hooks/useMobile';
 
 export function ProductsNavBar() {
   const location = useLocation();
@@ -107,7 +107,7 @@ export function ProductsNavBar() {
     </div>
   );
 
-  const isTabletOrMobile = useMediaQuery({ query: '(max-width: 1224px)' });
+  const { isMobile } = useMobile();
 
-  return <>{isTabletOrMobile ? productsNavBarMobile : productsNavBar}</>;
+  return <>{isMobile ? productsNavBarMobile : productsNavBar}</>;
 }

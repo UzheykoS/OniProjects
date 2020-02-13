@@ -14,10 +14,8 @@ export const HeaderBody = styled.div`
 
 export const AppStyled = styled.div`
   height: 100%;
-  // min-width: 1000px;
   overflow-x: auto;
   min-height: 100%;
-  margin-bottom: -142px;
   font-family: 'Yeseva One', cursive;
   position: relative;
 `;
