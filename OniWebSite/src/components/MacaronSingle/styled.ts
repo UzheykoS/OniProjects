@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import colors from '@constants/colors';
 
 export const MacaronSingleWrapper = styled.div`
   display: flex;
@@ -8,6 +9,33 @@ export const MacaronSingleWrapper = styled.div`
   /* width: 100%; */
   flex-direction: column;
   align-items: center;
+  cursor: pointer;
+  position: relative;
+`;
+
+interface IAddIconWrapper {
+  visible: boolean;
+}
+
+export const AddIconWrapper = styled.div<IAddIconWrapper>`
+  top: 50%;
+  left: 50%;
+  width: 90px;
+  height: 90px;
+  border-radius: 50%;
+  opacity: 0.5;
+  background: ${colors.secondary.dark};
+  border: 2px solid ${colors.primary.white};
+  position: absolute;
+  margin: -40px 0 0 -45px;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  ${({ visible }) =>
+    visible &&
+    `
+      display: flex;
+    `};
 `;
 
 export const ImageWrapper = styled.img`

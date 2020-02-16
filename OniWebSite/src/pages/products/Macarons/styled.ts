@@ -1,6 +1,4 @@
 import styled from 'styled-components';
-import { ExpansionPanelSummary } from '@material-ui/core';
-import colors from '@constants/colors';
 
 export const MacaronsWrapper = styled.div`
   height: 100%;
@@ -48,39 +46,5 @@ export const MacaronsMixSection = styled.div`
     .half {
       width: 50%;
     }
-  }
-`;
-
-export const MacaronsConstructorWrapper = styled.div`
-  display: flex;
-  flex-direction: column;
-  margin: 45px 0 30px 0px;
-  position: absolute;
-`;
-
-export const ExpansionPanelSummaryStyled = styled(ExpansionPanelSummary).attrs({
-  classes: {
-    expanded: 'expanded',
-  },
-})`
-  color: ${colors.primary.white};
-  background-color: ${colors.secondary.pink};
-
-  &.expanded {
-    background-color: ${colors.primary.white};
-    color: ${colors.primary.black};
-    border: 1px solid ${colors.primary.grey};
-    min-height: 0;
-    svg {
-      color: ${colors.secondary.pink};
-    }
-  }
-  .MuiExpansionPanelSummary-root.Mui-expanded {
-  }
-  .MuiExpansionPanelSummary-content.Mui-expanded {
-    margin: 12px 0;
-  }
-  svg {
-    color: ${colors.primary.white};
   }
 `;

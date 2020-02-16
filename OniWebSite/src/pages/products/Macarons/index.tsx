@@ -1,12 +1,30 @@
-import React from 'react';
+import React, { useReducer, useState } from 'react';
 import { MacaronSingle } from '../../../components/MacaronSingle';
 import { MacaronsWrapper, MacaronsInfo } from './styled';
 import { Typography } from '@material-ui/core';
 import { FlexRow, FlexColumn } from '@styles/styled';
 import { MacaronsMix } from './MacaronsMix';
-import { MacaronsConstructor } from './MacaronsConstructor';
+import { MacaronsConstructorContainer } from './MacaronsConstructor';
+import {
+  constructorReducer,
+  initialContstructorState,
+  IItem,
+} from './MacaronsConstructor/MacaronsConstructor';
 
 export function Macarons() {
+  const [state, dispatch] = useReducer(
+    constructorReducer,
+    initialContstructorState
+  );
+  const [expanded, setExpanded] = useState<boolean>(false);
+
+  const handleMacaronClick = (item: IItem) => {
+    if (!expanded) {
+      setExpanded(true);
+    }
+    dispatch({ type: 'add', item });
+  };
+
   return (
     <MacaronsWrapper>
       <FlexRow>
@@ -75,7 +93,12 @@ export function Macarons() {
         <FlexColumn
           style={{ width: '310px', marginRight: '120px', position: 'relative' }}
         >
-          <MacaronsConstructor />
+          <MacaronsConstructorContainer
+            state={state}
+            dispatch={dispatch}
+            expanded={expanded}
+            setExpanded={setExpanded}
+          />
         </FlexColumn>
       </FlexRow>
 
@@ -86,6 +109,7 @@ export function Macarons() {
             description='Двойная начинка на основе натурального пюре малины с ярким малиновым центром'
             hoverImageUrl='./images/images_large/macarons/macaron1_hover.jpg'
             imageUrl='./images/images_large/macarons/macaron1.jpg'
+            onClick={handleMacaronClick}
           />
         </FlexColumn>
         <FlexColumn bordered>
@@ -94,6 +118,7 @@ export function Macarons() {
             description='Двойная начинка на основе натурального пюре манго и маракуйи с ярким центром манго-маракуйя'
             imageUrl='./images/images_large/macarons/macaron2.jpg'
             hoverImageUrl='./images/images_large/macarons/macaron2_hover.jpg'
+            onClick={handleMacaronClick}
           />
         </FlexColumn>
       </FlexRow>
@@ -104,6 +129,7 @@ export function Macarons() {
             description='Начинка на основе натуральной  100% фисташковой пасты без сахара'
             imageUrl='./images/images_large/macarons/macaron3.jpg'
             hoverImageUrl='./images/images_large/macarons/macaron3_hover.jpg'
+            onClick={handleMacaronClick}
           />
         </FlexColumn>
         <FlexColumn bordered>
@@ -112,6 +138,7 @@ export function Macarons() {
             description='Двойная начинка на основе сыра Дор Блю с центром из натурального грушевого пюре'
             imageUrl='./images/images_large/macarons/macaron4.jpg'
             hoverImageUrl='./images/images_large/macarons/macaron4_hover.jpg'
+            onClick={handleMacaronClick}
           />
         </FlexColumn>
       </FlexRow>
@@ -122,6 +149,7 @@ export function Macarons() {
             description='Двойная начинка на основе натурального кофе с центром из мягкой соленой карамели'
             imageUrl='./images/images_large/macarons/macaron5.jpg'
             hoverImageUrl='./images/images_large/macarons/macaron5_hover.jpg'
+            onClick={handleMacaronClick}
           />
         </FlexColumn>
         <FlexColumn bordered>
@@ -130,6 +158,7 @@ export function Macarons() {
             description='Двойная начинка на основе сыра Пармезан с центром из натурального пюре инжира'
             imageUrl='./images/images_large/macarons/macaron6.jpg'
             hoverImageUrl='./images/images_large/macarons/macaron6_hover.jpg'
+            onClick={handleMacaronClick}
           />
         </FlexColumn>
       </FlexRow>
@@ -140,6 +169,7 @@ export function Macarons() {
             description='Двойная начинка на основе натурального пюре смородины с ярким смородиновым центром'
             imageUrl='./images/images_large/macarons/macaron7.jpg'
             hoverImageUrl='./images/images_large/macarons/macaron7_hover.jpg'
+            onClick={handleMacaronClick}
           />
         </FlexColumn>
         <FlexColumn bordered>
@@ -148,6 +178,7 @@ export function Macarons() {
             description='Начинка на основе натурального бельгийского черного шоколада 60%'
             imageUrl='./images/images_large/macarons/macaron8.jpg'
             hoverImageUrl='./images/images_large/macarons/macaron8_hover.jpg'
+            onClick={handleMacaronClick}
           />
         </FlexColumn>
       </FlexRow>
@@ -158,6 +189,7 @@ export function Macarons() {
             description='Двойная начинка на основе молочных сливок, настоянных на цветках лаванды, с центром из натурального пюре черники'
             imageUrl='./images/images_large/macarons/macaron9.jpg'
             hoverImageUrl='./images/images_large/macarons/macaron9_hover.jpg'
+            onClick={handleMacaronClick}
           />
         </FlexColumn>
       </FlexRow>
