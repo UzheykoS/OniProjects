@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import {
-  MacaronSingleWrapper,
+  ChouxSingleWrapper,
   ImageWrapper,
   Title,
   Description,
@@ -10,7 +10,7 @@ import AddIcon from '@material-ui/icons/Add';
 import colors from '@constants/colors';
 import { IItem } from '@components/Constructor/Constructor';
 
-interface IMacaronSingleProps {
+interface IChouxSingleProps {
   name: string;
   description: string;
   imageUrl: string;
@@ -18,13 +18,13 @@ interface IMacaronSingleProps {
   onClick: (item: IItem) => void;
 }
 
-export function MacaronSingle({
+export function ChouxSingle({
   name,
   description,
   imageUrl,
   hoverImageUrl,
   onClick,
-}: IMacaronSingleProps) {
+}: IChouxSingleProps) {
   const [mouseOver, setMouseOver] = useState(false);
 
   const onMouseOver = () => {
@@ -36,7 +36,7 @@ export function MacaronSingle({
   };
 
   return (
-    <MacaronSingleWrapper
+    <ChouxSingleWrapper
       onMouseOver={onMouseOver}
       onMouseOut={onMouseOut}
       onClick={() =>
@@ -52,6 +52,6 @@ export function MacaronSingle({
       <ImageWrapper src={mouseOver ? hoverImageUrl : imageUrl} />
       <Title>{name}</Title>
       <Description>{description}</Description>
-    </MacaronSingleWrapper>
+    </ChouxSingleWrapper>
   );
 }

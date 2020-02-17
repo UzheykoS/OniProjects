@@ -5,17 +5,20 @@ import {
   SurpriseMe,
   CenteredRow,
   ConstructorGridWrapper,
-  ConstructorGridItem,
-  ImageWrapper,
 } from './styled';
 import { Chip, IconButton } from '@material-ui/core';
 import DeleteOutlinedIcon from '@material-ui/icons/DeleteOutlined';
 import { Button } from '@common/Button';
+import { ConstructorGridItem } from './ConstructorGridItem';
 
-enum MacaronsContstructoreMode {
-  Small = 6,
-  Medium = 12,
-  Large = 24,
+export enum ConstructoreMode {
+  MacaronSmall = 6,
+  MacaronMedium = 12,
+  MacaronLarge = 24,
+  ChouxSmall = 2,
+  ChouxMedium = 4,
+  ZephyrSmall = 8,
+  ZephyrMedium = 16,
 }
 
 export interface IItem {
@@ -24,19 +27,34 @@ export interface IItem {
 }
 
 interface IConstructorState {
-  mode: MacaronsContstructoreMode;
+  availableModes: ConstructoreMode[];
+  mode: ConstructoreMode;
   items: IItem[];
 }
 
 type ActionType = {
   type: 'setMode' | 'add' | 'remove' | 'clear' | 'surpriseMe';
-  mode?: MacaronsContstructoreMode;
+  mode?: ConstructoreMode;
   item?: IItem;
+  index?: number;
 };
 
-export const initialContstructorState: IConstructorState = {
-  mode: MacaronsContstructoreMode.Small,
-  items: [],
+export class ConstructorError extends Error {
+  constructor(m: string) {
+    super(m);
+    Object.setPrototypeOf(this, ConstructorError.prototype);
+  }
+}
+
+export const initialContstructorState = (
+  availableModes: ConstructoreMode[],
+  mode: ConstructoreMode
+): IConstructorState => {
+  return {
+    availableModes,
+    mode,
+    items: [],
+  };
 };
 
 export function constructorReducer(
@@ -48,43 +66,42 @@ export function constructorReducer(
       if (action.mode) {
         return { ...state, mode: action.mode };
       }
-      throw Error();
+      throw new ConstructorError('Attempt to set mode to ' + action.mode);
     case 'add':
+      if (action.item && state.items.length === state.mode) {
+        throw new ConstructorError('List is already full');
+      }
       if (action.item) {
         const { items } = state;
         items.push(action.item);
         return { ...state, items };
       }
-      throw Error();
+      throw new ConstructorError('Attempt to add item: ' + action.item);
     case 'remove':
-      if (action.item) {
+      if (action.index !== undefined && action.index > -1) {
         const { items } = state;
-        const index = items.findIndex(i => i.name === action.item?.name);
-        if (index) {
-          items.splice(index);
-        }
+        items.splice(action.index, 1);
         return { ...state, items };
       }
-      throw Error();
+      throw new ConstructorError(
+        'Attempt to remove element with index: ' + action.index
+      );
     case 'clear':
       return { ...state, items: [] };
     case 'surpriseMe':
       return state;
     default:
-      throw Error();
+      throw new ConstructorError('Unknown action');
   }
 }
 
-export interface IMacaronsConstructorProps {
+export interface IConstructorProps {
   dispatch: React.Dispatch<ActionType>;
   state: IConstructorState;
 }
 
-export function MacaronsConstructor({
-  state,
-  dispatch,
-}: IMacaronsConstructorProps) {
-  const handleModeSelect = (m: MacaronsContstructoreMode) => {
+export function Constructor({ state, dispatch }: IConstructorProps) {
+  const handleModeSelect = (m: ConstructoreMode) => {
     dispatch({ type: 'setMode', mode: m });
   };
 
@@ -96,6 +113,10 @@ export function MacaronsConstructor({
     dispatch({ type: 'surpriseMe' });
   };
 
+  const handleRemoveClick = (index: number) => {
+    dispatch({ type: 'remove', index });
+  };
+
   const constructorGridContent = () => {
     let result: JSX.Element[] = [];
     for (let i = 0; i < state.mode; i++) {
@@ -103,12 +124,11 @@ export function MacaronsConstructor({
       result.push(
         <ConstructorGridItem
           key={i}
-          size={
-            state.mode === MacaronsContstructoreMode.Large ? 'small' : 'large'
-          }
-        >
-          {item && <ImageWrapper src={item.imageUrl} />}
-        </ConstructorGridItem>
+          mode={state.mode}
+          item={item}
+          index={i}
+          onClick={handleRemoveClick}
+        />
       );
     }
     return result;
@@ -118,42 +138,17 @@ export function MacaronsConstructor({
     <ConstructorWrapper>
       <ModeSelectWrapper>
         <div>
-          <Chip
-            clickable
-            color='secondary'
-            label={MacaronsContstructoreMode.Small}
-            style={{ width: '50px', margin: '0px 5px' }}
-            variant={
-              state.mode === MacaronsContstructoreMode.Small
-                ? 'outlined'
-                : 'default'
-            }
-            onClick={() => handleModeSelect(MacaronsContstructoreMode.Small)}
-          />
-          <Chip
-            clickable
-            color='secondary'
-            label={MacaronsContstructoreMode.Medium}
-            style={{ width: '50px', margin: '0px 5px' }}
-            variant={
-              state.mode === MacaronsContstructoreMode.Medium
-                ? 'outlined'
-                : 'default'
-            }
-            onClick={() => handleModeSelect(MacaronsContstructoreMode.Medium)}
-          />
-          <Chip
-            clickable
-            color='secondary'
-            label={MacaronsContstructoreMode.Large}
-            style={{ width: '50px', margin: '0px 5px' }}
-            variant={
-              state.mode === MacaronsContstructoreMode.Large
-                ? 'outlined'
-                : 'default'
-            }
-            onClick={() => handleModeSelect(MacaronsContstructoreMode.Large)}
-          />
+          {state.availableModes.map(mode => (
+            <Chip
+              key={mode}
+              clickable
+              color='secondary'
+              label={mode}
+              style={{ width: '50px', margin: '0px 5px' }}
+              variant={state.mode === mode ? 'outlined' : 'default'}
+              onClick={() => handleModeSelect(mode)}
+            />
+          ))}
         </div>
         <IconButton onClick={handleClear}>
           <DeleteOutlinedIcon />

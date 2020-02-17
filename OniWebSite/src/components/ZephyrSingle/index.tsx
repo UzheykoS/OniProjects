@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import {
-  MacaronSingleWrapper,
+  ZephyrSingleWrapper,
   ImageWrapper,
   Title,
   Description,
@@ -10,7 +10,7 @@ import AddIcon from '@material-ui/icons/Add';
 import colors from '@constants/colors';
 import { IItem } from '@components/Constructor/Constructor';
 
-interface IMacaronSingleProps {
+interface IZephyrSingleProps {
   name: string;
   description: string;
   imageUrl: string;
@@ -18,13 +18,13 @@ interface IMacaronSingleProps {
   onClick: (item: IItem) => void;
 }
 
-export function MacaronSingle({
+export function ZephyrSingle({
   name,
   description,
   imageUrl,
   hoverImageUrl,
   onClick,
-}: IMacaronSingleProps) {
+}: IZephyrSingleProps) {
   const [mouseOver, setMouseOver] = useState(false);
 
   const onMouseOver = () => {
@@ -36,7 +36,7 @@ export function MacaronSingle({
   };
 
   return (
-    <MacaronSingleWrapper
+    <ZephyrSingleWrapper
       onMouseOver={onMouseOver}
       onMouseOut={onMouseOut}
       onClick={() =>
@@ -52,6 +52,6 @@ export function MacaronSingle({
       <ImageWrapper src={mouseOver ? hoverImageUrl : imageUrl} />
       <Title>{name}</Title>
       <Description>{description}</Description>
-    </MacaronSingleWrapper>
+    </ZephyrSingleWrapper>
   );
 }

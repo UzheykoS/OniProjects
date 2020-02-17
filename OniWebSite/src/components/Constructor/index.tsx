@@ -6,24 +6,20 @@ import {
   ExpansionPanelDetailsStyled,
 } from './styled';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
-import {
-  MacaronsConstructor,
-  IMacaronsConstructorProps,
-} from './MacaronsConstructor';
+import { Constructor, IConstructorProps } from './Constructor';
 
 const STICKY_LIMIT = 650;
 
-export interface IMacaronsConstructorContainerProps
-  extends IMacaronsConstructorProps {
+export interface IConstructorContainerProps extends IConstructorProps {
   expanded: boolean;
   setExpanded: any;
 }
 
-export function MacaronsConstructorContainer({
+export function ConstructorContainer({
   expanded,
   setExpanded,
   ...rest
-}: IMacaronsConstructorContainerProps) {
+}: IConstructorContainerProps) {
   const [isSticky, setIsSticky] = useState(false);
 
   const handleScroll = () => {
@@ -53,7 +49,7 @@ export function MacaronsConstructorContainer({
         </Typography>
       </ExpansionPanelSummaryStyled>
       <ExpansionPanelDetailsStyled>
-        <MacaronsConstructor {...rest} />
+        <Constructor {...rest} />
       </ExpansionPanelDetailsStyled>
     </ExpansionPanelStyled>
   );

@@ -3,18 +3,27 @@ import { MacaronSingle } from '../../../components/MacaronSingle';
 import { MacaronsWrapper, MacaronsInfo } from './styled';
 import { Typography } from '@material-ui/core';
 import { FlexRow, FlexColumn } from '@styles/styled';
-import { MacaronsMix } from './MacaronsMix';
-import { MacaronsConstructorContainer } from './MacaronsConstructor';
 import {
   constructorReducer,
   initialContstructorState,
   IItem,
-} from './MacaronsConstructor/MacaronsConstructor';
+  ConstructoreMode,
+  ConstructorError,
+} from '@components/Constructor/Constructor';
+import { ConstructorContainer } from '@components/Constructor';
+import { DessertsMix } from '@components/DessertsMix';
 
 export function Macarons() {
   const [state, dispatch] = useReducer(
     constructorReducer,
-    initialContstructorState
+    initialContstructorState(
+      [
+        ConstructoreMode.MacaronSmall,
+        ConstructoreMode.MacaronMedium,
+        ConstructoreMode.MacaronLarge,
+      ],
+      ConstructoreMode.MacaronSmall
+    )
   );
   const [expanded, setExpanded] = useState<boolean>(false);
 
@@ -22,22 +31,27 @@ export function Macarons() {
     if (!expanded) {
       setExpanded(true);
     }
-    dispatch({ type: 'add', item });
+    try {
+      dispatch({ type: 'add', item });
+    } catch (e) {
+      if (e instanceof ConstructorError) {
+        console.log('Add modal dialog asking to increase mix size');
+      }
+    }
   };
 
   return (
     <MacaronsWrapper>
       <FlexRow>
-        <FlexColumn>
+        <FlexColumn style={{ flexGrow: 1, flexShrink: 2 }}>
           <Typography
-            // className={'stretch'}
             variant='h3'
             style={{ whiteSpace: 'nowrap', marginRight: '100px' }}
           >
             НАША ПРОДУКЦИЯ
           </Typography>
         </FlexColumn>
-        <FlexColumn>
+        <FlexColumn style={{ flexGrow: 2 }}>
           <MacaronsInfo>
             <Typography
               variant='body1'
@@ -59,21 +73,21 @@ export function Macarons() {
       </FlexRow>
       <FlexRow>
         <FlexColumn bordered>
-          <MacaronsMix
+          <DessertsMix
             quantity={6}
             price={168}
             imageUrl='./images/images_large/macarons/mac_small.jpg'
           />
         </FlexColumn>
         <FlexColumn bordered>
-          <MacaronsMix
+          <DessertsMix
             quantity={12}
             price={336}
             imageUrl={'./images/images_large/macarons/mac_medium.jpg'}
           />
         </FlexColumn>
         <FlexColumn bordered>
-          <MacaronsMix
+          <DessertsMix
             quantity={24}
             price={672}
             imageUrl={'./images/images_large/macarons/mac_large.jpg'}
@@ -93,7 +107,7 @@ export function Macarons() {
         <FlexColumn
           style={{ width: '310px', marginRight: '120px', position: 'relative' }}
         >
-          <MacaronsConstructorContainer
+          <ConstructorContainer
             state={state}
             dispatch={dispatch}
             expanded={expanded}
@@ -121,6 +135,7 @@ export function Macarons() {
             onClick={handleMacaronClick}
           />
         </FlexColumn>
+        <FlexColumn />
       </FlexRow>
       <FlexRow>
         <FlexColumn bordered>
@@ -141,6 +156,7 @@ export function Macarons() {
             onClick={handleMacaronClick}
           />
         </FlexColumn>
+        <FlexColumn />
       </FlexRow>
       <FlexRow>
         <FlexColumn bordered>
@@ -161,6 +177,7 @@ export function Macarons() {
             onClick={handleMacaronClick}
           />
         </FlexColumn>
+        <FlexColumn />
       </FlexRow>
       <FlexRow>
         <FlexColumn bordered>
@@ -181,6 +198,7 @@ export function Macarons() {
             onClick={handleMacaronClick}
           />
         </FlexColumn>
+        <FlexColumn />
       </FlexRow>
       <FlexRow>
         <FlexColumn bordered>
@@ -192,6 +210,8 @@ export function Macarons() {
             onClick={handleMacaronClick}
           />
         </FlexColumn>
+        <FlexColumn />
+        <FlexColumn />
       </FlexRow>
     </MacaronsWrapper>
   );

@@ -22,7 +22,7 @@ export const AppStyled = styled.div`
 
 export const FlexRow = styled.div`
   display: flex;
-  justify-content: left;
+  justify-content: space-between;
 `;
 
 interface IColumn {
@@ -34,12 +34,15 @@ export const FlexColumn = styled.div<IColumn>`
   flex-direction: column;
   padding: 0;
   margin-top: -1px;
+  width: 100%;
+
   ${({ bordered }) =>
     bordered &&
     `
     border: 1px solid #cccccc;
     border-right: 0px;
-    &:last-child {
+    // &:last-child {
       border-right: 1px solid #cccccc;
-    }`}
+    // }
+    `}
 `;

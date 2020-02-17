@@ -97,23 +97,56 @@ export const ConstructorGridWrapper = styled.div`
   flex-wrap: wrap;
 `;
 
-interface IConstructorGridItem {
-  size: 'small' | 'large';
+interface IConstructorGridItemWrapper {
+  size: 'small' | 'medium' | 'large';
+  removeEnabled: boolean;
 }
 
-export const ConstructorGridItem = styled.div<IConstructorGridItem>`
+export const ConstructorGridItemWrapper = styled.div<
+  IConstructorGridItemWrapper
+>`
   display: flex;
   justify-content: center;
   background-color: ${colors.primary.grey};
   margin: 2px 1px;
+  position: relative;
 
   ${({ size }) =>
     size === 'small'
       ? `width: 74px; height: 74px;`
-      : `width: 100px; height: 100px; `};
+      : size === 'medium'
+      ? `width: 100px; height: 100px; `
+      : `width: 150px; height: 150px; `};
+
+  ${({ removeEnabled }) => removeEnabled && `cursor: pointer;`};
 `;
 
 export const ImageWrapper = styled.img`
   height: 100%;
   width: auto;
+`;
+
+interface IRemoveIconWrapper {
+  visible: boolean;
+}
+
+export const RemoveIconWrapper = styled.div<IRemoveIconWrapper>`
+  top: 50%;
+  left: 50%;
+  width: 90px;
+  height: 90px;
+  border-radius: 50%;
+  opacity: 0.5;
+  background: ${colors.secondary.dark};
+  border: 2px solid ${colors.primary.white};
+  position: absolute;
+  margin: -40px 0 0 -45px;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  ${({ visible }) =>
+    visible &&
+    `
+      display: flex;
+    `};
 `;

@@ -1,12 +1,11 @@
 import styled from 'styled-components';
 import colors from '@constants/colors';
 
-export const MacaronSingleWrapper = styled.div`
+export const ChouxSingleWrapper = styled.div`
   display: flex;
   justify-content: center;
   /* width: 327px; */
-  /* height: 270px; */
-  height: 19vw; /* Depending on tha parent wrapper padding */
+  height: 270px;
   flex-direction: column;
   align-items: center;
   cursor: pointer;

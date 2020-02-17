@@ -1,19 +1,19 @@
 import styled from 'styled-components';
 
-export const MacaronsWrapper = styled.div`
+export const ZephyrWrapper = styled.div`
   height: 100%;
   width: 100%;
-  padding: 5% 18% 5% 25%;
+  padding: 5% 13% 5% 20%;
 `;
 
-export const MacaronsTitle = styled.div`
+export const ZephyrTitle = styled.div`
   display: flex;
   justify-content: space-evenly;
   margin-bottom: 50px;
   flex-direction: column;
 `;
 
-export const MacaronsInfo = styled.div`
+export const ZephyrInfo = styled.div`
   display: flex;
   flex-direction: column;
   padding-right: 20px;
