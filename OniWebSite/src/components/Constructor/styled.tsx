@@ -122,8 +122,9 @@ export const ConstructorGridItemWrapper = styled.div<
 `;
 
 export const ImageWrapper = styled.img`
-  height: 100%;
-  width: auto;
+  width: 100%;
+  height: auto;
+  object-fit: contain;
 `;
 
 interface IRemoveIconWrapper {

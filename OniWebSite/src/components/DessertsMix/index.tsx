@@ -5,7 +5,7 @@ import { MixSection } from './styled';
 
 interface IProps {
   imageUrl: string;
-  quantity: number;
+  quantity: string;
   price: number;
 }
 export function DessertsMix({ imageUrl, quantity, price }: IProps) {
@@ -17,7 +17,7 @@ export function DessertsMix({ imageUrl, quantity, price }: IProps) {
           Ассорти
         </Typography>
         <Typography variant='body1' style={{ fontWeight: 400 }}>
-          {`${quantity} шт`}
+          {quantity}
         </Typography>
       </div>
       <div className='price'>

@@ -14,7 +14,6 @@ interface IZephyrSingleProps {
   name: string;
   description: string;
   imageUrl: string;
-  hoverImageUrl: string;
   onClick: (item: IItem) => void;
 }
 
@@ -22,7 +21,6 @@ export function ZephyrSingle({
   name,
   description,
   imageUrl,
-  hoverImageUrl,
   onClick,
 }: IZephyrSingleProps) {
   const [mouseOver, setMouseOver] = useState(false);
@@ -49,7 +47,7 @@ export function ZephyrSingle({
       <AddIconWrapper visible={mouseOver}>
         <AddIcon style={{ fontSize: 40, color: colors.primary.white }} />
       </AddIconWrapper>
-      <ImageWrapper src={mouseOver ? hoverImageUrl : imageUrl} />
+      <ImageWrapper src={imageUrl} />
       <Title>{name}</Title>
       <Description>{description}</Description>
     </ZephyrSingleWrapper>

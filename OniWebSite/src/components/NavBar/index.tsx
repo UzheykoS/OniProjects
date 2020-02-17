@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link, useLocation } from 'react-router-dom';
+import { Link, useLocation, useHistory } from 'react-router-dom';
 import { slide as Menu } from 'react-burger-menu';
 import { Pages, routes } from '@constants/routes';
 import {
@@ -14,9 +14,11 @@ import {
 } from './styled';
 import BinIcon from '@icons/bin.svg';
 import { useMobile } from '@hooks/useMobile';
+import IconButton from '@common/IconButton';
 
 export function NavBar() {
   const location = useLocation();
+  const history = useHistory();
   let currentPage = Pages.Main;
 
   Object.keys(routes).forEach(key => {
@@ -25,6 +27,10 @@ export function NavBar() {
       currentPage = key as Pages;
     }
   });
+
+  const handleBinClick = () => {
+    history.push('/checkout');
+  };
 
   const navBar = (
     <NavBarWrapper>
@@ -57,7 +63,13 @@ export function NavBar() {
           })}
         </RoutesWrapper>
         <RightSide>
-          <BinIcon />
+          <IconButton
+            disableFocusRipple
+            onClick={handleBinClick}
+            style={{ width: '58px' }}
+          >
+            <BinIcon />
+          </IconButton>
         </RightSide>
       </RoutesList>
     </NavBarWrapper>

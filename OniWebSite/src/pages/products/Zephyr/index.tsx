@@ -12,6 +12,7 @@ import {
 import { ConstructorContainer } from '@components/Constructor';
 import { DessertsMix } from '@components/DessertsMix';
 import { ZephyrSingle } from '@components/ZephyrSingle';
+import { zephyrMix, zephyr } from '@constants/products';
 
 export function Zephyr() {
   const [state, dispatch] = useReducer(
@@ -35,6 +36,33 @@ export function Zephyr() {
       }
     }
   };
+
+  const zephyrElements: JSX.Element[] = [];
+  for (let i = 0; i < zephyr.length; i++) {
+    if (i % 2 === 0) {
+      zephyrElements.push(
+        <FlexRow key={i}>
+          <FlexColumn bordered>
+            <ZephyrSingle
+              name={zephyr[i].name}
+              description={zephyr[i].description!}
+              imageUrl={zephyr[i].imageUrl}
+              onClick={handleZephyrClick}
+            />
+          </FlexColumn>
+          <FlexColumn bordered>
+            <ZephyrSingle
+              name={zephyr[i + 1].name}
+              description={zephyr[i + 1].description!}
+              imageUrl={zephyr[i + 1].imageUrl}
+              onClick={handleZephyrClick}
+            />
+          </FlexColumn>
+          <FlexColumn />
+        </FlexRow>
+      );
+    }
+  }
 
   return (
     <ZephyrWrapper>
@@ -71,16 +99,16 @@ export function Zephyr() {
       <FlexRow>
         <FlexColumn bordered>
           <DessertsMix
-            quantity={8}
             price={80}
-            imageUrl='./images/images_large/zephyr/zephyr_mix_small.jpg'
+            quantity={zephyrMix[0].name}
+            imageUrl={zephyrMix[0].imageUrl}
           />
         </FlexColumn>
         <FlexColumn bordered>
           <DessertsMix
-            quantity={16}
             price={160}
-            imageUrl={'./images/images_large/zephyr/zephyr_mix_large.jpg'}
+            quantity={zephyrMix[1].name}
+            imageUrl={zephyrMix[1].imageUrl}
           />
         </FlexColumn>
       </FlexRow>
@@ -106,48 +134,7 @@ export function Zephyr() {
         </FlexColumn>
       </FlexRow>
 
-      <FlexRow>
-        <FlexColumn bordered>
-          <ZephyrSingle
-            name='КЛАССИЧЕСКИЙ ЯБЛОЧНЫЙ'
-            description='Сделан на основе натурального пюре запечённого яблока'
-            hoverImageUrl='./images/images_large/zephyr/zephyr_1.jpg'
-            imageUrl='./images/images_large/zephyr/zephyr_1.jpg'
-            onClick={handleZephyrClick}
-          />
-        </FlexColumn>
-        <FlexColumn bordered>
-          <ZephyrSingle
-            name='СМОРОДИНА'
-            description='Сделан на основе натурального пюре чёрной смородины'
-            imageUrl='./images/images_large/zephyr/zephyr_2.jpg'
-            hoverImageUrl='./images/images_large/zephyr/zephyr_2.jpg'
-            onClick={handleZephyrClick}
-          />
-        </FlexColumn>
-        <FlexColumn />
-      </FlexRow>
-      <FlexRow>
-        <FlexColumn bordered>
-          <ZephyrSingle
-            name='КЛУБНИКА-КЛЮКВА'
-            description='Сделан на основе натурального пюре клубники и клюквы'
-            imageUrl='./images/images_large/zephyr/zephyr_3.jpg'
-            hoverImageUrl='./images/images_large/zephyr/zephyr_3.jpg'
-            onClick={handleZephyrClick}
-          />
-        </FlexColumn>
-        <FlexColumn bordered>
-          <ZephyrSingle
-            name='АБРИКОС-МАРАКУЙЯ'
-            description='Сделан на основе натурального пюре абрикоса и маракуйи'
-            imageUrl='./images/images_large/zephyr/zephyr_4.jpg'
-            hoverImageUrl='./images/images_large/zephyr/zephyr_4.jpg'
-            onClick={handleZephyrClick}
-          />
-        </FlexColumn>
-        <FlexColumn />
-      </FlexRow>
+      {zephyrElements}
     </ZephyrWrapper>
   );
 }

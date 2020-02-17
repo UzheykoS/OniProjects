@@ -16,6 +16,7 @@ import { Busy } from '@common/Busy';
 import NotFoundPage from '@pages/NotFound';
 import { ProductsNavBar } from '@components/ProductsNavBar';
 import { BrowserRouter as Router } from 'react-router-dom';
+import { Checkout } from '@pages/Checkout';
 
 export function Wrapper() {
   const { loading } = useLoading();
@@ -34,6 +35,7 @@ export function Wrapper() {
           <Route exact path='/' component={Main} />
           <Route path='/delivery' component={DeliveryAndPayment} />
           <Route path='/about' component={About} />
+          <Route path='/checkout' component={Checkout} />
 
           <Route path='/products/macarons' component={Macarons} />
           <Route path='/products/zephyr' component={Zephyr} />

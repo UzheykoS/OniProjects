@@ -12,6 +12,7 @@ import {
 } from '@components/Constructor/Constructor';
 import { ConstructorContainer } from '@components/Constructor';
 import { DessertsMix } from '@components/DessertsMix';
+import { macarons, macaronMix } from '@constants/products';
 
 export function Macarons() {
   const [state, dispatch] = useReducer(
@@ -39,6 +40,39 @@ export function Macarons() {
       }
     }
   };
+
+  const macaronElements: JSX.Element[] = [];
+  for (let i = 0; i < macarons.length; i++) {
+    if (i % 2 === 0) {
+      macaronElements.push(
+        <FlexRow key={i}>
+          <FlexColumn bordered>
+            <MacaronSingle
+              name={macarons[i].name}
+              description={macarons[i].description!}
+              hoverImageUrl={macarons[i].imageCutUrl!}
+              imageUrl={macarons[i].imageUrl}
+              onClick={handleMacaronClick}
+            />
+          </FlexColumn>
+          {i + 1 < macarons.length ? (
+            <FlexColumn bordered>
+              <MacaronSingle
+                name={macarons[i + 1].name}
+                description={macarons[i + 1].description!}
+                hoverImageUrl={macarons[i + 1].imageCutUrl!}
+                imageUrl={macarons[i + 1].imageUrl}
+                onClick={handleMacaronClick}
+              />
+            </FlexColumn>
+          ) : (
+            <FlexColumn />
+          )}
+          <FlexColumn />
+        </FlexRow>
+      );
+    }
+  }
 
   return (
     <MacaronsWrapper>
@@ -74,23 +108,23 @@ export function Macarons() {
       <FlexRow>
         <FlexColumn bordered>
           <DessertsMix
-            quantity={6}
             price={168}
-            imageUrl='./images/images_large/macarons/mac_small.jpg'
+            quantity={macaronMix[0].name}
+            imageUrl={macaronMix[0].imageUrl}
           />
         </FlexColumn>
         <FlexColumn bordered>
           <DessertsMix
-            quantity={12}
             price={336}
-            imageUrl={'./images/images_large/macarons/mac_medium.jpg'}
+            quantity={macaronMix[1].name}
+            imageUrl={macaronMix[1].imageUrl}
           />
         </FlexColumn>
         <FlexColumn bordered>
           <DessertsMix
-            quantity={24}
             price={672}
-            imageUrl={'./images/images_large/macarons/mac_large.jpg'}
+            quantity={macaronMix[2].name}
+            imageUrl={macaronMix[2].imageUrl}
           />
         </FlexColumn>
       </FlexRow>
@@ -105,7 +139,7 @@ export function Macarons() {
           </Typography>
         </FlexColumn>
         <FlexColumn
-          style={{ width: '310px', marginRight: '120px', position: 'relative' }}
+          style={{ width: '310px', marginRight: '100px', position: 'relative' }}
         >
           <ConstructorContainer
             state={state}
@@ -115,104 +149,7 @@ export function Macarons() {
           />
         </FlexColumn>
       </FlexRow>
-
-      <FlexRow>
-        <FlexColumn bordered>
-          <MacaronSingle
-            name='Малина'
-            description='Двойная начинка на основе натурального пюре малины с ярким малиновым центром'
-            hoverImageUrl='./images/images_large/macarons/macaron1_hover.jpg'
-            imageUrl='./images/images_large/macarons/macaron1.jpg'
-            onClick={handleMacaronClick}
-          />
-        </FlexColumn>
-        <FlexColumn bordered>
-          <MacaronSingle
-            name='Манго-Маракуйя'
-            description='Двойная начинка на основе натурального пюре манго и маракуйи с ярким центром манго-маракуйя'
-            imageUrl='./images/images_large/macarons/macaron2.jpg'
-            hoverImageUrl='./images/images_large/macarons/macaron2_hover.jpg'
-            onClick={handleMacaronClick}
-          />
-        </FlexColumn>
-        <FlexColumn />
-      </FlexRow>
-      <FlexRow>
-        <FlexColumn bordered>
-          <MacaronSingle
-            name='Фисташка'
-            description='Начинка на основе натуральной  100% фисташковой пасты без сахара'
-            imageUrl='./images/images_large/macarons/macaron3.jpg'
-            hoverImageUrl='./images/images_large/macarons/macaron3_hover.jpg'
-            onClick={handleMacaronClick}
-          />
-        </FlexColumn>
-        <FlexColumn bordered>
-          <MacaronSingle
-            name='Дор Блю-Груша'
-            description='Двойная начинка на основе сыра Дор Блю с центром из натурального грушевого пюре'
-            imageUrl='./images/images_large/macarons/macaron4.jpg'
-            hoverImageUrl='./images/images_large/macarons/macaron4_hover.jpg'
-            onClick={handleMacaronClick}
-          />
-        </FlexColumn>
-        <FlexColumn />
-      </FlexRow>
-      <FlexRow>
-        <FlexColumn bordered>
-          <MacaronSingle
-            name='Кофе-Солёная карамель'
-            description='Двойная начинка на основе натурального кофе с центром из мягкой соленой карамели'
-            imageUrl='./images/images_large/macarons/macaron5.jpg'
-            hoverImageUrl='./images/images_large/macarons/macaron5_hover.jpg'
-            onClick={handleMacaronClick}
-          />
-        </FlexColumn>
-        <FlexColumn bordered>
-          <MacaronSingle
-            name='Пармезан-Инжир'
-            description='Двойная начинка на основе сыра Пармезан с центром из натурального пюре инжира'
-            imageUrl='./images/images_large/macarons/macaron6.jpg'
-            hoverImageUrl='./images/images_large/macarons/macaron6_hover.jpg'
-            onClick={handleMacaronClick}
-          />
-        </FlexColumn>
-        <FlexColumn />
-      </FlexRow>
-      <FlexRow>
-        <FlexColumn bordered>
-          <MacaronSingle
-            name='Смородина'
-            description='Двойная начинка на основе натурального пюре смородины с ярким смородиновым центром'
-            imageUrl='./images/images_large/macarons/macaron7.jpg'
-            hoverImageUrl='./images/images_large/macarons/macaron7_hover.jpg'
-            onClick={handleMacaronClick}
-          />
-        </FlexColumn>
-        <FlexColumn bordered>
-          <MacaronSingle
-            name='Шоколад'
-            description='Начинка на основе натурального бельгийского черного шоколада 60%'
-            imageUrl='./images/images_large/macarons/macaron8.jpg'
-            hoverImageUrl='./images/images_large/macarons/macaron8_hover.jpg'
-            onClick={handleMacaronClick}
-          />
-        </FlexColumn>
-        <FlexColumn />
-      </FlexRow>
-      <FlexRow>
-        <FlexColumn bordered>
-          <MacaronSingle
-            name='Лаванда-Черника'
-            description='Двойная начинка на основе молочных сливок, настоянных на цветках лаванды, с центром из натурального пюре черники'
-            imageUrl='./images/images_large/macarons/macaron9.jpg'
-            hoverImageUrl='./images/images_large/macarons/macaron9_hover.jpg'
-            onClick={handleMacaronClick}
-          />
-        </FlexColumn>
-        <FlexColumn />
-        <FlexColumn />
-      </FlexRow>
+      {macaronElements}
     </MacaronsWrapper>
   );
 }

@@ -12,6 +12,7 @@ import {
 import { ConstructorContainer } from '@components/Constructor';
 import { DessertsMix } from '@components/DessertsMix';
 import { ChouxSingle } from '@components/ChouxSingle';
+import { chouxMix, choux } from '@constants/products';
 
 export function Choux() {
   const [state, dispatch] = useReducer(
@@ -35,6 +36,39 @@ export function Choux() {
       }
     }
   };
+
+  const chouxElements: JSX.Element[] = [];
+  for (let i = 0; i < choux.length; i++) {
+    if (i % 2 === 0) {
+      chouxElements.push(
+        <FlexRow key={i}>
+          <FlexColumn bordered>
+            <ChouxSingle
+              name={choux[i].name}
+              description={choux[i].description!}
+              hoverImageUrl={choux[i].imageCutUrl!}
+              imageUrl={choux[i].imageUrl}
+              onClick={handleChouxClick}
+            />
+          </FlexColumn>
+          {i + 1 < choux.length ? (
+            <FlexColumn bordered>
+              <ChouxSingle
+                name={choux[i + 1].name}
+                description={choux[i + 1].description!}
+                hoverImageUrl={choux[i + 1].imageCutUrl!}
+                imageUrl={choux[i + 1].imageUrl}
+                onClick={handleChouxClick}
+              />
+            </FlexColumn>
+          ) : (
+            <FlexColumn />
+          )}
+          <FlexColumn />
+        </FlexRow>
+      );
+    }
+  }
 
   return (
     <ChouxWrapper>
@@ -72,16 +106,16 @@ export function Choux() {
       <FlexRow>
         <FlexColumn bordered>
           <DessertsMix
-            quantity={4}
             price={80}
-            imageUrl='./images/images_large/choux/choux_mix_small.jpg'
+            quantity={chouxMix[0].name}
+            imageUrl={chouxMix[0].imageUrl}
           />
         </FlexColumn>
         <FlexColumn bordered>
           <DessertsMix
-            quantity={8}
             price={160}
-            imageUrl={'./images/images_large/choux/choux_mix_large.jpg'}
+            quantity={chouxMix[1].name}
+            imageUrl={chouxMix[1].imageUrl}
           />
         </FlexColumn>
         <FlexColumn />
@@ -108,48 +142,7 @@ export function Choux() {
         </FlexColumn>
       </FlexRow>
 
-      <FlexRow>
-        <FlexColumn bordered>
-          <ChouxSingle
-            name='ФИСТАШКА-АПЕЛЬСИН'
-            description='Крем с натуральной 100% фисташковой пастой и цедрой апельсина в сочетании с конфи из натурального пюре апельсина'
-            hoverImageUrl='./images/images_large/choux/choux_1_hover.jpg'
-            imageUrl='./images/images_large/choux/choux_1.jpg'
-            onClick={handleChouxClick}
-          />
-        </FlexColumn>
-        <FlexColumn bordered>
-          <ChouxSingle
-            name='СОЛЁНАЯ КАРАМЕЛЬ'
-            description='Мягкая солёная карамель в сочетании с нежным карамельным кремом'
-            imageUrl='./images/images_large/choux/choux_2.jpg'
-            hoverImageUrl='./images/images_large/choux/choux_2_hover.jpg'
-            onClick={handleChouxClick}
-          />
-        </FlexColumn>
-        <FlexColumn />
-      </FlexRow>
-      <FlexRow>
-        <FlexColumn bordered>
-          <ChouxSingle
-            name='МАЛИНА-ЛИЧИ-РОЗА'
-            description='Крем с натуральным пюре личи и лепестками чайной розы в сочетании с конфи из натурального пюре малины'
-            imageUrl='./images/images_large/choux/choux_3.jpg'
-            hoverImageUrl='./images/images_large/choux/choux_3_hover.jpg'
-            onClick={handleChouxClick}
-          />
-        </FlexColumn>
-        <FlexColumn bordered>
-          <ChouxSingle
-            name='ВАНИЛЬ-ПЕРСИК'
-            description='Крем с добавлением натуральных стручков ванили из Мадагаскара в сочетании с конфи из натурального пюре персика'
-            imageUrl='./images/images_large/choux/choux_4.jpg'
-            hoverImageUrl='./images/images_large/choux/choux_4_hover.jpg'
-            onClick={handleChouxClick}
-          />
-        </FlexColumn>
-        <FlexColumn />
-      </FlexRow>
+      {chouxElements}
     </ChouxWrapper>
   );
 }
