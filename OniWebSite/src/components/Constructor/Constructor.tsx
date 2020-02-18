@@ -10,6 +10,8 @@ import { Chip, IconButton } from '@material-ui/core';
 import DeleteOutlinedIcon from '@material-ui/icons/DeleteOutlined';
 import { Button } from '@common/Button';
 import { ConstructorGridItem } from './ConstructorGridItem';
+import { useBasket } from '@hooks/useBasket';
+import { IProduct } from '@constants/products';
 
 export enum ConstructoreMode {
   MacaronSmall = 6,
@@ -21,21 +23,16 @@ export enum ConstructoreMode {
   ZephyrMedium = 16,
 }
 
-export interface IItem {
-  name: string;
-  imageUrl: string;
-}
-
 interface IConstructorState {
   availableModes: ConstructoreMode[];
   mode: ConstructoreMode;
-  items: IItem[];
+  items: IProduct[];
 }
 
 type ActionType = {
   type: 'setMode' | 'add' | 'remove' | 'clear' | 'surpriseMe';
   mode?: ConstructoreMode;
-  item?: IItem;
+  item?: IProduct;
   index?: number;
 };
 
@@ -101,6 +98,14 @@ export interface IConstructorProps {
 }
 
 export function Constructor({ state, dispatch }: IConstructorProps) {
+  const { addToBasket } = useBasket();
+
+  const handleConstructorSubmit = () => {
+    state.items.forEach(item => {
+      addToBasket({ ...item, quantity: 1 });
+    });
+  };
+
   const handleModeSelect = (m: ConstructoreMode) => {
     dispatch({ type: 'setMode', mode: m });
   };
@@ -163,7 +168,9 @@ export function Constructor({ state, dispatch }: IConstructorProps) {
         </SurpriseMe>
       </CenteredRow>
       <CenteredRow>
-        <Button rounded>Добавить</Button>
+        <Button rounded onClick={handleConstructorSubmit}>
+          Добавить
+        </Button>
       </CenteredRow>
     </ConstructorWrapper>
   );

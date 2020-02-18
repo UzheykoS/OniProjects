@@ -5,14 +5,13 @@ import { FlexRow, FlexColumn } from '@styles/styled';
 import {
   constructorReducer,
   initialContstructorState,
-  IItem,
   ConstructoreMode,
   ConstructorError,
 } from '@components/Constructor/Constructor';
 import { ConstructorContainer } from '@components/Constructor';
 import { DessertsMix } from '@components/DessertsMix';
 import { ChouxSingle } from '@components/ChouxSingle';
-import { chouxMix, choux } from '@constants/products';
+import { chouxMix, choux, IProduct } from '@constants/products';
 
 export function Choux() {
   const [state, dispatch] = useReducer(
@@ -24,7 +23,7 @@ export function Choux() {
   );
   const [expanded, setExpanded] = useState<boolean>(false);
 
-  const handleChouxClick = (item: IItem) => {
+  const handleChouxClick = (item: IProduct) => {
     if (!expanded) {
       setExpanded(true);
     }
@@ -43,23 +42,11 @@ export function Choux() {
       chouxElements.push(
         <FlexRow key={i}>
           <FlexColumn bordered>
-            <ChouxSingle
-              name={choux[i].name}
-              description={choux[i].description!}
-              hoverImageUrl={choux[i].imageCutUrl!}
-              imageUrl={choux[i].imageUrl}
-              onClick={handleChouxClick}
-            />
+            <ChouxSingle {...choux[i]} onClick={handleChouxClick} />
           </FlexColumn>
           {i + 1 < choux.length ? (
             <FlexColumn bordered>
-              <ChouxSingle
-                name={choux[i + 1].name}
-                description={choux[i + 1].description!}
-                hoverImageUrl={choux[i + 1].imageCutUrl!}
-                imageUrl={choux[i + 1].imageUrl}
-                onClick={handleChouxClick}
-              />
+              <ChouxSingle {...choux[i + 1]} onClick={handleChouxClick} />
             </FlexColumn>
           ) : (
             <FlexColumn />

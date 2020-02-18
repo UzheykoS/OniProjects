@@ -5,14 +5,13 @@ import { FlexRow, FlexColumn } from '@styles/styled';
 import {
   constructorReducer,
   initialContstructorState,
-  IItem,
   ConstructoreMode,
   ConstructorError,
 } from '@components/Constructor/Constructor';
 import { ConstructorContainer } from '@components/Constructor';
 import { DessertsMix } from '@components/DessertsMix';
 import { ZephyrSingle } from '@components/ZephyrSingle';
-import { zephyrMix, zephyr } from '@constants/products';
+import { zephyrMix, zephyr, IProduct } from '@constants/products';
 
 export function Zephyr() {
   const [state, dispatch] = useReducer(
@@ -24,7 +23,7 @@ export function Zephyr() {
   );
   const [expanded, setExpanded] = useState<boolean>(false);
 
-  const handleZephyrClick = (item: IItem) => {
+  const handleZephyrClick = (item: IProduct) => {
     if (!expanded) {
       setExpanded(true);
     }
@@ -43,20 +42,10 @@ export function Zephyr() {
       zephyrElements.push(
         <FlexRow key={i}>
           <FlexColumn bordered>
-            <ZephyrSingle
-              name={zephyr[i].name}
-              description={zephyr[i].description!}
-              imageUrl={zephyr[i].imageUrl}
-              onClick={handleZephyrClick}
-            />
+            <ZephyrSingle {...zephyr[i]} onClick={handleZephyrClick} />
           </FlexColumn>
           <FlexColumn bordered>
-            <ZephyrSingle
-              name={zephyr[i + 1].name}
-              description={zephyr[i + 1].description!}
-              imageUrl={zephyr[i + 1].imageUrl}
-              onClick={handleZephyrClick}
-            />
+            <ZephyrSingle {...zephyr[i + 1]} onClick={handleZephyrClick} />
           </FlexColumn>
           <FlexColumn />
         </FlexRow>

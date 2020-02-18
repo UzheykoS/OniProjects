@@ -8,23 +8,19 @@ import {
 } from './styled';
 import AddIcon from '@material-ui/icons/Add';
 import colors from '@constants/colors';
-import { IItem } from '@components/Constructor/Constructor';
+import { IProduct, ProductType } from '@constants/products';
 
-interface IChouxSingleProps {
-  name: string;
-  description: string;
-  imageUrl: string;
-  hoverImageUrl: string;
-  onClick: (item: IItem) => void;
+interface IProps extends IProduct {
+  onClick: (item: IProduct) => void;
 }
 
 export function ChouxSingle({
   name,
   description,
   imageUrl,
-  hoverImageUrl,
+  imageCutUrl,
   onClick,
-}: IChouxSingleProps) {
+}: IProps) {
   const [mouseOver, setMouseOver] = useState(false);
 
   const onMouseOver = () => {
@@ -42,14 +38,17 @@ export function ChouxSingle({
       onClick={() =>
         onClick({
           name,
+          description,
           imageUrl,
+          imageCutUrl,
+          type: ProductType.Choux,
         })
       }
     >
       <AddIconWrapper visible={mouseOver}>
         <AddIcon style={{ fontSize: 40, color: colors.primary.white }} />
       </AddIconWrapper>
-      <ImageWrapper src={mouseOver ? hoverImageUrl : imageUrl} />
+      <ImageWrapper src={mouseOver ? imageCutUrl : imageUrl} />
       <Title>{name}</Title>
       <Description>{description}</Description>
     </ChouxSingleWrapper>

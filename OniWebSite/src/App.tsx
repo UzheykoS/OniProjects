@@ -7,19 +7,22 @@ import { MobileProvider } from '@hooks/useMobile';
 import { ThemeProvider } from '@material-ui/core/styles';
 import theme from '@styles/theme';
 import { StylesProvider } from '@material-ui/core/styles';
+import { BasketProvider } from '@hooks/useBasket';
 
 @hot(module)
-export class App extends React.Component<any, any> {
+export class App extends React.Component {
   render() {
     return (
       <StylesProvider injectFirst>
         <ThemeProvider theme={theme}>
           <ModalsProvider>
-            <LoadingProvider>
+            <BasketProvider>
               <MobileProvider>
-                <Wrapper />
+                <LoadingProvider>
+                  <Wrapper />
+                </LoadingProvider>
               </MobileProvider>
-            </LoadingProvider>
+            </BasketProvider>
           </ModalsProvider>
         </ThemeProvider>
       </StylesProvider>

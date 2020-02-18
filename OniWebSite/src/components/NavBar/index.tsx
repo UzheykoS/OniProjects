@@ -11,14 +11,17 @@ import {
   MenuItem,
   RoutesWrapper,
   RightSide,
+  BadgeStyled,
 } from './styled';
 import BinIcon from '@icons/bin.svg';
 import { useMobile } from '@hooks/useMobile';
 import IconButton from '@common/IconButton';
+import { useBasket } from '@hooks/useBasket';
 
 export function NavBar() {
   const location = useLocation();
   const history = useHistory();
+  const { items } = useBasket();
   let currentPage = Pages.Main;
 
   Object.keys(routes).forEach(key => {
@@ -47,7 +50,7 @@ export function NavBar() {
           {Object.keys(routes).map(key => {
             const page = key as Pages;
             const route = routes[page];
-            if (!route) {
+            if (!route || page === Pages.Checkout) {
               return null;
             }
 
@@ -68,7 +71,16 @@ export function NavBar() {
             onClick={handleBinClick}
             style={{ width: '58px' }}
           >
-            <BinIcon />
+            <BadgeStyled
+              anchorOrigin={{
+                vertical: 'bottom',
+                horizontal: 'right',
+              }}
+              badgeContent={items.length > 0 ? items.length : undefined}
+              color={'primary'}
+            >
+              <BinIcon />
+            </BadgeStyled>
           </IconButton>
         </RightSide>
       </RoutesList>

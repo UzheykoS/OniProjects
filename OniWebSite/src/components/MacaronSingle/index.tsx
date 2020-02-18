@@ -8,23 +8,18 @@ import {
 } from './styled';
 import AddIcon from '@material-ui/icons/Add';
 import colors from '@constants/colors';
-import { IItem } from '@components/Constructor/Constructor';
+import { IProduct, ProductType } from '@constants/products';
 
-interface IMacaronSingleProps {
-  name: string;
-  description: string;
-  imageUrl: string;
-  hoverImageUrl: string;
-  onClick: (item: IItem) => void;
+interface IProps extends IProduct {
+  onClick: (item: IProduct) => void;
 }
-
 export function MacaronSingle({
   name,
   description,
   imageUrl,
-  hoverImageUrl,
+  imageCutUrl,
   onClick,
-}: IMacaronSingleProps) {
+}: IProps) {
   const [mouseOver, setMouseOver] = useState(false);
 
   const onMouseOver = () => {
@@ -42,14 +37,17 @@ export function MacaronSingle({
       onClick={() =>
         onClick({
           name,
+          description,
           imageUrl,
+          imageCutUrl,
+          type: ProductType.Macaron,
         })
       }
     >
       <AddIconWrapper visible={mouseOver}>
         <AddIcon style={{ fontSize: 40, color: colors.primary.white }} />
       </AddIconWrapper>
-      <ImageWrapper src={mouseOver ? hoverImageUrl : imageUrl} />
+      <ImageWrapper src={mouseOver ? imageCutUrl : imageUrl} />
       <Title>{name}</Title>
       <Description>{description}</Description>
     </MacaronSingleWrapper>

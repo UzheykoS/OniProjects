@@ -8,21 +8,13 @@ import {
 } from './styled';
 import AddIcon from '@material-ui/icons/Add';
 import colors from '@constants/colors';
-import { IItem } from '@components/Constructor/Constructor';
+import { IProduct, ProductType } from '@constants/products';
 
-interface IZephyrSingleProps {
-  name: string;
-  description: string;
-  imageUrl: string;
-  onClick: (item: IItem) => void;
+interface IProps extends IProduct {
+  onClick: (item: IProduct) => void;
 }
 
-export function ZephyrSingle({
-  name,
-  description,
-  imageUrl,
-  onClick,
-}: IZephyrSingleProps) {
+export function ZephyrSingle({ name, description, imageUrl, onClick }: IProps) {
   const [mouseOver, setMouseOver] = useState(false);
 
   const onMouseOver = () => {
@@ -40,7 +32,9 @@ export function ZephyrSingle({
       onClick={() =>
         onClick({
           name,
+          description,
           imageUrl,
+          type: ProductType.Zephyr,
         })
       }
     >

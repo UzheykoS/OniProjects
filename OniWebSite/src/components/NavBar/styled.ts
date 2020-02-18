@@ -1,4 +1,6 @@
 import styled from 'styled-components';
+import { Badge } from '@material-ui/core';
+import colors from '@constants/colors';
 
 export const NavBarWrapper = styled.div`
   display: flex;
@@ -87,4 +89,14 @@ export const RightSide = styled.div`
   display: flex;
   margin: 0px 150px;
   align-self: center;
+`;
+
+export const BadgeStyled = styled(Badge).attrs({
+  classes: {
+    badge: 'styled-badge',
+  },
+})`
+  .styled-badge {
+    background-color: ${colors.secondary.pink};
+  }
 `;

@@ -6,13 +6,12 @@ import { FlexRow, FlexColumn } from '@styles/styled';
 import {
   constructorReducer,
   initialContstructorState,
-  IItem,
   ConstructoreMode,
   ConstructorError,
 } from '@components/Constructor/Constructor';
 import { ConstructorContainer } from '@components/Constructor';
 import { DessertsMix } from '@components/DessertsMix';
-import { macarons, macaronMix } from '@constants/products';
+import { macarons, macaronMix, IProduct } from '@constants/products';
 
 export function Macarons() {
   const [state, dispatch] = useReducer(
@@ -28,7 +27,7 @@ export function Macarons() {
   );
   const [expanded, setExpanded] = useState<boolean>(false);
 
-  const handleMacaronClick = (item: IItem) => {
+  const handleMacaronClick = (item: IProduct) => {
     if (!expanded) {
       setExpanded(true);
     }
@@ -47,21 +46,12 @@ export function Macarons() {
       macaronElements.push(
         <FlexRow key={i}>
           <FlexColumn bordered>
-            <MacaronSingle
-              name={macarons[i].name}
-              description={macarons[i].description!}
-              hoverImageUrl={macarons[i].imageCutUrl!}
-              imageUrl={macarons[i].imageUrl}
-              onClick={handleMacaronClick}
-            />
+            <MacaronSingle {...macarons[i]} onClick={handleMacaronClick} />
           </FlexColumn>
           {i + 1 < macarons.length ? (
             <FlexColumn bordered>
               <MacaronSingle
-                name={macarons[i + 1].name}
-                description={macarons[i + 1].description!}
-                hoverImageUrl={macarons[i + 1].imageCutUrl!}
-                imageUrl={macarons[i + 1].imageUrl}
+                {...macarons[i + 1]}
                 onClick={handleMacaronClick}
               />
             </FlexColumn>

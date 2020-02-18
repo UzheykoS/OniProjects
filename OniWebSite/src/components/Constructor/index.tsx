@@ -12,7 +12,7 @@ const STICKY_LIMIT = 650;
 
 export interface IConstructorContainerProps extends IConstructorProps {
   expanded: boolean;
-  setExpanded: any;
+  setExpanded: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 export function ConstructorContainer({

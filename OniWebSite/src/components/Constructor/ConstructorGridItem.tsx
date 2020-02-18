@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { ConstructoreMode, IItem } from './Constructor';
+import { ConstructoreMode } from './Constructor';
 import {
   ConstructorGridItemWrapper,
   RemoveIconWrapper,
@@ -7,9 +7,10 @@ import {
 } from './styled';
 import colors from '@constants/colors';
 import RemoveIcon from '@material-ui/icons/Remove';
+import { IProduct } from '@constants/products';
 
 interface IConstructorGridItemProps {
-  item: IItem;
+  item: IProduct;
   mode: ConstructoreMode;
   index: number;
   onClick: (index: number) => void;

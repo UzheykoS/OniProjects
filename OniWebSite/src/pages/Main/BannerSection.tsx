@@ -23,7 +23,7 @@ export function BannerSection() {
     <ImagesContainer>
       <BannerWrapper />
       {/* <Slider {...settings}> */}
-      <BackgroundImage src='./images/images_large/main1.jpg' />
+      <BackgroundImage src='./images/pages/main/main_1.jpg' />
       {/* <BackgroundImage src='./images/images_large/main2.jpg' /> */}
       {/* </Slider> */}
     </ImagesContainer>

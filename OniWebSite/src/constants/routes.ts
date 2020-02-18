@@ -5,6 +5,7 @@ export enum Pages {
   Delivery = 'Доставка и оплата',
   Contacts = 'Контакты',
   Products = 'Продукция',
+  Checkout = 'Корзина',
 }
 
 export enum ProductPages {
@@ -69,5 +70,9 @@ export const routes: routeType = {
   [Pages.Contacts]: {
     path: '/contacts',
     label: 'Контакты',
+  },
+  [Pages.Checkout]: {
+    path: '/checkout',
+    label: 'Корзина',
   },
 };
