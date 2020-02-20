@@ -1,6 +1,12 @@
 import React, { useState } from 'react';
-import { CheckoutContainer, Content, CheckoutHeaderWrapper } from '../styled';
-import { Tabs, Tab, Typography, IconButton } from '@material-ui/core';
+import {
+  Content,
+  CheckoutHeaderWrapper,
+  TabsStyled,
+  TabStyled,
+  CheckoutStepperContainer,
+} from '../styled';
+import { Typography, IconButton } from '@material-ui/core';
 import { Delivery } from './Delivery';
 import { Contacts } from './Contacts';
 import { Payment } from './Payment';
@@ -18,17 +24,14 @@ interface ICheckoutStepperProps {
   returnToBasket: () => void;
 }
 
-export function CheckoutStepper({
-  items,
-  returnToBasket,
-}: ICheckoutStepperProps) {
+export function CheckoutStepper({ returnToBasket }: ICheckoutStepperProps) {
   const [activeTab, setActiveTab] = useState(CheckoutTabs.Delivery);
   const handleTabChange = (_e: React.ChangeEvent<{}>, tab: CheckoutTabs) => {
     setActiveTab(tab);
   };
 
   return (
-    <CheckoutContainer>
+    <CheckoutStepperContainer>
       <CheckoutHeaderWrapper>
         <IconButton onClick={returnToBasket}>
           <ChevronLeftIcon />
@@ -36,28 +39,27 @@ export function CheckoutStepper({
         <Typography variant='h2'>Оформление заказа</Typography>
       </CheckoutHeaderWrapper>
 
-      <Tabs
+      <TabsStyled
         value={activeTab}
         indicatorColor='primary'
         textColor='primary'
         onChange={handleTabChange}
       >
-        <Tab label={CheckoutTabs.Delivery} value={CheckoutTabs.Delivery} />
-        <Tab label={CheckoutTabs.Contacts} value={CheckoutTabs.Contacts} />
-        <Tab label={CheckoutTabs.Payment} value={CheckoutTabs.Payment} />
-      </Tabs>
+        <TabStyled
+          label={CheckoutTabs.Delivery}
+          value={CheckoutTabs.Delivery}
+        />
+        <TabStyled
+          label={CheckoutTabs.Contacts}
+          value={CheckoutTabs.Contacts}
+        />
+        <TabStyled label={CheckoutTabs.Payment} value={CheckoutTabs.Payment} />
+      </TabsStyled>
       <Content>
-        {activeTab === CheckoutTabs.Delivery && (
-          <>
-            {items.map((item, index) => {
-              return <span key={index}>{item.name}</span>;
-            })}
-            <Delivery />
-          </>
-        )}
+        {activeTab === CheckoutTabs.Delivery && <Delivery />}
         {activeTab === CheckoutTabs.Contacts && <Contacts />}
         {activeTab === CheckoutTabs.Payment && <Payment />}
       </Content>
-    </CheckoutContainer>
+    </CheckoutStepperContainer>
   );
 }

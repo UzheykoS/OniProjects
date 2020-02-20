@@ -4,6 +4,10 @@ import {
   BasketButtonWrapper,
   ContinueShopping,
   CheckoutHeaderWrapper,
+  BasketTable,
+  BasketHeader,
+  BasketHeaderCell,
+  ProceedSection,
 } from './styled';
 import { Typography, IconButton } from '@material-ui/core';
 import { BasketItem } from './BasketItem';
@@ -32,7 +36,10 @@ export function Basket({ items, confirmCheckout }: IBasketProps) {
   return (
     <BasketWrapper>
       <CheckoutHeaderWrapper>
-        <IconButton onClick={handleBackClick}>
+        <IconButton
+          onClick={handleBackClick}
+          style={{ position: 'absolute', left: '-100px', top: '15px' }}
+        >
           <ChevronLeftIcon />
         </IconButton>
         <Typography variant='h2'>Корзина</Typography>
@@ -40,20 +47,43 @@ export function Basket({ items, confirmCheckout }: IBasketProps) {
       <Typography variant='body1'>
         Минимальная стоимость заказа для доставки курьером составляет 200 грн.
       </Typography>
-      {items.map((item, index) => {
-        return <BasketItem item={item} key={index} />;
-      })}
+      <BasketTable>
+        <BasketHeader>
+          <BasketHeaderCell>
+            <Typography variant={'body2'}>Фото</Typography>
+          </BasketHeaderCell>
+          <BasketHeaderCell>
+            <Typography variant={'body2'}>Название</Typography>
+          </BasketHeaderCell>
+          <BasketHeaderCell>
+            <Typography variant={'body2'}>Количество</Typography>
+          </BasketHeaderCell>
+          <BasketHeaderCell>
+            <Typography variant={'body2'}>Цена</Typography>
+          </BasketHeaderCell>
+        </BasketHeader>
+        {items.map((item, index) => {
+          return <BasketItem item={item} key={index} />;
+        })}
+      </BasketTable>
+
       <BasketButtonWrapper>
         <ContinueShopping variant='body2' onClick={handleContinueShoppingClick}>
           ПРОДОЛЖИТЬ ПОКУПКИ
         </ContinueShopping>
-        <div>
+        <ProceedSection>
           <Typography variant='body1'>Итого:</Typography>
-          <Typography variant='h3'>{`${totalPrice} грн.`}</Typography>
-          <Button rounded onClick={handleCheckoutClick}>
+          <Typography variant='h3' style={{ marginLeft: '30px' }}>
+            {`${totalPrice} грн.`}
+          </Typography>
+          <Button
+            rounded
+            onClick={handleCheckoutClick}
+            style={{ marginLeft: '50px' }}
+          >
             ОФОРМИТЬ
           </Button>
-        </div>
+        </ProceedSection>
       </BasketButtonWrapper>
     </BasketWrapper>
   );

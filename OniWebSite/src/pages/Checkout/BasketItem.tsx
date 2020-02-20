@@ -24,8 +24,6 @@ export function BasketItem({ item }: IBasketItemProps) {
         <Typography variant='body1'>
           {`${Number(item.type) * item.quantity} грн.`}
         </Typography>
-      </BasketItemWrapperCell>
-      <BasketItemWrapperCell>
         <IconButton>
           <DeleteIcon />
         </IconButton>
