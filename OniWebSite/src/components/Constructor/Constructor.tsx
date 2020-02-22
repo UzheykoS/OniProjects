@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useCallback, useState } from 'react';
 import {
   ConstructorWrapper,
   ModeSelectWrapper,
@@ -12,6 +12,7 @@ import { Button } from '@common/Button';
 import { ConstructorGridItem } from './ConstructorGridItem';
 import { useBasket } from '@hooks/useBasket';
 import { IProduct } from '@constants/products';
+import ConstructorClearModal from './ConstructorClearModal';
 
 export enum ConstructoreMode {
   MacaronSmall = 6,
@@ -99,6 +100,9 @@ export interface IConstructorProps {
 
 export function Constructor({ state, dispatch }: IConstructorProps) {
   const { addToBasket } = useBasket();
+  const [showModal, setShowModal] = useState(false);
+  const handleOpen = useCallback(() => setShowModal(true), []);
+  const handleClose = useCallback(() => setShowModal(false), []);
 
   const handleConstructorSubmit = () => {
     state.items.forEach(item => {
@@ -112,6 +116,13 @@ export function Constructor({ state, dispatch }: IConstructorProps) {
 
   const handleClear = () => {
     dispatch({ type: 'clear' });
+    handleClose();
+  };
+
+  const handleClearIconClick = () => {
+    if (state.items.length) {
+      handleOpen();
+    }
   };
 
   const handleSurpriseMeClick = () => {
@@ -140,38 +151,45 @@ export function Constructor({ state, dispatch }: IConstructorProps) {
   };
 
   return (
-    <ConstructorWrapper>
-      <ModeSelectWrapper>
-        <div>
-          {state.availableModes.map(mode => (
-            <Chip
-              key={mode}
-              clickable
-              color='secondary'
-              label={mode}
-              style={{ width: '50px', margin: '0px 5px' }}
-              variant={state.mode === mode ? 'outlined' : 'default'}
-              onClick={() => handleModeSelect(mode)}
-            />
-          ))}
-        </div>
-        <IconButton onClick={handleClear}>
-          <DeleteOutlinedIcon />
-        </IconButton>
-      </ModeSelectWrapper>
-      <ConstructorGridWrapper>
-        {constructorGridContent()}
-      </ConstructorGridWrapper>
-      <CenteredRow>
-        <SurpriseMe variant='body2' onClick={handleSurpriseMeClick}>
-          Удивите меня
-        </SurpriseMe>
-      </CenteredRow>
-      <CenteredRow>
-        <Button rounded onClick={handleConstructorSubmit}>
-          Добавить
-        </Button>
-      </CenteredRow>
-    </ConstructorWrapper>
+    <>
+      <ConstructorWrapper>
+        <ModeSelectWrapper>
+          <div>
+            {state.availableModes.map(mode => (
+              <Chip
+                key={mode}
+                clickable
+                color='secondary'
+                label={mode}
+                style={{ width: '50px', margin: '0px 5px' }}
+                variant={state.mode === mode ? 'outlined' : 'default'}
+                onClick={() => handleModeSelect(mode)}
+              />
+            ))}
+          </div>
+          <IconButton onClick={handleClearIconClick}>
+            <DeleteOutlinedIcon />
+          </IconButton>
+        </ModeSelectWrapper>
+        <ConstructorGridWrapper>
+          {constructorGridContent()}
+        </ConstructorGridWrapper>
+        <CenteredRow>
+          <SurpriseMe variant='body2' onClick={handleSurpriseMeClick}>
+            Удивите меня
+          </SurpriseMe>
+        </CenteredRow>
+        <CenteredRow>
+          <Button rounded onClick={handleConstructorSubmit}>
+            Добавить
+          </Button>
+        </CenteredRow>
+      </ConstructorWrapper>
+      <ConstructorClearModal
+        confirmClear={handleClear}
+        closeModal={handleClose}
+        open={showModal}
+      />
+    </>
   );
 }

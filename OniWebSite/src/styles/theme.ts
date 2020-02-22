@@ -2,13 +2,27 @@ import { createMuiTheme } from '@material-ui/core/styles';
 import colors from '@constants/colors';
 
 export default createMuiTheme({
+  overrides: {
+    MuiButton: {
+      contained: {
+        boxShadow: 'none',
+      },
+      containedSecondary: {
+        backgroundColor: colors.primary.white,
+        '&:hover': {
+          backgroundColor: colors.secondary.gold,
+        },
+      },
+    },
+  },
   palette: {
     primary: {
       main: colors.primary.gold,
       contrastText: colors.primary.white,
     },
     secondary: {
-      main: colors.secondary.gold,
+      main: colors.primary.gold,
+      contrastText: colors.primary.black,
     },
   },
   typography: {

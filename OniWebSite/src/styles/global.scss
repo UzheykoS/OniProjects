@@ -12,6 +12,14 @@
     /* W3C */
 }
 
+[type=button]:not(:disabled),
+[type=reset]:not(:disabled),
+[type=submit]:not(:disabled),
+button:not(:disabled) {
+    cursor: pointer;
+    outline: none;
+}
+
 .cakes-container {
     height: 100%;
     overflow-x: hidden;
