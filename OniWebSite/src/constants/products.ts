@@ -35,6 +35,30 @@ export enum ProductType {
 //   [ProductType.Macaron]: 'test',
 // };
 
+export interface ICakeInfo {
+  name: string;
+  shortDescription: string;
+  fullDescription: string;
+  imageUrl: string;
+  imageCutUrl: string;
+  weightSmall: number;
+  diameterSmall: number;
+  personsSmall: string;
+  priceSmall: number;
+  weightLarge: number;
+  diameterLarge: number;
+  personsLarge: string;
+  priceLarge: number;
+}
+
+export const enum CakeTypes {
+  Soul,
+  Carrot,
+  Pink,
+  Infinity,
+  Rio
+}
+
 export interface IProduct {
   name: string;
   description?: string;

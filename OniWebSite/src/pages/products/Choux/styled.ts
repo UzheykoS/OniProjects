@@ -4,6 +4,7 @@ export const ChouxWrapper = styled.div`
   height: 100%;
   width: 100%;
   padding: 5% 13% 5% 20%;
+  box-sizing: border-box;
 `;
 
 export const ChouxTitle = styled.div`

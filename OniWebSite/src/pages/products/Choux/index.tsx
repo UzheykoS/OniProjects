@@ -10,7 +10,7 @@ import {
 } from '@components/Constructor/Constructor';
 import { ConstructorContainer } from '@components/Constructor';
 import { DessertsMix } from '@components/DessertsMix';
-import { ChouxSingle } from '@components/ChouxSingle';
+import { ChouxSingle } from '@components/products/ChouxSingle';
 import { chouxMix, choux, IProduct } from '@constants/products';
 
 export function Choux() {

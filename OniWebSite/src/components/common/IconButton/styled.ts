@@ -1,7 +1,7 @@
 import styled from 'styled-components';
-import { IconButton } from '@material-ui/core';
+import { IconButton, IconButtonProps } from '@material-ui/core';
 
-export const IconButtonStyled = styled(IconButton)`
+export const IconButtonStyled = styled(IconButton)<IconButtonProps>`
   &:focus {
     outline: none;
   }

@@ -10,7 +10,7 @@ import {
 } from '@components/Constructor/Constructor';
 import { ConstructorContainer } from '@components/Constructor';
 import { DessertsMix } from '@components/DessertsMix';
-import { ZephyrSingle } from '@components/ZephyrSingle';
+import { ZephyrSingle } from '@components/products/ZephyrSingle';
 import { zephyrMix, zephyr, IProduct } from '@constants/products';
 
 export function Zephyr() {

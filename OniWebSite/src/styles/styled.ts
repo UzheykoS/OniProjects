@@ -18,6 +18,7 @@ export const AppStyled = styled.div`
   min-height: 100%;
   font-family: 'Yeseva One', cursive;
   position: relative;
+  box-sizing: border-box;
 `;
 
 export const FlexRow = styled.div`

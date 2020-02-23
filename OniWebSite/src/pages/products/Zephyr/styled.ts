@@ -4,6 +4,7 @@ export const ZephyrWrapper = styled.div`
   height: 100%;
   width: 100%;
   padding: 5% 13% 5% 20%;
+  box-sizing: border-box;
 `;
 
 export const ZephyrTitle = styled.div`

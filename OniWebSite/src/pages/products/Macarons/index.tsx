@@ -1,5 +1,5 @@
 import React, { useReducer, useState } from 'react';
-import { MacaronSingle } from '../../../components/MacaronSingle';
+import { MacaronSingle } from '../../../components/products/MacaronSingle';
 import { MacaronsWrapper, MacaronsInfo } from './styled';
 import { Typography } from '@material-ui/core';
 import { FlexRow, FlexColumn } from '@styles/styled';

@@ -1,11 +1,11 @@
 import { loadMainPageImage, preloadImages } from '@utils/Helper';
-import { Container, Row, Col } from 'react-bootstrap';
 import React, { useEffect } from 'react';
 import { BannerSection } from './BannerSection';
 import { TopSalesSection } from './TopSalesSection';
 import { AboutSection } from './AboutSection';
 import { InstagramSection } from './InstagramSection';
 import { useLoading } from '@hooks/useLoading';
+import { Grid } from '@material-ui/core';
 
 export const Main = () => {
   const { showLoading, closeLoading } = useLoading();
@@ -48,25 +48,25 @@ export const Main = () => {
   return (
     <>
       <BannerSection />
-      <Container fluid>
-        <Row>
-          <Col md={{ span: 8, offset: 2 }}>
+      <Grid container>
+        <Grid container justify={'center'}>
+          <Grid item md={8}>
             <TopSalesSection />
-          </Col>
-        </Row>
+          </Grid>
+        </Grid>
 
-        <Row>
-          <Col md={{ span: 8, offset: 2 }}>
+        <Grid container justify={'center'}>
+          <Grid item md={8}>
             <AboutSection />
-          </Col>
-        </Row>
+          </Grid>
+        </Grid>
 
-        <Row>
-          <Col md={{ span: 8, offset: 2 }}>
+        <Grid container justify={'center'}>
+          <Grid item md={8}>
             <InstagramSection />
-          </Col>
-        </Row>
-      </Container>
+          </Grid>
+        </Grid>
+      </Grid>
     </>
   );
 };
