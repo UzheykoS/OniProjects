@@ -10,6 +10,7 @@ export const CheckoutContainer = styled.div`
   justify-content: center;
   min-width: 60%;
   margin: 50px 0px;
+  min-height: calc(100vh - 550px);
 `;
 
 export const Content = styled.div`

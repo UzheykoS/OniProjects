@@ -56,9 +56,17 @@ export function CheckoutStepper({ returnToBasket }: ICheckoutStepperProps) {
         <TabStyled label={CheckoutTabs.Payment} value={CheckoutTabs.Payment} />
       </TabsStyled>
       <Content>
-        {activeTab === CheckoutTabs.Delivery && <Delivery />}
-        {activeTab === CheckoutTabs.Contacts && <Contacts />}
-        {activeTab === CheckoutTabs.Payment && <Payment />}
+        {activeTab === CheckoutTabs.Delivery && (
+          <Delivery
+            handleContinue={() => setActiveTab(CheckoutTabs.Contacts)}
+          />
+        )}
+        {activeTab === CheckoutTabs.Contacts && (
+          <Contacts handleContinue={() => setActiveTab(CheckoutTabs.Payment)} />
+        )}
+        {activeTab === CheckoutTabs.Payment && (
+          <Payment handleContinue={() => {}} />
+        )}
       </Content>
     </CheckoutStepperContainer>
   );
