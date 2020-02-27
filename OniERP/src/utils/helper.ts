@@ -12,6 +12,7 @@ import {
   ICE_CREAM_PRICE,
   SORBET_PRICE,
   SMALL_CAKE_PRICE,
+  DRAGEE_PRICE,
 } from './dictionaries';
 import {
   DessertType,
@@ -185,6 +186,9 @@ class Helper {
         case DessertType.Sorbet:
           totalDessertsPrice += SORBET_PRICE * d.quantity;
           break;
+        case DessertType.Dragee:
+          totalDessertsPrice += DRAGEE_PRICE * d.quantity;
+          break;
         default:
           break;
       }
@@ -230,6 +234,9 @@ class Helper {
           break;
         case DessertType.Cheesecake:
           totalDessertsPrice += CHEESECAKE_PRICE * d.quantity;
+          break;
+        case DessertType.Dragee:
+          totalDessertsPrice += DRAGEE_PRICE * d.quantity;
           break;
         default:
           break;

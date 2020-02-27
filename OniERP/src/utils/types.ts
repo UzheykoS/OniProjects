@@ -40,14 +40,15 @@ export enum OrderType {
 
 export enum DessertType {
   Macaron = 'Макаронс',
-  Zephyr = 'Зефир',
-  Cake = 'Торт',
   Choux = 'Шу',
-  SmallCake = 'Пирожное',
   Cheesecake = 'Чизкейк',
-  EasterCake = 'Кулич',
+  Zephyr = 'Зефир',
+  Dragee = 'Драже',
+  Cake = 'Торт',
+  SmallCake = 'Пирожное',
   IceCream = 'Мороженое',
   Sorbet = 'Сорбет',
+  EasterCake = 'Кулич',
 }
 
 export enum SaleType {
@@ -142,8 +143,14 @@ export enum EasterCakeEnum {
   Small = 'S 450 гр',
   Large = 'L 750 гр',
 }
+
 export enum SmallCakeEnum {
   Valentin = 'Валентинка',
+}
+
+export enum DrageeEnum {
+  Nuts = 'Орехи',
+  Fruits = 'Фрукты',
 }
 
 export enum DrinksType {

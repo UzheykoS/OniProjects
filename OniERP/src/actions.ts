@@ -57,6 +57,7 @@ import {
   ICE_CREAM_PRICE,
   SORBET_PRICE,
   SMALL_CAKE_PRICE,
+  DRAGEE_PRICE,
 } from './utils/dictionaries';
 import Helper from './utils/helper';
 
@@ -705,6 +706,7 @@ export const CalculateDailyPercent = () => {
               DessertType.IceCream,
               DessertType.Sorbet,
               DessertType.SmallCake,
+              DessertType.Dragee,
             ].indexOf(v[0]) > -1 &&
             Helper.isToday(v[6]) &&
             v[9] === state.currentProfile &&
@@ -787,6 +789,13 @@ export const CalculateDailyPercent = () => {
           totalBonus +=
             (d[2] *
               SORBET_PRICE *
+              BONUS_PERCENT_DESSERTS *
+              (100 - getSale(d[8]))) /
+            100;
+        } else if (d[0] === DessertType.Dragee) {
+          totalBonus +=
+            (d[2] *
+              DRAGEE_PRICE *
               BONUS_PERCENT_DESSERTS *
               (100 - getSale(d[8]))) /
             100;

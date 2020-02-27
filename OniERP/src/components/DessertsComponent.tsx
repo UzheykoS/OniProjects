@@ -24,6 +24,7 @@ import {
   IceCreamEnum,
   SorbetEnum,
   SmallCakeEnum,
+  DrageeEnum,
 } from '../utils/types';
 import {
   DessertsDict,
@@ -360,6 +361,9 @@ export class DessertsComponent extends Component<
       case DessertType.SmallCake:
         dessertTastes = Helper.getArrayFromEnum(SmallCakeEnum);
         break;
+      case DessertType.Dragee:
+        dessertTastes = Helper.getArrayFromEnum(DrageeEnum);
+        break;
       default:
         dessertTastes = [];
         break;
@@ -526,7 +530,4 @@ export class DessertsComponent extends Component<
   }
 }
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(DessertsComponent);
+export default connect(mapStateToProps, mapDispatchToProps)(DessertsComponent);

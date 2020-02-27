@@ -128,6 +128,8 @@ export const SORBET_PRICE = 44;
 
 export const SMALL_CAKE_PRICE = 85;
 
+export const DRAGEE_PRICE = 180;
+
 export const MacaronsColors: { [id: string]: string } = {};
 MacaronsColors[MacaronsEnum.DorBluePear] = '#b7e4f7';
 MacaronsColors[MacaronsEnum.ParmesanFigue] = '#fcf7e8';
