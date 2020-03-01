@@ -6,25 +6,27 @@ import DeleteIcon from '@material-ui/icons/Delete';
 
 interface IBasketItemProps {
   item: IBasketItem;
+  onRemoveItemClick: (item: IBasketItem) => void;
 }
 
-export function BasketItem({ item }: IBasketItemProps) {
+export function BasketItem({ item, onRemoveItemClick }: IBasketItemProps) {
+  const { product, quantity } = item;
   return (
     <BasketItemWrapper>
       <BasketItemWrapperCell>
-        <img src={item.imageUrl} />
+        <img src={product.imageUrl} />
       </BasketItemWrapperCell>
       <BasketItemWrapperCell>
-        <Typography variant='body1'>{item.name}</Typography>
+        <Typography variant='body1'>{product.id}</Typography>
       </BasketItemWrapperCell>
       <BasketItemWrapperCell>
-        <Typography variant='body1'>{item.quantity}</Typography>
+        <Typography variant='body1'>{quantity}</Typography>
       </BasketItemWrapperCell>
       <BasketItemWrapperCell>
         <Typography variant='body1'>
-          {`${Number(item.type) * item.quantity} грн.`}
+          {`${Number(product.price) * quantity} грн.`}
         </Typography>
-        <IconButton>
+        <IconButton onClick={() => onRemoveItemClick(item)}>
           <DeleteIcon />
         </IconButton>
       </BasketItemWrapperCell>

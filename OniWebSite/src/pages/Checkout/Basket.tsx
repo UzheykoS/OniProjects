@@ -19,19 +19,30 @@ import { IBasketItem } from '@hooks/useBasket';
 interface IBasketProps {
   items: IBasketItem[];
   confirmCheckout: () => void;
+  removeFromBasket: (item: IBasketItem) => void;
 }
 
-export function Basket({ items, confirmCheckout }: IBasketProps) {
+export function Basket({
+  items,
+  confirmCheckout,
+  removeFromBasket,
+}: IBasketProps) {
   const history = useHistory();
   const handleBackClick = () => {
     history.goBack();
   };
 
-  const handleContinueShoppingClick = () => {};
+  const handleContinueShoppingClick = () => {
+    history.push('/products');
+  };
+
   const handleCheckoutClick = () => {
     confirmCheckout();
   };
-  let totalPrice = 0;
+  let totalPrice = items.reduce((accumulator, currentValue) => {
+    accumulator += Number(currentValue.product.price) * currentValue.quantity;
+    return accumulator;
+  }, 0);
 
   return (
     <BasketWrapper>
@@ -63,7 +74,13 @@ export function Basket({ items, confirmCheckout }: IBasketProps) {
           </BasketHeaderCell>
         </BasketHeader>
         {items.map((item, index) => {
-          return <BasketItem item={item} key={index} />;
+          return (
+            <BasketItem
+              item={item}
+              key={index}
+              onRemoveItemClick={removeFromBasket}
+            />
+          );
         })}
       </BasketTable>
 

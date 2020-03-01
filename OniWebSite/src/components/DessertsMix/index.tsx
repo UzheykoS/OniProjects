@@ -2,22 +2,22 @@ import React from 'react';
 import { Typography } from '@material-ui/core';
 import { Button } from '@common/Button';
 import { MixSection } from './styled';
+import { IProduct } from '@constants/products';
 
 interface IProps {
-  imageUrl: string;
-  quantity: string;
-  price: number;
+  product: IProduct;
+  onClick: (product: IProduct) => void;
 }
-export function DessertsMix({ imageUrl, quantity, price }: IProps) {
+export function DessertsMix({ product, onClick }: IProps) {
   return (
     <MixSection>
-      <img src={imageUrl} />
+      <img src={product.imageUrl} />
       <div className='title'>
         <Typography variant='caption' style={{ padding: '0 10px 5px 0' }}>
           Ассорти
         </Typography>
         <Typography variant='body1' style={{ fontWeight: 400 }}>
-          {quantity}
+          {product.id}
         </Typography>
       </div>
       <div className='price'>
@@ -31,11 +31,16 @@ export function DessertsMix({ imageUrl, quantity, price }: IProps) {
               alignItems: 'center',
             }}
           >
-            {`${price} грн`}
+            {`${product.price} грн`}
           </Typography>
         </div>
         <div className='half'>
-          <Button style={{ width: '100%', height: '100%' }}>ДОБАВИТЬ</Button>
+          <Button
+            style={{ width: '100%', height: '100%' }}
+            onClick={() => onClick(product)}
+          >
+            ДОБАВИТЬ
+          </Button>
         </div>
       </div>
     </MixSection>

@@ -106,7 +106,7 @@ export function Constructor({ state, dispatch }: IConstructorProps) {
 
   const handleConstructorSubmit = () => {
     state.items.forEach(item => {
-      addToBasket({ ...item, quantity: 1 });
+      addToBasket({ product: item, quantity: 1 });
     });
   };
 

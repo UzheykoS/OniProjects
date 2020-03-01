@@ -37,11 +37,12 @@ import colors from '@constants/colors';
 import FullScreenImageDialog from './FullScreenImageDialog';
 
 export interface CakeSubmitInfo {
-  size: CakeSize;
+  cake: ICakeInfo;
   quantity: number;
 }
 
-interface IProps extends ICakeInfo {
+interface IProps {
+  cakePair: [ICakeInfo, ICakeInfo];
   onClick: (cake: CakeSubmitInfo) => void;
 }
 
@@ -50,22 +51,26 @@ enum CakeSize {
   Large,
 }
 
-export function CakeSingle({
-  name,
-  shortDescription,
-  fullDescription,
-  imageUrl,
-  imageCutUrl,
-  weightSmall,
-  diameterSmall,
-  personsSmall,
-  priceSmall,
-  weightLarge,
-  diameterLarge,
-  personsLarge,
-  priceLarge,
-  onClick,
-}: IProps) {
+export function CakeSingle({ cakePair, onClick }: IProps) {
+  const {
+    id,
+    shortDescription,
+    fullDescription,
+    imageUrl,
+    imageCutUrl,
+    weight,
+    diameter,
+    persons,
+    price,
+  } = cakePair[0];
+
+  const {
+    weight: weightLarge,
+    diameter: diameterLarge,
+    persons: personsLarge,
+    price: priceLarge,
+  } = cakePair[1];
+
   const [selectedSize, setSelectedSize] = useState(CakeSize.Small);
   const [quantity, setQuantity] = useState(1);
   const [previewImageUrl, setPreviewImageUrl] = useState('');
@@ -82,7 +87,7 @@ export function CakeSingle({
 
   const handleAddClick = () => {
     onClick({
-      size: selectedSize,
+      cake: selectedSize === CakeSize.Small ? cakePair[0] : cakePair[1],
       quantity,
     });
   };
@@ -90,8 +95,8 @@ export function CakeSingle({
   const getPrice = () => {
     return `${
       selectedSize === CakeSize.Small
-        ? priceSmall * quantity
-        : priceLarge * quantity
+        ? price! * quantity
+        : priceLarge! * quantity
     } грн `;
   };
 
@@ -119,7 +124,7 @@ export function CakeSingle({
               disableRipple
               size='small'
               onClick={() =>
-                setPreviewImageUrl(activeIndex === 0 ? imageUrl : imageCutUrl)
+                setPreviewImageUrl(activeIndex === 0 ? imageUrl : imageCutUrl!)
               }
             >
               <ExtendIcon />
@@ -128,14 +133,14 @@ export function CakeSingle({
         </CarouselWrapper>
       </ImagesSection>
       <InfoSection>
-        <Title>{name}</Title>
+        <Title>{id}</Title>
         <DescriptionLarge>{fullDescription}</DescriptionLarge>
         <DescriptionSmall>{shortDescription}</DescriptionSmall>
         <SizeAndQtySelector>
           <ChipStyled
             clickable
             color='secondary'
-            label={`${weightSmall} кг`}
+            label={`${weight} кг`}
             variant={selectedSize === CakeSize.Small ? 'outlined' : 'default'}
             onClick={() => setSelectedSize(CakeSize.Small)}
           />
@@ -176,11 +181,11 @@ export function CakeSingle({
             <>
               <DiameterWrapper>
                 <DiameterIcon />
-                <IconTextWrapper>{`${diameterSmall} см`}</IconTextWrapper>
+                <IconTextWrapper>{`${diameter} см`}</IconTextWrapper>
               </DiameterWrapper>
               <PeopleWrapper>
                 <PeopleIcon />
-                <IconTextWrapper>{`на ${personsSmall} персон`}</IconTextWrapper>
+                <IconTextWrapper>{`на ${persons} персон`}</IconTextWrapper>
               </PeopleWrapper>
             </>
           ) : (

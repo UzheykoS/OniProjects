@@ -5,7 +5,7 @@ import { CheckoutStepper } from './CheckoutStepper';
 import { Basket } from './Basket';
 
 export function Checkout() {
-  const { items } = useBasket();
+  const { items, removeFromBasket } = useBasket();
   const [isCheckout, setIsCheckout] = useState(false);
 
   return (
@@ -16,7 +16,7 @@ export function Checkout() {
           returnToBasket={() => setIsCheckout(false)}
         />
       ) : (
-        <Basket items={items} confirmCheckout={() => setIsCheckout(true)} />
+        <Basket items={items} confirmCheckout={() => setIsCheckout(true)} removeFromBasket={removeFromBasket} />
       )}
     </CheckoutContainer>
   );

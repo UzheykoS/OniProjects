@@ -4,9 +4,10 @@ import React, {
   useReducer,
   useCallback,
 } from 'react';
-import { IProduct } from '@constants/products';
+import { IProduct, ICakeInfo } from '@constants/products';
 
-export interface IBasketItem extends IProduct {
+export interface IBasketItem {
+  product: IProduct | ICakeInfo;
   quantity: number;
 }
 
@@ -37,6 +38,16 @@ function basketReducer(state: IBasketState, action: ActionType) {
         const { items } = state;
         items.push(action.item);
         return { ...state, items };
+      }
+      return state;
+    case 'remove':
+      if (action.item) {
+        const { items } = state;
+        const index = items.findIndex(i => i === action.item);
+        if (index > -1) {
+          items.splice(index, 1);
+          return { ...state, items };
+        }
       }
       return state;
     case 'clear':

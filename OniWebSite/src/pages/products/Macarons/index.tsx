@@ -1,4 +1,4 @@
-import React, { useReducer, useState } from 'react';
+import React, { useReducer, useState, useCallback } from 'react';
 import { MacaronSingle } from '../../../components/products/MacaronSingle';
 import { MacaronsWrapper, MacaronsInfo } from './styled';
 import { Typography } from '@material-ui/core';
@@ -12,6 +12,8 @@ import {
 import { ConstructorContainer } from '@components/Constructor';
 import { DessertsMix } from '@components/DessertsMix';
 import { macarons, macaronMix, IProduct } from '@constants/products';
+import { useBasket } from '@hooks/useBasket';
+import MixSelectModal from '@components/modals/MixSelectModal';
 
 export function Macarons() {
   const [state, dispatch] = useReducer(
@@ -26,6 +28,9 @@ export function Macarons() {
     )
   );
   const [expanded, setExpanded] = useState<boolean>(false);
+  const [selectedMix, setSelectedMix] = useState<IProduct>();
+  const handleClose = useCallback(() => setSelectedMix(undefined), []);
+  const { addToBasket } = useBasket();
 
   const handleMacaronClick = (item: IProduct) => {
     if (!expanded) {
@@ -40,18 +45,30 @@ export function Macarons() {
     }
   };
 
+  const handleMacaronsMixClick = (item: IProduct) => {
+    setSelectedMix(item);
+  };
+
+  const handleMacaronsMixConfirm = () => {
+    if (!selectedMix) {
+      return;
+    }
+    addToBasket({ product: selectedMix, quantity: 1 });
+    handleClose();
+  };
+
   const macaronElements: JSX.Element[] = [];
   for (let i = 0; i < macarons.length; i++) {
     if (i % 2 === 0) {
       macaronElements.push(
         <FlexRow key={i}>
           <FlexColumn bordered>
-            <MacaronSingle {...macarons[i]} onClick={handleMacaronClick} />
+            <MacaronSingle product={macarons[i]} onClick={handleMacaronClick} />
           </FlexColumn>
           {i + 1 < macarons.length ? (
             <FlexColumn bordered>
               <MacaronSingle
-                {...macarons[i + 1]}
+                product={macarons[i + 1]}
                 onClick={handleMacaronClick}
               />
             </FlexColumn>
@@ -98,23 +115,20 @@ export function Macarons() {
       <FlexRow>
         <FlexColumn bordered>
           <DessertsMix
-            price={168}
-            quantity={macaronMix[0].name}
-            imageUrl={macaronMix[0].imageUrl}
+            product={macaronMix[0]}
+            onClick={handleMacaronsMixClick}
           />
         </FlexColumn>
         <FlexColumn bordered>
           <DessertsMix
-            price={336}
-            quantity={macaronMix[1].name}
-            imageUrl={macaronMix[1].imageUrl}
+            product={macaronMix[1]}
+            onClick={handleMacaronsMixClick}
           />
         </FlexColumn>
         <FlexColumn bordered>
           <DessertsMix
-            price={672}
-            quantity={macaronMix[2].name}
-            imageUrl={macaronMix[2].imageUrl}
+            product={macaronMix[2]}
+            onClick={handleMacaronsMixClick}
           />
         </FlexColumn>
       </FlexRow>
@@ -140,6 +154,14 @@ export function Macarons() {
         </FlexColumn>
       </FlexRow>
       {macaronElements}
+      {!!selectedMix && (
+        <MixSelectModal
+          mix={selectedMix}
+          confirmAdd={handleMacaronsMixConfirm}
+          closeModal={handleClose}
+          open={!!selectedMix}
+        />
+      )}
     </MacaronsWrapper>
   );
 }

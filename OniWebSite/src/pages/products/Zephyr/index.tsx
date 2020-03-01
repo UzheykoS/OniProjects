@@ -1,4 +1,4 @@
-import React, { useReducer, useState } from 'react';
+import React, { useReducer, useState, useCallback } from 'react';
 import { ZephyrWrapper, ZephyrInfo } from './styled';
 import { Typography } from '@material-ui/core';
 import { FlexRow, FlexColumn } from '@styles/styled';
@@ -12,6 +12,8 @@ import { ConstructorContainer } from '@components/Constructor';
 import { DessertsMix } from '@components/DessertsMix';
 import { ZephyrSingle } from '@components/products/ZephyrSingle';
 import { zephyrMix, zephyr, IProduct } from '@constants/products';
+import MixSelectModal from '@components/modals/MixSelectModal';
+import { useBasket } from '@hooks/useBasket';
 
 export function Zephyr() {
   const [state, dispatch] = useReducer(
@@ -22,6 +24,9 @@ export function Zephyr() {
     )
   );
   const [expanded, setExpanded] = useState<boolean>(false);
+  const [selectedMix, setSelectedMix] = useState<IProduct>();
+  const handleClose = useCallback(() => setSelectedMix(undefined), []);
+  const { addToBasket } = useBasket();
 
   const handleZephyrClick = (item: IProduct) => {
     if (!expanded) {
@@ -36,16 +41,28 @@ export function Zephyr() {
     }
   };
 
+  const handleZephyrMixClick = (item: IProduct) => {
+    setSelectedMix(item);
+  };
+
+  const handleZephyrMixConfirm = () => {
+    if (!selectedMix) {
+      return;
+    }
+    addToBasket({ product: selectedMix, quantity: 1 });
+    handleClose();
+  };
+
   const zephyrElements: JSX.Element[] = [];
   for (let i = 0; i < zephyr.length; i++) {
     if (i % 2 === 0) {
       zephyrElements.push(
         <FlexRow key={i}>
           <FlexColumn bordered>
-            <ZephyrSingle {...zephyr[i]} onClick={handleZephyrClick} />
+            <ZephyrSingle product={zephyr[i]} onClick={handleZephyrClick} />
           </FlexColumn>
           <FlexColumn bordered>
-            <ZephyrSingle {...zephyr[i + 1]} onClick={handleZephyrClick} />
+            <ZephyrSingle product={zephyr[i + 1]} onClick={handleZephyrClick} />
           </FlexColumn>
           <FlexColumn />
         </FlexRow>
@@ -87,18 +104,10 @@ export function Zephyr() {
       </FlexRow>
       <FlexRow>
         <FlexColumn bordered>
-          <DessertsMix
-            price={80}
-            quantity={zephyrMix[0].name}
-            imageUrl={zephyrMix[0].imageUrl}
-          />
+          <DessertsMix product={zephyrMix[0]} onClick={handleZephyrMixClick} />
         </FlexColumn>
         <FlexColumn bordered>
-          <DessertsMix
-            price={160}
-            quantity={zephyrMix[1].name}
-            imageUrl={zephyrMix[1].imageUrl}
-          />
+          <DessertsMix product={zephyrMix[1]} onClick={handleZephyrMixClick} />
         </FlexColumn>
       </FlexRow>
 
@@ -124,6 +133,14 @@ export function Zephyr() {
       </FlexRow>
 
       {zephyrElements}
+      {!!selectedMix && (
+        <MixSelectModal
+          mix={selectedMix}
+          confirmAdd={handleZephyrMixConfirm}
+          closeModal={handleClose}
+          open={!!selectedMix}
+        />
+      )}
     </ZephyrWrapper>
   );
 }

@@ -1,4 +1,4 @@
-import React, { useReducer, useState } from 'react';
+import React, { useReducer, useState, useCallback } from 'react';
 import { ChouxWrapper, ChouxInfo } from './styled';
 import { Typography } from '@material-ui/core';
 import { FlexRow, FlexColumn } from '@styles/styled';
@@ -12,6 +12,8 @@ import { ConstructorContainer } from '@components/Constructor';
 import { DessertsMix } from '@components/DessertsMix';
 import { ChouxSingle } from '@components/products/ChouxSingle';
 import { chouxMix, choux, IProduct } from '@constants/products';
+import MixSelectModal from '@components/modals/MixSelectModal';
+import { useBasket } from '@hooks/useBasket';
 
 export function Choux() {
   const [state, dispatch] = useReducer(
@@ -22,6 +24,9 @@ export function Choux() {
     )
   );
   const [expanded, setExpanded] = useState<boolean>(false);
+  const [selectedMix, setSelectedMix] = useState<IProduct>();
+  const handleClose = useCallback(() => setSelectedMix(undefined), []);
+  const { addToBasket } = useBasket();
 
   const handleChouxClick = (item: IProduct) => {
     if (!expanded) {
@@ -36,17 +41,29 @@ export function Choux() {
     }
   };
 
+  const handleChouxMixClick = (item: IProduct) => {
+    setSelectedMix(item);
+  };
+
+  const handleChouxMixConfirm = () => {
+    if (!selectedMix) {
+      return;
+    }
+    addToBasket({ product: selectedMix, quantity: 1 });
+    handleClose();
+  };
+
   const chouxElements: JSX.Element[] = [];
   for (let i = 0; i < choux.length; i++) {
     if (i % 2 === 0) {
       chouxElements.push(
         <FlexRow key={i}>
           <FlexColumn bordered>
-            <ChouxSingle {...choux[i]} onClick={handleChouxClick} />
+            <ChouxSingle product={choux[i]} onClick={handleChouxClick} />
           </FlexColumn>
           {i + 1 < choux.length ? (
             <FlexColumn bordered>
-              <ChouxSingle {...choux[i + 1]} onClick={handleChouxClick} />
+              <ChouxSingle product={choux[i + 1]} onClick={handleChouxClick} />
             </FlexColumn>
           ) : (
             <FlexColumn />
@@ -92,18 +109,10 @@ export function Choux() {
       </FlexRow>
       <FlexRow>
         <FlexColumn bordered>
-          <DessertsMix
-            price={80}
-            quantity={chouxMix[0].name}
-            imageUrl={chouxMix[0].imageUrl}
-          />
+          <DessertsMix product={chouxMix[0]} onClick={handleChouxMixClick} />
         </FlexColumn>
         <FlexColumn bordered>
-          <DessertsMix
-            price={160}
-            quantity={chouxMix[1].name}
-            imageUrl={chouxMix[1].imageUrl}
-          />
+          <DessertsMix product={chouxMix[1]} onClick={handleChouxMixClick} />
         </FlexColumn>
         <FlexColumn />
       </FlexRow>
@@ -130,6 +139,14 @@ export function Choux() {
       </FlexRow>
 
       {chouxElements}
+      {!!selectedMix && (
+        <MixSelectModal
+          mix={selectedMix}
+          confirmAdd={handleChouxMixConfirm}
+          closeModal={handleClose}
+          open={!!selectedMix}
+        />
+      )}
     </ChouxWrapper>
   );
 }
