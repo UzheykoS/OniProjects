@@ -74,6 +74,7 @@ export enum Staff {
 
 export enum MacaronsEnum {
   CoffeeCaramel = 'Кофе - Солёная Карамель',
+  LimeBasilic = 'Лайм - Базилик',
   YuzuBanana = 'Банан - Юзу',
   CherryBrandy = 'Вишня - Бренди',
   OrangeMilkChocolate = 'Апельсин - Молочный',
