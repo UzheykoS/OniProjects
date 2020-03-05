@@ -18,7 +18,7 @@ export const NavBarWrapperMobile = styled.div`
   position: fixed;
   top: 0;
   background: ${colors.primary.white};
-  z-index: 1;
+  z-index: 2;
 `;
 
 export const RoutesList = styled.ul`
@@ -111,10 +111,14 @@ export const BadgeStyled = styled(Badge).attrs({
   }
 `;
 
-export const MenuItem = styled.span`
+export const MenuItem = styled.span<IRoutesListItem>`
   display: flex;
-  justify-content: center;
+  justify-content: start;
   padding: 20px;
+
+  &:focus {
+    outline: none;
+  }
 
   a {
     display: inline-block;
@@ -124,12 +128,31 @@ export const MenuItem = styled.span`
     line-height: 30px;
     color: #333333;
     text-decoration: none;
+    border-bottom: 3px solid transparent;
   }
   &:hover {
     a {
       font-weight: 500;
       border-bottom: 3px solid ${colors.primary.gold};
     }
+  }
+
+  ${({ active }) =>
+    active &&
+    `
+    a {
+      font-weight: 500;
+      border-bottom: 3px solid ${colors.primary.gold};
+    }
+   `}
+`;
+
+export const SocialMedia = styled.div`
+  display: flex;
+  justify-content: space-around;
+  padding: 0px 20px 50px 20px;
+  img {
+    height: 32px;
   }
 `;
 
@@ -155,5 +178,9 @@ export const useStyles = makeStyles({
   burgerMenuItems: {
     background: colors.primary.white,
     paddingTop: '50px',
+    boxSizing: 'border-box',
+    display: 'flex',
+    flexDirection: 'column',
+    justifyContent: 'space-between',
   },
 });

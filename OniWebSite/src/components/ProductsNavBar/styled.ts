@@ -23,6 +23,7 @@ export const ProductsNavBarWrapper = styled.div<IProductsNavBarWrapper>`
 export const ProductsNavBarWrapperMobile = styled.div<IProductsNavBarWrapper>`
   z-index: 1;
   top: 100px;
+  border-bottom: 2px solid ${colors.primary.grey};
 
   ${({ isSticky }) =>
     isSticky &&

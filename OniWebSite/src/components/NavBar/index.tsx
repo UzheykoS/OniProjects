@@ -14,6 +14,7 @@ import {
   BadgeStyled,
   useStyles,
   NavBarWrapperMobile,
+  SocialMedia,
 } from './styled';
 import BinIcon from '@icons/bin.svg';
 import IconButton from '@common/IconButton';
@@ -103,35 +104,42 @@ export function NavBar() {
         menuClassName={classes.burderMenu}
         overlayClassName={classes.burgerMenuOverlay}
         itemListClassName={classes.burgerMenuItems}
+        disableAutoFocus
       >
-        {Object.keys(routes).map(key => {
-          const page = key as Pages;
-          const route = routes[page];
-          if (!route) {
-            return null;
-          }
-          return (
-            <MenuItem key={route.path}>
-              <Link
-                to={route.path}
-                className={currentPage == page ? 'active' : ''}
+        <div style={{ textAlign: 'left' }}>
+          {Object.keys(routes).map(key => {
+            const page = key as Pages;
+            const route = routes[page];
+            if (!route || page === Pages.Checkout) {
+              return null;
+            }
+
+            return (
+              <MenuItem
+                key={route.path}
+                active={currentPage == page ? 'active' : ''}
               >
-                {route.label}
-              </Link>
-            </MenuItem>
-          );
-        })}
-        {/* <div className='bm-socials'>
-          <a target='_blank' href='https://www.facebook.com/'>
-            <img className='social_network' src='images/icons/facebook.png' />
-          </a>
-          <a target='_blank' href='https://www.instagram.com'>
-            <img className='social_network' src='images/icons/instagram.png' />
-          </a>
-          <a target='_blank' href='https://www.telegram.com'>
-            <img className='social_network' src='images/icons/twitter.png' />
-          </a>
-        </div> */}
+                <Link to={route.path}>{route.label}</Link>
+              </MenuItem>
+            );
+          })}
+        </div>
+        <div>
+          <SocialMedia>
+            <a target='_blank' href='https://www.facebook.com/'>
+              <img className='social_network' src='images/icons/facebook.png' />
+            </a>
+            <a target='_blank' href='https://www.instagram.com'>
+              <img
+                className='social_network'
+                src='images/icons/instagram.png'
+              />
+            </a>
+            <a target='_blank' href='https://www.telegram.com'>
+              <img className='social_network' src='images/icons/twitter.png' />
+            </a>
+          </SocialMedia>
+        </div>
       </Menu>
 
       <LogoLink>
