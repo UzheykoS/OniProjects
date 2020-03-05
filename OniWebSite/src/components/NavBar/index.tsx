@@ -12,11 +12,14 @@ import {
   RoutesWrapper,
   RightSide,
   BadgeStyled,
+  useStyles,
+  NavBarWrapperMobile,
 } from './styled';
 import BinIcon from '@icons/bin.svg';
-import { useMobile } from '@hooks/useMobile';
 import IconButton from '@common/IconButton';
 import { useBasket } from '@hooks/useBasket';
+import { useMediaQuery } from '@material-ui/core';
+import { BREAKPOINT } from '@constants';
 
 export function NavBar() {
   const location = useLocation();
@@ -87,14 +90,19 @@ export function NavBar() {
     </NavBarWrapper>
   );
 
+  const classes = useStyles();
+
   const navBarMobile = (
-    <NavBarWrapper>
-      <Logo src='/images/icons/Oni_w_black.png' />
+    <NavBarWrapperMobile>
       <Menu
-        right
-        width={'100%'}
+        width={'400px'}
         customBurgerIcon={<img src='/images/icons/menu-button.png' />}
         customCrossIcon={<img src='/images/icons/close.png' />}
+        burgerButtonClassName={classes.burgerMenuIcon}
+        crossButtonClassName={classes.burgerMenuCloseIcon}
+        menuClassName={classes.burderMenu}
+        overlayClassName={classes.burgerMenuOverlay}
+        itemListClassName={classes.burgerMenuItems}
       >
         {Object.keys(routes).map(key => {
           const page = key as Pages;
@@ -113,7 +121,7 @@ export function NavBar() {
             </MenuItem>
           );
         })}
-        <div className='bm-socials'>
+        {/* <div className='bm-socials'>
           <a target='_blank' href='https://www.facebook.com/'>
             <img className='social_network' src='images/icons/facebook.png' />
           </a>
@@ -123,12 +131,38 @@ export function NavBar() {
           <a target='_blank' href='https://www.telegram.com'>
             <img className='social_network' src='images/icons/twitter.png' />
           </a>
-        </div>
+        </div> */}
       </Menu>
-    </NavBarWrapper>
+
+      <LogoLink>
+        <Link to={routes[Pages.Main]!.path}>
+          <Logo
+            src='/images/icons/Oni_w_black.png'
+            whiteMode={currentPage === Pages.Main}
+          />
+        </Link>
+      </LogoLink>
+
+      <IconButton
+        disableFocusRipple
+        onClick={handleBinClick}
+        // style={{ width: '58px' }}
+      >
+        <BadgeStyled
+          anchorOrigin={{
+            vertical: 'bottom',
+            horizontal: 'right',
+          }}
+          badgeContent={items.length > 0 ? items.length : undefined}
+          color={'primary'}
+        >
+          <BinIcon />
+        </BadgeStyled>
+      </IconButton>
+    </NavBarWrapperMobile>
   );
 
-  const { isMobile } = useMobile();
+  const isMobile = useMediaQuery(`(max-width: ${BREAKPOINT})`);
 
   return <>{isMobile ? navBarMobile : navBar}</>;
 }

@@ -1,21 +1,37 @@
 import styled from 'styled-components';
+import { BREAKPOINT } from '@constants';
+import colors from '@constants/colors';
 
 interface IProductsNavBarWrapper {
   isSticky?: boolean;
 }
 
 export const ProductsNavBarWrapper = styled.div<IProductsNavBarWrapper>`
+  z-index: 1;
   position: absolute;
   left: 130px;
   top: 250px;
-  z-index: 1;
 
   ${({ isSticky }) =>
     isSticky &&
     `
-    top: 50px;
-    position: fixed;
-      `}
+      top: 50px;
+      position: fixed;
+    `}
+`;
+
+export const ProductsNavBarWrapperMobile = styled.div<IProductsNavBarWrapper>`
+  z-index: 1;
+  top: 100px;
+
+  ${({ isSticky }) =>
+    isSticky &&
+    `
+      top: 78px;
+      position: fixed;
+      width: 100%;
+      background-color: ${colors.primary.white};
+    `}
 `;
 
 export const ProductsNavBarMain = styled.div`
@@ -34,6 +50,11 @@ export const RoutesList = styled.ul`
   display: flex;
   flex-direction: column;
   justify-content: center;
+
+  @media (max-width: ${BREAKPOINT}) {
+    flex-wrap: wrap;
+    flex-direction: row;
+  }
 `;
 
 interface IRoutesListItem {
@@ -60,13 +81,25 @@ export const RoutesListItem = styled.li<IRoutesListItem>`
       color: #edb92c;
     }
   }
+  @media (max-width: ${BREAKPOINT}) {
+    margin: 5px 25px 2px 25px;
+  }
   ${({ active }) =>
     active &&
     `
+    a {
+      color: #edb92c;
+      margin: 0;
+    }
+    @media (max-width: ${BREAKPOINT}) {
+      border-bottom: 3px solid #edb92c;
+    }
+  
+    @media (min-width: ${BREAKPOINT}) {
       border-left: 3px solid #edb92c;
       a {
-          color: #edb92c;
-          margin-left: 32px;
-        }
-      `}
+        margin-left: 32px;
+      }
+    }
+    `}
 `;

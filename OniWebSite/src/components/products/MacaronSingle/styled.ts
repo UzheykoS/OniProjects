@@ -1,16 +1,18 @@
 import styled from 'styled-components';
 import colors from '@constants/colors';
+import { BREAKPOINT } from '@constants';
 
 export const MacaronSingleWrapper = styled.div`
   display: flex;
   justify-content: center;
-  /* width: 327px; */
-  /* height: 270px; */
   height: 19vw; /* Depending on tha parent wrapper padding */
   flex-direction: column;
   align-items: center;
   cursor: pointer;
   position: relative;
+  @media (max-width: ${BREAKPOINT}) {
+    height: auto;
+  }
 `;
 
 interface IAddIconWrapper {
@@ -41,6 +43,10 @@ export const AddIconWrapper = styled.div<IAddIconWrapper>`
 export const ImageWrapper = styled.img`
   height: 138px;
   width: auto;
+  @media (max-width: ${BREAKPOINT}) {
+    height: auto;
+    max-width: 300px;
+  }
 `;
 
 export const Title = styled.div`

@@ -1,26 +1,37 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-// import { slide as Menu } from 'react-burger-menu';
 import { Pages, ProductPages, routes } from '@constants/routes';
 import {
   ProductsNavBarWrapper,
   ProductsNavBarMain,
   RoutesList,
   RoutesListItem,
+  ProductsNavBarWrapperMobile,
 } from './styled';
-// import { useMobile } from '@hooks/useMobile';
+import { useMediaQuery } from '@material-ui/core';
+import { BREAKPOINT } from '@constants';
+
+const STICKY_LIMIT = 200;
+const STICKY_LIMIT_MOBILE = 0;
 
 export function ProductsNavBar() {
   const location = useLocation();
-  const [isSticky, setIsSticky] = useState(false);
+  const isMobile = useMediaQuery(`(max-width: ${BREAKPOINT})`);
+  const [isSticky, setIsSticky] = useState(isMobile);
+  const limit = isMobile ? STICKY_LIMIT_MOBILE : STICKY_LIMIT;
+  const [scrollTop, setScrollTop] = useState(window.scrollY);
 
   const handleScroll = () => {
-    if (window.scrollY > 200) {
+    setScrollTop(window.scrollY);
+  };
+
+  useEffect(() => {
+    if (scrollTop > limit) {
       setIsSticky(true);
-    } else if (window.scrollY < 200) {
+    } else if (scrollTop < limit) {
       setIsSticky(false);
     }
-  };
+  }, [scrollTop]);
 
   useEffect(() => {
     window.addEventListener('scroll', handleScroll);
@@ -66,48 +77,30 @@ export function ProductsNavBar() {
     </ProductsNavBarWrapper>
   );
 
-  // const productsNavBarMobile = (
-  //   <div className='nav-bar'>
-  //     <img src='/images/icons/Oni_w_black.png' className={'logo logo-small'} />
-  //     <Menu
-  //       right
-  //       width={'100%'}
-  //       customBurgerIcon={<img src='/images/icons/menu-button.png' />}
-  //       customCrossIcon={<img src='/images/icons/close.png' />}
-  //     >
-  //       {Object.keys(productRoutes).map((key, i) => {
-  //         const page = key as ProductPages;
-  //         const route = productRoutes[page];
-  //         if (!route) {
-  //           return null;
-  //         }
-  //         return (
-  //           <span className='menu-item' key={i}>
-  //             <Link
-  //               to={route.path}
-  //               className={currentProductPage == page ? 'active' : ''}
-  //             >
-  //               {route.label}
-  //             </Link>
-  //           </span>
-  //         );
-  //       })}
-  //       <div className='bm-socials'>
-  //         <a target='_blank' href='https://www.facebook.com/'>
-  //           <img className='social_network' src='images/icons/facebook.png' />
-  //         </a>
-  //         <a target='_blank' href='https://www.instagram.com'>
-  //           <img className='social_network' src='images/icons/instagram.png' />
-  //         </a>
-  //         <a target='_blank' href='https://www.telegram.com'>
-  //           <img className='social_network' src='images/icons/twitter.png' />
-  //         </a>
-  //       </div>
-  //     </Menu>
-  //   </div>
-  // );
+  const productsNavBarMobile = (
+    <ProductsNavBarWrapperMobile isSticky={isSticky}>
+      <ProductsNavBarMain>
+        <RoutesList>
+          {Object.keys(productRoutes).map(key => {
+            const page = key as ProductPages;
+            const route = productRoutes[page];
+            if (!route) {
+              return null;
+            }
 
-  // const { isMobile } = useMobile();
+            return (
+              <RoutesListItem
+                key={route.path}
+                active={currentProductPage == page ? 'active' : ''}
+              >
+                <Link to={route.path}>{route.label}</Link>
+              </RoutesListItem>
+            );
+          })}
+        </RoutesList>
+      </ProductsNavBarMain>
+    </ProductsNavBarWrapperMobile>
+  );
 
-  return productsNavBar;
+  return isMobile ? productsNavBarMobile : productsNavBar;
 }

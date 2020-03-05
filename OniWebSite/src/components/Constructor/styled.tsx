@@ -8,6 +8,7 @@ import {
 } from '@material-ui/core';
 import colors from '@constants/colors';
 import React from 'react';
+import { BREAKPOINT } from '@constants';
 
 interface IExpansionPanelStyled extends ExpansionPanelProps {
   isSticky?: boolean;
@@ -18,15 +19,28 @@ export const ExpansionPanelStyled = styled(
 )<IExpansionPanelStyled>`
   display: flex;
   flex-direction: column;
-  top: 45px;
-  position: absolute;
-  width: 310px;
   box-shadow: none;
+  z-index: 1;
+
+  @media (min-width: ${BREAKPOINT}) {
+    position: absolute;
+    top: 45px;
+    width: 310px;
+  }
+
   ${({ isSticky }) =>
     isSticky &&
     `
-        position: fixed;
-        width: inherit;
+        @media (max-width: ${BREAKPOINT}) {
+          width: inherit;
+          position: fixed;
+          top: 120px;
+        }
+        @media (min-width: ${BREAKPOINT}) {
+          position: fixed;
+          top: 45px;
+          width: 310px;
+        }
     `};
 `;
 

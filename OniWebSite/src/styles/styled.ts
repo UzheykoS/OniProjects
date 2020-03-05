@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { BREAKPOINT } from '@constants';
 
 export const HeaderMain = styled.div`
   color: #ffffff;
@@ -24,6 +25,10 @@ export const AppStyled = styled.div`
 export const FlexRow = styled.div`
   display: flex;
   justify-content: space-between;
+
+  @media (max-width: ${BREAKPOINT}) {
+    flex-wrap: wrap;
+  }
 `;
 
 interface IColumn {

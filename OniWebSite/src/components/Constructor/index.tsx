@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Typography } from '@material-ui/core';
+import { Typography, useMediaQuery } from '@material-ui/core';
 import {
   ExpansionPanelSummaryStyled,
   ExpansionPanelStyled,
@@ -7,8 +7,10 @@ import {
 } from './styled';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import { Constructor, IConstructorProps } from './Constructor';
+import { BREAKPOINT } from '@constants';
 
-const STICKY_LIMIT = 650;
+const STICKY_LIMIT = 740;
+const STICKY_LIMIT_MOBILE = 1500;
 
 export interface IConstructorContainerProps extends IConstructorProps {
   expanded: boolean;
@@ -21,14 +23,21 @@ export function ConstructorContainer({
   ...rest
 }: IConstructorContainerProps) {
   const [isSticky, setIsSticky] = useState(false);
+  const isMobile = useMediaQuery(`(max-width: ${BREAKPOINT})`);
+  const limit = isMobile ? STICKY_LIMIT_MOBILE : STICKY_LIMIT;
+  const [scrollTop, setScrollTop] = useState(window.scrollY);
 
   const handleScroll = () => {
-    if (window.scrollY > STICKY_LIMIT) {
+    setScrollTop(window.scrollY);
+  };
+
+  useEffect(() => {
+    if (scrollTop > limit) {
       setIsSticky(true);
-    } else if (window.scrollY < STICKY_LIMIT) {
+    } else if (scrollTop < limit) {
       setIsSticky(false);
     }
-  };
+  }, [scrollTop]);
 
   useEffect(() => {
     window.addEventListener('scroll', handleScroll);

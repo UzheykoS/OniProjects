@@ -30,3 +30,5 @@ export const SEPARATORS = {
   DASH: '\u2014',
   RIGHT_SINGLE_QUOTE: '\u2019',
 };
+
+export const px2vw = (size: number, width = 1440) => `${(size / width) * 100}vw`;

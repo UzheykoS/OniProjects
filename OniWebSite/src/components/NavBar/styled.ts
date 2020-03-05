@@ -4,9 +4,21 @@ import colors from '@constants/colors';
 
 export const NavBarWrapper = styled.div`
   display: flex;
-  justify-content: center;
+  /* justify-content: center; */
+  justify-content: space-around;
   width: 100%;
   border-bottom: 1px solid #cccccc;
+`;
+
+export const NavBarWrapperMobile = styled.div`
+  display: flex;
+  justify-content: space-around;
+  width: 100%;
+  border-bottom: 1px solid #cccccc;
+  position: fixed;
+  top: 0;
+  background: ${colors.primary.white};
+  z-index: 1;
 `;
 
 export const RoutesList = styled.ul`
@@ -78,8 +90,6 @@ export const Logo = styled.img<ILogo>`
     `}
 `;
 
-export const MenuItem = styled.span``;
-
 export const RoutesWrapper = styled.div`
   display: flex;
   justify-content: center;
@@ -100,3 +110,50 @@ export const BadgeStyled = styled(Badge).attrs({
     background-color: ${colors.secondary.pink};
   }
 `;
+
+export const MenuItem = styled.span`
+  display: flex;
+  justify-content: center;
+  padding: 20px;
+
+  a {
+    display: inline-block;
+    font-family: 'Roboto', sans-serif;
+    font-weight: 400;
+    font-size: 24px;
+    line-height: 30px;
+    color: #333333;
+    text-decoration: none;
+  }
+  &:hover {
+    a {
+      font-weight: 500;
+      border-bottom: 3px solid ${colors.primary.gold};
+    }
+  }
+`;
+
+import { makeStyles } from '@material-ui/core';
+
+export const useStyles = makeStyles({
+  burgerMenuIcon: {
+    height: 24,
+    width: 24,
+    margin: '25px 25px 25px -25px',
+  },
+  burgerMenuCloseIcon: {
+    height: 24,
+    width: 24,
+    padding: 10,
+  },
+  burderMenu: {
+    left: 0,
+  },
+  burgerMenuOverlay: {
+    left: 0,
+  },
+  burgerMenuItems: {
+    background: colors.primary.white,
+    paddingTop: '50px',
+  },
+});

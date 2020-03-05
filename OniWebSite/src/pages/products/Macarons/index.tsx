@@ -1,7 +1,7 @@
 import React, { useReducer, useState, useCallback } from 'react';
 import { MacaronSingle } from '../../../components/products/MacaronSingle';
 import { MacaronsWrapper, MacaronsInfo } from './styled';
-import { Typography } from '@material-ui/core';
+import { Typography, useMediaQuery } from '@material-ui/core';
 import { FlexRow, FlexColumn } from '@styles/styled';
 import {
   constructorReducer,
@@ -14,6 +14,7 @@ import { DessertsMix } from '@components/DessertsMix';
 import { macarons, macaronMix, IProduct } from '@constants/products';
 import { useBasket } from '@hooks/useBasket';
 import MixSelectModal from '@components/modals/MixSelectModal';
+import { BREAKPOINT } from '@constants';
 
 export function Macarons() {
   const [state, dispatch] = useReducer(
@@ -31,6 +32,7 @@ export function Macarons() {
   const [selectedMix, setSelectedMix] = useState<IProduct>();
   const handleClose = useCallback(() => setSelectedMix(undefined), []);
   const { addToBasket } = useBasket();
+  const isMobile = useMediaQuery(`(max-width: ${BREAKPOINT})`);
 
   const handleMacaronClick = (item: IProduct) => {
     if (!expanded) {
@@ -133,6 +135,17 @@ export function Macarons() {
         </FlexColumn>
       </FlexRow>
 
+      {isMobile && (
+        <FlexRow style={{ justifyContent: 'center', marginTop: '20px' }}>
+          <ConstructorContainer
+            state={state}
+            dispatch={dispatch}
+            expanded={expanded}
+            setExpanded={setExpanded}
+          />
+        </FlexRow>
+      )}
+
       <FlexRow style={{ justifyContent: 'space-between' }}>
         <FlexColumn>
           <Typography
@@ -142,18 +155,26 @@ export function Macarons() {
             ВКУСЫ МАКАРОН
           </Typography>
         </FlexColumn>
-        <FlexColumn
-          style={{ width: '310px', marginRight: '100px', position: 'relative' }}
-        >
-          <ConstructorContainer
-            state={state}
-            dispatch={dispatch}
-            expanded={expanded}
-            setExpanded={setExpanded}
-          />
-        </FlexColumn>
+        {!isMobile && (
+          <FlexColumn
+            style={{
+              width: '310px',
+              marginRight: '100px',
+              position: 'relative',
+            }}
+          >
+            <ConstructorContainer
+              state={state}
+              dispatch={dispatch}
+              expanded={expanded}
+              setExpanded={setExpanded}
+            />
+          </FlexColumn>
+        )}
       </FlexRow>
+
       {macaronElements}
+
       {!!selectedMix && (
         <MixSelectModal
           mix={selectedMix}

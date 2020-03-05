@@ -3,7 +3,6 @@ import { hot } from 'react-hot-loader';
 import { ModalsProvider } from '@hooks/useModal';
 import { LoadingProvider } from '@hooks/useLoading';
 import { Wrapper } from './Wrapper';
-import { MobileProvider } from '@hooks/useMobile';
 import { ThemeProvider } from '@material-ui/core/styles';
 import theme from '@styles/theme';
 import { StylesProvider } from '@material-ui/core/styles';
@@ -17,11 +16,9 @@ export class App extends React.Component {
         <ThemeProvider theme={theme}>
           <ModalsProvider>
             <BasketProvider>
-              <MobileProvider>
-                <LoadingProvider>
-                  <Wrapper />
-                </LoadingProvider>
-              </MobileProvider>
+              <LoadingProvider>
+                <Wrapper />
+              </LoadingProvider>
             </BasketProvider>
           </ModalsProvider>
         </ThemeProvider>
