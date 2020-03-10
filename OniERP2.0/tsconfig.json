@@ -1,0 +1,50 @@
+{
+  "compilerOptions": {
+    "outDir": "./dist",
+    "moduleResolution": "node",
+    "noImplicitAny": false,
+    "noImplicitThis": true,
+    "target": "es5",
+    "module": "es6",
+    "sourceMap": true,
+    "jsx": "react",
+    "strict": true,
+    "allowSyntheticDefaultImports": true,
+    "esModuleInterop": true,
+    "noImplicitReturns": true,
+    "noFallthroughCasesInSwitch": true,
+    "experimentalDecorators": true,
+    "strictNullChecks": true,
+    "resolveJsonModule": true,
+    "lib": [
+      "es6",
+      "dom",
+      "es2017.object"
+    ],
+    "baseUrl": "./src",
+    "paths": {
+      "@components/*": ["components/*"],
+      "@core/*": ["components/core/*"],
+      "@configs/*": ["configs/*"],
+      "@pages": ["pages"],
+      "@pages/*": ["pages/*"],
+      "@routes/*": ["routes/*"],
+      "@utils/*": ["utils/*"],
+      "@hooks": ["hooks"],
+      "@hooks/*": ["hooks/*"],
+      "@models": ["models"],
+      "@models/*": ["models/*"],
+      "@api": ["api"],
+      "@src/*": ["./*"],
+      "@styled-components": ["styled"],
+    }
+  },
+  "include": [
+    "src"
+  ],
+  "exclude": [
+    "node_modules",
+    "!node_modules/@types",
+    "!node_modules/@material-ui"
+  ]
+}

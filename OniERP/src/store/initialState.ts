@@ -10,6 +10,7 @@ export default {
     errorMessage: '',
     lastId: 0,
     notificationType: 0,
-    currentProfile: ProfilesEnum.Alina,
-    dailyBonus: 0
+    currentProfile: ProfilesEnum.Nika,
+    dailyBonus: 0,
+    drinksCount: 0
 }

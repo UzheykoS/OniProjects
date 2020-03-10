@@ -84,7 +84,7 @@ class OtherComponent extends Component<IOtherComponentProps, IOtherComponentStat
         const payments = Helper.getArrayFromEnum(Payment);
 
         return <div>
-            <Typography gutterBottom variant="headline" component="h2">
+            <Typography gutterBottom variant="h5" component="h2">
                 Другие расходы
             </Typography>
             <FormControl className='partnerSelectWrapper'>

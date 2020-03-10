@@ -1,6 +1,13 @@
-import { DrinksType, DessertType, MacaronsEnum, ZephyrEnum, PartnersEnum, CakesEnum } from './types';
+import {
+  DrinksType,
+  DessertType,
+  MacaronsEnum,
+  ZephyrEnum,
+  PartnersEnum,
+  CakesEnum,
+} from './types';
 
-export const DrinksDict: { [id: string] : Array<string> } = {};
+export const DrinksDict: { [id: string]: Array<string> } = {};
 DrinksDict[DrinksType.Cappucino] = ['175 мл', '340 мл'];
 DrinksDict[DrinksType.Latte] = ['250 мл', '340 мл', '400 мл'];
 DrinksDict[DrinksType.FlatWhite] = ['175 мл'];
@@ -23,17 +30,25 @@ DrinksDict[DrinksType.SpecialTeaOrange] = ['400 мл'];
 DrinksDict[DrinksType.SpecialTeaGinger] = ['400 мл'];
 DrinksDict[DrinksType.HotChocolate] = ['175 мл'];
 DrinksDict[DrinksType.LemonadeStrawberry] = ['400 мл'];
-DrinksDict[DrinksType.LemonadeCitrus] = ['400 мл'];
-DrinksDict[DrinksType.LemonadePassion] = ['400 мл'];
+DrinksDict[DrinksType.LemonadeAnanas] = ['400 мл'];
+DrinksDict[DrinksType.LemonadeMango] = ['400 мл'];
 DrinksDict[DrinksType.IceLatte] = ['400 мл'];
+DrinksDict[DrinksType.EspressoTonic] = ['200 мл'];
 DrinksDict[DrinksType.Syrop] = ['0 мл'];
+DrinksDict[DrinksType.FilterCoffee] = ['200 мл'];
+DrinksDict[DrinksType.VeganMilk] = ['S', 'M'];
+DrinksDict[DrinksType.Milk] = ['N'];
+DrinksDict[DrinksType.Cream] = ['N'];
+DrinksDict[DrinksType.Cup240] = ['240 мл'];
+DrinksDict[DrinksType.Cup355] = ['355 мл'];
+DrinksDict[DrinksType.Cup470] = ['470 мл'];
 
-export const DessertsDict: { [id: string] : Array<any> } = {};
+export const DessertsDict: { [id: string]: Array<any> } = {};
 DessertsDict[DessertType.Macaron] = [1, 6, 12, 24];
 DessertsDict[DessertType.Zephyr] = [1, 8, 16];
 DessertsDict[DessertType.Cake] = ['18 см', '22 см'];
 
-export const DrinkPricesDict: { [id: string] : Array<number> } = {};
+export const DrinkPricesDict: { [id: string]: Array<number> } = {};
 DrinkPricesDict[DrinksType.Cappucino] = [25, 40];
 DrinkPricesDict[DrinksType.Latte] = [28, 35, 45];
 DrinkPricesDict[DrinksType.FlatWhite] = [35];
@@ -55,62 +70,88 @@ DrinkPricesDict[DrinksType.SpeacialTeaPearLime] = [35];
 DrinkPricesDict[DrinksType.SpecialTeaOrange] = [35];
 DrinkPricesDict[DrinksType.SpecialTeaGinger] = [35];
 DrinkPricesDict[DrinksType.HotChocolate] = [55];
-DrinkPricesDict[DrinksType.LemonadeStrawberry] = [35];
-DrinkPricesDict[DrinksType.LemonadeCitrus] = [35];
-DrinkPricesDict[DrinksType.LemonadePassion] = [35];
+DrinkPricesDict[DrinksType.LemonadeStrawberry] = [45];
+DrinkPricesDict[DrinksType.LemonadeAnanas] = [45];
+DrinkPricesDict[DrinksType.LemonadeMango] = [45];
 DrinkPricesDict[DrinksType.IceLatte] = [40];
+DrinkPricesDict[DrinksType.EspressoTonic] = [40];
 DrinkPricesDict[DrinksType.Syrop] = [5];
+DrinkPricesDict[DrinksType.FilterCoffee] = [30];
+DrinkPricesDict[DrinksType.VeganMilk] = [20, 30];
+DrinkPricesDict[DrinksType.Milk] = [5];
+DrinkPricesDict[DrinksType.Cream] = [10];
+DrinkPricesDict[DrinksType.Cup240] = [450];
+DrinkPricesDict[DrinksType.Cup355] = [550];
+DrinkPricesDict[DrinksType.Cup470] = [650];
 
-export const CaffeePrices: { [id: string] : number } = {};
-CaffeePrices[PartnersEnum.CoffeeIs] = 17;
-CaffeePrices[PartnersEnum.FirstPoint] = 19;
-CaffeePrices[PartnersEnum.CubaCoffee] = 19;
-CaffeePrices[PartnersEnum.Progress] = 20;
-CaffeePrices[PartnersEnum.KlassnaKava] = 19;
-CaffeePrices[PartnersEnum.IlMio] = 19;
-CaffeePrices[PartnersEnum.StudioCoffee] = 20;
-CaffeePrices[PartnersEnum.Ptaha] = 20;
-CaffeePrices[PartnersEnum.StarKava] = 19;
-CaffeePrices[PartnersEnum.Parle] = 20;
-CaffeePrices[PartnersEnum.LiaDezi] = 20;
-CaffeePrices[PartnersEnum.Journalist] = 20;
-CaffeePrices[PartnersEnum.Biblecoffee] = 20;
+export const CaffeePrices: { [id: string]: number } = {};
+CaffeePrices[PartnersEnum.CoffeeIs] = 18;
+CaffeePrices[PartnersEnum.WCoffee] = 22;
+CaffeePrices[PartnersEnum.DoubleLab] = 22;
+CaffeePrices[PartnersEnum.GolodnaPtashka] = 22;
+CaffeePrices[PartnersEnum.GrayCafe] = 22;
+CaffeePrices[PartnersEnum.VsiSvoi] = 22;
+CaffeePrices[PartnersEnum.LiaDezi] = 22;
+CaffeePrices[PartnersEnum.Parle] = 22;
+CaffeePrices[PartnersEnum.IlMio] = 22;
+CaffeePrices[PartnersEnum.CubaCoffee] = 22;
+CaffeePrices[PartnersEnum.Progress] = 22;
+CaffeePrices[PartnersEnum.KlassnaKava] = 22;
+CaffeePrices[PartnersEnum.StudioCoffee] = 22;
+CaffeePrices[PartnersEnum.Chicago44] = 22;
+CaffeePrices[PartnersEnum.RedBerry] = 22;
+CaffeePrices[PartnersEnum.Crucobar] = 22;
+CaffeePrices[PartnersEnum.ProCoffeee] = 22;
 
-export const CakesPricesDict: { [id: string] : Array<number> } = {};
+export const CakesPricesDict: { [id: string]: Array<number> } = {};
 CakesPricesDict[CakesEnum.CarrotCake] = [650, 980];
 CakesPricesDict[CakesEnum.Pink] = [630, 970];
 CakesPricesDict[CakesEnum.Infinity] = [640, 970];
-CakesPricesDict[CakesEnum.Rio] = [630, 970];
+CakesPricesDict[CakesEnum.Rio] = [620, 960];
 CakesPricesDict[CakesEnum.Soul] = [620, 960];
-CakesPricesDict[CakesEnum.Cake_2019] = [650];
+CakesPricesDict[CakesEnum.Cake_2020] = [690];
 
-export const ZEPHYR_PRICE = 15;
-export const ZEPHYR_PARTNERS_PRICE = 11;
+export const EasterCakesPrices = [280, 360];
 
-export const MACARONS_PRICE = 28;
+export const ZEPHYR_PRICE = 16;
+export const ZEPHYR_PARTNERS_PRICE = 12;
 
-export const CHOUX_PRICE = 35;
+export const MACARONS_PRICE = 30;
 
-export const MacaronsColors: { [id: string] : string } = {};
+export const CHOUX_PRICE = 45;
+
+export const CHEESECAKE_PRICE = 75;
+
+export const ICE_CREAM_PRICE = 44;
+
+export const SORBET_PRICE = 44;
+
+export const SMALL_CAKE_PRICE = 85;
+
+export const DRAGEE_PRICE = 180;
+
+export const MacaronsColors: { [id: string]: string } = {};
 MacaronsColors[MacaronsEnum.DorBluePear] = '#b7e4f7';
 MacaronsColors[MacaronsEnum.ParmesanFigue] = '#fcf7e8';
 MacaronsColors[MacaronsEnum.StrawberryCheesecake] = '#ffdddd';
 MacaronsColors[MacaronsEnum.Raspberry] = '#ffa5cf';
-MacaronsColors[MacaronsEnum.CherryTonko] = '#B21E27';
-MacaronsColors[MacaronsEnum.Oblepiha] = '#F0C130';
+MacaronsColors[MacaronsEnum.CherryBrandy] = '#B21E27';
+MacaronsColors[MacaronsEnum.YuzuBanana] = '#F0C130';
 MacaronsColors[MacaronsEnum.Currant] = '#bc45c6';
 MacaronsColors[MacaronsEnum.LavenderBlackberry] = '#b587ff';
 MacaronsColors[MacaronsEnum.MangoPassion] = '#ffdd87';
 MacaronsColors[MacaronsEnum.CoffeeCaramel] = '#a87301';
 MacaronsColors[MacaronsEnum.Chocolate] = '#853c13';
 MacaronsColors[MacaronsEnum.Pistachio] = '#85dd93';
-MacaronsColors[MacaronsEnum.LimeBasil] = '#9ff25c';
-MacaronsColors[MacaronsEnum.MandarinVanil] = '#FF8200';
+MacaronsColors[MacaronsEnum.OrangeMilkChocolate] = '#FF8200';
+MacaronsColors[MacaronsEnum.GrapefruitRose] = '#CB5382';
 
-export const ZephyrColors: { [id: string] : string } = {};
+export const ZephyrColors: { [id: string]: string } = {};
 ZephyrColors[ZephyrEnum.Apple] = '#fffbf2';
 ZephyrColors[ZephyrEnum.ApricotPassionFruit] = '#ffe6bf';
 ZephyrColors[ZephyrEnum.Currant] = '#d978еd';
 ZephyrColors[ZephyrEnum.StrawberryCranberry] = '#f497b9';
 
 export const DATE_FORMAT = 'DD.MM.YYYY HH:mm';
+
+export const DATE_FORMAT_SHORT = 'YYYY-MM-DD';

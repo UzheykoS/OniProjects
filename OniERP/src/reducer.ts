@@ -23,9 +23,12 @@ import {
     SHOW_NOTIFICATION,
     CHANGE_PROFILE,
     SET_IS_PAID,
-    SET_DAILY_PERCENT
+    SET_DAILY_PERCENT,
+    SET_DRINKS_COUNT,
+    SELECT_STAFF
 } from "./actionTypes";
 import { Check, Dessert, Drink, Payment, OrderType, SaleType, ProfilesEnum } from './utils/types';
+import * as moment from 'moment';
 
 import initialState from './store/initialState';
 
@@ -40,7 +43,9 @@ export default handleActions({
             payment: Payment.Cash,
             type: OrderType.Shop,
             sale: SaleType.Empty,
-            isPaid: true
+            isPaid: true,
+            date: moment(new Date()),
+            staff: null
         };
         return Object.assign({}, state, {
             check
@@ -162,6 +167,11 @@ export default handleActions({
         check.isPaid = action.payload;
         return { ...state, check: { ...check } };
     },
+    [SELECT_STAFF]: (state, action) => {
+        const { check } = state;
+        check.staff = action.payload;
+        return { ...state, check: { ...check } };
+    },
     [LOAD_ITEMS]: (state, action) => {
         return Object.assign({}, state, {
             isLoading: action.payload
@@ -210,7 +220,7 @@ export default handleActions({
     },
     [SET_LAST_ID]: (state, action: any) => {
         return Object.assign({}, state, {
-            history: [action.payload[1]],
+            history: !!action.payload[1] ? [action.payload[1]] : [],
             lastId: action.payload[0]
         });
     },
@@ -229,5 +239,9 @@ export default handleActions({
     [SET_DAILY_PERCENT]: (state, action: any) => {
         const dailyBonus = action.payload;
         return { ...state, dailyBonus };
+    },
+    [SET_DRINKS_COUNT]: (state, action: any) => {
+        const drinksCount = action.payload;
+        return { ...state, drinksCount };
     },
 }, initialState);

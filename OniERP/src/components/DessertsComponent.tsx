@@ -8,29 +8,58 @@ import ListItemAvatar from '@material-ui/core/ListItemAvatar';
 import ListItemText from '@material-ui/core/ListItemText';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import Dialog from '@material-ui/core/Dialog';
-import { DessertType, MacaronsEnum, CakesEnum, ZephyrEnum, ChouxEnum,
-  MIX_MACARONS_6, MIX_MACARONS_12, MIX_MACARONS_24, MIX_ZEPHYR_8, MIX_ZEPHYR_16 } from '../utils/types';
-import { DessertsDict, MacaronsColors, ZephyrColors } from '../utils/dictionaries';
+import {
+  DessertType,
+  MacaronsEnum,
+  CakesEnum,
+  ZephyrEnum,
+  ChouxEnum,
+  CheesecakeEnum,
+  MIX_MACARONS_6,
+  MIX_MACARONS_12,
+  MIX_MACARONS_24,
+  MIX_ZEPHYR_8,
+  MIX_ZEPHYR_16,
+  EasterCakeEnum,
+  IceCreamEnum,
+  SorbetEnum,
+  SmallCakeEnum,
+  DrageeEnum,
+} from '../utils/types';
+import {
+  DessertsDict,
+  MacaronsColors,
+  ZephyrColors,
+} from '../utils/dictionaries';
 import Avatar from '@material-ui/core/Avatar';
 import ListItemSecondaryAction from '@material-ui/core/ListItemSecondaryAction';
 import IconButton from '@material-ui/core/IconButton';
 import Button from '@material-ui/core/Button';
 import Helper from '../utils/helper';
 
-const mapStateToProps = (state) => {
-  return {
-  };
+const mapStateToProps = state => {
+  return {};
 };
 
-const mapDispatchToProps = (dispatch) => {
+const mapDispatchToProps = dispatch => {
   return {
-    addDessert: (type: DessertType, taste: string, size: string, quantity: number) => dispatch(AddDessert(type, taste, size, quantity)),
-    logData: (text: string) => dispatch(LogData(text))
+    addDessert: (
+      type: DessertType,
+      taste: string,
+      size: string,
+      quantity: number
+    ) => dispatch(AddDessert(type, taste, size, quantity)),
+    logData: (text: string) => dispatch(LogData(text)),
   };
 };
 
 export interface IDessertsComponentProps {
-  addDessert?: (type: DessertType, taste: string, size: string, quantity: number) => void;
+  addDessert?: (
+    type: DessertType,
+    taste: string,
+    size: string,
+    quantity: number
+  ) => void;
   handleClose?: () => void;
   logData?: (text: string) => void;
 }
@@ -38,50 +67,53 @@ export interface IDessertsComponentProps {
 export interface IDessertsComponentState {
   dessertType?: DessertType;
   dessertTaste?: string;
-  dessertQuantities?: { [id: string]: number; };
+  dessertQuantities?: { [id: string]: number };
 }
 
-export class DessertsComponent extends Component<IDessertsComponentProps, IDessertsComponentState>{
+export class DessertsComponent extends Component<
+  IDessertsComponentProps,
+  IDessertsComponentState
+> {
   constructor(props) {
     super(props);
 
     this.state = {
       dessertType: null,
       dessertTaste: null,
-      dessertQuantities: {}
-    }
+      dessertQuantities: {},
+    };
   }
 
   handleClose = () => {
     this.props.handleClose();
     this.props.logData('desserts->close');
-  }
+  };
 
-  handleDessertSelect = (dessert) => {
+  handleDessertSelect = dessert => {
     this.setState({
-      dessertType: dessert
+      dessertType: dessert,
     });
     this.props.logData('desserts->dessertSelected->' + dessert);
-  }
+  };
 
-  handleDessertTasteSelect = async (taste) => {
+  handleDessertTasteSelect = async taste => {
     const { dessertType } = this.state;
 
     if (dessertType === DessertType.Cake) {
-      if (taste === CakesEnum.Cake_2019) {
-        await this.props.addDessert(dessertType, taste, "18 см", 1);
-          this.props.handleClose();
+      if (taste === CakesEnum.Cake_2020) {
+        await this.props.addDessert(dessertType, taste, '18 см', 1);
+        this.props.handleClose();
       }
       this.setState({
-        dessertTaste: taste
+        dessertTaste: taste,
       });
       this.props.logData('desserts->dessertTasteSelected->' + taste);
     } else {
       this.handleDessertIncrease(taste);
     }
-  }
+  };
 
-  handleDessertMixSelect = async (mixType) => {
+  handleDessertMixSelect = async mixType => {
     switch (mixType) {
       case MIX_MACARONS_6:
         this.handleDessertIncrease(mixType, 6);
@@ -102,9 +134,9 @@ export class DessertsComponent extends Component<IDessertsComponentProps, IDesse
         break;
     }
     this.props.logData('desserts->handleDessertMixSelect->' + mixType);
-  }
+  };
 
-  handleDessertMixDecrease = (mixType) => {
+  handleDessertMixDecrease = mixType => {
     switch (mixType) {
       case MIX_MACARONS_6:
         this.handleDessertDecrease(mixType, 6);
@@ -125,9 +157,9 @@ export class DessertsComponent extends Component<IDessertsComponentProps, IDesse
         break;
     }
     this.props.logData('desserts->handleDessertMixDecrease->' + mixType);
-  }
+  };
 
-  handleDessertSizeOrQuantitySelect = async (sizeOrQty) => {
+  handleDessertSizeOrQuantitySelect = async sizeOrQty => {
     const { dessertType, dessertTaste } = this.state;
 
     if (dessertType === DessertType.Cake) {
@@ -139,7 +171,7 @@ export class DessertsComponent extends Component<IDessertsComponentProps, IDesse
       this.props.handleClose();
       this.props.logData('desserts->dessertQuantitySelected->' + sizeOrQty);
     }
-  }
+  };
 
   handleFinish = async () => {
     const { dessertType, dessertQuantities } = this.state;
@@ -154,7 +186,7 @@ export class DessertsComponent extends Component<IDessertsComponentProps, IDesse
 
     this.props.handleClose();
     this.props.logData('desserts->handleFinish');
-  }
+  };
 
   getId(dessertType, dessertTaste) {
     return `${dessertType}/${dessertTaste}`;
@@ -171,10 +203,10 @@ export class DessertsComponent extends Component<IDessertsComponentProps, IDesse
     }
 
     this.setState({
-      dessertQuantities
+      dessertQuantities,
     });
     this.props.logData('desserts->dessertQtyIncrease->' + id);
-  }
+  };
 
   handleDessertDecrease = (taste, qty = 1) => {
     const { dessertQuantities, dessertType } = this.state;
@@ -185,10 +217,10 @@ export class DessertsComponent extends Component<IDessertsComponentProps, IDesse
     }
 
     this.setState({
-      dessertQuantities
+      dessertQuantities,
     });
     this.props.logData('desserts->handleDessertDecrease->' + id);
-  }
+  };
 
   countTotalDessertQuantity() {
     const { dessertQuantities, dessertType } = this.state;
@@ -232,30 +264,44 @@ export class DessertsComponent extends Component<IDessertsComponentProps, IDesse
     const desserts = dessertKeys.map(d => {
       return {
         id: d,
-        value: DessertType[d]
-      }
+        value: DessertType[d],
+      };
     });
 
-    return <div>
-      <List>
-        {desserts.map(d => (
-          <ListItem divider button onClick={() => this.handleDessertSelect(d.value)} key={d.id} >
-            <ListItemAvatar>
-              <Avatar className='macaronAvatar' style={{ backgroundColor: '#dd73e2' }}>
-                {d.value.charAt(0).toUpperCase()}
-              </Avatar>
-            </ListItemAvatar>
-            <ListItemText primary={d.value} />
-          </ListItem>
-        ))}
-        <div className='buttonApplyWraper'>
-          <Button variant="contained" color="secondary" onClick={this.handleClose}>
-            Отмена
-          </Button>
-        </div>
-      </List>
-    </div>;
-  };
+    return (
+      <div>
+        <List>
+          {desserts.map(d => (
+            <ListItem
+              divider
+              button
+              onClick={() => this.handleDessertSelect(d.value)}
+              key={d.id}
+            >
+              <ListItemAvatar>
+                <Avatar
+                  className='macaronAvatar'
+                  style={{ backgroundColor: '#dd73e2' }}
+                >
+                  {d.value.charAt(0).toUpperCase()}
+                </Avatar>
+              </ListItemAvatar>
+              <ListItemText primary={d.value} />
+            </ListItem>
+          ))}
+          <div className='buttonApplyWraper'>
+            <Button
+              variant='contained'
+              color='secondary'
+              onClick={this.handleClose}
+            >
+              Отмена
+            </Button>
+          </div>
+        </List>
+      </div>
+    );
+  }
 
   renderDessertTastes() {
     const { dessertType, dessertQuantities } = this.state;
@@ -271,17 +317,17 @@ export class DessertsComponent extends Component<IDessertsComponentProps, IDesse
         extraOptions.push({
           value: MIX_MACARONS_6,
           title: MIX_MACARONS_6,
-          avatar: 6
+          avatar: 6,
         });
         extraOptions.push({
           value: MIX_MACARONS_12,
           title: MIX_MACARONS_12,
-          avatar: 12
+          avatar: 12,
         });
         extraOptions.push({
           value: MIX_MACARONS_24,
           title: MIX_MACARONS_24,
-          avatar: 24
+          avatar: 24,
         });
         break;
       case DessertType.Zephyr:
@@ -289,111 +335,199 @@ export class DessertsComponent extends Component<IDessertsComponentProps, IDesse
         extraOptions.push({
           value: MIX_ZEPHYR_8,
           title: MIX_ZEPHYR_8,
-          avatar: 8
+          avatar: 8,
         });
         extraOptions.push({
           value: MIX_ZEPHYR_16,
           title: MIX_ZEPHYR_16,
-          avatar: 16
+          avatar: 16,
         });
         break;
       case DessertType.Choux:
         dessertTastes = Helper.getArrayFromEnum(ChouxEnum);
         break;
+      case DessertType.Cheesecake:
+        dessertTastes = Helper.getArrayFromEnum(CheesecakeEnum);
+        break;
+      case DessertType.EasterCake:
+        dessertTastes = Helper.getArrayFromEnum(EasterCakeEnum);
+        break;
+      case DessertType.IceCream:
+        dessertTastes = Helper.getArrayFromEnum(IceCreamEnum);
+        break;
+      case DessertType.Sorbet:
+        dessertTastes = Helper.getArrayFromEnum(SorbetEnum);
+        break;
+      case DessertType.SmallCake:
+        dessertTastes = Helper.getArrayFromEnum(SmallCakeEnum);
+        break;
+      case DessertType.Dragee:
+        dessertTastes = Helper.getArrayFromEnum(DrageeEnum);
+        break;
       default:
         dessertTastes = [];
         break;
-    };
+    }
 
-    return <div className='dessertsTastesWrapper'>
-      {dessertType !== DessertType.Cake && (
-        <div className='buttonApplyWraper'>
-          <Button variant="contained" color="primary" title="Check Out" onClick={this.handleFinish}>
-            Применить
-          </Button>
-        </div>
-      )}
-      <List className='dessertsTastesListWrapper'>
-        {
-          dessertTastes.map(d => (
-            <ListItem divider button onClick={() => this.handleDessertTasteSelect(d.value)} key={d.id} >
+    return (
+      <div className='dessertsTastesWrapper'>
+        {dessertType !== DessertType.Cake && (
+          <div className='buttonApplyWraper'>
+            <Button
+              variant='contained'
+              color='primary'
+              title='Check Out'
+              onClick={this.handleFinish}
+            >
+              Применить
+            </Button>
+          </div>
+        )}
+        <List className='dessertsTastesListWrapper'>
+          {dessertTastes.map(d => (
+            <ListItem
+              divider
+              button
+              onClick={() => this.handleDessertTasteSelect(d.value)}
+              key={d.id}
+            >
               <ListItemAvatar>
-                <Avatar className='macaronAvatar' style={{ backgroundColor: dessertType === DessertType.Macaron ? MacaronsColors[d.value] : ZephyrColors[d.value] }}>
+                <Avatar
+                  className='macaronAvatar'
+                  style={{
+                    backgroundColor:
+                      dessertType === DessertType.Macaron
+                        ? MacaronsColors[d.value]
+                        : ZephyrColors[d.value],
+                  }}
+                >
                   {d.value.charAt(0).toUpperCase()}
                 </Avatar>
               </ListItemAvatar>
-              <ListItemText primary={d.value + (dessertType !== DessertType.Cake ? `(${dessertQuantities[this.getId(dessertType, d.value)] || 0})` : '')} />
+              <ListItemText
+                primary={
+                  d.value +
+                  (dessertType !== DessertType.Cake
+                    ? `(${dessertQuantities[this.getId(dessertType, d.value)] ||
+                        0})`
+                    : '')
+                }
+              />
               {dessertType !== DessertType.Cake && (
-                <ListItemSecondaryAction >
-                  <IconButton aria-label="Add" classes={{ root: 'decreaseButton' }} onClick={() => this.handleDessertDecrease(d.value)}>
+                <ListItemSecondaryAction>
+                  <IconButton
+                    aria-label='Add'
+                    classes={{ root: 'decreaseButton' }}
+                    onClick={() => this.handleDessertDecrease(d.value)}
+                  >
                     {'\u2014'}
                   </IconButton>
                 </ListItemSecondaryAction>
               )}
             </ListItem>
-          ))
-        }
-        {
-          extraOptions.map(o => (
-            <ListItem divider button onClick={() => this.handleDessertMixSelect(o.value)} key={o.value} >
+          ))}
+          {extraOptions.map(o => (
+            <ListItem
+              divider
+              button
+              onClick={() => this.handleDessertMixSelect(o.value)}
+              key={o.value}
+            >
               <ListItemAvatar>
-                <Avatar className='macaronAvatar' style={{ backgroundColor: '#B3B3B3' }}>
+                <Avatar
+                  className='macaronAvatar'
+                  style={{ backgroundColor: '#B3B3B3' }}
+                >
                   {o.avatar}
                 </Avatar>
               </ListItemAvatar>
-              <ListItemText primary={`${o.title}(${this.getDessertMixQty(o.value)})`} />
-              <ListItemSecondaryAction >
-                <IconButton aria-label="Add" classes={{ root: 'decreaseButton' }} onClick={() => this.handleDessertMixDecrease(o.value)}>
+              <ListItemText
+                primary={`${o.title}(${this.getDessertMixQty(o.value)})`}
+              />
+              <ListItemSecondaryAction>
+                <IconButton
+                  aria-label='Add'
+                  classes={{ root: 'decreaseButton' }}
+                  onClick={() => this.handleDessertMixDecrease(o.value)}
+                >
                   {'\u2014'}
                 </IconButton>
               </ListItemSecondaryAction>
             </ListItem>
-          ))
-        }
-      </List>
-      <div className='buttonCancelWraper'>
-        <Button variant="contained" color="secondary" onClick={this.handleClose}>
-          Отмена
-        </Button>
+          ))}
+        </List>
+        <div className='buttonCancelWraper'>
+          <Button
+            variant='contained'
+            color='secondary'
+            onClick={this.handleClose}
+          >
+            Отмена
+          </Button>
+        </div>
       </div>
-    </div>;
-  };
+    );
+  }
 
   renderDessertSize() {
     const { dessertType } = this.state;
     const dessertSizes = DessertsDict[dessertType];
 
-    return <div>
-      <List>
-        {dessertSizes.map(d => (
-          <ListItem divider button onClick={() => this.handleDessertSizeOrQuantitySelect(d)} key={d} >
-            <ListItemAvatar>
-              <Avatar className='avatar'>
-                +
-              </Avatar>
-            </ListItemAvatar>
-            <ListItemText primary={d} />
-          </ListItem>
-        ))}
-        <div className='buttonApplyWraper'>
-          <Button variant="contained" color="secondary" onClick={this.handleClose}>
-            Отмена
-          </Button>
-        </div>
-      </List>
-    </div>;
-  };
+    return (
+      <div>
+        <List>
+          {dessertSizes.map(d => (
+            <ListItem
+              divider
+              button
+              onClick={() => this.handleDessertSizeOrQuantitySelect(d)}
+              key={d}
+            >
+              <ListItemAvatar>
+                <Avatar className='avatar'>+</Avatar>
+              </ListItemAvatar>
+              <ListItemText primary={d} />
+            </ListItem>
+          ))}
+          <div className='buttonApplyWraper'>
+            <Button
+              variant='contained'
+              color='secondary'
+              onClick={this.handleClose}
+            >
+              Отмена
+            </Button>
+          </div>
+        </List>
+      </div>
+    );
+  }
 
   render() {
     const { dessertType, dessertTaste } = this.state;
 
-    return <Dialog onClose={this.handleClose} aria-labelledby="simple-dialog-title" open fullScreen >
-      <DialogTitle id="simple-dialog-title">
-        {!dessertType ? 'Выберите Десерт' : (!dessertTaste ? `Выберите вкус (${this.countTotalDessertQuantity()})` : 'Выберите размер')}
-      </DialogTitle>
-      {!dessertType ? this.renderDesserts() : (!dessertTaste ? this.renderDessertTastes() : this.renderDessertSize())}
-    </Dialog>;
+    return (
+      <Dialog
+        onClose={this.handleClose}
+        aria-labelledby='simple-dialog-title'
+        open
+        fullScreen
+      >
+        <DialogTitle id='simple-dialog-title'>
+          {!dessertType
+            ? 'Выберите Десерт'
+            : !dessertTaste
+            ? `Выберите вкус (${this.countTotalDessertQuantity()})`
+            : 'Выберите размер'}
+        </DialogTitle>
+        {!dessertType
+          ? this.renderDesserts()
+          : !dessertTaste
+          ? this.renderDessertTastes()
+          : this.renderDessertSize()}
+      </Dialog>
+    );
   }
 }
 
-export default (connect(mapStateToProps, mapDispatchToProps)(DessertsComponent))
+export default connect(mapStateToProps, mapDispatchToProps)(DessertsComponent);

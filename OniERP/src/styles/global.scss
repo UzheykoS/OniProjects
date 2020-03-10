@@ -1,4 +1,5 @@
-﻿html, body {
+﻿html,
+body {
     font-family: 'Segoe UI';
     height: 100%;
 }
@@ -50,7 +51,7 @@
     }
 }
 
-.saleContainer { 
+.saleContainer {
     display: flex;
     justify-content: space-between;
     margin: 0.5rem 0.5rem 0.5rem 0;
@@ -74,9 +75,10 @@
     font-size: 24px;
     font-weight: 400;
     line-height: 42px;
+    flex-wrap: wrap;
 }
 
-.notificationClose { 
+.notificationClose {
     width: 4rem;
     height: 4rem;
 }
@@ -136,6 +138,7 @@
     z-index: 9999;
     background-color: #e6e6e6;
     opacity: 0.8;
+
     .busy {
         position: absolute;
         left: 50%;
@@ -168,19 +171,21 @@
 
 .blackFridayTitle {
     height: 50px;
+
     img {
         height: 100%;
     }
 }
 
-.blackFridayPrice
- {
+.blackFridayPrice {
     font-size: 16px;
     font-weight: 400;
 }
 
 .profile-name {
     padding-right: 8px;
+    text-align: right;
+    font-weight: 500;
 }
 
 .date-picker {
@@ -193,4 +198,22 @@
 
 .checkoutLabel {
     line-height: 42px !important;
+}
+
+.flex-box-container {
+    display: flex;
+    justify-content: space-between;
+}
+
+.change-wrapper {
+    margin: 20px 8px 0px 8px;
+}
+
+.purple-avatar {
+    margin: 5px;
+    background-color: #e91e63 !important;
+}
+
+.dialog-wrap {
+    min-width: 300px;
 }

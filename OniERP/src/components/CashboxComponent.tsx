@@ -8,7 +8,7 @@ import Typography from '@material-ui/core/Typography';
 import { ProcessCashboxSubmit } from '../actions'
 import TextField from '@material-ui/core/TextField';
 import Helper from '../utils/helper';
-import { InlineDatePicker } from './material-ui-pickers';
+import { DatePicker } from '@material-ui/pickers';
 import * as moment from 'moment';
 
 const mapStateToProps = (state) => {
@@ -19,18 +19,17 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        processCashboxSubmit: (cash: number, notes: string, date?: moment.Moment) => dispatch(ProcessCashboxSubmit(cash, notes, date))
+        processCashboxSubmit: (cash: number, date?: moment.Moment) => dispatch(ProcessCashboxSubmit(cash, date))
     };
 };
 
 export interface ICashboxComponentProps {
     history?: any;
-    processCashboxSubmit?: (cash: number, notes: string, date?: moment.Moment) => void;
+    processCashboxSubmit?: (cash: number, date?: moment.Moment) => void;
 }
 
 export interface ICashboxComponentState {
     cash?: string;
-    notes?: string;
     selectedDate?: moment.Moment;
 }
 
@@ -40,7 +39,6 @@ class CashboxComponent extends Component<ICashboxComponentProps, ICashboxCompone
 
         this.state = {
             cash: '',
-            notes: '',
             selectedDate: moment(new Date())
         }
     }
@@ -48,12 +46,6 @@ class CashboxComponent extends Component<ICashboxComponentProps, ICashboxCompone
     handleCashChange = (ev) => {
         this.setState({
             cash: ev.target.value
-        });
-    }
-
-    handleNotesChange = (ev) => {
-        this.setState({
-            notes: ev.target.value
         });
     }
 
@@ -65,21 +57,21 @@ class CashboxComponent extends Component<ICashboxComponentProps, ICashboxCompone
 
     handleNextClick = () => {
         const { processCashboxSubmit, history } = this.props;
-        const { cash, notes, selectedDate } = this.state;
-        processCashboxSubmit(Number(cash), notes, selectedDate);
+        const { cash, selectedDate } = this.state;
+        processCashboxSubmit(Number(cash), selectedDate);
         history.push('/');
     }
 
     render() {
-        const { cash, notes, selectedDate } = this.state;
+        const { cash, selectedDate } = this.state;
         const paymentTypes = Helper.getArrayFromEnum(PaymentTypeEnum);
 
         return <div>
-            <Typography gutterBottom variant="headline" component="h2">
+            <Typography gutterBottom variant="h5" component="h2">
                 Касса
             </Typography>
-            <InlineDatePicker
-                onlyCalendar
+            <DatePicker
+                autoOk
                 label="Дата"
                 value={selectedDate}
                 className={'date-picker'}
@@ -96,17 +88,6 @@ class CashboxComponent extends Component<ICashboxComponentProps, ICashboxCompone
                 margin="normal"
                 fullWidth
                 placeholder="Введите сумму"
-            />
-            <TextField
-                label="Заметки"
-                value={notes}
-                onChange={this.handleNotesChange}
-                InputLabelProps={{
-                    shrink: true
-                }}
-                margin="normal"
-                fullWidth
-                multiline
             />
             <div className={'buttonsWraper'}>
                 <Button
