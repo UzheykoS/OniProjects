@@ -10,7 +10,6 @@ import {
 import { useLoading } from '@hooks/useLoading';
 import { SEPARATORS } from '@utils/Helper';
 const Instafeed = require('instafeed.js');
-const keys = require('../../../config/keys');
 
 export function InstagramSection() {
   const { showLoading, closeLoading } = useLoading();
@@ -18,9 +17,9 @@ export function InstagramSection() {
     showLoading();
     const userFeed = new Instafeed({
       get: 'user',
-      userId: keys.userId,
-      clientId: keys.clientId,
-      accessToken: keys.accessToken,
+      userId: process.env.INSTAGRAM_USER_ID,
+      clientId: process.env.INSTAGRAM_CLIENT_ID,
+      accessToken: process.env.INSTAGRAM_ACCESS_TOKEN,
       resolution: 'standard_resolution',
       template:
         '<a href="{{link}}" target="_blank" id="{{id}}"><img src="{{image}}" /></a>',

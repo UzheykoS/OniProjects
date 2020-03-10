@@ -9,15 +9,38 @@ import {
   BottomWrapper,
 } from './styled';
 import { Button } from '@common/Button';
+import { IContactData } from '.';
+import PhoneInput from '@common/PhoneInput';
+import DatePickerWrapper from '@common/DatePicker';
+import TimeInput from '@common/TimeInput';
 
 interface IProps {
-  handleContinue: () => void;
+  handleContinue: (contactData: IContactData) => void;
 }
 
 export function Contacts({ handleContinue }: IProps) {
-  const [name, setName] = React.useState('Cat in the Hat');
-  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setName(event.target.value);
+  const [formData, setFormData] = React.useState<IContactData>({
+    date: null,
+    time: null,
+  });
+
+  const handleChange = (key: string, value: string) => {
+    setFormData({ ...formData, [key]: value });
+  };
+
+  const handleDateChange = (date: Date | null) => {
+    setFormData({ ...formData, date: date?.toISOString() });
+  };
+
+  const handleTimeChange = (time: Date | null) => {
+    setFormData({ ...formData, time: time?.toISOString() });
+  };
+
+  const handleNextClick = () => {
+    if (!formData) {
+      return;
+    }
+    handleContinue(formData);
   };
 
   return (
@@ -30,22 +53,31 @@ export function Contacts({ handleContinue }: IProps) {
           <Typography variant={'h3'}>КОНТАКТНЫЕ ДАННЫЕ</Typography>
           <TextFieldStyled
             label='Имя'
-            value={name}
-            onChange={handleChange}
+            value={formData.name}
+            onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+              handleChange('name', e.target.value)
+            }
             variant='outlined'
             required
           />
           <TextFieldStyled
             label='Телефон'
-            value={name}
-            onChange={handleChange}
+            value={formData.phone}
+            onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+              handleChange('phone', e.target.value)
+            }
             variant='outlined'
             required
+            InputProps={{
+              inputComponent: PhoneInput,
+            }}
           />
           <TextFieldStyled
             label='Комментарий'
-            value={name}
-            onChange={handleChange}
+            value={formData.comments}
+            onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+              handleChange('comments', e.target.value)
+            }
             variant='outlined'
             multiline
             rowsMax='4'
@@ -54,25 +86,29 @@ export function Contacts({ handleContinue }: IProps) {
         <FormColumnWrapper>
           <Typography variant={'h3'}>АДРЕС ДОСТАВКИ</Typography>
           <FormRowWrapper>
-            <TextFieldStyled
-              label='Дата'
-              value={name}
-              onChange={handleChange}
-              variant='outlined'
+            <DatePickerWrapper
+              variant='inline'
+              emptyLabel='Дата'
               fullWidth
+              value={formData.date}
+              style={{ margin: '20px 5px 15px 5px' }}
+              handleDateChange={handleDateChange}
             />
-            <TextFieldStyled
-              label='Время доставки'
-              value={name}
-              onChange={handleChange}
-              variant='outlined'
+            <TimeInput
+              emptyLabel='Время доставки'
+              selectedDate={formData.time}
               fullWidth
+              variant='inline'
+              style={{ margin: '20px 5px 15px 5px' }}
+              handleDateChange={handleTimeChange}
             />
           </FormRowWrapper>
           <TextFieldStyled
             label='Адрес'
-            value={name}
-            onChange={handleChange}
+            value={formData.address}
+            onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+              handleChange('address', e.target.value)
+            }
             variant='outlined'
           />
           <Typography variant={'body2'} style={{ marginLeft: 5 }}>
@@ -81,7 +117,7 @@ export function Contacts({ handleContinue }: IProps) {
         </FormColumnWrapper>
       </FormWrapper>
       <BottomWrapper>
-        <Button rounded onClick={handleContinue}>
+        <Button rounded onClick={handleNextClick}>
           ДАЛЬШЕ
         </Button>
       </BottomWrapper>

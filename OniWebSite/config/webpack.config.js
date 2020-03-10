@@ -10,8 +10,19 @@ const CopyWebpackPlugin = require('copy-webpack-plugin');
 const APP_DIR = path.resolve(__dirname, '../src');
 const aliases = require('./aliases');
 
+const dotenv = require('dotenv');
+
 module.exports = env => {
-  const { NODE_ENV } = env;
+  const {
+    NODE_ENV,
+    ONI_WEB_SERVER_URL,
+    INSTAGRAM_USER_ID,
+    INSTAGRAM_CLIENT_ID,
+    INSTAGRAM_ACCESS_TOKEN,
+    TELEGRAM_BOT_TOKEN,
+    TELEGRAM_CHAT_ID,
+  } = env;
+
   return merge([
     {
       entry: ['react-hot-loader/patch', '@babel/polyfill', APP_DIR],
@@ -42,13 +53,7 @@ module.exports = env => {
         rules: [
           {
             test: /\.scss$/,
-            use: [
-              NODE_ENV === 'production'
-                ? MiniCssExtractPlugin.loader
-                : 'style-loader',
-              'css-loader',
-              'sass-loader',
-            ],
+            use: [MiniCssExtractPlugin.loader, 'css-loader', 'sass-loader'],
             exclude: /node_modules/,
           },
           {
@@ -182,6 +187,10 @@ module.exports = env => {
         new webpack.DefinePlugin({
           'process.env': {
             NODE_ENV: JSON.stringify(NODE_ENV),
+            ONI_WEB_SERVER_URL: JSON.stringify(ONI_WEB_SERVER_URL),
+            INSTAGRAM_USER_ID: JSON.stringify(INSTAGRAM_USER_ID),
+            INSTAGRAM_CLIENT_ID: JSON.stringify(INSTAGRAM_CLIENT_ID),
+            INSTAGRAM_ACCESS_TOKEN: JSON.stringify(INSTAGRAM_ACCESS_TOKEN),
           },
         }),
         new CopyWebpackPlugin([{ from: 'public' }]),
@@ -190,6 +199,7 @@ module.exports = env => {
           template: 'src/index.html',
           filename: './index.html',
         }),
+        new MiniCssExtractPlugin(),
       ],
     },
   ]);

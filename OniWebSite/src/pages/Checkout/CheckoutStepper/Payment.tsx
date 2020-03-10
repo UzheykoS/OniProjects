@@ -8,12 +8,12 @@ import { MainWrapper, BottomWrapper } from './styled';
 import { Button } from '@common/Button';
 
 export enum PaymentType {
-  Cash = 'Наличнымы: курьеру при получении',
-  Card = 'Оплата картой',
+  Cash = 'Наличные',
+  Card = 'Карта',
 }
 
 interface IProps {
-  handleContinue: () => void;
+  handleContinue: (payment: PaymentType) => void;
 }
 
 export function Payment({ handleContinue }: IProps) {
@@ -21,6 +21,10 @@ export function Payment({ handleContinue }: IProps) {
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setValue((event.target as HTMLInputElement).value as PaymentType);
+  };
+
+  const handleNextClick = () => {
+    handleContinue(value);
   };
 
   return (
@@ -31,17 +35,17 @@ export function Payment({ handleContinue }: IProps) {
           <FormControlLabel
             value={PaymentType.Cash}
             control={<Radio />}
-            label={PaymentType.Cash}
+            label={'Наличнымы: курьеру при получении'}
           />
           <FormControlLabel
             value={PaymentType.Card}
             control={<Radio />}
-            label={PaymentType.Card}
+            label={'Оплата картой'}
           />
         </RadioGroup>
       </FormControl>
       <BottomWrapper>
-        <Button rounded onClick={handleContinue}>
+        <Button rounded onClick={handleNextClick}>
           ДАЛЬШЕ
         </Button>
       </BottomWrapper>

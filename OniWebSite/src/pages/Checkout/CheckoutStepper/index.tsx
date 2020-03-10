@@ -7,12 +7,12 @@ import {
   CheckoutStepperContainer,
 } from '../styled';
 import { Typography, IconButton } from '@material-ui/core';
-import { Delivery } from './Delivery';
+import { Delivery, DeliveryType } from './Delivery';
 import { Contacts } from './Contacts';
-import { Payment } from './Payment';
+import { Payment, PaymentType } from './Payment';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
-import { IBasketItem } from '@hooks/useBasket';
-const keys = require('../../../../config/keys');
+import { IBasketItem, useBasket } from '@hooks/useBasket';
+import { submitOrder } from '@src/api/oni-web';
 
 enum CheckoutTabs {
   Delivery = 'Способ доставки',
@@ -20,45 +20,64 @@ enum CheckoutTabs {
   Payment = 'Способ оплаты',
 }
 
+export interface IContactData {
+  name?: string;
+  phone?: string;
+  comments?: string;
+  date?: string | null;
+  time?: string | null;
+  address?: string;
+}
+
+export interface IOrder extends IContactData {
+  delivery: DeliveryType;
+  payment: PaymentType;
+  itemsMessage?: string;
+}
+
 interface ICheckoutStepperProps {
   items: IBasketItem[];
   returnToBasket: () => void;
 }
 
+const initialState = {
+  delivery: DeliveryType.SelfService,
+  payment: PaymentType.Cash,
+};
+
 export function CheckoutStepper({ returnToBasket }: ICheckoutStepperProps) {
   const [activeTab, setActiveTab] = useState(CheckoutTabs.Delivery);
+  const [form, setForm] = useState<IOrder>(initialState);
+  const { items } = useBasket();
+
+  const handleDeliverySubmit = (delivery: DeliveryType) => {
+    setForm({ ...form, delivery });
+    setActiveTab(CheckoutTabs.Contacts);
+  };
+
+  const handleContactDataSubmit = (contactData: IContactData) => {
+    setForm({ ...form, ...contactData });
+    setActiveTab(CheckoutTabs.Payment);
+  };
+
+  const handlePaymentSubmit = async (payment: PaymentType) => {
+    setForm(initialState);
+    const itemsMessage = items.reduce((acc, item) => {
+      acc += `${item.product.id} - ${item.quantity} \n`;
+      return acc;
+    }, '');
+
+    try {
+      await submitOrder({ ...form, payment, itemsMessage });
+      returnToBasket();
+    } catch (e) {
+      throw e;
+    }
+  };
+
   const handleTabChange = (_e: React.ChangeEvent<{}>, tab: CheckoutTabs) => {
     setActiveTab(tab);
   };
-
-  const handleCheckoutSuccess = () => {
-    sendMsg();
-  };
-
-  function sendMsg() {
-    var url =
-      'https://api.telegram.org/bot' + keys.telegramBotToken + '/sendMessage';
-    var body = JSON.stringify({
-      chat_id: keys.telegramChatId,
-      parse_mode: 'Markdown',
-      text:
-        '*New order*\n' +
-        // data.get('title') +
-        '\n\n*Имя:* ' +
-        // data.get('name') +
-        '\n*Телефон:* ' +
-        // data.get('phone') +
-        '\n*Откуда:* [' +
-        window.location.href +
-        '](' +
-        window.location.href +
-        ')',
-    });
-    const xhr = new XMLHttpRequest();
-    xhr.open('POST', url, true);
-    xhr.setRequestHeader('Content-type', 'application/json; charset=utf-8');
-    xhr.send(body);
-  }
 
   return (
     <CheckoutStepperContainer>
@@ -87,15 +106,13 @@ export function CheckoutStepper({ returnToBasket }: ICheckoutStepperProps) {
       </TabsStyled>
       <Content>
         {activeTab === CheckoutTabs.Delivery && (
-          <Delivery
-            handleContinue={() => setActiveTab(CheckoutTabs.Contacts)}
-          />
+          <Delivery handleContinue={handleDeliverySubmit} />
         )}
         {activeTab === CheckoutTabs.Contacts && (
-          <Contacts handleContinue={() => setActiveTab(CheckoutTabs.Payment)} />
+          <Contacts handleContinue={handleContactDataSubmit} />
         )}
         {activeTab === CheckoutTabs.Payment && (
-          <Payment handleContinue={handleCheckoutSuccess} />
+          <Payment handleContinue={handlePaymentSubmit} />
         )}
       </Content>
     </CheckoutStepperContainer>

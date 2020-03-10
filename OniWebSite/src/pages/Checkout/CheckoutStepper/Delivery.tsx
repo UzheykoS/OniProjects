@@ -8,12 +8,12 @@ import { MainWrapper, BottomWrapper } from './styled';
 import { Button } from '@common/Button';
 
 export enum DeliveryType {
-  SelfService = 'Самовывоз: Киев, бульвар Вацлава Гавела, 9А',
-  Delivery = 'Доставка курьером',
+  SelfService = 'Самовывоз',
+  Delivery = 'Доставка',
 }
 
 interface IProps {
-  handleContinue: () => void;
+  handleContinue: (delivery: DeliveryType) => void;
 }
 
 export function Delivery({ handleContinue }: IProps) {
@@ -21,6 +21,10 @@ export function Delivery({ handleContinue }: IProps) {
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setValue((event.target as HTMLInputElement).value as DeliveryType);
+  };
+
+  const handleNextClick = () => {
+    handleContinue(value);
   };
 
   return (
@@ -31,17 +35,17 @@ export function Delivery({ handleContinue }: IProps) {
           <FormControlLabel
             value={DeliveryType.SelfService}
             control={<Radio />}
-            label={DeliveryType.SelfService}
+            label={'Самовывоз: Киев, бульвар Вацлава Гавела, 9А'}
           />
           <FormControlLabel
             value={DeliveryType.Delivery}
             control={<Radio />}
-            label={DeliveryType.Delivery}
+            label={'Доставка курьером'}
           />
         </RadioGroup>
       </FormControl>
       <BottomWrapper>
-        <Button rounded onClick={handleContinue}>
+        <Button rounded onClick={handleNextClick}>
           ДАЛЬШЕ
         </Button>
       </BottomWrapper>

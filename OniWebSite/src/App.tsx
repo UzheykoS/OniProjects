@@ -7,6 +7,8 @@ import { ThemeProvider } from '@material-ui/core/styles';
 import theme from '@styles/theme';
 import { StylesProvider } from '@material-ui/core/styles';
 import { BasketProvider } from '@hooks/useBasket';
+import DateFnsUtils from '@date-io/date-fns';
+import { MuiPickersUtilsProvider } from '@material-ui/pickers';
 
 @hot(module)
 export class App extends React.Component {
@@ -14,13 +16,15 @@ export class App extends React.Component {
     return (
       <StylesProvider injectFirst>
         <ThemeProvider theme={theme}>
-          <ModalsProvider>
-            <BasketProvider>
-              <LoadingProvider>
-                <Wrapper />
-              </LoadingProvider>
-            </BasketProvider>
-          </ModalsProvider>
+          <MuiPickersUtilsProvider utils={DateFnsUtils}>
+            <ModalsProvider>
+              <BasketProvider>
+                <LoadingProvider>
+                  <Wrapper />
+                </LoadingProvider>
+              </BasketProvider>
+            </ModalsProvider>
+          </MuiPickersUtilsProvider>
         </ThemeProvider>
       </StylesProvider>
     );
