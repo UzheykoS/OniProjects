@@ -5,11 +5,11 @@
   "main": "index.js",
   "scripts": {
     "start": "set NODE_ENV=development&&node scripts/start.js",
-    "build": "set NODE_ENV=production&&node --max_old_space_size=2048 scripts/build.js",
-    "prebuild": "rimraf dist",
     "server": "http-server -p 9040 dist",
     "profile": "webpack --profile --json > stats.json",
-    "deploy": "npm install && npm run build"
+    "deploy": "npm run build && node server",
+    "build": "set NODE_ENV=production&&node --max_old_space_size=2048 scripts/build.js",
+    "prebuild": "npm install && rimraf dist"
   },
   "author": "Sergey Uzheyko",
   "license": "ISC",
