@@ -31,4 +31,4 @@ export const FormRowWrapper = styled.div`
 
 export const TextFieldStyled = styled(TextField)<TextFieldProps>`
   margin: 20px 5px;
-`;
+` as typeof TextField;

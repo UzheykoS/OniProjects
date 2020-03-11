@@ -10,8 +10,6 @@ const CopyWebpackPlugin = require('copy-webpack-plugin');
 const APP_DIR = path.resolve(__dirname, '../src');
 const aliases = require('./aliases');
 
-const dotenv = require('dotenv');
-
 module.exports = env => {
   const {
     NODE_ENV,

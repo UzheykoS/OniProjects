@@ -66,7 +66,7 @@ export function ProductsNavBar() {
             return (
               <RoutesListItem
                 key={route.path}
-                active={currentProductPage == page ? 'active' : ''}
+                active={currentProductPage === page}
               >
                 <Link to={route.path}>{route.label}</Link>
               </RoutesListItem>
@@ -91,7 +91,7 @@ export function ProductsNavBar() {
             return (
               <RoutesListItem
                 key={route.path}
-                active={currentProductPage == page ? 'active' : ''}
+                active={currentProductPage === page}
               >
                 <Link to={route.path}>{route.label}</Link>
               </RoutesListItem>

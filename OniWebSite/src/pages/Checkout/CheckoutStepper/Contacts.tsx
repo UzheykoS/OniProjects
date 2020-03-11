@@ -1,5 +1,5 @@
 import React from 'react';
-import { Typography } from '@material-ui/core';
+import { Typography, InputBaseComponentProps } from '@material-ui/core';
 import {
   FormWrapper,
   FormColumnWrapper,
@@ -69,7 +69,9 @@ export function Contacts({ handleContinue }: IProps) {
             variant='outlined'
             required
             InputProps={{
-              inputComponent: PhoneInput,
+              inputComponent: PhoneInput as React.FunctionComponent<
+                InputBaseComponentProps
+              >,
             }}
           />
           <TextFieldStyled

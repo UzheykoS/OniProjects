@@ -32,7 +32,7 @@ export const FlexRow = styled.div`
 `;
 
 interface IColumn {
-  bordered: boolean;
+  bordered?: boolean;
 }
 export const FlexColumn = styled.div<IColumn>`
   display: flex;

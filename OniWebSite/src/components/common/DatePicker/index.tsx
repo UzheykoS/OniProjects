@@ -30,7 +30,7 @@ const DatePickerWrapper = ({
       autoOk
       variant={variant}
       disabled={disabled}
-      error={error}
+      error={!!error}
       helperText={error ? error : <></>}
       format={dateFormat}
       autoComplete='none'

@@ -62,7 +62,7 @@ export function NavBar() {
               <RoutesListItem
                 whiteMode={currentPage === Pages.Main}
                 key={page}
-                active={currentPage == page ? 'active' : ''}
+                active={currentPage === page}
               >
                 <Link to={route.path}>{route.label}</Link>
               </RoutesListItem>
@@ -117,7 +117,7 @@ export function NavBar() {
             return (
               <MenuItem
                 key={route.path}
-                active={currentPage == page ? 'active' : ''}
+                active={currentPage === page}
               >
                 <Link to={route.path}>{route.label}</Link>
               </MenuItem>
