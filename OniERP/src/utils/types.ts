@@ -56,6 +56,7 @@ export enum SaleType {
   Five = '5 %',
   Ten = '10 %',
   Twenty = '20 %',
+  Fifty = '50 %',
   Staff = 'Персонал',
   Full = '100 %',
   NewYear2020 = 'Новый Год 2020',

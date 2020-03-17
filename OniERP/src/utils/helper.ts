@@ -118,6 +118,10 @@ class Helper {
         drinkSale = 20;
         dessertSale = 20;
         break;
+      case SaleType.Fifty:
+        drinkSale = 50;
+        dessertSale = 50;
+        break;
       case SaleType.Staff:
         drinkSale = 70;
         dessertSale = 40;
