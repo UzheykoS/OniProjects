@@ -9,6 +9,7 @@ import { StylesProvider } from '@material-ui/core/styles';
 import { BasketProvider } from '@hooks/useBasket';
 import DateFnsUtils from '@date-io/date-fns';
 import { MuiPickersUtilsProvider } from '@material-ui/pickers';
+import ruLocale from 'date-fns/locale/ru';
 
 @hot(module)
 export class App extends React.Component {
@@ -16,7 +17,7 @@ export class App extends React.Component {
     return (
       <StylesProvider injectFirst>
         <ThemeProvider theme={theme}>
-          <MuiPickersUtilsProvider utils={DateFnsUtils}>
+          <MuiPickersUtilsProvider utils={DateFnsUtils} locale={ruLocale}>
             <ModalsProvider>
               <BasketProvider>
                 <LoadingProvider>
