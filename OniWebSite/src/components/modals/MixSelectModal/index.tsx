@@ -8,11 +8,13 @@ import { IProduct } from '@constants/products';
 interface IMixSelectModalModalProps extends ModalFormProps {
   mix: IProduct;
   confirmAdd: () => void;
+  cancelModal: () => void;
 }
 const MixSelectModal: FC<IMixSelectModalModalProps> = ({
   mix,
   confirmAdd,
   closeModal,
+  cancelModal,
   open,
 }) => {
   const classes = useStyles();
@@ -23,6 +25,7 @@ const MixSelectModal: FC<IMixSelectModalModalProps> = ({
       title='Выбор вкусов'
       open={open}
       onClose={closeModal}
+      onCancel={cancelModal}
       onSubmit={confirmAdd}
       saveButtonLabel='Добавить'
       cancelButtonLabel='Собрать самому'

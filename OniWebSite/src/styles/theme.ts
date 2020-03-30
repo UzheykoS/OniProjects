@@ -35,20 +35,20 @@ export default createMuiTheme({
       width: '203px',
       borderRadius: 25,
     },
-    h1: {
-      fontFamily: 'Yeseva One',
-      fontWeight: 500,
-      fontSize: 68,
-    },
+    // caption: {
+    //   fontFamily: 'Yeseva One',
+    //   fontWeight: 500,
+    //   fontSize: 68,
+    // },
     h2: {
       fontFamily: 'Yeseva One',
       fontWeight: 500,
-      fontSize: 64,
+      fontSize: '4rem',
     },
     h3: {
       fontFamily: 'Roboto',
       fontWeight: 400,
-      fontSize: 16,
+      fontSize: '1rem',
       color: colors.secondary.gold,
     },
     body1: {
@@ -62,7 +62,7 @@ export default createMuiTheme({
       fontSize: 11,
       opacity: 0.6,
     },
-    caption: {
+    h1: {
       fontFamily: 'Yeseva One',
       fontWeight: 400,
       fontSize: 16,

@@ -66,15 +66,20 @@ export function constructorReducer(
       }
       throw new ConstructorError('Attempt to set mode to ' + action.mode);
     case 'add':
-      if (action.item && state.items.length === state.mode) {
-        throw new ConstructorError('List is already full');
+      if (!action.item) {
+        throw new ConstructorError('Attempt to add empty item');
       }
-      if (action.item) {
-        const { items } = state;
-        items.push(action.item);
-        return { ...state, items };
+      let newState = { ...state };
+      if (state.items.length === state.mode) {
+        const modeIndex = state.availableModes.indexOf(state.mode);
+        if (modeIndex === state.availableModes.length - 1) {
+          throw new ConstructorError('List is already full');
+        } else {
+          newState.mode = state.availableModes[modeIndex + 1];
+        }
       }
-      throw new ConstructorError('Attempt to add item: ' + action.item);
+      newState.items.push(action.item);
+      return newState;
     case 'remove':
       if (action.index !== undefined && action.index > -1) {
         const { items } = state;

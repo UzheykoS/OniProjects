@@ -14,6 +14,7 @@ import { ChouxSingle } from '@components/products/ChouxSingle';
 import { chouxMix, choux, IProduct } from '@constants/products';
 import MixSelectModal from '@components/modals/MixSelectModal';
 import { useBasket } from '@hooks/useBasket';
+import { SCROLL_INTO_VIEW_ELEMENT } from '@constants';
 
 export function Choux() {
   const [state, dispatch] = useReducer(
@@ -52,6 +53,21 @@ export function Choux() {
     addToBasket({ product: selectedMix, quantity: 1 });
     handleClose();
   };
+
+  function cancelModal() {
+    const el = document.getElementById(SCROLL_INTO_VIEW_ELEMENT);
+    if (el) {
+      const viewportOffset = el.getBoundingClientRect();
+      window.scrollTo({
+        top: viewportOffset.top - 30,
+        left: 0,
+        behavior: 'smooth',
+      });
+    }
+
+    setExpanded(true);
+    handleClose();
+  }
 
   const chouxElements: JSX.Element[] = [];
   for (let i = 0; i < choux.length; i++) {
@@ -121,6 +137,7 @@ export function Choux() {
         <FlexColumn>
           <Typography
             variant='h3'
+            id={SCROLL_INTO_VIEW_ELEMENT}
             style={{ margin: '60px 0 30px 0', whiteSpace: 'nowrap' }}
           >
             ВКУСЫ ШУ
@@ -145,6 +162,7 @@ export function Choux() {
           confirmAdd={handleChouxMixConfirm}
           closeModal={handleClose}
           open={!!selectedMix}
+          cancelModal={cancelModal}
         />
       )}
     </ChouxWrapper>

@@ -13,7 +13,7 @@ export function DessertsMix({ product, onClick }: IProps) {
     <MixSection>
       <img src={product.imageUrl} />
       <div className='title'>
-        <Typography variant='caption' style={{ padding: '0 10px 5px 0' }}>
+        <Typography variant='h1' style={{ padding: '0 10px 5px 0' }}>
           {`Ассорти ${product.price} грн`}
         </Typography>
         <Typography variant='body1' style={{ fontWeight: 400 }}>

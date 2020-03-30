@@ -20,9 +20,12 @@ enum CheckoutTabs {
   Payment = 'Способ оплаты',
 }
 
-export interface IContactData {
+export interface IRequiredContactData {
   name?: string;
   phone?: string;
+}
+
+export interface IContactData extends IRequiredContactData {
   comments?: string;
   date?: string | null;
   time?: string | null;
@@ -82,8 +85,10 @@ export function CheckoutStepper({ returnToBasket }: ICheckoutStepperProps) {
   return (
     <CheckoutStepperContainer>
       <CheckoutHeaderWrapper>
-        <IconButton onClick={returnToBasket}>
-          <ChevronLeftIcon />
+        <IconButton
+          onClick={returnToBasket}
+        >
+          <ChevronLeftIcon style={{ margin: 16 }} />
         </IconButton>
         <Typography variant='h2'>Оформление заказа</Typography>
       </CheckoutHeaderWrapper>

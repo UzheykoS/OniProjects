@@ -1,5 +1,5 @@
 import React from 'react';
-import { KeyboardTimePicker } from '@material-ui/pickers';
+import { TimePicker } from '@material-ui/pickers';
 
 export interface ITimeInputProps {
   selectedDate?: any;
@@ -19,7 +19,8 @@ const TimeInput = ({
   variant = 'inline',
 }: ITimeInputProps) => {
   return (
-    <KeyboardTimePicker
+    // docs: https://material-ui-pickers.dev/api/KeyboardTimePicker
+    <TimePicker
       margin='normal'
       label={emptyLabel}
       value={selectedDate}

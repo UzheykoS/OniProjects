@@ -124,6 +124,8 @@ export const ConstructorGridItemWrapper = styled.div<
   background-color: ${colors.primary.grey};
   margin: 2px 1px;
   position: relative;
+  border: 1px solid ${colors.primary.grey};
+  box-sizing: border-box;
 
   ${({ size }) =>
     size === 'small'
@@ -139,10 +141,12 @@ export const ImageWrapper = styled.img`
   width: 100%;
   height: auto;
   object-fit: contain;
+  background: ${colors.primary.white};
 `;
 
 interface IRemoveIconWrapper {
   visible: boolean;
+  small?: boolean;
 }
 
 export const RemoveIconWrapper = styled.div<IRemoveIconWrapper>`
@@ -163,5 +167,12 @@ export const RemoveIconWrapper = styled.div<IRemoveIconWrapper>`
     visible &&
     `
       display: flex;
+    `};
+  ${({ small }) =>
+    small &&
+    `
+      width: 60px;
+      height: 60px;
+      margin: -32px 0 0 -32px;
     `};
 `;

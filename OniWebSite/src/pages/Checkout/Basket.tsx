@@ -47,11 +47,8 @@ export function Basket({
   return (
     <BasketWrapper>
       <CheckoutHeaderWrapper>
-        <IconButton
-          onClick={handleBackClick}
-          style={{ position: 'absolute', left: '-100px', top: '15px' }}
-        >
-          <ChevronLeftIcon />
+        <IconButton onClick={handleBackClick}>
+          <ChevronLeftIcon style={{ margin: 16 }} />
         </IconButton>
         <Typography variant='h2'>Корзина</Typography>
       </CheckoutHeaderWrapper>

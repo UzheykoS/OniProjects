@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 import { Typography, Tab, Tabs } from '@material-ui/core';
 import colors from '@constants/colors';
+import { BREAKPOINT } from '@constants';
 
 export const CheckoutContainer = styled.div`
   height: 100%;
@@ -9,8 +10,12 @@ export const CheckoutContainer = styled.div`
   display: flex;
   justify-content: center;
   min-width: 60%;
-  margin: 50px 0px;
   min-height: calc(100vh - 550px);
+
+  margin: 50px 0px;
+  @media (max-width: ${BREAKPOINT}) {
+    margin: 85px 0px 50px 0px;
+  }
 `;
 
 export const Content = styled.div`
@@ -22,7 +27,6 @@ export const BasketWrapper = styled.div`
   display: flex;
   flex-direction: column;
   min-width: 60%;
-  margin: 50px 0px;
 `;
 
 export const BasketItemWrapper = styled.div`
@@ -71,7 +75,6 @@ export const CheckoutHeaderWrapper = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: left;
-  position: relative;
 `;
 
 export const BasketTable = styled.div`

@@ -15,6 +15,7 @@ interface ModalWrapperProps {
   title: string;
   open: boolean;
   onClose: () => void;
+  onCancel?: () => void;
   submitting?: boolean;
   disabled?: boolean;
   onSubmit: () => void;
@@ -34,6 +35,7 @@ const ModalWrapper: FC<ModalWrapperProps> = ({
   children,
   open,
   onClose,
+  onCancel,
   submitting = false,
   disabled = false,
   onSubmit,
@@ -76,7 +78,7 @@ const ModalWrapper: FC<ModalWrapperProps> = ({
         {showCancelButton && (
           <Button
             disabled={submitting}
-            onClick={onClose}
+            onClick={onCancel ? onCancel : onClose}
             color='secondary'
             tabIndex={0}
             rounded

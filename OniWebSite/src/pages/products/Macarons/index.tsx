@@ -14,7 +14,7 @@ import { DessertsMix } from '@components/DessertsMix';
 import { macarons, macaronMix, IProduct } from '@constants/products';
 import { useBasket } from '@hooks/useBasket';
 import MixSelectModal from '@components/modals/MixSelectModal';
-import { BREAKPOINT } from '@constants';
+import { BREAKPOINT, SCROLL_INTO_VIEW_ELEMENT } from '@constants';
 
 export function Macarons() {
   const [state, dispatch] = useReducer(
@@ -58,6 +58,21 @@ export function Macarons() {
     addToBasket({ product: selectedMix, quantity: 1 });
     handleClose();
   };
+
+  function cancelModal() {
+    const el = document.getElementById(SCROLL_INTO_VIEW_ELEMENT);
+    if (el) {
+      const viewportOffset = el.getBoundingClientRect();
+      window.scrollTo({
+        top: viewportOffset.top - 30,
+        left: 0,
+        behavior: 'smooth',
+      });
+    }
+
+    setExpanded(true);
+    handleClose();
+  }
 
   const macaronElements: JSX.Element[] = [];
   for (let i = 0; i < macarons.length; i++) {
@@ -150,6 +165,7 @@ export function Macarons() {
         <FlexColumn>
           <Typography
             variant='h3'
+            id={SCROLL_INTO_VIEW_ELEMENT}
             style={{ margin: '60px 0 30px 0', whiteSpace: 'nowrap' }}
           >
             ВКУСЫ МАКАРОН
@@ -181,6 +197,7 @@ export function Macarons() {
           confirmAdd={handleMacaronsMixConfirm}
           closeModal={handleClose}
           open={!!selectedMix}
+          cancelModal={cancelModal}
         />
       )}
     </MacaronsWrapper>

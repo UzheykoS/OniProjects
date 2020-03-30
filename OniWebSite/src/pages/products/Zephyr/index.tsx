@@ -14,6 +14,7 @@ import { ZephyrSingle } from '@components/products/ZephyrSingle';
 import { zephyrMix, zephyr, IProduct } from '@constants/products';
 import MixSelectModal from '@components/modals/MixSelectModal';
 import { useBasket } from '@hooks/useBasket';
+import { SCROLL_INTO_VIEW_ELEMENT } from '@constants';
 
 export function Zephyr() {
   const [state, dispatch] = useReducer(
@@ -52,6 +53,21 @@ export function Zephyr() {
     addToBasket({ product: selectedMix, quantity: 1 });
     handleClose();
   };
+
+  function cancelModal() {
+    const el = document.getElementById(SCROLL_INTO_VIEW_ELEMENT);
+    if (el) {
+      const viewportOffset = el.getBoundingClientRect();
+      window.scrollTo({
+        top: viewportOffset.top - 30,
+        left: 0,
+        behavior: 'smooth',
+      });
+    }
+
+    setExpanded(true);
+    handleClose();
+  }
 
   const zephyrElements: JSX.Element[] = [];
   for (let i = 0; i < zephyr.length; i++) {
@@ -115,6 +131,7 @@ export function Zephyr() {
         <FlexColumn>
           <Typography
             variant='h3'
+            id={SCROLL_INTO_VIEW_ELEMENT}
             style={{ margin: '60px 0 30px 0', whiteSpace: 'nowrap' }}
           >
             ВКУСЫ ЗЕФИРА
@@ -139,6 +156,7 @@ export function Zephyr() {
           confirmAdd={handleZephyrMixConfirm}
           closeModal={handleClose}
           open={!!selectedMix}
+          cancelModal={cancelModal}
         />
       )}
     </ZephyrWrapper>

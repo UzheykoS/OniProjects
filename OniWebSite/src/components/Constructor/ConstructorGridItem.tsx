@@ -47,8 +47,16 @@ export function ConstructorGridItem({
       removeEnabled={!!item}
     >
       {item && (
-        <RemoveIconWrapper visible={mouseOver}>
-          <RemoveIcon style={{ fontSize: 40, color: colors.primary.white }} />
+        <RemoveIconWrapper
+          visible={mouseOver}
+          small={mode === ConstructoreMode.MacaronLarge}
+        >
+          <RemoveIcon
+            style={{
+              fontSize: 40,
+              color: colors.primary.white,
+            }}
+          />
         </RemoveIconWrapper>
       )}
       {item && <ImageWrapper src={item.imageUrl} />}
