@@ -12,6 +12,7 @@ export const MacaronSingleWrapper = styled.div`
   position: relative;
   @media (max-width: ${BREAKPOINT}) {
     height: auto;
+    min-height: 400px;
   }
 `;
 
@@ -54,6 +55,10 @@ export const Title = styled.div`
   font-size: 16px;
   color: black;
   text-align: center;
+  padding: 10px 0;
+  @media (max-width: ${BREAKPOINT}) {
+    font-size: 20px;
+  }
 `;
 
 export const Description = styled.div`
@@ -62,4 +67,7 @@ export const Description = styled.div`
   color: #cccccc;
   text-align: center;
   padding: 5px 40px;
+  @media (max-width: ${BREAKPOINT}) {
+    font-size: 16px;
+  }
 `;

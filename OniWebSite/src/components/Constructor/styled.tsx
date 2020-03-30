@@ -35,6 +35,7 @@ export const ExpansionPanelStyled = styled(
           width: inherit;
           position: fixed;
           top: 120px;
+          max-width: inherit;
         }
         @media (min-width: ${BREAKPOINT}) {
           position: fixed;

@@ -6,6 +6,9 @@ export const MacaronsWrapper = styled.div`
   width: 100%;
   padding: 5% 18% 5% 25%;
   box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 
   @media (max-width: ${BREAKPOINT}) {
     padding: 5%;

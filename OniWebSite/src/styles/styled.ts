@@ -25,9 +25,11 @@ export const AppStyled = styled.div`
 export const FlexRow = styled.div`
   display: flex;
   justify-content: space-between;
+  width: 100%;
 
   @media (max-width: ${BREAKPOINT}) {
     flex-wrap: wrap;
+    max-width: 600px;
   }
 `;
 
