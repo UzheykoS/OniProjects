@@ -10,7 +10,7 @@ import { Constructor, IConstructorProps } from './Constructor';
 import { BREAKPOINT } from '@constants';
 
 const STICKY_LIMIT = 740;
-const STICKY_LIMIT_MOBILE = 1500;
+const STICKY_LIMIT_MOBILE = 1480;
 
 export interface IConstructorContainerProps extends IConstructorProps {
   expanded: boolean;
@@ -53,7 +53,7 @@ export function ConstructorContainer({
       onChange={() => setExpanded(!expanded)}
     >
       <ExpansionPanelSummaryStyled expandIcon={<ExpandMoreIcon />}>
-        <Typography variant='button' style={{ height: 'auto' }}>
+        <Typography variant='button' style={{ height: 'auto', width: 'auto' }}>
           СОБРАТЬ СВОЙ НАБОР
         </Typography>
       </ExpansionPanelSummaryStyled>

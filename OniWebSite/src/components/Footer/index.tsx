@@ -2,81 +2,203 @@ import React from 'react';
 import {
   FooterWrapper,
   LogoWrapper,
-  ColumnWrapper,
-  SocialsWrapper,
   Logo,
   Title,
   List,
   ListItem,
   TextWrapper,
   SocialsItem,
+  FlexColumnWrapper,
 } from './styled';
 import { routes, Pages, ProductPages } from '@constants/routes';
 import { Link } from 'react-router-dom';
+import { Grid, useMediaQuery } from '@material-ui/core';
+import { BREAKPOINT } from '@constants';
 
 export const Footer = () => {
   const productRoutes = routes[Pages.Products]!.nestedRoutes!;
+  const isMobile = useMediaQuery(`(max-width: ${BREAKPOINT})`);
+
+  if (isMobile) {
+    return (
+      <FooterWrapper>
+        <Grid container justify='center'>
+          <Grid item sm={12} container justify='center'>
+            <LogoWrapper>
+              <Logo src='/images/icons/Oni_w_black.png' />
+            </LogoWrapper>
+          </Grid>
+
+          <Grid item sm={12} container justify='center'>
+            <FlexColumnWrapper>
+              <Title>Меню</Title>
+              <List>
+                {Object.keys(routes).map(key => {
+                  const page = key as Pages;
+                  const route = routes[page];
+                  if (!route) {
+                    return null;
+                  }
+                  return (
+                    <ListItem key={page}>
+                      <Link to={route.path}>{route.label}</Link>
+                    </ListItem>
+                  );
+                })}
+              </List>
+            </FlexColumnWrapper>
+
+            <FlexColumnWrapper>
+              <Title>Продукция</Title>
+              <List>
+                {Object.keys(productRoutes).map(key => {
+                  const page = key as ProductPages;
+                  const route = productRoutes[page];
+                  if (!route) {
+                    return null;
+                  }
+                  return (
+                    <ListItem key={page}>
+                      <Link to={route.path}>{route.label}</Link>
+                    </ListItem>
+                  );
+                })}
+              </List>
+            </FlexColumnWrapper>
+          </Grid>
+
+          <Grid item sm={12} container justify='center'>
+            <FlexColumnWrapper>
+              <Title>Контакты</Title>
+              <TextWrapper>+38 096 249 04 30</TextWrapper>
+              <TextWrapper>info@oni.ua</TextWrapper>
+            </FlexColumnWrapper>
+            <FlexColumnWrapper>
+              <Title>{'\u00a0'}</Title>
+              <TextWrapper>Киев, бульвар</TextWrapper>
+              <TextWrapper>Вацлава Гавела, 9А</TextWrapper>
+            </FlexColumnWrapper>
+          </Grid>
+
+          <Grid item sm={12} container justify='center'>
+            <FlexColumnWrapper>
+              <Title>Соцсети</Title>
+              <div>
+                <SocialsItem target='_blank' href='https://www.facebook.com/'>
+                  <img
+                    className='social_network'
+                    src='images/icons/facebook.png'
+                  />
+                </SocialsItem>
+                <SocialsItem target='_blank' href='https://www.instagram.com'>
+                  <img
+                    className='social_network'
+                    src='images/icons/instagram.png'
+                  />
+                </SocialsItem>
+                <SocialsItem target='_blank' href='https://www.telegram.com'>
+                  <img
+                    className='social_network'
+                    src='images/icons/twitter.png'
+                  />
+                </SocialsItem>
+              </div>
+              <TextWrapper>C ONI Desserts, 2019</TextWrapper>
+            </FlexColumnWrapper>
+          </Grid>
+        </Grid>
+      </FooterWrapper>
+    );
+  }
 
   return (
     <FooterWrapper>
-      <LogoWrapper>
-        <Logo src='/images/icons/Oni_w_black.png' />
-        <TextWrapper>C ONI Desserts, 2019</TextWrapper>
-      </LogoWrapper>
-      <ColumnWrapper>
-        <Title>Меню</Title>
-        <List>
-          {Object.keys(routes).map(key => {
-            const page = key as Pages;
-            const route = routes[page];
-            if (!route) {
-              return null;
-            }
-            return (
-              <ListItem key={page}>
-                <Link to={route.path}>{route.label}</Link>
-              </ListItem>
-            );
-          })}
-        </List>
-      </ColumnWrapper>
-      <ColumnWrapper>
-        <Title>Продукция</Title>
-        <List>
-          {Object.keys(productRoutes).map(key => {
-            const page = key as ProductPages;
-            const route = productRoutes[page];
-            if (!route) {
-              return null;
-            }
-            return (
-              <ListItem key={page}>
-                <Link to={route.path}>{route.label}</Link>
-              </ListItem>
-            );
-          })}
-        </List>
-      </ColumnWrapper>
-      <ColumnWrapper>
-        <Title>Контакты</Title>
-        <TextWrapper>+38 096 249 04 30</TextWrapper>
-        <TextWrapper>info@oni.ua</TextWrapper>
-        <TextWrapper>Киев, бульвар Вацлава Гавела, 9А</TextWrapper>
-      </ColumnWrapper>
-      <SocialsWrapper>
-        <Title>Соцсети</Title>
-        <div>
-          <SocialsItem target='_blank' href='https://www.facebook.com/'>
-            <img className='social_network' src='images/icons/facebook.png' />
-          </SocialsItem>
-          <SocialsItem target='_blank' href='https://www.instagram.com'>
-            <img className='social_network' src='images/icons/instagram.png' />
-          </SocialsItem>
-          <SocialsItem target='_blank' href='https://www.telegram.com'>
-            <img className='social_network' src='images/icons/twitter.png' />
-          </SocialsItem>
-        </div>
-      </SocialsWrapper>
+      <Grid container>
+        <Grid item md={3}>
+          <Grid container direction='column' alignItems='center'>
+            <LogoWrapper>
+              <Logo src='/images/icons/Oni_w_black.png' />
+              <TextWrapper>C ONI Desserts, 2019</TextWrapper>
+            </LogoWrapper>
+          </Grid>
+        </Grid>
+
+        <Grid item md={2}>
+          <Title>Меню</Title>
+          <List>
+            {Object.keys(routes).map(key => {
+              const page = key as Pages;
+              const route = routes[page];
+              if (!route) {
+                return null;
+              }
+              return (
+                <ListItem key={page}>
+                  <Link to={route.path}>{route.label}</Link>
+                </ListItem>
+              );
+            })}
+          </List>
+        </Grid>
+
+        <Grid item md={2}>
+          <Title>Продукция</Title>
+          <List>
+            {Object.keys(productRoutes).map(key => {
+              const page = key as ProductPages;
+              const route = productRoutes[page];
+              if (!route) {
+                return null;
+              }
+              return (
+                <ListItem key={page}>
+                  <Link to={route.path}>{route.label}</Link>
+                </ListItem>
+              );
+            })}
+          </List>
+        </Grid>
+
+        <Grid item md={2}>
+          <Title>Контакты</Title>
+          <TextWrapper>+38 096 249 04 30</TextWrapper>
+          <TextWrapper>info@oni.ua</TextWrapper>
+          <TextWrapper>Киев, бульвар Вацлава Гавела, 9А</TextWrapper>
+        </Grid>
+
+        <Grid item md={3}>
+          <Grid
+            container
+            direction='column'
+            alignItems='center'
+            justify='center'
+          >
+            <FlexColumnWrapper>
+              <Title>Соцсети</Title>
+              <div>
+                <SocialsItem target='_blank' href='https://www.facebook.com/'>
+                  <img
+                    className='social_network'
+                    src='images/icons/facebook.png'
+                  />
+                </SocialsItem>
+                <SocialsItem target='_blank' href='https://www.instagram.com'>
+                  <img
+                    className='social_network'
+                    src='images/icons/instagram.png'
+                  />
+                </SocialsItem>
+                <SocialsItem target='_blank' href='https://www.telegram.com'>
+                  <img
+                    className='social_network'
+                    src='images/icons/twitter.png'
+                  />
+                </SocialsItem>
+              </div>
+            </FlexColumnWrapper>
+          </Grid>
+        </Grid>
+      </Grid>
     </FooterWrapper>
   );
 };

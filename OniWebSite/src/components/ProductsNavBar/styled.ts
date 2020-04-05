@@ -22,13 +22,13 @@ export const ProductsNavBarWrapper = styled.div<IProductsNavBarWrapper>`
 
 export const ProductsNavBarWrapperMobile = styled.div<IProductsNavBarWrapper>`
   z-index: 1;
-  top: 100px;
+  top: 105px;
   border-bottom: 2px solid ${colors.primary.grey};
 
   ${({ isSticky }) =>
     isSticky &&
     `
-      top: 78px;
+      top: 105px;
       position: fixed;
       width: 100%;
       background-color: ${colors.primary.white};
@@ -71,8 +71,8 @@ export const RoutesListItem = styled.li<IRoutesListItem>`
     display: inline-block;
     font-family: 'Roboto', sans-serif;
     font-weight: 400;
-    font-size: 14px;
-    line-height: 22px;
+    font-size: 1rem;
+    line-height: 1.5rem;
     color: #333333;
     text-decoration: none;
     margin-left: 35px;

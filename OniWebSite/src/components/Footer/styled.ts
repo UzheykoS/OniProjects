@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { BREAKPOINT } from '@constants';
 
 export const FooterWrapper = styled.div`
   display: flex;
@@ -16,32 +17,29 @@ export const LogoWrapper = styled.div`
   padding: 40px 0px 30px 0px;
 `;
 
-export const ColumnWrapper = styled.div`
+export const FlexColumnWrapper = styled.div`
   display: flex;
   flex-direction: column;
-`;
-
-export const SocialsWrapper = styled.div`
-  display: flex;
-  flex-direction: column;
+  padding: 0 50px;
 `;
 
 export const SocialsItem = styled.a`
   padding: 5px 40px 5px 0px;
   img {
-    height: 16px;
+    height: 1rem;
   }
 `;
 
 export const Title = styled.div`
   font-weight: 700;
   padding: 40px 0px 25px 0px;
+  font-size: 1rem;
 `;
 
 export const TextWrapper = styled.div`
   font-weight: 400;
   line-height: 30px;
-  font-size: 14px;
+  font-size: 1rem;
 `;
 
 export const List = styled.ul`
@@ -49,10 +47,13 @@ export const List = styled.ul`
   margin: 0;
   padding: 0 0 0 0;
   display: flex;
-  height: 101px;
   justify-content: space-between;
-  width: 100%;
   flex-direction: column;
+
+  @media (min-width: ${BREAKPOINT}) {
+    height: 101px;
+    width: 100%;
+  }
 `;
 
 export const ListItem = styled.li`
@@ -60,7 +61,7 @@ export const ListItem = styled.li`
     display: inline-block;
     font-family: 'Roboto', sans-serif;
     font-weight: 400;
-    font-size: 14px;
+    font-size: 0.875rem;
     line-height: 30px;
     color: #333333;
     text-decoration: none;
@@ -74,5 +75,8 @@ export const ListItem = styled.li`
 
 export const Logo = styled.img`
   width: 87px;
-  padding-bottom: 160px;
+
+  @media (min-width: ${BREAKPOINT}) {
+    padding-bottom: 160px;
+  }
 `;

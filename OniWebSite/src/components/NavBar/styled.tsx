@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { Badge } from '@material-ui/core';
+import { Badge, ListItem, ListItemProps } from '@material-ui/core';
 import colors from '@constants/colors';
 
 export const NavBarWrapper = styled.div`
@@ -46,8 +46,8 @@ export const RoutesListItem = styled.li<IRoutesListItem>`
     display: inline-block;
     font-family: 'Roboto', sans-serif;
     font-weight: 400;
-    font-size: 14px;
-    line-height: 30px;
+    font-size: 0.875rem;
+    line-height: 2rem;
     color: #333333;
     text-decoration: none;
   }
@@ -111,52 +111,17 @@ export const BadgeStyled = styled(Badge).attrs({
   }
 `;
 
-export const MenuItem = styled.span<IRoutesListItem>`
-  display: flex;
-  justify-content: start;
-  padding: 20px;
-
-  &:focus {
-    outline: none;
-  }
-
-  a {
-    display: inline-block;
-    font-family: 'Roboto', sans-serif;
-    font-weight: 400;
-    font-size: 24px;
-    line-height: 30px;
-    color: #333333;
-    text-decoration: none;
-    border-bottom: 3px solid transparent;
-  }
-  &:hover {
-    a {
-      font-weight: 500;
-      border-bottom: 3px solid ${colors.primary.gold};
-    }
-  }
-
-  ${({ active }) =>
-    active &&
-    `
-    a {
-      font-weight: 500;
-      border-bottom: 3px solid ${colors.primary.gold};
-    }
-   `}
-`;
-
 export const SocialMedia = styled.div`
   display: flex;
   justify-content: space-around;
-  padding: 0px 20px 50px 20px;
+  padding: 40px 20px 50px 20px;
   img {
-    height: 32px;
+    height: 2rem;
   }
 `;
 
 import { makeStyles } from '@material-ui/core';
+import React from 'react';
 
 export const useStyles = makeStyles({
   burgerMenuIcon: {
@@ -184,3 +149,50 @@ export const useStyles = makeStyles({
     justifyContent: 'space-between',
   },
 });
+
+export const ListItemStyled = styled(
+  ({ active, children, ...rest }: IRoutesListItem & ListItemProps & any) => (
+    <ListItem button {...rest}>
+      {children}
+    </ListItem>
+  )
+)<IRoutesListItem>`
+  display: flex;
+  justify-content: start;
+  padding: 20px;
+
+  &:focus {
+    outline: none;
+  }
+
+  a {
+    display: inline-block;
+    font-family: 'Roboto', sans-serif;
+    font-weight: 400;
+    font-size: 1.5rem;
+    line-height: 2rem;
+    color: #333333;
+    text-decoration: none;
+    border-bottom: 3px solid transparent;
+  }
+  &:hover {
+    a {
+      font-weight: 500;
+      border-bottom: 3px solid ${colors.primary.gold};
+    }
+  }
+
+  ${({ active }) =>
+    active &&
+    `
+    a {
+      font-weight: 500;
+      border-bottom: 3px solid ${colors.primary.gold};
+    }
+   `}
+`;
+
+export const ListWrapper = styled.div`
+  text-align: left;
+  padding: 15px 25px 15px 15px;
+`;
