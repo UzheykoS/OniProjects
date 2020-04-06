@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import {
   MacaronSingleWrapper,
-  ImageWrapper,
   Title,
   Description,
   AddIconWrapper,
@@ -9,6 +8,7 @@ import {
 import AddIcon from '@material-ui/icons/Add';
 import colors from '@constants/colors';
 import { IProduct } from '@constants/products';
+import { ProductImageWrapper } from '../ProductImageWrapper';
 
 interface IProps {
   product: IProduct;
@@ -34,7 +34,9 @@ export function MacaronSingle({ product, onClick }: IProps) {
       <AddIconWrapper visible={mouseOver}>
         <AddIcon style={{ fontSize: 40, color: colors.primary.white }} />
       </AddIconWrapper>
-      <ImageWrapper src={mouseOver ? product.imageCutUrl : product.imageUrl} />
+      <ProductImageWrapper
+        src={mouseOver ? product.imageCutUrl : product.imageUrl}
+      />
       <Title>{product.id}</Title>
       <Description>{product.fullDescription}</Description>
     </MacaronSingleWrapper>

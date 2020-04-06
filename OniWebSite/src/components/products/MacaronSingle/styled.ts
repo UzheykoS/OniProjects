@@ -41,15 +41,6 @@ export const AddIconWrapper = styled.div<IAddIconWrapper>`
     `};
 `;
 
-export const ImageWrapper = styled.img`
-  height: 138px;
-  width: auto;
-  @media (max-width: ${BREAKPOINT}) {
-    height: auto;
-    max-width: 300px;
-  }
-`;
-
 export const Title = styled.div`
   font-family: 'Yeseva One', cursive;
   font-size: 16px;

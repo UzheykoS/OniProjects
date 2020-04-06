@@ -4,6 +4,7 @@ import { Typography } from '@material-ui/core';
 import { useStyles, SelectedMixWrapper, SelectedMixWrapperCell } from './style';
 import DialogMacaronIcon from '@icons/dialog-macaron-icon.svg';
 import { IProduct } from '@constants/products';
+import { ImageWithFallback } from '@common/ImageWithFallback';
 
 interface IMixSelectModalModalProps extends ModalFormProps {
   mix: IProduct;
@@ -43,7 +44,7 @@ const MixSelectModal: FC<IMixSelectModalModalProps> = ({
       </Typography>
       <SelectedMixWrapper>
         <SelectedMixWrapperCell>
-          <img src={mix.imageUrl} />
+          <ImageWithFallback src={mix.imageUrl} />
         </SelectedMixWrapperCell>
         <SelectedMixWrapperCell>
           <Typography variant='body1'>{mix.id}</Typography>

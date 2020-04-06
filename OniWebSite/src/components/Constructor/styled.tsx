@@ -9,6 +9,7 @@ import {
 import colors from '@constants/colors';
 import React from 'react';
 import { BREAKPOINT } from '@constants';
+import { ImageWithFallback } from '@common/ImageWithFallback';
 
 interface IExpansionPanelStyled extends ExpansionPanelProps {
   isSticky?: boolean;
@@ -138,7 +139,7 @@ export const ConstructorGridItemWrapper = styled.div<
   ${({ removeEnabled }) => removeEnabled && `cursor: pointer;`};
 `;
 
-export const ImageWrapper = styled.img`
+export const ImageWrapper = styled(ImageWithFallback)`
   width: 100%;
   height: auto;
   object-fit: contain;
