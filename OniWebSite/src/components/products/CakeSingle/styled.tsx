@@ -1,6 +1,11 @@
 import styled from 'styled-components';
 import colors from '@constants/colors';
 import { Tooltip, Chip } from '@material-ui/core';
+import {
+  ImageWithFallback,
+  IImageWithFallbackProps,
+} from '@common/ImageWithFallback';
+import React from 'react';
 
 export const CakeSingleWrapper = styled.div`
   display: flex;
@@ -23,11 +28,13 @@ export const InfoSection = styled.div`
   padding: 20px 50px 10px 60px;
 `;
 
-interface IImageWrapper {
+interface IImageWrapper extends IImageWithFallbackProps {
   visible: boolean;
 }
 
-export const ImageWrapper = styled.img<IImageWrapper>`
+export const ImageWrapper = styled(({ visible, ...rest }: IImageWrapper) => (
+  <ImageWithFallback {...rest} />
+))<IImageWrapper>`
   width: 430px;
   height: auto;
   object-fit: contain;

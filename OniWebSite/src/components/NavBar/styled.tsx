@@ -42,6 +42,7 @@ export const RoutesListItem = styled.li<IRoutesListItem>`
   height: 100%;
   align-items: center;
   display: flex;
+  box-sizing: border-box;
   a {
     display: inline-block;
     font-family: 'Roboto', sans-serif;
