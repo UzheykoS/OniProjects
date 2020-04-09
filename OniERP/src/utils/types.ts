@@ -143,7 +143,7 @@ export enum SorbetEnum {
 
 export enum EasterCakeEnum {
   Small = 'S 450 гр',
-  Large = 'L 750 гр',
+  Large = 'L 700 гр',
 }
 
 export enum SmallCakeEnum {
