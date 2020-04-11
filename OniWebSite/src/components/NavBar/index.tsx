@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link, useLocation, useHistory } from 'react-router-dom';
 import { Pages, routes } from '@constants/routes';
 import {
@@ -14,6 +14,7 @@ import {
   NavBarWrapperMobile,
   SocialMedia,
   ListWrapper,
+  TooltipStyled,
 } from './styled';
 import BinIcon from '@icons/bin.svg';
 import IconButton from '@common/IconButton';
@@ -26,6 +27,7 @@ import {
 } from '@material-ui/core';
 import { BREAKPOINT } from '@constants';
 import MenuIcon from '@material-ui/icons/Menu';
+import Zoom from '@material-ui/core/Zoom';
 
 export function NavBar() {
   const location = useLocation();
@@ -39,6 +41,16 @@ export function NavBar() {
       currentPage = key as Pages;
     }
   });
+
+  const [tooltipOpen, setTooltipOpen] = useState(false);
+  useEffect(() => {
+    if (items.length) {
+      setTooltipOpen(true);
+      setTimeout(() => {
+        setTooltipOpen(false);
+      }, 3000);
+    }
+  }, [!!items.length]);
 
   const handleBinClick = () => {
     history.push('/checkout');
@@ -75,22 +87,30 @@ export function NavBar() {
           })}
         </RoutesWrapper>
         <RightSide>
-          <IconButton
-            disableFocusRipple
-            onClick={handleBinClick}
-            style={{ width: '58px' }}
+          <TooltipStyled
+            TransitionComponent={Zoom}
+            title='Товар добавлен в корзину'
+            arrow
+            placement={'bottom'}
+            open={tooltipOpen}
           >
-            <BadgeStyled
-              anchorOrigin={{
-                vertical: 'bottom',
-                horizontal: 'right',
-              }}
-              badgeContent={items.length > 0 ? items.length : undefined}
-              color={'primary'}
+            <IconButton
+              disableFocusRipple
+              onClick={handleBinClick}
+              style={{ width: '58px' }}
             >
-              <BinIcon />
-            </BadgeStyled>
-          </IconButton>
+              <BadgeStyled
+                anchorOrigin={{
+                  vertical: 'bottom',
+                  horizontal: 'right',
+                }}
+                badgeContent={items.length > 0 ? items.length : undefined}
+                color={'primary'}
+              >
+                <BinIcon />
+              </BadgeStyled>
+            </IconButton>
+          </TooltipStyled>
         </RightSide>
       </RoutesList>
     </NavBarWrapper>

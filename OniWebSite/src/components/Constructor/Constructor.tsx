@@ -110,6 +110,11 @@ export function Constructor({ state, dispatch }: IConstructorProps) {
   const handleClose = useCallback(() => setShowModal(false), []);
 
   const handleConstructorSubmit = () => {
+    window.scrollTo({
+      top: 0,
+      left: 0,
+      behavior: 'smooth',
+    });
     state.items.forEach(item => {
       addToBasket({ product: item, quantity: 1 });
     });

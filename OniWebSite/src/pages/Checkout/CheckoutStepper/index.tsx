@@ -13,6 +13,7 @@ import { Payment, PaymentType } from './Payment';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import { IBasketItem, useBasket } from '@hooks/useBasket';
 import { submitOrder } from '@src/api/oni-web';
+import { useSnackbar } from '@hooks/useSnackbar';
 
 enum CheckoutTabs {
   Delivery = 'Способ доставки',
@@ -52,6 +53,7 @@ export function CheckoutStepper({ returnToBasket }: ICheckoutStepperProps) {
   const [activeTab, setActiveTab] = useState(CheckoutTabs.Delivery);
   const [form, setForm] = useState<IOrder>(initialState);
   const { items } = useBasket();
+  const { showSnackbar } = useSnackbar();
 
   const handleDeliverySubmit = (delivery: DeliveryType) => {
     setForm({ ...form, delivery });
@@ -73,6 +75,7 @@ export function CheckoutStepper({ returnToBasket }: ICheckoutStepperProps) {
     try {
       await submitOrder({ ...form, payment, itemsMessage });
       returnToBasket();
+      showSnackbar('Заказ сохранён!');
     } catch (e) {
       throw e;
     }
@@ -85,9 +88,7 @@ export function CheckoutStepper({ returnToBasket }: ICheckoutStepperProps) {
   return (
     <CheckoutStepperContainer>
       <CheckoutHeaderWrapper>
-        <IconButton
-          onClick={returnToBasket}
-        >
+        <IconButton onClick={returnToBasket}>
           <ChevronLeftIcon style={{ margin: 16 }} />
         </IconButton>
         <Typography variant='h2'>Оформление заказа</Typography>

@@ -19,6 +19,7 @@ module.exports = env => {
     INSTAGRAM_ACCESS_TOKEN,
     TELEGRAM_BOT_TOKEN,
     TELEGRAM_CHAT_ID,
+    GOOGLE_API_KEY,
   } = env;
 
   return merge([
@@ -196,6 +197,7 @@ module.exports = env => {
         new HtmlWebpackPlugin({
           template: 'src/index.html',
           filename: './index.html',
+          googleApi: GOOGLE_API_KEY,
         }),
         new MiniCssExtractPlugin(),
       ],

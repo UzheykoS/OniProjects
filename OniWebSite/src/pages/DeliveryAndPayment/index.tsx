@@ -1,6 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import { withGoogleMap, GoogleMap, Marker } from 'react-google-maps';
 import { useLoading } from '@hooks/useLoading';
+import {
+  DeliveryBodyContainer,
+  DeliveryHeaderContainer,
+  DeliveryContainer,
+} from './styled';
 
 // const googleMapURL = 'https://maps.googleapis.com/maps/api/js?v=3.27&libraries=places,geometry&key=AIzaSyDH_aHRsVOr_CMITd6m0Vuo1X2qSXMicdY'
 
@@ -25,6 +30,7 @@ export function DeliveryAndPayment() {
 
   useEffect(() => {
     showLoading();
+    closeLoading();
   }, []);
 
   const onImageLoaded = () => {
@@ -33,8 +39,8 @@ export function DeliveryAndPayment() {
   };
 
   return (
-    <div className='contacts-container'>
-      <div className='contacts-header'>
+    <DeliveryContainer>
+      <DeliveryHeaderContainer>
         <div className='contacts-photo' style={{ height: height }}>
           <img
             src='./images/images_large/contacts/contacts_header.jpg'
@@ -62,18 +68,16 @@ export function DeliveryAndPayment() {
             корпоративных заказов.
           </div>
         </div>
-      </div>
-      <div className='contacts-body'>
-        <div className='contacts-body-map'>
-          <GoogleMapsWrapper
-            containerElement={<div style={{ height: `100%` }} />}
-            mapElement={<div style={{ height: `100%` }} />}
-            onMapLoad={() => {}}
-            onMapClick={() => {}}
-            onMarkerRightClick={() => {}}
-          />
-        </div>
-      </div>
-    </div>
+      </DeliveryHeaderContainer>
+      <DeliveryBodyContainer>
+        <GoogleMapsWrapper
+          containerElement={<div style={{ height: '100%', width: '100%' }} />}
+          mapElement={<div style={{ height: `100%` }} />}
+          onMapLoad={() => {}}
+          onMapClick={() => {}}
+          onMarkerRightClick={() => {}}
+        />
+      </DeliveryBodyContainer>
+    </DeliveryContainer>
   );
 }

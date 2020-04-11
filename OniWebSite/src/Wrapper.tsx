@@ -17,9 +17,12 @@ import NotFoundPage from '@pages/NotFound';
 import { ProductsNavBar } from '@components/ProductsNavBar';
 import { BrowserRouter as Router } from 'react-router-dom';
 import { Checkout } from '@pages/Checkout';
+import { Snackbar } from '@common/Snackbar';
+import { useSnackbar } from '@hooks/useSnackbar';
 
 export function Wrapper() {
   const { loading } = useLoading();
+  const { message, hideSnackbar } = useSnackbar();
   return (
     <AppStyled>
       <Router>
@@ -46,6 +49,7 @@ export function Wrapper() {
         </Switch>
         <Footer />
         <Busy loading={loading} />
+        <Snackbar message={message} handleClose={hideSnackbar} />
       </Router>
     </AppStyled>
   );

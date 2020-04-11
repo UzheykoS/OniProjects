@@ -53,10 +53,10 @@ enum Choux {
 }
 
 enum Zephyr {
-  ClassicApple = 'Ваниль-Персик',
-  StrawberryCranberry = 'Солёная Карамель',
-  ApricotPassionFruit = 'Лимон',
-  BlackCurrant = 'Малина-Личи-Роза',
+  ClassicApple = 'Яблоко',
+  StrawberryCranberry = 'Клубника - Клюква',
+  ApricotPassionFruit = 'Абрикос - Маракуйя',
+  BlackCurrant = 'Чёрная смородина',
   ZephyrMixSmall = '8 шт',
   ZephyrMixLarge = '16 шт',
 }

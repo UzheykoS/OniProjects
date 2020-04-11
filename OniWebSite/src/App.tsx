@@ -10,6 +10,7 @@ import { BasketProvider } from '@hooks/useBasket';
 import DateFnsUtils from '@date-io/date-fns';
 import { MuiPickersUtilsProvider } from '@material-ui/pickers';
 import ruLocale from 'date-fns/locale/ru';
+import { SnackbarProvider } from '@hooks/useSnackbar';
 
 @hot(module)
 export class App extends React.Component {
@@ -21,7 +22,9 @@ export class App extends React.Component {
             <ModalsProvider>
               <BasketProvider>
                 <LoadingProvider>
-                  <Wrapper />
+                  <SnackbarProvider>
+                    <Wrapper />
+                  </SnackbarProvider>
                 </LoadingProvider>
               </BasketProvider>
             </ModalsProvider>

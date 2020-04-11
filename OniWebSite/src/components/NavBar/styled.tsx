@@ -1,5 +1,11 @@
 import styled from 'styled-components';
-import { Badge, ListItem, ListItemProps } from '@material-ui/core';
+import {
+  Badge,
+  ListItem,
+  ListItemProps,
+  Tooltip,
+  TooltipProps,
+} from '@material-ui/core';
 import colors from '@constants/colors';
 
 export const NavBarWrapper = styled.div`
@@ -196,4 +202,13 @@ export const ListItemStyled = styled(
 export const ListWrapper = styled.div`
   text-align: left;
   padding: 15px 25px 15px 15px;
+`;
+
+export const TooltipStyled = styled(Tooltip).attrs({
+  classes: {
+    popper: 'popper',
+  },
+})<TooltipProps>`
+  &.popper {
+  }
 `;
