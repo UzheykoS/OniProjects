@@ -1,11 +1,10 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import { AboutContainer, AboutHeader, AboutPhoto, AboutBody } from './styled';
 import { HeaderBody, HeaderMain } from '@styles/styled';
 import { useLoading } from '@hooks/useLoading';
 
 export function About() {
   const { showLoading, closeLoading } = useLoading();
-  const [height, setHeight] = useState('0px');
 
   useEffect(() => {
     showLoading();
@@ -13,7 +12,6 @@ export function About() {
 
   const onImageLoaded = () => {
     closeLoading();
-    setHeight('auto');
   };
 
   return (
@@ -21,9 +19,9 @@ export function About() {
       <AboutHeader>
         <div className='row'>
           <div className='col-md-6'>
-            <AboutPhoto style={{ height: height }}>
+            <AboutPhoto>
               <img
-                src='./images/images_large/about/about_header.jpg'
+                src='./images/pages/about/about_header.jpg'
                 onLoad={onImageLoaded}
               />
             </AboutPhoto>

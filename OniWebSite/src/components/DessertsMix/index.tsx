@@ -1,17 +1,17 @@
 import React from 'react';
 import { Typography } from '@material-ui/core';
 import { Button } from '@common/Button';
-import { MixSection } from './styled';
+import { MixSection, IMixSection } from './styled';
 import { IProduct } from '@constants/products';
 import { ImageWithFallback } from '@common/ImageWithFallback';
 
-interface IProps {
+interface IProps extends IMixSection {
   product: IProduct;
   onClick: (product: IProduct) => void;
 }
-export function DessertsMix({ product, onClick }: IProps) {
+export function DessertsMix({ product, size, imageHeight, onClick }: IProps) {
   return (
-    <MixSection>
+    <MixSection size={size} imageHeight={imageHeight}>
       <ImageWithFallback src={product.imageUrl} />
       <div className='title'>
         <Typography variant='h1' style={{ padding: '0 10px 5px 0' }}>

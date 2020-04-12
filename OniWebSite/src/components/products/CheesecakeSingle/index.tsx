@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import {
-  ChouxSingleWrapper,
+  CheesecakeSingleWrapper,
   Title,
   Description,
   AddIconWrapper,
@@ -15,7 +15,7 @@ interface IProps {
   onClick: (item: IProduct) => void;
 }
 
-export function ChouxSingle({ product, onClick }: IProps) {
+export function CheesecakeSingle({ product, onClick }: IProps) {
   const [mouseOver, setMouseOver] = useState(false);
 
   const onMouseOver = () => {
@@ -27,7 +27,7 @@ export function ChouxSingle({ product, onClick }: IProps) {
   };
 
   return (
-    <ChouxSingleWrapper
+    <CheesecakeSingleWrapper
       onMouseOver={onMouseOver}
       onMouseOut={onMouseOut}
       onClick={() => onClick(product)}
@@ -35,12 +35,9 @@ export function ChouxSingle({ product, onClick }: IProps) {
       <AddIconWrapper visible={mouseOver}>
         <AddIcon style={{ fontSize: 40, color: colors.primary.white }} />
       </AddIconWrapper>
-      <ProductImageWrapper
-        height={200}
-        src={mouseOver ? product.imageCutUrl : product.imageUrl}
-      />
+      <ProductImageWrapper height={200} src={product.imageUrl} />
       <Title>{product.id}</Title>
       <Description>{product.fullDescription}</Description>
-    </ChouxSingleWrapper>
+    </CheesecakeSingleWrapper>
   );
 }

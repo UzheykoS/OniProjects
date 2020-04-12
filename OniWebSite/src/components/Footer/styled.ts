@@ -40,6 +40,7 @@ export const TextWrapper = styled.div`
   font-weight: 400;
   line-height: 30px;
   font-size: 1rem;
+  display: flex;
 `;
 
 export const List = styled.ul`
@@ -79,4 +80,17 @@ export const Logo = styled.img`
   @media (min-width: ${BREAKPOINT}) {
     padding-bottom: 160px;
   }
+`;
+
+export const IconWrapper = styled.div`
+  display: flex;
+  width: 25px;
+  justify-content: center;
+  align-items: center;
+`;
+
+export const SocialsWrapper = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
 `;

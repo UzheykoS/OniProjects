@@ -19,6 +19,7 @@ import { BrowserRouter as Router } from 'react-router-dom';
 import { Checkout } from '@pages/Checkout';
 import { Snackbar } from '@common/Snackbar';
 import { useSnackbar } from '@hooks/useSnackbar';
+import { Cheesecakes } from '@pages/products/Cheesecakes';
 
 export function Wrapper() {
   const { loading } = useLoading();
@@ -44,6 +45,8 @@ export function Wrapper() {
           <Route path='/products/zephyr' component={Zephyr} />
           <Route path='/products/cakes' component={Cakes} />
           <Route path='/products/choux' component={Choux} />
+          <Route path='/products/cheesecakes' component={Cheesecakes} />
+
           <Route path='/404' component={NotFoundPage} />
           <Route path='*' component={() => <Redirect to='/404' />} />
         </Switch>

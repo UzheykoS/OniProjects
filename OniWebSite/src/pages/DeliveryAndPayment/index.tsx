@@ -1,52 +1,48 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import { withGoogleMap, GoogleMap, Marker } from 'react-google-maps';
 import { useLoading } from '@hooks/useLoading';
 import {
   DeliveryBodyContainer,
   DeliveryHeaderContainer,
   DeliveryContainer,
+  PhotoWrapper,
 } from './styled';
-
-// const googleMapURL = 'https://maps.googleapis.com/maps/api/js?v=3.27&libraries=places,geometry&key=AIzaSyDH_aHRsVOr_CMITd6m0Vuo1X2qSXMicdY'
 
 const GoogleMapsWrapper = withGoogleMap((props: any) => (
   <GoogleMap
     ref={props.onMapLoad}
     defaultZoom={17}
-    defaultCenter={{ lat: 50.446102, lng: 30.425567 }}
+    defaultCenter={{ lat: 50.4461836, lng: 30.4256751 }}
     onClick={props.onMapClick}
   >
     <Marker
       title={'ONI'}
       label={'O'}
-      position={{ lat: 50.446102, lng: 30.425567 }}
+      position={{ lat: 50.4461836, lng: 30.4256751 }}
     />
   </GoogleMap>
 ));
 
 export function DeliveryAndPayment() {
   const { showLoading, closeLoading } = useLoading();
-  const [height, setHeight] = useState('0px');
 
   useEffect(() => {
     showLoading();
-    closeLoading();
   }, []);
 
   const onImageLoaded = () => {
     closeLoading();
-    setHeight('auto');
   };
 
   return (
     <DeliveryContainer>
       <DeliveryHeaderContainer>
-        <div className='contacts-photo' style={{ height: height }}>
+        <PhotoWrapper>
           <img
-            src='./images/images_large/contacts/contacts_header.jpg'
+            src='./images/pages/contacts/contacts_header.jpg'
             onLoad={onImageLoaded}
           />
-        </div>
+        </PhotoWrapper>
         <div className='header-text'>
           <div className='header-main'>ДОСТАВКА И ОПЛАТА</div>
           <div className='header-body'>

@@ -2,12 +2,10 @@ import styled from 'styled-components';
 import { BREAKPOINT } from '@constants';
 
 export const HeaderMain = styled.div`
-  color: #ffffff;
   font-size: 40px;
 `;
 
 export const HeaderBody = styled.div`
-  color: #ffffff;
   font-size: 16px;
   padding-top: 20px;
   padding-right: 50px;

@@ -13,6 +13,7 @@ export enum ProductPages {
   Macarons = 'Макарон',
   Choux = 'Шу',
   Cakes = 'Торты',
+  Cheesecakes = 'Чизкейки',
 }
 
 type routeType = Partial<
@@ -56,6 +57,10 @@ export const routes: routeType = {
       [ProductPages.Cakes]: {
         path: '/products/cakes',
         label: 'Торты',
+      },
+      [ProductPages.Cheesecakes]: {
+        path: '/products/cheesecakes',
+        label: 'Чизкейки',
       },
     },
   },

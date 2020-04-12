@@ -125,12 +125,21 @@ export function Choux() {
       </FlexRow>
       <FlexRow>
         <FlexColumn bordered>
-          <DessertsMix product={chouxMix[0]} onClick={handleChouxMixClick} />
+          <DessertsMix
+            size='large'
+            imageHeight={300}
+            product={chouxMix[0]}
+            onClick={handleChouxMixClick}
+          />
         </FlexColumn>
         <FlexColumn bordered>
-          <DessertsMix product={chouxMix[1]} onClick={handleChouxMixClick} />
+          <DessertsMix
+            size='large'
+            imageHeight={300}
+            product={chouxMix[1]}
+            onClick={handleChouxMixClick}
+          />
         </FlexColumn>
-        <FlexColumn />
       </FlexRow>
 
       <FlexRow style={{ justifyContent: 'space-between' }}>

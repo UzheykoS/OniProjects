@@ -120,10 +120,20 @@ export function Zephyr() {
       </FlexRow>
       <FlexRow>
         <FlexColumn bordered>
-          <DessertsMix product={zephyrMix[0]} onClick={handleZephyrMixClick} />
+          <DessertsMix
+            size={'large'}
+            imageHeight={185}
+            product={zephyrMix[0]}
+            onClick={handleZephyrMixClick}
+          />
         </FlexColumn>
         <FlexColumn bordered>
-          <DessertsMix product={zephyrMix[1]} onClick={handleZephyrMixClick} />
+          <DessertsMix
+            size={'large'}
+            imageHeight={300}
+            product={zephyrMix[1]}
+            onClick={handleZephyrMixClick}
+          />
         </FlexColumn>
       </FlexRow>
 

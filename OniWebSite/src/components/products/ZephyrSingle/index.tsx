@@ -35,9 +35,7 @@ export function ZephyrSingle({ product, onClick }: IProps) {
       <AddIconWrapper visible={mouseOver}>
         <AddIcon style={{ fontSize: 40, color: colors.primary.white }} />
       </AddIconWrapper>
-      <ProductImageWrapper
-        src={mouseOver ? product.imageCutUrl : product.imageUrl}
-      />
+      <ProductImageWrapper height={200} src={product.imageUrl} />
       <Title>{product.id}</Title>
       <Description>{product.fullDescription}</Description>
     </ZephyrSingleWrapper>

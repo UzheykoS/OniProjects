@@ -9,11 +9,16 @@ import {
   TextWrapper,
   SocialsItem,
   FlexColumnWrapper,
+  IconWrapper,
+  SocialsWrapper,
 } from './styled';
 import { routes, Pages, ProductPages } from '@constants/routes';
 import { Link } from 'react-router-dom';
 import { Grid, useMediaQuery } from '@material-ui/core';
 import { BREAKPOINT } from '@constants';
+import PhoneIcon from '@icons/phone.svg';
+import EnvelopeIcon from '@icons/envelope.svg';
+import LocationIcon from '@icons/location.svg';
 
 export const Footer = () => {
   const productRoutes = routes[Pages.Products]!.nestedRoutes!;
@@ -70,20 +75,35 @@ export const Footer = () => {
           <Grid item sm={12} container justify='center'>
             <FlexColumnWrapper>
               <Title>Контакты</Title>
-              <TextWrapper>+38 096 249 04 30</TextWrapper>
-              <TextWrapper>info@oni.ua</TextWrapper>
+              <TextWrapper>
+                <IconWrapper>
+                  <PhoneIcon />
+                </IconWrapper>
+                +38 096 249 04 30
+              </TextWrapper>
+              <TextWrapper>
+                <IconWrapper>
+                  <EnvelopeIcon />
+                </IconWrapper>
+                info@oni.ua
+              </TextWrapper>
             </FlexColumnWrapper>
             <FlexColumnWrapper>
               <Title>{'\u00a0'}</Title>
-              <TextWrapper>Киев, бульвар</TextWrapper>
+              <TextWrapper>
+                <IconWrapper>
+                  <LocationIcon />
+                </IconWrapper>
+                Киев, бульвар
+              </TextWrapper>
               <TextWrapper>Вацлава Гавела, 9А</TextWrapper>
             </FlexColumnWrapper>
           </Grid>
 
           <Grid item sm={12} container justify='center'>
             <FlexColumnWrapper>
-              <Title>Соцсети</Title>
-              <div>
+              <Title style={{ textAlign: 'center' }}>Соцсети</Title>
+              <SocialsWrapper>
                 <SocialsItem target='_blank' href='https://www.facebook.com/'>
                   <img
                     className='social_network'
@@ -102,8 +122,8 @@ export const Footer = () => {
                     src='images/icons/twitter.png'
                   />
                 </SocialsItem>
-              </div>
-              <TextWrapper>C ONI Desserts, 2019</TextWrapper>
+              </SocialsWrapper>
+              <TextWrapper>© ONI Desserts, 2019</TextWrapper>
             </FlexColumnWrapper>
           </Grid>
         </Grid>
@@ -118,7 +138,7 @@ export const Footer = () => {
           <Grid container direction='column' alignItems='center'>
             <LogoWrapper>
               <Logo src='/images/icons/Oni_w_black.png' />
-              <TextWrapper>C ONI Desserts, 2019</TextWrapper>
+              <TextWrapper>© ONI Desserts, 2019</TextWrapper>
             </LogoWrapper>
           </Grid>
         </Grid>
@@ -161,9 +181,24 @@ export const Footer = () => {
 
         <Grid item md={2}>
           <Title>Контакты</Title>
-          <TextWrapper>+38 096 249 04 30</TextWrapper>
-          <TextWrapper>info@oni.ua</TextWrapper>
-          <TextWrapper>Киев, бульвар Вацлава Гавела, 9А</TextWrapper>
+          <TextWrapper>
+            <IconWrapper>
+              <PhoneIcon />
+            </IconWrapper>
+            +38 096 249 04 30
+          </TextWrapper>
+          <TextWrapper>
+            <IconWrapper>
+              <EnvelopeIcon />
+            </IconWrapper>
+            info@oni.ua
+          </TextWrapper>
+          <TextWrapper>
+            <IconWrapper>
+              <LocationIcon />
+            </IconWrapper>
+            Киев, бульвар Вацлава Гавела, 9А
+          </TextWrapper>
         </Grid>
 
         <Grid item md={3}>

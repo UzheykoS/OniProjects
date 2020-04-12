@@ -2,7 +2,7 @@ import styled from 'styled-components';
 import colors from '@constants/colors';
 import { BREAKPOINT } from '@constants';
 
-export const ChouxSingleWrapper = styled.div`
+export const CheesecakeSingleWrapper = styled.div`
   display: flex;
   justify-content: center;
   height: 19vw; /* Depending on tha parent wrapper padding */

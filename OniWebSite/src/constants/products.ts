@@ -61,6 +61,12 @@ enum Zephyr {
   ZephyrMixLarge = '16 шт',
 }
 
+enum Cheesecake {
+  VanillaCaramel = 'Ваниль - Карамель',
+  Gorgonzola = 'Горгонзола - Айва',
+  Lemon = 'Лимон',
+}
+
 export enum Cakes {
   SoulSmall = 'Soul',
   SoulLarge = 'Soul XL',
@@ -74,7 +80,13 @@ export enum Cakes {
   RioLarge = 'Rio XL',
 }
 
-export const Products = { ...Macarons, ...Choux, ...Zephyr, ...Cakes };
+export const Products = {
+  ...Macarons,
+  ...Choux,
+  ...Zephyr,
+  ...Cakes,
+  ...Cheesecake,
+};
 export type Products = typeof Products;
 
 export const macaronMix: IProduct[] = [
@@ -329,6 +341,30 @@ export const zephyr: IProduct[] = [
     imageUrl: './images/pages/zephyr/currant',
     type: ProductType.Zephyr,
     price: 16,
+  },
+];
+
+export const cheesecakes: IProduct[] = [
+  {
+    id: Cheesecake.VanillaCaramel,
+    fullDescription: 'Сделан на основе натурального пюре запечённого яблока',
+    imageUrl: './images/pages/zephyr/apple',
+    type: ProductType.Cheesecake,
+    price: 80,
+  },
+  {
+    id: Cheesecake.Gorgonzola,
+    fullDescription: 'Сделан на основе натурального пюре запечённого яблока',
+    imageUrl: './images/pages/zephyr/apple',
+    type: ProductType.Cheesecake,
+    price: 80,
+  },
+  {
+    id: Cheesecake.Lemon,
+    fullDescription: 'Сделан на основе натурального пюре запечённого яблока',
+    imageUrl: './images/pages/zephyr/apple',
+    type: ProductType.Cheesecake,
+    price: 80,
   },
 ];
 

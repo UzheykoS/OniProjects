@@ -132,18 +132,24 @@ export function Macarons() {
       <FlexRow>
         <FlexColumn bordered>
           <DessertsMix
+            size={'small'}
+            imageHeight={250}
             product={macaronMix[0]}
             onClick={handleMacaronsMixClick}
           />
         </FlexColumn>
         <FlexColumn bordered>
           <DessertsMix
+            size={'small'}
+            imageHeight={250}
             product={macaronMix[1]}
             onClick={handleMacaronsMixClick}
           />
         </FlexColumn>
         <FlexColumn bordered>
           <DessertsMix
+            size={'small'}
+            imageHeight={250}
             product={macaronMix[2]}
             onClick={handleMacaronsMixClick}
           />

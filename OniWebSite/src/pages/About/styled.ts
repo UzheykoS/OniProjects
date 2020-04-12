@@ -25,11 +25,6 @@ export const AboutPhoto = styled.div`
   margin-left: 20px;
   overflow: hidden;
   img {
-    width: 90%;
-    height: auto; // position: absolute;
-    margin: 20px 0px 20px 0px;
-    z-index: 2;
-    left: -34px;
-    top: -23px;
+    height: 500px;
   }
 `;

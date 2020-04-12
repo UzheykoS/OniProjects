@@ -1,7 +1,6 @@
 import React from 'react';
-import { ImageWrapper } from './styled';
-import { IImageWithFallbackProps } from '@common/ImageWithFallback';
+import { ImageWrapper, IImageWrapper } from './styled';
 
-export function ProductImageWrapper(props: IImageWithFallbackProps) {
+export function ProductImageWrapper(props: IImageWrapper) {
   return <ImageWrapper {...props} />;
 }
