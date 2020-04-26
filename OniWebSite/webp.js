@@ -65,6 +65,15 @@ const webp = require('imagemin-webp');
     ],
   });
 
+  const cheesecakesFiles = await imagemin(['public/images/pages/cheesecakes/*.jpg'], {
+    destination: 'public/images/pages/cheesecakes',
+    plugins: [
+      webp({
+        quality: 80,
+      }),
+    ],
+  });
+
   console.log(`Converted ${aboutFiles.length} files in About folder!`);
   console.log(`Converted ${cakesFiles.length} files in Cakes folder!`);
   console.log(`Converted ${chouxFiles.length} files in Choux folder!`);
@@ -72,4 +81,5 @@ const webp = require('imagemin-webp');
   console.log(`Converted ${macaronsFiles.length} files in Macarons folder!`);
   console.log(`Converted ${mainFiles.length} files in Main folder!`);
   console.log(`Converted ${zephyrFiles.length} files in Zephyr folder!`);
+  console.log(`Converted ${cheesecakesFiles.length} files in Zephyr folder!`);
 })();

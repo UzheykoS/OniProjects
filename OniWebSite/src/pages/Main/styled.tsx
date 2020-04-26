@@ -1,38 +1,58 @@
 import styled from 'styled-components';
 import colors from '@constants/colors';
 import { IconButton, IconButtonProps } from '@material-ui/core';
+import React from 'react';
+
+export const MainContainer = styled.div`
+  display: flex;
+  max-width: 1000px;
+  flex-direction: column;
+  justify-content: center;
+`;
+
+export const MainWrapper = styled.div`
+  display: flex;
+  width: 100%;
+  align-items: center;
+  flex-direction: column;
+`;
+
+export const BannerTextContent = styled.div`
+  display: flex;
+  flex-direction: column;
+  margin-top: 3rem;
+  width: 1000px;
+  justify-content: start;
+  z-index: 10;
+`;
 
 export const InfoSection = styled.div`
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   margin: 80px 0px;
   justify-content: center;
-  border: 1px solid #cccccc;
 `;
 
-export const ImageSection = styled.div`
+export const AboutContentSection = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+`;
+
+export const AboutTextSection = styled.div`
+  padding-top: 3rem;
+  display: flex;
+  flex-direction: column;
+  padding-left: 10rem;
+  flex-basis: 30rem;
+`;
+
+export const AboutImageSection = styled.div`
+  display: flex;
+  padding-top: 3.5rem;
   img {
     width: 500px;
     height: auto;
-  }
-`;
-
-export const TextSection = styled.div`
-  width: 500px;
-  padding-left: 60px;
-  font-size: 15px;
-  h2 {
-    line-height: 27px;
-    margin-bottom: 20px;
-    font-weight: 600;
-    padding-bottom: 10px;
-    font-size: 20px;
-    color: #6b6b6b;
-  }
-  p {
-    color: #6b6b6b;
-    font-weight: 400;
-    line-height: 21px;
   }
 `;
 
@@ -41,6 +61,8 @@ export const ImagesContainer = styled.div`
   width: 100%;
   height: 680px;
   object-fit: cover;
+  display: flex;
+  justify-content: center;
 `;
 
 export const BackgroundImage = styled.img`
@@ -59,7 +81,7 @@ export const InstagramContainer = styled.div`
     margin: auto;
     display: flex;
     flex-wrap: wrap;
-    padding: 0px 100px;
+    padding: 50px 0;
     justify-content: center;
     a {
       display: flex;
@@ -76,36 +98,12 @@ export const InstagramContainer = styled.div`
   }
 `;
 
-export const InstagramSubtitle = styled.div`
-  font-family: 'Roboto', sans-serif;
-  font-weight: 400;
-  text-transform: uppercase;
-  font-size: 19px;
-  color: gold;
-`;
-
-export const InstagramTitle = styled.div`
-  font-family: 'Yeseva One', cursive;
-  font-size: 38px;
-  color: black;
-`;
-
 export const InstagramDescriptionWrapper = styled.div`
   display: flex;
   justify-content: space-between;
 `;
 
-export const InstagramDescriptionText = styled.div`
-  p {
-    font-family: 'Roboto', sans-serif;
-    font-weight: 400;
-    font-size: 14px;
-    color: black;
-    margin: 0;
-  }
-`;
-
-export const InstagramDescriptionLink = styled.a`
+export const DescriptionLink = styled.a`
   font-family: 'Roboto', sans-serif;
   font-weight: 400;
   font-size: 16px;
@@ -119,28 +117,39 @@ export const TopSalesWrapper = styled.div`
   flex-direction: column;
 `;
 
-export const TopSalesTitle = styled.div`
-  font-family: 'Roboto', sans-serif;
-  font-weight: 400;
-  text-transform: uppercase;
-  font-size: 19px;
-  color: gold;
+export const TopSalesHeader = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
 `;
 
 export const TopSalesProducts = styled.div`
   display: flex;
   align-items: center;
   padding: 3rem;
+  position: relative;
 `;
 
-export const IconButtonStyled = styled(IconButton).attrs({
+interface IIconButtonStyled extends IconButtonProps {
+  left?: boolean;
+}
+
+export const IconButtonStyled = styled(
+  ({ left, ...rest }: IIconButtonStyled) => <IconButton {...rest} />
+).attrs({
   classes: {
     root: 'root',
   },
-})<IconButtonProps>`
+})<IIconButtonStyled>`
   border-radius: 3px;
   padding: 1rem;
   border: 1px solid ${colors.primary.grey};
+  position: absolute;
+  top: 10rem;
+  ${({ left }) =>
+    `
+      left: ${left ? '-6rem' : '62rem'};
+    `};
   &.root {
     &:hover {
       color: ${colors.primary.white};

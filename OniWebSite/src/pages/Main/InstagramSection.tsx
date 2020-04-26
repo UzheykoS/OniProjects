@@ -1,14 +1,12 @@
 import React, { useEffect } from 'react';
 import {
   InstagramContainer,
-  InstagramSubtitle,
-  InstagramTitle,
-  InstagramDescriptionText,
   InstagramDescriptionWrapper,
-  InstagramDescriptionLink,
+  DescriptionLink,
 } from './styled';
 import { useLoading } from '@hooks/useLoading';
 import { SEPARATORS } from '@utils/Helper';
+import { Typography } from '@material-ui/core';
 const Instafeed = require('instafeed.js');
 
 export function InstagramSection() {
@@ -35,18 +33,22 @@ export function InstagramSection() {
 
   return (
     <InstagramContainer>
-      <InstagramSubtitle>Ищи нас в</InstagramSubtitle>
-      <InstagramTitle>Instagram</InstagramTitle>
+      <Typography variant='h3' gutterBottom>
+        ИЩИ НАС В
+      </Typography>
+      <Typography variant='h1' gutterBottom>
+        Instagram
+      </Typography>
+
       <InstagramDescriptionWrapper>
-        <InstagramDescriptionText>
-          <p>Мы работаем в своём стиле и уверенны, что люди, которые</p>
-          <p>выбирают наш продукт, знают толк в кондитерском</p>
-          <p>искусстве!</p>
-        </InstagramDescriptionText>
-        <InstagramDescriptionLink
-          target='_blank'
-          href='https://www.instagram.com'
-        >{`${SEPARATORS.DASH} В INSTAGRAM`}</InstagramDescriptionLink>
+        <Typography variant='body1' gutterBottom>
+          Мы работаем в своём стиле и уверенны, что люди, которые {'\n'}
+          выбирают наш продукт, знают толк в кондитерском {'\n'}
+          искусстве!
+        </Typography>
+        <DescriptionLink target='_blank' href='https://www.instagram.com'>
+          {`${SEPARATORS.DASH} В INSTAGRAM`}
+        </DescriptionLink>
       </InstagramDescriptionWrapper>
       <div id='instafeed' />
     </InstagramContainer>

@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
 import {
   TopSalesWrapper,
-  TopSalesTitle,
   TopSalesProducts,
   IconButtonStyled,
+  DescriptionLink,
+  TopSalesHeader,
 } from './styled';
 import { MacaronSingle } from '@components/products/MacaronSingle';
 import { macarons, choux, zephyr, cheesecakes } from '@constants/products';
@@ -13,6 +14,8 @@ import KeyboardArrowRight from '@material-ui/icons/KeyboardArrowRight';
 import { ChouxSingle } from '@components/products/ChouxSingle';
 import { ZephyrSingle } from '@components/products/ZephyrSingle';
 import { CheesecakeSingle } from '@components/products/CheesecakeSingle';
+import { Typography } from '@material-ui/core';
+import { SEPARATORS } from '@utils/Helper';
 
 export function TopSalesSection() {
   const [activeStep, setActiveStep] = useState(0);
@@ -53,6 +56,7 @@ export function TopSalesSection() {
           height={15}
           product={cheesecakes[0]}
           onClick={() => {}}
+          showButton={false}
         />
       </FlexColumn>
     </FlexRow>
@@ -60,12 +64,20 @@ export function TopSalesSection() {
 
   return (
     <TopSalesWrapper>
-      <TopSalesTitle>Топ продаж</TopSalesTitle>
+      <TopSalesHeader>
+        <Typography variant='h3' gutterBottom>
+          ТОП ПРОДАЖ
+        </Typography>
+        <DescriptionLink href='/products'>
+          {`${SEPARATORS.DASH} ПРОДУКЦИЯ`}
+        </DescriptionLink>
+      </TopSalesHeader>
       <TopSalesProducts>
         <IconButtonStyled
           onClick={handleBack}
           disabled={activeStep === 0}
           style={{ margin: '0 3rem 0 0' }}
+          left
         >
           <KeyboardArrowLeft />
         </IconButtonStyled>

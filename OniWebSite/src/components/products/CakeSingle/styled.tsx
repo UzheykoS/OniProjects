@@ -195,7 +195,8 @@ export const IconButtonStyled = styled(IconButton).attrs({
   },
 })<IconButtonProps>`
   border-radius: 3px;
-  padding: 0.2rem;
+  padding: 0.25rem;
+  margin: 0.25rem;
   border: 1px solid ${colors.primary.grey};
   &.root {
     &:hover {

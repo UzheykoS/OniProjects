@@ -30,13 +30,15 @@ export const Title = styled.div`
   font-family: 'Yeseva One', cursive;
   font-size: 16px;
   color: black;
+  white-space: pre;
   text-align: center;
 `;
 
 export const Description = styled.div`
   font-family: 'Roboto', sans-serif;
-  font-size: 12px;
-  color: #cccccc;
+  font-size: 11px;
+  color: #1e2f42;
   text-align: center;
-  padding: 5px 40px;
+  padding: 10px 40px;
+  line-height: 17px;
 `;

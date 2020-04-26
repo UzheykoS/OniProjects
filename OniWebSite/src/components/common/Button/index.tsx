@@ -35,9 +35,6 @@ export const Button = styled(
       background-color: ${colors.primary.white};
       color: ${colors.primary.black};
       border: 1px solid ${colors.primary.gold};
-
-      // background-color: ${colors.primary.gold};
-      // box-shadow: 1px 3px 8px 0px ${colors.primary.gold};
     }
   }
 `;

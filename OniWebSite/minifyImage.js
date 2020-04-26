@@ -65,6 +65,15 @@ const imageminMozjpeg = require('imagemin-mozjpeg');
     ],
   });
 
+  const cheesecakesFiles = await imagemin(['public/images/pages/cheesecakes/*.jpg'], {
+    destination: 'public/images/pages/cheesecakes/small',
+    plugins: [
+      imageminMozjpeg({
+        quality: 30,
+      }),
+    ],
+  });
+
   console.log(`Minified ${aboutFiles.length} files in About folder!`);
   console.log(`Minified ${cakesFiles.length} files in Cakes folder!`);
   console.log(`Minified ${chouxFiles.length} files in Choux folder!`);
@@ -72,4 +81,5 @@ const imageminMozjpeg = require('imagemin-mozjpeg');
   console.log(`Minified ${macaronsFiles.length} files in Macarons folder!`);
   console.log(`Minified ${mainFiles.length} files in Main folder!`);
   console.log(`Minified ${zephyrFiles.length} files in Zephyr folder!`);
+  console.log(`Minified ${cheesecakesFiles.length} files in Zephyr folder!`);
 })();

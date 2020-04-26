@@ -5,7 +5,8 @@ import { TopSalesSection } from './TopSalesSection';
 import { AboutSection } from './AboutSection';
 import { InstagramSection } from './InstagramSection';
 import { useLoading } from '@hooks/useLoading';
-import { Grid } from '@material-ui/core';
+import { MainContainer, MainWrapper } from './styled';
+// import { Grid } from '@material-ui/core';
 
 export const Main = () => {
   const { showLoading, closeLoading } = useLoading();
@@ -46,9 +47,14 @@ export const Main = () => {
   }, []);
 
   return (
-    <>
+    <MainWrapper>
       <BannerSection />
-      <Grid container>
+      <MainContainer>
+        <TopSalesSection />
+        <AboutSection />
+        <InstagramSection />
+      </MainContainer>
+      {/* <Grid container>
         <Grid container justify={'center'}>
           <Grid item md={8}>
             <TopSalesSection />
@@ -66,7 +72,7 @@ export const Main = () => {
             <InstagramSection />
           </Grid>
         </Grid>
-      </Grid>
-    </>
+      </Grid> */}
+    </MainWrapper>
   );
 };

@@ -45,3 +45,10 @@ export const MixSection = styled.div<IMixSection>`
     padding: 5px 0px 10px 0px;
   }
 `;
+
+export const DessertMixTitle = styled.div`
+  font-family: 'Yeseva One';
+  font-weight: 400;
+  font-size: 16px;
+  padding: 0 0px 5px 20px;
+`;

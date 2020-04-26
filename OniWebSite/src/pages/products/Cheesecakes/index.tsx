@@ -45,33 +45,25 @@ export function Cheesecakes() {
         </FlexColumn>
       </FlexRow>
 
-      <FlexRow style={{ justifyContent: 'space-between' }}>
-        <FlexColumn>
-          <Typography
-            variant='h3'
-            style={{ margin: '60px 0 30px 0', whiteSpace: 'nowrap' }}
-          >
-            ВКУСЫ ЧИЗКЕЙКОВ
-          </Typography>
-        </FlexColumn>
-      </FlexRow>
-
       <FlexRow>
         <FlexColumn bordered>
           <CheesecakeSingle
             product={cheesecakes[0]}
+            showButton
             onClick={handleCheesecakeClick}
           />
         </FlexColumn>
         <FlexColumn bordered>
           <CheesecakeSingle
             product={cheesecakes[1]}
+            showButton
             onClick={handleCheesecakeClick}
           />
         </FlexColumn>
         <FlexColumn bordered>
           <CheesecakeSingle
             product={cheesecakes[2]}
+            showButton
             onClick={handleCheesecakeClick}
           />
         </FlexColumn>

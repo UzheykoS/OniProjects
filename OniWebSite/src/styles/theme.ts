@@ -44,17 +44,20 @@ export default createMuiTheme({
       fontFamily: 'Yeseva One',
       fontWeight: 500,
       fontSize: '4rem',
+      whiteSpace: 'pre-line',
     },
     h3: {
       fontFamily: 'Roboto',
       fontWeight: 400,
       fontSize: '1rem',
+      letterSpacing: '5px',
       color: colors.secondary.gold,
     },
     body1: {
       fontFamily: 'Roboto',
       fontWeight: 400,
       fontSize: 16,
+      whiteSpace: 'pre-line',
     },
     body2: {
       fontFamily: 'Roboto',
@@ -65,7 +68,9 @@ export default createMuiTheme({
     h1: {
       fontFamily: 'Yeseva One',
       fontWeight: 400,
-      fontSize: 16,
+      fontSize: 46,
+      color: colors.primary.black,
+      whiteSpace: 'pre-line',
     },
   },
   breakpoints: {

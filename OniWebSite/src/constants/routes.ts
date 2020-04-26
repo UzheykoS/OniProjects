@@ -1,7 +1,7 @@
 export enum Pages {
   Main = 'Главная',
   About = 'О нас',
-  Clients = 'Корпоративным клиентам',
+  // Clients = 'Корпоративным клиентам',
   Delivery = 'Доставка и оплата',
   Contacts = 'Контакты',
   Products = 'Продукция',
@@ -64,10 +64,10 @@ export const routes: routeType = {
       },
     },
   },
-  [Pages.Clients]: {
-    path: '/clients',
-    label: 'Корпоративным клиентам',
-  },
+  // [Pages.Clients]: {
+  //   path: '/clients',
+  //   label: 'Корпоративным клиентам',
+  // },
   [Pages.Delivery]: {
     path: '/delivery',
     label: 'Доставка и оплата',

@@ -1,40 +1,32 @@
-import React, { useState } from 'react';
-import { Title, Description, AddIconWrapper } from './styled';
-import AddIcon from '@material-ui/icons/Add';
-import colors from '@constants/colors';
+import React from 'react';
+import { Title, Description } from './styled';
 import { IProduct } from '@constants/products';
 import { ProductImageWrapper } from '../ProductImageWrapper';
 import { IProductSingleWrapper, ProductSingleWrapper } from '../styled';
+import { Button } from '@common/Button';
 
 interface IProps extends IProductSingleWrapper {
   product: IProduct;
+  showButton: boolean;
   onClick: (item: IProduct) => void;
 }
 
-export function CheesecakeSingle({ product, height, onClick }: IProps) {
-  const [mouseOver, setMouseOver] = useState(false);
-
-  const onMouseOver = () => {
-    setMouseOver(true);
-  };
-
-  const onMouseOut = () => {
-    setMouseOver(false);
-  };
-
+export function CheesecakeSingle({
+  product,
+  height,
+  onClick,
+  showButton,
+}: IProps) {
   return (
-    <ProductSingleWrapper
-      height={height}
-      onMouseOver={onMouseOver}
-      onMouseOut={onMouseOut}
-      onClick={() => onClick(product)}
-    >
-      <AddIconWrapper visible={mouseOver}>
-        <AddIcon style={{ fontSize: 40, color: colors.primary.white }} />
-      </AddIconWrapper>
+    <ProductSingleWrapper height={height}>
       <ProductImageWrapper height={200} src={product.imageUrl} />
-      <Title>{product.id}</Title>
+      <Title>{`${product.id}   ${product.price} грн`}</Title>
       <Description>{product.fullDescription}</Description>
+      {showButton && (
+        <Button rounded onClick={() => onClick(product)}>
+          ДОБАВИТЬ
+        </Button>
+      )}
     </ProductSingleWrapper>
   );
 }
