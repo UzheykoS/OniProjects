@@ -33,6 +33,7 @@ export const FlexRow = styled.div`
 
 interface IColumn {
   bordered?: boolean;
+  isLastChild?: boolean;
 }
 export const FlexColumn = styled.div<IColumn>`
   display: flex;
@@ -42,13 +43,13 @@ export const FlexColumn = styled.div<IColumn>`
   margin-top: -1px;
   width: 100%;
 
-  ${({ bordered }) =>
+  ${({ bordered, isLastChild }) =>
     bordered &&
     `
-    border: 1px solid #cccccc;
-    border-right: 0px;
-    // &:last-child {
-      border-right: 1px solid #cccccc;
-    // }
+    border: 1px solid #EEF2F0;
+    border-right: ${isLastChild === true ? '1px solid #EEF2F0;' : '0px;'}
+    &:last-child {
+      border-right: 1px solid #EEF2F0;
+    }
     `}
 `;

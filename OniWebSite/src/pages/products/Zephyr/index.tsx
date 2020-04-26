@@ -77,7 +77,7 @@ export function Zephyr() {
           <FlexColumn bordered>
             <ZephyrSingle product={zephyr[i]} onClick={handleZephyrClick} />
           </FlexColumn>
-          <FlexColumn bordered>
+          <FlexColumn bordered isLastChild>
             <ZephyrSingle product={zephyr[i + 1]} onClick={handleZephyrClick} />
           </FlexColumn>
           <FlexColumn />

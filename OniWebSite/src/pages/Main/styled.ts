@@ -1,4 +1,6 @@
 import styled from 'styled-components';
+import colors from '@constants/colors';
+import { IconButton, IconButtonProps } from '@material-ui/core';
 
 export const InfoSection = styled.div`
   display: flex;
@@ -37,7 +39,7 @@ export const TextSection = styled.div`
 export const ImagesContainer = styled.div`
   margin-bottom: 25px;
   width: 100%;
-  height: 500px;
+  height: 680px;
   object-fit: cover;
 `;
 
@@ -110,4 +112,39 @@ export const InstagramDescriptionLink = styled.a`
   color: red;
   text-transform: uppercase;
   text-decoration: none;
+`;
+
+export const TopSalesWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+`;
+
+export const TopSalesTitle = styled.div`
+  font-family: 'Roboto', sans-serif;
+  font-weight: 400;
+  text-transform: uppercase;
+  font-size: 19px;
+  color: gold;
+`;
+
+export const TopSalesProducts = styled.div`
+  display: flex;
+  align-items: center;
+  padding: 3rem;
+`;
+
+export const IconButtonStyled = styled(IconButton).attrs({
+  classes: {
+    root: 'root',
+  },
+})<IconButtonProps>`
+  border-radius: 3px;
+  padding: 1rem;
+  border: 1px solid ${colors.primary.grey};
+  &.root {
+    &:hover {
+      color: ${colors.primary.white};
+      background-color: ${colors.secondary.pink};
+    }
+  }
 `;

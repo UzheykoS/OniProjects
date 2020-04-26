@@ -21,6 +21,7 @@ import {
   ImagesWrapper,
   SliderPagingWrapper,
   CarouseNavBar,
+  IconButtonStyled,
 } from './styled';
 import { ICakeInfo } from '@constants/products';
 import { Typography } from '@material-ui/core';
@@ -35,6 +36,8 @@ import Zoom from '@material-ui/core/Zoom';
 import IconButton from '@common/IconButton';
 import colors from '@constants/colors';
 import FullScreenImageDialog from './FullScreenImageDialog';
+import KeyboardArrowLeft from '@material-ui/icons/KeyboardArrowLeft';
+import KeyboardArrowRight from '@material-ui/icons/KeyboardArrowRight';
 
 export interface CakeSubmitInfo {
   cake: ICakeInfo;
@@ -103,6 +106,12 @@ export function CakeSingle({ cakePair, onClick }: IProps) {
   return (
     <CakeSingleWrapper>
       <ImagesSection>
+        <IconButtonStyled
+          onClick={() => setActiveIndex(0)}
+          disabled={activeIndex === 0}
+        >
+          <KeyboardArrowLeft />
+        </IconButtonStyled>
         <CarouselWrapper>
           <ImagesWrapper>
             <ImageWrapper src={imageUrl} visible={activeIndex === 0} />
@@ -131,6 +140,12 @@ export function CakeSingle({ cakePair, onClick }: IProps) {
             </IconButton>
           </CarouseNavBar>
         </CarouselWrapper>
+        <IconButtonStyled
+          onClick={() => setActiveIndex(1)}
+          disabled={activeIndex === 1}
+        >
+          <KeyboardArrowRight />
+        </IconButtonStyled>
       </ImagesSection>
       <InfoSection>
         <Title>{id}</Title>

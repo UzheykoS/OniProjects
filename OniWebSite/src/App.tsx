@@ -11,6 +11,7 @@ import DateFnsUtils from '@date-io/date-fns';
 import { MuiPickersUtilsProvider } from '@material-ui/pickers';
 import ruLocale from 'date-fns/locale/ru';
 import { SnackbarProvider } from '@hooks/useSnackbar';
+import { SupportWebpProvider } from '@common/ImageWithFallback/useSupportWebp';
 
 @hot(module)
 export class App extends React.Component {
@@ -23,7 +24,9 @@ export class App extends React.Component {
               <BasketProvider>
                 <LoadingProvider>
                   <SnackbarProvider>
-                    <Wrapper />
+                    <SupportWebpProvider>
+                      <Wrapper />
+                    </SupportWebpProvider>
                   </SnackbarProvider>
                 </LoadingProvider>
               </BasketProvider>

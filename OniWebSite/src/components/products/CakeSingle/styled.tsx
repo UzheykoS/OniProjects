@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import colors from '@constants/colors';
-import { Tooltip, Chip } from '@material-ui/core';
+import { Tooltip, Chip, IconButton, IconButtonProps } from '@material-ui/core';
 import {
   ImageWithFallback,
   IImageWithFallbackProps,
@@ -18,6 +18,7 @@ export const ImagesSection = styled.div`
   display: flex;
   justify-content: center;
   width: 50%;
+  align-items: center;
 `;
 
 export const InfoSection = styled.div`
@@ -186,4 +187,20 @@ export const CarouselWrapper = styled.div`
 
 export const ImagesWrapper = styled.div`
   display: flex;
+`;
+
+export const IconButtonStyled = styled(IconButton).attrs({
+  classes: {
+    root: 'root',
+  },
+})<IconButtonProps>`
+  border-radius: 3px;
+  padding: 0.2rem;
+  border: 1px solid ${colors.primary.grey};
+  &.root {
+    &:hover {
+      color: ${colors.primary.white};
+      background-color: ${colors.secondary.pink};
+    }
+  }
 `;

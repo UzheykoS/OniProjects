@@ -2,20 +2,6 @@ import styled from 'styled-components';
 import colors from '@constants/colors';
 import { BREAKPOINT } from '@constants';
 
-export const MacaronSingleWrapper = styled.div`
-  display: flex;
-  justify-content: center;
-  height: 19vw; /* Depending on tha parent wrapper padding */
-  flex-direction: column;
-  align-items: center;
-  cursor: pointer;
-  position: relative;
-  @media (max-width: ${BREAKPOINT}) {
-    height: auto;
-    min-height: 400px;
-  }
-`;
-
 interface IAddIconWrapper {
   visible: boolean;
 }

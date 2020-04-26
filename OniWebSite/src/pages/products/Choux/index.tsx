@@ -78,7 +78,7 @@ export function Choux() {
             <ChouxSingle product={choux[i]} onClick={handleChouxClick} />
           </FlexColumn>
           {i + 1 < choux.length ? (
-            <FlexColumn bordered>
+            <FlexColumn bordered isLastChild>
               <ChouxSingle product={choux[i + 1]} onClick={handleChouxClick} />
             </FlexColumn>
           ) : (

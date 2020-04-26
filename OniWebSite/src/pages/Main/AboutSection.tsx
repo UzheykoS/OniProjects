@@ -5,7 +5,7 @@ export function AboutSection() {
   return (
     <InfoSection>
       <ImageSection>
-        <img src='./images/images_large/about/MF2A8377.jpg' />
+        <img src='./images/pages/about/MF2A8377.jpg' />
       </ImageSection>
       <TextSection>
         <h2>КАЖДЫЙ ДЕНЬ МЫ СОЗДАЁМ ДЕСЕРТЫ, КОТОРЫЕ ВДОХНОВЛЯЮТ!</h2>

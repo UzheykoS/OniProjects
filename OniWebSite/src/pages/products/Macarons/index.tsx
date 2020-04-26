@@ -83,7 +83,7 @@ export function Macarons() {
             <MacaronSingle product={macarons[i]} onClick={handleMacaronClick} />
           </FlexColumn>
           {i + 1 < macarons.length ? (
-            <FlexColumn bordered>
+            <FlexColumn bordered isLastChild>
               <MacaronSingle
                 product={macarons[i + 1]}
                 onClick={handleMacaronClick}

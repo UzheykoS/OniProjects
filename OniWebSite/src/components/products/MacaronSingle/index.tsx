@@ -1,20 +1,16 @@
 import React, { useState } from 'react';
-import {
-  MacaronSingleWrapper,
-  Title,
-  Description,
-  AddIconWrapper,
-} from './styled';
+import { Title, Description, AddIconWrapper } from './styled';
 import AddIcon from '@material-ui/icons/Add';
 import colors from '@constants/colors';
 import { IProduct } from '@constants/products';
 import { ProductImageWrapper } from '../ProductImageWrapper';
+import { ProductSingleWrapper, IProductSingleWrapper } from '../styled';
 
-interface IProps {
+interface IProps extends IProductSingleWrapper {
   product: IProduct;
   onClick: (item: IProduct) => void;
 }
-export function MacaronSingle({ product, onClick }: IProps) {
+export function MacaronSingle({ product, height, onClick }: IProps) {
   const [mouseOver, setMouseOver] = useState(false);
 
   const onMouseOver = () => {
@@ -26,7 +22,8 @@ export function MacaronSingle({ product, onClick }: IProps) {
   };
 
   return (
-    <MacaronSingleWrapper
+    <ProductSingleWrapper
+      height={height}
       onMouseOver={onMouseOver}
       onMouseOut={onMouseOut}
       onClick={() => onClick(product)}
@@ -39,6 +36,6 @@ export function MacaronSingle({ product, onClick }: IProps) {
       />
       <Title>{product.id}</Title>
       <Description>{product.fullDescription}</Description>
-    </MacaronSingleWrapper>
+    </ProductSingleWrapper>
   );
 }
