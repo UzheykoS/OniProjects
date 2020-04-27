@@ -14,8 +14,8 @@ import PhoneInput from '@common/PhoneInput';
 import DatePickerWrapper from '@common/DatePicker';
 import TimeInput from '@common/TimeInput';
 
-const INVALID_NAME = 'Введите Ваше имя';
-const INVALID_PHONE = 'Введите правильный номер телефона';
+export const INVALID_NAME = 'Введите Ваше имя';
+export const INVALID_PHONE = 'Введите правильный номер телефона';
 
 interface IProps {
   handleContinue: (contactData: IContactData) => void;

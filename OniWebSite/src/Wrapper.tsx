@@ -20,6 +20,7 @@ import { Checkout } from '@pages/Checkout';
 import { Snackbar } from '@common/Snackbar';
 import { useSnackbar } from '@hooks/useSnackbar';
 import { Cheesecakes } from '@pages/products/Cheesecakes';
+import { Contacts } from '@pages/Contacts';
 
 export function Wrapper() {
   const { loading } = useLoading();
@@ -37,6 +38,7 @@ export function Wrapper() {
           />
           <Route path='/clients' component={CorporateClients} />
           <Route exact path='/' component={Main} />
+          <Route path='/contacts' component={Contacts} />
           <Route path='/delivery' component={DeliveryAndPayment} />
           <Route path='/about' component={About} />
           <Route path='/checkout' component={Checkout} />

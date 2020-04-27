@@ -1,32 +1,36 @@
 import styled from 'styled-components';
+import { makeStyles } from '@material-ui/core';
+import colors from '@constants/colors';
 
-export const DeliveryMainSection = styled.div`
+export const ContactsMainSection = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
 `;
 
-export const DeliveryTopSection = styled.div`
+export const ContactsTopSection = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: center;
   margin: 50px 0px;
 `;
 
-export const DeliveryBottomSection = styled.div`
+export const ContactsBottomSection = styled.div`
   display: flex;
+  flex-direction: row;
   justify-content: center;
-  min-height: 500px;
+  background-color: #f6f8f7;
+  padding-bottom: 80px;
 `;
 
-export const DeliveryLeftSection = styled.div`
+export const ContactsLeftSection = styled.div`
   display: flex;
   flex-direction: column;
   padding-top: 3.5rem;
   align-items: flex-end;
 `;
 
-export const DeliveryRightSection = styled.div`
+export const ContactsRightSection = styled.div`
   padding-top: 3rem;
   display: flex;
   flex-direction: column;
@@ -35,13 +39,13 @@ export const DeliveryRightSection = styled.div`
   position: relative;
 `;
 
-export const DeliveryTextSection = styled.div`
+export const ContactsTextSection = styled.div`
   display: flex;
   flex-direction: column;
   width: 450px;
 `;
 
-export const DeliverySection = styled.div`
+export const ContactsSection = styled.div`
   display: flex;
   flex-direction: column;
   margin-right: 2rem;
@@ -60,6 +64,7 @@ export const TextWrapper = styled.div`
   line-height: 30px;
   font-size: 1rem;
   display: flex;
+  white-space: nowrap;
 `;
 
 export const IconWrapper = styled.div`
@@ -67,4 +72,29 @@ export const IconWrapper = styled.div`
   width: 25px;
   justify-content: center;
   align-items: center;
+`;
+
+export const useStyles = makeStyles({
+  formHelperText: {
+    position: 'absolute',
+    bottom: '-22px',
+  },
+});
+
+export const RotatedImageWrapper = styled.div`
+  display: flex;
+  transform: rotate(-30deg);
+  position: absolute;
+  top: -50px;
+  right: -260px;
+`;
+
+export const LinkWrapper = styled.a`
+  padding-left: 3rem;
+  white-space: nowrap;
+  font-weight: 400;
+  line-height: 30px;
+  font-size: 1rem;
+  color: inherit;
+  text-decoration-color: ${colors.secondary.gold};
 `;
