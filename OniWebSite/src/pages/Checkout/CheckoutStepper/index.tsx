@@ -5,8 +5,9 @@ import {
   TabsStyled,
   TabStyled,
   CheckoutStepperContainer,
+  TextLink,
 } from '../styled';
-import { Typography, IconButton } from '@material-ui/core';
+import { Typography, IconButton, useMediaQuery } from '@material-ui/core';
 import { Delivery, DeliveryType } from './Delivery';
 import { Contacts } from './Contacts';
 import { Payment, PaymentType } from './Payment';
@@ -14,6 +15,7 @@ import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import { IBasketItem, useBasket } from '@hooks/useBasket';
 import { submitOrder } from '@src/api/oni-web';
 import { useSnackbar } from '@hooks/useSnackbar';
+import { BREAKPOINT } from '@constants';
 
 enum CheckoutTabs {
   Delivery = 'Способ доставки',
@@ -54,6 +56,7 @@ export function CheckoutStepper({ returnToBasket }: ICheckoutStepperProps) {
   const [form, setForm] = useState<IOrder>(initialState);
   const { items } = useBasket();
   const { showSnackbar } = useSnackbar();
+  const isMobile = useMediaQuery(`(max-width: ${BREAKPOINT})`);
 
   const handleDeliverySubmit = (delivery: DeliveryType) => {
     setForm({ ...form, delivery });
@@ -91,7 +94,11 @@ export function CheckoutStepper({ returnToBasket }: ICheckoutStepperProps) {
         <IconButton onClick={returnToBasket}>
           <ChevronLeftIcon style={{ margin: 16 }} />
         </IconButton>
-        <Typography variant='h2'>Оформление заказа</Typography>
+        {isMobile ? (
+          <TextLink onClick={returnToBasket}>Назад</TextLink>
+        ) : (
+          <Typography variant='h2'>Оформление заказа</Typography>
+        )}
       </CheckoutHeaderWrapper>
 
       <TabsStyled

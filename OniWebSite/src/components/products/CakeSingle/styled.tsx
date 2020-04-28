@@ -6,27 +6,32 @@ import {
   IImageWithFallbackProps,
 } from '@common/ImageWithFallback';
 import React from 'react';
+import { BREAKPOINT } from '@constants';
 
 export const CakeSingleWrapper = styled.div`
   display: flex;
   justify-content: space-between;
   padding: 20px;
   border: 1px solid ${colors.primary.grey};
+  @media (max-width: ${BREAKPOINT}) {
+    flex-direction: column;
+  }
 `;
 
 export const ImagesSection = styled.div`
   display: flex;
   justify-content: center;
-  width: 50%;
   align-items: center;
 `;
 
 export const InfoSection = styled.div`
   display: flex;
   justify-content: center;
-  width: 50%;
   flex-direction: column;
   padding: 20px 50px 10px 60px;
+  @media (max-width: ${BREAKPOINT}) {
+    padding: 5px;
+  }
 `;
 
 interface IImageWrapper extends IImageWithFallbackProps {
@@ -40,6 +45,10 @@ export const ImageWrapper = styled(({ visible, ...rest }: IImageWrapper) => (
   height: auto;
   object-fit: contain;
   display: none;
+
+  @media (max-width: ${BREAKPOINT}) {
+    max-width: 250px;
+  }
 
   ${({ visible }) =>
     visible &&
@@ -65,6 +74,9 @@ export const DescriptionSmall = styled.div`
   font-family: 'Roboto', sans-serif;
   font-size: 12px;
   color: #cccccc;
+  @media (max-width: ${BREAKPOINT}) {
+    padding-top: 5px;
+  }
 `;
 
 export const SizeAndQtySelector = styled.div`
@@ -79,14 +91,6 @@ export const CakeSizeInfo = styled.div`
   flex-direction: row;
   justify-content: left;
   margin: 5px 0px 20px 0px;
-`;
-
-export const QuantityEditor = styled.div`
-  display: flex;
-  flex-direction: row;
-  justify-content: space-around;
-  align-items: center;
-  margin-left: 50px;
 `;
 
 export const IconTextWrapper = styled.div`

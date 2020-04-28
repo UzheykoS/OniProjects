@@ -72,7 +72,7 @@ export const IconWrapper = styled.div`
 export const QuotesContainer = styled.div`
   display: flex;
   position: relative;
-  margin-top: 5rem;
+  margin-top: 4rem;
 `;
 
 export const Quotes = styled.div`

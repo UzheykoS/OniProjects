@@ -18,7 +18,7 @@ export function CheesecakeSingle({
   showButton,
 }: IProps) {
   return (
-    <ProductSingleWrapper height={height}>
+    <ProductSingleWrapper height={height || 24}>
       <ProductImageWrapper height={200} src={product.imageUrl} />
       <Title>{`${product.id}   ${product.price} грн`}</Title>
       <Description>{product.fullDescription}</Description>

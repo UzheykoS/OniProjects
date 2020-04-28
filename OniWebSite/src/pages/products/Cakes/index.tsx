@@ -6,11 +6,13 @@ import { preloadImages } from '@utils/Helper';
 import { useBasket } from '@hooks/useBasket';
 import { CakesWrapper, CakesInfo, CakesMenuWrapper } from './styled';
 import { FlexRow, FlexColumn } from '@styles/styled';
-import { Typography } from '@material-ui/core';
+import { Typography, useMediaQuery } from '@material-ui/core';
+import { BREAKPOINT } from '@constants';
 
 export function Cakes() {
   const { showLoading, closeLoading } = useLoading();
   const { addToBasket } = useBasket();
+  const isMobile = useMediaQuery(`(max-width: ${BREAKPOINT})`);
 
   const loadImages = async () => {
     const imagesArray = new Array<string>();
@@ -43,7 +45,10 @@ export function Cakes() {
         <FlexColumn style={{ flexGrow: 1, flexShrink: 2 }}>
           <Typography
             variant='h3'
-            style={{ whiteSpace: 'nowrap', marginRight: '100px' }}
+            style={{
+              whiteSpace: 'nowrap',
+              margin: isMobile ? '50px 10px 10px 10px' : '0 100px 0 0',
+            }}
           >
             НАША ПРОДУКЦИЯ
           </Typography>
@@ -52,7 +57,10 @@ export function Cakes() {
           <CakesInfo>
             <Typography
               variant='body1'
-              style={{ lineHeight: '24px', margin: '0 120px 20px 80px' }}
+              style={{
+                lineHeight: isMobile ? '19px' : '24px',
+                margin: isMobile ? '10px 10px 40px 10px' : '0 120px 20px 80px',
+              }}
             >
               Торт – это маленькое пирожное, которое состоит из двух миндальных
               половинок, пропитанных начинкой. Яркий вкус, нежная текстура

@@ -1,6 +1,6 @@
 import React, { useReducer, useState, useCallback } from 'react';
 import { ChouxWrapper, ChouxInfo } from './styled';
-import { Typography } from '@material-ui/core';
+import { Typography, useMediaQuery } from '@material-ui/core';
 import { FlexRow, FlexColumn } from '@styles/styled';
 import {
   constructorReducer,
@@ -14,7 +14,7 @@ import { ChouxSingle } from '@components/products/ChouxSingle';
 import { chouxMix, choux, IProduct } from '@constants/products';
 import MixSelectModal from '@components/modals/MixSelectModal';
 import { useBasket } from '@hooks/useBasket';
-import { SCROLL_INTO_VIEW_ELEMENT } from '@constants';
+import { SCROLL_INTO_VIEW_ELEMENT, BREAKPOINT } from '@constants';
 
 export function Choux() {
   const [state, dispatch] = useReducer(
@@ -28,6 +28,7 @@ export function Choux() {
   const [selectedMix, setSelectedMix] = useState<IProduct>();
   const handleClose = useCallback(() => setSelectedMix(undefined), []);
   const { addToBasket } = useBasket();
+  const isMobile = useMediaQuery(`(max-width: ${BREAKPOINT})`);
 
   const handleChouxClick = (item: IProduct) => {
     if (!expanded) {
@@ -96,7 +97,10 @@ export function Choux() {
         <FlexColumn style={{ flexGrow: 1, flexShrink: 2 }}>
           <Typography
             variant='h3'
-            style={{ whiteSpace: 'nowrap', marginRight: '100px' }}
+            style={{
+              whiteSpace: 'nowrap',
+              margin: isMobile ? '50px 10px 10px 10px' : '0 100px 0 0',
+            }}
           >
             НАША ПРОДУКЦИЯ
           </Typography>
@@ -105,7 +109,10 @@ export function Choux() {
           <ChouxInfo>
             <Typography
               variant='body1'
-              style={{ lineHeight: '24px', margin: '0 120px 20px 80px' }}
+              style={{
+                lineHeight: isMobile ? '19px' : '24px',
+                margin: isMobile ? '10px 10px 40px 10px' : '0 120px 20px 80px',
+              }}
             >
               Основа пирожного шу – заварное тесто, покрытое тонким хрустящим
               слоем. Внутри – двойная начинка из нежного крема и яркого центра.
@@ -113,13 +120,15 @@ export function Choux() {
               выбрать любые вкусы из меню и сформировать свой набор на 2 или 4
               шу.{' '}
             </Typography>
-            <Typography
-              variant='body2'
-              style={{ margin: '10px 70px 20px 80px' }}
-            >
-              У нас можно выбрать любые вкусы из меню и сформировать свой набор
-              на 4 или 8 шу.
-            </Typography>
+            {!isMobile && (
+              <Typography
+                variant='body2'
+                style={{ margin: '10px 70px 20px 80px' }}
+              >
+                У нас можно выбрать любые вкусы из меню и сформировать свой
+                набор на 4 или 8 шу.
+              </Typography>
+            )}
           </ChouxInfo>
         </FlexColumn>
       </FlexRow>
@@ -142,6 +151,17 @@ export function Choux() {
         </FlexColumn>
       </FlexRow>
 
+      {isMobile && (
+        <FlexRow style={{ justifyContent: 'center', marginTop: '20px' }}>
+          <ConstructorContainer
+            state={state}
+            dispatch={dispatch}
+            expanded={expanded}
+            setExpanded={setExpanded}
+          />
+        </FlexRow>
+      )}
+
       <FlexRow style={{ justifyContent: 'space-between' }}>
         <FlexColumn>
           <Typography
@@ -152,16 +172,22 @@ export function Choux() {
             ВКУСЫ ШУ
           </Typography>
         </FlexColumn>
-        <FlexColumn
-          style={{ width: '310px', marginRight: '120px', position: 'relative' }}
-        >
-          <ConstructorContainer
-            state={state}
-            dispatch={dispatch}
-            expanded={expanded}
-            setExpanded={setExpanded}
-          />
-        </FlexColumn>
+        {!isMobile && (
+          <FlexColumn
+            style={{
+              width: '310px',
+              marginRight: '100px',
+              position: 'relative',
+            }}
+          >
+            <ConstructorContainer
+              state={state}
+              dispatch={dispatch}
+              expanded={expanded}
+              setExpanded={setExpanded}
+            />
+          </FlexColumn>
+        )}
       </FlexRow>
 
       {chouxElements}

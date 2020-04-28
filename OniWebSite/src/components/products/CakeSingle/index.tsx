@@ -9,7 +9,6 @@ import {
   DescriptionSmall,
   SizeAndQtySelector,
   CakeSizeInfo,
-  QuantityEditor,
   PriceAndButtonWrapper,
   TooltipStyled,
   ChipStyled,
@@ -24,9 +23,7 @@ import {
   IconButtonStyled,
 } from './styled';
 import { ICakeInfo } from '@constants/products';
-import { Typography } from '@material-ui/core';
-import RemoveIcon from '@material-ui/icons/Remove';
-import AddIcon from '@material-ui/icons/Add';
+import { Typography, useMediaQuery } from '@material-ui/core';
 import DiameterIcon from '@icons/diameter-icon.svg';
 import PeopleIcon from '@icons/people-icon.svg';
 import InfoIcon from '@icons/info-icon.svg';
@@ -34,10 +31,11 @@ import ExtendIcon from '@icons/extend-icon.svg';
 import { Button } from '@common/Button';
 import Zoom from '@material-ui/core/Zoom';
 import IconButton from '@common/IconButton';
-import colors from '@constants/colors';
 import FullScreenImageDialog from './FullScreenImageDialog';
 import KeyboardArrowLeft from '@material-ui/icons/KeyboardArrowLeft';
 import KeyboardArrowRight from '@material-ui/icons/KeyboardArrowRight';
+import { BREAKPOINT } from '@constants';
+import QuantityEditor from '@common/QuantityEditor';
 
 export interface CakeSubmitInfo {
   cake: ICakeInfo;
@@ -77,7 +75,7 @@ export function CakeSingle({ cakePair, onClick }: IProps) {
   const [selectedSize, setSelectedSize] = useState(CakeSize.Small);
   const [quantity, setQuantity] = useState(1);
   const [previewImageUrl, setPreviewImageUrl] = useState('');
-
+  const isMobile = useMediaQuery(`(max-width: ${BREAKPOINT})`);
   const [activeIndex, setActiveIndex] = useState(0);
 
   const handleIncreaseQuantity = () => {
@@ -164,32 +162,14 @@ export function CakeSingle({ cakePair, onClick }: IProps) {
             color='secondary'
             label={`${weightLarge} кг`}
             variant={selectedSize === CakeSize.Large ? 'outlined' : 'default'}
+            style={{ marginRight: 50 }}
             onClick={() => setSelectedSize(CakeSize.Large)}
           />
-          <QuantityEditor>
-            <IconButton
-              onClick={handleDecreaseQuantity}
-              size='small'
-              style={{
-                backgroundColor: colors.primary.grey,
-              }}
-            >
-              <RemoveIcon style={{ fontSize: 28 }} />
-            </IconButton>
-            <Typography variant='body1' style={{ margin: '0px 20px' }}>
-              {quantity}
-            </Typography>
-            <IconButton
-              size='small'
-              onClick={handleIncreaseQuantity}
-              style={{
-                backgroundColor: colors.primary.gold,
-                color: colors.primary.white,
-              }}
-            >
-              <AddIcon style={{ fontSize: 28 }} />
-            </IconButton>
-          </QuantityEditor>
+          <QuantityEditor
+            quantity={quantity}
+            handleIncreaseQuantity={handleIncreaseQuantity}
+            handleDecreaseQuantity={handleDecreaseQuantity}
+          />
         </SizeAndQtySelector>
         <CakeSizeInfo>
           {selectedSize === CakeSize.Small ? (
@@ -229,7 +209,11 @@ export function CakeSingle({ cakePair, onClick }: IProps) {
         <PriceAndButtonWrapper>
           <Typography
             variant={'h2'}
-            style={{ marginRight: '40px', fontSize: 24 }}
+            style={{
+              marginRight: isMobile ? '20px' : '40px',
+              fontSize: isMobile ? 16 : 24,
+              whiteSpace: 'nowrap',
+            }}
           >
             {getPrice()}
           </Typography>

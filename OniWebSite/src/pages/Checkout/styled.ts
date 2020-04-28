@@ -14,7 +14,7 @@ export const CheckoutContainer = styled.div`
 
   margin: 50px 0px;
   @media (max-width: ${BREAKPOINT}) {
-    margin: 85px 0px 50px 0px;
+    margin: 100px 20px 50px 20px;
   }
 `;
 
@@ -54,12 +54,6 @@ export const BasketItemWrapperCell = styled.div`
   }
 `;
 
-export const BasketButtonWrapper = styled.div`
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-`;
-
 export const ContinueShopping = styled(Typography)`
   height: auto;
   cursor: pointer;
@@ -75,12 +69,16 @@ export const CheckoutHeaderWrapper = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: left;
+  align-items: center;
 `;
 
 export const BasketTable = styled.div`
   display: flex;
   flex-direction: column;
   margin: 50px 0;
+  @media (max-width: ${BREAKPOINT}) {
+    margin: 30px 0;
+  }
 `;
 
 export const BasketHeader = styled.div`
@@ -96,10 +94,16 @@ export const BasketHeaderCell = styled.div`
   }
 `;
 
-export const ProceedSection = styled.div`
-  display: flex;
-  flex-direction: row;
-  align-items: center;
+export const TextLink = styled.div`
+  font-size: '13px';
+  opacity: 0.4;
+  font-family: 'Roboto';
+`;
+
+export const TotalMobile = styled.div`
+  font-size: '16px';
+  font-family: 'Roboto';
+  margin-right: 5px;
 `;
 
 export const TabStyled = styled(Tab).attrs({
@@ -114,6 +118,11 @@ export const TabStyled = styled(Tab).attrs({
     width: 33%;
     min-width: 300px;
     margin: 0 20px;
+
+    @media (max-width: ${BREAKPOINT}) {
+      min-width: auto;
+      margin: 5px 0;
+    }
   }
 `;
 

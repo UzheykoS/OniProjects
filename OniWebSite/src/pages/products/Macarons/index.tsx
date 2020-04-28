@@ -104,7 +104,10 @@ export function Macarons() {
         <FlexColumn style={{ flexGrow: 1, flexShrink: 2 }}>
           <Typography
             variant='h3'
-            style={{ whiteSpace: 'nowrap', marginRight: '100px' }}
+            style={{
+              whiteSpace: 'nowrap',
+              margin: isMobile ? '50px 10px 10px 10px' : '0 100px 0 0',
+            }}
           >
             НАША ПРОДУКЦИЯ
           </Typography>
@@ -113,19 +116,24 @@ export function Macarons() {
           <MacaronsInfo>
             <Typography
               variant='body1'
-              style={{ lineHeight: '24px', margin: '0 120px 20px 80px' }}
+              style={{
+                lineHeight: isMobile ? '19px' : '24px',
+                margin: isMobile ? '10px 10px 40px 10px' : '0 120px 20px 80px',
+              }}
             >
               Макарон – это маленькое пирожное, которое состоит из двух
               миндальных половинок, пропитанных начинкой. Яркий вкус, нежная
               текстура внутри и хрустящая корочка снаружи.{' '}
             </Typography>
-            <Typography
-              variant='body2'
-              style={{ margin: '10px 70px 20px 80px' }}
-            >
-              У нас можно выбрать любые вкусы из меню и сформировать свой набор
-              на 6, 12 или 24 макарон.
-            </Typography>
+            {!isMobile && (
+              <Typography
+                variant='body2'
+                style={{ margin: '10px 70px 20px 80px' }}
+              >
+                У нас можно выбрать любые вкусы из меню и сформировать свой
+                набор на 6, 12 или 24 макарон.
+              </Typography>
+            )}
           </MacaronsInfo>
         </FlexColumn>
       </FlexRow>
@@ -167,7 +175,7 @@ export function Macarons() {
         </FlexRow>
       )}
 
-      <FlexRow style={{ justifyContent: 'space-between' }}>
+      <FlexRow>
         <FlexColumn>
           <Typography
             variant='h3'
@@ -177,11 +185,10 @@ export function Macarons() {
             ВКУСЫ МАКАРОН
           </Typography>
         </FlexColumn>
+        <FlexColumn />
         {!isMobile && (
           <FlexColumn
             style={{
-              width: '310px',
-              marginRight: '100px',
               position: 'relative',
             }}
           >

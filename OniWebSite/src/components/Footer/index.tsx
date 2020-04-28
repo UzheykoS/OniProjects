@@ -19,6 +19,7 @@ import { BREAKPOINT } from '@constants';
 import PhoneIcon from '@icons/phone.svg';
 import EnvelopeIcon from '@icons/envelope.svg';
 import LocationIcon from '@icons/location.svg';
+import { Flex } from '@styles/styled';
 
 export const Footer = () => {
   const productRoutes = routes[Pages.Products]!.nestedRoutes!;
@@ -27,14 +28,14 @@ export const Footer = () => {
   if (isMobile) {
     return (
       <FooterWrapper>
-        <Grid container justify='center'>
-          <Grid item sm={12} container justify='center'>
+        <Flex justifyCenter direction='column'>
+          <Flex justifyCenter>
             <LogoWrapper>
               <Logo src='/images/icons/Oni_w_black.png' />
             </LogoWrapper>
-          </Grid>
+          </Flex>
 
-          <Grid item sm={12} container justify='center'>
+          <Flex justifyEvenly>
             <FlexColumnWrapper>
               <Title>Меню</Title>
               <List>
@@ -70,9 +71,9 @@ export const Footer = () => {
                 })}
               </List>
             </FlexColumnWrapper>
-          </Grid>
+          </Flex>
 
-          <Grid item sm={12} container justify='center'>
+          <Flex justifyEvenly>
             <FlexColumnWrapper>
               <Title>Контакты</Title>
               <TextWrapper>
@@ -98,11 +99,15 @@ export const Footer = () => {
               </TextWrapper>
               <TextWrapper>Вацлава Гавела, 9А</TextWrapper>
             </FlexColumnWrapper>
-          </Grid>
+          </Flex>
 
-          <Grid item sm={12} container justify='center'>
+          <Flex justifyCenter>
             <FlexColumnWrapper>
-              <Title style={{ textAlign: 'center' }}>Соцсети</Title>
+              <Title
+                style={{ textAlign: 'center', padding: '40px 0px 10px 0px' }}
+              >
+                Соцсети
+              </Title>
               <SocialsWrapper>
                 <SocialsItem target='_blank' href='https://www.facebook.com/'>
                   <img
@@ -123,10 +128,12 @@ export const Footer = () => {
                   />
                 </SocialsItem>
               </SocialsWrapper>
-              <TextWrapper>© ONI Desserts, 2019</TextWrapper>
+              <TextWrapper style={{ marginTop: 10 }}>
+                © ONI Desserts, 2019
+              </TextWrapper>
             </FlexColumnWrapper>
-          </Grid>
-        </Grid>
+          </Flex>
+        </Flex>
       </FooterWrapper>
     );
   }

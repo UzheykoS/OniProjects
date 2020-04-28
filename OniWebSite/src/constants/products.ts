@@ -1,9 +1,9 @@
 export enum ProductType {
-  Macaron,
-  Choux,
-  Cheesecake,
-  Zephyr,
-  Cake,
+  Macaron = 'Макаронс',
+  Choux = 'Шу',
+  Cheesecake = 'Чизкейк',
+  Zephyr = 'Зефир',
+  Cake = 'Торт',
 }
 
 export interface ICakeInfo extends IProduct {

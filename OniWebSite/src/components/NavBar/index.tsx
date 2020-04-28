@@ -34,6 +34,7 @@ export function NavBar() {
   const history = useHistory();
   const { items } = useBasket();
   let currentPage = Pages.Main;
+  const isMobile = useMediaQuery(`(max-width: ${BREAKPOINT})`);
 
   Object.keys(routes).forEach(key => {
     const value = routes[key as Pages];
@@ -203,8 +204,6 @@ export function NavBar() {
       </IconButton>
     </NavBarWrapperMobile>
   );
-
-  const isMobile = useMediaQuery(`(max-width: ${BREAKPOINT})`);
 
   return <>{isMobile ? navBarMobile : navBar}</>;
 }

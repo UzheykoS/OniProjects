@@ -22,11 +22,13 @@ export const ExpansionPanelStyled = styled(
   flex-direction: column;
   box-shadow: none;
   z-index: 1;
+  width: 100%;
 
   @media (min-width: ${BREAKPOINT}) {
     position: absolute;
     top: 45px;
     width: 310px;
+    margin-left: 20px;
   }
 
   ${({ isSticky }) =>
@@ -53,6 +55,11 @@ export const ExpansionPanelSummaryStyled = styled(ExpansionPanelSummary).attrs({
 })`
   color: ${colors.primary.white};
   background-color: ${colors.secondary.pink};
+
+  @media (max-width: ${BREAKPOINT}) {
+    padding: 5px 15px;
+    margin: 0 25px;
+  }
 
   &.expanded {
     background-color: ${colors.primary.white};

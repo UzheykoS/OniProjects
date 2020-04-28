@@ -27,23 +27,28 @@ export const MixSection = styled.div<IMixSection>`
     width: auto;
     padding-top: 20px;
 
+    @media (max-width: ${BREAKPOINT}) {
+      height: auto;
+      max-height: 240px;
+    }
+
     ${({ imageHeight }) =>
       `
         height: ${imageHeight}px;
-      `};
 
-    @media (max-width: ${BREAKPOINT}) {
-      height: auto;
-      max-height: 300px;
-    }
+        @media (max-width: ${BREAKPOINT}) {
+          max-height: ${imageHeight}px;
+        }
+      `};
   }
-  .title {
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: baseline;
-    padding: 5px 0px 10px 0px;
-  }
+`;
+
+export const TitleWrapper = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: baseline;
+  padding: 5px 0px 10px 0px;
 `;
 
 export const DessertMixTitle = styled.div`

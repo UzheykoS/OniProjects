@@ -82,6 +82,9 @@ export const RoutesListItem = styled.li<IRoutesListItem>`
 
 export const LogoLink = styled(RoutesListItem)`
   margin: 0px 150px;
+  @media (max-width: ${BREAKPOINT}) {
+    margin: 0;
+  }
 `;
 
 interface ILogo {
@@ -129,6 +132,7 @@ export const SocialMedia = styled.div`
 
 import { makeStyles } from '@material-ui/core';
 import React from 'react';
+import { BREAKPOINT } from '@constants';
 
 export const useStyles = makeStyles({
   burgerMenuIcon: {
@@ -176,8 +180,8 @@ export const ListItemStyled = styled(
     display: inline-block;
     font-family: 'Roboto', sans-serif;
     font-weight: 400;
-    font-size: 1.5rem;
-    line-height: 2rem;
+    font-size: 1rem;
+    line-height: 1rem;
     color: #333333;
     text-decoration: none;
     border-bottom: 3px solid transparent;

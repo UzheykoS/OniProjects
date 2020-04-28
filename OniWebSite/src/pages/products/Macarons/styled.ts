@@ -27,4 +27,7 @@ export const MacaronsInfo = styled.div`
   display: flex;
   flex-direction: column;
   padding-right: 20px;
+  @media (max-width: ${BREAKPOINT}) {
+    padding: 0px;
+  }
 `;

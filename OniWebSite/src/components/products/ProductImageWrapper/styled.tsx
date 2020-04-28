@@ -17,7 +17,7 @@ export const ImageWrapper = styled(({ height, ...rest }: IImageWrapper) => (
   width: auto;
   @media (max-width: ${BREAKPOINT}) {
     height: auto;
-    max-width: 300px;
+    max-width: 200px;
   }
 
   ${({ height }) =>

@@ -53,7 +53,15 @@ export function ConstructorContainer({
       onChange={() => setExpanded(!expanded)}
     >
       <ExpansionPanelSummaryStyled expandIcon={<ExpandMoreIcon />}>
-        <Typography variant='button' style={{ height: 'auto', width: 'auto' }}>
+        <Typography
+          variant='button'
+          style={{
+            height: 'auto',
+            width: 'auto',
+            letterSpacing: isMobile ? 'px' : '',
+            fontSize: isMobile ? '13px' : '',
+          }}
+        >
           СОБРАТЬ СВОЙ НАБОР
         </Typography>
       </ExpansionPanelSummaryStyled>

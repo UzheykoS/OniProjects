@@ -16,6 +16,8 @@ interface IBasketState {
   addToBasket(item: IBasketItem): void;
   removeFromBasket(item: IBasketItem): void;
   clearBasket(): void;
+  increaseQuantity(item: IBasketItem): void;
+  decreaseQuantity(item: IBasketItem): void;
 }
 
 const initialBasketState = {
@@ -23,11 +25,13 @@ const initialBasketState = {
   addToBasket: () => {},
   removeFromBasket: () => {},
   clearBasket: () => {},
+  increaseQuantity: () => {},
+  decreaseQuantity: () => {},
 };
 const BasketContext = createContext<IBasketState>(initialBasketState);
 
 type ActionType = {
-  type: 'add' | 'remove' | 'clear';
+  type: 'add' | 'remove' | 'clear' | 'increase' | 'decrease';
   item?: IBasketItem;
 };
 
@@ -48,6 +52,30 @@ function basketReducer(state: IBasketState, action: ActionType) {
           items.splice(index, 1);
           return { ...state, items };
         }
+      }
+      return state;
+    case 'increase':
+      if (action.item) {
+        const { items } = state;
+        const index = items.findIndex(i => i === action.item);
+        if (index > -1) {
+          items[index].quantity++;
+        }
+        return { ...state, items };
+      }
+      return state;
+    case 'decrease':
+      if (action.item) {
+        const { items } = state;
+        const index = items.findIndex(i => i === action.item);
+        if (index > -1) {
+          if (items[index].quantity > 1) {
+            items[index].quantity--;
+          } else {
+            items.splice(index, 1);
+          }
+        }
+        return { ...state, items };
       }
       return state;
     case 'clear':
@@ -72,9 +100,24 @@ const BasketProvider = ({ children }: { children?: React.ReactNode }) => {
     dispatch({ type: 'clear' });
   };
 
+  const increaseQuantity = (item: IBasketItem) => {
+    dispatch({ type: 'increase', item });
+  };
+
+  const decreaseQuantity = (item: IBasketItem) => {
+    dispatch({ type: 'decrease', item });
+  };
+
   return (
     <BasketContext.Provider
-      value={{ items: state.items, addToBasket, removeFromBasket, clearBasket }}
+      value={{
+        items: state.items,
+        addToBasket,
+        removeFromBasket,
+        clearBasket,
+        increaseQuantity,
+        decreaseQuantity,
+      }}
     >
       {children}
     </BasketContext.Provider>
@@ -82,9 +125,14 @@ const BasketProvider = ({ children }: { children?: React.ReactNode }) => {
 };
 
 function useBasket(): IBasketState {
-  const { addToBasket, removeFromBasket, clearBasket, items } = useContext(
-    BasketContext
-  );
+  const {
+    addToBasket,
+    removeFromBasket,
+    clearBasket,
+    increaseQuantity,
+    decreaseQuantity,
+    items,
+  } = useContext(BasketContext);
 
   const addToBasketHandler = useCallback(
     (item: IBasketItem) => {
@@ -104,10 +152,26 @@ function useBasket(): IBasketState {
     clearBasket && clearBasket();
   }, [clearBasket]);
 
+  const increaseQuantityHandler = useCallback(
+    (item: IBasketItem) => {
+      increaseQuantity && increaseQuantity(item);
+    },
+    [increaseQuantity]
+  );
+
+  const decreaseQuantityHandler = useCallback(
+    (item: IBasketItem) => {
+      decreaseQuantity && decreaseQuantity(item);
+    },
+    [decreaseQuantity]
+  );
+
   return {
     addToBasket: addToBasketHandler,
     clearBasket: clearBasketHandler,
     removeFromBasket: removeFromBasketHandler,
+    increaseQuantity: increaseQuantityHandler,
+    decreaseQuantity: decreaseQuantityHandler,
     items,
   };
 }

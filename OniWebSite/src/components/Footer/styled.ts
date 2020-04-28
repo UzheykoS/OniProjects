@@ -15,16 +15,22 @@ export const LogoWrapper = styled.div`
   flex-direction: column;
   justify-content: space-between;
   padding: 40px 0px 30px 0px;
+  @media (max-width: ${BREAKPOINT}) {
+    padding: 20px 0px 15px 0px;
+  }
 `;
 
 export const FlexColumnWrapper = styled.div`
   display: flex;
   flex-direction: column;
   padding: 0 50px;
+  @media (max-width: ${BREAKPOINT}) {
+    padding: 0 20px;
+  }
 `;
 
 export const SocialsItem = styled.a`
-  padding: 5px 40px 5px 0px;
+  padding: 5px 20px 5px 20px;
   img {
     height: 1rem;
   }
@@ -39,8 +45,9 @@ export const Title = styled.div`
 export const TextWrapper = styled.div`
   font-weight: 400;
   line-height: 30px;
-  font-size: 1rem;
+  font-size: 13px;
   display: flex;
+  white-space: nowrap;
 `;
 
 export const List = styled.ul`

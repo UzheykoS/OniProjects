@@ -1,7 +1,7 @@
 import { createMuiTheme } from '@material-ui/core/styles';
 import colors from '@constants/colors';
 
-export default createMuiTheme({
+const theme = createMuiTheme({
   overrides: {
     MuiButton: {
       contained: {
@@ -15,16 +15,6 @@ export default createMuiTheme({
       },
     },
   },
-  palette: {
-    primary: {
-      main: colors.primary.gold,
-      contrastText: colors.primary.white,
-    },
-    secondary: {
-      main: colors.primary.gold,
-      contrastText: colors.primary.black,
-    },
-  },
   typography: {
     fontFamily: "'Roboto', 'Yeseva One', sans-serif",
     fontWeightLight: 300,
@@ -35,29 +25,42 @@ export default createMuiTheme({
       width: '203px',
       borderRadius: 25,
     },
-    // caption: {
-    //   fontFamily: 'Yeseva One',
-    //   fontWeight: 500,
-    //   fontSize: 68,
-    // },
+    h1: {
+      fontFamily: 'Yeseva One',
+      fontWeight: 400,
+      fontSize: 46,
+      color: colors.primary.black,
+      whiteSpace: 'pre-line',
+    },
     h2: {
       fontFamily: 'Yeseva One',
       fontWeight: 500,
-      fontSize: '4rem',
       whiteSpace: 'pre-line',
+      fontSize: '4rem',
+      '@media (max-width:1224px)': {
+        fontSize: '26px',
+        lineHeight: '38px',
+      },
     },
     h3: {
       fontFamily: 'Roboto',
       fontWeight: 400,
-      fontSize: '1rem',
       letterSpacing: '5px',
       color: colors.secondary.gold,
+      fontSize: '1rem',
+      '@media (max-width:1224px)': {
+        fontSize: '13px',
+      },
     },
     body1: {
       fontFamily: 'Roboto',
       fontWeight: 400,
       fontSize: 16,
       whiteSpace: 'pre-line',
+      '@media (max-width:1224px)': {
+        fontSize: 12,
+        lineHeight: '19px',
+      },
     },
     body2: {
       fontFamily: 'Roboto',
@@ -65,12 +68,15 @@ export default createMuiTheme({
       fontSize: 11,
       opacity: 0.6,
     },
-    h1: {
-      fontFamily: 'Yeseva One',
-      fontWeight: 400,
-      fontSize: 46,
-      color: colors.primary.black,
-      whiteSpace: 'pre-line',
+  },
+  palette: {
+    primary: {
+      main: colors.primary.gold,
+      contrastText: colors.primary.white,
+    },
+    secondary: {
+      main: colors.primary.gold,
+      contrastText: colors.primary.black,
     },
   },
   breakpoints: {
@@ -83,3 +89,5 @@ export default createMuiTheme({
     },
   },
 });
+
+export default theme;

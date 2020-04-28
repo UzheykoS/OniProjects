@@ -27,7 +27,7 @@ export const FlexRow = styled.div`
 
   @media (max-width: ${BREAKPOINT}) {
     flex-wrap: wrap;
-    max-width: 600px;
+    padding: 0 20px;
   }
 `;
 
@@ -51,12 +51,16 @@ export const FlexColumn = styled.div<IColumn>`
     &:last-child {
       border-right: 1px solid #EEF2F0;
     }
+    @media (max-width: ${BREAKPOINT}) {
+      border: 1px solid #EEF2F0;
+    }
     `}
 `;
 
 interface IFlex {
   justifyCenter?: boolean;
   justifyBetween?: boolean;
+  justifyEvenly?: boolean;
   alignCenter?: boolean;
   alignStart?: boolean;
   flexStart?: boolean;
@@ -88,6 +92,11 @@ export const Flex = styled.div<IFlex>`
     justifyCenter &&
     css`
       justify-content: center;
+    `}
+  ${({ justifyEvenly }) =>
+    justifyEvenly &&
+    css`
+      justify-content: space-evenly;
     `}
   ${({ alignCenter }) =>
     alignCenter &&

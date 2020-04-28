@@ -53,7 +53,6 @@ export const RoutesList = styled.ul`
   justify-content: center;
 
   @media (max-width: ${BREAKPOINT}) {
-    flex-wrap: wrap;
     flex-direction: row;
   }
 `;
@@ -83,7 +82,10 @@ export const RoutesListItem = styled.li<IRoutesListItem>`
     }
   }
   @media (max-width: ${BREAKPOINT}) {
-    margin: 5px 25px 2px 25px;
+    margin: 0 8px;
+    a {
+      margin-left: 0px;
+    }
   }
   ${({ active }) =>
     active &&

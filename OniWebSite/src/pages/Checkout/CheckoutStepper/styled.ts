@@ -1,11 +1,15 @@
 import styled from 'styled-components';
 import { TextField, TextFieldProps, makeStyles } from '@material-ui/core';
+import { BREAKPOINT } from '@constants';
 
 export const MainWrapper = styled.div`
   display: flex;
   margin: 50px;
   flex-direction: column;
   width: 100%;
+  @media (max-width: ${BREAKPOINT}) {
+    margin: 10px;
+  }
 `;
 
 export const BottomWrapper = styled.div`

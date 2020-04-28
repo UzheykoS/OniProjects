@@ -1,6 +1,6 @@
 import React, { useReducer, useState, useCallback } from 'react';
 import { ZephyrWrapper, ZephyrInfo } from './styled';
-import { Typography } from '@material-ui/core';
+import { Typography, useMediaQuery } from '@material-ui/core';
 import { FlexRow, FlexColumn } from '@styles/styled';
 import {
   constructorReducer,
@@ -14,7 +14,7 @@ import { ZephyrSingle } from '@components/products/ZephyrSingle';
 import { zephyrMix, zephyr, IProduct } from '@constants/products';
 import MixSelectModal from '@components/modals/MixSelectModal';
 import { useBasket } from '@hooks/useBasket';
-import { SCROLL_INTO_VIEW_ELEMENT } from '@constants';
+import { SCROLL_INTO_VIEW_ELEMENT, BREAKPOINT } from '@constants';
 
 export function Zephyr() {
   const [state, dispatch] = useReducer(
@@ -28,6 +28,7 @@ export function Zephyr() {
   const [selectedMix, setSelectedMix] = useState<IProduct>();
   const handleClose = useCallback(() => setSelectedMix(undefined), []);
   const { addToBasket } = useBasket();
+  const isMobile = useMediaQuery(`(max-width: ${BREAKPOINT})`);
 
   const handleZephyrClick = (item: IProduct) => {
     if (!expanded) {
@@ -92,7 +93,10 @@ export function Zephyr() {
         <FlexColumn style={{ flexGrow: 1, flexShrink: 2 }}>
           <Typography
             variant='h3'
-            style={{ whiteSpace: 'nowrap', marginRight: '100px' }}
+            style={{
+              whiteSpace: 'nowrap',
+              margin: isMobile ? '50px 10px 10px 10px' : '0 100px 0 0',
+            }}
           >
             НАША ПРОДУКЦИЯ
           </Typography>
@@ -101,20 +105,25 @@ export function Zephyr() {
           <ZephyrInfo>
             <Typography
               variant='body1'
-              style={{ lineHeight: '24px', margin: '0 120px 20px 80px' }}
+              style={{
+                lineHeight: isMobile ? '19px' : '24px',
+                margin: isMobile ? '10px 10px 40px 10px' : '0 120px 20px 80px',
+              }}
             >
               Мы разработали рецептуру с пониженным содержанием сахара и готовим
               наш зефир исключительно на основе натуральных фруктовых пюре без
               ароматизаторов и консервантов. У нас можно выбрать любые вкусы из
               меню и сформировать свой набор на 8 или 16 шт.{' '}
             </Typography>
-            <Typography
-              variant='body2'
-              style={{ margin: '10px 70px 20px 80px' }}
-            >
-              У нас можно выбрать любые вкусы из меню и сформировать свой набор
-              на 8 или 16 зефира.
-            </Typography>
+            {!isMobile && (
+              <Typography
+                variant='body2'
+                style={{ margin: '10px 70px 20px 80px' }}
+              >
+                У нас можно выбрать любые вкусы из меню и сформировать свой
+                набор на 8 или 16 зефира.
+              </Typography>
+            )}
           </ZephyrInfo>
         </FlexColumn>
       </FlexRow>
@@ -122,7 +131,7 @@ export function Zephyr() {
         <FlexColumn bordered>
           <DessertsMix
             size={'large'}
-            imageHeight={185}
+            imageHeight={isMobile ? 160 : 185}
             product={zephyrMix[0]}
             onClick={handleZephyrMixClick}
           />
@@ -130,12 +139,23 @@ export function Zephyr() {
         <FlexColumn bordered>
           <DessertsMix
             size={'large'}
-            imageHeight={300}
+            imageHeight={isMobile ? 275 : 300}
             product={zephyrMix[1]}
             onClick={handleZephyrMixClick}
           />
         </FlexColumn>
       </FlexRow>
+
+      {isMobile && (
+        <FlexRow style={{ justifyContent: 'center', marginTop: '20px' }}>
+          <ConstructorContainer
+            state={state}
+            dispatch={dispatch}
+            expanded={expanded}
+            setExpanded={setExpanded}
+          />
+        </FlexRow>
+      )}
 
       <FlexRow style={{ justifyContent: 'space-between' }}>
         <FlexColumn>
@@ -147,16 +167,22 @@ export function Zephyr() {
             ВКУСЫ ЗЕФИРА
           </Typography>
         </FlexColumn>
-        <FlexColumn
-          style={{ width: '310px', marginRight: '120px', position: 'relative' }}
-        >
-          <ConstructorContainer
-            state={state}
-            dispatch={dispatch}
-            expanded={expanded}
-            setExpanded={setExpanded}
-          />
-        </FlexColumn>
+        {!isMobile && (
+          <FlexColumn
+            style={{
+              width: '310px',
+              marginRight: '100px',
+              position: 'relative',
+            }}
+          >
+            <ConstructorContainer
+              state={state}
+              dispatch={dispatch}
+              expanded={expanded}
+              setExpanded={setExpanded}
+            />
+          </FlexColumn>
+        )}
       </FlexRow>
 
       {zephyrElements}
