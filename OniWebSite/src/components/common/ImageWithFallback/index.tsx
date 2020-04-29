@@ -10,6 +10,7 @@ export interface IImageWithFallbackProps
 export const ImageWithFallback = ({
   src,
   type = 'image/webp',
+  style,
   ...delegated
 }: IImageWithFallbackProps) => {
   const [loading, setLoading] = useState(true);
@@ -53,7 +54,7 @@ export const ImageWithFallback = ({
     '/small/' +
     splittedSrc[splittedSrc.length - 1];
   return (
-    <picture>
+    <picture style={{ display: 'flex', ...style }}>
       <source
         srcSet={loading ? `${placeholderSrc}.jpg` : srcWebp}
         type={type}

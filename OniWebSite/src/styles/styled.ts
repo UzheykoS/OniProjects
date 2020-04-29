@@ -27,7 +27,6 @@ export const FlexRow = styled.div`
 
   @media (max-width: ${BREAKPOINT}) {
     flex-wrap: wrap;
-    padding: 0 20px;
   }
 `;
 

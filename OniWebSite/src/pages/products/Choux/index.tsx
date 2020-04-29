@@ -158,6 +158,7 @@ export function Choux() {
             dispatch={dispatch}
             expanded={expanded}
             setExpanded={setExpanded}
+            stickyLimit={1100}
           />
         </FlexRow>
       )}
@@ -172,11 +173,10 @@ export function Choux() {
             ВКУСЫ ШУ
           </Typography>
         </FlexColumn>
+        <FlexColumn />
         {!isMobile && (
           <FlexColumn
             style={{
-              width: '310px',
-              marginRight: '100px',
               position: 'relative',
             }}
           >
@@ -185,6 +185,7 @@ export function Choux() {
               dispatch={dispatch}
               expanded={expanded}
               setExpanded={setExpanded}
+              stickyLimit={1000}
             />
           </FlexColumn>
         )}

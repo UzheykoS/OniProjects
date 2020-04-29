@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { CSSProperties } from 'react';
 import { Typography } from '@material-ui/core';
 import { Button } from '@common/Button';
 import {
@@ -12,12 +12,19 @@ import { ImageWithFallback } from '@common/ImageWithFallback';
 
 interface IProps extends IMixSection {
   product: IProduct;
+  pictureStyle?: CSSProperties;
   onClick: (product: IProduct) => void;
 }
-export function DessertsMix({ product, size, imageHeight, onClick }: IProps) {
+export function DessertsMix({
+  product,
+  size,
+  imageHeight,
+  pictureStyle,
+  onClick,
+}: IProps) {
   return (
     <MixSection size={size} imageHeight={imageHeight}>
-      <ImageWithFallback src={product.imageUrl} />
+      <ImageWithFallback style={pictureStyle} src={product.imageUrl} />
       <TitleWrapper>
         <Typography variant='body1' style={{ fontWeight: 400 }}>
           {`Ассорти ${product.id}`}

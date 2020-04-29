@@ -22,17 +22,11 @@ export const ProductsNavBarWrapper = styled.div<IProductsNavBarWrapper>`
 
 export const ProductsNavBarWrapperMobile = styled.div<IProductsNavBarWrapper>`
   z-index: 1;
-  top: 105px;
+  top: 98px;
   border-bottom: 2px solid ${colors.primary.grey};
-
-  ${({ isSticky }) =>
-    isSticky &&
-    `
-      top: 105px;
-      position: fixed;
-      width: 100%;
-      background-color: ${colors.primary.white};
-    `}
+  position: fixed;
+  width: 100%;
+  background-color: ${colors.primary.white};
 `;
 
 export const ProductsNavBarMain = styled.div`
@@ -41,7 +35,9 @@ export const ProductsNavBarMain = styled.div`
   width: 100%;
   -webkit-transition: all 0.2s ease-in-out;
   transition: all 0.2s ease-in-out;
-  margin-bottom: 10px;
+  @media (max-width: ${BREAKPOINT}) {
+    margin: 10px 0px;
+  }
 `;
 
 export const RoutesList = styled.ul`

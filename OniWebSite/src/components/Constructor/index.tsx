@@ -1,30 +1,31 @@
 import React, { useEffect, useState } from 'react';
-import { Typography, useMediaQuery } from '@material-ui/core';
+import { Typography, useMediaQuery, IconButton } from '@material-ui/core';
 import {
   ExpansionPanelSummaryStyled,
   ExpansionPanelStyled,
   ExpansionPanelDetailsStyled,
+  ConstructorDialog,
 } from './styled';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import { Constructor, IConstructorProps } from './Constructor';
 import { BREAKPOINT } from '@constants';
-
-const STICKY_LIMIT = 740;
-const STICKY_LIMIT_MOBILE = 1480;
+import CloseIcon from '@material-ui/icons/Close';
+import { Flex } from '@styles/styled';
 
 export interface IConstructorContainerProps extends IConstructorProps {
   expanded: boolean;
+  stickyLimit: number;
   setExpanded: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 export function ConstructorContainer({
   expanded,
   setExpanded,
+  stickyLimit,
   ...rest
 }: IConstructorContainerProps) {
   const [isSticky, setIsSticky] = useState(false);
   const isMobile = useMediaQuery(`(max-width: ${BREAKPOINT})`);
-  const limit = isMobile ? STICKY_LIMIT_MOBILE : STICKY_LIMIT;
   const [scrollTop, setScrollTop] = useState(window.scrollY);
 
   const handleScroll = () => {
@@ -32,9 +33,9 @@ export function ConstructorContainer({
   };
 
   useEffect(() => {
-    if (scrollTop > limit) {
+    if (scrollTop > stickyLimit) {
       setIsSticky(true);
-    } else if (scrollTop < limit) {
+    } else if (scrollTop < stickyLimit) {
       setIsSticky(false);
     }
   }, [scrollTop]);
@@ -45,6 +46,54 @@ export function ConstructorContainer({
       window.removeEventListener('scroll', handleScroll);
     };
   }, []);
+
+  if (isMobile) {
+    return (
+      <ExpansionPanelStyled
+        isSticky={isSticky}
+        expanded={expanded}
+        onChange={() => setExpanded(!expanded)}
+      >
+        <ExpansionPanelSummaryStyled expandIcon={<ExpandMoreIcon />}>
+          <Typography
+            variant='button'
+            style={{
+              height: 'auto',
+              width: 'auto',
+              fontSize: '13px',
+            }}
+          >
+            СОБРАТЬ СВОЙ НАБОР
+          </Typography>
+        </ExpansionPanelSummaryStyled>
+
+        <ConstructorDialog open={expanded} onClose={() => setExpanded(false)}>
+          <Flex
+            justifyBetween
+            style={{ border: '1px solid #EEF2F0', paddingLeft: 10 }}
+          >
+            <Typography
+              variant='button'
+              style={{
+                height: 'auto',
+                fontSize: '13px',
+                alignSelf: 'center',
+                letterSpacing: '3px',
+              }}
+            >
+              СОБРАТЬ СВОЙ НАБОР
+            </Typography>
+            <IconButton onClick={() => setExpanded(false)}>
+              <CloseIcon />
+            </IconButton>
+          </Flex>
+          <ExpansionPanelDetailsStyled>
+            <Constructor {...rest} />
+          </ExpansionPanelDetailsStyled>
+        </ConstructorDialog>
+      </ExpansionPanelStyled>
+    );
+  }
 
   return (
     <ExpansionPanelStyled
@@ -58,8 +107,6 @@ export function ConstructorContainer({
           style={{
             height: 'auto',
             width: 'auto',
-            letterSpacing: isMobile ? 'px' : '',
-            fontSize: isMobile ? '13px' : '',
           }}
         >
           СОБРАТЬ СВОЙ НАБОР

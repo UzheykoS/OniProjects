@@ -5,6 +5,7 @@ import {
   ExpansionPanelProps,
   ExpansionPanelDetails,
   Typography,
+  Dialog,
 } from '@material-ui/core';
 import colors from '@constants/colors';
 import React from 'react';
@@ -36,17 +37,19 @@ export const ExpansionPanelStyled = styled(
   }
 
   &.expanded {
-    margin-left: 20px;
+    @media (min-width: ${BREAKPOINT}) {
+      margin-left: 20px;
+    }
   }
 
   ${({ isSticky }) =>
     isSticky &&
     `
         @media (max-width: ${BREAKPOINT}) {
-          width: inherit;
           position: fixed;
-          top: 164px;
-          max-width: inherit;
+          top: 155px;
+          left: 5%;
+          width: calc(100% - 10%);
         }
         @media (min-width: ${BREAKPOINT}) {
           position: fixed;
@@ -63,11 +66,6 @@ export const ExpansionPanelSummaryStyled = styled(ExpansionPanelSummary).attrs({
 })`
   color: ${colors.primary.white};
   background-color: ${colors.secondary.pink};
-
-  @media (max-width: ${BREAKPOINT}) {
-    padding: 5px 15px;
-    margin: 0 25px;
-  }
 
   &.expanded {
     background-color: ${colors.primary.white};
@@ -192,4 +190,15 @@ export const RemoveIconWrapper = styled.div<IRemoveIconWrapper>`
       height: 60px;
       margin: -32px 0 0 -32px;
     `};
+`;
+
+export const ConstructorDialog = styled(Dialog).attrs({
+  classes: {
+    paper: 'paper',
+  },
+})`
+  .paper {
+    margin: 5%;
+    padding: 20px 10px 30px 10px;
+  }
 `;

@@ -171,6 +171,7 @@ export function Macarons() {
             dispatch={dispatch}
             expanded={expanded}
             setExpanded={setExpanded}
+            stickyLimit={1365}
           />
         </FlexRow>
       )}
@@ -197,6 +198,7 @@ export function Macarons() {
               dispatch={dispatch}
               expanded={expanded}
               setExpanded={setExpanded}
+              stickyLimit={740}
             />
           </FlexColumn>
         )}

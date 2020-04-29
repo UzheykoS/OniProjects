@@ -134,6 +134,11 @@ export function Zephyr() {
             imageHeight={isMobile ? 160 : 185}
             product={zephyrMix[0]}
             onClick={handleZephyrMixClick}
+            pictureStyle={{
+              height: '320px',
+              justifyContent: 'center',
+              flexDirection: 'column',
+            }}
           />
         </FlexColumn>
         <FlexColumn bordered>
@@ -153,6 +158,7 @@ export function Zephyr() {
             dispatch={dispatch}
             expanded={expanded}
             setExpanded={setExpanded}
+            stickyLimit={1100}
           />
         </FlexRow>
       )}
@@ -167,11 +173,10 @@ export function Zephyr() {
             ВКУСЫ ЗЕФИРА
           </Typography>
         </FlexColumn>
+        <FlexColumn />
         {!isMobile && (
           <FlexColumn
             style={{
-              width: '310px',
-              marginRight: '100px',
               position: 'relative',
             }}
           >
@@ -180,6 +185,7 @@ export function Zephyr() {
               dispatch={dispatch}
               expanded={expanded}
               setExpanded={setExpanded}
+              stickyLimit={920}
             />
           </FlexColumn>
         )}
