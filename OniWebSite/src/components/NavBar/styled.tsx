@@ -57,6 +57,7 @@ export const RoutesListItem = styled.li<IRoutesListItem>`
     line-height: 2rem;
     color: #333333;
     text-decoration: none;
+    white-space: nowrap;
   }
   &:hover {
     a {

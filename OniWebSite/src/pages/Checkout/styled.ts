@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { Typography, Tab, Tabs } from '@material-ui/core';
+import { Tab, Tabs } from '@material-ui/core';
 import colors from '@constants/colors';
 import { BREAKPOINT } from '@constants';
 
@@ -37,10 +37,13 @@ export const BasketItemWrapper = styled.div`
   border: 1px solid ${colors.primary.grey};
 `;
 
-export const BasketItemWrapperCell = styled.div`
+interface ICellProps {
+  width: number;
+}
+
+export const BasketItemWrapperCell = styled.div<ICellProps>`
   display: flex;
   flex-direction: row;
-  width: 25%;
   align-self: center;
   & img {
     width: 180px;
@@ -52,17 +55,12 @@ export const BasketItemWrapperCell = styled.div`
     justify-content: space-between;
     align-items: center;
   }
-`;
 
-export const ContinueShopping = styled(Typography)`
-  height: auto;
-  cursor: pointer;
-  text-align: center;
-  align-self: center;
-
-  &:hover {
-    text-decoration: underline;
-  }
+  ${({ width }) =>
+    width &&
+    `
+    width: ${width}%;
+    `};
 `;
 
 export const CheckoutHeaderWrapper = styled.div`
@@ -70,6 +68,7 @@ export const CheckoutHeaderWrapper = styled.div`
   flex-direction: row;
   justify-content: left;
   align-items: center;
+  position: relative;
 `;
 
 export const BasketTable = styled.div`
@@ -87,21 +86,36 @@ export const BasketHeader = styled.div`
   padding-bottom: 10px;
 `;
 
-export const BasketHeaderCell = styled.div`
-  width: 25%;
+export const BasketHeaderCell = styled.div<ICellProps>`
+  ${({ width }) =>
+    width &&
+    `
+    width: ${width}%;
+    `};
   &:first-child {
     padding-left: 25px;
   }
 `;
 
 export const TextLink = styled.div`
-  font-size: '13px';
+  font-size: 13px;
   opacity: 0.4;
+  font-family: 'Roboto';
+  cursor: pointer;
+
+  &:hover {
+    text-decoration: underline;
+  }
+`;
+
+export const HelperText = styled.div`
+  font-size: 13px;
+  margin-right: 5px;
   font-family: 'Roboto';
 `;
 
 export const TotalMobile = styled.div`
-  font-size: '16px';
+  font-size: 16px;
   font-family: 'Roboto';
   margin-right: 5px;
 `;
@@ -121,16 +135,39 @@ export const TabStyled = styled(Tab).attrs({
 
     @media (max-width: ${BREAKPOINT}) {
       min-width: auto;
-      margin: 5px 0;
+      width: 100%;
+      margin: 0px;
+      padding: 0px;
     }
   }
 `;
 
-export const TabsStyled = styled(Tabs)`
+export const TabsStyled = styled(Tabs).attrs({
+  classes: {
+    flexContainer: 'flexContainer',
+  },
+})`
   width: auto;
+
+  .flexContainer {
+    @media (max-width: ${BREAKPOINT}) {
+      flex-direction: column;
+      align-items: center;
+    }
+  }
 `;
 
 export const CheckoutStepperContainer = styled.div`
   display: flex;
   flex-direction: column;
+  @media (max-width: ${BREAKPOINT}) {
+    width: 100%;
+  }
+`;
+
+export const BackArrowWrapper = styled.div`
+  @media (min-width: ${BREAKPOINT}) {
+    position: absolute;
+    left: -70px;
+  }
 `;

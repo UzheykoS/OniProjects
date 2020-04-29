@@ -6,6 +6,8 @@ import {
   TabStyled,
   CheckoutStepperContainer,
   TextLink,
+  HelperText,
+  BackArrowWrapper,
 } from '../styled';
 import { Typography, IconButton, useMediaQuery } from '@material-ui/core';
 import { Delivery, DeliveryType } from './Delivery';
@@ -16,6 +18,7 @@ import { IBasketItem, useBasket } from '@hooks/useBasket';
 import { submitOrder } from '@src/api/oni-web';
 import { useSnackbar } from '@hooks/useSnackbar';
 import { BREAKPOINT } from '@constants';
+import { Flex } from '@styles/styled';
 
 enum CheckoutTabs {
   Delivery = 'Способ доставки',
@@ -88,24 +91,45 @@ export function CheckoutStepper({ returnToBasket }: ICheckoutStepperProps) {
     setActiveTab(tab);
   };
 
+  const totalPrice = items.reduce((accumulator, currentValue) => {
+    accumulator += Number(currentValue.product.price) * currentValue.quantity;
+    return accumulator;
+  }, 0);
+
   return (
     <CheckoutStepperContainer>
       <CheckoutHeaderWrapper>
-        <IconButton onClick={returnToBasket}>
-          <ChevronLeftIcon style={{ margin: 16 }} />
-        </IconButton>
+        <BackArrowWrapper>
+          <IconButton onClick={returnToBasket} size='small'>
+            <ChevronLeftIcon style={{ margin: isMobile ? 0 : 4 }} />
+          </IconButton>
+        </BackArrowWrapper>
         {isMobile ? (
           <TextLink onClick={returnToBasket}>Назад</TextLink>
         ) : (
-          <Typography variant='h2'>Оформление заказа</Typography>
+          <Typography style={{ fontSize: 46 }} variant='h2'>
+            Оформление заказа
+          </Typography>
         )}
       </CheckoutHeaderWrapper>
+      {isMobile && <Typography variant='h2'>Оформление заказа</Typography>}
+      {isMobile && (
+        <Flex alignBaseline>
+          <HelperText>Сумма вашего заказа: </HelperText>
+          <Typography variant='h2' style={{ fontSize: 16 }}>
+            {totalPrice} грн.
+          </Typography>
+        </Flex>
+      )}
 
       <TabsStyled
         value={activeTab}
         indicatorColor='primary'
         textColor='primary'
         onChange={handleTabChange}
+        TabIndicatorProps={{
+          style: { display: isMobile ? 'none' : 'block' },
+        }}
       >
         <TabStyled
           label={CheckoutTabs.Delivery}

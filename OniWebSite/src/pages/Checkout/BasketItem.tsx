@@ -23,24 +23,26 @@ export function BasketItem({
   const { supports } = useSupportWebp();
   return (
     <BasketItemWrapper>
-      <BasketItemWrapperCell>
+      <BasketItemWrapperCell width={30}>
         <img
           src={
             supports ? `${product.imageUrl}.webp` : `${product.imageUrl}.jpg`
           }
         />
       </BasketItemWrapperCell>
-      <BasketItemWrapperCell>
-        <Typography variant='body1'>{product.id}</Typography>
+      <BasketItemWrapperCell width={25}>
+        <Typography variant='body1'>
+          <b>{product.type}</b> {product.id}
+        </Typography>
       </BasketItemWrapperCell>
-      <BasketItemWrapperCell>
+      <BasketItemWrapperCell width={25}>
         <QuantityEditor
           quantity={quantity}
           handleIncreaseQuantity={() => handleIncreaseQuantity(item)}
           handleDecreaseQuantity={() => handleDecreaseQuantity(item)}
         />
       </BasketItemWrapperCell>
-      <BasketItemWrapperCell>
+      <BasketItemWrapperCell width={20}>
         <Typography variant='body1'>
           {`${Number(product.price) * quantity} грн.`}
         </Typography>

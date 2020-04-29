@@ -17,7 +17,11 @@ interface IExpansionPanelStyled extends ExpansionPanelProps {
 
 export const ExpansionPanelStyled = styled(
   ({ isSticky, ...rest }: IExpansionPanelStyled) => <ExpansionPanel {...rest} />
-)<IExpansionPanelStyled>`
+).attrs({
+  classes: {
+    expanded: 'expanded',
+  },
+})<IExpansionPanelStyled>`
   display: flex;
   flex-direction: column;
   box-shadow: none;
@@ -28,6 +32,10 @@ export const ExpansionPanelStyled = styled(
     position: absolute;
     top: 45px;
     width: 310px;
+    margin-left: 20px;
+  }
+
+  &.expanded {
     margin-left: 20px;
   }
 

@@ -63,6 +63,7 @@ interface IFlex {
   justifyEvenly?: boolean;
   alignCenter?: boolean;
   alignStart?: boolean;
+  alignBaseline?: boolean;
   flexStart?: boolean;
   flexEnd?: boolean;
   flex?: string;
@@ -107,6 +108,11 @@ export const Flex = styled.div<IFlex>`
     alignStart &&
     css`
       align-items: flex-start;
+    `}
+  ${({ alignBaseline }) =>
+    alignBaseline &&
+    css`
+      align-items: baseline;
     `}
   ${({ flexStart }) =>
     flexStart &&

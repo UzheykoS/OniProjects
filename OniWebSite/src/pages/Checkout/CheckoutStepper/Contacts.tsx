@@ -112,7 +112,6 @@ export function Contacts({ handleContinue }: IProps) {
               }}
               error={!!formErrors.name}
               helperText={formErrors.name}
-              fullWidth
             />
             <TextFieldStyled
               label='Телефон'
@@ -135,7 +134,6 @@ export function Contacts({ handleContinue }: IProps) {
               }}
               error={!!formErrors.phone}
               helperText={formErrors.phone}
-              fullWidth
             />
             <TextFieldStyled
               label='Комментарий'
@@ -146,7 +144,6 @@ export function Contacts({ handleContinue }: IProps) {
               variant='outlined'
               multiline
               rowsMax='4'
-              fullWidth
             />
           </Flex>
 
@@ -157,19 +154,17 @@ export function Contacts({ handleContinue }: IProps) {
             <Typography variant={'h3'}>АДРЕС ДОСТАВКИ</Typography>
             <FormRowWrapper>
               <DatePickerWrapper
-                variant='inline'
+                variant={isMobile ? 'dialog' : 'inline'}
                 emptyLabel='Дата'
-                fullWidth
                 value={formData.date}
-                style={{ margin: '20px 5px 15px 5px' }}
+                style={{ margin: '20px 5px 15px 5px', width: '100%' }}
                 handleDateChange={handleDateChange}
               />
               <TimeInput
                 emptyLabel='Время доставки'
                 selectedDate={formData.time}
-                fullWidth
-                variant='inline'
-                style={{ margin: '20px 5px 15px 5px' }}
+                variant={isMobile ? 'dialog' : 'inline'}
+                style={{ margin: '20px 5px 15px 5px', width: '100%' }}
                 handleDateChange={handleTimeChange}
               />
             </FormRowWrapper>
@@ -180,7 +175,6 @@ export function Contacts({ handleContinue }: IProps) {
                 handleChange('address', e.target.value)
               }
               variant='outlined'
-              fullWidth
             />
             <Typography variant={'body2'} style={{ marginLeft: 5 }}>
               Если вы выбрали «Самовывоз», адрес указывать не обязательно.

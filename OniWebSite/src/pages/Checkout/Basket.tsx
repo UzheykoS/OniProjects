@@ -1,13 +1,13 @@
 import React from 'react';
 import {
   BasketWrapper,
-  ContinueShopping,
   CheckoutHeaderWrapper,
   BasketTable,
   BasketHeader,
   BasketHeaderCell,
   TextLink,
   TotalMobile,
+  BackArrowWrapper,
 } from './styled';
 import { Typography, IconButton, useMediaQuery } from '@material-ui/core';
 import { BasketItem } from './BasketItem';
@@ -48,7 +48,7 @@ export function Basket({
   const handleCheckoutClick = () => {
     confirmCheckout();
   };
-  let totalPrice = items.reduce((accumulator, currentValue) => {
+  const totalPrice = items.reduce((accumulator, currentValue) => {
     accumulator += Number(currentValue.product.price) * currentValue.quantity;
     return accumulator;
   }, 0);
@@ -56,33 +56,45 @@ export function Basket({
   return (
     <BasketWrapper>
       <CheckoutHeaderWrapper>
-        <IconButton onClick={handleBackClick}>
-          <ChevronLeftIcon style={{ margin: isMobile ? 0 : 16 }} />
-        </IconButton>
+        <BackArrowWrapper>
+          <IconButton onClick={handleBackClick} size='small'>
+            <ChevronLeftIcon style={{ margin: isMobile ? 0 : 4 }} />
+          </IconButton>
+        </BackArrowWrapper>
         {isMobile ? (
           <TextLink onClick={handleBackClick}>Назад</TextLink>
         ) : (
-          <Typography variant='h2'>Корзина</Typography>
+          <Typography style={{ fontSize: 46 }} variant='h2'>
+            Корзина
+          </Typography>
         )}
       </CheckoutHeaderWrapper>
       {isMobile && <Typography variant='h2'>Корзина</Typography>}
-      <Typography variant='body1'>
+      <Typography style={{ fontSize: 13 }} variant='body2'>
         Минимальная стоимость заказа для доставки курьером составляет 200 грн.
       </Typography>
       <BasketTable>
         {!isMobile && (
           <BasketHeader>
-            <BasketHeaderCell>
-              <Typography variant={'body2'}>Фото</Typography>
+            <BasketHeaderCell width={30}>
+              <Typography style={{ fontSize: 13 }} variant={'body2'}>
+                Фото
+              </Typography>
             </BasketHeaderCell>
-            <BasketHeaderCell>
-              <Typography variant={'body2'}>Название</Typography>
+            <BasketHeaderCell width={25}>
+              <Typography style={{ fontSize: 13 }} variant={'body2'}>
+                Название
+              </Typography>
             </BasketHeaderCell>
-            <BasketHeaderCell>
-              <Typography variant={'body2'}>Количество</Typography>
+            <BasketHeaderCell width={25}>
+              <Typography style={{ fontSize: 13 }} variant={'body2'}>
+                Количество
+              </Typography>
             </BasketHeaderCell>
-            <BasketHeaderCell>
-              <Typography variant={'body2'}>Цена</Typography>
+            <BasketHeaderCell width={20}>
+              <Typography style={{ fontSize: 13 }} variant={'body2'}>
+                Цена
+              </Typography>
             </BasketHeaderCell>
           </BasketHeader>
         )}
@@ -109,10 +121,7 @@ export function Basket({
 
       {isMobile ? (
         <Flex direction={'column'}>
-          <Flex
-            justifyBetween
-            style={{ alignItems: 'baseline', marginBottom: 25 }}
-          >
+          <Flex justifyBetween alignBaseline style={{ marginBottom: 25 }}>
             <Flex style={{ alignItems: 'baseline' }}>
               <TotalMobile>Итого:</TotalMobile>
               <Typography
@@ -124,39 +133,29 @@ export function Basket({
               Продолжить покупки
             </TextLink>
           </Flex>
-          <Flex>
-            <Button
-              rounded
-              onClick={handleCheckoutClick}
-              style={{ marginLeft: '50px' }}
-            >
+          <Flex justifyCenter>
+            <Button rounded onClick={handleCheckoutClick}>
               ОФОРМИТЬ
             </Button>
           </Flex>
         </Flex>
       ) : (
         <Flex justifyBetween>
-          <ContinueShopping
-            variant='body2'
-            onClick={handleContinueShoppingClick}
-          >
-            ПРОДОЛЖИТЬ ПОКУПКИ
-          </ContinueShopping>
-          <Flex justifyCenter>
-            <div>
-              <Typography variant='body1'>Итого:</Typography>
-              <Typography variant='h3' style={{ marginLeft: '30px' }}>
-                {`${totalPrice} грн`}
-              </Typography>
-            </div>
-            <Button
-              rounded
-              onClick={handleCheckoutClick}
-              style={{ marginLeft: '50px' }}
-            >
-              ОФОРМИТЬ
-            </Button>
+          <Flex direction={'column'} alignBaseline>
+            <Flex style={{ alignItems: 'baseline' }}>
+              <TotalMobile style={{ marginBottom: 15 }}>Итого:</TotalMobile>
+              <Typography
+                variant='h2'
+                style={{ fontSize: 21 }}
+              >{`${totalPrice} грн`}</Typography>
+            </Flex>
+            <TextLink onClick={handleContinueShoppingClick}>
+              Продолжить покупки
+            </TextLink>
           </Flex>
+          <Button rounded onClick={handleCheckoutClick}>
+            ОФОРМИТЬ
+          </Button>
         </Flex>
       )}
     </BasketWrapper>
