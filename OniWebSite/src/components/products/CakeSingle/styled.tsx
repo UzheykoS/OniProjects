@@ -22,6 +22,24 @@ export const ImagesSection = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+  @media (max-width: ${BREAKPOINT}) {
+    padding-bottom: 1.5rem;
+  }
+
+  .slick-dots {
+    height: auto;
+    margin: 0px;
+    li {
+      height: 3px;
+      width: 80px;
+      background-color: ${colors.primary.grey};
+      &.slick-active {
+        div {
+          background-color: ${colors.primary.gold};
+        }
+      }
+    }
+  }
 `;
 
 export const InfoSection = styled.div`
@@ -55,6 +73,18 @@ export const ImageWrapper = styled(({ visible, ...rest }: IImageWrapper) => (
     `
       display: flex;
     `};
+`;
+
+export const ImageWrapperMobile = styled.div`
+  img {
+    width: 430px;
+    height: auto;
+    object-fit: contain;
+
+    @media (max-width: ${BREAKPOINT}) {
+      max-width: 250px;
+    }
+  }
 `;
 
 export const Title = styled.div`
@@ -184,13 +214,11 @@ export const SliderPagingButton = styled.li<ISliderPagingButton>`
    `}
 `;
 
-export const CarouselWrapper = styled.div`
-  display: flex;
-  flex-direction: column;
-`;
-
-export const ImagesWrapper = styled.div`
-  display: flex;
+export const SliderPagingButtonMobile = styled.div`
+  height: 3px;
+  width: 80px;
+  cursor: pointer;
+  background-color: ${colors.primary.grey};
 `;
 
 export const IconButtonStyled = styled(IconButton).attrs({

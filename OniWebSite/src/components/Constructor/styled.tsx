@@ -90,10 +90,19 @@ export const ExpansionPanelDetailsStyled = styled(ExpansionPanelDetails)`
   padding: 0px;
 `;
 
-export const ConstructorWrapper = styled.div`
+export const ConstructorWrapper = styled.div<
+  Pick<IConstructorGridItemWrapper, 'size'>
+>`
   display: flex;
   flex-direction: column;
   width: 100%;
+
+  ${({ size }) =>
+    size === 'small'
+      ? `width: 310px;`
+      : size === 'medium'
+      ? `width: 312px;`
+      : `width: 462px;`};
 `;
 
 export const ModeSelectWrapper = styled.div`

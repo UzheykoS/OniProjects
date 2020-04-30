@@ -23,11 +23,11 @@ export function MacaronSingle({ product, height, onClick }: IProps) {
   const isMobile = useMediaQuery(`(max-width: ${BREAKPOINT})`);
 
   const onMouseOver = () => {
-    setMouseOver(true);
+    !isMobile && setMouseOver(true);
   };
 
   const onMouseOut = () => {
-    setMouseOver(false);
+    !isMobile && setMouseOver(false);
   };
 
   return (

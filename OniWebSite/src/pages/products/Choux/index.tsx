@@ -31,7 +31,7 @@ export function Choux() {
   const isMobile = useMediaQuery(`(max-width: ${BREAKPOINT})`);
 
   const handleChouxClick = (item: IProduct) => {
-    if (!expanded) {
+    if (!expanded && !isMobile) {
       setExpanded(true);
     }
     try {

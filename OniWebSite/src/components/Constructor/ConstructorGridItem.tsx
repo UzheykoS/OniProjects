@@ -8,6 +8,8 @@ import {
 import colors from '@constants/colors';
 import RemoveIcon from '@material-ui/icons/Remove';
 import { IProduct } from '@constants/products';
+import { useMediaQuery } from '@material-ui/core';
+import { BREAKPOINT } from '@constants';
 
 interface IConstructorGridItemProps {
   item: IProduct;
@@ -23,13 +25,14 @@ export function ConstructorGridItem({
   index,
 }: IConstructorGridItemProps) {
   const [mouseOver, setMouseOver] = useState(false);
+  const isMobile = useMediaQuery(`(max-width: ${BREAKPOINT})`);
 
   const onMouseOver = () => {
-    setMouseOver(true);
+    !isMobile && setMouseOver(true);
   };
 
   const onMouseOut = () => {
-    setMouseOver(false);
+    !isMobile && setMouseOver(false);
   };
 
   return (
@@ -48,8 +51,8 @@ export function ConstructorGridItem({
     >
       {item && (
         <RemoveIconWrapper
-          visible={mouseOver}
-          small={mode === ConstructoreMode.MacaronLarge}
+          visible={mouseOver || isMobile}
+          small={mode === ConstructoreMode.MacaronLarge || isMobile}
         >
           <RemoveIcon
             style={{

@@ -16,11 +16,11 @@ import {
   PeopleWrapper,
   IconTextWrapper,
   SliderPagingButton,
-  CarouselWrapper,
-  ImagesWrapper,
   SliderPagingWrapper,
   CarouseNavBar,
   IconButtonStyled,
+  ImageWrapperMobile,
+  SliderPagingButtonMobile,
 } from './styled';
 import { ICakeInfo } from '@constants/products';
 import { Typography, useMediaQuery } from '@material-ui/core';
@@ -36,6 +36,9 @@ import KeyboardArrowLeft from '@material-ui/icons/KeyboardArrowLeft';
 import KeyboardArrowRight from '@material-ui/icons/KeyboardArrowRight';
 import { BREAKPOINT } from '@constants';
 import QuantityEditor from '@common/QuantityEditor';
+import { Flex } from '@styles/styled';
+import { ImageWithFallback } from '@common/ImageWithFallback';
+import Slider from 'react-slick';
 
 export interface CakeSubmitInfo {
   cake: ICakeInfo;
@@ -101,50 +104,80 @@ export function CakeSingle({ cakePair, onClick }: IProps) {
     } грн `;
   };
 
+  const imageSection = (
+    <ImagesSection>
+      <IconButtonStyled
+        onClick={() => setActiveIndex(0)}
+        disabled={activeIndex === 0}
+      >
+        <KeyboardArrowLeft />
+      </IconButtonStyled>
+      <Flex direction='column' style={{ width: '100%' }}>
+        <Flex>
+          <ImageWrapper src={imageUrl} visible={activeIndex === 0} />
+          <ImageWrapper src={imageCutUrl} visible={activeIndex === 1} />
+        </Flex>
+        <CarouseNavBar>
+          <SliderPagingWrapper>
+            <SliderPagingButton
+              onClick={() => setActiveIndex(0)}
+              active={activeIndex === 0}
+            />
+            <SliderPagingButton
+              onClick={() => setActiveIndex(1)}
+              active={activeIndex === 1}
+            />
+          </SliderPagingWrapper>
+          <IconButton
+            disableFocusRipple
+            disableRipple
+            size='small'
+            onClick={() =>
+              setPreviewImageUrl(activeIndex === 0 ? imageUrl : imageCutUrl!)
+            }
+          >
+            <ExtendIcon />
+          </IconButton>
+        </CarouseNavBar>
+      </Flex>
+      <IconButtonStyled
+        onClick={() => setActiveIndex(1)}
+        disabled={activeIndex === 1}
+      >
+        <KeyboardArrowRight />
+      </IconButtonStyled>
+    </ImagesSection>
+  );
+
+  const imageSectionMobile = (
+    <ImagesSection>
+      <Flex direction='column' style={{ width: '100%' }}>
+        <Slider
+          {...{
+            dots: true,
+            infinite: true,
+            speed: 500,
+            slidesToShow: 1,
+            slidesToScroll: 1,
+            customPaging: () => {
+              return <SliderPagingButtonMobile />;
+            },
+          }}
+        >
+          <ImageWrapperMobile>
+            <ImageWithFallback src={imageUrl} />
+          </ImageWrapperMobile>
+          <ImageWrapperMobile>
+            <ImageWithFallback src={imageCutUrl} />
+          </ImageWrapperMobile>
+        </Slider>
+      </Flex>
+    </ImagesSection>
+  );
+
   return (
     <CakeSingleWrapper>
-      <ImagesSection>
-        <IconButtonStyled
-          onClick={() => setActiveIndex(0)}
-          disabled={activeIndex === 0}
-        >
-          <KeyboardArrowLeft />
-        </IconButtonStyled>
-        <CarouselWrapper>
-          <ImagesWrapper>
-            <ImageWrapper src={imageUrl} visible={activeIndex === 0} />
-            <ImageWrapper src={imageCutUrl} visible={activeIndex === 1} />
-          </ImagesWrapper>
-          <CarouseNavBar>
-            <SliderPagingWrapper>
-              <SliderPagingButton
-                onClick={() => setActiveIndex(0)}
-                active={activeIndex === 0}
-              />
-              <SliderPagingButton
-                onClick={() => setActiveIndex(1)}
-                active={activeIndex === 1}
-              />
-            </SliderPagingWrapper>
-            <IconButton
-              disableFocusRipple
-              disableRipple
-              size='small'
-              onClick={() =>
-                setPreviewImageUrl(activeIndex === 0 ? imageUrl : imageCutUrl!)
-              }
-            >
-              <ExtendIcon />
-            </IconButton>
-          </CarouseNavBar>
-        </CarouselWrapper>
-        <IconButtonStyled
-          onClick={() => setActiveIndex(1)}
-          disabled={activeIndex === 1}
-        >
-          <KeyboardArrowRight />
-        </IconButtonStyled>
-      </ImagesSection>
+      {isMobile ? imageSectionMobile : imageSection}
       <InfoSection>
         <Title>{id}</Title>
         <DescriptionLarge>{fullDescription}</DescriptionLarge>

@@ -162,7 +162,15 @@ export function Constructor({ state, dispatch }: IConstructorProps) {
 
   return (
     <>
-      <ConstructorWrapper>
+      <ConstructorWrapper
+        size={
+          state.mode === ConstructoreMode.MacaronLarge
+            ? 'small'
+            : state.mode === ConstructoreMode.ChouxSmall
+            ? 'large'
+            : 'medium'
+        }
+      >
         <ModeSelectWrapper>
           <div>
             {state.availableModes.map(mode => (

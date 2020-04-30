@@ -64,7 +64,8 @@ export function ConstructorContainer({
               fontSize: '13px',
             }}
           >
-            СОБРАТЬ СВОЙ НАБОР
+            {'СОБРАТЬ СВОЙ НАБОР' +
+              (isMobile ? ` (${rest.state.items.length})` : '')}
           </Typography>
         </ExpansionPanelSummaryStyled>
 

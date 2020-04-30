@@ -31,7 +31,7 @@ export function Zephyr() {
   const isMobile = useMediaQuery(`(max-width: ${BREAKPOINT})`);
 
   const handleZephyrClick = (item: IProduct) => {
-    if (!expanded) {
+    if (!expanded && !isMobile) {
       setExpanded(true);
     }
     try {

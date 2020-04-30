@@ -35,7 +35,7 @@ export function Macarons() {
   const isMobile = useMediaQuery(`(max-width: ${BREAKPOINT})`);
 
   const handleMacaronClick = (item: IProduct) => {
-    if (!expanded) {
+    if (!expanded && !isMobile) {
       setExpanded(true);
     }
     try {
