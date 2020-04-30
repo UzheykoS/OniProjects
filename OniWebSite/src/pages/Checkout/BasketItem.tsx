@@ -2,7 +2,7 @@ import React from 'react';
 import { BasketItemWrapper, BasketItemWrapperCell } from './styled';
 import { IBasketItem } from '@hooks/useBasket';
 import { Typography, IconButton } from '@material-ui/core';
-import DeleteIcon from '@material-ui/icons/Delete';
+import DeleteIcon from '@material-ui/icons/DeleteOutlined';
 import { useSupportWebp } from '@common/ImageWithFallback/useSupportWebp';
 import QuantityEditor from '@common/QuantityEditor';
 

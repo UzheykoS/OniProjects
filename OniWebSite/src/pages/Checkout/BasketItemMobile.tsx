@@ -1,7 +1,7 @@
 import React from 'react';
 import { IBasketItem } from '@hooks/useBasket';
 import { Typography, IconButton } from '@material-ui/core';
-import DeleteIcon from '@material-ui/icons/Delete';
+import DeleteIcon from '@material-ui/icons/DeleteOutlined';
 import { useSupportWebp } from '@common/ImageWithFallback/useSupportWebp';
 import { FlexColumn, Flex } from '@styles/styled';
 import QuantityEditor from '@common/QuantityEditor';

@@ -52,6 +52,7 @@ export function ConstructorContainer({
       <ExpansionPanelStyled
         isSticky={isSticky}
         expanded={expanded}
+        style={{ opacity: expanded ? 0 : 1 }}
         onChange={() => setExpanded(!expanded)}
       >
         <ExpansionPanelSummaryStyled expandIcon={<ExpandMoreIcon />}>
