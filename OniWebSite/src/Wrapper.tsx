@@ -22,12 +22,18 @@ import { useSnackbar } from '@hooks/useSnackbar';
 import { Cheesecakes } from '@pages/products/Cheesecakes';
 import { Contacts } from '@pages/Contacts';
 
+const ScrollToTop = () => {
+  window.scrollTo(0, 0);
+  return null;
+};
+
 export function Wrapper() {
   const { loading } = useLoading();
   const { message, hideSnackbar } = useSnackbar();
   return (
     <AppStyled>
       <Router>
+        <Route component={ScrollToTop} />
         <NavBar />
         <ProductsNavBar />
         <Switch>

@@ -13,10 +13,13 @@ export const DeliveryTopSection = styled.div`
   margin: 50px 0px;
 `;
 
-export const DeliveryBottomSection = styled.div`
+export const MapSection = styled.div`
   display: flex;
   justify-content: center;
-  min-height: 500px;
+  height: 300px;
+  width: 700px;
+  position: absolute;
+  top: 250px;
 `;
 
 export const DeliveryLeftSection = styled.div`
@@ -49,17 +52,12 @@ export const DeliverySection = styled.div`
   font-size: 13px;
 `;
 
-export const Title = styled.div`
-  font-weight: 700;
-  padding: 40px 0px 25px 0px;
-  font-size: 1rem;
-`;
-
 export const TextWrapper = styled.div`
   font-weight: 400;
   line-height: 30px;
   font-size: 1rem;
   display: flex;
+  margin: 1rem 0 0 0;
 `;
 
 export const IconWrapper = styled.div`
@@ -67,4 +65,10 @@ export const IconWrapper = styled.div`
   width: 25px;
   justify-content: center;
   align-items: center;
+`;
+
+export const CustomDivider = styled.div`
+  width: 250px;
+  height: 3px;
+  background-color: #f6f8f7;
 `;
