@@ -7,9 +7,11 @@ import {
 import { useLoading } from '@hooks/useLoading';
 import { SEPARATORS } from '@utils/Helper';
 import { Typography } from '@material-ui/core';
+import { IMainPageSectionProps } from '.';
+import { Flex } from '@styles/styled';
 const Instafeed = require('instafeed.js');
 
-export function InstagramSection() {
+export function InstagramSection({ isMobile }: IMainPageSectionProps) {
   const { showLoading, closeLoading } = useLoading();
   useEffect(() => {
     showLoading();
@@ -32,25 +34,39 @@ export function InstagramSection() {
   }, []);
 
   return (
-    <InstagramContainer>
+    <InstagramContainer isMobile={isMobile}>
       <Typography variant='h3' gutterBottom>
         ИЩИ НАС В
       </Typography>
-      <Typography variant='h1' gutterBottom>
+      <Typography
+        variant='h1'
+        gutterBottom
+        style={isMobile ? { fontSize: 26, lineHeight: '38px' } : {}}
+      >
         Instagram
       </Typography>
 
       <InstagramDescriptionWrapper>
         <Typography variant='body1' gutterBottom>
-          Мы работаем в своём стиле и уверенны, что люди, которые {'\n'}
-          выбирают наш продукт, знают толк в кондитерском {'\n'}
+          Мы работаем в своём стиле и уверенны, что люди, которые{' '}
+          {isMobile ? '' : '\n'}
+          выбирают наш продукт, знают толк в кондитерском {isMobile ? '' : '\n'}
           искусстве!
         </Typography>
-        <DescriptionLink target='_blank' href='https://www.instagram.com'>
-          {`${SEPARATORS.DASH} В INSTAGRAM`}
-        </DescriptionLink>
+        {!isMobile && (
+          <DescriptionLink target='_blank' href='https://www.instagram.com'>
+            {`${SEPARATORS.DASH} В INSTAGRAM`}
+          </DescriptionLink>
+        )}
       </InstagramDescriptionWrapper>
       <div id='instafeed' />
+      {isMobile && (
+        <Flex flexEnd>
+          <DescriptionLink target='_blank' href='https://www.instagram.com'>
+            {`${SEPARATORS.DASH} В INSTAGRAM`}
+          </DescriptionLink>
+        </Flex>
+      )}
     </InstagramContainer>
   );
 }

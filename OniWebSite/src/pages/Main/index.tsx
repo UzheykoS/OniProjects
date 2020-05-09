@@ -7,11 +7,17 @@ import { InstagramSection } from './InstagramSection';
 import { useLoading } from '@hooks/useLoading';
 import { MainContainer, MainWrapper } from './styled';
 import { useSupportWebp } from '@common/ImageWithFallback/useSupportWebp';
-// import { Grid } from '@material-ui/core';
+import { useMediaQuery } from '@material-ui/core';
+import { BREAKPOINT } from '@constants';
+
+export interface IMainPageSectionProps {
+  isMobile: boolean;
+}
 
 export const Main = () => {
   const { showLoading, closeLoading } = useLoading();
   const { supports } = useSupportWebp();
+  const isMobile = useMediaQuery(`(max-width: ${BREAKPOINT})`);
 
   const loadImages = async () => {
     await loadMainPageImage(
@@ -30,31 +36,12 @@ export const Main = () => {
 
   return (
     <MainWrapper>
-      <BannerSection />
+      <BannerSection isMobile={isMobile} />
       <MainContainer>
-        <TopSalesSection />
-        <AboutSection />
-        <InstagramSection />
+        <TopSalesSection isMobile={isMobile} />
+        <AboutSection isMobile={isMobile} />
+        <InstagramSection isMobile={isMobile} />
       </MainContainer>
-      {/* <Grid container>
-        <Grid container justify={'center'}>
-          <Grid item md={8}>
-            <TopSalesSection />
-          </Grid>
-        </Grid>
-
-        <Grid container justify={'center'}>
-          <Grid item md={8}>
-            <AboutSection />
-          </Grid>
-        </Grid>
-
-        <Grid container justify={'center'}>
-          <Grid item md={8}>
-            <InstagramSection />
-          </Grid>
-        </Grid>
-      </Grid> */}
     </MainWrapper>
   );
 };

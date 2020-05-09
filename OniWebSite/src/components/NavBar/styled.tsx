@@ -16,15 +16,26 @@ export const NavBarWrapper = styled.div`
   border-bottom: 1px solid #cccccc;
 `;
 
-export const NavBarWrapperMobile = styled.div`
+interface INavBarWrapperMobile {
+  transparent?: boolean;
+}
+
+export const NavBarWrapperMobile = styled.div<INavBarWrapperMobile>`
   display: flex;
-  justify-content: space-around;
+  justify-content: space-between;
   width: 100%;
-  border-bottom: 1px solid #cccccc;
-  position: fixed;
   top: 0;
-  background: ${colors.primary.white};
   z-index: 2;
+  ${({ transparent }) =>
+    transparent === false &&
+    `
+    background: ${colors.primary.white};
+    border-bottom: 1px solid #cccccc;
+    `}
+  ${({ transparent }) =>
+    `
+    position: ${transparent ? 'absolute;' : 'fixed;'}
+    `}
 `;
 
 export const RoutesList = styled.ul`
@@ -90,10 +101,14 @@ export const LogoLink = styled(RoutesListItem)`
 
 interface ILogo {
   whiteMode?: boolean;
+  height?: number;
 }
 
 export const Logo = styled.img<ILogo>`
-  height: 67px;
+  ${({ height }) =>
+    `
+    height: ${height || 67}px;
+    `}
   ${({ whiteMode }) =>
     whiteMode &&
     `

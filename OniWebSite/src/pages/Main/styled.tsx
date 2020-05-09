@@ -6,6 +6,7 @@ import React from 'react';
 export const MainContainer = styled.div`
   display: flex;
   max-width: 1000px;
+  width: 100%;
   flex-direction: column;
   justify-content: center;
 `;
@@ -26,6 +27,14 @@ export const BannerTextContent = styled.div`
   z-index: 10;
 `;
 
+export const BannerTextContentMobile = styled.div`
+  display: flex;
+  flex-direction: column;
+  margin: 6rem 0 3rem 2rem;
+  justify-content: center;
+  z-index: 10;
+`;
+
 export const InfoSection = styled.div`
   display: flex;
   flex-direction: column;
@@ -33,10 +42,11 @@ export const InfoSection = styled.div`
   justify-content: center;
 `;
 
-export const AboutContentSection = styled.div`
+export const InfoSectionMobile = styled.div`
   display: flex;
-  flex-direction: row;
-  justify-content: space-between;
+  flex-direction: column;
+  margin: 2rem;
+  justify-content: center;
 `;
 
 export const AboutTextSection = styled.div`
@@ -47,12 +57,27 @@ export const AboutTextSection = styled.div`
   flex-basis: 30rem;
 `;
 
+export const AboutTextSectionMobile = styled.div`
+  padding-top: 2rem;
+  display: flex;
+  flex-direction: column;
+`;
+
 export const AboutImageSection = styled.div`
   display: flex;
   padding-top: 3.5rem;
   img {
     width: 500px;
     height: auto;
+  }
+`;
+
+export const AboutImageSectionMobile = styled.div`
+  display: flex;
+  img {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
   }
 `;
 
@@ -65,23 +90,59 @@ export const ImagesContainer = styled.div`
   justify-content: center;
 `;
 
-export const BackgroundImage = styled.img`
-  height: auto;
+export const ImagesContainerMobile = styled.div`
   width: 100%;
-  clip-path: url('#banner-wrapper_svg__banner-shape');
-  top: 0;
-  left: 0;
-  position: absolute;
-  z-index: 0;
+  height: 100vh;
+  object-fit: cover;
+  display: flex;
+  justify-content: center;
+  overflow: hidden;
 `;
 
-export const InstagramContainer = styled.div`
+interface IBackgroundImage {
+  isMobile?: boolean;
+}
+
+export const BackgroundImage = styled.img<IBackgroundImage>`
+  clip-path: url('#banner-wrapper_svg__banner-shape');
+  position: absolute;
+  z-index: 0;
+  ${({ isMobile }) =>
+    `
+      width: ${isMobile ? 'auto' : '100%'};
+      height: ${isMobile ? 'inherit' : 'auto'};
+      ${
+        isMobile
+          ? `
+          object-fit: cover;
+          max-width: 100%;
+          `
+          : `
+        top: 0;
+        left: 0;
+        `
+      }
+   `};
+`;
+
+export const InstagramContainer = styled.div<IBackgroundImage>`
+  ${({ isMobile }) =>
+    isMobile &&
+    `
+    padding: 2rem 2rem 3rem 2rem;
+    background-color: ${colors.primary.grey};
+   `};
+
   #instafeed {
     width: 100%;
     margin: auto;
     display: flex;
     flex-wrap: wrap;
-    padding: 50px 0;
+    ${({ isMobile }) =>
+      `
+      padding: ${isMobile ? '20px 0;' : '50px 0;'}
+   `};
+
     justify-content: center;
     a {
       display: flex;
@@ -89,10 +150,13 @@ export const InstagramContainer = styled.div`
       justify-content: center;
       img {
         display: block;
-        width: 300px;
-        height: 300px;
-        padding: 10px;
         object-fit: cover;
+        ${({ isMobile }) =>
+          `
+          width: ${isMobile ? '145px;' : '300px;'}
+          height: ${isMobile ? '145px;' : '300px;'}
+          padding:${isMobile ? '5px;' : '10px;'}
+        `};
       }
     }
   }
@@ -112,11 +176,6 @@ export const DescriptionLink = styled.a`
   text-decoration: none;
 `;
 
-export const TopSalesWrapper = styled.div`
-  display: flex;
-  flex-direction: column;
-`;
-
 export const TopSalesHeader = styled.div`
   display: flex;
   flex-direction: row;
@@ -130,8 +189,15 @@ export const TopSalesProducts = styled.div`
   position: relative;
 `;
 
+export const TopSalesProductsMobile = styled.div`
+  display: flex;
+  align-items: center;
+  padding: 1rem 0 2rem 0;
+`;
+
 interface IIconButtonStyled extends IconButtonProps {
   left?: boolean;
+  isMobile?: boolean;
 }
 
 export const IconButtonStyled = styled(
@@ -142,14 +208,21 @@ export const IconButtonStyled = styled(
   },
 })<IIconButtonStyled>`
   border-radius: 3px;
-  padding: 1rem;
   border: 1px solid ${colors.primary.grey};
-  position: absolute;
-  top: 10rem;
-  ${({ left }) =>
+
+  ${({ left, isMobile }) =>
+    isMobile === false &&
     `
       left: ${left ? '-6rem' : '62rem'};
     `};
+
+  ${({ isMobile }) =>
+    isMobile === false &&
+    `
+    position: absolute;
+    top: 10rem;
+    `};
+
   &.root {
     &:hover {
       color: ${colors.primary.white};

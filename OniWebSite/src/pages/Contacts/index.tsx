@@ -1,11 +1,5 @@
 import React, { useState } from 'react';
 import {
-  ContactsMainSection,
-  ContactsTopSection,
-  ContactsBottomSection,
-  ContactsLeftSection,
-  ContactsRightSection,
-  ContactsTextSection,
   ContactsSection,
   TextWrapper,
   IconWrapper,
@@ -19,6 +13,7 @@ import {
   Paper,
   TextField,
   InputBaseComponentProps,
+  useMediaQuery,
 } from '@material-ui/core';
 import { ImageWithFallback } from '@common/ImageWithFallback';
 import PhoneIcon from '@icons/phone.svg';
@@ -35,6 +30,7 @@ import { useSnackbar } from '@hooks/useSnackbar';
 import { DeliveryType } from '@pages/Checkout/CheckoutStepper/Delivery';
 import { PaymentType } from '@pages/Checkout/CheckoutStepper/Payment';
 import { Flex } from '@styles/styled';
+import { BREAKPOINT } from '@constants';
 
 interface IRequiredContactsData {
   name?: string;
@@ -54,6 +50,7 @@ export function Contacts() {
   const classes = useStyles();
   const [formErrors, setFormErrors] = useState<IRequiredContactsData>({});
   const { showSnackbar } = useSnackbar();
+  const isMobile = useMediaQuery(`(max-width: ${BREAKPOINT})`);
 
   const handleChange = (key: string, value: string) => {
     setFormData({ ...formData, [key]: value });
@@ -87,10 +84,14 @@ export function Contacts() {
   };
 
   return (
-    <ContactsMainSection>
-      <ContactsTopSection>
-        <ContactsLeftSection>
-          <ContactsTextSection>
+    <Flex direction='column' justifyCenter>
+      <Flex
+        justifyCenter
+        direction={isMobile ? 'column' : 'row'}
+        style={{ margin: isMobile ? '5rem 2rem 2rem 2rem' : '50px 0px' }}
+      >
+        <Flex direction='column' alignEnd style={{ paddingTop: '3.5rem' }}>
+          <Flex direction='column' style={{ width: isMobile ? '' : 450 }}>
             <Typography
               variant='h1'
               style={{ lineHeight: '1.2rem', marginBottom: '3rem' }}
@@ -105,7 +106,7 @@ export function Contacts() {
               АДРЕС
             </Typography>
             <ContactsSection>
-              <Flex direction='row' justifyBetween>
+              <Flex direction={isMobile ? 'column' : 'row'} justifyBetween>
                 <TextWrapper>
                   <IconWrapper>
                     <LocationIcon />
@@ -116,7 +117,7 @@ export function Contacts() {
                   Показать на карте
                 </LinkWrapper>
               </Flex>
-              <Flex direction='row' justifyBetween>
+              <Flex direction={isMobile ? 'column' : 'row'} justifyBetween>
                 <Flex direction='column'>
                   <Title>Время работы</Title>
                   <TextWrapper>Пн-Сб 9:00 - 20:00</TextWrapper>
@@ -161,30 +162,44 @@ export function Contacts() {
               витрины. Ну и, само собой, выпить вкусный кофе - к нему мы
               относимся с такой же любовью, как и к сладкому.
             </Typography>
-          </ContactsTextSection>
-        </ContactsLeftSection>
+          </Flex>
+        </Flex>
 
-        <ContactsRightSection>
+        <Flex
+          direction='column'
+          style={{
+            padding: isMobile ? '' : '3rem 0 0 5rem',
+            position: 'relative',
+            flexBasis: isMobile ? '' : '30rem',
+          }}
+        >
           <ImageWithFallback
             src='./images/pages/about/about_5'
             style={{
-              width: '710px',
-              height: '320px',
+              width: isMobile ? '100%' : '710px',
+              height: isMobile ? 'auto' : '320px',
               objectFit: 'cover',
               marginTop: '4rem',
             }}
           />
-        </ContactsRightSection>
-      </ContactsTopSection>
+        </Flex>
+      </Flex>
 
-      <ContactsBottomSection>
-        <ContactsLeftSection style={{ paddingRight: '5rem' }}>
+      <Flex
+        justifyCenter
+        style={{ backgroundColor: '#f6f8f7', paddingBottom: 80 }}
+      >
+        <Flex
+          direction='column'
+          alignEnd
+          style={{ paddingTop: '3.5rem', paddingRight: isMobile ? '' : '5rem' }}
+        >
           <Paper
             style={{
-              padding: '2rem',
-              margin: '5rem 0',
+              padding: isMobile ? '' : '2rem',
+              margin: isMobile ? '' : '5rem 0',
               textAlign: 'center',
-              width: '530px',
+              width: isMobile ? '100%' : '530px',
             }}
           >
             <Typography variant={'h3'} style={{ margin: '1rem' }}>
@@ -207,7 +222,7 @@ export function Contacts() {
               error={!!formErrors.name}
               helperText={formErrors.name}
               fullWidth
-              style={{ margin: '1rem 0' }}
+              style={{ margin: isMobile ? '1rem' : '1rem 0' }}
             />
             <TextField
               label='Телефон'
@@ -231,7 +246,7 @@ export function Contacts() {
               error={!!formErrors.phone}
               helperText={formErrors.phone}
               fullWidth
-              style={{ margin: '1rem 0' }}
+              style={{ margin: isMobile ? '1rem' : '1rem 0' }}
             />
             <TextField
               label='Ваше сообщение тут'
@@ -243,28 +258,36 @@ export function Contacts() {
               multiline
               rowsMax='4'
               fullWidth
-              style={{ margin: '1rem 0' }}
+              style={{ margin: isMobile ? '1rem' : '1rem 0' }}
             />
             <Button rounded onClick={handleMessageSubmit}>
               Отправить
             </Button>
           </Paper>
-        </ContactsLeftSection>
-
-        <ContactsRightSection>
-          <RotatedImageWrapper>
-            <ImageWithFallback
-              src='./images/pages/macarons/box-24'
-              style={{
-                width: '600px',
-                height: 'auto',
-                objectFit: 'cover',
-                marginTop: '4rem',
-              }}
-            />
-          </RotatedImageWrapper>
-        </ContactsRightSection>
-      </ContactsBottomSection>
-    </ContactsMainSection>
+        </Flex>
+        {!isMobile && (
+          <Flex
+            direction='column'
+            style={{
+              padding: '3rem 0 0 5rem',
+              position: 'relative',
+              flexBasis: isMobile ? '' : '30rem',
+            }}
+          >
+            <RotatedImageWrapper>
+              <ImageWithFallback
+                src='./images/pages/macarons/box-24'
+                style={{
+                  width: '600px',
+                  height: 'auto',
+                  objectFit: 'cover',
+                  marginTop: '4rem',
+                }}
+              />
+            </RotatedImageWrapper>
+          </Flex>
+        )}
+      </Flex>
+    </Flex>
   );
 }

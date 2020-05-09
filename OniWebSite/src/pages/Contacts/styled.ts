@@ -2,49 +2,6 @@ import styled from 'styled-components';
 import { makeStyles } from '@material-ui/core';
 import colors from '@constants/colors';
 
-export const ContactsMainSection = styled.div`
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-`;
-
-export const ContactsTopSection = styled.div`
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  margin: 50px 0px;
-`;
-
-export const ContactsBottomSection = styled.div`
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  background-color: #f6f8f7;
-  padding-bottom: 80px;
-`;
-
-export const ContactsLeftSection = styled.div`
-  display: flex;
-  flex-direction: column;
-  padding-top: 3.5rem;
-  align-items: flex-end;
-`;
-
-export const ContactsRightSection = styled.div`
-  padding-top: 3rem;
-  display: flex;
-  flex-direction: column;
-  padding-left: 5rem;
-  flex-basis: 30rem;
-  position: relative;
-`;
-
-export const ContactsTextSection = styled.div`
-  display: flex;
-  flex-direction: column;
-  width: 450px;
-`;
-
 export const ContactsSection = styled.div`
   display: flex;
   flex-direction: column;

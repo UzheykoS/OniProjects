@@ -28,6 +28,7 @@ import {
 import { BREAKPOINT } from '@constants';
 import MenuIcon from '@material-ui/icons/Menu';
 import Zoom from '@material-ui/core/Zoom';
+import colors from '@constants/colors';
 
 export function NavBar() {
   const location = useLocation();
@@ -137,7 +138,7 @@ export function NavBar() {
     (process as any).browser && /iPad|iPhone|iPod/.test(navigator.userAgent);
 
   const navBarMobile = (
-    <NavBarWrapperMobile>
+    <NavBarWrapperMobile transparent={currentPage === Pages.Main}>
       <SwipeableDrawer
         anchor={'left'}
         open={open}
@@ -178,13 +179,14 @@ export function NavBar() {
       </SwipeableDrawer>
 
       <IconButton onClick={toggleDrawer(true)}>
-        <MenuIcon style={{ fontSize: 36 }} />
+        <MenuIcon style={{ fontSize: 36, color: colors.secondary.gold }} />
       </IconButton>
 
       <LogoLink style={{ padding: '10px 0' }}>
         <Link to={routes[Pages.Main]!.path}>
           <Logo
             src='/images/icons/Oni_w_black.png'
+            height={50}
             whiteMode={currentPage === Pages.Main}
           />
         </Link>

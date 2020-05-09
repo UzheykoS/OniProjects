@@ -1,24 +1,28 @@
-import React from 'react';
+import React, { ReactElement } from 'react';
 import { withGoogleMap, GoogleMap, Marker } from 'react-google-maps';
 import {
-  DeliveryMainSection,
-  DeliveryTopSection,
-  DeliveryLeftSection,
-  DeliveryTextSection,
   DeliverySection,
   TextWrapper,
   IconWrapper,
-  DeliveryRightSection,
-  MapSection,
   CustomDivider,
 } from './styled';
-import { Typography } from '@material-ui/core';
+import { Typography, useMediaQuery } from '@material-ui/core';
 import LocationIcon from '@icons/location.svg';
 import PhoneIcon from '@icons/phone.svg';
 import EnvelopeIcon from '@icons/envelope.svg';
 import { Flex } from '@styles/styled';
+import { BREAKPOINT } from '@constants';
 
-const GoogleMapsWrapper = withGoogleMap((props: any) => (
+interface IGoogleMapsWrapperProps {
+  containerElement: ReactElement;
+  mapElement: ReactElement;
+  isMobile: boolean;
+  onMapLoad: () => void;
+  onMapClick: () => void;
+  onMarkerRightClick: () => void;
+}
+
+const GoogleMapsWrapper = withGoogleMap((props: IGoogleMapsWrapperProps) => (
   <GoogleMap
     ref={props.onMapLoad}
     defaultZoom={17}
@@ -27,18 +31,28 @@ const GoogleMapsWrapper = withGoogleMap((props: any) => (
   >
     <Marker
       title={'ONI'}
-      icon={'./images/oni-marker.png'}
+      icon={
+        props.isMobile
+          ? './images/oni-marker-small.png'
+          : './images/oni-marker.png'
+      }
       position={{ lat: 50.4461836, lng: 30.4256751 }}
     />
   </GoogleMap>
 ));
 
 export function DeliveryAndPayment() {
+  const isMobile = useMediaQuery(`(max-width: ${BREAKPOINT})`);
+
   return (
-    <DeliveryMainSection>
-      <DeliveryTopSection>
-        <DeliveryLeftSection>
-          <DeliveryTextSection>
+    <Flex direction='column' justifyCenter>
+      <Flex
+        justifyCenter
+        direction={isMobile ? 'column' : 'row'}
+        style={{ margin: isMobile ? '5rem 2rem 2rem 2rem' : '50px 0px' }}
+      >
+        <Flex direction='column' alignEnd style={{ paddingTop: '3.5rem' }}>
+          <Flex direction='column' style={{ width: isMobile ? '' : 450 }}>
             <Typography
               variant='h1'
               style={{ lineHeight: '1.2rem', marginBottom: '3rem' }}
@@ -88,10 +102,17 @@ export function DeliveryAndPayment() {
                 </TextWrapper>
               </Flex>
             </DeliverySection>
-          </DeliveryTextSection>
-        </DeliveryLeftSection>
+          </Flex>
+        </Flex>
 
-        <DeliveryRightSection>
+        <Flex
+          direction='column'
+          style={{
+            padding: isMobile ? '' : '3rem 0 0 5rem',
+            position: 'relative',
+            flexBasis: isMobile ? '' : '30rem',
+          }}
+        >
           <Typography
             variant='h3'
             style={{ marginBottom: '2rem', marginTop: '2rem' }}
@@ -103,17 +124,27 @@ export function DeliveryAndPayment() {
             ПриватБанк. Предоплата необходима только для индивидуальных и
             корпоративных заказов.
           </Typography>
-          <MapSection id='map-wrapper'>
+          <Flex
+            justifyCenter
+            id='map-wrapper'
+            style={{
+              height: 300,
+              width: isMobile ? '100%' : 700,
+              top: isMobile ? '' : 250,
+              position: isMobile ? 'inherit' : 'absolute',
+            }}
+          >
             <GoogleMapsWrapper
               containerElement={<div style={{ width: '100%' }} />}
               mapElement={<div style={{ height: `100%` }} />}
+              isMobile={isMobile}
               onMapLoad={() => {}}
               onMapClick={() => {}}
               onMarkerRightClick={() => {}}
             />
-          </MapSection>
-        </DeliveryRightSection>
-      </DeliveryTopSection>
-    </DeliveryMainSection>
+          </Flex>
+        </Flex>
+      </Flex>
+    </Flex>
   );
 }

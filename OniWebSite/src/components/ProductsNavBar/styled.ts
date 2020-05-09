@@ -22,7 +22,7 @@ export const ProductsNavBarWrapper = styled.div<IProductsNavBarWrapper>`
 
 export const ProductsNavBarWrapperMobile = styled.div<IProductsNavBarWrapper>`
   z-index: 1;
-  top: 98px;
+  top: 82px;
   border-bottom: 2px solid ${colors.primary.grey};
   position: fixed;
   width: 100%;

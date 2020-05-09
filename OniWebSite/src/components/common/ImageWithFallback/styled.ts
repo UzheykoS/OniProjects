@@ -5,6 +5,7 @@ interface IImageStyled {
 }
 
 export const ImageStyled = styled.img<IImageStyled>`
+  width: inherit;
   ${({ blurred }) =>
     blurred &&
     `

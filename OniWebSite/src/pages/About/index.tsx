@@ -1,34 +1,32 @@
 import React from 'react';
-import {
-  AboutMainSection,
-  AboutTopSection,
-  AboutBottomSection,
-  AboutLeftSection,
-  AboutRightSection,
-  AboutTextSection,
-  ContactUsSection,
-  Contacts,
-  TextWrapper,
-  IconWrapper,
-  QuotesContainer,
-  Quotes,
-} from './styled';
-import { Typography } from '@material-ui/core';
+import { ContactUsSection, TextWrapper, IconWrapper, Quotes } from './styled';
+import { Typography, useMediaQuery } from '@material-ui/core';
 import { ImageWithFallback } from '@common/ImageWithFallback';
 import colors from '@constants/colors';
 import PhoneIcon from '@icons/phone.svg';
 import EnvelopeIcon from '@icons/envelope.svg';
 import { useHistory } from 'react-router-dom';
 import { Button } from '@common/Button';
+import { BREAKPOINT } from '@constants';
+import { Flex } from '@styles/styled';
 
 export function About() {
   const history = useHistory();
+  const isMobile = useMediaQuery(`(max-width: ${BREAKPOINT})`);
 
   return (
-    <AboutMainSection>
-      <AboutTopSection>
-        <AboutLeftSection>
-          <AboutTextSection>
+    <Flex direction='column' justifyCenter>
+      <Flex
+        direction={isMobile ? 'column' : 'row'}
+        justifyCenter
+        style={{ margin: isMobile ? '5rem 2rem 2rem 2rem' : '50px 0px' }}
+      >
+        <Flex
+          direction='column'
+          flexEnd
+          style={{ paddingTop: '3.5rem', alignItems: 'flex-end' }}
+        >
+          <Flex direction='column' style={{ width: isMobile ? 'auto' : 450 }}>
             <Typography
               variant='h1'
               style={{ lineHeight: '1.2rem', marginBottom: '3rem' }}
@@ -59,25 +57,42 @@ export function About() {
               очень хотелось попасть во Францию, чтобы получить знания из первых
               рук. Я поставила себе цель и спустя год сделала это.
             </Typography>
-          </AboutTextSection>
-          <QuotesContainer>
-            <Quotes>“</Quotes>
-            <Typography variant='h1' style={{ width: 590, zIndex: 1 }}>
+          </Flex>
+          <Flex
+            style={{
+              position: 'relative',
+              marginTop: isMobile ? '2rem' : '4rem',
+            }}
+          >
+            <Quotes isMobile={isMobile}>“</Quotes>
+            <Typography
+              variant='h1'
+              style={{
+                width: isMobile ? '' : 590,
+                zIndex: 1,
+                fontSize: isMobile ? 32 : 46,
+              }}
+            >
               Кондитерский мир{' '}
               <span style={{ color: colors.secondary.gold }}>
                 слишком интересный,{' '}
               </span>
               чтобы кушать плохие десерты
             </Typography>
-          </QuotesContainer>
-        </AboutLeftSection>
-
-        <AboutRightSection>
+          </Flex>
+        </Flex>
+        <Flex
+          direction='column'
+          style={{
+            padding: isMobile ? '' : '3rem 0 0 5rem',
+            flexBasis: isMobile ? '' : '30rem',
+          }}
+        >
           <ImageWithFallback
             src={'./images/pages/about/about_4'}
             style={{
-              width: '460px',
-              height: '442px',
+              width: isMobile ? '100%' : '460px',
+              height: 'auto',
               objectFit: 'cover',
               textAlign: 'center',
               paddingTop: '3.5rem',
@@ -99,12 +114,26 @@ export function About() {
             разделяем главную идею – кондитерский мир слишком интересный, чтобы
             кушать плохие десерты.
           </Typography>
-        </AboutRightSection>
-      </AboutTopSection>
+        </Flex>
+      </Flex>
 
-      <AboutBottomSection>
-        <AboutLeftSection>
-          <AboutTextSection>
+      <Flex
+        justifyCenter
+        direction={isMobile ? 'column' : 'row'}
+        style={{
+          backgroundColor: '#f6f8f7',
+          padding: isMobile ? '2rem' : '0 0 80px 0',
+        }}
+      >
+        <Flex
+          direction='column'
+          flexEnd
+          style={{
+            paddingTop: isMobile ? '' : '3.5rem',
+            alignItems: 'flex-end',
+          }}
+        >
+          <Flex direction='column' style={{ width: isMobile ? 'auto' : 450 }}>
             <Typography
               variant='body1'
               style={{ marginBottom: '1rem', marginTop: '3rem' }}
@@ -116,32 +145,50 @@ export function About() {
               Мадагаскара. В наших изделиях вы не найдёте ароматизаторы и
               усилители вкуса. Только натуральные ингредиенты. Без компромиссов.
             </Typography>
-          </AboutTextSection>
-          <QuotesContainer>
-            <Quotes>“</Quotes>
-            <Typography variant='h1' style={{ width: 590, zIndex: 1 }}>
+          </Flex>
+          <Flex
+            style={{
+              position: 'relative',
+              marginTop: isMobile ? '2rem' : '4rem',
+            }}
+          >
+            <Quotes isMobile={isMobile}>“</Quotes>
+            <Typography
+              variant='h1'
+              style={{
+                width: isMobile ? '' : 590,
+                zIndex: 1,
+                fontSize: isMobile ? 32 : 46,
+              }}
+            >
               Только{' '}
               <span style={{ color: colors.secondary.gold }}>натуральные</span>{' '}
               ингредиенты. Без компромиссов.
             </Typography>
-          </QuotesContainer>
+          </Flex>
           <ImageWithFallback
             src='./images/pages/about/about_5'
             style={{
-              width: '710px',
-              height: '320px',
+              width: isMobile ? '100%' : '710px',
+              height: isMobile ? 'auto' : '320px',
               objectFit: 'cover',
               marginTop: '4rem',
             }}
           />
-        </AboutLeftSection>
+        </Flex>
 
-        <AboutRightSection style={{ paddingRight: '7rem' }}>
+        <Flex
+          direction='column'
+          style={{
+            padding: isMobile ? '' : '3rem 7rem 0 5rem',
+            flexBasis: isMobile ? '' : '30rem',
+          }}
+        >
           <ImageWithFallback
             src={'./images/pages/about/about_2'}
             style={{
-              width: '459px',
-              height: '333px',
+              width: isMobile ? '100%' : '459px',
+              height: isMobile ? 'auto' : '333px',
               objectFit: 'cover',
               textAlign: 'center',
               paddingTop: '2.5rem',
@@ -167,7 +214,7 @@ export function About() {
             СВЯЗАТЬСЯ С НАМИ
           </Typography>
           <ContactUsSection>
-            <Contacts>
+            <Flex direction='column' style={{ marginRight: '2rem' }}>
               <TextWrapper>
                 <IconWrapper>
                   <PhoneIcon />
@@ -180,7 +227,7 @@ export function About() {
                 </IconWrapper>
                 info@oni.ua
               </TextWrapper>
-            </Contacts>
+            </Flex>
             <Button
               rounded
               onClick={() => {
@@ -190,8 +237,8 @@ export function About() {
               КОНТАКТЫ
             </Button>
           </ContactUsSection>
-        </AboutRightSection>
-      </AboutBottomSection>
-    </AboutMainSection>
+        </Flex>
+      </Flex>
+    </Flex>
   );
 }
