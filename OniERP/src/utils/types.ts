@@ -190,6 +190,7 @@ export enum DrinksType {
   Cup240 = 'Чашка 240мл',
   Cup355 = 'Чашка 355мл',
   Cup470 = 'Чашка 470мл',
+  Seeds50 = 'Зерно',
 }
 
 export enum PartnersEnum {
@@ -238,6 +239,8 @@ export enum DateTimeRenderOption {
 export const MIX_MACARONS_6 = 'Набор на 6 шт.';
 export const MIX_MACARONS_12 = 'Набор на 12 шт.';
 export const MIX_MACARONS_24 = 'Набор на 24 шт.';
+
+export const SPECIAL_MIX_MACARONS_2 = 'Манго + Дор Блю';
 
 export const MIX_ZEPHYR_8 = 'Набор на 8 шт.';
 export const MIX_ZEPHYR_16 = 'Набор на 16 шт.';

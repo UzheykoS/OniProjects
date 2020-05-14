@@ -26,6 +26,7 @@ import {
   MIX_MACARONS_6,
   MIX_MACARONS_12,
   MIX_MACARONS_24,
+  SPECIAL_MIX_MACARONS_2,
 } from './types';
 
 export interface BearerToken {
@@ -205,7 +206,7 @@ class Helper {
       if (prices.length === 1) {
         totalDrinksPrice += prices[0];
       } else {
-        const index = DrinksDict[d.id].findIndex(x => x === d.size);
+        const index = DrinksDict[d.id].findIndex((x) => x === d.size);
         totalDrinksPrice += prices[index];
       }
     });
@@ -253,7 +254,7 @@ class Helper {
       if (prices.length === 1) {
         totalDrinksPrice += prices[0];
       } else {
-        const index = DrinksDict[d.id].findIndex(x => x === d.size);
+        const index = DrinksDict[d.id].findIndex((x) => x === d.size);
         totalDrinksPrice += prices[index];
       }
     });
@@ -264,7 +265,7 @@ class Helper {
 
   static getArrayFromEnum(en: any) {
     const keys = Object.keys(en);
-    const values = keys.map(d => {
+    const values = keys.map((d) => {
       return {
         id: d,
         value: en[d],
@@ -295,7 +296,7 @@ class Helper {
     if (prices.length === 1) {
       return prices[0];
     } else {
-      const index = DrinksDict[drinkType].findIndex(x => x === drinkSize);
+      const index = DrinksDict[drinkType].findIndex((x) => x === drinkSize);
       return prices[index];
     }
   }

@@ -66,7 +66,7 @@ const BONUS_PERCENT_DRINKS = 0.02;
 const BONUS_PERCENT_DESSERTS = 0.02;
 
 export const ProcessFetchData = (spreadsheetId: string) => {
-  return async dispatch => {
+  return async (dispatch) => {
     dispatch(itemsIsLoading(true));
     try {
       const dessertsResponse = await window[
@@ -91,12 +91,12 @@ export const ProcessFetchData = (spreadsheetId: string) => {
         let lastDessertOrderId = Math.max(
           ...dessertsResponse.result.values
             .slice(1)
-            .map(d => (d[7] ? Number(d[7]) : 0))
+            .map((d) => (d[7] ? Number(d[7]) : 0))
         );
         let lastDrinkOrderId = Math.max(
           ...drinksResponse.result.values
             .slice(1)
-            .map(d => (d[5] ? Number(d[5]) : 0))
+            .map((d) => (d[5] ? Number(d[5]) : 0))
         );
         const lastId = Math.max(lastDessertOrderId, lastDrinkOrderId) || 0;
 
@@ -119,8 +119,8 @@ export const ProcessFetchData = (spreadsheetId: string) => {
 
         lastOrder.desserts = dessertsResponse.result.values
           .slice(1)
-          .filter(v => v[7] === lastId.toString())
-          .map(d => {
+          .filter((v) => v[7] === lastId.toString())
+          .map((d) => {
             lastOrderPayment =
               d[4] === 'Наличка'
                 ? Payment.Cash
@@ -142,8 +142,8 @@ export const ProcessFetchData = (spreadsheetId: string) => {
 
         lastOrder.drinks = drinksResponse.result.values
           .slice(1)
-          .filter(v => v[5] === lastId.toString())
-          .map(d => {
+          .filter((v) => v[5] === lastId.toString())
+          .map((d) => {
             lastOrderPayment =
               d[2] === 'Наличка'
                 ? Payment.Cash
@@ -182,7 +182,7 @@ export const ProcessAppendData = (
   range: string,
   valueRange: any
 ) => {
-  return async dispatch => {
+  return async (dispatch) => {
     dispatch(itemsIsLoading(true));
     try {
       const response = await window[
@@ -236,7 +236,7 @@ export const ProcessLog = async (message: string) => {
 };
 
 export const ProcessUpdateData = (spreadsheetId: string, valueRange: any) => {
-  return async dispatch => {
+  return async (dispatch) => {
     dispatch(itemsIsLoading(true));
     try {
       const response = await window[
@@ -267,7 +267,7 @@ export const ProcessUpdateData = (spreadsheetId: string, valueRange: any) => {
 
 export const CreateCheck = createAction(CREATE_CHECK);
 
-export const ProcessCheckout = callback => {
+export const ProcessCheckout = (callback) => {
   return async (dispatch, getState) => {
     dispatch(itemsIsLoading(true));
     try {
@@ -277,7 +277,7 @@ export const ProcessCheckout = callback => {
 
       const drinksRange = 'RawDrinksData!A:J';
       const drinksData = [];
-      check.drinks.forEach(async d => {
+      check.drinks.forEach(async (d) => {
         const dateTime = moment(new Date()).format(DATE_FORMAT);
         const data = [
           d.id,
@@ -301,7 +301,7 @@ export const ProcessCheckout = callback => {
 
       const dessertsRange = 'RawDessertsData!A:L';
       const dessertsData = [];
-      check.desserts.forEach(async d => {
+      check.desserts.forEach(async (d) => {
         const now = new Date();
         const dateTime = moment(now).format(DATE_FORMAT);
         // const sale = BLACK_FRIDAY_DATES.indexOf(now.getDate()) > -1 ? '20 %' : check.sale;
@@ -361,7 +361,7 @@ export const ProcessPartnersOrderSubmit = (
   isPaid?: boolean,
   date?: moment.Moment
 ) => {
-  return async dispatch => {
+  return async (dispatch) => {
     dispatch(itemsIsLoading(true));
     try {
       const partnersRange = 'RawPartnersData!A:H';
@@ -401,9 +401,10 @@ export const ProcessOtherPaymentSubmit = (
   paymentType: PaymentTypeEnum,
   price: number,
   notes: string,
-  payment: Payment
+  payment: Payment,
+  date?: moment.Moment
 ) => {
-  return async dispatch => {
+  return async (dispatch) => {
     dispatch(itemsIsLoading(true));
     try {
       const range = 'OtherPayments!A:F';
@@ -412,7 +413,9 @@ export const ProcessOtherPaymentSubmit = (
           paymentType,
           price,
           notes,
-          moment(new Date()).format(DATE_FORMAT),
+          date
+            ? date.format(DATE_FORMAT)
+            : moment(new Date()).format(DATE_FORMAT),
           payment,
         ],
       ];
@@ -432,7 +435,7 @@ export const ProcessOtherPaymentSubmit = (
 };
 
 export const ProcessCashboxSubmit = (cash: number, date?: moment.Moment) => {
-  return async dispatch => {
+  return async (dispatch) => {
     dispatch(itemsIsLoading(true));
     try {
       const range = 'Finance!H:I';
@@ -469,7 +472,7 @@ export const ProcessProductSubmit = (
   notes: string,
   date?: moment.Moment
 ) => {
-  return async dispatch => {
+  return async (dispatch) => {
     dispatch(itemsIsLoading(true));
     try {
       const range = 'Products!A:I';
@@ -514,7 +517,7 @@ export const ProcessWriteOffSubmit = (
   notes: string,
   date?: moment.Moment
 ) => {
-  return async dispatch => {
+  return async (dispatch) => {
     dispatch(itemsIsLoading(true));
     try {
       const range = 'Products!A:I';
@@ -655,7 +658,7 @@ export const SetDrinksCount = createAction(
   (count: number) => count
 );
 
-const getSale = sale => {
+const getSale = (sale) => {
   return sale === SaleType.Staff ? 100 : parseInt(sale);
 };
 
@@ -675,7 +678,7 @@ export const CalculateDailyPercent = () => {
 
       const todayDrinks = drinksResponse.result.values
         .slice(1)
-        .filter(v => Helper.isToday(v[4]) && v[7] === state.currentProfile);
+        .filter((v) => Helper.isToday(v[4]) && v[7] === state.currentProfile);
 
       const dessertsResponse = await window[
         'gapi'
@@ -684,7 +687,7 @@ export const CalculateDailyPercent = () => {
         range: 'RawDessertsData!A:J',
       });
 
-      todayDrinks.forEach(d => {
+      todayDrinks.forEach((d) => {
         totalBonus +=
           (Helper.getDrinkPrice(d[0], d[1]) *
             BONUS_PERCENT_DRINKS *
@@ -695,7 +698,7 @@ export const CalculateDailyPercent = () => {
       const todayDesserts = dessertsResponse.result.values
         .slice(1)
         .filter(
-          v =>
+          (v) =>
             [
               DessertType.Macaron,
               DessertType.Zephyr,
@@ -713,7 +716,7 @@ export const CalculateDailyPercent = () => {
             v[5] === OrderType.Shop
         );
 
-      todayDesserts.forEach(d => {
+      todayDesserts.forEach((d) => {
         if (d[0] === DessertType.Macaron) {
           totalBonus +=
             (d[2] *
@@ -828,7 +831,7 @@ export const CountDailyDrinks = () => {
       const todayDrinks = drinksResponse.result.values
         .slice(1)
         .filter(
-          v =>
+          (v) =>
             [
               DrinksType.Syrop,
               DrinksType.VeganMilk,
@@ -837,6 +840,7 @@ export const CountDailyDrinks = () => {
               DrinksType.Cup240,
               DrinksType.Cup355,
               DrinksType.Cup470,
+              DrinksType.Seeds50,
             ].indexOf(v[0]) < 0 &&
             Helper.isToday(v[4]) &&
             v[7] === state.currentProfile

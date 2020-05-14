@@ -41,7 +41,7 @@ DrinksDict[DrinksType.Milk] = ['N'];
 DrinksDict[DrinksType.Cream] = ['N'];
 DrinksDict[DrinksType.Cup240] = ['240 мл'];
 DrinksDict[DrinksType.Cup355] = ['355 мл'];
-DrinksDict[DrinksType.Cup470] = ['470 мл'];
+DrinksDict[DrinksType.Seeds50] = ['50 гр'];
 
 export const DessertsDict: { [id: string]: Array<any> } = {};
 DessertsDict[DessertType.Macaron] = [1, 6, 12, 24];
@@ -83,6 +83,7 @@ DrinkPricesDict[DrinksType.Cream] = [10];
 DrinkPricesDict[DrinksType.Cup240] = [450];
 DrinkPricesDict[DrinksType.Cup355] = [550];
 DrinkPricesDict[DrinksType.Cup470] = [650];
+DrinkPricesDict[DrinksType.Seeds50] = [40];
 
 export const CaffeePrices: { [id: string]: number } = {};
 CaffeePrices[PartnersEnum.CoffeeIs] = 18;

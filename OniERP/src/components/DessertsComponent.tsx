@@ -18,6 +18,7 @@ import {
   MIX_MACARONS_6,
   MIX_MACARONS_12,
   MIX_MACARONS_24,
+  SPECIAL_MIX_MACARONS_2,
   MIX_ZEPHYR_8,
   MIX_ZEPHYR_16,
   EasterCakeEnum,
@@ -37,11 +38,11 @@ import IconButton from '@material-ui/core/IconButton';
 import Button from '@material-ui/core/Button';
 import Helper from '../utils/helper';
 
-const mapStateToProps = state => {
+const mapStateToProps = (state) => {
   return {};
 };
 
-const mapDispatchToProps = dispatch => {
+const mapDispatchToProps = (dispatch) => {
   return {
     addDessert: (
       type: DessertType,
@@ -89,14 +90,14 @@ export class DessertsComponent extends Component<
     this.props.logData('desserts->close');
   };
 
-  handleDessertSelect = dessert => {
+  handleDessertSelect = (dessert) => {
     this.setState({
       dessertType: dessert,
     });
     this.props.logData('desserts->dessertSelected->' + dessert);
   };
 
-  handleDessertTasteSelect = async taste => {
+  handleDessertTasteSelect = async (taste) => {
     const { dessertType } = this.state;
 
     if (dessertType === DessertType.Cake) {
@@ -113,7 +114,7 @@ export class DessertsComponent extends Component<
     }
   };
 
-  handleDessertMixSelect = async mixType => {
+  handleDessertMixSelect = async (mixType) => {
     switch (mixType) {
       case MIX_MACARONS_6:
         this.handleDessertIncrease(mixType, 6);
@@ -130,13 +131,16 @@ export class DessertsComponent extends Component<
       case MIX_ZEPHYR_16:
         this.handleDessertIncrease(mixType, 16);
         break;
+      case SPECIAL_MIX_MACARONS_2:
+        this.handleDessertIncrease(mixType, 1);
+        break;
       default:
         break;
     }
     this.props.logData('desserts->handleDessertMixSelect->' + mixType);
   };
 
-  handleDessertMixDecrease = mixType => {
+  handleDessertMixDecrease = (mixType) => {
     switch (mixType) {
       case MIX_MACARONS_6:
         this.handleDessertDecrease(mixType, 6);
@@ -153,13 +157,16 @@ export class DessertsComponent extends Component<
       case MIX_ZEPHYR_16:
         this.handleDessertDecrease(mixType, 16);
         break;
+      case SPECIAL_MIX_MACARONS_2:
+        this.handleDessertDecrease(mixType, 1);
+        break;
       default:
         break;
     }
     this.props.logData('desserts->handleDessertMixDecrease->' + mixType);
   };
 
-  handleDessertSizeOrQuantitySelect = async sizeOrQty => {
+  handleDessertSizeOrQuantitySelect = async (sizeOrQty) => {
     const { dessertType, dessertTaste } = this.state;
 
     if (dessertType === DessertType.Cake) {
@@ -253,6 +260,9 @@ export class DessertsComponent extends Component<
       case MIX_ZEPHYR_16:
         result = dessertQuantities[this.getId(dessertType, value)] / 16;
         break;
+      case SPECIAL_MIX_MACARONS_2:
+        result = dessertQuantities[this.getId(dessertType, value)] / 1;
+        break;
       default:
         break;
     }
@@ -261,7 +271,7 @@ export class DessertsComponent extends Component<
 
   renderDesserts() {
     const dessertKeys = Object.keys(DessertType);
-    const desserts = dessertKeys.map(d => {
+    const desserts = dessertKeys.map((d) => {
       return {
         id: d,
         value: DessertType[d],
@@ -271,7 +281,7 @@ export class DessertsComponent extends Component<
     return (
       <div>
         <List>
-          {desserts.map(d => (
+          {desserts.map((d) => (
             <ListItem
               divider
               button
@@ -329,6 +339,11 @@ export class DessertsComponent extends Component<
           title: MIX_MACARONS_24,
           avatar: 24,
         });
+        extraOptions.push({
+          value: SPECIAL_MIX_MACARONS_2,
+          title: SPECIAL_MIX_MACARONS_2,
+          avatar: 2,
+        });
         break;
       case DessertType.Zephyr:
         dessertTastes = Helper.getArrayFromEnum(ZephyrEnum);
@@ -384,7 +399,7 @@ export class DessertsComponent extends Component<
           </div>
         )}
         <List className='dessertsTastesListWrapper'>
-          {dessertTastes.map(d => (
+          {dessertTastes.map((d) => (
             <ListItem
               divider
               button
@@ -408,8 +423,9 @@ export class DessertsComponent extends Component<
                 primary={
                   d.value +
                   (dessertType !== DessertType.Cake
-                    ? `(${dessertQuantities[this.getId(dessertType, d.value)] ||
-                        0})`
+                    ? `(${
+                        dessertQuantities[this.getId(dessertType, d.value)] || 0
+                      })`
                     : '')
                 }
               />
@@ -426,7 +442,7 @@ export class DessertsComponent extends Component<
               )}
             </ListItem>
           ))}
-          {extraOptions.map(o => (
+          {extraOptions.map((o) => (
             <ListItem
               divider
               button
@@ -476,7 +492,7 @@ export class DessertsComponent extends Component<
     return (
       <div>
         <List>
-          {dessertSizes.map(d => (
+          {dessertSizes.map((d) => (
             <ListItem
               divider
               button
