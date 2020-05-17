@@ -121,6 +121,7 @@ export const SurpriseMe = styled(Typography)`
   height: auto;
   cursor: pointer;
   text-align: center;
+  margin: 0.5rem;
 
   &:hover {
     text-decoration: underline;

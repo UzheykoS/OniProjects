@@ -5,21 +5,26 @@ import {
   DescriptionLink,
   TopSalesHeader,
   TopSalesProductsMobile,
-} from './styled';
-import { MacaronSingle } from '@components/products/MacaronSingle';
-import { macarons, choux, zephyr, cheesecakes } from '@constants/products';
+} from '../styled';
+import {
+  macarons,
+  choux,
+  zephyr,
+  cheesecakes,
+  IProduct,
+} from '@constants/products';
 import { FlexRow, FlexColumn, Flex } from '@styles/styled';
 import KeyboardArrowLeft from '@material-ui/icons/KeyboardArrowLeft';
 import KeyboardArrowRight from '@material-ui/icons/KeyboardArrowRight';
-import { ChouxSingle } from '@components/products/ChouxSingle';
-import { ZephyrSingle } from '@components/products/ZephyrSingle';
-import { CheesecakeSingle } from '@components/products/CheesecakeSingle';
 import { Typography } from '@material-ui/core';
-import { SEPARATORS } from '@utils/Helper';
-import { IMainPageSectionProps } from '.';
+import { SEPARATORS, getDessertRouteKey } from '@utils/Helper';
+import { IMainPageSectionProps } from '..';
+import { useHistory } from 'react-router-dom';
+import { TopSalesItem } from './TopSalesItem';
 
 export function TopSalesSection({ isMobile }: IMainPageSectionProps) {
   const [activeStep, setActiveStep] = useState(0);
+  const history = useHistory();
   const maxSteps = 2;
 
   const handleNext = () => {
@@ -30,19 +35,34 @@ export function TopSalesSection({ isMobile }: IMainPageSectionProps) {
     setActiveStep(prevActiveStep => prevActiveStep - 1);
   };
 
+  function addItemToConstructor(product: IProduct) {
+    history.push({
+      pathname: getDessertRouteKey(product) || '/',
+      state: { productItem: product },
+    });
+  }
+
   const sections = [];
   if (isMobile) {
     sections.push(
       <FlexRow>
         <FlexColumn bordered>
-          <MacaronSingle height={15} product={macarons[0]} onClick={() => {}} />
+          <TopSalesItem
+            height={15}
+            product={macarons[0]}
+            onClick={addItemToConstructor}
+          />
         </FlexColumn>
       </FlexRow>
     );
     sections.push(
       <FlexRow>
         <FlexColumn bordered>
-          <MacaronSingle height={15} product={choux[0]} onClick={() => {}} />
+          <TopSalesItem
+            height={15}
+            product={choux[0]}
+            onClick={addItemToConstructor}
+          />
         </FlexColumn>
       </FlexRow>
     );
@@ -91,30 +111,49 @@ export function TopSalesSection({ isMobile }: IMainPageSectionProps) {
   sections.push(
     <FlexRow>
       <FlexColumn bordered>
-        <MacaronSingle height={15} product={macarons[0]} onClick={() => {}} />
+        <TopSalesItem
+          height={15}
+          product={macarons[0]}
+          onClick={addItemToConstructor}
+        />
       </FlexColumn>
       <FlexColumn bordered>
-        <ChouxSingle height={15} product={choux[1]} onClick={() => {}} />
+        <TopSalesItem
+          height={15}
+          product={choux[1]}
+          onClick={addItemToConstructor}
+        />
       </FlexColumn>
       <FlexColumn bordered>
-        <MacaronSingle height={15} product={macarons[2]} onClick={() => {}} />
+        <TopSalesItem
+          height={15}
+          product={macarons[2]}
+          onClick={addItemToConstructor}
+        />
       </FlexColumn>
     </FlexRow>
   );
   sections.push(
     <FlexRow>
       <FlexColumn bordered>
-        <ZephyrSingle height={15} product={zephyr[1]} onClick={() => {}} />
+        <TopSalesItem
+          height={15}
+          product={zephyr[1]}
+          onClick={addItemToConstructor}
+        />
       </FlexColumn>
       <FlexColumn bordered>
-        <MacaronSingle height={15} product={macarons[4]} onClick={() => {}} />
+        <TopSalesItem
+          height={15}
+          product={macarons[4]}
+          onClick={addItemToConstructor}
+        />
       </FlexColumn>
       <FlexColumn bordered>
-        <CheesecakeSingle
+        <TopSalesItem
           height={15}
           product={cheesecakes[0]}
-          onClick={() => {}}
-          showButton={false}
+          onClick={addItemToConstructor}
         />
       </FlexColumn>
     </FlexRow>
@@ -134,7 +173,7 @@ export function TopSalesSection({ isMobile }: IMainPageSectionProps) {
         <IconButtonStyled
           onClick={handleBack}
           disabled={activeStep === 0}
-          style={{ margin: '0 3rem 0 0' }}
+          style={{ position: 'absolute', left: '-5rem' }}
           left
         >
           <KeyboardArrowLeft />
@@ -143,7 +182,7 @@ export function TopSalesSection({ isMobile }: IMainPageSectionProps) {
         <IconButtonStyled
           onClick={handleNext}
           disabled={activeStep === maxSteps - 1}
-          style={{ margin: '0 0 0 3rem' }}
+          style={{ position: 'absolute', right: '-5rem' }}
         >
           <KeyboardArrowRight />
         </IconButtonStyled>

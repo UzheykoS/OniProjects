@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { Pages, ProductPages, routes } from '@constants/routes';
+import { Pages, routes } from '@constants/routes';
 import {
   ProductsNavBarWrapper,
   ProductsNavBarMain,
@@ -10,6 +10,7 @@ import {
 } from './styled';
 import { useMediaQuery } from '@material-ui/core';
 import { BREAKPOINT } from '@constants';
+import { ProductType } from '@constants/products';
 
 const STICKY_LIMIT = 200;
 const STICKY_LIMIT_MOBILE = 0;
@@ -43,12 +44,12 @@ export function ProductsNavBar() {
   if (!location.pathname.startsWith(routes[Pages.Products]!.path)) {
     return null;
   }
-  let currentProductPage: ProductPages;
+  let currentProductPage: ProductType;
   const productRoutes = routes[Pages.Products]!.nestedRoutes!;
   Object.keys(productRoutes).forEach(key => {
-    const value = productRoutes[key as ProductPages];
+    const value = productRoutes[key as ProductType];
     if (value && value.path === location.pathname) {
-      currentProductPage = key as ProductPages;
+      currentProductPage = key as ProductType;
     }
   });
 
@@ -57,7 +58,7 @@ export function ProductsNavBar() {
       <ProductsNavBarMain>
         <RoutesList>
           {Object.keys(productRoutes).map(key => {
-            const page = key as ProductPages;
+            const page = key as ProductType;
             const route = productRoutes[page];
             if (!route) {
               return null;
@@ -82,7 +83,7 @@ export function ProductsNavBar() {
       <ProductsNavBarMain>
         <RoutesList>
           {Object.keys(productRoutes).map(key => {
-            const page = key as ProductPages;
+            const page = key as ProductType;
             const route = productRoutes[page];
             if (!route) {
               return null;

@@ -6,13 +6,14 @@ import {
   CenteredRow,
   ConstructorGridWrapper,
 } from './styled';
-import { Chip, IconButton } from '@material-ui/core';
+import { Chip, IconButton, Typography } from '@material-ui/core';
 import DeleteOutlinedIcon from '@material-ui/icons/DeleteOutlined';
 import { Button } from '@common/Button';
 import { ConstructorGridItem } from './ConstructorGridItem';
-import { useBasket } from '@hooks/useBasket';
-import { IProduct } from '@constants/products';
+import { useBasket, IBasketItem } from '@hooks/useBasket';
+import { IProduct, macaronMix, chouxMix, zephyrMix } from '@constants/products';
 import ConstructorClearModal from './ConstructorClearModal';
+import colors from '@constants/colors';
 
 export enum ConstructoreMode {
   MacaronSmall = 6,
@@ -101,23 +102,102 @@ export function constructorReducer(
 export interface IConstructorProps {
   dispatch: React.Dispatch<ActionType>;
   state: IConstructorState;
+  editItem?: IBasketItem;
 }
 
-export function Constructor({ state, dispatch }: IConstructorProps) {
-  const { addToBasket } = useBasket();
+export function Constructor({ state, dispatch, editItem }: IConstructorProps) {
+  const { addToBasket, removeFromBasket } = useBasket();
   const [showModal, setShowModal] = useState(false);
   const handleOpen = useCallback(() => setShowModal(true), []);
   const handleClose = useCallback(() => setShowModal(false), []);
+  const [errorMessage, setErrorMessage] = useState('');
 
   const handleConstructorSubmit = () => {
+    if (!isValid()) {
+      return;
+    }
+
     window.scrollTo({
       top: 0,
       left: 0,
       behavior: 'smooth',
     });
-    state.items.forEach(item => {
-      addToBasket({ product: item, quantity: 1 });
-    });
+
+    if (editItem) {
+      removeFromBasket(editItem);
+    }
+
+    const contents =
+      state.mode < state.items.length
+        ? state.items.slice(0, state.mode)
+        : state.items;
+
+    switch (state.mode) {
+      case ConstructoreMode.MacaronSmall:
+        addToBasket({
+          product: macaronMix[0],
+          quantity: 1,
+          contents,
+        });
+        break;
+      case ConstructoreMode.MacaronMedium:
+        addToBasket({
+          product: macaronMix[1],
+          quantity: 1,
+          contents,
+        });
+        break;
+      case ConstructoreMode.MacaronLarge:
+        addToBasket({
+          product: macaronMix[2],
+          quantity: 1,
+          contents,
+        });
+        break;
+      case ConstructoreMode.ChouxSmall:
+        addToBasket({
+          product: chouxMix[0],
+          quantity: 1,
+          contents,
+        });
+        break;
+      case ConstructoreMode.ChouxMedium:
+        addToBasket({
+          product: chouxMix[1],
+          quantity: 1,
+          contents,
+        });
+        break;
+      case ConstructoreMode.ZephyrSmall:
+        addToBasket({
+          product: zephyrMix[0],
+          quantity: 1,
+          contents,
+        });
+        break;
+      case ConstructoreMode.ZephyrMedium:
+        addToBasket({
+          product: zephyrMix[1],
+          quantity: 1,
+          contents,
+        });
+        break;
+      default:
+        state.items.forEach(item => {
+          addToBasket({ product: item, quantity: 1 });
+        });
+        break;
+    }
+  };
+
+  const isValid = () => {
+    const isNotFull = state.items.length < state.mode;
+    if (isNotFull) {
+      setErrorMessage('Соберите полный набор');
+    } else {
+      setErrorMessage('');
+    }
+    return !isNotFull;
   };
 
   const handleModeSelect = (m: ConstructoreMode) => {
@@ -202,6 +282,16 @@ export function Constructor({ state, dispatch }: IConstructorProps) {
             Добавить
           </Button>
         </CenteredRow>
+        {!!errorMessage && (
+          <CenteredRow>
+            <Typography
+              variant='body2'
+              style={{ margin: '0.5rem', color: colors.error[0] }}
+            >
+              {errorMessage}
+            </Typography>
+          </CenteredRow>
+        )}
       </ConstructorWrapper>
       <ConstructorClearModal
         confirmClear={handleClear}

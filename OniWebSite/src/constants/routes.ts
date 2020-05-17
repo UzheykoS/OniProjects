@@ -1,3 +1,5 @@
+import { ProductType } from "./products";
+
 export enum Pages {
   Main = 'Главная',
   About = 'О нас',
@@ -8,14 +10,6 @@ export enum Pages {
   Checkout = 'Корзина',
 }
 
-export enum ProductPages {
-  Zephyr = 'Зефир',
-  Macarons = 'Макарон',
-  Choux = 'Шу',
-  Cakes = 'Торты',
-  Cheesecakes = 'Чизкейки',
-}
-
 type routeType = Partial<
   Record<
     Pages,
@@ -23,7 +17,7 @@ type routeType = Partial<
       path: string;
       label: string;
       nestedRoutes?: Partial<
-        Record<ProductPages, { path: string; label: string }>
+        Record<ProductType, { path: string; label: string }>
       >;
     }
   >
@@ -42,23 +36,23 @@ export const routes: routeType = {
     path: '/products',
     label: 'Продукция',
     nestedRoutes: {
-      [ProductPages.Zephyr]: {
+      [ProductType.Zephyr]: {
         path: '/products/zephyr',
         label: 'Зефир',
       },
-      [ProductPages.Choux]: {
+      [ProductType.Choux]: {
         path: '/products/choux',
         label: 'Шу',
       },
-      [ProductPages.Macarons]: {
+      [ProductType.Macaron]: {
         path: '/products/macarons',
         label: 'Макарон',
       },
-      [ProductPages.Cakes]: {
+      [ProductType.Cake]: {
         path: '/products/cakes',
         label: 'Торты',
       },
-      [ProductPages.Cheesecakes]: {
+      [ProductType.Cheesecake]: {
         path: '/products/cheesecakes',
         label: 'Чизкейки',
       },

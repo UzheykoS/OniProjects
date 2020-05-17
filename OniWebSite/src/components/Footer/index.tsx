@@ -12,7 +12,7 @@ import {
   IconWrapper,
   SocialsWrapper,
 } from './styled';
-import { routes, Pages, ProductPages } from '@constants/routes';
+import { routes, Pages } from '@constants/routes';
 import { Link } from 'react-router-dom';
 import { Grid, useMediaQuery } from '@material-ui/core';
 import { BREAKPOINT } from '@constants';
@@ -20,6 +20,7 @@ import PhoneIcon from '@icons/phone.svg';
 import EnvelopeIcon from '@icons/envelope.svg';
 import LocationIcon from '@icons/location.svg';
 import { Flex } from '@styles/styled';
+import { ProductType } from '@constants/products';
 
 export const Footer = () => {
   const productRoutes = routes[Pages.Products]!.nestedRoutes!;
@@ -58,7 +59,7 @@ export const Footer = () => {
               <Title>Продукция</Title>
               <List>
                 {Object.keys(productRoutes).map(key => {
-                  const page = key as ProductPages;
+                  const page = key as ProductType;
                   const route = productRoutes[page];
                   if (!route) {
                     return null;
@@ -172,7 +173,7 @@ export const Footer = () => {
           <Title>Продукция</Title>
           <List>
             {Object.keys(productRoutes).map(key => {
-              const page = key as ProductPages;
+              const page = key as ProductType;
               const route = productRoutes[page];
               if (!route) {
                 return null;

@@ -1,4 +1,4 @@
-import React, { useReducer, useState, useCallback } from 'react';
+import React, { useReducer, useState, useCallback, useEffect } from 'react';
 import { MacaronSingle } from '../../../components/products/MacaronSingle';
 import { MacaronsWrapper, MacaronsInfo } from './styled';
 import { Typography, useMediaQuery } from '@material-ui/core';
@@ -15,8 +15,25 @@ import { macarons, macaronMix, IProduct } from '@constants/products';
 import { useBasket } from '@hooks/useBasket';
 import MixSelectModal from '@components/modals/MixSelectModal';
 import { BREAKPOINT, SCROLL_INTO_VIEW_ELEMENT } from '@constants';
+import { useLocation } from 'react-router-dom';
+import { ILocationStateProps, getConstructorMode } from '..';
 
-export function Macarons() {
+export function MacaronsPage() {
+  const location = useLocation();
+  const { editItem, productItem } =
+    (location.state as ILocationStateProps) || {};
+
+  useEffect(() => {
+    if (editItem && editItem.contents && editItem.contents.length) {
+      editItem.contents.forEach(c => {
+        dispatch({ type: 'add', item: c });
+      });
+    }
+    if (productItem) {
+      dispatch({ type: 'add', item: productItem });
+    }
+  }, [editItem]);
+
   const [state, dispatch] = useReducer(
     constructorReducer,
     initialContstructorState(
@@ -25,10 +42,14 @@ export function Macarons() {
         ConstructoreMode.MacaronMedium,
         ConstructoreMode.MacaronLarge,
       ],
-      ConstructoreMode.MacaronSmall
+      editItem
+        ? getConstructorMode(editItem.product, ConstructoreMode.MacaronSmall)
+        : ConstructoreMode.MacaronSmall
     )
   );
-  const [expanded, setExpanded] = useState<boolean>(false);
+  const [expanded, setExpanded] = useState<boolean>(
+    !!editItem || !!productItem
+  );
   const [selectedMix, setSelectedMix] = useState<IProduct>();
   const handleClose = useCallback(() => setSelectedMix(undefined), []);
   const { addToBasket } = useBasket();
@@ -55,6 +76,11 @@ export function Macarons() {
     if (!selectedMix) {
       return;
     }
+    window.scrollTo({
+      top: 0,
+      left: 0,
+      behavior: 'smooth',
+    });
     addToBasket({ product: selectedMix, quantity: 1 });
     handleClose();
   };
@@ -172,6 +198,7 @@ export function Macarons() {
             expanded={expanded}
             setExpanded={setExpanded}
             stickyLimit={1365}
+            editItem={editItem}
           />
         </FlexRow>
       )}
@@ -199,6 +226,7 @@ export function Macarons() {
               expanded={expanded}
               setExpanded={setExpanded}
               stickyLimit={740}
+              editItem={editItem}
             />
           </FlexColumn>
         )}

@@ -5,6 +5,8 @@ import DeleteIcon from '@material-ui/icons/DeleteOutlined';
 import { useSupportWebp } from '@common/ImageWithFallback/useSupportWebp';
 import { FlexColumn, Flex } from '@styles/styled';
 import QuantityEditor from '@common/QuantityEditor';
+import { useHistory } from 'react-router-dom';
+import { getDessertRouteKey } from '@utils/Helper';
 
 interface IBasketItemProps {
   item: IBasketItem;
@@ -21,11 +23,23 @@ export function BasketItemMobile({
 }: IBasketItemProps) {
   const { product, quantity } = item;
   const { supports } = useSupportWebp();
+  const history = useHistory();
+
+  function editBasketItem() {
+    history.push({
+      pathname: getDessertRouteKey(item.product) || '/',
+      state: { editItem: item },
+    });
+  }
 
   return (
     <FlexColumn bordered style={{ padding: 15, width: 'auto' }}>
       <Flex justifyBetween>
-        <Flex direction={'column'}>
+        <Flex
+          direction={'column'}
+          style={{ cursor: item.contents?.length ? 'pointer' : 'default' }}
+          onClick={item.contents?.length ? editBasketItem : () => {}}
+        >
           <img
             style={{ maxWidth: 175 }}
             src={

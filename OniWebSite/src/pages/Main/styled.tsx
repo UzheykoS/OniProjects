@@ -185,7 +185,7 @@ export const TopSalesHeader = styled.div`
 export const TopSalesProducts = styled.div`
   display: flex;
   align-items: center;
-  padding: 3rem;
+  padding: 3rem 0;
   position: relative;
 `;
 

@@ -8,6 +8,7 @@ import { IProduct, ICakeInfo } from '@constants/products';
 
 export interface IBasketItem {
   product: IProduct | ICakeInfo;
+  contents?: IProduct[];
   quantity: number;
 }
 

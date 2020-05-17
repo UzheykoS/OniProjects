@@ -4,9 +4,9 @@ import { CorporateClients } from './pages/CorporateClients';
 import { DeliveryAndPayment } from './pages/DeliveryAndPayment';
 import { About } from './pages/About';
 import { Cakes } from './pages/products/Cakes';
-import { Macarons } from './pages/products/Macarons';
-import { Choux } from './pages/products/Choux';
-import { Zephyr } from './pages/products/Zephyr';
+import { MacaronsPage } from './pages/products/Macarons';
+import { ChouxPage } from './pages/products/Choux';
+import { ZephyrPage } from './pages/products/Zephyr';
 import { Main } from '@pages/Main';
 import { AppStyled } from '@styles/styled';
 import { NavBar } from '@components/NavBar';
@@ -49,10 +49,10 @@ export function Wrapper() {
           <Route path='/about' component={About} />
           <Route path='/checkout' component={Checkout} />
 
-          <Route path='/products/macarons' component={Macarons} />
-          <Route path='/products/zephyr' component={Zephyr} />
+          <Route path='/products/macarons' component={MacaronsPage} />
+          <Route path='/products/zephyr' component={ZephyrPage} />
           <Route path='/products/cakes' component={Cakes} />
-          <Route path='/products/choux' component={Choux} />
+          <Route path='/products/choux' component={ChouxPage} />
           <Route path='/products/cheesecakes' component={Cheesecakes} />
 
           <Route path='/404' component={NotFoundPage} />

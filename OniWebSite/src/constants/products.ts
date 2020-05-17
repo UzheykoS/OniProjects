@@ -22,7 +22,7 @@ export interface IProduct {
   type: ProductType;
 }
 
-enum Macarons {
+export enum Macarons {
   GrapefruitRose = 'Грейпфрут-Роза',
   DorBluePear = 'Дор Блю-Груша',
   ParmegianoFig = 'Пармезан-Инжир',
@@ -42,7 +42,7 @@ enum Macarons {
   MacaronsMixLarge = '24 шт',
 }
 
-enum Choux {
+export enum Choux {
   VanillaPear = 'Ваниль-Персик',
   SaltedCaramel = 'Солёная Карамель',
   Lemon = 'Лимон',
@@ -52,7 +52,7 @@ enum Choux {
   ChouxMixLarge = '4 шт',
 }
 
-enum Zephyr {
+export enum Zephyr {
   ClassicApple = 'Яблоко',
   StrawberryCranberry = 'Клубника - Клюква',
   ApricotPassionFruit = 'Абрикос - Маракуйя',

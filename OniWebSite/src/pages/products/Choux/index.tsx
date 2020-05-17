@@ -1,4 +1,4 @@
-import React, { useReducer, useState, useCallback } from 'react';
+import React, { useReducer, useState, useCallback, useEffect } from 'react';
 import { ChouxWrapper, ChouxInfo } from './styled';
 import { Typography, useMediaQuery } from '@material-ui/core';
 import { FlexRow, FlexColumn } from '@styles/styled';
@@ -15,16 +15,37 @@ import { chouxMix, choux, IProduct } from '@constants/products';
 import MixSelectModal from '@components/modals/MixSelectModal';
 import { useBasket } from '@hooks/useBasket';
 import { SCROLL_INTO_VIEW_ELEMENT, BREAKPOINT } from '@constants';
+import { useLocation } from 'react-router-dom';
+import { ILocationStateProps, getConstructorMode } from '..';
 
-export function Choux() {
+export function ChouxPage() {
+  const location = useLocation();
+  const { editItem, productItem } =
+    (location.state as ILocationStateProps) || {};
+
+  useEffect(() => {
+    if (editItem && editItem.contents && editItem.contents.length) {
+      editItem.contents.forEach(c => {
+        dispatch({ type: 'add', item: c });
+      });
+    }
+    if (productItem) {
+      dispatch({ type: 'add', item: productItem });
+    }
+  }, [editItem]);
+
   const [state, dispatch] = useReducer(
     constructorReducer,
     initialContstructorState(
       [ConstructoreMode.ChouxSmall, ConstructoreMode.ChouxMedium],
-      ConstructoreMode.ChouxSmall
+      editItem
+        ? getConstructorMode(editItem.product, ConstructoreMode.ChouxSmall)
+        : ConstructoreMode.ChouxSmall
     )
   );
-  const [expanded, setExpanded] = useState<boolean>(false);
+  const [expanded, setExpanded] = useState<boolean>(
+    !!editItem || !!productItem
+  );
   const [selectedMix, setSelectedMix] = useState<IProduct>();
   const handleClose = useCallback(() => setSelectedMix(undefined), []);
   const { addToBasket } = useBasket();
@@ -159,6 +180,7 @@ export function Choux() {
             expanded={expanded}
             setExpanded={setExpanded}
             stickyLimit={1100}
+            editItem={editItem}
           />
         </FlexRow>
       )}
@@ -186,6 +208,7 @@ export function Choux() {
               expanded={expanded}
               setExpanded={setExpanded}
               stickyLimit={1000}
+              editItem={editItem}
             />
           </FlexColumn>
         )}

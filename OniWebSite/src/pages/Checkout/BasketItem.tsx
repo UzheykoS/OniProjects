@@ -5,6 +5,8 @@ import { Typography, IconButton } from '@material-ui/core';
 import DeleteIcon from '@material-ui/icons/DeleteOutlined';
 import { useSupportWebp } from '@common/ImageWithFallback/useSupportWebp';
 import QuantityEditor from '@common/QuantityEditor';
+import { useHistory } from 'react-router-dom';
+import { getDessertRouteKey } from '@utils/Helper';
 
 interface IBasketItemProps {
   item: IBasketItem;
@@ -20,10 +22,23 @@ export function BasketItem({
   handleDecreaseQuantity,
 }: IBasketItemProps) {
   const { product, quantity } = item;
+  const history = useHistory();
   const { supports } = useSupportWebp();
+
+  function editBasketItem() {
+    history.push({
+      pathname: getDessertRouteKey(item.product) || '/',
+      state: { editItem: item },
+    });
+  }
+
   return (
     <BasketItemWrapper>
-      <BasketItemWrapperCell width={30}>
+      <BasketItemWrapperCell
+        width={30}
+        style={{ cursor: item.contents?.length ? 'pointer' : 'default' }}
+        onClick={item.contents?.length ? editBasketItem : () => {}}
+      >
         <img
           src={
             supports ? `${product.imageUrl}.webp` : `${product.imageUrl}.jpg`

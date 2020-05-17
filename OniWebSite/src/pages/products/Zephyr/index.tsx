@@ -1,4 +1,4 @@
-import React, { useReducer, useState, useCallback } from 'react';
+import React, { useReducer, useState, useCallback, useEffect } from 'react';
 import { ZephyrWrapper, ZephyrInfo } from './styled';
 import { Typography, useMediaQuery } from '@material-ui/core';
 import { FlexRow, FlexColumn } from '@styles/styled';
@@ -15,16 +15,36 @@ import { zephyrMix, zephyr, IProduct } from '@constants/products';
 import MixSelectModal from '@components/modals/MixSelectModal';
 import { useBasket } from '@hooks/useBasket';
 import { SCROLL_INTO_VIEW_ELEMENT, BREAKPOINT } from '@constants';
+import { useLocation } from 'react-router-dom';
+import { ILocationStateProps, getConstructorMode } from '..';
 
-export function Zephyr() {
+export function ZephyrPage() {
+  const location = useLocation();
+  const { editItem, productItem } = (location.state as ILocationStateProps) || {};
+
+  useEffect(() => {
+    if (editItem && editItem.contents && editItem.contents.length) {
+      editItem.contents.forEach(c => {
+        dispatch({ type: 'add', item: c });
+      });
+    }
+    if (productItem) {
+      dispatch({ type: 'add', item: productItem });
+    }
+  }, [editItem]);
+
   const [state, dispatch] = useReducer(
     constructorReducer,
     initialContstructorState(
       [ConstructoreMode.ZephyrSmall, ConstructoreMode.ZephyrMedium],
-      ConstructoreMode.ZephyrSmall
+      editItem
+        ? getConstructorMode(editItem.product, ConstructoreMode.ZephyrSmall)
+        : ConstructoreMode.ZephyrSmall
     )
   );
-  const [expanded, setExpanded] = useState<boolean>(false);
+  const [expanded, setExpanded] = useState<boolean>(
+    !!editItem || !!productItem
+  );
   const [selectedMix, setSelectedMix] = useState<IProduct>();
   const handleClose = useCallback(() => setSelectedMix(undefined), []);
   const { addToBasket } = useBasket();
@@ -159,6 +179,7 @@ export function Zephyr() {
             expanded={expanded}
             setExpanded={setExpanded}
             stickyLimit={1100}
+            editItem={editItem}
           />
         </FlexRow>
       )}
@@ -186,6 +207,7 @@ export function Zephyr() {
               expanded={expanded}
               setExpanded={setExpanded}
               stickyLimit={920}
+              editItem={editItem}
             />
           </FlexColumn>
         )}

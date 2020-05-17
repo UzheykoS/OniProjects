@@ -1,3 +1,6 @@
+import { IProduct } from '@constants/products';
+import { routes, Pages } from '@constants/routes';
+
 export function loadMainPageImage(url: string) {
   return new Promise(resolve => {
     let img = new Image();
@@ -31,4 +34,10 @@ export const SEPARATORS = {
   RIGHT_SINGLE_QUOTE: '\u2019',
 };
 
-export const px2vw = (size: number, width = 1440) => `${(size / width) * 100}vw`;
+export const px2vw = (size: number, width = 1440) =>
+  `${(size / width) * 100}vw`;
+
+export function getDessertRouteKey(product: IProduct) {
+  const productRoutes = routes[Pages.Products]!.nestedRoutes!;
+  return productRoutes[product.type]?.path;
+}
