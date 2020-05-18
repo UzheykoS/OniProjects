@@ -3,7 +3,7 @@ import { BREAKPOINT } from '@constants';
 
 export interface IMixSection {
   size: 'small' | 'large';
-  imageHeight: number;
+  imageHeight?: number;
 }
 
 export const MixSection = styled.div<IMixSection>`
@@ -12,7 +12,7 @@ export const MixSection = styled.div<IMixSection>`
   height: 360px;
   flex-direction: column;
   align-items: center;
-  padding-bottom: 20px;
+  padding: 0 20px;
 
   ${({ size }) =>
     `
@@ -24,7 +24,6 @@ export const MixSection = styled.div<IMixSection>`
   }
 
   img {
-    width: auto;
     padding-top: 20px;
 
     @media (max-width: ${BREAKPOINT}) {
@@ -33,7 +32,9 @@ export const MixSection = styled.div<IMixSection>`
     }
 
     ${({ imageHeight }) =>
+      imageHeight &&
       `
+        width: auto;
         height: ${imageHeight}px;
 
         @media (max-width: ${BREAKPOINT}) {

@@ -20,7 +20,8 @@ import { ILocationStateProps, getConstructorMode } from '..';
 
 export function ZephyrPage() {
   const location = useLocation();
-  const { editItem, productItem } = (location.state as ILocationStateProps) || {};
+  const { editItem, productItem } =
+    (location.state as ILocationStateProps) || {};
 
   useEffect(() => {
     if (editItem && editItem.contents && editItem.contents.length) {
@@ -151,10 +152,11 @@ export function ZephyrPage() {
         <FlexColumn bordered>
           <DessertsMix
             size={'large'}
-            imageHeight={isMobile ? 160 : 185}
+            imageHeight={isMobile ? 160 : undefined}
             product={zephyrMix[0]}
             onClick={handleZephyrMixClick}
             pictureStyle={{
+              width: '280px',
               height: '320px',
               justifyContent: 'center',
               flexDirection: 'column',

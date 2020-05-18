@@ -192,7 +192,11 @@ export function NavBar() {
         </Link>
       </LogoLink>
 
-      <IconButton disableFocusRipple onClick={handleBinClick}>
+      <IconButton
+        style={{ marginRight: 10 }}
+        disableFocusRipple
+        onClick={handleBinClick}
+      >
         <BadgeStyled
           anchorOrigin={{
             vertical: 'bottom',

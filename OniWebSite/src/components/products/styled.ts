@@ -13,7 +13,7 @@ export const ProductSingleWrapper = styled.div<IProductSingleWrapper>`
   align-items: center;
   cursor: pointer;
   position: relative;
-  padding: 20px 0;
+  padding: 20px 0 0 0;
 
   ${({ height }) =>
     `

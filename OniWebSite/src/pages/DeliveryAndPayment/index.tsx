@@ -78,30 +78,32 @@ export function DeliveryAndPayment() {
               написав нам на почту info@oni.ua.
             </Typography>
             <CustomDivider />
-            <DeliverySection>
-              <Flex>
-                <TextWrapper>
-                  <IconWrapper>
-                    <LocationIcon />
-                  </IconWrapper>
-                  Киев, бульвар Вацлава Гавела, 9А
-                </TextWrapper>
-              </Flex>
-              <Flex>
-                <TextWrapper style={{ marginRight: '2rem' }}>
-                  <IconWrapper>
-                    <PhoneIcon />
-                  </IconWrapper>
-                  +38 096 249 04 30
-                </TextWrapper>
-                <TextWrapper>
-                  <IconWrapper>
-                    <EnvelopeIcon />
-                  </IconWrapper>
-                  info@oni.ua
-                </TextWrapper>
-              </Flex>
-            </DeliverySection>
+            {!isMobile && (
+              <DeliverySection>
+                <Flex>
+                  <TextWrapper>
+                    <IconWrapper>
+                      <LocationIcon />
+                    </IconWrapper>
+                    Киев, бульвар Вацлава Гавела, 9А
+                  </TextWrapper>
+                </Flex>
+                <Flex>
+                  <TextWrapper style={{ marginRight: '2rem' }}>
+                    <IconWrapper>
+                      <PhoneIcon />
+                    </IconWrapper>
+                    +38 096 249 04 30
+                  </TextWrapper>
+                  <TextWrapper>
+                    <IconWrapper>
+                      <EnvelopeIcon />
+                    </IconWrapper>
+                    info@oni.ua
+                  </TextWrapper>
+                </Flex>
+              </DeliverySection>
+            )}
           </Flex>
         </Flex>
 
@@ -143,6 +145,32 @@ export function DeliveryAndPayment() {
               onMarkerRightClick={() => {}}
             />
           </Flex>
+          {isMobile && (
+            <DeliverySection>
+              <Flex>
+                <TextWrapper>
+                  <IconWrapper>
+                    <LocationIcon />
+                  </IconWrapper>
+                  Киев, бульвар Вацлава Гавела, 9А
+                </TextWrapper>
+              </Flex>
+              <Flex>
+                <TextWrapper style={{ marginRight: '2rem' }}>
+                  <IconWrapper>
+                    <PhoneIcon />
+                  </IconWrapper>
+                  +38 096 249 04 30
+                </TextWrapper>
+                <TextWrapper>
+                  <IconWrapper>
+                    <EnvelopeIcon />
+                  </IconWrapper>
+                  info@oni.ua
+                </TextWrapper>
+              </Flex>
+            </DeliverySection>
+          )}
         </Flex>
       </Flex>
     </Flex>

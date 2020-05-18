@@ -39,6 +39,7 @@ export const BasketItemWrapper = styled.div`
 
 interface ICellProps {
   width: number;
+  rotate?: boolean;
 }
 
 export const BasketItemWrapperCell = styled.div<ICellProps>`
@@ -50,6 +51,11 @@ export const BasketItemWrapperCell = styled.div<ICellProps>`
     height: auto;
     max-height: 120px;
     object-fit: contain;
+    ${({ rotate }) =>
+      rotate &&
+      `
+        transform: rotate(90deg);
+      `};
   }
   &:last-child {
     justify-content: space-between;

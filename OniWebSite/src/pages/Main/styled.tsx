@@ -67,7 +67,6 @@ export const AboutImageSection = styled.div`
   display: flex;
   padding-top: 3.5rem;
   img {
-    width: 500px;
     height: auto;
   }
 `;

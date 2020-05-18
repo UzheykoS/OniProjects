@@ -76,11 +76,6 @@ export function MacaronsPage() {
     if (!selectedMix) {
       return;
     }
-    window.scrollTo({
-      top: 0,
-      left: 0,
-      behavior: 'smooth',
-    });
     addToBasket({ product: selectedMix, quantity: 1 });
     handleClose();
   };

@@ -90,6 +90,11 @@ const BasketProvider = ({ children }: { children?: React.ReactNode }) => {
   const [state, dispatch] = useReducer(basketReducer, initialBasketState);
 
   const addToBasket = (item: IBasketItem) => {
+    window.scrollTo({
+      top: 0,
+      left: 0,
+      behavior: 'smooth',
+    });
     dispatch({ type: 'add', item });
   };
 

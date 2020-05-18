@@ -7,6 +7,7 @@ import { FlexColumn, Flex } from '@styles/styled';
 import QuantityEditor from '@common/QuantityEditor';
 import { useHistory } from 'react-router-dom';
 import { getDessertRouteKey } from '@utils/Helper';
+import { Choux, Macarons } from '@constants/products';
 
 interface IBasketItemProps {
   item: IBasketItem;
@@ -32,6 +33,25 @@ export function BasketItemMobile({
     });
   }
 
+  const rotate =
+    [
+      Choux.ChouxMixSmall.toString(),
+      Macarons.MacaronsMixSmall,
+      Macarons.MacaronsMixMedium,
+    ].indexOf(product.id) > -1;
+
+  const imageStyle = !!rotate
+    ? {
+        maxHeight: 175,
+        maxWidth: product.id === Macarons.MacaronsMixSmall ? 60 : undefined,
+        transform:
+          product.id === Macarons.MacaronsMixSmall
+            ? 'rotate(90deg) translateY(-100%) translateX(100%)'
+            : 'rotate(90deg) translateY(-100%) translateX(50%)',
+        transformOrigin: 'top left',
+      }
+    : { maxWidth: 175 };
+
   return (
     <FlexColumn bordered style={{ padding: 15, width: 'auto' }}>
       <Flex justifyBetween>
@@ -41,7 +61,7 @@ export function BasketItemMobile({
           onClick={item.contents?.length ? editBasketItem : () => {}}
         >
           <img
-            style={{ maxWidth: 175 }}
+            style={imageStyle}
             src={
               supports ? `${product.imageUrl}.webp` : `${product.imageUrl}.jpg`
             }

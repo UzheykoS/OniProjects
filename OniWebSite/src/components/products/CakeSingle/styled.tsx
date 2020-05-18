@@ -104,9 +104,7 @@ export const DescriptionSmall = styled.div`
   font-family: 'Roboto', sans-serif;
   font-size: 12px;
   color: #cccccc;
-  @media (max-width: ${BREAKPOINT}) {
-    padding-top: 5px;
-  }
+  padding-top: 5px;
 `;
 
 export const SizeAndQtySelector = styled.div`
