@@ -231,7 +231,13 @@ export const Footer = () => {
                     src='images/icons/instagram.png'
                   />
                 </SocialsItem>
-                <SocialsItem target='_blank' href='https://www.telegram.com'>
+                {/* <SocialsItem target='_blank' href='https://www.telegram.com'>
+                  <img
+                    className='social_network'
+                    src='images/icons/twitter.png'
+                  />
+                </SocialsItem> */}
+                <SocialsItem rel='import' href='./wheelOfFortune.html'>
                   <img
                     className='social_network'
                     src='images/icons/twitter.png'
