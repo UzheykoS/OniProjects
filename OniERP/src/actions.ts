@@ -833,13 +833,13 @@ export const CountDailyDrinks = () => {
         .filter(
           (v) =>
             [
-              DrinksType.Syrop,
+              DrinksType.AddCaramel,
+              DrinksType.AddLavender,
+              DrinksType.AddOrange,
               DrinksType.VeganMilk,
               DrinksType.Milk,
               DrinksType.Cream,
-              DrinksType.Cup240,
-              DrinksType.Cup355,
-              DrinksType.Cup470,
+              DrinksType.StojoCup,
               DrinksType.Seeds50,
             ].indexOf(v[0]) < 0 &&
             Helper.isToday(v[4]) &&

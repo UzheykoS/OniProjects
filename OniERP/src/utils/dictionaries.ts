@@ -12,35 +12,38 @@ DrinksDict[DrinksType.Cappucino] = ['175 мл', '340 мл'];
 DrinksDict[DrinksType.Latte] = ['250 мл', '340 мл', '400 мл'];
 DrinksDict[DrinksType.FlatWhite] = ['175 мл'];
 DrinksDict[DrinksType.Raf] = ['250 мл', '340 мл'];
-DrinksDict[DrinksType.Americano] = ['120 мл'];
-DrinksDict[DrinksType.AmericanoMilk] = ['120 мл'];
-DrinksDict[DrinksType.LongBlack] = ['200 мл'];
+DrinksDict[DrinksType.Americano] = ['120 мл', '200 мл'];
+DrinksDict[DrinksType.AmericanoMilk] = ['120 мл', '200 мл'];
 DrinksDict[DrinksType.Espresso] = ['30 мл'];
 DrinksDict[DrinksType.Doppio] = ['60 мл'];
+DrinksDict[DrinksType.Matcha] = ['Матча Чай', 'Матча Латте', 'Матча Тоник'];
 DrinksDict[DrinksType.Machiato] = ['90 мл'];
-DrinksDict[DrinksType.LatteLavender] = ['250 мл', '340 мл'];
-DrinksDict[DrinksType.LatteCaramel] = ['250 мл', '340 мл'];
-DrinksDict[DrinksType.LatteOrange] = ['250 мл', '340 мл'];
 DrinksDict[DrinksType.Cacao] = ['250 мл', '340 мл'];
-DrinksDict[DrinksType.TeaGreen] = ['400 мл'];
-DrinksDict[DrinksType.TeaBlack] = ['400 мл'];
-DrinksDict[DrinksType.TeaHerbal] = ['400 мл'];
-DrinksDict[DrinksType.SpeacialTeaPearLime] = ['400 мл'];
-DrinksDict[DrinksType.SpecialTeaOrange] = ['400 мл'];
-DrinksDict[DrinksType.SpecialTeaGinger] = ['400 мл'];
+DrinksDict[DrinksType.Tea] = [
+  'Зелёный',
+  'Чёрный',
+  'Травяной',
+  'Груша-Лайм',
+  'Апельсин-Облепиха',
+  'Малина-Имбирь',
+];
 DrinksDict[DrinksType.HotChocolate] = ['175 мл'];
-DrinksDict[DrinksType.LemonadeStrawberry] = ['400 мл'];
-DrinksDict[DrinksType.LemonadeAnanas] = ['400 мл'];
-DrinksDict[DrinksType.LemonadeMango] = ['400 мл'];
+DrinksDict[DrinksType.Lemonade] = [
+  'Клубника - Грейпфрут - Мята',
+  'Ананас - Огурец - Базилик',
+  'Манго - Лемонграсс',
+];
 DrinksDict[DrinksType.IceLatte] = ['400 мл'];
 DrinksDict[DrinksType.EspressoTonic] = ['200 мл'];
-DrinksDict[DrinksType.Syrop] = ['0 мл'];
+DrinksDict[DrinksType.ColdBrew] = ['200 мл'];
+DrinksDict[DrinksType.AddCaramel] = ['0 мл'];
+DrinksDict[DrinksType.AddLavender] = ['0 мл'];
+DrinksDict[DrinksType.AddOrange] = ['0 мл'];
 DrinksDict[DrinksType.FilterCoffee] = ['200 мл'];
-DrinksDict[DrinksType.VeganMilk] = ['S', 'M'];
+DrinksDict[DrinksType.VeganMilk] = ['М'];
 DrinksDict[DrinksType.Milk] = ['N'];
 DrinksDict[DrinksType.Cream] = ['N'];
-DrinksDict[DrinksType.Cup240] = ['240 мл'];
-DrinksDict[DrinksType.Cup355] = ['355 мл'];
+DrinksDict[DrinksType.StojoCup] = ['240 мл', '355 мл', '470мл'];
 DrinksDict[DrinksType.Seeds50] = ['50 гр'];
 
 export const DessertsDict: { [id: string]: Array<any> } = {};
@@ -53,36 +56,27 @@ DrinkPricesDict[DrinksType.Cappucino] = [25, 40];
 DrinkPricesDict[DrinksType.Latte] = [28, 35, 45];
 DrinkPricesDict[DrinksType.FlatWhite] = [35];
 DrinkPricesDict[DrinksType.Raf] = [38, 45];
-DrinkPricesDict[DrinksType.Americano] = [20];
-DrinkPricesDict[DrinksType.AmericanoMilk] = [22];
-DrinkPricesDict[DrinksType.LongBlack] = [30];
+DrinkPricesDict[DrinksType.Americano] = [20, 30];
+DrinkPricesDict[DrinksType.AmericanoMilk] = [22, 32];
 DrinkPricesDict[DrinksType.Espresso] = [20];
 DrinkPricesDict[DrinksType.Doppio] = [30];
+DrinkPricesDict[DrinksType.Matcha] = [45, 55, 65];
 DrinkPricesDict[DrinksType.Machiato] = [22];
-DrinkPricesDict[DrinksType.LatteLavender] = [32, 40];
-DrinkPricesDict[DrinksType.LatteCaramel] = [32, 40];
-DrinkPricesDict[DrinksType.LatteOrange] = [32, 40];
 DrinkPricesDict[DrinksType.Cacao] = [28, 35];
-DrinkPricesDict[DrinksType.TeaGreen] = [25];
-DrinkPricesDict[DrinksType.TeaBlack] = [25];
-DrinkPricesDict[DrinksType.TeaHerbal] = [25];
-DrinkPricesDict[DrinksType.SpeacialTeaPearLime] = [35];
-DrinkPricesDict[DrinksType.SpecialTeaOrange] = [35];
-DrinkPricesDict[DrinksType.SpecialTeaGinger] = [35];
+DrinkPricesDict[DrinksType.Tea] = [25, 25, 25, 35, 35, 35];
 DrinkPricesDict[DrinksType.HotChocolate] = [55];
-DrinkPricesDict[DrinksType.LemonadeStrawberry] = [45];
-DrinkPricesDict[DrinksType.LemonadeAnanas] = [45];
-DrinkPricesDict[DrinksType.LemonadeMango] = [45];
-DrinkPricesDict[DrinksType.IceLatte] = [40];
-DrinkPricesDict[DrinksType.EspressoTonic] = [40];
-DrinkPricesDict[DrinksType.Syrop] = [5];
+DrinkPricesDict[DrinksType.Lemonade] = [45, 45, 45];
+DrinkPricesDict[DrinksType.IceLatte] = [45];
+DrinkPricesDict[DrinksType.EspressoTonic] = [45];
+DrinkPricesDict[DrinksType.ColdBrew] = [40];
+DrinkPricesDict[DrinksType.AddCaramel] = [5];
+DrinkPricesDict[DrinksType.AddLavender] = [5];
+DrinkPricesDict[DrinksType.AddOrange] = [5];
 DrinkPricesDict[DrinksType.FilterCoffee] = [30];
-DrinkPricesDict[DrinksType.VeganMilk] = [20, 30];
+DrinkPricesDict[DrinksType.VeganMilk] = [25];
 DrinkPricesDict[DrinksType.Milk] = [5];
 DrinkPricesDict[DrinksType.Cream] = [10];
-DrinkPricesDict[DrinksType.Cup240] = [450];
-DrinkPricesDict[DrinksType.Cup355] = [550];
-DrinkPricesDict[DrinksType.Cup470] = [650];
+DrinkPricesDict[DrinksType.StojoCup] = [450, 550, 650];
 DrinkPricesDict[DrinksType.Seeds50] = [40];
 
 export const CaffeePrices: { [id: string]: number } = {};
