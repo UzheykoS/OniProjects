@@ -57,16 +57,26 @@ const initialState = {
 export function CheckoutStepper({ returnToBasket }: ICheckoutStepperProps) {
   const [activeTab, setActiveTab] = useState(CheckoutTabs.Delivery);
   const [form, setForm] = useState<IOrder>(initialState);
-  const { items } = useBasket();
+  const { items, clearBasket } = useBasket();
   const { showSnackbar } = useSnackbar();
   const isMobile = useMediaQuery(`(max-width: ${BREAKPOINT})`);
 
   const handleDeliverySubmit = (delivery: DeliveryType) => {
+    window.scrollTo({
+      top: 0,
+      left: 0,
+      behavior: 'smooth',
+    });
     setForm({ ...form, delivery });
     setActiveTab(CheckoutTabs.Contacts);
   };
 
   const handleContactDataSubmit = (contactData: IContactData) => {
+    window.scrollTo({
+      top: 0,
+      left: 0,
+      behavior: 'smooth',
+    });
     setForm({ ...form, ...contactData });
     setActiveTab(CheckoutTabs.Payment);
   };
@@ -80,6 +90,7 @@ export function CheckoutStepper({ returnToBasket }: ICheckoutStepperProps) {
 
     try {
       await submitOrder({ ...form, payment, itemsMessage });
+      clearBasket();
       returnToBasket();
       showSnackbar('Заказ сохранён!');
     } catch (e) {

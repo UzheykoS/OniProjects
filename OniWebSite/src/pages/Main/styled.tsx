@@ -106,6 +106,7 @@ export const BackgroundImage = styled.img<IBackgroundImage>`
   clip-path: url('#banner-wrapper_svg__banner-shape');
   position: absolute;
   z-index: 0;
+  align-items: flex-start;
   ${({ isMobile }) =>
     `
       width: ${isMobile ? 'auto' : '100%'};

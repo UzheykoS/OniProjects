@@ -5,6 +5,8 @@ import React, {
   useCallback,
 } from 'react';
 import { IProduct, ICakeInfo } from '@constants/products';
+import { useMediaQuery } from '@material-ui/core';
+import { BREAKPOINT } from '@constants';
 
 export interface IBasketItem {
   product: IProduct | ICakeInfo;
@@ -88,13 +90,16 @@ function basketReducer(state: IBasketState, action: ActionType) {
 
 const BasketProvider = ({ children }: { children?: React.ReactNode }) => {
   const [state, dispatch] = useReducer(basketReducer, initialBasketState);
+  const isMobile = useMediaQuery(`(max-width: ${BREAKPOINT})`);
 
   const addToBasket = (item: IBasketItem) => {
-    window.scrollTo({
-      top: 0,
-      left: 0,
-      behavior: 'smooth',
-    });
+    if (!isMobile) {
+      window.scrollTo({
+        top: 0,
+        left: 0,
+        behavior: 'smooth',
+      });
+    }
     dispatch({ type: 'add', item });
   };
 
