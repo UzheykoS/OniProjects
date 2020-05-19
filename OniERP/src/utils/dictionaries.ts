@@ -117,9 +117,9 @@ export const CHOUX_PRICE = 45;
 
 export const CHEESECAKE_PRICE = 75;
 
-export const ICE_CREAM_PRICE = 44;
+export const ICE_CREAM_PRICE = 48;
 
-export const SORBET_PRICE = 44;
+export const SORBET_PRICE = 48;
 
 export const SMALL_CAKE_PRICE = 85;
 
