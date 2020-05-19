@@ -127,11 +127,10 @@ export enum CheesecakeEnum {
 export enum IceCreamEnum {
   SaltedCaramel = 'Солёная карамель',
   Vanilla = 'Ваниль',
-  WildStrawberry = 'Земляника',
   CherryMascarpone = 'Вишня - Маскарпоне',
   Pistachio = 'Фисташка',
   Chocolate = 'Шоколад',
-  LemonMint = 'Лимон - Мята',
+  LemonMint = 'Маракуйя',
 }
 
 export enum SorbetEnum {
