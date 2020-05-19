@@ -54,7 +54,14 @@ export const ImageWithFallback = ({
     '/small/' +
     splittedSrc[splittedSrc.length - 1];
   return (
-    <picture style={{ display: 'flex', justifyContent: 'center', ...style }}>
+    <picture
+      style={{
+        display: 'flex',
+        alignItems: 'flex-start',
+        justifyContent: 'center',
+        ...style,
+      }}
+    >
       <source
         srcSet={loading ? `${placeholderSrc}.jpg` : srcWebp}
         type={type}

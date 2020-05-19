@@ -14,6 +14,7 @@ import { useBasket, IBasketItem } from '@hooks/useBasket';
 import { IProduct, macaronMix, chouxMix, zephyrMix } from '@constants/products';
 import ConstructorClearModal from './ConstructorClearModal';
 import colors from '@constants/colors';
+import { getRandomDessert } from '@utils/Helper';
 
 export enum ConstructoreMode {
   MacaronSmall = 6,
@@ -93,7 +94,11 @@ export function constructorReducer(
     case 'clear':
       return { ...state, items: [] };
     case 'surpriseMe':
-      return state;
+      const { items, mode } = state;
+      for (let i = items.length; i < mode; i++) {
+        items.push(getRandomDessert(mode));
+      }
+      return { ...state, items };
     default:
       throw new ConstructorError('Unknown action');
   }
