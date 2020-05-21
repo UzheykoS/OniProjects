@@ -72,7 +72,6 @@ export default function Profile({
       setAuthorized(true);
     }
   };
-  console.log('authorized', authorized);
 
   return (
     <Dialog

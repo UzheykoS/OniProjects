@@ -235,36 +235,6 @@ export const ProcessLog = async (message: string) => {
   }
 };
 
-export const ProcessUpdateData = (spreadsheetId: string, valueRange: any) => {
-  return async (dispatch) => {
-    dispatch(itemsIsLoading(true));
-    try {
-      const response = await window[
-        'gapi'
-      ].client.sheets.spreadsheets.values.update(
-        {
-          spreadsheetId: spreadsheetId,
-          range: 'A6:D10',
-          valueInputOption: ValueInputOption.USER_ENTERED,
-          includeValuesInResponse: true,
-          responseValueRenderOption: ValueRenderOption.FORMATTED_VALUE,
-          responseDateTimeRenderOption: DateTimeRenderOption.FORMATTED_STRING,
-        },
-        { values: valueRange }
-      );
-      //TODO: Process response result
-      const items = await response.result.values;
-      dispatch(itemsFetchDataSuccess(items));
-    } catch (ex) {
-      dispatch(itemsHasErrored(true));
-      console.log(ex);
-      throw Error(ex);
-    } finally {
-      dispatch(itemsIsLoading(false));
-    }
-  };
-};
-
 export const CreateCheck = createAction(CREATE_CHECK);
 
 export const ProcessCheckout = (callback) => {
@@ -280,7 +250,7 @@ export const ProcessCheckout = (callback) => {
       check.drinks.forEach(async (d) => {
         const dateTime = moment(new Date()).format(DATE_FORMAT);
         const data = [
-          d.id,
+          d.id.replace('+', 'плюс'),
           d.size,
           check.payment,
           check.type,
@@ -335,8 +305,8 @@ export const ProcessCheckout = (callback) => {
       dispatch(Checkout());
       await dispatch(ShowNotification(0, 'Заказ сохранён!'));
 
-      await ProcessLog(log);
-      await ProcessLog(JSON.stringify(check));
+      // await ProcessLog(log);
+      // await ProcessLog(JSON.stringify(check));
       dispatch(ClearLog());
     } catch (ex) {
       dispatch(
@@ -383,7 +353,7 @@ export const ProcessPartnersOrderSubmit = (
       await dispatch(
         ProcessAppendData(SPREADSHEET_ID, partnersRange, partnersData)
       );
-      await ProcessLog(JSON.stringify(partnersData));
+      // await ProcessLog(JSON.stringify(partnersData));
       await dispatch(ShowNotification(0, 'Заказ сохранён!'));
     } catch (ex) {
       dispatch(
@@ -420,7 +390,7 @@ export const ProcessOtherPaymentSubmit = (
         ],
       ];
       await dispatch(ProcessAppendData(SPREADSHEET_ID, range, data));
-      await ProcessLog(JSON.stringify(data));
+      // await ProcessLog(JSON.stringify(data));
       await dispatch(ShowNotification(0, 'Платёж сохранён!'));
     } catch (ex) {
       dispatch(
@@ -448,7 +418,7 @@ export const ProcessCashboxSubmit = (cash: number, date?: moment.Moment) => {
         ],
       ];
       await dispatch(ProcessAppendData(SPREADSHEET_ID, range, data));
-      await ProcessLog(JSON.stringify(data));
+      // await ProcessLog(JSON.stringify(data));
       await dispatch(ShowNotification(0, 'Данные сохранены!'));
     } catch (ex) {
       dispatch(
@@ -492,7 +462,7 @@ export const ProcessProductSubmit = (
         ],
       ];
       await dispatch(ProcessAppendData(SPREADSHEET_ID, range, data));
-      await ProcessLog(JSON.stringify(data));
+      // await ProcessLog(JSON.stringify(data));
       await dispatch(ShowNotification(0, 'Данные сохранены!'));
     } catch (ex) {
       dispatch(
@@ -537,7 +507,7 @@ export const ProcessWriteOffSubmit = (
         ],
       ];
       await dispatch(ProcessAppendData(SPREADSHEET_ID, range, data));
-      await ProcessLog(JSON.stringify(data));
+      // await ProcessLog(JSON.stringify(data));
       await dispatch(ShowNotification(0, 'Данные сохранены!'));
     } catch (ex) {
       dispatch(
@@ -678,7 +648,22 @@ export const CalculateDailyPercent = () => {
 
       const todayDrinks = drinksResponse.result.values
         .slice(1)
-        .filter((v) => Helper.isToday(v[4]) && v[7] === state.currentProfile);
+        .filter(
+          (v) =>
+            Helper.isToday(v[4]) &&
+            v[7] === state.currentProfile &&
+            !v[9] &&
+            [
+              DrinksType.AddCaramel,
+              DrinksType.AddLavender,
+              DrinksType.AddOrange,
+              DrinksType.VeganMilk,
+              DrinksType.Milk,
+              DrinksType.Cream,
+              DrinksType.StojoCup,
+              DrinksType.Seeds50,
+            ].indexOf(v[0].replace('плюс', '+')) < 0
+        );
 
       const dessertsResponse = await window[
         'gapi'
@@ -689,7 +674,7 @@ export const CalculateDailyPercent = () => {
 
       todayDrinks.forEach((d) => {
         totalBonus +=
-          (Helper.getDrinkPrice(d[0], d[1]) *
+          (Helper.getDrinkPrice(d[0].replace('плюс', '+'), d[1]) *
             BONUS_PERCENT_DRINKS *
             (100 - getSale(d[6]))) /
           100;
@@ -841,10 +826,12 @@ export const CountDailyDrinks = () => {
               DrinksType.Cream,
               DrinksType.StojoCup,
               DrinksType.Seeds50,
-            ].indexOf(v[0]) < 0 &&
+            ].indexOf(v[0].replace('плюс', '+')) < 0 &&
             Helper.isToday(v[4]) &&
-            v[7] === state.currentProfile
+            v[7] === state.currentProfile &&
+            !v[9]
         );
+
       dispatch(SetDrinksCount(todayDrinks.length));
     } catch (ex) {
       dispatch(itemsHasErrored(true));
