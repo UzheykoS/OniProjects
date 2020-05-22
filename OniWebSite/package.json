@@ -1,6 +1,6 @@
 {
   "name": "oniwebsite",
-  "version": "0.5.3",
+  "version": "0.5.4",
   "description": "Oni Desserts Web Site Project",
   "main": "index.js",
   "scripts": {
