@@ -339,11 +339,11 @@ export class DessertsComponent extends Component<
           title: MIX_MACARONS_24,
           avatar: 24,
         });
-        extraOptions.push({
-          value: SPECIAL_MIX_MACARONS_2,
-          title: SPECIAL_MIX_MACARONS_2,
-          avatar: 2,
-        });
+        // extraOptions.push({
+        //   value: SPECIAL_MIX_MACARONS_2,
+        //   title: SPECIAL_MIX_MACARONS_2,
+        //   avatar: 2,
+        // });
         break;
       case DessertType.Zephyr:
         dessertTastes = Helper.getArrayFromEnum(ZephyrEnum);

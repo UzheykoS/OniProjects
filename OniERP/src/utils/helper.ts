@@ -129,7 +129,7 @@ class Helper {
         break;
       case SaleType.NewYear2020:
         drinkSale = 0;
-        dessertSale = 0;
+        dessertSale = 20;
         break;
       case SaleType.Empty:
       default:
@@ -147,24 +147,7 @@ class Helper {
           }
           break;
         case DessertType.Macaron:
-          if (
-            check.sale === SaleType.NewYear2020 &&
-            d.taste == MIX_MACARONS_6
-          ) {
-            totalDessertsPrice += (165 * d.quantity) / 6;
-          } else if (
-            check.sale === SaleType.NewYear2020 &&
-            d.taste == MIX_MACARONS_12
-          ) {
-            totalDessertsPrice += (330 * d.quantity) / 12;
-          } else if (
-            check.sale === SaleType.NewYear2020 &&
-            d.taste == MIX_MACARONS_24
-          ) {
-            totalDessertsPrice += (660 * d.quantity) / 24;
-          } else {
-            totalDessertsPrice += MACARONS_PRICE * d.quantity;
-          }
+          totalDessertsPrice += MACARONS_PRICE * d.quantity;
           break;
         case DessertType.Zephyr:
           totalDessertsPrice += ZEPHYR_PRICE * d.quantity;

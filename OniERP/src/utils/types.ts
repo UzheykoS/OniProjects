@@ -59,7 +59,7 @@ export enum SaleType {
   Fifty = '50 %',
   Staff = 'Персонал',
   Full = '100 %',
-  NewYear2020 = 'Новый Год 2020',
+  NewYear2020 = 'День Рождения',
 }
 
 export enum Staff {
