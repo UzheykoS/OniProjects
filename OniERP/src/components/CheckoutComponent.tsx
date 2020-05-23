@@ -14,7 +14,7 @@ import {
   ProcessCheckout,
   SetPaymentType,
   SetOrderType,
-  LogData,
+  // LogData,
   Cancel,
   SelectSale,
   SetIsPaid,
@@ -40,7 +40,7 @@ const mapDispatchToProps = dispatch => {
     selectSale: (sale: SaleType) => dispatch(SelectSale(sale)),
     setIsPaid: (isPaid: boolean) => dispatch(SetIsPaid(isPaid)),
     selectStaff: (staff: Staff) => dispatch(SelectStaff(staff)),
-    logData: (text: string) => dispatch(LogData(text)),
+    // logData: (text: string) => dispatch(LogData(text)),
     handleCancel: () => dispatch(Cancel()),
   };
 };
@@ -56,7 +56,7 @@ export interface ICheckoutComponentProps {
   selectStaff?: (staff: Staff) => void;
   handleCheckout?: (callback: any) => void;
   handleCancel?: () => void;
-  logData?: (text: string) => void;
+  // logData?: (text: string) => void;
 }
 
 export interface ICheckoutComponentState {
@@ -87,7 +87,7 @@ class CheckoutComponent extends Component<
         },
         () => {
           this.props.history.push('/');
-          this.props.logData('checkoutPage->checkout');
+          // this.props.logData('checkoutPage->checkout');
         }
       );
     });
@@ -96,28 +96,28 @@ class CheckoutComponent extends Component<
   handleCancel = () => {
     this.props.handleCancel();
     this.props.history.push('/');
-    this.props.logData('checkoutPage->cancel');
+    // this.props.logData('checkoutPage->cancel');
   };
 
   handleBack = () => {
     this.props.history.push('/check');
-    this.props.logData('checkoutPage->back');
+    // this.props.logData('checkoutPage->back');
   };
 
   handlePaymentTypeChange = (type: Payment) => {
     this.props.setPaymentType(type);
-    this.props.logData('checkoutPage->paymentTypeChanged->' + type);
+    // this.props.logData('checkoutPage->paymentTypeChanged->' + type);
   };
 
   handleOrderTypeChange = (type: OrderType) => {
     this.props.setOrderType(type);
-    this.props.logData('checkoutPage->orderTypeChanged->' + type);
+    // this.props.logData('checkoutPage->orderTypeChanged->' + type);
   };
 
   handleSaleSelect = ev => {
     const sale = ev.target.value;
     this.props.selectSale(sale);
-    this.props.logData('checkoutPage->handleSaleSelect->' + sale);
+    // this.props.logData('checkoutPage->handleSaleSelect->' + sale);
     if (sale !== SaleType.Staff) {
       this.props.selectStaff(null);
       this.props.setIsPaid(true);

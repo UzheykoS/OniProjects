@@ -1,7 +1,7 @@
 ﻿import * as React from 'react';
 import { Component } from 'react';
 import { connect } from 'react-redux';
-import { AddDrink, LogData } from '../actions';
+import { AddDrink } from '../actions';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemAvatar from '@material-ui/core/ListItemAvatar';
@@ -23,14 +23,14 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
     return {
         addDrink: (type: DrinksType | string, size: string, quantity: number) => dispatch(AddDrink(type, size, quantity)),
-        logData: (text: string) => dispatch(LogData(text))
+        // logData: (text: string) => dispatch(LogData(text))
     };
 };
 
 export interface IDrinksComponentProps {
     addDrink?: (type: DrinksType | string , size: string, quantity: number) => void;
     handleClose?: () => void;
-    logData?: (text: string) => void;
+    // logData?: (text: string) => void;
 }
 
 export interface IDrinksComponentState {
@@ -68,7 +68,7 @@ export class DrinksComponent extends Component<IDrinksComponentProps, IDrinksCom
 
     handleClose = () => {
         this.props.handleClose();
-        this.props.logData('drinks->close');
+        // this.props.logData('drinks->close');
     }
 
     handleBack = () => {
@@ -112,7 +112,7 @@ export class DrinksComponent extends Component<IDrinksComponentProps, IDrinksCom
         }
 
         this.props.handleClose();
-        this.props.logData('drinks->handleApply');
+        // this.props.logData('drinks->handleApply');
     }
 
     handleDrinkIncrease = (drinkSize, qty = 1) => {

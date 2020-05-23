@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { Component } from 'react';
 import { connect } from 'react-redux';
-import { AddDessert, LogData } from '../actions';
+import { AddDessert } from '../actions';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemAvatar from '@material-ui/core/ListItemAvatar';
@@ -50,7 +50,7 @@ const mapDispatchToProps = (dispatch) => {
       size: string,
       quantity: number
     ) => dispatch(AddDessert(type, taste, size, quantity)),
-    logData: (text: string) => dispatch(LogData(text)),
+    // logData: (text: string) => dispatch(LogData(text)),
   };
 };
 
@@ -62,7 +62,7 @@ export interface IDessertsComponentProps {
     quantity: number
   ) => void;
   handleClose?: () => void;
-  logData?: (text: string) => void;
+  // logData?: (text: string) => void;
 }
 
 export interface IDessertsComponentState {
@@ -87,14 +87,14 @@ export class DessertsComponent extends Component<
 
   handleClose = () => {
     this.props.handleClose();
-    this.props.logData('desserts->close');
+    // this.props.logData('desserts->close');
   };
 
   handleDessertSelect = (dessert) => {
     this.setState({
       dessertType: dessert,
     });
-    this.props.logData('desserts->dessertSelected->' + dessert);
+    // this.props.logData('desserts->dessertSelected->' + dessert);
   };
 
   handleDessertTasteSelect = async (taste) => {
@@ -108,7 +108,7 @@ export class DessertsComponent extends Component<
       this.setState({
         dessertTaste: taste,
       });
-      this.props.logData('desserts->dessertTasteSelected->' + taste);
+      // this.props.logData('desserts->dessertTasteSelected->' + taste);
     } else {
       this.handleDessertIncrease(taste);
     }
@@ -137,7 +137,7 @@ export class DessertsComponent extends Component<
       default:
         break;
     }
-    this.props.logData('desserts->handleDessertMixSelect->' + mixType);
+    // this.props.logData('desserts->handleDessertMixSelect->' + mixType);
   };
 
   handleDessertMixDecrease = (mixType) => {
@@ -163,7 +163,7 @@ export class DessertsComponent extends Component<
       default:
         break;
     }
-    this.props.logData('desserts->handleDessertMixDecrease->' + mixType);
+    // this.props.logData('desserts->handleDessertMixDecrease->' + mixType);
   };
 
   handleDessertSizeOrQuantitySelect = async (sizeOrQty) => {
@@ -172,11 +172,11 @@ export class DessertsComponent extends Component<
     if (dessertType === DessertType.Cake) {
       await this.props.addDessert(dessertType, dessertTaste, sizeOrQty, 1);
       this.props.handleClose();
-      this.props.logData('desserts->dessertSizeSelected->' + sizeOrQty);
+      // this.props.logData('desserts->dessertSizeSelected->' + sizeOrQty);
     } else {
       await this.props.addDessert(dessertType, dessertTaste, null, sizeOrQty);
       this.props.handleClose();
-      this.props.logData('desserts->dessertQuantitySelected->' + sizeOrQty);
+      // this.props.logData('desserts->dessertQuantitySelected->' + sizeOrQty);
     }
   };
 
@@ -192,7 +192,7 @@ export class DessertsComponent extends Component<
     }
 
     this.props.handleClose();
-    this.props.logData('desserts->handleFinish');
+    // this.props.logData('desserts->handleFinish');
   };
 
   getId(dessertType, dessertTaste) {
@@ -212,7 +212,7 @@ export class DessertsComponent extends Component<
     this.setState({
       dessertQuantities,
     });
-    this.props.logData('desserts->dessertQtyIncrease->' + id);
+    // this.props.logData('desserts->dessertQtyIncrease->' + id);
   };
 
   handleDessertDecrease = (taste, qty = 1) => {
@@ -226,7 +226,7 @@ export class DessertsComponent extends Component<
     this.setState({
       dessertQuantities,
     });
-    this.props.logData('desserts->handleDessertDecrease->' + id);
+    // this.props.logData('desserts->handleDessertDecrease->' + id);
   };
 
   countTotalDessertQuantity() {

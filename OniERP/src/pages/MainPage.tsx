@@ -4,7 +4,6 @@ import { connect } from 'react-redux';
 import { Link, LinkProps } from 'react-router-dom';
 import {
   CreateCheck,
-  LogData,
   ProcessFetchData,
   CalculateDailyPercent,
   CountDailyDrinks,
@@ -30,7 +29,7 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
   return {
     createCheck: () => dispatch(CreateCheck()),
-    logData: (text: string) => dispatch(LogData(text)),
+    // logData: (text: string) => dispatch(LogData(text)),
     fetchData: url => dispatch(ProcessFetchData(url)),
     calculateDailyPercent: () => dispatch(CalculateDailyPercent()),
     countDailyDrinks: () => dispatch(CountDailyDrinks()),
@@ -67,7 +66,7 @@ export interface IMainPageProps {
   isLoading?: boolean;
 
   createCheck?: () => void;
-  logData?: (text: string) => void;
+  // logData?: (text: string) => void;
   fetchData?: (url: string) => void;
   calculateDailyPercent?: () => void;
   countDailyDrinks?: () => void;
@@ -85,7 +84,7 @@ export class MainPage extends Component<IMainPageProps, any> {
 
   onNewCheckClick = () => {
     this.props.createCheck();
-    this.props.logData('mainPage->newCheck');
+    // this.props.logData('mainPage->newCheck');
   };
 
   render() {
