@@ -127,10 +127,10 @@ class Helper {
         drinkSale = 70;
         dessertSale = 40;
         break;
-      case SaleType.NewYear2020:
-        drinkSale = 0;
-        dessertSale = 20;
-        break;
+      // case SaleType.NewYear2020:
+      //   drinkSale = 0;
+      //   dessertSale = 20;
+      //   break;
       case SaleType.Empty:
       default:
         break;

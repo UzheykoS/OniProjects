@@ -51,7 +51,7 @@ export default handleActions(
         isFinished: false,
         payment: Payment.Cash,
         type: OrderType.Shop,
-        sale: SaleType.NewYear2020,
+        sale: SaleType.Empty,
         isPaid: true,
         date: moment(new Date()),
         staff: null,
