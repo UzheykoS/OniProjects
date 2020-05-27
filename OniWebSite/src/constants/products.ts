@@ -28,7 +28,7 @@ export enum Macarons {
   ParmegianoFig = 'Пармезан-Инжир',
   LavenderBlueberry = 'Лаванда-Черника',
   Raspberry = 'Малина',
-  Currant = 'Смородина',
+  LimeBasilic = 'Лайм - Базилик',
   Pistachio = 'Фисташка',
   Chocolate = 'Шоколад',
   StrawberryCheesecake = 'Клубничный чизкейк',
@@ -187,11 +187,11 @@ export const macarons: IProduct[] = [
     price: 30,
   },
   {
-    id: Macarons.Currant,
+    id: Macarons.LimeBasilic,
     fullDescription:
       'Начинка на основе натурального пюре чёрной смородины со смородиновым конфи',
-    imageUrl: './images/pages/macarons/blackcurrant',
-    imageCutUrl: './images/pages/macarons/blackcurrant_cut',
+    imageUrl: './images/pages/macarons/lime',
+    imageCutUrl: './images/pages/macarons/lime_cut',
     type: ProductType.Macaron,
     price: 30,
   },

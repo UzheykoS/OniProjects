@@ -21,6 +21,7 @@ import { Flex } from '@styles/styled';
 
 interface IBasketProps {
   items: IBasketItem[];
+  totalPrice: number;
   confirmCheckout: () => void;
   removeFromBasket: (item: IBasketItem) => void;
   handleIncreaseQuantity: (item: IBasketItem) => void;
@@ -29,6 +30,7 @@ interface IBasketProps {
 
 export function Basket({
   items,
+  totalPrice,
   confirmCheckout,
   removeFromBasket,
   handleIncreaseQuantity,
@@ -48,10 +50,6 @@ export function Basket({
   const handleCheckoutClick = () => {
     confirmCheckout();
   };
-  const totalPrice = items.reduce((accumulator, currentValue) => {
-    accumulator += Number(currentValue.product.price) * currentValue.quantity;
-    return accumulator;
-  }, 0);
 
   return (
     <BasketWrapper>

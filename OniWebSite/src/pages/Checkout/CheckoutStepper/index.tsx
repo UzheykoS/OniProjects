@@ -57,7 +57,7 @@ const initialState = {
 export function CheckoutStepper({ returnToBasket }: ICheckoutStepperProps) {
   const [activeTab, setActiveTab] = useState(CheckoutTabs.Delivery);
   const [form, setForm] = useState<IOrder>(initialState);
-  const { items, clearBasket } = useBasket();
+  const { items, totalPrice, clearBasket } = useBasket();
   const { showSnackbar } = useSnackbar();
   const isMobile = useMediaQuery(`(max-width: ${BREAKPOINT})`);
 
@@ -101,11 +101,6 @@ export function CheckoutStepper({ returnToBasket }: ICheckoutStepperProps) {
   const handleTabChange = (_e: React.ChangeEvent<{}>, tab: CheckoutTabs) => {
     setActiveTab(tab);
   };
-
-  const totalPrice = items.reduce((accumulator, currentValue) => {
-    accumulator += Number(currentValue.product.price) * currentValue.quantity;
-    return accumulator;
-  }, 0);
 
   return (
     <CheckoutStepperContainer>

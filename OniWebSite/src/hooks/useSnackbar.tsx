@@ -1,28 +1,52 @@
 import React, { useContext, createContext, useState, useCallback } from 'react';
 
+export enum SnackbarType {
+  Success = 'success',
+  Error = 'error',
+  Info = 'info',
+}
+
 interface ISnackbarContext {
   message?: string;
-  showSnackbar?: (message: string) => void;
+  title?: string;
+  type?: SnackbarType;
+  showSnackbar?: (message: string, type?: SnackbarType, title?: string) => void;
   hideSnackbar?: () => void;
 }
 
 const SnackbarContext = createContext<ISnackbarContext>({});
 
-export function SnackbarProvider(props: { children?: React.ReactNode }) {
-  const [message, setMessage] = useState<string>();
+interface ISnackbarInternal {
+  message: string;
+  title?: string;
+  type?: SnackbarType;
+}
 
-  function showSnackbar(message: string) {
-    setMessage(message);
+export function SnackbarProvider(props: { children?: React.ReactNode }) {
+  const [state, setState] = useState<ISnackbarInternal>();
+
+  function showSnackbar(
+    message: string,
+    type = SnackbarType.Success,
+    title?: string
+  ) {
+    setState({
+      message,
+      title,
+      type,
+    });
   }
 
   function hideSnackbar() {
-    setMessage(undefined);
+    setState(undefined);
   }
 
   return (
     <SnackbarContext.Provider
       value={{
-        message,
+        message: state?.message,
+        type: state?.type,
+        title: state?.title,
         showSnackbar,
         hideSnackbar,
       }}
@@ -32,17 +56,20 @@ export function SnackbarProvider(props: { children?: React.ReactNode }) {
 }
 
 interface ISnackbarState {
-    message?: string;
-    showSnackbar: (message: string) => void;
-    hideSnackbar: () => void;
-  }
+  message?: string;
+  title?: string;
+  type?: SnackbarType;
+  showSnackbar: (message: string, type?: SnackbarType, title?: string) => void;
+  hideSnackbar: () => void;
+}
 
 export function useSnackbar(): ISnackbarState {
   const snackbarContext = useContext(SnackbarContext);
 
   const open = useCallback(
-    (message: string) => {
-      snackbarContext.showSnackbar && snackbarContext.showSnackbar(message);
+    (message: string, type?: SnackbarType, title?: string) => {
+      snackbarContext.showSnackbar &&
+        snackbarContext.showSnackbar(message, type, title);
     },
     [snackbarContext.showSnackbar]
   );
@@ -55,5 +82,7 @@ export function useSnackbar(): ISnackbarState {
     showSnackbar: open,
     hideSnackbar: close,
     message: snackbarContext.message,
+    type: snackbarContext.type,
+    title: snackbarContext.title,
   };
 }

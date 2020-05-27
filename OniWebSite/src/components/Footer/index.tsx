@@ -13,8 +13,8 @@ import {
   SocialsWrapper,
 } from './styled';
 import { routes, Pages } from '@constants/routes';
-import { Link } from 'react-router-dom';
-import { Grid, useMediaQuery } from '@material-ui/core';
+import { Link as RouterLink } from 'react-router-dom';
+import { Grid, useMediaQuery, Link } from '@material-ui/core';
 import { BREAKPOINT } from '@constants';
 import PhoneIcon from '@icons/phone.svg';
 import EnvelopeIcon from '@icons/envelope.svg';
@@ -48,7 +48,7 @@ export const Footer = () => {
                   }
                   return (
                     <ListItem key={page}>
-                      <Link to={route.path}>{route.label}</Link>
+                      <RouterLink to={route.path}>{route.label}</RouterLink>
                     </ListItem>
                   );
                 })}
@@ -66,7 +66,7 @@ export const Footer = () => {
                   }
                   return (
                     <ListItem key={page}>
-                      <Link to={route.path}>{route.label}</Link>
+                      <RouterLink to={route.path}>{route.label}</RouterLink>
                     </ListItem>
                   );
                 })}
@@ -77,28 +77,41 @@ export const Footer = () => {
           <Flex justifyEvenly>
             <FlexColumnWrapper>
               <Title>Контакты</Title>
-              <TextWrapper>
-                <IconWrapper>
-                  <PhoneIcon />
-                </IconWrapper>
-                +38 096 249 04 30
-              </TextWrapper>
-              <TextWrapper>
-                <IconWrapper>
-                  <EnvelopeIcon />
-                </IconWrapper>
-                info@oni.ua
-              </TextWrapper>
-            </FlexColumnWrapper>
-            <FlexColumnWrapper>
-              <Title>{'\u00a0'}</Title>
-              <TextWrapper>
-                <IconWrapper>
-                  <LocationIcon />
-                </IconWrapper>
-                Киев, бульвар
-              </TextWrapper>
-              <TextWrapper>Вацлава Гавела, 9А</TextWrapper>
+              <Flex>
+                {' '}
+                <TextWrapper>
+                  <IconWrapper>
+                    <PhoneIcon />
+                  </IconWrapper>
+                  <Link
+                    href='tel:+380962490430'
+                    style={{ textDecoration: 'underline' }}
+                    color='inherit'
+                  >
+                    +38 096 249 04 30
+                  </Link>
+                </TextWrapper>
+                <TextWrapper style={{ paddingLeft: 40 }}>
+                  <IconWrapper>
+                    <EnvelopeIcon />
+                  </IconWrapper>
+                  info@oni.ua
+                </TextWrapper>
+              </Flex>
+              <Flex>
+                <TextWrapper>
+                  <IconWrapper>
+                    <LocationIcon />
+                  </IconWrapper>
+                  <Link
+                    style={{ textDecoration: 'underline' }}
+                    color='inherit'
+                    href={'https://goo.gl/maps/61G5oKAfPiXo6cU18'}
+                  >
+                    <TextWrapper>Киев, б-р Вацлава Гавела, 9А</TextWrapper>
+                  </Link>
+                </TextWrapper>
+              </Flex>
             </FlexColumnWrapper>
           </Flex>
 
@@ -110,22 +123,28 @@ export const Footer = () => {
                 Соцсети
               </Title>
               <SocialsWrapper>
-                <SocialsItem target='_blank' href='https://www.facebook.com/'>
+                <SocialsItem
+                  target='_blank'
+                  href='https://www.facebook.com/oni.desserts/'
+                >
                   <img
                     className='social_network'
                     src='images/icons/facebook.png'
                   />
                 </SocialsItem>
-                <SocialsItem target='_blank' href='https://www.instagram.com'>
+                <SocialsItem
+                  target='_blank'
+                  href='https://www.instagram.com/oni.desserts/'
+                >
                   <img
                     className='social_network'
                     src='images/icons/instagram.png'
                   />
                 </SocialsItem>
-                <SocialsItem target='_blank' href='https://www.telegram.com'>
+                <SocialsItem target='_blank' href='https://t.me/oni_desserts'>
                   <img
                     className='social_network'
-                    src='images/icons/twitter.png'
+                    src='images/icons/telegram.png'
                   />
                 </SocialsItem>
               </SocialsWrapper>
@@ -162,7 +181,7 @@ export const Footer = () => {
               }
               return (
                 <ListItem key={page}>
-                  <Link to={route.path}>{route.label}</Link>
+                  <RouterLink to={route.path}>{route.label}</RouterLink>
                 </ListItem>
               );
             })}
@@ -180,7 +199,7 @@ export const Footer = () => {
               }
               return (
                 <ListItem key={page}>
-                  <Link to={route.path}>{route.label}</Link>
+                  <RouterLink to={route.path}>{route.label}</RouterLink>
                 </ListItem>
               );
             })}
@@ -193,7 +212,13 @@ export const Footer = () => {
             <IconWrapper>
               <PhoneIcon />
             </IconWrapper>
-            +38 096 249 04 30
+            <Link
+              href='tel:+380962490430'
+              style={{ textDecoration: 'underline' }}
+              color='inherit'
+            >
+              +38 096 249 04 30
+            </Link>
           </TextWrapper>
           <TextWrapper>
             <IconWrapper>
@@ -205,7 +230,13 @@ export const Footer = () => {
             <IconWrapper>
               <LocationIcon />
             </IconWrapper>
-            Киев, бульвар Вацлава Гавела, 9А
+            <Link
+              style={{ textDecoration: 'underline' }}
+              color='inherit'
+              href={'https://goo.gl/maps/61G5oKAfPiXo6cU18'}
+            >
+              <TextWrapper>Киев, б-р Вацлава Гавела, 9А</TextWrapper>
+            </Link>
           </TextWrapper>
         </Grid>
 
@@ -219,30 +250,36 @@ export const Footer = () => {
             <FlexColumnWrapper>
               <Title>Соцсети</Title>
               <div>
-                <SocialsItem target='_blank' href='https://www.facebook.com/'>
+                <SocialsItem
+                  target='_blank'
+                  href='https://www.facebook.com/oni.desserts/'
+                >
                   <img
                     className='social_network'
                     src='images/icons/facebook.png'
                   />
                 </SocialsItem>
-                <SocialsItem target='_blank' href='https://www.instagram.com'>
+                <SocialsItem
+                  target='_blank'
+                  href='https://www.instagram.com/oni.desserts/'
+                >
                   <img
                     className='social_network'
                     src='images/icons/instagram.png'
                   />
                 </SocialsItem>
-                {/* <SocialsItem target='_blank' href='https://www.telegram.com'>
+                <SocialsItem target='_blank' href='https://t.me/oni_desserts'>
+                  <img
+                    className='social_network'
+                    src='images/icons/telegram.png'
+                  />
+                </SocialsItem>
+                {/* <SocialsItem rel='import' href='./wheelOfFortune.html'>
                   <img
                     className='social_network'
                     src='images/icons/twitter.png'
                   />
                 </SocialsItem> */}
-                <SocialsItem rel='import' href='./wheelOfFortune.html'>
-                  <img
-                    className='social_network'
-                    src='images/icons/twitter.png'
-                  />
-                </SocialsItem>
               </div>
             </FlexColumnWrapper>
           </Grid>

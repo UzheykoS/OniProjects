@@ -20,19 +20,14 @@ export function ProductsNavBar() {
   const isMobile = useMediaQuery(`(max-width: ${BREAKPOINT})`);
   const [isSticky, setIsSticky] = useState(isMobile);
   const limit = isMobile ? STICKY_LIMIT_MOBILE : STICKY_LIMIT;
-  const [scrollTop, setScrollTop] = useState(window.scrollY);
 
   const handleScroll = () => {
-    setScrollTop(window.scrollY);
-  };
-
-  useEffect(() => {
-    if (scrollTop > limit) {
+    if (window.scrollY > limit) {
       setIsSticky(true);
-    } else if (scrollTop < limit) {
+    } else if (window.scrollY < limit) {
       setIsSticky(false);
     }
-  }, [scrollTop]);
+  };
 
   useEffect(() => {
     window.addEventListener('scroll', handleScroll);

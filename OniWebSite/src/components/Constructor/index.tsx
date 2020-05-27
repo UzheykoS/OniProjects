@@ -26,19 +26,14 @@ export function ConstructorContainer({
 }: IConstructorContainerProps) {
   const [isSticky, setIsSticky] = useState(false);
   const isMobile = useMediaQuery(`(max-width: ${BREAKPOINT})`);
-  const [scrollTop, setScrollTop] = useState(window.scrollY);
 
   const handleScroll = () => {
-    setScrollTop(window.scrollY);
-  };
-
-  useEffect(() => {
-    if (scrollTop > stickyLimit) {
+    if (window.scrollY > stickyLimit) {
       setIsSticky(true);
-    } else if (scrollTop < stickyLimit) {
+    } else if (window.scrollY < stickyLimit) {
       setIsSticky(false);
     }
-  }, [scrollTop]);
+  };
 
   useEffect(() => {
     window.addEventListener('scroll', handleScroll);

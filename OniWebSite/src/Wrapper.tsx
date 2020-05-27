@@ -29,7 +29,7 @@ const ScrollToTop = () => {
 
 export function Wrapper() {
   const { loading } = useLoading();
-  const { message, hideSnackbar } = useSnackbar();
+  const { message, type, title, hideSnackbar } = useSnackbar();
   return (
     <AppStyled>
       <Router>
@@ -60,7 +60,7 @@ export function Wrapper() {
         </Switch>
         <Footer />
         <Busy loading={loading} />
-        <Snackbar message={message} handleClose={hideSnackbar} />
+        <Snackbar message={message} title={title} type={type} handleClose={hideSnackbar} />
       </Router>
     </AppStyled>
   );

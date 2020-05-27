@@ -7,6 +7,7 @@ import { Basket } from './Basket';
 export function Checkout() {
   const {
     items,
+    totalPrice,
     removeFromBasket,
     increaseQuantity,
     decreaseQuantity,
@@ -23,6 +24,7 @@ export function Checkout() {
       ) : (
         <Basket
           items={items}
+          totalPrice={totalPrice}
           confirmCheckout={() => setIsCheckout(true)}
           removeFromBasket={removeFromBasket}
           handleIncreaseQuantity={increaseQuantity}

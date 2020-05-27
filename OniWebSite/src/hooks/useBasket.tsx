@@ -16,6 +16,7 @@ export interface IBasketItem {
 
 interface IBasketState {
   items: IBasketItem[];
+  totalPrice: number;
   addToBasket(item: IBasketItem): void;
   removeFromBasket(item: IBasketItem): void;
   clearBasket(): void;
@@ -25,6 +26,7 @@ interface IBasketState {
 
 const initialBasketState = {
   items: [],
+  totalPrice: 0,
   addToBasket: () => {},
   removeFromBasket: () => {},
   clearBasket: () => {},
@@ -119,10 +121,16 @@ const BasketProvider = ({ children }: { children?: React.ReactNode }) => {
     dispatch({ type: 'decrease', item });
   };
 
+  const totalPrice = state.items.reduce((accumulator, currentValue) => {
+    accumulator += Number(currentValue.product.price) * currentValue.quantity;
+    return accumulator;
+  }, 0);
+
   return (
     <BasketContext.Provider
       value={{
         items: state.items,
+        totalPrice,
         addToBasket,
         removeFromBasket,
         clearBasket,
@@ -143,6 +151,7 @@ function useBasket(): IBasketState {
     increaseQuantity,
     decreaseQuantity,
     items,
+    totalPrice,
   } = useContext(BasketContext);
 
   const addToBasketHandler = useCallback(
@@ -184,6 +193,7 @@ function useBasket(): IBasketState {
     increaseQuantity: increaseQuantityHandler,
     decreaseQuantity: decreaseQuantityHandler,
     items,
+    totalPrice,
   };
 }
 
