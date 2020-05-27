@@ -101,7 +101,7 @@ export function TopSalesSection({ isMobile }: IMainPageSectionProps) {
         <TopSalesProductsMobile>{sections[activeStep]}</TopSalesProductsMobile>
         <Flex flexEnd>
           <DescriptionLink href='/products'>
-            {`${SEPARATORS.DASH} ПРОДУКЦИЯ`}
+            {`${SEPARATORS.DASH} ДЕСЕРТЫ`}
           </DescriptionLink>
         </Flex>
       </Flex>
@@ -166,7 +166,7 @@ export function TopSalesSection({ isMobile }: IMainPageSectionProps) {
           ТОП ПРОДАЖ
         </Typography>
         <DescriptionLink href='/products'>
-          {`${SEPARATORS.DASH} ПРОДУКЦИЯ`}
+          {`${SEPARATORS.DASH} ДЕСЕРТЫ`}
         </DescriptionLink>
       </TopSalesHeader>
       <TopSalesProducts>

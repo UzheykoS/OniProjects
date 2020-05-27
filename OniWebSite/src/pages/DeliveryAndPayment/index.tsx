@@ -59,6 +59,9 @@ export function DeliveryAndPayment() {
             >
               Доставка
             </Typography>
+            <svg width='41' height='5'>
+              <rect width='41' height='5' style={{ fill: '#B8A36A' }} />
+            </svg>
             <Typography
               variant='body1'
               style={{ marginBottom: '2rem', marginTop: '1rem' }}

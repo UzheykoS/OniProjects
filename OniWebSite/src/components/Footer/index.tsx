@@ -56,7 +56,7 @@ export const Footer = () => {
             </FlexColumnWrapper>
 
             <FlexColumnWrapper>
-              <Title>Продукция</Title>
+              <Title>Десерты</Title>
               <List>
                 {Object.keys(productRoutes).map(key => {
                   const page = key as ProductType;
@@ -189,7 +189,7 @@ export const Footer = () => {
         </Grid>
 
         <Grid item md={2}>
-          <Title>Продукция</Title>
+          <Title>Десерты</Title>
           <List>
             {Object.keys(productRoutes).map(key => {
               const page = key as ProductType;

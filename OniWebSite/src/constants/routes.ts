@@ -1,4 +1,4 @@
-import { ProductType } from "./products";
+import { ProductType } from './products';
 
 export enum Pages {
   Main = 'Главная',
@@ -6,7 +6,7 @@ export enum Pages {
   // Clients = 'Корпоративным клиентам',
   Delivery = 'Доставка и оплата',
   Contacts = 'Контакты',
-  Products = 'Продукция',
+  Products = 'Десерты',
   Checkout = 'Корзина',
 }
 
@@ -28,33 +28,29 @@ export const routes: routeType = {
     path: '/',
     label: 'Главная',
   },
-  [Pages.About]: {
-    path: '/about',
-    label: 'О нас',
-  },
   [Pages.Products]: {
     path: '/products',
-    label: 'Продукция',
+    label: 'Десерты',
     nestedRoutes: {
-      [ProductType.Zephyr]: {
-        path: '/products/zephyr',
-        label: 'Зефир',
+      [ProductType.Macaron]: {
+        path: '/products/macarons',
+        label: 'Макарон',
       },
       [ProductType.Choux]: {
         path: '/products/choux',
         label: 'Шу',
       },
-      [ProductType.Macaron]: {
-        path: '/products/macarons',
-        label: 'Макарон',
-      },
-      [ProductType.Cake]: {
-        path: '/products/cakes',
-        label: 'Торты',
+      [ProductType.Zephyr]: {
+        path: '/products/zephyr',
+        label: 'Зефир',
       },
       [ProductType.Cheesecake]: {
         path: '/products/cheesecakes',
         label: 'Чизкейки',
+      },
+      [ProductType.Cake]: {
+        path: '/products/cakes',
+        label: 'Торты',
       },
     },
   },
@@ -69,6 +65,10 @@ export const routes: routeType = {
   [Pages.Contacts]: {
     path: '/contacts',
     label: 'Контакты',
+  },
+  [Pages.About]: {
+    path: '/about',
+    label: 'О нас',
   },
   [Pages.Checkout]: {
     path: '/checkout',

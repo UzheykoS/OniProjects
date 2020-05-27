@@ -98,7 +98,9 @@ export function Contacts() {
             >
               Контакты
             </Typography>
-
+            <svg width='41' height='5'>
+              <rect width='41' height='5' style={{ fill: '#B8A36A' }} />
+            </svg>
             <Typography
               variant='h3'
               style={{ marginBottom: '2rem', marginTop: '2rem' }}
