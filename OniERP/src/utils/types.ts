@@ -68,7 +68,7 @@ export enum Staff {
   Lena = 'Лена',
   Miroslava = 'Мирослава',
   Julia = 'Юля',
-  Margo = 'Марго',
+  Tanya = 'Таня',
   Nika = 'Ника',
   Ira = 'Ира',
 }
