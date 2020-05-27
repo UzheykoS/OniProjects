@@ -18,13 +18,13 @@ const server = app.listen(PORT, function() {
   console.log(`Server Running on port ${PORT}`);
 });
 
-setInterval(
-  () =>
-    server.getConnections((err, connections) =>
-      console.log(`${connections} connections currently open`)
-    ),
-  1000
-);
+// setInterval(
+//   () =>
+//     server.getConnections((err, connections) =>
+//       console.log(`${connections} connections currently open`)
+//     ),
+//   1000
+// );
 
 process.on('SIGTERM', shutDown);
 process.on('SIGINT', shutDown);
