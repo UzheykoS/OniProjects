@@ -26,7 +26,7 @@ export function Cheesecakes() {
               margin: isMobile ? '50px 10px 10px 10px' : '0 100px 0 0',
             }}
           >
-            ДЕСЕРТЫ
+            НАШИ ДЕСЕРТЫ
           </Typography>
         </FlexColumn>
         <FlexColumn style={{ flexGrow: 2 }}>

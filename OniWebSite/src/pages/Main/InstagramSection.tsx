@@ -36,7 +36,7 @@ export function InstagramSection({ isMobile }: IMainPageSectionProps) {
   return (
     <InstagramContainer isMobile={isMobile}>
       <Typography variant='h3' gutterBottom>
-        ИЩИ НАС В
+        ИЩИТЕ НАС В
       </Typography>
       <Typography
         variant='h1'
@@ -48,10 +48,8 @@ export function InstagramSection({ isMobile }: IMainPageSectionProps) {
 
       <InstagramDescriptionWrapper>
         <Typography variant='body1' gutterBottom>
-          Мы работаем в своём стиле и уверенны, что люди, которые{' '}
-          {isMobile ? '' : '\n'}
-          выбирают наш продукт, знают толк в кондитерском {isMobile ? '' : '\n'}
-          искусстве!
+          Дневник кондитерской жизни. {isMobile ? '' : '\n'}
+          Подпишитесь, если хотите заглянуть за кулисы нашей кухни.
         </Typography>
         {!isMobile && (
           <DescriptionLink target='_blank' href='https://www.instagram.com'>

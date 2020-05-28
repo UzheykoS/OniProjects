@@ -6,7 +6,7 @@ export enum Pages {
   // Clients = 'Корпоративным клиентам',
   Delivery = 'Доставка и оплата',
   Contacts = 'Контакты',
-  Products = 'Десерты',
+  Products = 'Наши десерты',
   Checkout = 'Корзина',
 }
 
@@ -30,7 +30,7 @@ export const routes: routeType = {
   },
   [Pages.Products]: {
     path: '/products',
-    label: 'Десерты',
+    label: 'Наши десерты',
     nestedRoutes: {
       [ProductType.Macaron]: {
         path: '/products/macarons',

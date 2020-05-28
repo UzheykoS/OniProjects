@@ -7,6 +7,7 @@ import {
   Title,
   RotatedImageWrapper,
   LinkWrapper,
+  SocialsItem,
 } from './styled';
 import {
   Typography,
@@ -14,6 +15,7 @@ import {
   TextField,
   InputBaseComponentProps,
   useMediaQuery,
+  Link,
 } from '@material-ui/core';
 import { ImageWithFallback } from '@common/ImageWithFallback';
 import PhoneIcon from '@icons/phone.svg';
@@ -105,6 +107,20 @@ export function Contacts() {
               variant='h3'
               style={{ marginBottom: '2rem', marginTop: '2rem' }}
             >
+              ЖДЁМ В ГОСТИ
+            </Typography>
+            <Typography variant='body1'>
+              Если срочно нужно что-то вкусное, а вы забыли сделать заказ – в
+              нашей кофейне всегда можно выбрать десерты с витрины. Ну и, само
+              собой, выпить вкусный кофе – к нему мы относимся с такой же
+              любовью, как к сладкому. Наш идеальный сценарий: взять макарон,
+              капучино и наблюдать через стеклянную стену за тем, как создаются
+              любимые десерты.
+            </Typography>
+            <Typography
+              variant='h3'
+              style={{ marginBottom: '2rem', marginTop: '2rem' }}
+            >
               АДРЕС
             </Typography>
             <ContactsSection>
@@ -122,11 +138,12 @@ export function Contacts() {
               <Flex direction={isMobile ? 'column' : 'row'} justifyBetween>
                 <Flex direction='column'>
                   <Title>Время работы</Title>
-                  <TextWrapper>Пн-Сб 9:00 - 20:00</TextWrapper>
+                  <TextWrapper>Пн-Пт 9:00 - 20:00</TextWrapper>
+                  <TextWrapper>Сб-Вс 9:00 - 18:00</TextWrapper>
                 </Flex>
                 <Flex direction='column'>
                   <Title>Приём заказов</Title>
-                  <TextWrapper>Пн-Сб 9:00 - 18:00</TextWrapper>
+                  <TextWrapper>Пн-Вс 9:00 - 18:00</TextWrapper>
                 </Flex>
               </Flex>
             </ContactsSection>
@@ -142,7 +159,19 @@ export function Contacts() {
                 <IconWrapper>
                   <PhoneIcon />
                 </IconWrapper>
-                +38 096 249 04 30
+                <Link
+                  href='tel:+380962490430'
+                  style={{ textDecoration: 'underline' }}
+                  color='inherit'
+                >
+                  +38 096 249 04 30
+                </Link>
+                <SocialsItem target='_blank' href='https://t.me/oni_desserts'>
+                  <img
+                    className='social_network'
+                    src='images/icons/telegram.png'
+                  />
+                </SocialsItem>
               </TextWrapper>
               <TextWrapper>
                 <IconWrapper>
@@ -151,19 +180,6 @@ export function Contacts() {
                 info@oni.ua
               </TextWrapper>
             </ContactsSection>
-
-            <Typography
-              variant='body1'
-              style={{ marginBottom: '2rem', marginTop: '3rem' }}
-            >
-              Если срочно нужно что-то вкусное, а Вы забыли сделать заказ - мы
-              готовы решить эту проблему.
-            </Typography>
-            <Typography variant='body1' style={{ marginBottom: '2rem' }}>
-              У нас есть небольшая кофейня, где всегда можно выбрать десерты с
-              витрины. Ну и, само собой, выпить вкусный кофе - к нему мы
-              относимся с такой же любовью, как и к сладкому.
-            </Typography>
           </Flex>
         </Flex>
 

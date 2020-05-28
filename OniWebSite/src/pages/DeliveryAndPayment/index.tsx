@@ -63,22 +63,25 @@ export function DeliveryAndPayment() {
               <rect width='41' height='5' style={{ fill: '#B8A36A' }} />
             </svg>
             <Typography
-              variant='body1'
-              style={{ marginBottom: '2rem', marginTop: '1rem' }}
+              variant='h3'
+              style={{ marginBottom: '2rem', marginTop: '2rem' }}
             >
-              Наш кондитерский цех находится в г.Киев по адресу бульвар Вацлава
-              Гавела, 9А (бывший бульвар Ивана Лепсе).
+              ДОСТАВКА ПО КИЕВУ
+            </Typography>
+            <Typography variant='body1'>
+              Доставляем курьером с Пн по Сб. Стоимость доставки – 80 грн.
+              Минимальная сумма заказа для доставки – 200 грн. При оформлении
+              заказа до 11:00 возможна доставка в тот же день.
+            </Typography>
+            <Typography
+              variant='h3'
+              style={{ marginBottom: '2rem', marginTop: '2rem' }}
+            >
+              САМОВЫВОЗ
             </Typography>
             <Typography variant='body1' style={{ marginBottom: '2rem' }}>
-              Вы можете забрать свой заказ самостоятельно или заказать доставку
-              курьером по Киеву. Стоимость доставки составляет 70 грн.
-              Минимальная сумма заказа для доставки – 200 грн. Доставка в другие
-              города Украины обсуждается индивидуально.
-            </Typography>
-            <Typography variant='body1' style={{ marginBottom: '2rem' }}>
-              При условии наличия желаемых изделий возможна доставка в день
-              заказа. Все детали Вы можете уточнить по тел.+380962490430 или
-              написав нам на почту info@oni.ua.
+              Мы всегда рады встрече! Заказ можно забрать у нас в кондитерской.
+              Заодно выпить кофе и поболтать.
             </Typography>
             <CustomDivider />
             {!isMobile && (
@@ -125,9 +128,7 @@ export function DeliveryAndPayment() {
             ОПЛАТА
           </Typography>
           <Typography variant='body1' style={{ marginBottom: '2rem' }}>
-            Оплата осуществляется наличными при получении или на карту
-            ПриватБанк. Предоплата необходима только для индивидуальных и
-            корпоративных заказов.
+            Заказ можно оплатить наличными при получении или заранее на карту.
           </Typography>
           <Flex
             justifyCenter

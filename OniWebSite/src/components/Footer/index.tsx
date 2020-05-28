@@ -189,7 +189,7 @@ export const Footer = () => {
         </Grid>
 
         <Grid item md={2}>
-          <Title>Десерты</Title>
+          <Title>Наши десерты</Title>
           <List>
             {Object.keys(productRoutes).map(key => {
               const page = key as ProductType;

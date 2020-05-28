@@ -107,7 +107,10 @@ export function About() {
             увидела, как организована профессиональная кухня и поняла, над чем
             нужно работать ближайшие годы.
           </Typography>
-          <Typography variant='body1' style={{ marginBottom: '2rem' }}>
+          <Typography
+            variant='body1'
+            style={{ marginBottom: isMobile ? '1rem' : '2rem' }}
+          >
             Появилось желание доказать, что современные десерты – это больше,
             чем просто «что-то сладкое». Это – вкус, эстетика и удовольствие.
             Так родилась концепция ONI. Каждый день мы делаем людям вкусно и
@@ -136,7 +139,10 @@ export function About() {
           <Flex direction='column' style={{ width: isMobile ? 'auto' : 450 }}>
             <Typography
               variant='body1'
-              style={{ marginBottom: '1rem', marginTop: '3rem' }}
+              style={{
+                marginBottom: '1rem',
+                marginTop: isMobile ? '1rem' : '3rem',
+              }}
             >
               Всё начинается с выбора ингредиентов. Лучший десерт может
               получиться только из лучших продуктов – это наше чёткое убеждение.
@@ -146,6 +152,17 @@ export function About() {
               усилители вкуса. Только натуральные ингредиенты. Без компромиссов.
             </Typography>
           </Flex>
+          {isMobile && (
+            <ImageWithFallback
+              src='./images/pages/about/about_5'
+              style={{
+                width: isMobile ? '100%' : '710px',
+                height: isMobile ? 'auto' : '320px',
+                objectFit: 'cover',
+                marginTop: isMobile ? '1rem' : '4rem',
+              }}
+            />
+          )}
           <Flex
             style={{
               position: 'relative',
@@ -166,15 +183,17 @@ export function About() {
               ингредиенты. Без компромиссов.
             </Typography>
           </Flex>
-          <ImageWithFallback
-            src='./images/pages/about/about_5'
-            style={{
-              width: isMobile ? '100%' : '710px',
-              height: isMobile ? 'auto' : '320px',
-              objectFit: 'cover',
-              marginTop: '4rem',
-            }}
-          />
+          {!isMobile && (
+            <ImageWithFallback
+              src='./images/pages/about/about_5'
+              style={{
+                width: isMobile ? '100%' : '710px',
+                height: isMobile ? 'auto' : '320px',
+                objectFit: 'cover',
+                marginTop: '4rem',
+              }}
+            />
+          )}
         </Flex>
 
         <Flex
@@ -184,29 +203,60 @@ export function About() {
             flexBasis: isMobile ? '' : '30rem',
           }}
         >
-          <ImageWithFallback
-            src={'./images/pages/about/about_2'}
-            style={{
-              width: isMobile ? '100%' : '459px',
-              height: isMobile ? 'auto' : '333px',
-              objectFit: 'cover',
-              textAlign: 'center',
-              paddingTop: '2.5rem',
-            }}
-          />
-          <Typography
-            variant='body1'
-            style={{ marginBottom: '2rem', marginTop: '2rem' }}
-          >
-            Все десерты мы делаем вручную. Нам удалось собрать команду, где все
-            горят свои делом. Мы фанаты новых вкусов и безумных экспериментов.
-            Каждое новое изделие – это вызов: десятки вариантов, килограммы
-            выброшенных продуктов и бесконечные споры о том, как сделать ещё
-            лучше. В нашем меню жёсткий фейс-контроль – туда попадают только
-            избранные. Мы работаем до тех пор, пока результат не устроит нас на
-            100%. Больше всего вдохновляет, когда получилось сделать десерт,
-            который вы называете «любимым».
-          </Typography>
+          {isMobile ? (
+            <>
+              <Typography
+                variant='body1'
+                style={{
+                  marginBottom: '2rem',
+                  marginTop: '2rem',
+                }}
+              >
+                Все десерты мы делаем вручную. Нам удалось собрать команду, где
+                все горят свои делом. Мы фанаты новых вкусов и безумных
+                экспериментов. Каждое новое изделие – это вызов: десятки
+                вариантов, килограммы выброшенных продуктов и бесконечные споры
+                о том, как сделать ещё лучше. В нашем меню жёсткий фейс-контроль
+                – туда попадают только избранные. Мы работаем до тех пор, пока
+                результат не устроит нас на 100%. Больше всего вдохновляет,
+                когда получилось сделать десерт, который вы называете «любимым».
+              </Typography>
+              <ImageWithFallback
+                src={'./images/pages/about/about_2'}
+                style={{
+                  width: isMobile ? '100%' : '459px',
+                  objectFit: 'cover',
+                  textAlign: 'center',
+                  paddingTop: '2.5rem',
+                }}
+              />
+            </>
+          ) : (
+            <>
+              <ImageWithFallback
+                src={'./images/pages/about/about_2'}
+                style={{
+                  width: isMobile ? '100%' : '459px',
+                  objectFit: 'cover',
+                  textAlign: 'center',
+                  paddingTop: '2.5rem',
+                }}
+              />
+              <Typography
+                variant='body1'
+                style={{ marginBottom: '2rem', marginTop: '2rem' }}
+              >
+                Все десерты мы делаем вручную. Нам удалось собрать команду, где
+                все горят свои делом. Мы фанаты новых вкусов и безумных
+                экспериментов. Каждое новое изделие – это вызов: десятки
+                вариантов, килограммы выброшенных продуктов и бесконечные споры
+                о том, как сделать ещё лучше. В нашем меню жёсткий фейс-контроль
+                – туда попадают только избранные. Мы работаем до тех пор, пока
+                результат не устроит нас на 100%. Больше всего вдохновляет,
+                когда получилось сделать десерт, который вы называете «любимым».
+              </Typography>
+            </>
+          )}
           <Typography
             variant='h3'
             style={{ marginBottom: '2rem', marginTop: '2rem' }}

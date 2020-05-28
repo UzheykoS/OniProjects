@@ -73,9 +73,7 @@ export function BannerSection({ isMobile }: IMainPageSectionProps) {
               lineHeight: '24px',
             }}
           >
-            Интересные сочетания вкусов и текстур, натуральные {'\n'}
-            ингридиенты высокого качества, авторские рецептуры {'\n'}и внимание
-            к деталям
+            Кондитерские изделия – это искусство, {'\n'}и мы готовы это доказать
           </Typography>
           <Button
             rounded
@@ -119,9 +117,7 @@ export function BannerSection({ isMobile }: IMainPageSectionProps) {
           gutterBottom
           style={{ color: colors.primary.white, zIndex: 'inherit' }}
         >
-          Интересные сочетания вкусов и текстур, натуральные {'\n'}
-          ингридиенты высокого качества, авторские рецептуры {'\n'}и внимание к
-          деталям
+          Кондитерские изделия – это искусство, {'\n'}и мы готовы это доказать
         </Typography>
         <Button
           rounded

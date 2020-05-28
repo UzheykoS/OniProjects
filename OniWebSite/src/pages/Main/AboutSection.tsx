@@ -22,41 +22,40 @@ export function AboutSection({ isMobile }: IMainPageSectionProps) {
         <Typography variant='h3' style={{ marginBottom: '1rem' }}>
           О НАС
         </Typography>
+
         <Typography variant='h1' style={{ lineHeight: '30px', fontSize: 26 }}>
-          Каждый день <span style={{ color: colors.secondary.gold }}>мы</span>{' '}
+          Мы{' '}
+          <span style={{ color: colors.secondary.gold }}>фанаты десертов</span>{' '}
+        </Typography>
+        <Typography variant='h1' style={{ lineHeight: '30px', fontSize: 26 }}>
+          и хотим, чтобы вы
         </Typography>
         <Typography
           variant='h1'
           style={{ lineHeight: '30px', fontSize: 26, marginBottom: '1rem' }}
         >
-          <span style={{ color: colors.secondary.gold }}>создаём</span> десерты,
-          {'\n'}которые вдохновляют!
+          разделили нашу слабость
         </Typography>
         <Flex direction='column' justifyBetween>
           <AboutImageSectionMobile>
             <ImageWithFallback
               src='./images/pages/about/about_3'
-              style={{ width: '460px', height: '442px', objectFit: 'cover' }}
+              style={{ width: '460px', objectFit: 'cover' }}
             />
           </AboutImageSectionMobile>
           <AboutTextSectionMobile>
             <Typography variant='body1' style={{ marginBottom: '1rem' }}>
-              Наша главная цель – показать, что современное кондитерское
-              искусство – это больше, чем просто «что-то сладкое». Это –
-              интересные сочетания вкусов и текстур, натуральные ингредиенты
-              высокого качества, авторские рецептуры и внимание к деталям.{' '}
+              Современные десерты – это больше, чем просто «что-то сладкое». Это
+              – вкус, эстетика и удовольствие.
             </Typography>
             <Typography variant='body1' style={{ marginBottom: '1rem' }}>
-              Все десерты в нашей кондитерской изготавливаются вручную. За
-              каждым изделием стоят десятки теоретических и практических
-              мастер-классов. Мы перенимаем опыт ведущих шефов мира и получаем
-              знания из первых рук, чтобы привезти всё самое лучшее в Украину.{' '}
+              Мы говорим "нет" ароматизаторам и усилителям вкуса. Главное
+              правило – использовать только натуральные ингредиенты.
             </Typography>
             <Typography variant='body1' style={{ marginBottom: '2rem' }}>
-              Для нас идеальный десерт – это 100% натуральный состав, честный
-              вкус и современная подача. Мы работаем в своем стиле и уверенны,
-              что люди, которые выбирают наш продукт, знают толк в кондитерском
-              искусстве!
+              Десерты в нашей кондитерской изготавливаются вручную. За каждым
+              изделием стоит ежедневная работа большой команды. Здесь все любят
+              то, что делают. Вы обязательно это почувствуете.
             </Typography>
             <DescriptionLink href='/about'>
               {`${SEPARATORS.DASH} О НАС `}
@@ -83,15 +82,10 @@ export function AboutSection({ isMobile }: IMainPageSectionProps) {
         О НАС
       </Typography>
       <Typography variant='h1'>
-        Каждый день{' '}
-        <span style={{ color: colors.secondary.gold }}>мы создаём</span>
+        Мы <span style={{ color: colors.secondary.gold }}>фанаты десертов</span>{' '}
+        и хотим,
       </Typography>
-      <Typography
-        variant='h1'
-        style={{ lineHeight: '1.2rem', marginBottom: '3rem' }}
-      >
-        десерты, которые вдохновляют!
-      </Typography>
+      <Typography variant='h1'>чтобы вы разделили нашу слабость</Typography>
       <Flex direction='row' justifyBetween>
         <AboutImageSection>
           <ImageWithFallback
@@ -101,22 +95,17 @@ export function AboutSection({ isMobile }: IMainPageSectionProps) {
         </AboutImageSection>
         <AboutTextSection>
           <Typography variant='body1' style={{ marginBottom: '2rem' }}>
-            Наша главная цель – показать, что современное кондитерское искусство
-            – это больше, чем просто «что-то сладкое». Это – интересные
-            сочетания вкусов и текстур, натуральные ингредиенты высокого
-            качества, авторские рецептуры и внимание к деталям.{' '}
+            Современные десерты – это больше, чем просто «что-то сладкое». Это –
+            вкус, эстетика и удовольствие.
           </Typography>
           <Typography variant='body1' style={{ marginBottom: '2rem' }}>
-            Все десерты в нашей кондитерской изготавливаются вручную. За каждым
-            изделием стоят десятки теоретических и практических мастер-классов.
-            Мы перенимаем опыт ведущих шефов мира и получаем знания из первых
-            рук, чтобы привезти всё самое лучшее в Украину.{' '}
+            Мы говорим "нет" ароматизаторам и усилителям вкуса. Главное правило
+            – использовать только натуральные ингредиенты.
           </Typography>
           <Typography variant='body1' style={{ marginBottom: '2rem' }}>
-            Для нас идеальный десерт – это 100% натуральный состав, честный вкус
-            и современная подача. Мы работаем в своем стиле и уверенны, что
-            люди, которые выбирают наш продукт, знают толк в кондитерском
-            искусстве!
+            Десерты в нашей кондитерской изготавливаются вручную. За каждым
+            изделием стоит ежедневная работа большой команды. Здесь все любят
+            то, что делают. Вы обязательно это почувствуете.
           </Typography>
           <DescriptionLink href='/about'>
             {`${SEPARATORS.DASH} О НАС `}

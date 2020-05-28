@@ -12,7 +12,7 @@ export const ContactsSection = styled.div`
 
 export const Title = styled.div`
   font-weight: 700;
-  padding: 40px 0px 25px 0px;
+  padding: 40px 0px 7px 0px;
   font-size: 1rem;
 `;
 
@@ -54,4 +54,11 @@ export const LinkWrapper = styled.a`
   font-size: 1rem;
   color: inherit;
   text-decoration-color: ${colors.secondary.gold};
+`;
+
+export const SocialsItem = styled.a`
+  padding: 3px 0px 0px 129px;
+  img {
+    height: 1rem;
+  }
 `;
