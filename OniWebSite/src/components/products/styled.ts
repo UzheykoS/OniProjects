@@ -41,6 +41,7 @@ export const Description = styled.div`
   color: #cccccc;
   text-align: center;
   padding: 5px 40px;
+  height: 52px;
 `;
 
 interface IAddIconWrapper {

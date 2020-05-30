@@ -96,7 +96,7 @@ export function ChouxPage() {
     if (i % 2 === 0) {
       chouxElements.push(
         <FlexRow key={i}>
-          <FlexColumn bordered>
+          <FlexColumn bordered isLastChild={i === choux.length - 1}>
             <ChouxSingle product={choux[i]} onClick={handleChouxClick} />
           </FlexColumn>
           {i + 1 < choux.length ? (
@@ -123,7 +123,7 @@ export function ChouxPage() {
               margin: isMobile ? '50px 10px 10px 10px' : '0 100px 0 0',
             }}
           >
-            НАШИ ДЕСЕРТЫ
+            ШУ
           </Typography>
         </FlexColumn>
         <FlexColumn style={{ flexGrow: 2 }}>
@@ -132,40 +132,38 @@ export function ChouxPage() {
               variant='body1'
               style={{
                 lineHeight: isMobile ? '19px' : '24px',
-                margin: isMobile ? '10px 10px 40px 10px' : '0 120px 20px 80px',
+                margin: isMobile ? '10px 10px 40px 10px' : '0 120px 20px 0',
               }}
             >
               Основа пирожного шу – заварное тесто, покрытое тонким хрустящим
-              слоем. Внутри – двойная начинка из нежного крема и яркого центра.
-              Шу украшены разноцветными кружочками из марципана. У нас можно
-              выбрать любые вкусы из меню и сформировать свой набор на 2 или 4
-              шу.{' '}
+              слоем. Внутри – много начинки и лёгкого крема. Украшаем
+              разноцветными кружочками из марципана.
             </Typography>
             {!isMobile && (
               <Typography
                 variant='body2'
-                style={{ margin: '10px 70px 20px 80px' }}
+                style={{ margin: '10px 70px 20px 0' }}
               >
-                У нас можно выбрать любые вкусы из меню и сформировать свой
-                набор на 4 или 8 шу.
+                Можно купить готовый набор ассорти или собрать свой набор на 2
+                или 4 шу.
               </Typography>
             )}
           </ChouxInfo>
         </FlexColumn>
       </FlexRow>
       <FlexRow>
-        <FlexColumn bordered>
+        <FlexColumn>
           <DessertsMix
-            size='large'
-            imageHeight={300}
+            size='small'
+            imageHeight={250}
             product={chouxMix[0]}
             onClick={handleChouxMixClick}
           />
         </FlexColumn>
-        <FlexColumn bordered>
+        <FlexColumn>
           <DessertsMix
-            size='large'
-            imageHeight={300}
+            size='small'
+            imageHeight={250}
             product={chouxMix[1]}
             onClick={handleChouxMixClick}
           />
@@ -192,7 +190,7 @@ export function ChouxPage() {
             id={SCROLL_INTO_VIEW_ELEMENT}
             style={{ margin: '60px 0 30px 0', whiteSpace: 'nowrap' }}
           >
-            ВКУСЫ ШУ
+            ВКУСЫ
           </Typography>
         </FlexColumn>
         <FlexColumn />

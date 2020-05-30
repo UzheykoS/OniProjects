@@ -26,7 +26,7 @@ export function Cheesecakes() {
               margin: isMobile ? '50px 10px 10px 10px' : '0 100px 0 0',
             }}
           >
-            НАШИ ДЕСЕРТЫ
+            ЧИЗКЕЙКИ
           </Typography>
         </FlexColumn>
         <FlexColumn style={{ flexGrow: 2 }}>
@@ -35,7 +35,7 @@ export function Cheesecakes() {
               variant='body1'
               style={{
                 lineHeight: isMobile ? '19px' : '24px',
-                margin: isMobile ? '10px 10px 40px 10px' : '0 120px 20px 80px',
+                margin: isMobile ? '10px 10px 40px 10px' : '0 120px 20px 0',
               }}
             >
               Макарон – это маленькое пирожное, которое состоит из двух
@@ -45,7 +45,7 @@ export function Cheesecakes() {
             {!isMobile && (
               <Typography
                 variant='body2'
-                style={{ margin: '10px 70px 20px 80px' }}
+                style={{ margin: '10px 70px 20px 0' }}
               >
                 У нас можно выбрать любые вкусы из меню и сформировать свой
                 набор на 6, 12 или 24 макарон.

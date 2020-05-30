@@ -41,4 +41,6 @@ export const Description = styled.div`
   text-align: center;
   padding: 10px 40px;
   line-height: 17px;
+  height: 88px;
+  box-sizing: border-box;
 `;

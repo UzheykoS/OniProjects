@@ -50,7 +50,7 @@ export function Cakes() {
               margin: isMobile ? '50px 10px 10px 10px' : '0 100px 0 0',
             }}
           >
-            НАШИ ДЕСЕРТЫ
+            ТОРТЫ
           </Typography>
         </FlexColumn>
         <FlexColumn style={{ flexGrow: 2 }}>
@@ -59,12 +59,17 @@ export function Cakes() {
               variant='body1'
               style={{
                 lineHeight: isMobile ? '19px' : '24px',
-                margin: isMobile ? '10px 10px 40px 10px' : '0 120px 20px 80px',
+                margin: isMobile ? '10px 10px 40px 10px' : '0 120px 20px 0',
               }}
             >
-              Торт – это маленькое пирожное, которое состоит из двух миндальных
-              половинок, пропитанных начинкой. Яркий вкус, нежная текстура
-              внутри и хрустящая корочка снаружи.
+              Баланс во вкусе, правильная текстура и аппетитный декор – это наш
+              идеальный торт. Каждый продуман до мелочей и заставляет посмотреть
+              на десерты по-новому.
+            </Typography>
+            <Typography variant='body2' style={{ margin: '10px 70px 20px 0' }}>
+              Меню тортов стандартное – нельзя менять составляющие или декор.
+              Заказ необходимо делать минимум за 6 часов. Вы получите
+              максимально свежий торт, сделанный специально для вас.
             </Typography>
           </CakesInfo>
         </FlexColumn>

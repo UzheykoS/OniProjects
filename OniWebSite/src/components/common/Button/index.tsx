@@ -21,6 +21,7 @@ export const Button = styled(
 ).attrs({
   classes: {
     containedPrimary: 'containedPrimary',
+    root: 'root',
   },
 })<IButtonProps>`
   border-radius: 0px;
@@ -36,5 +37,9 @@ export const Button = styled(
       color: ${colors.primary.black};
       border: 1px solid ${colors.primary.gold};
     }
+  }
+  &.root {
+    height: 50px;
+    width: 180px;
   }
 `;

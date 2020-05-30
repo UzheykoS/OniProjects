@@ -44,19 +44,19 @@ export enum Macarons {
 
 export enum Choux {
   VanillaPear = 'Ваниль-Персик',
-  SaltedCaramel = 'Солёная Карамель',
-  Lemon = 'Лимон',
+  SaltedCaramel = 'Солёная карамель',
+  Lemon = 'Лимон-Клубника',
   RaspberryLiciRose = 'Малина-Личи-Роза',
-  Apricot = 'Абрикос',
+  Apricot = 'Фундук-Абрикос',
   ChouxMixSmall = '2 шт',
   ChouxMixLarge = '4 шт',
 }
 
 export enum Zephyr {
-  ClassicApple = 'Яблоко',
-  StrawberryCranberry = 'Клубника - Клюква',
-  ApricotPassionFruit = 'Абрикос - Маракуйя',
-  BlackCurrant = 'Чёрная смородина',
+  ClassicApple = 'Классический яблочный',
+  StrawberryCranberry = 'Клубника-Клюква',
+  ApricotPassionFruit = 'Абрикос-Маракуйя',
+  BlackCurrant = 'Смородина',
   ZephyrMixSmall = '8 шт',
   ZephyrMixLarge = '16 шт',
 }
@@ -271,7 +271,7 @@ export const choux: IProduct[] = [
   {
     id: Choux.VanillaPear,
     fullDescription:
-      'Крем с добавлением стручков ванили из Мадагаскара в сочетании с конфи из натурального пюре персика',
+      'Крем с ванилью и Маскарпоне в сочетании с конфи из натурального пюре персика',
     imageUrl: './images/pages/choux/vanilla',
     imageCutUrl: './images/pages/choux/vanilla_cut',
     type: ProductType.Choux,
@@ -279,8 +279,7 @@ export const choux: IProduct[] = [
   },
   {
     id: Choux.SaltedCaramel,
-    fullDescription:
-      'Мягкая солёная карамель в сочетании с нежным карамельным кремом',
+    fullDescription: 'Карамельный крем с Маскарпоне и мягкая солёная карамель',
     imageUrl: './images/pages/choux/caramel',
     imageCutUrl: './images/pages/choux/caramel_cut',
     type: ProductType.Choux,
@@ -288,7 +287,8 @@ export const choux: IProduct[] = [
   },
   {
     id: Choux.Lemon,
-    fullDescription: '',
+    fullDescription:
+      'Крем с лимонным фрешем в сочетании с конфи из натурального пюре клубники',
     imageUrl: './images/pages/choux/lemon',
     imageCutUrl: './images/pages/choux/lemon_cut',
     type: ProductType.Choux,
@@ -305,7 +305,8 @@ export const choux: IProduct[] = [
   },
   {
     id: Choux.Apricot,
-    fullDescription: '',
+    fullDescription:
+      'Крем с молочным шоколадом и фундуком в сочетании с конфи из натурального пюре абрикоса',
     imageUrl: './images/pages/choux/apricot',
     imageCutUrl: './images/pages/choux/apricot_cut',
     type: ProductType.Choux,
@@ -347,21 +348,24 @@ export const zephyr: IProduct[] = [
 export const cheesecakes: IProduct[] = [
   {
     id: Cheesecake.VanillaCaramel,
-    fullDescription: 'Сделан на основе натурального пюре запечённого яблока',
+    fullDescription:
+      'Основа из миндального песочного печенья, запечённый чизкейк на основе сыра Филадельфия с ванилью, сливочная карамель, карамелизированные орехи пекан',
     imageUrl: './images/pages/cheesecakes/caramel',
     type: ProductType.Cheesecake,
     price: 80,
   },
   {
     id: Cheesecake.Gorgonzola,
-    fullDescription: 'Сделан на основе натурального пюре запечённого яблока',
+    fullDescription:
+      'Основа из миндального песочного печенья, запечённый чизкейк с сыром Горгонзола, конфи из натурального пюре айвы, запечённые кусочки айвы',
     imageUrl: './images/pages/cheesecakes/gorgonzola',
     type: ProductType.Cheesecake,
     price: 80,
   },
   {
     id: Cheesecake.Lemon,
-    fullDescription: 'Сделан на основе натурального пюре запечённого яблока',
+    fullDescription:
+      'Основа из миндального песочного печенья, запечённый чизкейк на основе сыра Филадельфия с цедрой и соком лимона, лимонное конфи, меренга',
     imageUrl: './images/pages/cheesecakes/lemon',
     type: ProductType.Cheesecake,
     price: 80,

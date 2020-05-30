@@ -130,7 +130,7 @@ export function MacaronsPage() {
               margin: isMobile ? '50px 10px 10px 10px' : '0 100px 0 0',
             }}
           >
-            НАШИ ДЕСЕРТЫ
+            МАКАРОН
           </Typography>
         </FlexColumn>
         <FlexColumn style={{ flexGrow: 2 }}>
@@ -139,27 +139,27 @@ export function MacaronsPage() {
               variant='body1'
               style={{
                 lineHeight: isMobile ? '19px' : '24px',
-                margin: isMobile ? '10px 10px 40px 10px' : '0 120px 20px 80px',
+                margin: isMobile ? '10px 10px 40px 10px' : '0 120px 20px 0',
               }}
             >
-              Макарон – это маленькое пирожное, которое состоит из двух
-              миндальных половинок, пропитанных начинкой. Яркий вкус, нежная
-              текстура внутри и хрустящая корочка снаружи.{' '}
+              Любимый десерт французов. Маленькое пирожное, которое состоит из
+              двух миндальных половинок, пропитанных начинкой. Яркий вкус,
+              нежная текстура внутри и хрустящая корочка снаружи.
             </Typography>
             {!isMobile && (
               <Typography
                 variant='body2'
-                style={{ margin: '10px 70px 20px 80px' }}
+                style={{ margin: '10px 70px 20px 0' }}
               >
-                У нас можно выбрать любые вкусы из меню и сформировать свой
-                набор на 6, 12 или 24 макарон.
+                Можно купить готовый набор ассорти или собрать свой набор на 6,
+                12 или 24 макарон.
               </Typography>
             )}
           </MacaronsInfo>
         </FlexColumn>
       </FlexRow>
       <FlexRow>
-        <FlexColumn bordered>
+        <FlexColumn>
           <DessertsMix
             size={'small'}
             imageHeight={250}
@@ -167,7 +167,7 @@ export function MacaronsPage() {
             onClick={handleMacaronsMixClick}
           />
         </FlexColumn>
-        <FlexColumn bordered>
+        <FlexColumn>
           <DessertsMix
             size={'small'}
             imageHeight={250}
@@ -175,7 +175,7 @@ export function MacaronsPage() {
             onClick={handleMacaronsMixClick}
           />
         </FlexColumn>
-        <FlexColumn bordered>
+        <FlexColumn >
           <DessertsMix
             size={'small'}
             imageHeight={250}
@@ -205,7 +205,7 @@ export function MacaronsPage() {
             id={SCROLL_INTO_VIEW_ELEMENT}
             style={{ margin: '60px 0 30px 0', whiteSpace: 'nowrap' }}
           >
-            ВКУСЫ МАКАРОН
+            ВКУСЫ
           </Typography>
         </FlexColumn>
         <FlexColumn />
