@@ -15,7 +15,7 @@ export const ProductsNavBarWrapper = styled.div<IProductsNavBarWrapper>`
   ${({ isSticky }) =>
     isSticky &&
     `
-      top: 50px;
+      top: 120px;
       position: fixed;
     `}
 `;

@@ -39,7 +39,7 @@ export function AboutSection({ isMobile }: IMainPageSectionProps) {
         <Flex direction='column' justifyBetween>
           <AboutImageSectionMobile>
             <ImageWithFallback
-              src='./images/pages/about/about_3'
+              src='./images/pages/about/about_10'
               style={{ width: '460px', objectFit: 'cover' }}
             />
           </AboutImageSectionMobile>
@@ -61,7 +61,7 @@ export function AboutSection({ isMobile }: IMainPageSectionProps) {
               {`${SEPARATORS.DASH} О НАС `}
             </DescriptionLink>
             <ImageWithFallback
-              src={'./images/pages/about/about_2'}
+              src={'./images/pages/about/about_8'}
               style={{
                 width: '100%',
                 height: 'auto',
@@ -89,7 +89,7 @@ export function AboutSection({ isMobile }: IMainPageSectionProps) {
       <Flex direction='row' justifyBetween>
         <AboutImageSection>
           <ImageWithFallback
-            src='./images/pages/about/about_3'
+            src='./images/pages/about/about_12'
             style={{ width: '460px', height: '442px', objectFit: 'cover' }}
           />
         </AboutImageSection>
@@ -111,10 +111,10 @@ export function AboutSection({ isMobile }: IMainPageSectionProps) {
             {`${SEPARATORS.DASH} О НАС `}
           </DescriptionLink>
           <ImageWithFallback
-            src={'./images/pages/about/about_2'}
+            src={'./images/pages/about/about_8'}
             style={{
               width: '380px',
-              height: '275px',
+              height: 'auto',
               objectFit: 'cover',
               textAlign: 'center',
               paddingTop: '2.5rem',

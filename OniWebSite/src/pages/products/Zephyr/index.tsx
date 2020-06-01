@@ -91,6 +91,24 @@ export function ZephyrPage() {
     handleClose();
   }
 
+  const [atBottom, setAtBottom] = useState(false);
+
+  const handleScroll = () => {
+    // check that constructor can overlay footer
+    if (document.documentElement.scrollHeight - 350 - 800 <= window.scrollY) {
+      setAtBottom(true);
+    } else {
+      setAtBottom(false);
+    }
+  };
+
+  useEffect(() => {
+    window.addEventListener('scroll', handleScroll);
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, []);
+
   const zephyrElements: JSX.Element[] = [];
   for (let i = 0; i < zephyr.length; i++) {
     if (i % 2 === 0) {
@@ -199,7 +217,7 @@ export function ZephyrPage() {
         {!isMobile && (
           <FlexColumn
             style={{
-              position: 'relative',
+              position: !atBottom ? 'relative' : undefined,
             }}
           >
             <ConstructorContainer
@@ -209,6 +227,7 @@ export function ZephyrPage() {
               setExpanded={setExpanded}
               stickyLimit={920}
               editItem={editItem}
+              limitBottom={expanded && atBottom}
             />
           </FlexColumn>
         )}

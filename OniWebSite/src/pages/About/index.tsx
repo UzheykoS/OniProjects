@@ -1,6 +1,6 @@
 import React from 'react';
 import { ContactUsSection, TextWrapper, IconWrapper, Quotes } from './styled';
-import { Typography, useMediaQuery } from '@material-ui/core';
+import { Typography, useMediaQuery, Link } from '@material-ui/core';
 import { ImageWithFallback } from '@common/ImageWithFallback';
 import colors from '@constants/colors';
 import PhoneIcon from '@icons/phone.svg';
@@ -50,7 +50,21 @@ export function About() {
               десертов ручной работы в Украине только зарождалась. Мало кто
               воспринимал кондитерское дело, как искусство.
             </Typography>
-            <Typography variant='body1' style={{ marginBottom: '2rem' }}>
+            {isMobile && (
+              <ImageWithFallback
+                src={'./images/pages/about/about_6'}
+                style={{
+                  width: '100%',
+                  height: 'auto',
+                  objectFit: 'cover',
+                  textAlign: 'center',
+                }}
+              />
+            )}
+            <Typography
+              variant='body1'
+              style={{ marginBottom: '2rem', marginTop: '2rem' }}
+            >
               Меня вдохновляли десерты французских шефов. Я смотрела на их
               работы и понимала, что хочу двигаться именно в этом направлении.
               Два года я набивала шишки и училась на своей домашней кухне. Мне
@@ -88,16 +102,18 @@ export function About() {
             flexBasis: isMobile ? '' : '30rem',
           }}
         >
-          <ImageWithFallback
-            src={'./images/pages/about/about_4'}
-            style={{
-              width: isMobile ? '100%' : '460px',
-              height: 'auto',
-              objectFit: 'cover',
-              textAlign: 'center',
-              paddingTop: '3.5rem',
-            }}
-          />
+          {!isMobile && (
+            <ImageWithFallback
+              src={'./images/pages/about/about_6'}
+              style={{
+                width: '500px',
+                height: 'auto',
+                objectFit: 'cover',
+                textAlign: 'center',
+                paddingTop: '3.5rem',
+              }}
+            />
+          )}
           <Typography
             variant='body1'
             style={{ marginBottom: '2rem', marginTop: '2.5rem' }}
@@ -130,7 +146,6 @@ export function About() {
       >
         <Flex
           direction='column'
-          flexEnd
           style={{
             paddingTop: isMobile ? '' : '3.5rem',
             alignItems: 'flex-end',
@@ -154,12 +169,12 @@ export function About() {
           </Flex>
           {isMobile && (
             <ImageWithFallback
-              src='./images/pages/about/about_5'
+              src='./images/pages/about/about_9'
               style={{
                 width: isMobile ? '100%' : '710px',
                 height: isMobile ? 'auto' : '320px',
                 objectFit: 'cover',
-                marginTop: isMobile ? '1rem' : '4rem',
+                marginTop: isMobile ? '1rem' : '2rem',
               }}
             />
           )}
@@ -185,10 +200,10 @@ export function About() {
           </Flex>
           {!isMobile && (
             <ImageWithFallback
-              src='./images/pages/about/about_5'
+              src='./images/pages/about/about_9'
               style={{
-                width: isMobile ? '100%' : '710px',
-                height: isMobile ? 'auto' : '320px',
+                width: '710px',
+                height: 'auto',
                 objectFit: 'cover',
                 marginTop: '4rem',
               }}
@@ -222,21 +237,20 @@ export function About() {
                 когда получилось сделать десерт, который вы называете «любимым».
               </Typography>
               <ImageWithFallback
-                src={'./images/pages/about/about_2'}
+                src={'./images/pages/about/about_11'}
                 style={{
-                  width: isMobile ? '100%' : '459px',
+                  width: '100%',
                   objectFit: 'cover',
                   textAlign: 'center',
-                  paddingTop: '2.5rem',
                 }}
               />
             </>
           ) : (
             <>
               <ImageWithFallback
-                src={'./images/pages/about/about_2'}
+                src={'./images/pages/about/about_11'}
                 style={{
-                  width: isMobile ? '100%' : '459px',
+                  width: isMobile ? '100%' : '575px',
                   objectFit: 'cover',
                   textAlign: 'center',
                   paddingTop: '2.5rem',
@@ -244,7 +258,7 @@ export function About() {
               />
               <Typography
                 variant='body1'
-                style={{ marginBottom: '2rem', marginTop: '2rem' }}
+                style={{ marginBottom: '2rem', marginTop: '4rem' }}
               >
                 Все десерты мы делаем вручную. Нам удалось собрать команду, где
                 все горят свои делом. Мы фанаты новых вкусов и безумных
@@ -269,13 +283,25 @@ export function About() {
                 <IconWrapper>
                   <PhoneIcon />
                 </IconWrapper>
-                +38 096 249 04 30
+                <Link
+                  href='tel:+380962490430'
+                  style={{ textDecoration: 'underline' }}
+                  color='inherit'
+                >
+                  +38 096 249 04 30
+                </Link>
               </TextWrapper>
               <TextWrapper>
                 <IconWrapper>
                   <EnvelopeIcon />
                 </IconWrapper>
-                info@oni.ua
+                <Link
+                  href='mailto:info@oni.ua'
+                  style={{ textDecoration: 'underline' }}
+                  color='inherit'
+                >
+                  info@oni.ua
+                </Link>
               </TextWrapper>
             </Flex>
             <Button

@@ -12,7 +12,7 @@ import { useMediaQuery } from '@material-ui/core';
 import { BREAKPOINT } from '@constants';
 import { ProductType } from '@constants/products';
 
-const STICKY_LIMIT = 200;
+const STICKY_LIMIT = 130;
 const STICKY_LIMIT_MOBILE = 0;
 
 export function ProductsNavBar() {

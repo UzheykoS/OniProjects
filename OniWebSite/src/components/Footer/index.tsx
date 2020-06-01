@@ -95,7 +95,13 @@ export const Footer = () => {
                   <IconWrapper>
                     <EnvelopeIcon />
                   </IconWrapper>
-                  info@oni.ua
+                  <Link
+                    href='mailto:info@oni.ua'
+                    style={{ textDecoration: 'underline' }}
+                    color='inherit'
+                  >
+                    info@oni.ua
+                  </Link>
                 </TextWrapper>
               </Flex>
               <Flex>
@@ -127,25 +133,22 @@ export const Footer = () => {
                   target='_blank'
                   href='https://www.facebook.com/oni.desserts/'
                 >
-                  <img
-                    className='social_network'
-                    src='images/icons/facebook.png'
-                  />
+                  <img src='images/icons/facebook.png' />
                 </SocialsItem>
                 <SocialsItem
                   target='_blank'
                   href='https://www.instagram.com/oni.desserts/'
                 >
-                  <img
-                    className='social_network'
-                    src='images/icons/instagram.png'
-                  />
+                  <img src='images/icons/instagram.png' />
                 </SocialsItem>
                 <SocialsItem target='_blank' href='https://t.me/oni_desserts'>
-                  <img
-                    className='social_network'
-                    src='images/icons/telegram.png'
-                  />
+                  <img src='images/icons/telegram.png' />
+                </SocialsItem>
+                <SocialsItem
+                  target='_blank'
+                  href='viber://chat?number=380962490430'
+                >
+                  <img src='images/icons/viber.png' />
                 </SocialsItem>
               </SocialsWrapper>
               <TextWrapper style={{ marginTop: 10 }}>
@@ -224,7 +227,13 @@ export const Footer = () => {
             <IconWrapper>
               <EnvelopeIcon />
             </IconWrapper>
-            info@oni.ua
+            <Link
+              href='mailto:info@oni.ua'
+              style={{ textDecoration: 'underline' }}
+              color='inherit'
+            >
+              info@oni.ua
+            </Link>
           </TextWrapper>
           <TextWrapper>
             <IconWrapper>
@@ -254,29 +263,26 @@ export const Footer = () => {
                   target='_blank'
                   href='https://www.facebook.com/oni.desserts/'
                 >
-                  <img
-                    className='social_network'
-                    src='images/icons/facebook.png'
-                  />
+                  <img src='images/icons/facebook.png' />
                 </SocialsItem>
                 <SocialsItem
                   target='_blank'
                   href='https://www.instagram.com/oni.desserts/'
                 >
-                  <img
-                    className='social_network'
-                    src='images/icons/instagram.png'
-                  />
+                  <img src='images/icons/instagram.png' />
                 </SocialsItem>
                 <SocialsItem target='_blank' href='https://t.me/oni_desserts'>
-                  <img
-                    className='social_network'
-                    src='images/icons/telegram.png'
-                  />
+                  <img src='images/icons/telegram.png' />
+                </SocialsItem>
+                <SocialsItem
+                  target='_blank'
+                  href='viber://chat?number=380962490430'
+                >
+                  <img src='images/icons/viber.png' />
                 </SocialsItem>
                 {/* <SocialsItem rel='import' href='./wheelOfFortune.html'>
                   <img
-                    className='social_network'
+                    
                     src='images/icons/twitter.png'
                   />
                 </SocialsItem> */}

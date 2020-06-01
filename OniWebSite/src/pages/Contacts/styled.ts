@@ -57,8 +57,10 @@ export const LinkWrapper = styled.a`
 `;
 
 export const SocialsItem = styled.a`
-  padding: 3px 0px 0px 129px;
+  display: flex;
+  align-items: center;
+  color: inherit;
   img {
-    height: 1rem;
+    height: 1.5rem;
   }
 `;

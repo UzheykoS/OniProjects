@@ -95,6 +95,24 @@ export function MacaronsPage() {
     handleClose();
   }
 
+  const [atBottom, setAtBottom] = useState(false);
+
+  const handleScroll = () => {
+    // check that constructor can overlay footer
+    if (document.documentElement.scrollHeight - 350 - 750 <= window.scrollY) {
+      setAtBottom(true);
+    } else {
+      setAtBottom(false);
+    }
+  };
+
+  useEffect(() => {
+    window.addEventListener('scroll', handleScroll);
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, []);
+
   const macaronElements: JSX.Element[] = [];
   for (let i = 0; i < macarons.length; i++) {
     if (i % 2 === 0) {
@@ -175,7 +193,7 @@ export function MacaronsPage() {
             onClick={handleMacaronsMixClick}
           />
         </FlexColumn>
-        <FlexColumn >
+        <FlexColumn>
           <DessertsMix
             size={'small'}
             imageHeight={250}
@@ -212,7 +230,7 @@ export function MacaronsPage() {
         {!isMobile && (
           <FlexColumn
             style={{
-              position: 'relative',
+              position: !atBottom ? 'relative' : undefined,
             }}
           >
             <ConstructorContainer
@@ -222,6 +240,7 @@ export function MacaronsPage() {
               setExpanded={setExpanded}
               stickyLimit={740}
               editItem={editItem}
+              limitBottom={expanded && atBottom}
             />
           </FlexColumn>
         )}

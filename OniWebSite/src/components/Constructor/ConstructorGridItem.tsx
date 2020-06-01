@@ -41,9 +41,12 @@ export function ConstructorGridItem({
       onMouseOut={onMouseOut}
       onClick={() => onClick(index)}
       size={
-        mode === ConstructoreMode.MacaronLarge
+        mode === ConstructoreMode.MacaronLarge ||
+        mode === ConstructoreMode.ZephyrMedium
           ? 'small'
-          : mode === ConstructoreMode.ChouxSmall
+          : mode === ConstructoreMode.ChouxSmall ||
+            mode === ConstructoreMode.ChouxMedium ||
+            mode === ConstructoreMode.ZephyrSmall
           ? 'large'
           : 'medium'
       }
@@ -52,7 +55,11 @@ export function ConstructorGridItem({
       {item && (
         <RemoveIconWrapper
           visible={mouseOver || isMobile}
-          small={mode === ConstructoreMode.MacaronLarge || isMobile}
+          small={
+            mode === ConstructoreMode.MacaronLarge ||
+            mode === ConstructoreMode.ZephyrMedium ||
+            isMobile
+          }
         >
           <RemoveIcon
             style={{

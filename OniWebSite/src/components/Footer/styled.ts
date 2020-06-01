@@ -32,7 +32,7 @@ export const FlexColumnWrapper = styled.div`
 export const SocialsItem = styled.a`
   padding: 5px 20px 5px 20px;
   img {
-    height: 1rem;
+    height: 1.5rem;
   }
 `;
 

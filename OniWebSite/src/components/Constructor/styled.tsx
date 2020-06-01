@@ -6,6 +6,7 @@ import {
   ExpansionPanelDetails,
   Typography,
   Dialog,
+  Chip,
 } from '@material-ui/core';
 import colors from '@constants/colors';
 import React from 'react';
@@ -13,7 +14,7 @@ import { BREAKPOINT } from '@constants';
 import { ImageWithFallback } from '@common/ImageWithFallback';
 
 interface IExpansionPanelStyled extends ExpansionPanelProps {
-  isSticky?: boolean;
+  isSticky?: boolean | null;
 }
 
 export const ExpansionPanelStyled = styled(
@@ -43,8 +44,16 @@ export const ExpansionPanelStyled = styled(
   }
 
   ${({ isSticky }) =>
-    isSticky &&
+    isSticky === null
+      ? `
+      @media (min-width: ${BREAKPOINT}) {
+        position: absolute;
+        bottom: 380px;
+        top: auto;
+      }
     `
+      : isSticky === true &&
+        `
         @media (max-width: ${BREAKPOINT}) {
           position: fixed;
           top: 130px;
@@ -164,7 +173,7 @@ export const ConstructorGridItemWrapper = styled.div<
 
 export const ImageWrapper = styled(ImageWithFallback)`
   width: 100%;
-  height: auto;
+  height: 100%;
   object-fit: contain;
   background: ${colors.primary.white};
 `;
@@ -210,5 +219,26 @@ export const ConstructorDialog = styled(Dialog).attrs({
   .paper {
     margin: 5%;
     padding: 20px 10px 30px 10px;
+  }
+`;
+
+export const ChipStyled = styled(Chip).attrs({
+  classes: {
+    colorSecondary: 'colorSecondary',
+    outlinedSecondary: 'outlinedSecondary',
+  },
+})`
+  margin: 0px 5px;
+  height: 36px;
+  border-radius: 50px;
+  width: 90px;
+
+  &.colorSecondary {
+    background-color: ${colors.primary.grey};
+  }
+
+  &.outlinedSecondary {
+    background-color: ${colors.primary.white};
+    color: ${colors.primary.black};
   }
 `;

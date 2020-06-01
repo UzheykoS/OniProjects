@@ -155,7 +155,8 @@ export function ChouxPage() {
         <FlexColumn>
           <DessertsMix
             size='small'
-            imageHeight={250}
+            imageHeight={145}
+            pictureStyle={{ alignItems: 'center', height: 270 }}
             product={chouxMix[0]}
             onClick={handleChouxMixClick}
           />

@@ -1,12 +1,13 @@
-import React, { useCallback, useState } from 'react';
+import React, { useCallback, useState, useEffect } from 'react';
 import {
   ConstructorWrapper,
   ModeSelectWrapper,
   SurpriseMe,
   CenteredRow,
   ConstructorGridWrapper,
+  ChipStyled,
 } from './styled';
-import { Chip, IconButton, Typography } from '@material-ui/core';
+import { IconButton, Typography } from '@material-ui/core';
 import DeleteOutlinedIcon from '@material-ui/icons/DeleteOutlined';
 import { Button } from '@common/Button';
 import { ConstructorGridItem } from './ConstructorGridItem';
@@ -75,7 +76,8 @@ export function constructorReducer(
       if (state.items.length === state.mode) {
         const modeIndex = state.availableModes.indexOf(state.mode);
         if (modeIndex === state.availableModes.length - 1) {
-          throw new ConstructorError('List is already full');
+          return newState;
+          // throw new ConstructorError('List is already full');
         } else {
           newState.mode = state.availableModes[modeIndex + 1];
         }
@@ -199,6 +201,10 @@ export function Constructor({ state, dispatch, editItem }: IConstructorProps) {
     return !isNotFull;
   };
 
+  useEffect(() => {
+    setErrorMessage('');
+  }, [state.items.length]);
+
   const handleModeSelect = (m: ConstructoreMode) => {
     dispatch({ type: 'setMode', mode: m });
   };
@@ -253,7 +259,7 @@ export function Constructor({ state, dispatch, editItem }: IConstructorProps) {
         <ModeSelectWrapper>
           <div>
             {state.availableModes.map(mode => (
-              <Chip
+              <ChipStyled
                 key={mode}
                 clickable
                 color='secondary'

@@ -59,7 +59,7 @@ export function NavBar() {
   };
 
   const navBar = (
-    <NavBarWrapper>
+    <NavBarWrapper transparent={currentPage === Pages.Main}>
       <RoutesList>
         <LogoLink>
           <Link to={routes[Pages.Main]!.path}>
@@ -167,13 +167,13 @@ export function NavBar() {
         <Divider />
         <SocialMedia>
           <a target='_blank' href='https://www.facebook.com/'>
-            <img className='social_network' src='images/icons/facebook.png' />
+            <img src='images/icons/facebook.png' />
           </a>
           <a target='_blank' href='https://www.instagram.com'>
-            <img className='social_network' src='images/icons/instagram.png' />
+            <img src='images/icons/instagram.png' />
           </a>
           <a target='_blank' href='https://www.telegram.com'>
-            <img className='social_network' src='images/icons/twitter.png' />
+            <img src='images/icons/twitter.png' />
           </a>
         </SocialMedia>
       </SwipeableDrawer>

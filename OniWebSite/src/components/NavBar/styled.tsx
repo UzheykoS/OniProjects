@@ -8,19 +8,31 @@ import {
 } from '@material-ui/core';
 import colors from '@constants/colors';
 
-export const NavBarWrapper = styled.div`
-  display: flex;
-  /* justify-content: center; */
-  justify-content: space-around;
-  width: 100%;
-  border-bottom: 1px solid #cccccc;
-`;
-
-interface INavBarWrapperMobile {
+interface INavBarWrapper {
   transparent?: boolean;
 }
 
-export const NavBarWrapperMobile = styled.div<INavBarWrapperMobile>`
+export const NavBarWrapper = styled.div<INavBarWrapper>`
+  display: flex;
+  justify-content: space-around;
+  width: 100%;
+  top: 0;
+
+  z-index: 100;
+  ${({ transparent }) =>
+    transparent
+      ? `
+        background-color: transparent;
+        position: absolute;
+      `
+      : `
+        background-color: ${colors.primary.white};
+        border-bottom: 1px solid #cccccc;
+        position: fixed;
+      `}
+`;
+
+export const NavBarWrapperMobile = styled.div<INavBarWrapper>`
   display: flex;
   justify-content: space-between;
   width: 100%;

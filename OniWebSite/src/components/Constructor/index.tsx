@@ -15,6 +15,7 @@ import { Flex } from '@styles/styled';
 export interface IConstructorContainerProps extends IConstructorProps {
   expanded: boolean;
   stickyLimit: number;
+  limitBottom?: boolean;
   setExpanded: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
@@ -22,6 +23,7 @@ export function ConstructorContainer({
   expanded,
   setExpanded,
   stickyLimit,
+  limitBottom,
   ...rest
 }: IConstructorContainerProps) {
   const [isSticky, setIsSticky] = useState(false);
@@ -94,7 +96,7 @@ export function ConstructorContainer({
 
   return (
     <ExpansionPanelStyled
-      isSticky={isSticky}
+      isSticky={limitBottom === true ? null : isSticky}
       expanded={expanded}
       onChange={() => setExpanded(!expanded)}
     >

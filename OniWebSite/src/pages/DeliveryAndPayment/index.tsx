@@ -6,7 +6,7 @@ import {
   IconWrapper,
   CustomDivider,
 } from './styled';
-import { Typography, useMediaQuery } from '@material-ui/core';
+import { Typography, useMediaQuery, Link } from '@material-ui/core';
 import LocationIcon from '@icons/location.svg';
 import PhoneIcon from '@icons/phone.svg';
 import EnvelopeIcon from '@icons/envelope.svg';
@@ -99,13 +99,25 @@ export function DeliveryAndPayment() {
                     <IconWrapper>
                       <PhoneIcon />
                     </IconWrapper>
-                    +38 096 249 04 30
+                    <Link
+                      href='tel:+380962490430'
+                      style={{ textDecoration: 'underline' }}
+                      color='inherit'
+                    >
+                      +38 096 249 04 30
+                    </Link>
                   </TextWrapper>
                   <TextWrapper>
                     <IconWrapper>
                       <EnvelopeIcon />
                     </IconWrapper>
-                    info@oni.ua
+                    <Link
+                      href='mailto:info@oni.ua'
+                      style={{ textDecoration: 'underline' }}
+                      color='inherit'
+                    >
+                      info@oni.ua
+                    </Link>
                   </TextWrapper>
                 </Flex>
               </DeliverySection>
@@ -164,13 +176,25 @@ export function DeliveryAndPayment() {
                   <IconWrapper>
                     <PhoneIcon />
                   </IconWrapper>
-                  +38 096 249 04 30
+                  <Link
+                    href='tel:+380962490430'
+                    style={{ textDecoration: 'underline' }}
+                    color='inherit'
+                  >
+                    +38 096 249 04 30
+                  </Link>
                 </TextWrapper>
                 <TextWrapper>
                   <IconWrapper>
                     <EnvelopeIcon />
                   </IconWrapper>
-                  info@oni.ua
+                  <Link
+                    href='mailto:info@oni.ua'
+                    style={{ textDecoration: 'underline' }}
+                    color='inherit'
+                  >
+                    info@oni.ua
+                  </Link>
                 </TextWrapper>
               </Flex>
             </DeliverySection>
