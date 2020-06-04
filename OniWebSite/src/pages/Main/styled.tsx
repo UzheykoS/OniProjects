@@ -2,6 +2,7 @@ import styled from 'styled-components';
 import colors from '@constants/colors';
 import { IconButton, IconButtonProps } from '@material-ui/core';
 import React from 'react';
+import { FlexColumn } from '@styles/styled';
 
 export const MainContainer = styled.div`
   display: flex;
@@ -187,12 +188,36 @@ export const TopSalesProducts = styled.div`
   align-items: center;
   padding: 3rem 0;
   position: relative;
+  .slick-slider {
+    width: 100%;
+  }
+  .slick-list {
+    border-right: 1px solid #eef2f0;
+  }
 `;
 
 export const TopSalesProductsMobile = styled.div`
   display: flex;
   align-items: center;
   padding: 1rem 0 2rem 0;
+
+  .slick-slider {
+    width: 100%;
+  }
+  .slick-dots {
+    height: auto;
+    margin: 0px;
+    li {
+      height: 3px;
+      width: 80px;
+      background-color: ${colors.primary.grey};
+      &.slick-active {
+        div {
+          background-color: ${colors.primary.gold};
+        }
+      }
+    }
+  }
 `;
 
 interface IIconButtonStyled extends IconButtonProps {
@@ -229,4 +254,10 @@ export const IconButtonStyled = styled(
       background-color: ${colors.secondary.pink};
     }
   }
+`;
+
+export const FlexColumnStyled = styled(FlexColumn)`
+  margin-top: 1px;
+  /* margin-left: -1px; */
+  /* width: calc(100% - 2px) !important; */
 `;

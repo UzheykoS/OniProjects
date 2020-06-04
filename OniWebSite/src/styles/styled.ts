@@ -18,7 +18,9 @@ export const AppStyled = styled.div`
   font-family: 'Yeseva One', cursive;
   position: relative;
   box-sizing: border-box;
-  padding-top: 100px;
+  @media (min-width: ${BREAKPOINT}) {
+    padding-top: 100px;
+  }
 `;
 
 export const FlexRow = styled.div`
@@ -42,15 +44,16 @@ export const FlexColumn = styled.div<IColumn>`
   padding: 0;
   margin-top: -1px;
   width: 100%;
+  box-sizing: border-box;
 
   ${({ bordered, isLastChild }) =>
     bordered &&
     `
     border: 1px solid #EEF2F0;
     border-right: ${isLastChild === true ? '1px solid #EEF2F0;' : '0px;'}
-    &:last-child {
-      border-right: 1px solid #EEF2F0;
-    }
+    // &:last-child {
+    //   border-right: 1px solid #EEF2F0;
+    // }
     @media (max-width: ${BREAKPOINT}) {
       border: 1px solid #EEF2F0;
     }

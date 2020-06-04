@@ -1,27 +1,14 @@
 html,
 body {
+    box-sizing: border-box;
     margin: 0;
-    // font-size: 150%; // 12px
+    padding: 0;
+    height: 100%;
+    // font-size: 8px;
 }
 
-@media screen and (min-width: 1224px) {
-    // html {
-        // font-size: 100%; // 16px
-    // }
-}
-
-.stretch {
-    display: inline-block;
-    -webkit-transform: scale(1.4, 1);
-    /* Safari and Chrome */
-    -moz-transform: scale(1.4, 1);
-    /* Firefox */
-    -ms-transform: scale(1.4, 1);
-    /* IE 9 */
-    -o-transform: scale(1.4, 1);
-    /* Opera */
-    transform: scale(1.4, 1);
-    /* W3C */
+a {
+    text-decoration: none;
 }
 
 [type=button]:not(:disabled),

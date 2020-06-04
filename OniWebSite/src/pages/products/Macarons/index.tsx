@@ -31,6 +31,15 @@ export function MacaronsPage() {
     }
     if (productItem) {
       dispatch({ type: 'add', item: productItem });
+      const el = document.getElementById(SCROLL_INTO_VIEW_ELEMENT);
+      if (el) {
+        const viewportOffset = el.getBoundingClientRect();
+        window.scrollTo({
+          top: viewportOffset.top - 30,
+          left: 0,
+          behavior: 'smooth',
+        });
+      }
     }
   }, [editItem]);
 
@@ -99,7 +108,7 @@ export function MacaronsPage() {
 
   const handleScroll = () => {
     // check that constructor can overlay footer
-    if (document.documentElement.scrollHeight - 350 - 750 <= window.scrollY) {
+    if (document.documentElement.scrollHeight - 350 - 850 <= window.scrollY) {
       setAtBottom(true);
     } else {
       setAtBottom(false);

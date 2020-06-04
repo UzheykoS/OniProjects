@@ -62,7 +62,7 @@ export const ExpansionPanelStyled = styled(
         }
         @media (min-width: ${BREAKPOINT}) {
           position: fixed;
-          top: 45px;
+          top: 145px;
           width: 310px;
         }
     `};

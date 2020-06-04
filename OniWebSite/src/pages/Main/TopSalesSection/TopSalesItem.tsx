@@ -1,18 +1,57 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { IProduct } from '@constants/products';
-import { IProductSingleWrapper, ProductSingleWrapper, Title, Description } from '@components/products/styled';
+import {
+  IProductSingleWrapper,
+  ProductSingleWrapper,
+  Title,
+  Description,
+  AddIconMobileWrapper,
+  AddIconWrapper,
+} from '@components/products/styled';
 import { ProductImageWrapper } from '@components/products/ProductImageWrapper';
+import AddIcon from '@material-ui/icons/Add';
+import colors from '@constants/colors';
 
 interface IProps extends IProductSingleWrapper {
   product: IProduct;
+  height?: number;
+  isMobile?: boolean;
   onClick: (item: IProduct) => void;
 }
-export function TopSalesItem({ product, onClick }: IProps) {
+export function TopSalesItem({
+  height = 19,
+  product,
+  isMobile,
+  onClick,
+}: IProps) {
+  const [mouseOver, setMouseOver] = useState(false);
+
+  const onMouseOver = () => {
+    !isMobile && setMouseOver(true);
+  };
+
+  const onMouseOut = () => {
+    !isMobile && setMouseOver(false);
+  };
+
   return (
     <ProductSingleWrapper
-      height={15}
+      height={height}
+      onMouseOver={onMouseOver}
+      onMouseOut={onMouseOut}
       onClick={() => onClick(product)}
     >
+      {isMobile ? (
+        <AddIconMobileWrapper onClick={() => onClick(product)}>
+          <AddIcon
+            style={{ fontSize: 36, color: colors.primary.white, opacity: 0.7 }}
+          />
+        </AddIconMobileWrapper>
+      ) : (
+        <AddIconWrapper visible={mouseOver}>
+          <AddIcon style={{ fontSize: 40, color: colors.primary.white }} />
+        </AddIconWrapper>
+      )}
       <ProductImageWrapper src={product.imageUrl} />
       <Title>{product.id}</Title>
       <Description>{product.fullDescription}</Description>

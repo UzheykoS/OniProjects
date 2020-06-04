@@ -15,16 +15,12 @@ import {
   SocialMedia,
   ListWrapper,
   TooltipStyled,
+  SwipeableDrawerStyled,
 } from './styled';
 import BinIcon from '@icons/bin.svg';
 import IconButton from '@common/IconButton';
 import { useBasket } from '@hooks/useBasket';
-import {
-  useMediaQuery,
-  SwipeableDrawer,
-  List,
-  Divider,
-} from '@material-ui/core';
+import { useMediaQuery, List, Divider } from '@material-ui/core';
 import { BREAKPOINT } from '@constants';
 import MenuIcon from '@material-ui/icons/Menu';
 import Zoom from '@material-ui/core/Zoom';
@@ -139,13 +135,14 @@ export function NavBar() {
 
   const navBarMobile = (
     <NavBarWrapperMobile transparent={currentPage === Pages.Main}>
-      <SwipeableDrawer
+      <SwipeableDrawerStyled
         anchor={'left'}
         open={open}
         onClose={toggleDrawer(false)}
         onOpen={toggleDrawer(true)}
         disableBackdropTransition={!iOS}
         disableDiscovery={iOS}
+        style={{ width: '40%' }}
       >
         <ListWrapper onClick={toggleDrawer(false)}>
           <List>
@@ -175,8 +172,11 @@ export function NavBar() {
           <a target='_blank' href='https://www.telegram.com'>
             <img src='images/icons/twitter.png' />
           </a>
+          <a target='_blank' href='viber://chat?number=380962490430'>
+            <img src='images/icons/viber.png' />
+          </a>
         </SocialMedia>
-      </SwipeableDrawer>
+      </SwipeableDrawerStyled>
 
       <IconButton onClick={toggleDrawer(true)}>
         <MenuIcon style={{ fontSize: 36, color: colors.secondary.gold }} />

@@ -31,6 +31,15 @@ export function ZephyrPage() {
     }
     if (productItem) {
       dispatch({ type: 'add', item: productItem });
+      const el = document.getElementById(SCROLL_INTO_VIEW_ELEMENT);
+      if (el) {
+        const viewportOffset = el.getBoundingClientRect();
+        window.scrollTo({
+          top: viewportOffset.top - 30,
+          left: 0,
+          behavior: 'smooth',
+        });
+      }
     }
   }, [editItem]);
 
@@ -95,7 +104,7 @@ export function ZephyrPage() {
 
   const handleScroll = () => {
     // check that constructor can overlay footer
-    if (document.documentElement.scrollHeight - 350 - 800 <= window.scrollY) {
+    if (document.documentElement.scrollHeight - 350 - 900 <= window.scrollY) {
       setAtBottom(true);
     } else {
       setAtBottom(false);
@@ -168,7 +177,7 @@ export function ZephyrPage() {
       <FlexRow>
         <FlexColumn>
           <DessertsMix
-            size={'small'}
+            size={'large'}
             imageHeight={isMobile ? 160 : undefined}
             product={zephyrMix[0]}
             onClick={handleZephyrMixClick}
@@ -182,7 +191,7 @@ export function ZephyrPage() {
         </FlexColumn>
         <FlexColumn>
           <DessertsMix
-            size={'small'}
+            size={'large'}
             imageHeight={isMobile ? 275 : 300}
             product={zephyrMix[1]}
             onClick={handleZephyrMixClick}

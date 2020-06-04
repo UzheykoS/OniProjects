@@ -17,12 +17,10 @@ export const ProductSingleWrapper = styled.div<IProductSingleWrapper>`
 
   ${({ height }) =>
     `
-      min-height: ${height || 19}vw;
+      height: ${height}rem;
     `};
 
   @media (max-width: ${BREAKPOINT}) {
-    height: auto;
-    /* min-height: 400px; */
     padding: 40px 0;
   }
 `;

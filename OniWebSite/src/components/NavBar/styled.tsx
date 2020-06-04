@@ -5,6 +5,7 @@ import {
   ListItemProps,
   Tooltip,
   TooltipProps,
+  SwipeableDrawer,
 } from '@material-ui/core';
 import colors from '@constants/colors';
 
@@ -242,5 +243,15 @@ export const TooltipStyled = styled(Tooltip).attrs({
   },
 })<TooltipProps>`
   &.popper {
+  }
+`;
+
+export const SwipeableDrawerStyled = styled(SwipeableDrawer).attrs({
+  classes: {
+    paper: 'drawer-paper',
+  },
+})`
+  .drawer-paper {
+    min-width: 260px;
   }
 `;
