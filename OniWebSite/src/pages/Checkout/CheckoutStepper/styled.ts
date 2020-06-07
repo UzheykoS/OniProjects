@@ -12,11 +12,6 @@ export const MainWrapper = styled.div`
   }
 `;
 
-export const BottomWrapper = styled.div`
-  display: flex;
-  justify-content: flex-end;
-`;
-
 export const FormWrapper = styled.form`
   display: flex;
   width: 100%;

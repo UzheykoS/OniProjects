@@ -4,7 +4,7 @@ import React, {
   useReducer,
   useCallback,
 } from 'react';
-import { IProduct, ICakeInfo } from '@constants/products';
+import { IProduct, ICakeInfo, DELIVERY_PRICE } from '@constants/products';
 import { useMediaQuery } from '@material-ui/core';
 import { BREAKPOINT } from '@constants';
 
@@ -17,26 +17,39 @@ export interface IBasketItem {
 interface IBasketState {
   items: IBasketItem[];
   totalPrice: number;
+  delivery: boolean;
   addToBasket(item: IBasketItem): void;
   removeFromBasket(item: IBasketItem): void;
   clearBasket(): void;
   increaseQuantity(item: IBasketItem): void;
   decreaseQuantity(item: IBasketItem): void;
+  addDelivery(): void;
+  removeDelivery(): void;
 }
 
 const initialBasketState = {
   items: [],
   totalPrice: 0,
+  delivery: false,
   addToBasket: () => {},
   removeFromBasket: () => {},
   clearBasket: () => {},
   increaseQuantity: () => {},
   decreaseQuantity: () => {},
+  addDelivery: () => {},
+  removeDelivery: () => {},
 };
 const BasketContext = createContext<IBasketState>(initialBasketState);
 
 type ActionType = {
-  type: 'add' | 'remove' | 'clear' | 'increase' | 'decrease';
+  type:
+    | 'add'
+    | 'remove'
+    | 'clear'
+    | 'increase'
+    | 'decrease'
+    | 'addDelivery'
+    | 'removeDelivery';
   item?: IBasketItem;
 };
 
@@ -85,6 +98,10 @@ function basketReducer(state: IBasketState, action: ActionType) {
       return state;
     case 'clear':
       return { ...state, items: [] };
+    case 'addDelivery':
+      return { ...state, delivery: true };
+    case 'removeDelivery':
+      return { ...state, delivery: false };
     default:
       throw new Error('Unknown action');
   }
@@ -121,21 +138,36 @@ const BasketProvider = ({ children }: { children?: React.ReactNode }) => {
     dispatch({ type: 'decrease', item });
   };
 
-  const totalPrice = state.items.reduce((accumulator, currentValue) => {
+  const addDelivery = () => {
+    dispatch({ type: 'addDelivery' });
+  };
+
+  const removeDelivery = () => {
+    dispatch({ type: 'removeDelivery' });
+  };
+
+  let totalPrice = state.items.reduce((accumulator, currentValue) => {
     accumulator += Number(currentValue.product.price) * currentValue.quantity;
     return accumulator;
   }, 0);
+
+  if (state.delivery) {
+    totalPrice += DELIVERY_PRICE;
+  }
 
   return (
     <BasketContext.Provider
       value={{
         items: state.items,
         totalPrice,
+        delivery: state.delivery,
         addToBasket,
         removeFromBasket,
         clearBasket,
         increaseQuantity,
         decreaseQuantity,
+        addDelivery,
+        removeDelivery,
       }}
     >
       {children}
@@ -150,8 +182,11 @@ function useBasket(): IBasketState {
     clearBasket,
     increaseQuantity,
     decreaseQuantity,
+    addDelivery,
+    removeDelivery,
     items,
     totalPrice,
+    delivery,
   } = useContext(BasketContext);
 
   const addToBasketHandler = useCallback(
@@ -186,12 +221,23 @@ function useBasket(): IBasketState {
     [decreaseQuantity]
   );
 
+  const addDeliveryHandler = useCallback(() => {
+    addDelivery && addDelivery();
+  }, [addToBasket]);
+
+  const removeDeliveryHandler = useCallback(() => {
+    removeDelivery && removeDelivery();
+  }, [addToBasket]);
+
   return {
     addToBasket: addToBasketHandler,
     clearBasket: clearBasketHandler,
     removeFromBasket: removeFromBasketHandler,
     increaseQuantity: increaseQuantityHandler,
     decreaseQuantity: decreaseQuantityHandler,
+    addDelivery: addDeliveryHandler,
+    removeDelivery: removeDeliveryHandler,
+    delivery,
     items,
     totalPrice,
   };

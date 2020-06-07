@@ -114,7 +114,7 @@ export const Footer = () => {
                     color='inherit'
                     href={'https://goo.gl/maps/61G5oKAfPiXo6cU18'}
                   >
-                    <TextWrapper>Киев, б-р Вацлава Гавела, 9А</TextWrapper>
+                    <TextWrapper>Киев, бульвар Вацлава Гавела, 9А</TextWrapper>
                   </Link>
                 </TextWrapper>
               </Flex>
@@ -244,7 +244,7 @@ export const Footer = () => {
               color='inherit'
               href={'https://goo.gl/maps/61G5oKAfPiXo6cU18'}
             >
-              <TextWrapper>Киев, б-р Вацлава Гавела, 9А</TextWrapper>
+              <TextWrapper>Киев, бульвар Вацлава Гавела, 9А</TextWrapper>
             </Link>
           </TextWrapper>
         </Grid>

@@ -7,7 +7,7 @@ import { useSupportWebp } from '@common/ImageWithFallback/useSupportWebp';
 import QuantityEditor from '@common/QuantityEditor';
 import { useHistory } from 'react-router-dom';
 import { getDessertRouteKey } from '@utils/Helper';
-import { Macarons, Choux } from '@constants/products';
+import { Macarons, cakes, ProductType, ICakeInfo } from '@constants/products';
 
 interface IBasketItemProps {
   item: IBasketItem;
@@ -34,18 +34,16 @@ export function BasketItem({
   }
 
   const rotate =
-    [
-      Choux.ChouxMixSmall.toString(),
-      Macarons.MacaronsMixSmall,
-      Macarons.MacaronsMixMedium,
-    ].indexOf(product.id) > -1;
+    [Macarons.MacaronsMixSmall.toString(), Macarons.MacaronsMixMedium].indexOf(
+      product.id
+    ) > -1;
 
   return (
     <BasketItemWrapper>
       <BasketItemWrapperCell
         width={30}
         style={{ cursor: contents?.length ? 'pointer' : 'default' }}
-        rotate={!!rotate}
+        rotate={rotate || undefined}
         onClick={contents?.length ? editBasketItem : () => {}}
       >
         <img
@@ -56,7 +54,14 @@ export function BasketItem({
       </BasketItemWrapperCell>
       <BasketItemWrapperCell width={25}>
         <Typography variant='body1'>
-          <b>{product.type}</b> {product.id}
+          <b>{product.type}</b> {product.id}{' '}
+          {product.type === ProductType.Cake
+            ? `${
+                ([] as ICakeInfo[])
+                  .concat(...cakes)
+                  .find(c => c.id === product.id)!.weight
+              } кг`
+            : ''}
         </Typography>
       </BasketItemWrapperCell>
       <BasketItemWrapperCell width={25}>

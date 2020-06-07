@@ -52,32 +52,63 @@ interface ICheckoutStepperProps {
 const initialState = {
   delivery: DeliveryType.SelfService,
   payment: PaymentType.Cash,
+  name: '',
+  phone: '',
+  comments: '',
+  address: 'Самовывоз: Киев, бульвар Вацлава Гавела, 9А',
+  date: null,
+  time: null,
 };
 
 export function CheckoutStepper({ returnToBasket }: ICheckoutStepperProps) {
+  const {
+    items,
+    totalPrice,
+    delivery,
+    clearBasket,
+    addDelivery,
+    removeDelivery,
+  } = useBasket();
   const [activeTab, setActiveTab] = useState(CheckoutTabs.Delivery);
-  const [form, setForm] = useState<IOrder>(initialState);
-  const { items, totalPrice, clearBasket } = useBasket();
+  const [form, setForm] = useState<IOrder>({
+    ...initialState,
+    delivery: delivery ? DeliveryType.Delivery : DeliveryType.SelfService,
+    address: delivery ? '' : 'Самовывоз: Киев, бульвар Вацлава Гавела, 9А',
+  });
   const { showSnackbar } = useSnackbar();
   const isMobile = useMediaQuery(`(max-width: ${BREAKPOINT})`);
 
-  const handleDeliverySubmit = (delivery: DeliveryType) => {
+  const handleDeliveryChange = (delivery: DeliveryType) => {
+    if (delivery === DeliveryType.SelfService) {
+      setForm({
+        ...form,
+        delivery,
+        address: 'Самовывоз: Киев, бульвар Вацлава Гавела, 9А',
+      });
+    } else {
+      setForm({ ...form, delivery, address: '' });
+    }
+  };
+
+  const handleDeliverySubmit = () => {
     window.scrollTo({
       top: 0,
       left: 0,
       behavior: 'smooth',
     });
-    setForm({ ...form, delivery });
     setActiveTab(CheckoutTabs.Contacts);
   };
 
-  const handleContactDataSubmit = (contactData: IContactData) => {
+  const handleContactDataChange = (contactData: IContactData) => {
+    setForm({ ...form, ...contactData });
+  };
+
+  const handleContactDataSubmit = () => {
     window.scrollTo({
       top: 0,
       left: 0,
       behavior: 'smooth',
     });
-    setForm({ ...form, ...contactData });
     setActiveTab(CheckoutTabs.Payment);
   };
 
@@ -149,13 +180,31 @@ export function CheckoutStepper({ returnToBasket }: ICheckoutStepperProps) {
       </TabsStyled>
       <Content>
         {activeTab === CheckoutTabs.Delivery && (
-          <Delivery handleContinue={handleDeliverySubmit} />
+          <Delivery
+            totalPrice={totalPrice}
+            delivery={form.delivery}
+            addDelivery={addDelivery}
+            removeDelivery={removeDelivery}
+            handleDeliveryChange={handleDeliveryChange}
+            handleContinue={handleDeliverySubmit}
+          />
         )}
         {activeTab === CheckoutTabs.Contacts && (
-          <Contacts handleContinue={handleContactDataSubmit} />
+          <Contacts
+            formData={form}
+            setFormData={handleContactDataChange}
+            delivery={form.delivery}
+            totalPrice={totalPrice}
+            handleContinue={handleContactDataSubmit}
+          />
         )}
         {activeTab === CheckoutTabs.Payment && (
-          <Payment handleContinue={handlePaymentSubmit} />
+          <Payment
+            delivery={form.delivery}
+            totalPrice={totalPrice}
+            isValid={!!form.name && !!form.phone}
+            handleContinue={handlePaymentSubmit}
+          />
         )}
       </Content>
     </CheckoutStepperContainer>

@@ -17,7 +17,7 @@ function PhoneInput(props: ITextMaskCustomProps) {
       }}
       showMask={true}
       mask={maks}
-      guide={true}
+      guide={false}
       keepCharPositions={false}
     />
   );

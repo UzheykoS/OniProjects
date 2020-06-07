@@ -132,7 +132,11 @@ export function Basket({
             </TextLink>
           </Flex>
           <Flex justifyCenter>
-            <Button rounded onClick={handleCheckoutClick}>
+            <Button
+              rounded
+              disabled={!items.length}
+              onClick={handleCheckoutClick}
+            >
               ОФОРМИТЬ
             </Button>
           </Flex>
@@ -151,7 +155,11 @@ export function Basket({
               Продолжить покупки
             </TextLink>
           </Flex>
-          <Button rounded onClick={handleCheckoutClick}>
+          <Button
+            rounded
+            disabled={!items.length}
+            onClick={handleCheckoutClick}
+          >
             ОФОРМИТЬ
           </Button>
         </Flex>

@@ -18,14 +18,17 @@ export function CheesecakeSingle({
   showButton,
 }: IProps) {
   return (
-    <ProductSingleWrapper height={height || 24}>
+    <ProductSingleWrapper height={height || 26}>
       <ProductImageWrapper height={200} src={product.imageUrl} />
-      <Title>{`${product.id}   ${product.price} грн`}</Title>
+      <Title>{`${product.id}`}</Title>
       <Description>{product.fullDescription}</Description>
       {showButton && (
-        <Button rounded onClick={() => onClick(product)}>
-          ДОБАВИТЬ
-        </Button>
+        <>
+          <Title style={{ marginBottom: 10 }}>{`${product.price} грн`}</Title>
+          <Button rounded onClick={() => onClick(product)}>
+            ДОБАВИТЬ
+          </Button>
+        </>
       )}
     </ProductSingleWrapper>
   );

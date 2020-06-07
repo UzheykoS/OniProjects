@@ -62,11 +62,10 @@ export function Contacts() {
                   <IconWrapper>
                     <LocationIcon />
                   </IconWrapper>
-                  Киев, бульвар Вацлава Гавела, 9А
+                  <LinkWrapper href='/delivery#map-wrapper'>
+                    Киев, бульвар Вацлава Гавела, 9А
+                  </LinkWrapper>
                 </TextWrapper>
-                <LinkWrapper href='/delivery#map-wrapper'>
-                  Показать на карте
-                </LinkWrapper>
               </Flex>
               <Flex direction={isMobile ? 'column' : 'row'} justifyBetween>
                 <Flex direction='column'>
@@ -106,7 +105,7 @@ export function Contacts() {
                       target='_blank'
                       href='https://t.me/oni_desserts'
                     >
-                      <TextWrapper>Telegram: </TextWrapper>
+                      <TextWrapper>Telegram </TextWrapper>
                       <img
                         src='images/icons/telegram.png'
                         style={{ marginLeft: 5 }}
@@ -116,7 +115,7 @@ export function Contacts() {
                       target='_blank'
                       href='viber://chat?number=380962490430'
                     >
-                      <TextWrapper>Viber: </TextWrapper>
+                      <TextWrapper>Viber </TextWrapper>
                       <img
                         src='images/icons/viber.png'
                         style={{ marginLeft: 5 }}

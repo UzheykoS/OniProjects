@@ -1,5 +1,5 @@
 export enum ProductType {
-  Macaron = 'Макаронс',
+  Macaron = 'Макарон',
   Choux = 'Шу',
   Cheesecake = 'Чизкейк',
   Zephyr = 'Зефир',
@@ -62,8 +62,8 @@ export enum Zephyr {
 }
 
 enum Cheesecake {
-  VanillaCaramel = 'Ваниль - Карамель',
-  Gorgonzola = 'Горгонзола - Айва',
+  VanillaCaramel = 'Ваниль-Карамель',
+  Gorgonzola = 'Горгонзола-Айва',
   Lemon = 'Лимон',
 }
 
@@ -88,6 +88,8 @@ export const Products = {
   ...Cheesecake,
 };
 export type Products = typeof Products;
+
+export const DELIVERY_PRICE = 80;
 
 export const macaronMix: IProduct[] = [
   {

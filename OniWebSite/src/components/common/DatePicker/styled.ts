@@ -3,6 +3,6 @@ import { DatePicker } from '@material-ui/pickers';
 
 export const StyledDatePicker = styled(DatePicker)`
   .MuiInputLabel-asterisk {
-    color: #FF4444;
+    color: #ff4444;
   }
 `;

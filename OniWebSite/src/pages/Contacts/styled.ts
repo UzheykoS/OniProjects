@@ -1,6 +1,5 @@
 import styled from 'styled-components';
 import { makeStyles } from '@material-ui/core';
-import colors from '@constants/colors';
 
 export const ContactsSection = styled.div`
   display: flex;
@@ -47,13 +46,12 @@ export const RotatedImageWrapper = styled.div`
 `;
 
 export const LinkWrapper = styled.a`
-  padding-left: 3rem;
   white-space: nowrap;
   font-weight: 400;
   line-height: 30px;
   font-size: 1rem;
   color: inherit;
-  text-decoration-color: ${colors.secondary.gold};
+  text-decoration: underline;
 `;
 
 export const SocialsItem = styled.a`

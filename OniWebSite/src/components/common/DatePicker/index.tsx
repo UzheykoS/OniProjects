@@ -1,46 +1,50 @@
 import React from 'react';
 import { StyledDatePicker } from './styled';
 import { DATE_FORMAT } from '@constants';
+import { DatePickerProps } from '@material-ui/pickers';
 
-interface IDatePickerProps {
+interface IDatePickerProps extends DatePickerProps {
   dateFormat?: string;
   disabled?: boolean;
   variant?: 'dialog' | 'inline' | undefined;
-  error?: string;
-  emptyLabel?: string;
+  errorText?: string;
+  label?: string;
   value: any;
   fullWidth?: boolean;
   style?: React.CSSProperties;
-  handleDateChange: (date: Date | null) => void;
+  onChange: (date: Date | null) => void;
 }
 
 const DatePickerWrapper = ({
   dateFormat = DATE_FORMAT,
   disabled,
   variant,
-  error,
+  errorText,
   value,
-  emptyLabel,
+  label,
   fullWidth,
   style,
-  handleDateChange,
+  onChange,
+  ...rest
 }: IDatePickerProps) => {
   return (
     <StyledDatePicker
       autoOk
       variant={variant}
       disabled={disabled}
-      error={!!error}
-      helperText={error ? error : <></>}
+      error={!!errorText}
+      helperText={errorText ? errorText : <></>}
       format={dateFormat}
       autoComplete='none'
-      emptyLabel={emptyLabel}
+      label={label}
       inputVariant='outlined'
       fullWidth={fullWidth}
       margin='normal'
       style={style}
       value={value}
-      onChange={handleDateChange}
+      disablePast
+      onChange={onChange}
+      {...rest}
     />
   );
 };

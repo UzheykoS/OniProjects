@@ -9,7 +9,6 @@ import {
   MainWrapper,
   TextFieldStyled,
   FormRowWrapper,
-  BottomWrapper,
   useStyles,
 } from './styled';
 import { Button } from '@common/Button';
@@ -19,29 +18,55 @@ import DatePickerWrapper from '@common/DatePicker';
 import TimeInput from '@common/TimeInput';
 import { Flex } from '@styles/styled';
 import { BREAKPOINT } from '@constants';
+import { DeliveryType } from './Delivery';
+import { TotalMobile } from '../styled';
+import Close from '@material-ui/icons/Close';
+import { IconButton } from '@material-ui/core';
 
 export const INVALID_NAME = 'Введите Ваше имя';
 export const INVALID_PHONE = 'Введите правильный номер телефона';
+const numberPattern = /\d+/g;
 
 interface IProps {
-  handleContinue: (contactData: IContactData) => void;
+  delivery: DeliveryType;
+  totalPrice: number;
+  formData: IContactData;
+  setFormData: (contactData: IContactData) => void;
+  handleContinue: () => void;
 }
 
-export function Contacts({ handleContinue }: IProps) {
-  const [formData, setFormData] = React.useState<IContactData>({
-    name: '',
-    phone: '',
-    comments: '',
-    address: '',
-    date: null,
-    time: null,
-  });
+export function Contacts({
+  delivery,
+  totalPrice,
+  formData,
+  setFormData,
+  handleContinue,
+}: IProps) {
   const classes = useStyles();
   const [formErrors, setFormErrors] = React.useState<IRequiredContactData>({});
   const isMobile = useMediaQuery(`(max-width: ${BREAKPOINT})`);
 
   const handleChange = (key: string, value: string) => {
-    setFormData({ ...formData, [key]: value });
+    if (key === 'phone') {
+      const numberString = value.match(numberPattern)?.join('');
+      setFormData({ ...formData, [key]: numberString });
+    } else {
+      setFormData({ ...formData, [key]: value });
+    }
+  };
+
+  const handleKeyDown = (e: any) => {
+    const key = e.keyCode || e.charCode;
+    if (key === 8 || key === 46) {
+      const numberString = e.target.value.match(numberPattern)?.join('');
+      setFormData({
+        ...formData,
+        phone: numberString
+          ? numberString.substring(0, numberString.length - 1)
+          : '',
+      });
+      e.preventDefault();
+    }
   };
 
   const handleBlur = (key: string, value: string) => {
@@ -57,7 +82,7 @@ export function Contacts({ handleContinue }: IProps) {
   };
 
   const handleDateChange = (date: Date | null) => {
-    setFormData({ ...formData, date: date?.toISOString() });
+    setFormData({ ...formData, date: date ? date.toISOString() : null });
   };
 
   const handleTimeChange = (time: Date | null) => {
@@ -65,10 +90,7 @@ export function Contacts({ handleContinue }: IProps) {
   };
 
   const handleNextClick = () => {
-    if (!formData) {
-      return;
-    }
-    handleContinue(formData);
+    handleContinue();
   };
 
   function handleSubmit() {
@@ -115,6 +137,7 @@ export function Contacts({ handleContinue }: IProps) {
             />
             <TextFieldStyled
               label='Телефон'
+              type={'tel'}
               value={formData.phone}
               onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
                 handleChange('phone', e.target.value)
@@ -122,6 +145,7 @@ export function Contacts({ handleContinue }: IProps) {
               onBlur={(e: React.FocusEvent<HTMLInputElement>) =>
                 handleBlur('phone', e.target.value)
               }
+              onKeyDown={handleKeyDown}
               variant='outlined'
               required
               InputProps={{
@@ -151,42 +175,56 @@ export function Contacts({ handleContinue }: IProps) {
             direction='column'
             style={{ width: isMobile ? '100%' : '50%', margin: '15px 5px' }}
           >
-            <Typography variant={'h3'}>АДРЕС ДОСТАВКИ</Typography>
-            <FormRowWrapper>
+            <FormRowWrapper style={{ marginTop: 18 }}>
               <DatePickerWrapper
                 variant={isMobile ? 'dialog' : 'inline'}
-                emptyLabel='Дата'
+                label='Дата'
                 value={formData.date}
-                style={{ margin: '20px 5px 15px 5px', width: '100%' }}
-                handleDateChange={handleDateChange}
+                style={{ margin: '20px 5px 17px 5px', width: '100%' }}
+                onChange={handleDateChange}
+                InputProps={{
+                  endAdornment: (
+                    <IconButton
+                      onClick={() => handleDateChange(null)}
+                      style={{ margin: '-0.5em' }}
+                    >
+                      <Close />
+                    </IconButton>
+                  ),
+                }}
               />
               <TimeInput
-                emptyLabel='Время доставки'
+                emptyLabel='Время'
                 selectedDate={formData.time}
                 variant={isMobile ? 'dialog' : 'inline'}
-                style={{ margin: '20px 5px 15px 5px', width: '100%' }}
+                style={{ margin: '20px 5px 17px 5px', width: '100%' }}
                 handleDateChange={handleTimeChange}
               />
             </FormRowWrapper>
             <TextFieldStyled
               label='Адрес'
               value={formData.address}
+              disabled={delivery === DeliveryType.SelfService}
               onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
                 handleChange('address', e.target.value)
               }
               variant='outlined'
             />
-            <Typography variant={'body2'} style={{ marginLeft: 5 }}>
-              Если вы выбрали «Самовывоз», адрес указывать не обязательно.
-            </Typography>
           </Flex>
         </Flex>
       </FormWrapper>
-      <BottomWrapper>
+      <Flex justifyBetween>
+        <Flex style={{ alignItems: 'center' }}>
+          <TotalMobile>Итого:</TotalMobile>
+          <Typography
+            variant='h2'
+            style={{ fontSize: 21 }}
+          >{`${totalPrice} грн`}</Typography>
+        </Flex>
         <Button rounded onClick={handleSubmit}>
           ДАЛЬШЕ
         </Button>
-      </BottomWrapper>
+      </Flex>
     </MainWrapper>
   );
 }
