@@ -64,6 +64,7 @@ interface IFlex {
   justifyCenter?: boolean;
   justifyBetween?: boolean;
   justifyEvenly?: boolean;
+  justifyAround?: boolean;
   alignCenter?: boolean;
   alignStart?: boolean;
   alignEnd?: boolean;
@@ -92,6 +93,11 @@ export const Flex = styled.div<IFlex>`
     justifyBetween &&
     css`
       justify-content: space-between;
+    `}
+  ${({ justifyAround }) =>
+    justifyAround &&
+    css`
+      justify-content: space-around;
     `}
   ${({ justifyCenter }) =>
     justifyCenter &&

@@ -7,7 +7,7 @@ import { useSupportWebp } from '@common/ImageWithFallback/useSupportWebp';
 import QuantityEditor from '@common/QuantityEditor';
 import { useHistory } from 'react-router-dom';
 import { getDessertRouteKey } from '@utils/Helper';
-import { Macarons, cakes, ProductType, ICakeInfo } from '@constants/products';
+import { cakes, ProductType, ICakeInfo } from '@constants/products';
 
 interface IBasketItemProps {
   item: IBasketItem;
@@ -33,17 +33,11 @@ export function BasketItem({
     });
   }
 
-  const rotate =
-    [Macarons.MacaronsMixSmall.toString(), Macarons.MacaronsMixMedium].indexOf(
-      product.id
-    ) > -1;
-
   return (
     <BasketItemWrapper>
       <BasketItemWrapperCell
         width={30}
         style={{ cursor: contents?.length ? 'pointer' : 'default' }}
-        rotate={rotate || undefined}
         onClick={contents?.length ? editBasketItem : () => {}}
       >
         <img

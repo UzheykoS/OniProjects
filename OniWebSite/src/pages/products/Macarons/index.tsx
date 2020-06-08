@@ -11,7 +11,7 @@ import {
 } from '@components/Constructor/Constructor';
 import { ConstructorContainer } from '@components/Constructor';
 import { DessertsMix } from '@components/DessertsMix';
-import { macarons, macaronMix, IProduct } from '@constants/products';
+import { macarons, macaronMix, IProduct, Macarons } from '@constants/products';
 import { useBasket } from '@hooks/useBasket';
 import MixSelectModal from '@components/modals/MixSelectModal';
 import { BREAKPOINT, SCROLL_INTO_VIEW_ELEMENT } from '@constants';
@@ -35,7 +35,7 @@ export function MacaronsPage() {
       if (el) {
         const viewportOffset = el.getBoundingClientRect();
         window.scrollTo({
-          top: viewportOffset.top - 30,
+          top: viewportOffset.top - 120,
           left: 0,
           behavior: 'smooth',
         });
@@ -78,14 +78,24 @@ export function MacaronsPage() {
   };
 
   const handleMacaronsMixClick = (item: IProduct) => {
-    setSelectedMix(item);
+    if (
+      item.id === Macarons.MacaronsMixSmall ||
+      item.id === Macarons.MacaronsMixMedium
+    ) {
+      setSelectedMix({ ...item, imageUrl: item.imageUrl + '-rotated' });
+    } else {
+      setSelectedMix(item);
+    }
   };
 
-  const handleMacaronsMixConfirm = () => {
+  const handleMacaronsMixConfirm = (quantity: number) => {
     if (!selectedMix) {
       return;
     }
-    addToBasket({ product: selectedMix, quantity: 1 });
+    addToBasket({
+      product: selectedMix,
+      quantity,
+    });
     handleClose();
   };
 
@@ -94,7 +104,7 @@ export function MacaronsPage() {
     if (el) {
       const viewportOffset = el.getBoundingClientRect();
       window.scrollTo({
-        top: viewportOffset.top - 30,
+        top: viewportOffset.top - 120,
         left: 0,
         behavior: 'smooth',
       });

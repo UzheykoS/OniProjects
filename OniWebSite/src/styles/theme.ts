@@ -58,8 +58,8 @@ const theme = createMuiTheme({
       fontSize: 16,
       whiteSpace: 'pre-line',
       '@media (max-width:1224px)': {
-        fontSize: 12,
-        lineHeight: '19px',
+        // fontSize: 12,
+        // lineHeight: '19px',
       },
     },
     body2: {

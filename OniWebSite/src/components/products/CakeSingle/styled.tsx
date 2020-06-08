@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import colors from '@constants/colors';
-import { Tooltip, Chip, IconButton, IconButtonProps } from '@material-ui/core';
+import { Chip, IconButton, IconButtonProps } from '@material-ui/core';
 import {
   ImageWithFallback,
   IImageWithFallbackProps,
@@ -148,19 +148,6 @@ export const PriceAndButtonWrapper = styled.div`
   display: flex;
   flex-direction: row;
   align-items: center;
-`;
-
-export const TooltipStyled = styled(Tooltip).attrs({
-  classes: {
-    popper: 'popper',
-  },
-})`
-  &.popper {
-    background-color: ${colors.primary.white};
-    color: ${colors.primary.grey};
-    /* box-shadow: theme.shadows[1]; */
-    font-size: 12px;
-  }
 `;
 
 export const ChipStyled = styled(Chip).attrs({

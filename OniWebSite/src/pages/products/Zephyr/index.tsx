@@ -35,7 +35,7 @@ export function ZephyrPage() {
       if (el) {
         const viewportOffset = el.getBoundingClientRect();
         window.scrollTo({
-          top: viewportOffset.top - 30,
+          top: viewportOffset.top - 120,
           left: 0,
           behavior: 'smooth',
         });
@@ -77,11 +77,11 @@ export function ZephyrPage() {
     setSelectedMix(item);
   };
 
-  const handleZephyrMixConfirm = () => {
+  const handleZephyrMixConfirm = (quantity: number) => {
     if (!selectedMix) {
       return;
     }
-    addToBasket({ product: selectedMix, quantity: 1 });
+    addToBasket({ product: selectedMix, quantity });
     handleClose();
   };
 
@@ -90,7 +90,7 @@ export function ZephyrPage() {
     if (el) {
       const viewportOffset = el.getBoundingClientRect();
       window.scrollTo({
-        top: viewportOffset.top - 30,
+        top: viewportOffset.top - 120,
         left: 0,
         behavior: 'smooth',
       });

@@ -18,11 +18,14 @@ interface ModalWrapperProps {
   onCancel?: () => void;
   submitting?: boolean;
   disabled?: boolean;
-  onSubmit: () => void;
+  onSubmit?: () => void;
   saveButtonLabel?: string;
   cancelButtonLabel?: string;
   showCancelButton?: boolean;
   icon?: React.ReactElement;
+  fullWidth?: boolean;
+  maxWidth?: 'xs' | 'sm' | 'md' | 'lg' | 'xl';
+  showButtons?: boolean;
 }
 
 export interface ModalFormProps {
@@ -43,6 +46,9 @@ const ModalWrapper: FC<ModalWrapperProps> = ({
   cancelButtonLabel = 'Отменить',
   showCancelButton = true,
   icon,
+  fullWidth,
+  maxWidth,
+  showButtons = true,
 }) => {
   const classes = useStyles();
 
@@ -54,7 +60,9 @@ const ModalWrapper: FC<ModalWrapperProps> = ({
       classes={{
         paper: classes.modal,
       }}
+      fullWidth={fullWidth}
       tabIndex={-1}
+      maxWidth={maxWidth}
     >
       <DialogTitle disableTypography classes={{ root: classes.title }}>
         {title}
@@ -64,29 +72,31 @@ const ModalWrapper: FC<ModalWrapperProps> = ({
       </DialogTitle>
       {icon}
       <DialogContent>{children}</DialogContent>
-      <DialogActions className={classes.dialogActionsWrapper}>
-        <Button
-          onClick={onSubmit}
-          color='primary'
-          disabled={disabled}
-          tabIndex={0}
-          rounded
-          className={classes.saveBtn}
-        >
-          {saveButtonLabel}
-        </Button>
-        {showCancelButton && (
+      {showButtons && (
+        <DialogActions className={classes.dialogActionsWrapper}>
           <Button
-            disabled={submitting}
-            onClick={onCancel ? onCancel : onClose}
-            color='secondary'
+            onClick={onSubmit}
+            color='primary'
+            disabled={disabled}
             tabIndex={0}
             rounded
+            className={classes.saveBtn}
           >
-            {cancelButtonLabel}
+            {saveButtonLabel}
           </Button>
-        )}
-      </DialogActions>
+          {showCancelButton && (
+            <Button
+              disabled={submitting}
+              onClick={onCancel ? onCancel : onClose}
+              color='secondary'
+              tabIndex={0}
+              rounded
+            >
+              {cancelButtonLabel}
+            </Button>
+          )}
+        </DialogActions>
+      )}
     </Dialog>
   );
 };

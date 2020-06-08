@@ -1,4 +1,5 @@
 import { makeStyles } from '@material-ui/core/styles';
+import colors from '@constants/colors';
 
 export const useStyles = makeStyles({
   modal: {
@@ -6,8 +7,12 @@ export const useStyles = makeStyles({
     padding: '25px',
   },
   title: {
-    fontSize: '20px',
-    fontWeight: 500,
+    fontFamily: 'Roboto',
+    textTransform: 'uppercase',
+    color: colors.secondary.gold,
+    fontSize: '16px',
+    letterSpacing: '5px',
+    fontWeight: 400,
     padding: '24px 24px 16px 24px',
     alignSelf: 'center',
   },

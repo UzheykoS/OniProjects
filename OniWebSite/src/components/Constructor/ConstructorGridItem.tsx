@@ -10,6 +10,8 @@ import RemoveIcon from '@material-ui/icons/Remove';
 import { IProduct } from '@constants/products';
 import { useMediaQuery } from '@material-ui/core';
 import { BREAKPOINT } from '@constants';
+import Zoom from '@material-ui/core/Zoom';
+import { TooltipStyled } from '@common/Tooltip/styled';
 
 interface IConstructorGridItemProps {
   item: IProduct;
@@ -53,23 +55,32 @@ export function ConstructorGridItem({
       removeEnabled={!!item}
     >
       {item && (
-        <RemoveIconWrapper
-          visible={mouseOver || isMobile}
-          small={
-            mode === ConstructoreMode.MacaronLarge ||
-            mode === ConstructoreMode.ZephyrMedium ||
-            isMobile
-          }
+        <TooltipStyled
+          TransitionComponent={Zoom}
+          title={item.id}
+          arrow
+          placement={'top'}
         >
-          <RemoveIcon
-            style={{
-              fontSize: 40,
-              color: colors.primary.white,
-            }}
-          />
-        </RemoveIconWrapper>
+          <div>
+            <RemoveIconWrapper
+              visible={mouseOver || isMobile}
+              small={
+                mode === ConstructoreMode.MacaronLarge ||
+                mode === ConstructoreMode.ZephyrMedium ||
+                isMobile
+              }
+            >
+              <RemoveIcon
+                style={{
+                  fontSize: 40,
+                  color: colors.primary.white,
+                }}
+              />
+            </RemoveIconWrapper>
+            <ImageWrapper style={{ height: '100%' }} src={item.imageUrl} />
+          </div>
+        </TooltipStyled>
       )}
-      {item && <ImageWrapper src={item.imageUrl} />}
     </ConstructorGridItemWrapper>
   );
 }

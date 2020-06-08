@@ -25,6 +25,7 @@ import { BREAKPOINT } from '@constants';
 import MenuIcon from '@material-ui/icons/Menu';
 import Zoom from '@material-ui/core/Zoom';
 import colors from '@constants/colors';
+import { usePrevious } from '@hooks/usePrevious';
 
 export function NavBar() {
   const location = useLocation();
@@ -41,14 +42,16 @@ export function NavBar() {
   });
 
   const [tooltipOpen, setTooltipOpen] = useState(false);
+  let prevBasketLength = usePrevious(items.length);
   useEffect(() => {
-    if (items.length) {
+    if (items.length > (prevBasketLength || 0)) {
       setTooltipOpen(true);
       setTimeout(() => {
         setTooltipOpen(false);
       }, 3000);
     }
-  }, [!!items.length]);
+    prevBasketLength = items.length;
+  }, [items.length]);
 
   const handleBinClick = () => {
     history.push('/checkout');

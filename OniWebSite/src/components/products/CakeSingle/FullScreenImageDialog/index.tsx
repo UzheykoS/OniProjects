@@ -1,34 +1,31 @@
 import React from 'react';
-import Dialog from '@material-ui/core/Dialog';
-import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
-import { Button } from '@common/Button';
 import { ImageWrapper } from './styled';
+import ModalWrapper from '@components/ModalWrapper';
 
 export interface IProps {
   closeModal: () => void;
   previewImageUrl: string;
+  title: string;
 }
 
 export default function FullScreenImageDialog({
   previewImageUrl,
+  title,
   closeModal,
 }: IProps) {
   return (
-    <Dialog
-      fullWidth
-      maxWidth={'md'}
+    <ModalWrapper
+      title={title}
       open={!!previewImageUrl}
       onClose={closeModal}
+      fullWidth
+      maxWidth={'md'}
+      showButtons={false}
     >
       <DialogContent style={{ textAlign: 'center' }}>
         <ImageWrapper src={previewImageUrl} />
       </DialogContent>
-      <DialogActions>
-        <Button rounded onClick={closeModal} color='primary'>
-          Закрыть
-        </Button>
-      </DialogActions>
-    </Dialog>
+    </ModalWrapper>
   );
 }

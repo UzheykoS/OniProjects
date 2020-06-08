@@ -176,6 +176,8 @@ export const ImageWrapper = styled(ImageWithFallback)`
   height: 100%;
   object-fit: contain;
   background: ${colors.primary.white};
+  padding: 0 10px;
+  box-sizing: border-box;
 `;
 
 interface IRemoveIconWrapper {
@@ -186,14 +188,14 @@ interface IRemoveIconWrapper {
 export const RemoveIconWrapper = styled.div<IRemoveIconWrapper>`
   top: 50%;
   left: 50%;
-  width: 90px;
-  height: 90px;
+  width: 60px;
+  height: 60px;
   border-radius: 50%;
   opacity: 0.5;
   background: ${colors.secondary.dark};
   border: 2px solid ${colors.primary.white};
   position: absolute;
-  margin: -40px 0 0 -45px;
+  margin: -32px 0 0 -32px;
   display: none;
   align-items: center;
   justify-content: center;
@@ -205,9 +207,9 @@ export const RemoveIconWrapper = styled.div<IRemoveIconWrapper>`
   ${({ small }) =>
     small &&
     `
-      width: 60px;
-      height: 60px;
-      margin: -32px 0 0 -32px;
+      width: 45px;
+      height: 45px;
+      margin: -25px 0 0 -25px;
     `};
 `;
 

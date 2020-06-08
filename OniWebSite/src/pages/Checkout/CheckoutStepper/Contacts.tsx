@@ -115,7 +115,10 @@ export function Contacts({
         <Flex style={{ width: '100%' }} direction={isMobile ? 'column' : 'row'}>
           <Flex
             direction='column'
-            style={{ width: isMobile ? '100%' : '50%', margin: '15px 5px' }}
+            style={{
+              width: isMobile ? '100%' : '50%',
+              margin: isMobile ? '15px 5px 0 5px' : '15px 5px',
+            }}
           >
             <Typography variant={'h3'}>КОНТАКТНЫЕ ДАННЫЕ</Typography>
             <TextFieldStyled
@@ -173,9 +176,12 @@ export function Contacts({
 
           <Flex
             direction='column'
-            style={{ width: isMobile ? '100%' : '50%', margin: '15px 5px' }}
+            style={{
+              width: isMobile ? '100%' : '50%',
+              margin: isMobile ? '0px 5px 15px 5px' : '15px 5px',
+            }}
           >
-            <FormRowWrapper style={{ marginTop: 18 }}>
+            <FormRowWrapper style={{ marginTop: isMobile ? 0 : 18 }}>
               <DatePickerWrapper
                 variant={isMobile ? 'dialog' : 'inline'}
                 label='Дата'

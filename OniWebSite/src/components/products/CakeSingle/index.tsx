@@ -10,7 +10,6 @@ import {
   SizeAndQtySelector,
   CakeSizeInfo,
   PriceAndButtonWrapper,
-  TooltipStyled,
   ChipStyled,
   DiameterWrapper,
   PeopleWrapper,
@@ -39,6 +38,7 @@ import QuantityEditor from '@common/QuantityEditor';
 import { Flex } from '@styles/styled';
 import { ImageWithFallback } from '@common/ImageWithFallback';
 import Slider from 'react-slick';
+import { TooltipStyled } from '@common/Tooltip/styled';
 
 export interface CakeSubmitInfo {
   cake: ICakeInfo;
@@ -257,6 +257,7 @@ export function CakeSingle({ cakePair, onClick }: IProps) {
       </InfoSection>
       <FullScreenImageDialog
         previewImageUrl={previewImageUrl}
+        title={id}
         closeModal={() => setPreviewImageUrl('')}
       />
     </CakeSingleWrapper>
