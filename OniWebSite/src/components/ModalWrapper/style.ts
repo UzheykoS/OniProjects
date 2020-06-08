@@ -1,5 +1,7 @@
+import styled from 'styled-components';
 import { makeStyles } from '@material-ui/core/styles';
 import colors from '@constants/colors';
+import { DialogActions } from '@material-ui/core';
 
 export const useStyles = makeStyles({
   modal: {
@@ -22,13 +24,20 @@ export const useStyles = makeStyles({
   saveBtn: {
     order: 1,
   },
-  dialogActionsWrapper: {
-    justifyContent: 'space-around',
-    marginTop: '10px',
-  },
   closeIconWrapper: {
     position: 'absolute',
     right: '10px',
     top: '25px',
   },
 });
+
+export const DialogActionsStyled = styled(DialogActions).attrs({
+  classes: {
+    root: 'root',
+  },
+})`
+  &.root {
+    justify-content: space-around;
+    margin-top: 10px;
+  }
+`;

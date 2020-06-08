@@ -1,8 +1,7 @@
 import React, { FC } from 'react';
-import { useStyles } from './style';
+import { useStyles, DialogActionsStyled } from './style';
 import {
   Dialog,
-  DialogActions,
   DialogContent,
   DialogTitle,
   Fade,
@@ -73,7 +72,7 @@ const ModalWrapper: FC<ModalWrapperProps> = ({
       {icon}
       <DialogContent>{children}</DialogContent>
       {showButtons && (
-        <DialogActions className={classes.dialogActionsWrapper}>
+        <DialogActionsStyled>
           <Button
             onClick={onSubmit}
             color='primary'
@@ -95,7 +94,7 @@ const ModalWrapper: FC<ModalWrapperProps> = ({
               {cancelButtonLabel}
             </Button>
           )}
-        </DialogActions>
+        </DialogActionsStyled>
       )}
     </Dialog>
   );
