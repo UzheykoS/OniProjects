@@ -14,7 +14,7 @@ import Zoom from '@material-ui/core/Zoom';
 import { TooltipStyled } from '@common/Tooltip/styled';
 
 interface IConstructorGridItemProps {
-  item: IProduct;
+  item?: IProduct;
   mode: ConstructoreMode;
   index: number;
   onClick: (index: number) => void;

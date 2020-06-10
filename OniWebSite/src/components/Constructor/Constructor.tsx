@@ -7,7 +7,7 @@ import {
   ConstructorGridWrapper,
   ChipStyled,
 } from './styled';
-import { IconButton, Typography } from '@material-ui/core';
+import { IconButton, Typography, Button as MUIButton } from '@material-ui/core';
 import DeleteOutlinedIcon from '@material-ui/icons/DeleteOutlined';
 import { Button } from '@common/Button';
 import { ConstructorGridItem } from './ConstructorGridItem';
@@ -16,7 +16,7 @@ import { IProduct, macaronMix, chouxMix, zephyrMix } from '@constants/products';
 import ConstructorClearModal from './ConstructorClearModal';
 import colors from '@constants/colors';
 import { getRandomDessert } from '@utils/Helper';
-import SurpriseMeModal from '@components/modals/SurpriseMeModal';
+import { Flex } from '@styles/styled';
 
 export enum ConstructoreMode {
   MacaronSmall = 6,
@@ -32,6 +32,7 @@ interface IConstructorState {
   availableModes: ConstructoreMode[];
   mode: ConstructoreMode;
   items: IProduct[];
+  randomItems: IProduct[];
 }
 
 type ActionType = {
@@ -56,6 +57,7 @@ export const initialContstructorState = (
     availableModes,
     mode,
     items: [],
+    randomItems: [],
   };
 };
 
@@ -87,21 +89,26 @@ export function constructorReducer(
       return newState;
     case 'remove':
       if (action.index !== undefined && action.index > -1) {
-        const { items } = state;
-        items.splice(action.index, 1);
-        return { ...state, items };
+        const { items, randomItems } = state;
+        if (action.index < items.length) {
+          items.splice(action.index, 1);
+        } else if (randomItems.length) {
+          randomItems.splice(action.index - items.length, 1);
+        }
+        return { ...state, items, randomItems };
       }
       throw new ConstructorError(
         'Attempt to remove element with index: ' + action.index
       );
     case 'clear':
-      return { ...state, items: [] };
+      return { ...state, items: [], randomItems: [] };
     case 'surpriseMe':
       const { items, mode } = state;
+      const randomItems = [];
       for (let i = items.length; i < mode; i++) {
-        items.push(getRandomDessert(mode));
+        randomItems.push(getRandomDessert(mode));
       }
-      return { ...state, items };
+      return { ...state, randomItems };
     default:
       throw new ConstructorError('Unknown action');
   }
@@ -128,21 +135,11 @@ export interface IConstructorProps {
 export function Constructor({ state, dispatch, editItem }: IConstructorProps) {
   const { addToBasket, removeFromBasket } = useBasket();
   const [showClerModal, setShowClearModal] = useState(false);
-  const [showSurpriseModal, setShowSurpriseModal] = useState(false);
-
+  const [showSurpriseMe, setShowSurpriseMe] = useState(false);
   const [surpriseMeTitleIndex, setSurpriseMeTitleIndex] = useState(0);
 
   const handleClearModalOpen = useCallback(() => setShowClearModal(true), []);
   const handleClearModalClose = useCallback(() => setShowClearModal(false), []);
-
-  const handleSurpriseModalOpen = useCallback(
-    () => setShowSurpriseModal(true),
-    []
-  );
-  const handlSurpriseModalClose = useCallback(
-    () => setShowSurpriseModal(false),
-    []
-  );
 
   const [errorMessage, setErrorMessage] = useState('');
 
@@ -155,10 +152,9 @@ export function Constructor({ state, dispatch, editItem }: IConstructorProps) {
       removeFromBasket(editItem);
     }
 
+    const allItems = [...state.items, ...state.randomItems];
     const contents =
-      state.mode < state.items.length
-        ? state.items.slice(0, state.mode)
-        : state.items;
+      state.mode < allItems.length ? allItems.slice(0, state.mode) : allItems;
 
     switch (state.mode) {
       case ConstructoreMode.MacaronSmall:
@@ -219,7 +215,8 @@ export function Constructor({ state, dispatch, editItem }: IConstructorProps) {
   };
 
   const isValid = () => {
-    const isNotFull = state.items.length < state.mode;
+    const isNotFull =
+      state.items.length + state.randomItems.length < state.mode;
     if (isNotFull) {
       setErrorMessage('Соберите полный набор');
     } else {
@@ -242,28 +239,31 @@ export function Constructor({ state, dispatch, editItem }: IConstructorProps) {
   };
 
   const handleClearIconClick = () => {
-    if (state.items.length) {
+    if (state.items.length || state.randomItems.length) {
       handleClearModalOpen();
     }
   };
 
   const handleSurpriseMeClick = () => {
     if (state.items.length === state.mode) {
-      handleSurpriseModalOpen();
+      setShowSurpriseMe(true);
     } else {
       surpriseMe();
     }
   };
 
-  const surpriseMe = () => {
+  const surpriseMe = (clear?: boolean) => {
+    if (clear) {
+      dispatch({ type: 'clear' });
+    }
     setSurpriseMeTitleIndex(
       surpriseMeTitleIndex < surpriseMeTitles.length - 1
         ? surpriseMeTitleIndex + 1
         : 0
     );
     dispatch({ type: 'surpriseMe' });
-    if (showSurpriseModal) {
-      handlSurpriseModalClose();
+    if (showSurpriseMe) {
+      setShowSurpriseMe(false);
     }
   };
 
@@ -273,8 +273,9 @@ export function Constructor({ state, dispatch, editItem }: IConstructorProps) {
 
   const constructorGridContent = () => {
     let result: JSX.Element[] = [];
+    const itemsCollection = [...state.items, ...state.randomItems];
     for (let i = 0; i < state.mode; i++) {
-      const item = state.items[i];
+      const item = itemsCollection[i];
       result.push(
         <ConstructorGridItem
           key={i}
@@ -285,6 +286,7 @@ export function Constructor({ state, dispatch, editItem }: IConstructorProps) {
         />
       );
     }
+
     return result;
   };
 
@@ -321,9 +323,52 @@ export function Constructor({ state, dispatch, editItem }: IConstructorProps) {
           {constructorGridContent()}
         </ConstructorGridWrapper>
         <CenteredRow>
-          <SurpriseMe variant='body2' onClick={handleSurpriseMeClick}>
-            {surpriseMeTitles[surpriseMeTitleIndex]}
-          </SurpriseMe>
+          <Flex direction='column'>
+            <SurpriseMe
+              variant='body2'
+              onClick={handleSurpriseMeClick}
+              style={{ display: showSurpriseMe ? 'none' : 'flex' }}
+            >
+              {surpriseMeTitles[surpriseMeTitleIndex]}
+            </SurpriseMe>
+            <Flex
+              direction='column'
+              style={{ display: showSurpriseMe ? 'flex' : 'none' }}
+            >
+              <Flex>
+                <Typography variant='body2' style={{ margin: '0.5rem' }}>
+                  Мы удалим выбранные вкусы и соберём набор на свой вкус.
+                  Согласны?
+                </Typography>
+              </Flex>
+              <Flex justifyCenter style={{ marginBottom: 10 }}>
+                <MUIButton
+                  variant='contained'
+                  // color='secondary'
+                  style={{ width: 100, height: 40, borderRadius: '50px' }}
+                  onClick={() => setShowSurpriseMe(false)}
+                >
+                  Нет
+                </MUIButton>
+                <MUIButton
+                  variant='contained'
+                  color='primary'
+                  style={{
+                    width: 100,
+                    height: 40,
+                    borderRadius: '50px',
+                    marginLeft: 10,
+                    backgroundColor: colors.primary.white,
+                    color: colors.primary.black,
+                    border: `1px solid ${colors.primary.gold}`,
+                  }}
+                  onClick={() => surpriseMe(true)}
+                >
+                  Да
+                </MUIButton>
+              </Flex>
+            </Flex>
+          </Flex>
         </CenteredRow>
         <CenteredRow>
           <Button rounded onClick={handleConstructorSubmit}>
@@ -345,11 +390,6 @@ export function Constructor({ state, dispatch, editItem }: IConstructorProps) {
         confirmClear={handleClear}
         closeModal={handleClearModalClose}
         open={showClerModal}
-      />
-      <SurpriseMeModal
-        confirmClick={surpriseMe}
-        closeModal={handlSurpriseModalClose}
-        open={showSurpriseModal}
       />
     </>
   );
