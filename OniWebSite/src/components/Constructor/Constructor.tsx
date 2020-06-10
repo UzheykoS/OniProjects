@@ -16,6 +16,7 @@ import { IProduct, macaronMix, chouxMix, zephyrMix } from '@constants/products';
 import ConstructorClearModal from './ConstructorClearModal';
 import colors from '@constants/colors';
 import { getRandomDessert } from '@utils/Helper';
+import SurpriseMeModal from '@components/modals/SurpriseMeModal';
 
 export enum ConstructoreMode {
   MacaronSmall = 6,
@@ -106,6 +107,18 @@ export function constructorReducer(
   }
 }
 
+const surpriseMeTitles = [
+  'Удивите меня',
+  'Как вам такой набор?',
+  'Поменяли. Надо брать!',
+  'Хм… А так?',
+  'Вам не угодишь…',
+  'И так не подходит?',
+  'Признайтесь, жмёте по приколу :)',
+  'Может, сами выберете вкусы?',
+  'Сложно, понимаем…',
+];
+
 export interface IConstructorProps {
   dispatch: React.Dispatch<ActionType>;
   state: IConstructorState;
@@ -114,9 +127,23 @@ export interface IConstructorProps {
 
 export function Constructor({ state, dispatch, editItem }: IConstructorProps) {
   const { addToBasket, removeFromBasket } = useBasket();
-  const [showModal, setShowModal] = useState(false);
-  const handleOpen = useCallback(() => setShowModal(true), []);
-  const handleClose = useCallback(() => setShowModal(false), []);
+  const [showClerModal, setShowClearModal] = useState(false);
+  const [showSurpriseModal, setShowSurpriseModal] = useState(false);
+
+  const [surpriseMeTitleIndex, setSurpriseMeTitleIndex] = useState(0);
+
+  const handleClearModalOpen = useCallback(() => setShowClearModal(true), []);
+  const handleClearModalClose = useCallback(() => setShowClearModal(false), []);
+
+  const handleSurpriseModalOpen = useCallback(
+    () => setShowSurpriseModal(true),
+    []
+  );
+  const handlSurpriseModalClose = useCallback(
+    () => setShowSurpriseModal(false),
+    []
+  );
+
   const [errorMessage, setErrorMessage] = useState('');
 
   const handleConstructorSubmit = () => {
@@ -211,17 +238,33 @@ export function Constructor({ state, dispatch, editItem }: IConstructorProps) {
 
   const handleClear = () => {
     dispatch({ type: 'clear' });
-    handleClose();
+    handleClearModalClose();
   };
 
   const handleClearIconClick = () => {
     if (state.items.length) {
-      handleOpen();
+      handleClearModalOpen();
     }
   };
 
   const handleSurpriseMeClick = () => {
+    if (state.items.length === state.mode) {
+      handleSurpriseModalOpen();
+    } else {
+      surpriseMe();
+    }
+  };
+
+  const surpriseMe = () => {
+    setSurpriseMeTitleIndex(
+      surpriseMeTitleIndex < surpriseMeTitles.length - 1
+        ? surpriseMeTitleIndex + 1
+        : 0
+    );
     dispatch({ type: 'surpriseMe' });
+    if (showSurpriseModal) {
+      handlSurpriseModalClose();
+    }
   };
 
   const handleRemoveClick = (index: number) => {
@@ -279,7 +322,7 @@ export function Constructor({ state, dispatch, editItem }: IConstructorProps) {
         </ConstructorGridWrapper>
         <CenteredRow>
           <SurpriseMe variant='body2' onClick={handleSurpriseMeClick}>
-            Удивите меня
+            {surpriseMeTitles[surpriseMeTitleIndex]}
           </SurpriseMe>
         </CenteredRow>
         <CenteredRow>
@@ -300,8 +343,13 @@ export function Constructor({ state, dispatch, editItem }: IConstructorProps) {
       </ConstructorWrapper>
       <ConstructorClearModal
         confirmClear={handleClear}
-        closeModal={handleClose}
-        open={showModal}
+        closeModal={handleClearModalClose}
+        open={showClerModal}
+      />
+      <SurpriseMeModal
+        confirmClick={surpriseMe}
+        closeModal={handlSurpriseModalClose}
+        open={showSurpriseModal}
       />
     </>
   );

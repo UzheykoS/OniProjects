@@ -151,9 +151,7 @@ export const Footer = () => {
                   <img src='images/icons/viber.png' />
                 </SocialsItem>
               </SocialsWrapper>
-              <TextWrapper style={{ marginTop: 10 }}>
-                © ONI Desserts, 2019
-              </TextWrapper>
+              <TextWrapper style={{ marginTop: 10 }}>© ONI, 2020</TextWrapper>
             </FlexColumnWrapper>
           </Flex>
         </Flex>
@@ -168,7 +166,7 @@ export const Footer = () => {
           <Grid container direction='column' alignItems='center'>
             <LogoWrapper>
               <Logo src='/images/icons/Oni_w_black.png' />
-              <TextWrapper>© ONI Desserts, 2019</TextWrapper>
+              <TextWrapper>© ONI, 2020</TextWrapper>
             </LogoWrapper>
           </Grid>
         </Grid>
