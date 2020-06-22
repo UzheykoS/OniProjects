@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import {
   BasketWrapper,
   CheckoutHeaderWrapper,
@@ -18,10 +18,15 @@ import { IBasketItem } from '@hooks/useBasket';
 import { BREAKPOINT } from '@constants';
 import { BasketItemMobile } from './BasketItemMobile';
 import { Flex } from '@styles/styled';
+import OneClickBuyModal from '@components/modals/OneClickBuyModal';
+import { submitOneClickOrder } from '@src/api/oni-web';
+import { useSnackbar, SnackbarType } from '@hooks/useSnackbar';
+import colors from '@constants/colors';
 
 interface IBasketProps {
   items: IBasketItem[];
   totalPrice: number;
+  clearBasket: () => void;
   confirmCheckout: () => void;
   removeFromBasket: (item: IBasketItem) => void;
   handleIncreaseQuantity: (item: IBasketItem) => void;
@@ -35,9 +40,12 @@ export function Basket({
   removeFromBasket,
   handleIncreaseQuantity,
   handleDecreaseQuantity,
+  clearBasket,
 }: IBasketProps) {
   const history = useHistory();
   const isMobile = useMediaQuery(`(max-width: ${BREAKPOINT})`);
+  const [oneClickDialogOpen, setOneClickDialogOpen] = useState(false);
+  const { showSnackbar } = useSnackbar();
 
   const handleBackClick = () => {
     history.goBack();
@@ -54,6 +62,30 @@ export function Basket({
       behavior: 'smooth',
     });
     confirmCheckout();
+  };
+
+  const handleOneClickBuySubmit = async (phone: string) => {
+    const itemsMessage = items.reduce((acc, item) => {
+      acc += `${item.product.id} - ${item.quantity} \n`;
+      return acc;
+    }, '');
+
+    try {
+      await submitOneClickOrder({
+        phone,
+        comments: 'Заказ в 1 клик',
+        itemsMessage,
+      });
+      clearBasket();
+      setOneClickDialogOpen(false);
+      showSnackbar('Заказ сохранён!');
+    } catch (e) {
+      console.log(e);
+      showSnackbar(
+        'Ошибка при сохранении заказа :( Попробуйте ещё раз',
+        SnackbarType.Error
+      );
+    }
   };
 
   return (
@@ -137,6 +169,20 @@ export function Basket({
             </TextLink>
           </Flex>
           <Flex justifyCenter>
+            <TextLink
+              style={{
+                textTransform: 'uppercase',
+                fontWeight: 'bold',
+                letterSpacing: '2px',
+                color: '#1E2F42',
+                marginRight: 10,
+                opacity: !items.length ? 0.4 : 1,
+                alignSelf: 'center',
+              }}
+              onClick={() => !!items.length && setOneClickDialogOpen(true)}
+            >
+              купить в 1 клик
+            </TextLink>
             <Button
               rounded
               disabled={!items.length}
@@ -160,15 +206,38 @@ export function Basket({
               Продолжить покупки
             </TextLink>
           </Flex>
-          <Button
-            rounded
-            disabled={!items.length}
-            onClick={handleCheckoutClick}
-          >
-            ОФОРМИТЬ
-          </Button>
+          <Flex>
+            <TextLink
+              style={{
+                textTransform: 'uppercase',
+                fontWeight: 'bold',
+                letterSpacing: '3px',
+                color: '#1E2F42',
+                marginRight: 40,
+                opacity: !items.length ? 0.4 : 1,
+                alignSelf: 'center',
+              }}
+              disabled={!items.length}
+              onClick={() => !!items.length && setOneClickDialogOpen(true)}
+            >
+              купить в один клик
+            </TextLink>
+            <Button
+              rounded
+              style={{ border: `1px solid ${colors.secondary.pink}` }}
+              disabled={!items.length}
+              onClick={handleCheckoutClick}
+            >
+              ОФОРМИТЬ
+            </Button>
+          </Flex>
         </Flex>
       )}
+      <OneClickBuyModal
+        confirmSubmit={handleOneClickBuySubmit}
+        closeModal={() => setOneClickDialogOpen(false)}
+        open={oneClickDialogOpen}
+      />
     </BasketWrapper>
   );
 }

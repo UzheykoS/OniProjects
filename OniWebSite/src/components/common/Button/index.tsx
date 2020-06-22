@@ -21,6 +21,7 @@ export const Button = styled(
 ).attrs({
   classes: {
     containedPrimary: 'containedPrimary',
+    containedSecondary: 'containedSecondary',
     root: 'root',
   },
 })<IButtonProps>`
@@ -37,6 +38,10 @@ export const Button = styled(
       color: ${colors.primary.black};
       border: 1px solid ${colors.primary.gold};
     }
+  }
+  &.containedSecondary {
+    outline: none;
+    border: 1px solid ${colors.secondary.pink};
   }
   &.root {
     height: 50px;

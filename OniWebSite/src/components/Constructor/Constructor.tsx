@@ -7,7 +7,12 @@ import {
   ConstructorGridWrapper,
   ChipStyled,
 } from './styled';
-import { IconButton, Typography, Button as MUIButton } from '@material-ui/core';
+import {
+  IconButton,
+  Typography,
+  Button as MUIButton,
+  useMediaQuery,
+} from '@material-ui/core';
 import DeleteOutlinedIcon from '@material-ui/icons/DeleteOutlined';
 import { Button } from '@common/Button';
 import { ConstructorGridItem } from './ConstructorGridItem';
@@ -17,6 +22,8 @@ import ConstructorClearModal from './ConstructorClearModal';
 import colors from '@constants/colors';
 import { getRandomDessert } from '@utils/Helper';
 import { Flex } from '@styles/styled';
+import { useSnackbar, SnackbarType } from '@hooks/useSnackbar';
+import { BREAKPOINT } from '@constants';
 
 export enum ConstructoreMode {
   MacaronSmall = 6,
@@ -137,6 +144,9 @@ export function Constructor({ state, dispatch, editItem }: IConstructorProps) {
   const [showClerModal, setShowClearModal] = useState(false);
   const [showSurpriseMe, setShowSurpriseMe] = useState(false);
   const [surpriseMeTitleIndex, setSurpriseMeTitleIndex] = useState(0);
+  const { showSnackbar } = useSnackbar();
+  const [activeItem, setActiveItem] = useState<number>();
+  const isMobile = useMediaQuery(`(max-width: ${BREAKPOINT})`);
 
   const handleClearModalOpen = useCallback(() => setShowClearModal(true), []);
   const handleClearModalClose = useCallback(() => setShowClearModal(false), []);
@@ -150,6 +160,7 @@ export function Constructor({ state, dispatch, editItem }: IConstructorProps) {
 
     if (editItem) {
       removeFromBasket(editItem);
+      showSnackbar('Заказ обновлён!', SnackbarType.Info);
     }
 
     const allItems = [...state.items, ...state.randomItems];
@@ -271,6 +282,14 @@ export function Constructor({ state, dispatch, editItem }: IConstructorProps) {
     dispatch({ type: 'remove', index });
   };
 
+  const handleMobileItemClick = (index: number) => {
+    if (index === activeItem) {
+      setActiveItem(undefined);
+    } else {
+      setActiveItem(index);
+    }
+  };
+
   const constructorGridContent = () => {
     let result: JSX.Element[] = [];
     const itemsCollection = [...state.items, ...state.randomItems];
@@ -282,7 +301,9 @@ export function Constructor({ state, dispatch, editItem }: IConstructorProps) {
           mode={state.mode}
           item={item}
           index={i}
-          onClick={handleRemoveClick}
+          isActive={i === activeItem}
+          onClick={isMobile ? handleMobileItemClick : handleRemoveClick}
+          removeItem={handleRemoveClick}
         />
       );
     }

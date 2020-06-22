@@ -16,7 +16,7 @@ import { Payment, PaymentType } from './Payment';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import { IBasketItem, useBasket } from '@hooks/useBasket';
 import { submitOrder } from '@src/api/oni-web';
-import { useSnackbar } from '@hooks/useSnackbar';
+import { useSnackbar, SnackbarType } from '@hooks/useSnackbar';
 import { BREAKPOINT } from '@constants';
 import { Flex } from '@styles/styled';
 
@@ -125,7 +125,11 @@ export function CheckoutStepper({ returnToBasket }: ICheckoutStepperProps) {
       returnToBasket();
       showSnackbar('Заказ сохранён!');
     } catch (e) {
-      throw e;
+      console.log(e);
+      showSnackbar(
+        'Ошибка при сохранении заказа :( Попробуйте ещё раз',
+        SnackbarType.Error,
+      );
     }
   };
 

@@ -11,6 +11,7 @@ export function Checkout() {
     removeFromBasket,
     increaseQuantity,
     decreaseQuantity,
+    clearBasket,
   } = useBasket();
   const [isCheckout, setIsCheckout] = useState(false);
 
@@ -29,6 +30,7 @@ export function Checkout() {
           removeFromBasket={removeFromBasket}
           handleIncreaseQuantity={increaseQuantity}
           handleDecreaseQuantity={decreaseQuantity}
+          clearBasket={clearBasket}
         />
       )}
     </CheckoutContainer>

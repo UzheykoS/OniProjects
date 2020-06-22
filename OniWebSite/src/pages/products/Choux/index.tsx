@@ -11,7 +11,7 @@ import {
 import { ConstructorContainer } from '@components/Constructor';
 import { DessertsMix } from '@components/DessertsMix';
 import { ChouxSingle } from '@components/products/ChouxSingle';
-import { chouxMix, choux, IProduct } from '@constants/products';
+import { chouxMix, choux, IProduct, Choux } from '@constants/products';
 import MixSelectModal from '@components/modals/MixSelectModal';
 import { useBasket } from '@hooks/useBasket';
 import { SCROLL_INTO_VIEW_ELEMENT, BREAKPOINT } from '@constants';
@@ -85,7 +85,7 @@ export function ChouxPage() {
     handleClose();
   };
 
-  function cancelModal() {
+  function cancelModal(mix: IProduct) {
     const el = document.getElementById(SCROLL_INTO_VIEW_ELEMENT);
     if (el) {
       const viewportOffset = el.getBoundingClientRect();
@@ -96,6 +96,11 @@ export function ChouxPage() {
       });
     }
 
+    if (mix.id === Choux.ChouxMixSmall) {
+      dispatch({ type: 'setMode', mode: ConstructoreMode.ChouxSmall });
+    } else if (mix.id === Choux.ChouxMixLarge) {
+      dispatch({ type: 'setMode', mode: ConstructoreMode.ChouxMedium });
+    }
     setExpanded(true);
     handleClose();
   }

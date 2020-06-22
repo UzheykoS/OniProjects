@@ -99,7 +99,7 @@ export function MacaronsPage() {
     handleClose();
   };
 
-  function cancelModal() {
+  function cancelModal(mix: IProduct) {
     const el = document.getElementById(SCROLL_INTO_VIEW_ELEMENT);
     if (el) {
       const viewportOffset = el.getBoundingClientRect();
@@ -110,6 +110,13 @@ export function MacaronsPage() {
       });
     }
 
+    if (mix.id === Macarons.MacaronsMixMedium) {
+      dispatch({ type: 'setMode', mode: ConstructoreMode.MacaronMedium });
+    } else if (mix.id === Macarons.MacaronsMixLarge) {
+      dispatch({ type: 'setMode', mode: ConstructoreMode.MacaronLarge });
+    } else if (mix.id === Macarons.MacaronsMixSmall) {
+      dispatch({ type: 'setMode', mode: ConstructoreMode.MacaronSmall });
+    }
     setExpanded(true);
     handleClose();
   }

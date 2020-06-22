@@ -7,6 +7,7 @@ import {
   Typography,
   Dialog,
   Chip,
+  makeStyles,
 } from '@material-ui/core';
 import colors from '@constants/colors';
 import React from 'react';
@@ -130,7 +131,7 @@ export const SurpriseMe = styled(Typography)`
   height: auto;
   cursor: pointer;
   text-align: center;
-  margin: 0.5rem;
+  margin: 0 0.5rem 0.5rem 0.5rem;
 
   &:hover {
     text-decoration: underline;
@@ -143,6 +144,7 @@ export const ConstructorGridWrapper = styled.div`
   align-items: center;
   width: 100%;
   flex-wrap: wrap;
+  margin-bottom: 0.5rem;
 `;
 
 interface IConstructorGridItemWrapper {
@@ -244,3 +246,19 @@ export const ChipStyled = styled(Chip).attrs({
     color: ${colors.primary.black};
   }
 `;
+
+export const TooltipTitle = styled.div`
+  font-family: 'Yeseva One', cursive;
+  font-size: 12px;
+  color: black;
+  text-align: center;
+  padding: 10px 0;
+`;
+
+export const useStyles = makeStyles({
+  closeIconWrapper: {
+    position: 'absolute',
+    right: '5px',
+    top: '0px',
+  },
+});

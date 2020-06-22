@@ -97,15 +97,22 @@ export const BasketHeaderCell = styled.div<ICellProps>`
   }
 `;
 
-export const TextLink = styled.div`
+interface ITextLinkProps {
+  disabled?: boolean;
+}
+export const TextLink = styled.div<ITextLinkProps>`
   font-size: 13px;
   opacity: 0.4;
   font-family: 'Roboto';
-  cursor: pointer;
 
-  &:hover {
-    text-decoration: underline;
-  }
+  ${({ disabled }) =>
+    disabled !== true &&
+    `
+    cursor: pointer;
+    &:hover {
+      text-decoration: underline;
+    }
+    `}
 `;
 
 export const HelperText = styled.div`

@@ -25,7 +25,7 @@ import { IconButton } from '@material-ui/core';
 
 export const INVALID_NAME = 'Введите Ваше имя';
 export const INVALID_PHONE = 'Введите правильный номер телефона';
-const numberPattern = /\d+/g;
+export const numberPattern = /\d+/g;
 
 interface IProps {
   delivery: DeliveryType;
@@ -123,6 +123,7 @@ export function Contacts({
             <Typography variant={'h3'}>КОНТАКТНЫЕ ДАННЫЕ</Typography>
             <TextFieldStyled
               label='Имя'
+              name='name'
               value={formData.name}
               onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
                 handleChange('name', e.target.value)
@@ -141,6 +142,7 @@ export function Contacts({
             <TextFieldStyled
               label='Телефон'
               type={'tel'}
+              name='phone'
               value={formData.phone}
               onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
                 handleChange('phone', e.target.value)
@@ -209,6 +211,7 @@ export function Contacts({
             </FormRowWrapper>
             <TextFieldStyled
               label='Адрес'
+              name='address'
               value={formData.address}
               disabled={delivery === DeliveryType.SelfService}
               onChange={(e: React.ChangeEvent<HTMLInputElement>) =>

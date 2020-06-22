@@ -5,7 +5,7 @@ import { DialogActions } from '@material-ui/core';
 
 export const useStyles = makeStyles({
   modal: {
-    width: '100%',
+    // width: '100%',
     padding: '25px',
   },
   title: {

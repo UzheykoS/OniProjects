@@ -11,7 +11,7 @@ import {
 import { ConstructorContainer } from '@components/Constructor';
 import { DessertsMix } from '@components/DessertsMix';
 import { ZephyrSingle } from '@components/products/ZephyrSingle';
-import { zephyrMix, zephyr, IProduct } from '@constants/products';
+import { zephyrMix, zephyr, IProduct, Zephyr } from '@constants/products';
 import MixSelectModal from '@components/modals/MixSelectModal';
 import { useBasket } from '@hooks/useBasket';
 import { SCROLL_INTO_VIEW_ELEMENT, BREAKPOINT } from '@constants';
@@ -85,7 +85,7 @@ export function ZephyrPage() {
     handleClose();
   };
 
-  function cancelModal() {
+  function cancelModal(mix: IProduct) {
     const el = document.getElementById(SCROLL_INTO_VIEW_ELEMENT);
     if (el) {
       const viewportOffset = el.getBoundingClientRect();
@@ -96,6 +96,11 @@ export function ZephyrPage() {
       });
     }
 
+    if (mix.id === Zephyr.ZephyrMixSmall) {
+      dispatch({ type: 'setMode', mode: ConstructoreMode.ZephyrSmall });
+    } else if (mix.id === Zephyr.ZephyrMixLarge) {
+      dispatch({ type: 'setMode', mode: ConstructoreMode.ZephyrMedium });
+    }
     setExpanded(true);
     handleClose();
   }

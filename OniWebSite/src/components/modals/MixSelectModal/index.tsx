@@ -11,7 +11,7 @@ import { BREAKPOINT } from '@constants';
 interface IMixSelectModalModalProps extends ModalFormProps {
   mix: IProduct;
   confirmAdd: (quantity: number) => void;
-  cancelModal: () => void;
+  cancelModal: (mix: IProduct) => void;
 }
 const MixSelectModal: FC<IMixSelectModalModalProps> = ({
   mix,
@@ -28,7 +28,7 @@ const MixSelectModal: FC<IMixSelectModalModalProps> = ({
       title='Отличный выбор'
       open={open}
       onClose={closeModal}
-      onCancel={cancelModal}
+      onCancel={() => cancelModal(mix)}
       onSubmit={() => confirmAdd(quantity)}
       saveButtonLabel='Добавить'
       cancelButtonLabel='Собрать самому'
@@ -87,7 +87,11 @@ const MixSelectModal: FC<IMixSelectModalModalProps> = ({
             <QuantityEditor
               quantity={quantity}
               handleIncreaseQuantity={() => setQuantity(quantity + 1)}
-              handleDecreaseQuantity={() => setQuantity(quantity - 1)}
+              handleDecreaseQuantity={() => {
+                if (quantity > 1) {
+                  setQuantity(quantity - 1);
+                }
+              }}
             />
           </Flex>
           <Flex>
