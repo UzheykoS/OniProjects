@@ -6,7 +6,8 @@ import { DialogActions } from '@material-ui/core';
 export const useStyles = makeStyles({
   modal: {
     // width: '100%',
-    padding: '25px',
+    padding: '15px',
+    margin: '25px',
   },
   title: {
     fontFamily: 'Roboto',
@@ -27,7 +28,7 @@ export const useStyles = makeStyles({
   closeIconWrapper: {
     position: 'absolute',
     right: '10px',
-    top: '25px',
+    top: '24px',
   },
 });
 

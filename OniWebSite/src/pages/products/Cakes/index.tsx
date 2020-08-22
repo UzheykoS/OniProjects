@@ -59,14 +59,19 @@ export function Cakes() {
               variant='body1'
               style={{
                 lineHeight: isMobile ? '19px' : '24px',
-                margin: isMobile ? '10px 10px 40px 10px' : '0 120px 20px 0',
+                margin: isMobile ? '10px 10px 20px 10px' : '0 120px 20px 0',
               }}
             >
               Баланс во вкусе, правильная текстура и аппетитный декор – это наш
               идеальный торт. Каждый продуман до мелочей и заставляет посмотреть
               на десерты по-новому.
             </Typography>
-            <Typography variant='body2' style={{ margin: '10px 70px 20px 0' }}>
+            <Typography
+              variant='body2'
+              style={{
+                margin: isMobile ? '0 10px 20px 10px' : '10px 70px 20px 0px',
+              }}
+            >
               Меню тортов стандартное – нельзя менять составляющие или декор.
               Заказ необходимо делать минимум за 6 часов. Вы получите
               максимально свежий торт, сделанный специально для вас.

@@ -101,7 +101,9 @@ export function ChouxPage() {
     } else if (mix.id === Choux.ChouxMixLarge) {
       dispatch({ type: 'setMode', mode: ConstructoreMode.ChouxMedium });
     }
-    setExpanded(true);
+    if (!isMobile) {
+      setExpanded(true);
+    }
     handleClose();
   }
 
@@ -146,22 +148,22 @@ export function ChouxPage() {
               variant='body1'
               style={{
                 lineHeight: isMobile ? '19px' : '24px',
-                margin: isMobile ? '10px 10px 40px 10px' : '0 120px 20px 0',
+                margin: isMobile ? '10px 10px 20px 10px' : '0 120px 20px 0',
               }}
             >
               Основа пирожного шу – заварное тесто, покрытое тонким хрустящим
               слоем. Внутри – много начинки и лёгкого крема. Украшаем
               разноцветными кружочками из марципана.
             </Typography>
-            {!isMobile && (
-              <Typography
-                variant='body2'
-                style={{ margin: '10px 70px 20px 0' }}
-              >
-                Можно купить готовый набор ассорти или собрать свой набор на 2
-                или 4 шу.
-              </Typography>
-            )}
+            <Typography
+              variant='body2'
+              style={{
+                margin: isMobile ? '0 10px 20px 10px' : '10px 70px 20px 0px',
+              }}
+            >
+              Можно купить готовый набор ассорти или собрать свой набор на 2 или
+              4 шу.
+            </Typography>
           </ChouxInfo>
         </FlexColumn>
       </FlexRow>
@@ -170,7 +172,10 @@ export function ChouxPage() {
           <DessertsMix
             size='small'
             imageHeight={145}
-            pictureStyle={{ alignItems: 'center', height: 270 }}
+            pictureStyle={{
+              alignItems: 'center',
+              height: isMobile ? undefined : 270,
+            }}
             product={chouxMix[0]}
             onClick={handleChouxMixClick}
           />

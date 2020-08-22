@@ -117,7 +117,9 @@ export function MacaronsPage() {
     } else if (mix.id === Macarons.MacaronsMixSmall) {
       dispatch({ type: 'setMode', mode: ConstructoreMode.MacaronSmall });
     }
-    setExpanded(true);
+    if (!isMobile) {
+      setExpanded(true);
+    }
     handleClose();
   }
 
@@ -183,22 +185,22 @@ export function MacaronsPage() {
               variant='body1'
               style={{
                 lineHeight: isMobile ? '19px' : '24px',
-                margin: isMobile ? '10px 10px 40px 10px' : '0 120px 20px 0',
+                margin: isMobile ? '10px 10px 20px 10px' : '0 120px 20px 0',
               }}
             >
               Любимый десерт французов. Маленькое пирожное, которое состоит из
               двух миндальных половинок, пропитанных начинкой. Яркий вкус,
               нежная текстура внутри и хрустящая корочка снаружи.
             </Typography>
-            {!isMobile && (
-              <Typography
-                variant='body2'
-                style={{ margin: '10px 70px 20px 0' }}
-              >
-                Можно купить готовый набор ассорти или собрать свой набор на 6,
-                12 или 24 макарон.
-              </Typography>
-            )}
+            <Typography
+              variant='body2'
+              style={{
+                margin: isMobile ? '0 10px 20px 10px' : '10px 70px 20px 0px',
+              }}
+            >
+              Можно купить готовый набор ассорти или собрать свой набор на 6, 12
+              или 24 макарон.
+            </Typography>
           </MacaronsInfo>
         </FlexColumn>
       </FlexRow>

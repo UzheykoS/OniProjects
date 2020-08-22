@@ -31,12 +31,16 @@ export function ChouxSingle({ product, height, onClick }: IProps) {
     !isMobile && setMouseOver(false);
   };
 
+  const onMobileClick = () => {
+    setMouseOver(!mouseOver);
+  };
+
   return (
     <ProductSingleWrapper
       height={height}
       onMouseOver={onMouseOver}
       onMouseOut={onMouseOut}
-      onClick={isMobile ? () => {} : () => onClick(product)}
+      onClick={isMobile ? onMobileClick : () => onClick(product)}
     >
       {isMobile ? (
         <AddIconMobileWrapper onClick={() => onClick(product)}>

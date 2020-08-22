@@ -1,10 +1,11 @@
 import React from 'react';
-import { Alert as MuiAlert, AlertTitle, AlertProps } from '@material-ui/lab';
+import { AlertTitle, AlertProps } from '@material-ui/lab';
 import { Snackbar as MUISnackbar } from '@material-ui/core';
 import { SnackbarType } from '@hooks/useSnackbar';
+import { MuiAlertStyled } from './styled';
 
 function Alert(props: AlertProps) {
-  return <MuiAlert elevation={6} variant='standard' {...props} />;
+  return <MuiAlertStyled elevation={6} variant='standard' {...props} />;
 }
 
 interface IProps {
@@ -26,7 +27,7 @@ export const Snackbar = ({ message, type, title, handleClose }: IProps) => {
         <Alert
           onClose={handleClose}
           severity={type || 'success'}
-          style={{ whiteSpace: 'pre-line' }}
+          style={{ whiteSpace: 'pre-line', fontSize: 16 }}
         >
           <AlertTitle>{title}</AlertTitle>
           {message}

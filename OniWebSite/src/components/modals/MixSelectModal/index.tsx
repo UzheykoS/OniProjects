@@ -50,7 +50,7 @@ const MixSelectModal: FC<IMixSelectModalModalProps> = ({
         style={{ padding: '30px 0px' }}
         direction={isMobile ? 'column' : 'row'}
       >
-        <Flex>
+        <Flex justifyCenter>
           <ImageWithFallback
             src={mix.imageUrl}
             style={{ width: '210px', height: 'auto', alignItems: 'center' }}

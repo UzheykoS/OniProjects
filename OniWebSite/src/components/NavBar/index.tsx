@@ -166,13 +166,13 @@ export function NavBar() {
         </ListWrapper>
         <Divider />
         <SocialMedia>
-          <a target='_blank' href='https://www.facebook.com/'>
+          <a target='_blank' href='https://www.facebook.com/oni.desserts/'>
             <img src='images/icons/facebook.png' />
           </a>
-          <a target='_blank' href='https://www.instagram.com'>
+          <a target='_blank' href='https://www.instagram.com/oni.desserts/'>
             <img src='images/icons/instagram.png' />
           </a>
-          <a target='_blank' href='https://www.telegram.com'>
+          <a target='_blank' href='https://t.me/oni_desserts'>
             <img src='images/icons/twitter.png' />
           </a>
           <a target='_blank' href='viber://chat?number=380962490430'>

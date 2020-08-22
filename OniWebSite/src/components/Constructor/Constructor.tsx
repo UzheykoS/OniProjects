@@ -128,7 +128,7 @@ const surpriseMeTitles = [
   'Хм… А так?',
   'Вам не угодишь…',
   'И так не подходит?',
-  'Признайтесь, жмёте по приколу :)',
+  'Признайтесь, жмёте по приколу 😉',
   'Может, сами выберете вкусы?',
   'Сложно, понимаем…',
 ];
@@ -270,7 +270,7 @@ export function Constructor({ state, dispatch, editItem }: IConstructorProps) {
     setSurpriseMeTitleIndex(
       surpriseMeTitleIndex < surpriseMeTitles.length - 1
         ? surpriseMeTitleIndex + 1
-        : 0
+        : 1
     );
     dispatch({ type: 'surpriseMe' });
     if (showSurpriseMe) {

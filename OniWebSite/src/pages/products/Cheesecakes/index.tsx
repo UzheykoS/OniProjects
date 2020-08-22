@@ -35,22 +35,22 @@ export function Cheesecakes() {
               variant='body1'
               style={{
                 lineHeight: isMobile ? '19px' : '24px',
-                margin: isMobile ? '10px 10px 40px 10px' : '0 120px 20px 0',
+                margin: isMobile ? '10px 10px 20px 10px' : '0 120px 20px 0',
               }}
             >
               Макарон – это маленькое пирожное, которое состоит из двух
               миндальных половинок, пропитанных начинкой. Яркий вкус, нежная
               текстура внутри и хрустящая корочка снаружи.{' '}
             </Typography>
-            {!isMobile && (
-              <Typography
-                variant='body2'
-                style={{ margin: '10px 70px 20px 0' }}
-              >
-                У нас можно выбрать любые вкусы из меню и сформировать свой
-                набор на 6, 12 или 24 макарон.
-              </Typography>
-            )}
+            <Typography
+              variant='body2'
+              style={{
+                margin: isMobile ? '0 10px 20px 10px' : '10px 70px 20px 0px',
+              }}
+            >
+              У нас можно выбрать любые вкусы из меню и сформировать свой набор
+              на 6, 12 или 24 макарон.
+            </Typography>
           </CheesecakesInfo>
         </FlexColumn>
       </FlexRow>

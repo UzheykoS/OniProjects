@@ -39,7 +39,7 @@ export function AboutSection({ isMobile }: IMainPageSectionProps) {
         <Flex direction='column' justifyBetween>
           <AboutImageSectionMobile>
             <ImageWithFallback
-              src='./images/pages/about/about_10'
+              src='./images/pages/about/about_12'
               style={{ width: '460px', objectFit: 'cover' }}
             />
           </AboutImageSectionMobile>

@@ -52,7 +52,10 @@ export function InstagramSection({ isMobile }: IMainPageSectionProps) {
           Подпишитесь, если хотите заглянуть за кулисы нашей кухни.
         </Typography>
         {!isMobile && (
-          <DescriptionLink target='_blank' href='https://www.instagram.com'>
+          <DescriptionLink
+            target='_blank'
+            href='https://www.instagram.com/oni.desserts/'
+          >
             {`${SEPARATORS.DASH} В INSTAGRAM`}
           </DescriptionLink>
         )}
@@ -60,7 +63,10 @@ export function InstagramSection({ isMobile }: IMainPageSectionProps) {
       <div id='instafeed' />
       {isMobile && (
         <Flex flexEnd>
-          <DescriptionLink target='_blank' href='https://www.instagram.com'>
+          <DescriptionLink
+            target='_blank'
+            href='https://www.instagram.com/oni.desserts/'
+          >
             {`${SEPARATORS.DASH} В INSTAGRAM`}
           </DescriptionLink>
         </Flex>

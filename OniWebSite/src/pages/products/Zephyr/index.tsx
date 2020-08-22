@@ -101,7 +101,9 @@ export function ZephyrPage() {
     } else if (mix.id === Zephyr.ZephyrMixLarge) {
       dispatch({ type: 'setMode', mode: ConstructoreMode.ZephyrMedium });
     }
-    setExpanded(true);
+    if (!isMobile) {
+      setExpanded(true);
+    }
     handleClose();
   }
 
@@ -160,22 +162,22 @@ export function ZephyrPage() {
               variant='body1'
               style={{
                 lineHeight: isMobile ? '19px' : '24px',
-                margin: isMobile ? '10px 10px 40px 10px' : '0 120px 20px 0',
+                margin: isMobile ? '10px 10px 20px 10px' : '0 120px 20px 0',
               }}
             >
               Как в детстве, только ещё вкуснее. Мы разработали рецептуру с
               пониженным содержанием сахара и готовим зефир на основе
               натуральных фруктовых пюре без красителей и ароматизаторов.
             </Typography>
-            {!isMobile && (
-              <Typography
-                variant='body2'
-                style={{ margin: '10px 70px 20px 0' }}
-              >
-                Можно купить готовый набор ассорти или собрать свой набор на 8
-                или 16 штук.
-              </Typography>
-            )}
+            <Typography
+              variant='body2'
+              style={{
+                margin: isMobile ? '0 10px 20px 10px' : '10px 70px 20px 0px',
+              }}
+            >
+              Можно купить готовый набор ассорти или собрать свой набор на 8 или
+              16 штук.
+            </Typography>
           </ZephyrInfo>
         </FlexColumn>
       </FlexRow>
@@ -188,7 +190,7 @@ export function ZephyrPage() {
             onClick={handleZephyrMixClick}
             pictureStyle={{
               width: '280px',
-              height: '320px',
+              height: isMobile ? 'auto' : '320px',
               justifyContent: 'center',
               flexDirection: 'column',
             }}

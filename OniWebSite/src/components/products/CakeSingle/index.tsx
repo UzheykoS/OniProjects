@@ -232,7 +232,9 @@ export function CakeSingle({ cakePair, onClick }: IProps) {
             TransitionComponent={Zoom}
             title='Исходя из порции 250 гр на человека'
             arrow
-            placement={'right'}
+            placement={isMobile ? 'top' : 'right'}
+            enterTouchDelay={0}
+            leaveTouchDelay={0}
           >
             <IconButton disableFocusRipple disableRipple size='small'>
               <InfoIcon />
