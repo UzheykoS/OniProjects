@@ -26,7 +26,10 @@ export function DessertsMix({
     <MixSection size={size} imageHeight={imageHeight}>
       <ImageWithFallback style={pictureStyle} src={product.imageUrl} />
       <TitleWrapper>
-        <Typography variant='body1' style={{ fontWeight: 400 }}>
+        <Typography
+          variant='body1'
+          style={{ fontWeight: 400, whiteSpace: 'nowrap' }}
+        >
           {`Ассорти ${product.id}`}
         </Typography>
         <DessertMixTitle>{`${product.price} грн`}</DessertMixTitle>

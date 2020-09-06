@@ -62,7 +62,10 @@ export function ConstructorContainer({
             }}
           >
             {'СОБРАТЬ СВОЙ НАБОР' +
-              (isMobile ? ` (${rest.state.items.length})` : '')}
+              (isMobile
+                ? ` (${rest.state.items.length +
+                    rest.state.randomItems.length})`
+                : '')}
           </Typography>
         </ExpansionPanelSummaryStyled>
 
@@ -87,7 +90,10 @@ export function ConstructorContainer({
             </IconButton>
           </Flex>
           <ExpansionPanelDetailsStyled>
-            <Constructor {...rest} />
+            <Constructor
+              closeConstructor={() => setExpanded(false)}
+              {...rest}
+            />
           </ExpansionPanelDetailsStyled>
         </ConstructorDialog>
       </ExpansionPanelStyled>

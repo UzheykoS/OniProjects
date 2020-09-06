@@ -31,7 +31,7 @@
     "date-fns": "^2.12.0",
     "imagemin": "^7.0.1",
     "imagemin-webp": "^5.1.0",
-    "instafeed.js": "^1.4.1",
+    "instafeed.js": "2.0.0-rc2",
     "prettier": "^1.19.1",
     "react": "16.12.0",
     "react-dom": "^16.13.1",

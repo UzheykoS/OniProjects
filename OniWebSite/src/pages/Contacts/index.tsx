@@ -50,6 +50,17 @@ export function Contacts() {
               капучино и наблюдать через стеклянную стену за тем, как создаются
               любимые десерты.
             </Typography>
+            {isMobile && (
+              <ImageWithFallback
+                src='./images/pages/about/hire'
+                style={{
+                  width: isMobile ? '100%' : '710px',
+                  height: isMobile ? 'auto' : '320px',
+                  objectFit: 'cover',
+                  marginTop: '2rem',
+                }}
+              />
+            )}
             <Typography
               variant='h3'
               style={{ marginBottom: '2rem', marginTop: '2rem' }}
@@ -70,12 +81,12 @@ export function Contacts() {
               <Flex direction={isMobile ? 'column' : 'row'} justifyBetween>
                 <Flex direction='column'>
                   <Title>Время работы</Title>
-                  <TextWrapper>Пн-Пт 9:00 - 20:00</TextWrapper>
-                  <TextWrapper>Сб-Вс 9:00 - 18:00</TextWrapper>
+                  <TextWrapper>Пн-Пт 9:00-20:00</TextWrapper>
+                  <TextWrapper>Сб-Вс 9:00-18:00</TextWrapper>
                 </Flex>
                 <Flex direction='column'>
                   <Title>Приём заказов</Title>
-                  <TextWrapper>Пн-Вс 9:00 - 18:00</TextWrapper>
+                  <TextWrapper>Пн-Вс 9:00-18:00</TextWrapper>
                 </Flex>
               </Flex>
             </ContactsSection>
@@ -162,24 +173,26 @@ export function Contacts() {
           </Flex>
         </Flex>
 
-        <Flex
-          direction='column'
-          style={{
-            padding: isMobile ? '' : '3rem 0 0 5rem',
-            position: 'relative',
-            flexBasis: isMobile ? '' : '30rem',
-          }}
-        >
-          <ImageWithFallback
-            src='./images/pages/about/hire'
+        {!isMobile && (
+          <Flex
+            direction='column'
             style={{
-              width: isMobile ? '100%' : '710px',
-              height: isMobile ? 'auto' : '320px',
-              objectFit: 'cover',
-              marginTop: '4rem',
+              padding: '3rem 0 0 5rem',
+              position: 'relative',
+              flexBasis: '30rem',
             }}
-          />
-        </Flex>
+          >
+            <ImageWithFallback
+              src='./images/pages/about/hire'
+              style={{
+                width: '710px',
+                height: '320px',
+                objectFit: 'cover',
+                marginTop: '4rem',
+              }}
+            />
+          </Flex>
+        )}
       </Flex>
     </Flex>
   );

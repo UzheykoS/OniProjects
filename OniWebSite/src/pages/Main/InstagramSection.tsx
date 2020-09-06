@@ -16,16 +16,11 @@ export function InstagramSection({ isMobile }: IMainPageSectionProps) {
   useEffect(() => {
     showLoading();
     const userFeed = new Instafeed({
-      get: 'user',
-      userId: process.env.INSTAGRAM_USER_ID,
-      clientId: process.env.INSTAGRAM_CLIENT_ID,
       accessToken: process.env.INSTAGRAM_ACCESS_TOKEN,
-      resolution: 'standard_resolution',
       template:
         '<a href="{{link}}" target="_blank" id="{{id}}"><img src="{{image}}" /></a>',
       sortBy: 'most-recent',
       limit: 6,
-      links: false,
       success: () => {
         closeLoading();
       },

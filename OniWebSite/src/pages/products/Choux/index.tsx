@@ -35,7 +35,7 @@ export function ChouxPage() {
       if (el) {
         const viewportOffset = el.getBoundingClientRect();
         window.scrollTo({
-          top: viewportOffset.top - 120,
+          top: viewportOffset.top + window.scrollY - (isMobile ? 200 : 120),
           left: 0,
           behavior: 'smooth',
         });
@@ -90,7 +90,7 @@ export function ChouxPage() {
     if (el) {
       const viewportOffset = el.getBoundingClientRect();
       window.scrollTo({
-        top: viewportOffset.top - 120,
+        top: viewportOffset.top + window.scrollY - (isMobile ? 200 : 120),
         left: 0,
         behavior: 'smooth',
       });
@@ -171,7 +171,7 @@ export function ChouxPage() {
         <FlexColumn>
           <DessertsMix
             size='small'
-            imageHeight={145}
+            imageHeight={130}
             pictureStyle={{
               alignItems: 'center',
               height: isMobile ? undefined : 270,
@@ -197,7 +197,7 @@ export function ChouxPage() {
             dispatch={dispatch}
             expanded={expanded}
             setExpanded={setExpanded}
-            stickyLimit={1100}
+            stickyLimit={915}
             editItem={editItem}
           />
         </FlexRow>
@@ -225,7 +225,7 @@ export function ChouxPage() {
               dispatch={dispatch}
               expanded={expanded}
               setExpanded={setExpanded}
-              stickyLimit={1000}
+              stickyLimit={625}
               editItem={editItem}
             />
           </FlexColumn>

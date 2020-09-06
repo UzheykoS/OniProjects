@@ -39,7 +39,7 @@ export function AboutSection({ isMobile }: IMainPageSectionProps) {
         <Flex direction='column' justifyBetween>
           <AboutImageSectionMobile>
             <ImageWithFallback
-              src='./images/pages/about/about_12'
+              src='./images/pages/about/about_8'
               style={{ width: '460px', objectFit: 'cover' }}
             />
           </AboutImageSectionMobile>
@@ -58,10 +58,10 @@ export function AboutSection({ isMobile }: IMainPageSectionProps) {
               то, что делают. Вы обязательно это почувствуете.
             </Typography>
             <DescriptionLink href='/about'>
-              {`${SEPARATORS.DASH} О НАС `}
+              {`${SEPARATORS.DASH} ЧИТАТЬ ЕЩЁ `}
             </DescriptionLink>
             <ImageWithFallback
-              src={'./images/pages/about/about_8'}
+              src={'./images/pages/about/about_12'}
               style={{
                 width: '100%',
                 height: 'auto',
@@ -90,7 +90,12 @@ export function AboutSection({ isMobile }: IMainPageSectionProps) {
         <AboutImageSection>
           <ImageWithFallback
             src='./images/pages/about/about_12'
-            style={{ width: '460px', height: '442px', objectFit: 'cover' }}
+            style={{
+              width: '460px',
+              height: '442px',
+              objectFit: 'cover',
+              alignItems: 'flex-start',
+            }}
           />
         </AboutImageSection>
         <AboutTextSection>
@@ -108,7 +113,7 @@ export function AboutSection({ isMobile }: IMainPageSectionProps) {
             то, что делают. Вы обязательно это почувствуете.
           </Typography>
           <DescriptionLink href='/about'>
-            {`${SEPARATORS.DASH} О НАС `}
+            {`${SEPARATORS.DASH} ЧИТАТЬ ЕЩЁ `}
           </DescriptionLink>
           <ImageWithFallback
             src={'./images/pages/about/about_8'}

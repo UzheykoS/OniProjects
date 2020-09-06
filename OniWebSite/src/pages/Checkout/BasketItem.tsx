@@ -7,7 +7,14 @@ import { useSupportWebp } from '@common/ImageWithFallback/useSupportWebp';
 import QuantityEditor from '@common/QuantityEditor';
 import { useHistory } from 'react-router-dom';
 import { getDessertRouteKey } from '@utils/Helper';
-import { cakes, ProductType, ICakeInfo } from '@constants/products';
+import {
+  cakes,
+  ProductType,
+  ICakeInfo,
+  Choux,
+  Zephyr,
+  Macarons,
+} from '@constants/products';
 
 interface IBasketItemProps {
   item: IBasketItem;
@@ -33,10 +40,25 @@ export function BasketItem({
     });
   }
 
+  function getImageWidth() {
+    switch (product.id) {
+      case Choux.ChouxMixSmall:
+        return 120;
+      case Zephyr.ZephyrMixSmall:
+        return 112;
+      case Macarons.MacaronsMixSmall:
+      case Macarons.MacaronsMixMedium:
+        return 150;
+      default:
+        return;
+    }
+  }
+
   return (
     <BasketItemWrapper>
       <BasketItemWrapperCell
         width={30}
+        imageWidth={getImageWidth()}
         style={{ cursor: contents?.length ? 'pointer' : 'default' }}
         onClick={contents?.length ? editBasketItem : () => {}}
       >

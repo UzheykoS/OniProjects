@@ -35,7 +35,7 @@ export function ZephyrPage() {
       if (el) {
         const viewportOffset = el.getBoundingClientRect();
         window.scrollTo({
-          top: viewportOffset.top - 120,
+          top: viewportOffset.top + window.scrollY - (isMobile ? 200 : 120),
           left: 0,
           behavior: 'smooth',
         });
@@ -90,7 +90,7 @@ export function ZephyrPage() {
     if (el) {
       const viewportOffset = el.getBoundingClientRect();
       window.scrollTo({
-        top: viewportOffset.top - 120,
+        top: viewportOffset.top + window.scrollY - (isMobile ? 200 : 120),
         left: 0,
         behavior: 'smooth',
       });
@@ -185,7 +185,7 @@ export function ZephyrPage() {
         <FlexColumn>
           <DessertsMix
             size={'large'}
-            imageHeight={isMobile ? 160 : undefined}
+            imageHeight={isMobile ? 146 : undefined}
             product={zephyrMix[0]}
             onClick={handleZephyrMixClick}
             pictureStyle={{
@@ -213,7 +213,7 @@ export function ZephyrPage() {
             dispatch={dispatch}
             expanded={expanded}
             setExpanded={setExpanded}
-            stickyLimit={1100}
+            stickyLimit={955}
             editItem={editItem}
           />
         </FlexRow>
@@ -241,7 +241,7 @@ export function ZephyrPage() {
               dispatch={dispatch}
               expanded={expanded}
               setExpanded={setExpanded}
-              stickyLimit={920}
+              stickyLimit={760}
               editItem={editItem}
               limitBottom={expanded && atBottom}
             />

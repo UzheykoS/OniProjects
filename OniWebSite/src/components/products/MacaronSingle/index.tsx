@@ -42,7 +42,13 @@ export function MacaronSingle({ product, height, onClick }: IProps) {
       onClick={isMobile ? onMobileClick : () => onClick(product)}
     >
       {isMobile ? (
-        <AddIconMobileWrapper onClick={() => onClick(product)}>
+        <AddIconMobileWrapper
+          onClick={e => {
+            e.preventDefault();
+            e.stopPropagation();
+            onClick(product);
+          }}
+        >
           <AddIcon
             style={{ fontSize: 36, color: colors.primary.white, opacity: 0.7 }}
           />

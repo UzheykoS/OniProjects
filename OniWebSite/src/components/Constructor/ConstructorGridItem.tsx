@@ -29,7 +29,7 @@ interface IConstructorGridItemProps {
   mode: ConstructoreMode;
   index: number;
   isActive: boolean;
-  onClick: (index: number) => void;
+  onClick: (index?: number) => void;
   removeItem: (index: number) => void;
 }
 
@@ -73,6 +73,20 @@ export function ConstructorGridItem({
         {item && (
           <>
             <div ref={anchorRef}>
+              <RemoveIconWrapper
+                visible={isActive}
+                small={
+                  mode === ConstructoreMode.MacaronLarge ||
+                  mode === ConstructoreMode.ZephyrMedium
+                }
+              >
+                <RemoveIcon
+                  style={{
+                    fontSize: 40,
+                    color: colors.primary.white,
+                  }}
+                />
+              </RemoveIconWrapper>
               <ImageWrapper style={{ height: '100%' }} src={item.imageUrl} />
             </div>
             <Popper
@@ -90,7 +104,7 @@ export function ConstructorGridItem({
                   }}
                 >
                   <Paper style={{ padding: 10, width: 250 }}>
-                    <ClickAwayListener onClickAway={() => {}}>
+                    <ClickAwayListener onClickAway={() => onClick()}>
                       <Flex
                         direction={'column'}
                         style={{ textAlign: 'center' }}
@@ -107,10 +121,13 @@ export function ConstructorGridItem({
                         <Flex justifyCenter>
                           <Button
                             rounded
+                            style={{
+                              border: `1px solid ${colors.primary.gold}`,
+                            }}
                             color={'secondary'}
                             onClick={() => removeItem(index)}
                           >
-                            Убрать из набора
+                            Удалить из набора
                           </Button>
                         </Flex>
                       </Flex>

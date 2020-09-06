@@ -20,8 +20,6 @@ import { Flex } from '@styles/styled';
 import { BREAKPOINT } from '@constants';
 import { DeliveryType } from './Delivery';
 import { TotalMobile } from '../styled';
-import Close from '@material-ui/icons/Close';
-import { IconButton } from '@material-ui/core';
 
 export const INVALID_NAME = 'Введите Ваше имя';
 export const INVALID_PHONE = 'Введите правильный номер телефона';
@@ -188,24 +186,14 @@ export function Contacts({
                 variant={isMobile ? 'dialog' : 'inline'}
                 label='Дата'
                 value={formData.date}
-                style={{ margin: '20px 5px 17px 5px', width: '100%' }}
+                style={{ margin: '12px 5px 9px 5px', width: '100%' }}
                 onChange={handleDateChange}
-                InputProps={{
-                  endAdornment: (
-                    <IconButton
-                      onClick={() => handleDateChange(null)}
-                      style={{ margin: '-0.5em' }}
-                    >
-                      <Close />
-                    </IconButton>
-                  ),
-                }}
               />
               <TimeInput
                 emptyLabel='Время'
                 selectedDate={formData.time}
                 variant={isMobile ? 'dialog' : 'inline'}
-                style={{ margin: '20px 5px 17px 5px', width: '100%' }}
+                style={{ margin: '12px 5px 9px 5px', width: '100%' }}
                 handleDateChange={handleTimeChange}
               />
             </FormRowWrapper>

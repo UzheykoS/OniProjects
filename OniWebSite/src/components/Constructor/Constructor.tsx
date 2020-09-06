@@ -83,7 +83,7 @@ export function constructorReducer(
         throw new ConstructorError('Attempt to add empty item');
       }
       let newState = { ...state };
-      if (state.items.length === state.mode) {
+      if (state.items.length + state.randomItems.length === state.mode) {
         const modeIndex = state.availableModes.indexOf(state.mode);
         if (modeIndex === state.availableModes.length - 1) {
           return newState;
@@ -137,9 +137,15 @@ export interface IConstructorProps {
   dispatch: React.Dispatch<ActionType>;
   state: IConstructorState;
   editItem?: IBasketItem;
+  closeConstructor?: () => void;
 }
 
-export function Constructor({ state, dispatch, editItem }: IConstructorProps) {
+export function Constructor({
+  state,
+  dispatch,
+  editItem,
+  closeConstructor,
+}: IConstructorProps) {
   const { addToBasket, removeFromBasket } = useBasket();
   const [showClerModal, setShowClearModal] = useState(false);
   const [showSurpriseMe, setShowSurpriseMe] = useState(false);
@@ -170,14 +176,20 @@ export function Constructor({ state, dispatch, editItem }: IConstructorProps) {
     switch (state.mode) {
       case ConstructoreMode.MacaronSmall:
         addToBasket({
-          product: macaronMix[0],
+          product: {
+            ...macaronMix[0],
+            imageUrl: macaronMix[0].imageUrl + '-rotated',
+          },
           quantity: 1,
           contents,
         });
         break;
       case ConstructoreMode.MacaronMedium:
         addToBasket({
-          product: macaronMix[1],
+          product: {
+            ...macaronMix[1],
+            imageUrl: macaronMix[1].imageUrl + '-rotated',
+          },
           quantity: 1,
           contents,
         });
@@ -223,6 +235,7 @@ export function Constructor({ state, dispatch, editItem }: IConstructorProps) {
         });
         break;
     }
+    closeConstructor && closeConstructor();
   };
 
   const isValid = () => {
@@ -278,12 +291,12 @@ export function Constructor({ state, dispatch, editItem }: IConstructorProps) {
     }
   };
 
-  const handleRemoveClick = (index: number) => {
+  const handleRemoveClick = (index?: number) => {
     dispatch({ type: 'remove', index });
   };
 
-  const handleMobileItemClick = (index: number) => {
-    if (index === activeItem) {
+  const handleMobileItemClick = (index?: number) => {
+    if (!index || index === activeItem) {
       setActiveItem(undefined);
     } else {
       setActiveItem(index);

@@ -21,7 +21,7 @@ export const ProductSingleWrapper = styled.div<IProductSingleWrapper>`
     `};
 
   @media (max-width: ${BREAKPOINT}) {
-    padding: 40px 0;
+    padding: 40px 0 20px 0;
   }
 `;
 
@@ -40,6 +40,8 @@ export const Description = styled.div`
   text-align: center;
   padding: 5px 40px;
   height: 52px;
+  text-overflow: ellipsis;
+  overflow: hidden;
 `;
 
 interface IAddIconWrapper {

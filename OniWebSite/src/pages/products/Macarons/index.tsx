@@ -35,7 +35,7 @@ export function MacaronsPage() {
       if (el) {
         const viewportOffset = el.getBoundingClientRect();
         window.scrollTo({
-          top: viewportOffset.top - 120,
+          top: viewportOffset.top + window.scrollY - (isMobile ? 200 : 120),
           left: 0,
           behavior: 'smooth',
         });
@@ -104,7 +104,7 @@ export function MacaronsPage() {
     if (el) {
       const viewportOffset = el.getBoundingClientRect();
       window.scrollTo({
-        top: viewportOffset.top - 120,
+        top: viewportOffset.top + window.scrollY - (isMobile ? 200 : 120),
         left: 0,
         behavior: 'smooth',
       });
@@ -238,7 +238,7 @@ export function MacaronsPage() {
             dispatch={dispatch}
             expanded={expanded}
             setExpanded={setExpanded}
-            stickyLimit={1365}
+            stickyLimit={1420}
             editItem={editItem}
           />
         </FlexRow>
@@ -266,7 +266,7 @@ export function MacaronsPage() {
               dispatch={dispatch}
               expanded={expanded}
               setExpanded={setExpanded}
-              stickyLimit={740}
+              stickyLimit={665}
               editItem={editItem}
               limitBottom={expanded && atBottom}
             />

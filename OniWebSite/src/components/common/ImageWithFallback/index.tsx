@@ -57,7 +57,7 @@ export const ImageWithFallback = ({
     <picture
       style={{
         display: 'flex',
-        alignItems: 'flex-start',
+        alignItems: 'center',
         justifyContent: 'center',
         ...style,
       }}

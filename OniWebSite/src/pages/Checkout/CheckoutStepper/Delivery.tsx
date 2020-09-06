@@ -50,7 +50,7 @@ export function Delivery({
           <FormControlLabel
             value={DeliveryType.SelfService}
             control={<Radio />}
-            label={'Самовывоз: Киев, бульвар Вацлава Гавела, 9А'}
+            label={'Самовывоз: бул. Вацлава Гавела, 9А'}
           />
           <FormControlLabel
             value={DeliveryType.Delivery}

@@ -5,7 +5,7 @@ export const useStyles = makeStyles({
   text: {
     opacity: 0.9,
     color: colors.secondary.dark,
-    fontSize: '21px',
+    fontSize: 18,
     lineHeight: '20px',
     textAlign: 'center',
   },

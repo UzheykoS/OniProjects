@@ -36,8 +36,8 @@ export const Title = styled.div`
 
 export const Description = styled.div`
   font-family: 'Roboto', sans-serif;
-  font-size: 11px;
-  color: #1e2f42;
+  font-size: 12px;
+  color: #cccccc;
   text-align: center;
   padding: 10px 40px;
   line-height: 17px;

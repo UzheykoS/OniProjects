@@ -31,13 +31,12 @@ const MixSelectModal: FC<IMixSelectModalModalProps> = ({
       onCancel={() => cancelModal(mix)}
       onSubmit={() => confirmAdd(quantity)}
       saveButtonLabel='Добавить'
-      cancelButtonLabel='Собрать самому'
+      cancelButtonLabel='Выбрать вкусы'
     >
       <Typography
         style={{
           color: colors.secondary.dark,
-          opacity: 0.9,
-          fontSize: 18,
+          fontSize: 13,
           lineHeight: '20px',
           textAlign: 'center',
         }}

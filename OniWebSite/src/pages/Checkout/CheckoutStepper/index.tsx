@@ -55,7 +55,7 @@ const initialState = {
   name: '',
   phone: '',
   comments: '',
-  address: 'Самовывоз: Киев, бульвар Вацлава Гавела, 9А',
+  address: 'Самовывоз: бул. Вацлава Гавела, 9А',
   date: null,
   time: null,
 };
@@ -73,7 +73,7 @@ export function CheckoutStepper({ returnToBasket }: ICheckoutStepperProps) {
   const [form, setForm] = useState<IOrder>({
     ...initialState,
     delivery: delivery ? DeliveryType.Delivery : DeliveryType.SelfService,
-    address: delivery ? '' : 'Самовывоз: Киев, бульвар Вацлава Гавела, 9А',
+    address: delivery ? '' : 'Самовывоз: бул. Вацлава Гавела, 9А',
   });
   const { showSnackbar } = useSnackbar();
   const isMobile = useMediaQuery(`(max-width: ${BREAKPOINT})`);
@@ -83,7 +83,7 @@ export function CheckoutStepper({ returnToBasket }: ICheckoutStepperProps) {
       setForm({
         ...form,
         delivery,
-        address: 'Самовывоз: Киев, бульвар Вацлава Гавела, 9А',
+        address: 'Самовывоз: бул. Вацлава Гавела, 9А',
       });
     } else {
       setForm({ ...form, delivery, address: '' });
@@ -128,7 +128,7 @@ export function CheckoutStepper({ returnToBasket }: ICheckoutStepperProps) {
       console.log(e);
       showSnackbar(
         'Ошибка при сохранении заказа ☹️ Попробуйте ещё раз',
-        SnackbarType.Error,
+        SnackbarType.Error
       );
     }
   };

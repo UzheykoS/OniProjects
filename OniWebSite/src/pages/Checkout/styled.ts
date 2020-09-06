@@ -39,14 +39,20 @@ export const BasketItemWrapper = styled.div`
 
 interface ICellProps {
   width: number;
+  imageWidth?: number;
 }
 
 export const BasketItemWrapperCell = styled.div<ICellProps>`
   display: flex;
   flex-direction: row;
   align-self: center;
+  justify-content: center;
+
   & img {
-    width: 180px;
+    ${({ imageWidth }) =>
+      `
+    width: ${imageWidth || 180}px;
+    `};
     height: auto;
     max-height: 120px;
     object-fit: contain;

@@ -12,7 +12,7 @@ export const MixSection = styled.div<IMixSection>`
   height: 360px;
   flex-direction: column;
   align-items: center;
-  padding: 0 20px;
+  padding: 0 20px 20px 20px;
 
   ${({ size }) =>
     `
@@ -21,6 +21,7 @@ export const MixSection = styled.div<IMixSection>`
 
   @media (max-width: ${BREAKPOINT}) {
     height: auto;
+    border: 1px solid #eef2f0;
   }
 
   img {
@@ -57,4 +58,5 @@ export const DessertMixTitle = styled.div`
   font-weight: 400;
   font-size: 16px;
   padding: 0 0px 5px 20px;
+  white-space: nowrap;
 `;
