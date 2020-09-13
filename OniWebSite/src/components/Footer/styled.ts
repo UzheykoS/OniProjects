@@ -30,7 +30,7 @@ export const FlexColumnWrapper = styled.div`
 `;
 
 export const SocialsItem = styled.a`
-  padding: 5px 20px 5px 20px;
+  padding: 5px 15px 5px 15px;
   img {
     height: 1.5rem;
   }
@@ -92,12 +92,6 @@ export const Logo = styled.img`
 export const IconWrapper = styled.div`
   display: flex;
   width: 25px;
-  justify-content: center;
-  align-items: center;
-`;
-
-export const SocialsWrapper = styled.div`
-  display: flex;
   justify-content: center;
   align-items: center;
 `;

@@ -10,7 +10,6 @@ import {
   SocialsItem,
   FlexColumnWrapper,
   IconWrapper,
-  SocialsWrapper,
 } from './styled';
 import { routes, Pages } from '@constants/routes';
 import { Link as RouterLink } from 'react-router-dom';
@@ -128,7 +127,7 @@ export const Footer = () => {
               >
                 Соцсети
               </Title>
-              <SocialsWrapper>
+              <Flex justifyBetween alignCenter>
                 <SocialsItem
                   target='_blank'
                   href='https://www.facebook.com/oni.desserts/'
@@ -150,7 +149,7 @@ export const Footer = () => {
                 >
                   <img src='images/icons/viber.png' />
                 </SocialsItem>
-              </SocialsWrapper>
+              </Flex>
               <TextWrapper style={{ marginTop: 10 }}>© ONI, 2020</TextWrapper>
             </FlexColumnWrapper>
           </Flex>

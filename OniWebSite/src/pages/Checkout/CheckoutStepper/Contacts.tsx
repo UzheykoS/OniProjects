@@ -15,7 +15,6 @@ import { Button } from '@common/Button';
 import { IContactData, IRequiredContactData } from '.';
 import PhoneInput from '@common/PhoneInput';
 import DatePickerWrapper from '@common/DatePicker';
-import TimeInput from '@common/TimeInput';
 import { Flex } from '@styles/styled';
 import { BREAKPOINT } from '@constants';
 import { DeliveryType } from './Delivery';
@@ -31,6 +30,7 @@ interface IProps {
   formData: IContactData;
   setFormData: (contactData: IContactData) => void;
   handleContinue: () => void;
+  handleBackClick?: () => void;
 }
 
 export function Contacts({
@@ -39,6 +39,7 @@ export function Contacts({
   formData,
   setFormData,
   handleContinue,
+  handleBackClick,
 }: IProps) {
   const classes = useStyles();
   const [formErrors, setFormErrors] = React.useState<IRequiredContactData>({});
@@ -83,8 +84,8 @@ export function Contacts({
     setFormData({ ...formData, date: date ? date.toISOString() : null });
   };
 
-  const handleTimeChange = (time: Date | null) => {
-    setFormData({ ...formData, time: time?.toISOString() });
+  const handleTimeChange = (time: string) => {
+    setFormData({ ...formData, time: time });
   };
 
   const handleNextClick = () => {
@@ -189,12 +190,19 @@ export function Contacts({
                 style={{ margin: '12px 5px 9px 5px', width: '100%' }}
                 onChange={handleDateChange}
               />
-              <TimeInput
-                emptyLabel='Время'
-                selectedDate={formData.time}
-                variant={isMobile ? 'dialog' : 'inline'}
-                style={{ margin: '12px 5px 9px 5px', width: '100%' }}
-                handleDateChange={handleTimeChange}
+              <TextFieldStyled
+                label='Время'
+                type='time'
+                InputLabelProps={{
+                  shrink: true,
+                }}
+                inputProps={{
+                  step: 300, // 5 min
+                }}
+                value={formData.time || ''}
+                fullWidth
+                variant='outlined'
+                onChange={ev => handleTimeChange(ev.target.value)}
               />
             </FormRowWrapper>
             <TextFieldStyled
@@ -211,14 +219,25 @@ export function Contacts({
         </Flex>
       </FormWrapper>
       <Flex justifyBetween>
-        <Flex style={{ alignItems: 'center' }}>
-          <TotalMobile>Итого:</TotalMobile>
-          <Typography
-            variant='h2'
-            style={{ fontSize: 21 }}
-          >{`${totalPrice} грн`}</Typography>
-        </Flex>
-        <Button rounded onClick={handleSubmit}>
+        {isMobile ? (
+          <Button
+            color='secondary'
+            small={isMobile}
+            rounded
+            onClick={handleBackClick}
+          >
+            НАЗАД
+          </Button>
+        ) : (
+          <Flex style={{ alignItems: 'center' }}>
+            <TotalMobile>Итого:</TotalMobile>
+            <Typography
+              variant='h2'
+              style={{ fontSize: 21 }}
+            >{`${totalPrice} грн`}</Typography>
+          </Flex>
+        )}
+        <Button rounded small={isMobile} onClick={handleSubmit}>
           ДАЛЬШЕ
         </Button>
       </Flex>

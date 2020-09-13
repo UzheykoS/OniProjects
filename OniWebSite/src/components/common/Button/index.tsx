@@ -6,10 +6,17 @@ import { BREAKPOINT } from '@constants';
 
 export interface IButtonProps extends ButtonProps {
   rounded?: boolean;
+  small?: boolean;
 }
 
 export const Button = styled(
-  ({ rounded, variant = 'contained', color = 'primary', ...rest }: any) => (
+  ({
+    rounded,
+    small,
+    variant = 'contained',
+    color = 'primary',
+    ...rest
+  }: any) => (
     <ButtonComponent
       variant={variant}
       color={color}
@@ -47,8 +54,19 @@ export const Button = styled(
     }
     // border: 1px solid ${colors.secondary.pink};
   }
-  &.root {
-    height: 50px;
-    width: 180px;
-  }
+  ${({ small }) =>
+    small
+      ? `
+      &.root {
+        height: 50px;
+        width: 150px;
+      }
+  `
+      : `
+      &.root {
+        height: 50px;
+        width: 180px;
+      }
+      `}
+  
 `;

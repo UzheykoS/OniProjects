@@ -195,22 +195,30 @@ export function NavBar() {
         </Link>
       </LogoLink>
 
-      <IconButton
-        style={{ marginRight: 10 }}
-        disableFocusRipple
-        onClick={handleBinClick}
+      <TooltipStyled
+        TransitionComponent={Zoom}
+        title='Товар добавлен в корзину'
+        arrow
+        placement={'bottom'}
+        open={tooltipOpen}
       >
-        <BadgeStyled
-          anchorOrigin={{
-            vertical: 'bottom',
-            horizontal: 'right',
-          }}
-          badgeContent={items.length > 0 ? items.length : undefined}
-          color={'primary'}
+        <IconButton
+          style={{ marginRight: 10 }}
+          disableFocusRipple
+          onClick={handleBinClick}
         >
-          <BinIcon />
-        </BadgeStyled>
-      </IconButton>
+          <BadgeStyled
+            anchorOrigin={{
+              vertical: 'bottom',
+              horizontal: 'right',
+            }}
+            badgeContent={items.length > 0 ? items.length : undefined}
+            color={'primary'}
+          >
+            <BinIcon />
+          </BadgeStyled>
+        </IconButton>
+      </TooltipStyled>
     </NavBarWrapperMobile>
   );
 

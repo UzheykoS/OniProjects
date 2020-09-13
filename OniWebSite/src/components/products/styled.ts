@@ -17,7 +17,7 @@ export const ProductSingleWrapper = styled.div<IProductSingleWrapper>`
 
   ${({ height }) =>
     `
-      height: ${height}rem;
+      height: ${height ? height + 'rem' : '100%'};
     `};
 
   @media (max-width: ${BREAKPOINT}) {

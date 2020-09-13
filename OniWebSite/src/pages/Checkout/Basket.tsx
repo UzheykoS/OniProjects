@@ -82,7 +82,7 @@ export function Basket({
     } catch (e) {
       console.log(e);
       showSnackbar(
-        'Ошибка при сохранении заказа ☹️ Попробуйте ещё раз',
+        'Ошибка при сохранении заказа ☹️\nПопробуйте ещё раз',
         SnackbarType.Error
       );
     }

@@ -9,7 +9,14 @@ import {
   HelperText,
   BackArrowWrapper,
 } from '../styled';
-import { Typography, IconButton, useMediaQuery } from '@material-ui/core';
+import {
+  Typography,
+  IconButton,
+  useMediaQuery,
+  Stepper,
+  Step,
+  StepButton,
+} from '@material-ui/core';
 import { Delivery, DeliveryType } from './Delivery';
 import { Contacts } from './Contacts';
 import { Payment, PaymentType } from './Payment';
@@ -24,6 +31,12 @@ enum CheckoutTabs {
   Delivery = 'Способ доставки',
   Contacts = 'Контактные данные',
   Payment = 'Способ оплаты',
+}
+
+enum CheckoutSteps {
+  Delivery = 0,
+  Contacts = 1,
+  Payment = 2,
 }
 
 export interface IRequiredContactData {
@@ -70,6 +83,8 @@ export function CheckoutStepper({ returnToBasket }: ICheckoutStepperProps) {
     removeDelivery,
   } = useBasket();
   const [activeTab, setActiveTab] = useState(CheckoutTabs.Delivery);
+  const [activeStep, setActiveStep] = useState(CheckoutSteps.Delivery);
+
   const [form, setForm] = useState<IOrder>({
     ...initialState,
     delivery: delivery ? DeliveryType.Delivery : DeliveryType.SelfService,
@@ -97,6 +112,7 @@ export function CheckoutStepper({ returnToBasket }: ICheckoutStepperProps) {
       behavior: 'smooth',
     });
     setActiveTab(CheckoutTabs.Contacts);
+    setActiveStep(CheckoutSteps.Contacts);
   };
 
   const handleContactDataChange = (contactData: IContactData) => {
@@ -110,6 +126,7 @@ export function CheckoutStepper({ returnToBasket }: ICheckoutStepperProps) {
       behavior: 'smooth',
     });
     setActiveTab(CheckoutTabs.Payment);
+    setActiveStep(CheckoutSteps.Payment);
   };
 
   const handlePaymentSubmit = async (payment: PaymentType) => {
@@ -127,7 +144,7 @@ export function CheckoutStepper({ returnToBasket }: ICheckoutStepperProps) {
     } catch (e) {
       console.log(e);
       showSnackbar(
-        'Ошибка при сохранении заказа ☹️ Попробуйте ещё раз',
+        'Ошибка при сохранении заказа ☹️\nПопробуйте ещё раз',
         SnackbarType.Error
       );
     }
@@ -137,39 +154,110 @@ export function CheckoutStepper({ returnToBasket }: ICheckoutStepperProps) {
     setActiveTab(tab);
   };
 
-  return (
-    <CheckoutStepperContainer>
-      <CheckoutHeaderWrapper>
-        <BackArrowWrapper>
-          <IconButton onClick={returnToBasket} size='small'>
-            <ChevronLeftIcon style={{ margin: isMobile ? 0 : 4 }} />
-          </IconButton>
-        </BackArrowWrapper>
-        {isMobile ? (
+  const handleStepChange = (step: CheckoutSteps) => () => {
+    setActiveStep(step);
+  };
+
+  function isStepComplete(step: CheckoutSteps) {
+    return step < activeStep;
+  }
+
+  if (isMobile) {
+    return (
+      <CheckoutStepperContainer>
+        <CheckoutHeaderWrapper>
+          <BackArrowWrapper>
+            <IconButton onClick={returnToBasket} size='small'>
+              <ChevronLeftIcon style={{ margin: 0 }} />
+            </IconButton>
+          </BackArrowWrapper>
           <TextLink onClick={returnToBasket}>Назад</TextLink>
-        ) : (
-          <Typography style={{ fontSize: 46 }} variant='h2'>
-            Оформление заказа
-          </Typography>
-        )}
-      </CheckoutHeaderWrapper>
-      {isMobile && <Typography variant='h2'>Оформление заказа</Typography>}
-      {isMobile && (
+        </CheckoutHeaderWrapper>
+        <Typography variant='h2'>Оформление заказа</Typography>
         <Flex alignBaseline>
           <HelperText>Сумма вашего заказа: </HelperText>
           <Typography variant='h2' style={{ fontSize: 16 }}>
             {totalPrice} грн.
           </Typography>
         </Flex>
-      )}
 
+        <Stepper
+          activeStep={activeStep}
+          orientation='horizontal'
+          alternativeLabel
+          style={{ padding: '24px 0' }}
+        >
+          <Step completed={isStepComplete(CheckoutSteps.Delivery)}>
+            <StepButton onClick={handleStepChange(CheckoutSteps.Delivery)}>
+              {CheckoutTabs.Delivery}
+            </StepButton>
+          </Step>
+          <Step completed={isStepComplete(CheckoutSteps.Contacts)}>
+            <StepButton onClick={handleStepChange(CheckoutSteps.Contacts)}>
+              {CheckoutTabs.Contacts}
+            </StepButton>
+          </Step>
+          <Step completed={isStepComplete(CheckoutSteps.Payment)}>
+            <StepButton onClick={handleStepChange(CheckoutSteps.Payment)}>
+              {CheckoutTabs.Payment}
+            </StepButton>
+          </Step>
+        </Stepper>
+
+        <Content>
+          {activeStep === CheckoutSteps.Delivery && (
+            <Delivery
+              totalPrice={totalPrice}
+              delivery={form.delivery}
+              addDelivery={addDelivery}
+              removeDelivery={removeDelivery}
+              handleDeliveryChange={handleDeliveryChange}
+              handleContinue={handleDeliverySubmit}
+            />
+          )}
+          {activeStep === CheckoutSteps.Contacts && (
+            <Contacts
+              formData={form}
+              setFormData={handleContactDataChange}
+              delivery={form.delivery}
+              totalPrice={totalPrice}
+              handleContinue={handleContactDataSubmit}
+              handleBackClick={() => setActiveStep(CheckoutSteps.Delivery)}
+            />
+          )}
+          {activeStep === CheckoutSteps.Payment && (
+            <Payment
+              delivery={form.delivery}
+              totalPrice={totalPrice}
+              isValid={!!form.name && !!form.phone}
+              handleContinue={handlePaymentSubmit}
+              handleBackClick={() => setActiveStep(CheckoutSteps.Contacts)}
+            />
+          )}
+        </Content>
+      </CheckoutStepperContainer>
+    );
+  }
+
+  return (
+    <CheckoutStepperContainer>
+      <CheckoutHeaderWrapper>
+        <BackArrowWrapper>
+          <IconButton onClick={returnToBasket} size='small'>
+            <ChevronLeftIcon style={{ margin: 4 }} />
+          </IconButton>
+        </BackArrowWrapper>
+        <Typography style={{ fontSize: 46 }} variant='h2'>
+          Оформление заказа
+        </Typography>
+      </CheckoutHeaderWrapper>
       <TabsStyled
         value={activeTab}
         indicatorColor='primary'
         textColor='primary'
         onChange={handleTabChange}
         TabIndicatorProps={{
-          style: { display: isMobile ? 'none' : 'block' },
+          style: { display: 'block' },
         }}
       >
         <TabStyled

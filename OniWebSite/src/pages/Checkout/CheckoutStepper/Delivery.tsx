@@ -8,7 +8,8 @@ import { MainWrapper } from './styled';
 import { Button } from '@common/Button';
 import { Flex } from '@styles/styled';
 import { TotalMobile } from '../styled';
-import { Typography } from '@material-ui/core';
+import { Typography, useMediaQuery } from '@material-ui/core';
+import { BREAKPOINT } from '@constants';
 
 export enum DeliveryType {
   SelfService = 'Самовывоз',
@@ -32,6 +33,8 @@ export function Delivery({
   removeDelivery,
   totalPrice,
 }: IProps) {
+  const isMobile = useMediaQuery(`(max-width: ${BREAKPOINT})`);
+
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const newValue = (event.target as HTMLInputElement).value as DeliveryType;
     handleDeliveryChange(newValue);
@@ -67,7 +70,7 @@ export function Delivery({
             style={{ fontSize: 21 }}
           >{`${totalPrice} грн`}</Typography>
         </Flex>
-        <Button rounded onClick={handleContinue}>
+        <Button rounded small={isMobile} onClick={handleContinue}>
           ДАЛЬШЕ
         </Button>
       </Flex>

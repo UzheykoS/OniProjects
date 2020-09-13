@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Radio from '@material-ui/core/Radio';
 import RadioGroup from '@material-ui/core/RadioGroup';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
@@ -9,7 +9,8 @@ import { Button } from '@common/Button';
 import { DeliveryType } from './Delivery';
 import { Flex } from '@styles/styled';
 import { TotalMobile } from '../styled';
-import { Typography } from '@material-ui/core';
+import { Typography, useMediaQuery } from '@material-ui/core';
+import { BREAKPOINT } from '@constants';
 
 export enum PaymentType {
   Cash = 'Наличные',
@@ -21,6 +22,7 @@ interface IProps {
   totalPrice: number;
   isValid: boolean;
   handleContinue: (payment: PaymentType) => void;
+  handleBackClick?: () => void;
 }
 
 export function Payment({
@@ -28,8 +30,10 @@ export function Payment({
   totalPrice,
   isValid,
   handleContinue,
+  handleBackClick,
 }: IProps) {
-  const [value, setValue] = React.useState(PaymentType.Card);
+  const [value, setValue] = useState(PaymentType.Card);
+  const isMobile = useMediaQuery(`(max-width: ${BREAKPOINT})`);
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setValue((event.target as HTMLInputElement).value as PaymentType);
@@ -61,14 +65,30 @@ export function Payment({
         </RadioGroup>
       </FormControl>
       <Flex justifyBetween>
-        <Flex style={{ alignItems: 'center' }}>
-          <TotalMobile>Итого:</TotalMobile>
-          <Typography
-            variant='h2'
-            style={{ fontSize: 21 }}
-          >{`${totalPrice} грн`}</Typography>
-        </Flex>
-        <Button rounded disabled={!isValid} onClick={handleNextClick}>
+        {isMobile ? (
+          <Button
+            color='secondary'
+            small={isMobile}
+            rounded
+            onClick={handleBackClick}
+          >
+            НАЗАД
+          </Button>
+        ) : (
+          <Flex style={{ alignItems: 'center' }}>
+            <TotalMobile>Итого:</TotalMobile>
+            <Typography
+              variant='h2'
+              style={{ fontSize: 21 }}
+            >{`${totalPrice} грн`}</Typography>
+          </Flex>
+        )}
+        <Button
+          rounded
+          small={isMobile}
+          disabled={!isValid}
+          onClick={handleNextClick}
+        >
           ПОДТВЕРДИТЬ
         </Button>
       </Flex>

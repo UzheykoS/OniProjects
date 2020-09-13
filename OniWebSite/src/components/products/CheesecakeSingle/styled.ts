@@ -32,6 +32,7 @@ export const Title = styled.div`
   color: black;
   white-space: pre;
   text-align: center;
+  flex-grow: 1;
 `;
 
 export const Description = styled.div`
@@ -39,8 +40,8 @@ export const Description = styled.div`
   font-size: 12px;
   color: #cccccc;
   text-align: center;
-  padding: 10px 40px;
+  padding: 10px 35px;
   line-height: 17px;
-  height: 88px;
   box-sizing: border-box;
+  flex-grow: 10;
 `;
