@@ -7,7 +7,13 @@ import { FlexColumn, Flex } from '@styles/styled';
 import QuantityEditor from '@common/QuantityEditor';
 import { useHistory } from 'react-router-dom';
 import { getDessertRouteKey } from '@utils/Helper';
-import { ProductType, ICakeInfo, cakes } from '@constants/products';
+import {
+  ProductType,
+  ICakeInfo,
+  cakes,
+  Choux,
+  Cheesecake,
+} from '@constants/products';
 
 interface IBasketItemProps {
   item: IBasketItem;
@@ -33,6 +39,20 @@ export function BasketItemMobile({
     });
   }
 
+  function getImageWidth() {
+    switch (product.id) {
+      case Choux.ChouxMixSmall:
+      case Choux.ChouxMixLarge:
+        return 140;
+      case Cheesecake.Gorgonzola:
+      case Cheesecake.Lemon:
+      case Cheesecake.VanillaCaramel:
+        return 120;
+      default:
+        return 175;
+    }
+  }
+
   return (
     <FlexColumn bordered style={{ padding: 15, width: 'auto' }}>
       <Flex justifyBetween>
@@ -42,7 +62,7 @@ export function BasketItemMobile({
           onClick={item.contents?.length ? editBasketItem : () => {}}
         >
           <img
-            style={{ maxWidth: 175 }}
+            style={{ maxWidth: getImageWidth() }}
             src={
               supports ? `${product.imageUrl}.webp` : `${product.imageUrl}.jpg`
             }

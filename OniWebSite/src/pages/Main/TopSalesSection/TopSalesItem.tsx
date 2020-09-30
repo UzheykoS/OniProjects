@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { IProduct } from '@constants/products';
+import { IProduct, ProductType } from '@constants/products';
 import {
   IProductSingleWrapper,
   ProductSingleWrapper,
@@ -34,6 +34,17 @@ export function TopSalesItem({
     !isMobile && setMouseOver(false);
   };
 
+  function getImageHeight() {
+    switch (product.type) {
+      case ProductType.Choux:
+        return 160;
+      case ProductType.Cheesecake:
+        return 140;
+      default:
+        return;
+    }
+  }
+
   return (
     <ProductSingleWrapper
       height={height}
@@ -52,7 +63,7 @@ export function TopSalesItem({
           <AddIcon style={{ fontSize: 40, color: colors.primary.white }} />
         </AddIconWrapper>
       )}
-      <ProductImageWrapper src={product.imageUrl} />
+      <ProductImageWrapper src={product.imageUrl} height={getImageHeight()} />
       <Title>{product.id}</Title>
       <Description>{product.fullDescription}</Description>
     </ProductSingleWrapper>

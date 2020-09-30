@@ -147,15 +147,15 @@ export function Constructor({
   closeConstructor,
 }: IConstructorProps) {
   const { addToBasket, removeFromBasket } = useBasket();
-  const [showClerModal, setShowClearModal] = useState(false);
+  const [showClear, setShowClear] = useState(false);
   const [showSurpriseMe, setShowSurpriseMe] = useState(false);
   const [surpriseMeTitleIndex, setSurpriseMeTitleIndex] = useState(0);
   const { showSnackbar } = useSnackbar();
   const [activeItem, setActiveItem] = useState<number>();
   const isMobile = useMediaQuery(`(max-width: ${BREAKPOINT})`);
 
-  const handleClearModalOpen = useCallback(() => setShowClearModal(true), []);
-  const handleClearModalClose = useCallback(() => setShowClearModal(false), []);
+  const handleClearModalOpen = useCallback(() => setShowClear(true), []);
+  const handleClearModalClose = useCallback(() => setShowClear(false), []);
 
   const [errorMessage, setErrorMessage] = useState('');
 
@@ -353,11 +353,49 @@ export function Constructor({
             <DeleteOutlinedIcon />
           </IconButton>
         </ModeSelectWrapper>
+        <Flex
+          direction='column'
+          style={{ display: showClear ? 'flex' : 'none' }}
+        >
+          <Flex>
+            <Typography
+              variant='body2'
+              style={{ margin: '0.5rem', textAlign: 'end' }}
+            >
+              Вы точно хотите удалить все вкусы, которые выбрали?
+            </Typography>
+          </Flex>
+          <Flex justifyCenter style={{ marginBottom: 10 }}>
+            <MUIButton
+              variant='contained'
+              style={{ width: 100, height: 40, borderRadius: '50px' }}
+              onClick={handleClearModalClose}
+            >
+              Нет
+            </MUIButton>
+            <MUIButton
+              variant='contained'
+              color='primary'
+              style={{
+                width: 100,
+                height: 40,
+                borderRadius: '50px',
+                marginLeft: 10,
+                backgroundColor: colors.primary.white,
+                color: colors.primary.black,
+                border: `1px solid ${colors.primary.gold}`,
+              }}
+              onClick={handleClear}
+            >
+              Да
+            </MUIButton>
+          </Flex>
+        </Flex>
         <ConstructorGridWrapper>
           {constructorGridContent()}
         </ConstructorGridWrapper>
         <CenteredRow>
-          <Flex direction='column'>
+          <Flex direction='column' style={{ width: '100%' }}>
             <SurpriseMe
               variant='body2'
               onClick={handleSurpriseMeClick}
@@ -370,7 +408,10 @@ export function Constructor({
               style={{ display: showSurpriseMe ? 'flex' : 'none' }}
             >
               <Flex>
-                <Typography variant='body2' style={{ margin: '0.5rem' }}>
+                <Typography
+                  variant='body2'
+                  style={{ margin: '0.5rem', textAlign: 'end' }}
+                >
                   Мы удалим выбранные вкусы и соберём набор на свой вкус.
                   Согласны?
                 </Typography>
@@ -378,7 +419,6 @@ export function Constructor({
               <Flex justifyCenter style={{ marginBottom: 10 }}>
                 <MUIButton
                   variant='contained'
-                  // color='secondary'
                   style={{ width: 100, height: 40, borderRadius: '50px' }}
                   onClick={() => setShowSurpriseMe(false)}
                 >
@@ -420,11 +460,13 @@ export function Constructor({
           </CenteredRow>
         )}
       </ConstructorWrapper>
-      <ConstructorClearModal
-        confirmClear={handleClear}
-        closeModal={handleClearModalClose}
-        open={showClerModal}
-      />
+      {!isMobile && (
+        <ConstructorClearModal
+          confirmClear={handleClear}
+          closeModal={handleClearModalClose}
+          open={showClear}
+        />
+      )}
     </>
   );
 }

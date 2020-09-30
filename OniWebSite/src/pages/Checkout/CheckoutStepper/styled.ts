@@ -4,7 +4,7 @@ import { BREAKPOINT } from '@constants';
 
 export const MainWrapper = styled.div`
   display: flex;
-  margin: 50px;
+  margin: 20px 50px;
   flex-direction: column;
   width: 100%;
   @media (max-width: ${BREAKPOINT}) {

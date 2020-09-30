@@ -18,7 +18,6 @@ import DatePickerWrapper from '@common/DatePicker';
 import { Flex } from '@styles/styled';
 import { BREAKPOINT } from '@constants';
 import { DeliveryType } from './Delivery';
-import { TotalMobile } from '../styled';
 
 export const INVALID_NAME = 'Введите Ваше имя';
 export const INVALID_PHONE = 'Введите правильный номер телефона';
@@ -35,7 +34,6 @@ interface IProps {
 
 export function Contacts({
   delivery,
-  totalPrice,
   formData,
   setFormData,
   handleContinue,
@@ -219,24 +217,14 @@ export function Contacts({
         </Flex>
       </FormWrapper>
       <Flex justifyBetween>
-        {isMobile ? (
-          <Button
-            color='secondary'
-            small={isMobile}
-            rounded
-            onClick={handleBackClick}
-          >
-            НАЗАД
-          </Button>
-        ) : (
-          <Flex style={{ alignItems: 'center' }}>
-            <TotalMobile>Итого:</TotalMobile>
-            <Typography
-              variant='h2'
-              style={{ fontSize: 21 }}
-            >{`${totalPrice} грн`}</Typography>
-          </Flex>
-        )}
+        <Button
+          color='secondary'
+          small={isMobile}
+          rounded
+          onClick={handleBackClick}
+        >
+          НАЗАД
+        </Button>
         <Button rounded small={isMobile} onClick={handleSubmit}>
           ДАЛЬШЕ
         </Button>

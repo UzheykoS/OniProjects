@@ -42,7 +42,8 @@ const MixSelectModal: FC<IMixSelectModalModalProps> = ({
         }}
         variant={'body2'}
       >
-        Мы подберём для Вас разные вкусы, но Вы также можете выбрать их сами!
+        Мы соберем набор из разных вкусов. Также их можно выбрать
+        самостоятельно.
       </Typography>
       <Flex
         justifyAround

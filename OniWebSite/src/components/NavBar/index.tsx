@@ -167,7 +167,7 @@ export function NavBar() {
         <Divider />
         <SocialMedia>
           <a target='_blank' href='https://www.facebook.com/oni.desserts/'>
-            <img src='images/icons/facebook.png' />
+            <img src='images/icons/facebook_new.png' />
           </a>
           <a target='_blank' href='https://www.instagram.com/oni.desserts/'>
             <img src='images/icons/instagram.png' />

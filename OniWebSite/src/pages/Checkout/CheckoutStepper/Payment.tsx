@@ -8,8 +8,7 @@ import { MainWrapper } from './styled';
 import { Button } from '@common/Button';
 import { DeliveryType } from './Delivery';
 import { Flex } from '@styles/styled';
-import { TotalMobile } from '../styled';
-import { Typography, useMediaQuery } from '@material-ui/core';
+import { useMediaQuery } from '@material-ui/core';
 import { BREAKPOINT } from '@constants';
 
 export enum PaymentType {
@@ -27,7 +26,6 @@ interface IProps {
 
 export function Payment({
   delivery,
-  totalPrice,
   isValid,
   handleContinue,
   handleBackClick,
@@ -65,24 +63,14 @@ export function Payment({
         </RadioGroup>
       </FormControl>
       <Flex justifyBetween>
-        {isMobile ? (
-          <Button
-            color='secondary'
-            small={isMobile}
-            rounded
-            onClick={handleBackClick}
-          >
-            НАЗАД
-          </Button>
-        ) : (
-          <Flex style={{ alignItems: 'center' }}>
-            <TotalMobile>Итого:</TotalMobile>
-            <Typography
-              variant='h2'
-              style={{ fontSize: 21 }}
-            >{`${totalPrice} грн`}</Typography>
-          </Flex>
-        )}
+        <Button
+          color='secondary'
+          small={isMobile}
+          rounded
+          onClick={handleBackClick}
+        >
+          НАЗАД
+        </Button>
         <Button
           rounded
           small={isMobile}

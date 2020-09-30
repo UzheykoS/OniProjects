@@ -132,7 +132,7 @@ export const Footer = () => {
                   target='_blank'
                   href='https://www.facebook.com/oni.desserts/'
                 >
-                  <img src='images/icons/facebook.png' />
+                  <img src='images/icons/facebook_new.png' />
                 </SocialsItem>
                 <SocialsItem
                   target='_blank'
@@ -260,7 +260,7 @@ export const Footer = () => {
                   target='_blank'
                   href='https://www.facebook.com/oni.desserts/'
                 >
-                  <img src='images/icons/facebook.png' />
+                  <img src='images/icons/facebook_new.png' />
                 </SocialsItem>
                 <SocialsItem
                   target='_blank'

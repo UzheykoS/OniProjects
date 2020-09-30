@@ -70,7 +70,7 @@ export function ConstructorGridItem({
         }
         removeEnabled={!!item}
       >
-        {item && (
+        {item ? (
           <>
             <div ref={anchorRef}>
               <RemoveIconWrapper
@@ -137,6 +137,32 @@ export function ConstructorGridItem({
               )}
             </Popper>
           </>
+        ) : (
+          <>
+            <div ref={anchorRef}></div>
+            <Popper
+              open={isActive}
+              anchorEl={anchorRef.current}
+              transition
+              style={{ zIndex: 1500 }}
+            >
+              {({ TransitionProps, placement }) => (
+                <Zoom
+                  {...TransitionProps}
+                  style={{
+                    transformOrigin:
+                      placement === 'bottom' ? 'center top' : 'center bottom',
+                  }}
+                >
+                  <Paper style={{ padding: '0 5px' }}>
+                    <ClickAwayListener onClickAway={() => onClick()}>
+                      <TooltipTitle>{'Тут пока ничего нет'}</TooltipTitle>
+                    </ClickAwayListener>
+                  </Paper>
+                </Zoom>
+              )}
+            </Popper>
+          </>
         )}
       </ConstructorGridItemWrapper>
     );
@@ -158,7 +184,7 @@ export function ConstructorGridItem({
       }
       removeEnabled={!!item}
     >
-      {item && (
+      {item ? (
         <TooltipStyled
           TransitionComponent={Zoom}
           title={item.id}
@@ -184,6 +210,15 @@ export function ConstructorGridItem({
 
             <ImageWrapper style={{ height: '100%' }} src={item.imageUrl} />
           </div>
+        </TooltipStyled>
+      ) : (
+        <TooltipStyled
+          TransitionComponent={Zoom}
+          title={'Тут пока ничего нет'}
+          arrow
+          placement={'bottom'}
+        >
+          <div style={{ width: '100%', height: '100%' }} />
         </TooltipStyled>
       )}
     </ConstructorGridItemWrapper>

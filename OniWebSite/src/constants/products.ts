@@ -61,7 +61,7 @@ export enum Zephyr {
   ZephyrMixLarge = '16 шт',
 }
 
-enum Cheesecake {
+export enum Cheesecake {
   VanillaCaramel = 'Ваниль-Карамель',
   Gorgonzola = 'Горгонзола-Айва',
   Lemon = 'Лимон',

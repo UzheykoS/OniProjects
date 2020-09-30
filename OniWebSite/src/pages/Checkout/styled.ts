@@ -1,5 +1,4 @@
 import styled from 'styled-components';
-import { Tab, Tabs } from '@material-ui/core';
 import colors from '@constants/colors';
 import { BREAKPOINT } from '@constants';
 
@@ -131,43 +130,6 @@ export const TotalMobile = styled.div`
   font-size: 16px;
   font-family: 'Roboto';
   margin-right: 5px;
-`;
-
-export const TabStyled = styled(Tab).attrs({
-  classes: {
-    root: 'root',
-  },
-})`
-  &:focus {
-    outline: none;
-  }
-  &.root {
-    width: 33%;
-    min-width: 300px;
-    margin: 0 20px;
-
-    @media (max-width: ${BREAKPOINT}) {
-      min-width: auto;
-      width: 100%;
-      margin: 0px;
-      padding: 0px;
-    }
-  }
-`;
-
-export const TabsStyled = styled(Tabs).attrs({
-  classes: {
-    flexContainer: 'flexContainer',
-  },
-})`
-  width: auto;
-
-  .flexContainer {
-    @media (max-width: ${BREAKPOINT}) {
-      flex-direction: column;
-      align-items: center;
-    }
-  }
 `;
 
 export const CheckoutStepperContainer = styled.div`

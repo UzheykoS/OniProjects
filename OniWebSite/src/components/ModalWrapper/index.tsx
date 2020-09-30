@@ -90,7 +90,7 @@ const ModalWrapper: FC<ModalWrapperProps> = ({
               color='secondary'
               tabIndex={0}
               rounded
-              style={{ marginRight: 10 }}
+              style={{ marginRight: 10, whiteSpace: 'nowrap' }}
             >
               {cancelButtonLabel}
             </Button>

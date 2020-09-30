@@ -130,7 +130,7 @@ export const CenteredRow = styled.div`
 export const SurpriseMe = styled(Typography)`
   height: auto;
   cursor: pointer;
-  text-align: center;
+  align-self: flex-end;
   margin: 0.2rem 0.5rem 0.6rem 0.5rem;
 
   &:hover {
