@@ -83,7 +83,7 @@ export function formatMessage(items: IBasketItem[]) {
       ) > -1
         ? 'Набор на'
         : ''
-    } ${item.product.id} - ${item.quantity} ${
+    } ${item.product.id} - ${item.quantity} шт. ${
       item.contents?.length
         ? `(${item.contents.reduce((contentsAcc, contentItem, index) => {
             contentsAcc +=

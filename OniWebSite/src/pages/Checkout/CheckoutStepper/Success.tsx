@@ -29,7 +29,7 @@ export function Success() {
       </Typography>
       <img
         style={{ height: 92, width: 92, margin: '20px 0' }}
-        src='images/icons/checkout-success.png'
+        src='/images/icons/checkout-success.png'
       />
       <Typography
         variant={'body1'}
@@ -42,7 +42,7 @@ export function Success() {
           textAlign: 'center',
         }}
       >
-        Спасибо за ваш заказ! Мы свяжемся с вами в течении 20 минут.
+        Спасибо за ваш заказ!
       </Typography>
       <Flex justifyCenter>
         <Button variant='contained' color={'primary'} onClick={handleNextClick}>
