@@ -6,7 +6,7 @@ const imageminMozjpeg = require('imagemin-mozjpeg');
     destination: 'public/images/pages/about/small',
     plugins: [
       imageminMozjpeg({
-        quality: 30,
+        quality: 15,
       }),
     ],
   });
@@ -15,7 +15,7 @@ const imageminMozjpeg = require('imagemin-mozjpeg');
     destination: 'public/images/pages/cakes/small',
     plugins: [
       imageminMozjpeg({
-        quality: 30,
+        quality: 15,
       }),
     ],
   });
@@ -24,7 +24,7 @@ const imageminMozjpeg = require('imagemin-mozjpeg');
     destination: 'public/images/pages/choux/small',
     plugins: [
       imageminMozjpeg({
-        quality: 30,
+        quality: 15,
       }),
     ],
   });
@@ -33,7 +33,7 @@ const imageminMozjpeg = require('imagemin-mozjpeg');
     destination: 'public/images/pages/contacts/small',
     plugins: [
       imageminMozjpeg({
-        quality: 30,
+        quality: 15,
       }),
     ],
   });
@@ -42,7 +42,7 @@ const imageminMozjpeg = require('imagemin-mozjpeg');
     destination: 'public/images/pages/macarons/small',
     plugins: [
       imageminMozjpeg({
-        quality: 30,
+        quality: 15,
       }),
     ],
   });
@@ -51,7 +51,7 @@ const imageminMozjpeg = require('imagemin-mozjpeg');
     destination: 'public/images/pages/main/small',
     plugins: [
       imageminMozjpeg({
-        quality: 30,
+        quality: 15,
       }),
     ],
   });
@@ -60,7 +60,7 @@ const imageminMozjpeg = require('imagemin-mozjpeg');
     destination: 'public/images/pages/zephyr/small',
     plugins: [
       imageminMozjpeg({
-        quality: 30,
+        quality: 15,
       }),
     ],
   });
@@ -69,7 +69,7 @@ const imageminMozjpeg = require('imagemin-mozjpeg');
     destination: 'public/images/pages/cheesecakes/small',
     plugins: [
       imageminMozjpeg({
-        quality: 30,
+        quality: 15,
       }),
     ],
   });
@@ -81,5 +81,5 @@ const imageminMozjpeg = require('imagemin-mozjpeg');
   console.log(`Minified ${macaronsFiles.length} files in Macarons folder!`);
   console.log(`Minified ${mainFiles.length} files in Main folder!`);
   console.log(`Minified ${zephyrFiles.length} files in Zephyr folder!`);
-  console.log(`Minified ${cheesecakesFiles.length} files in Zephyr folder!`);
+  console.log(`Minified ${cheesecakesFiles.length} files in Cheesecakes folder!`);
 })();

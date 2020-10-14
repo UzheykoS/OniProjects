@@ -25,6 +25,7 @@ import { useSnackbar, SnackbarType } from '@hooks/useSnackbar';
 import { BREAKPOINT } from '@constants';
 import { Flex } from '@styles/styled';
 import { Success } from './Success';
+import { formatMessage } from '@utils/Helper';
 
 enum CheckoutTabs {
   Delivery = 'Способ доставки',
@@ -129,10 +130,7 @@ export function CheckoutStepper({ returnToBasket }: ICheckoutStepperProps) {
 
   const handlePaymentSubmit = async (payment: PaymentType) => {
     setForm(initialState);
-    const itemsMessage = items.reduce((acc, item) => {
-      acc += `${item.product.id} - ${item.quantity} \n`;
-      return acc;
-    }, '');
+    const itemsMessage = formatMessage(items);
 
     try {
       await submitOrder({ ...form, payment, itemsMessage });

@@ -1,8 +1,6 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { CakeSingle, CakeSubmitInfo } from '@components/products/CakeSingle';
-import { useLoading } from '@hooks/useLoading';
 import { cakes } from '@constants/products';
-import { preloadImages } from '@utils/Helper';
 import { useBasket } from '@hooks/useBasket';
 import { CakesWrapper, CakesInfo, CakesMenuWrapper } from './styled';
 import { FlexRow, FlexColumn } from '@styles/styled';
@@ -10,27 +8,8 @@ import { Typography, useMediaQuery } from '@material-ui/core';
 import { BREAKPOINT } from '@constants';
 
 export function Cakes() {
-  const { showLoading, closeLoading } = useLoading();
   const { addToBasket } = useBasket();
   const isMobile = useMediaQuery(`(max-width: ${BREAKPOINT})`);
-
-  const loadImages = async () => {
-    const imagesArray = new Array<string>();
-    cakes.forEach(cakePair => {
-      cakePair.forEach(cake => {
-        imagesArray.push(cake.imageUrl);
-        imagesArray.push(cake.imageCutUrl!);
-      });
-    });
-    await preloadImages(imagesArray);
-
-    closeLoading();
-  };
-
-  useEffect(() => {
-    showLoading();
-    loadImages();
-  }, []);
 
   const handleCakeAdd = (info: CakeSubmitInfo) => {
     addToBasket({

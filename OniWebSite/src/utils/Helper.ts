@@ -1,6 +1,13 @@
-import { IProduct, macarons, choux, zephyr } from '@constants/products';
+import {
+  IProduct,
+  macarons,
+  choux,
+  zephyr,
+  ProductType,
+} from '@constants/products';
 import { routes, Pages } from '@constants/routes';
 import { ConstructoreMode } from '@components/Constructor/Constructor';
+import { IBasketItem } from '@hooks/useBasket';
 
 export function loadMainPageImage(url: string) {
   return new Promise(resolve => {
@@ -66,4 +73,32 @@ export function getRandomDessert(mode: ConstructoreMode) {
     default:
       return macarons[Math.floor(Math.random() * macarons.length)];
   }
+}
+
+export function formatMessage(items: IBasketItem[]) {
+  const itemsMessage = items.reduce((acc, item) => {
+    acc += `${item.product.type}: ${
+      [ProductType.Macaron, ProductType.Zephyr, ProductType.Choux].indexOf(
+        item.product.type
+      ) > -1
+        ? 'Набор на'
+        : ''
+    } ${item.product.id} - ${item.quantity} ${
+      item.contents?.length
+        ? `(${item.contents.reduce((contentsAcc, contentItem, index) => {
+            contentsAcc +=
+              index === item.contents!.length - 1
+                ? `${contentItem.id}`
+                : `${contentItem.id}, `;
+            return contentsAcc;
+          }, '')})`
+        : [ProductType.Macaron, ProductType.Zephyr, ProductType.Choux].indexOf(
+            item.product.type
+          ) > -1
+        ? '(Ассорти)'
+        : ''
+    }\n`;
+    return acc;
+  }, '');
+  return itemsMessage;
 }

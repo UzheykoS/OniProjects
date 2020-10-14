@@ -168,7 +168,7 @@ export function CakeSingle({ cakePair, onClick }: IProps) {
             <ImageWithFallback src={imageUrl} />
           </ImageWrapperMobile>
           <ImageWrapperMobile>
-            <ImageWithFallback src={imageCutUrl} />
+            <ImageWithFallback isSecondary src={imageCutUrl} />
           </ImageWrapperMobile>
         </Slider>
       </Flex>

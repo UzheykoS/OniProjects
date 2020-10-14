@@ -21,8 +21,8 @@ import { BREAKPOINT } from '@constants';
 import Zoom from '@material-ui/core/Zoom';
 import { TooltipStyled } from '@common/Tooltip/styled';
 import { Button } from '@common/Button';
-import { Flex } from '@styles/styled';
 import CloseIcon from '@material-ui/icons/Close';
+import { Flex } from '@styles/styled';
 
 interface IConstructorGridItemProps {
   item?: IProduct;

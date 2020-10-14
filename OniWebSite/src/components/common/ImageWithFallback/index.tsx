@@ -5,12 +5,14 @@ import { ImageStyled } from './styled';
 export interface IImageWithFallbackProps
   extends React.ImgHTMLAttributes<HTMLImageElement> {
   type?: string;
+  isSecondary?: boolean;
 }
 
 export const ImageWithFallback = ({
   src,
   type = 'image/webp',
   style,
+  isSecondary,
   ...delegated
 }: IImageWithFallbackProps) => {
   const [loading, setLoading] = useState(true);
@@ -37,6 +39,7 @@ export const ImageWithFallback = ({
     const i = new Image();
     state.current.image = i;
     i.onload = onLoad;
+
     if (supports) {
       i.src = srcWebp;
     } else {
@@ -49,10 +52,18 @@ export const ImageWithFallback = ({
   }
 
   const splittedSrc = src!.split('/');
-  const placeholderSrc =
-    splittedSrc.slice(0, splittedSrc.length - 1).join('/') +
-    '/small/' +
-    splittedSrc[splittedSrc.length - 1];
+  const placeholderSrc = isSecondary
+    ? src
+    : splittedSrc.slice(0, splittedSrc.length - 1).join('/') +
+      '/small/' +
+      splittedSrc[splittedSrc.length - 1];
+
+  const generatedSrc = supports
+    ? srcWebp
+    : loading
+    ? `${placeholderSrc}.jpg`
+    : srcJpg;
+
   return (
     <picture
       style={{
@@ -62,12 +73,9 @@ export const ImageWithFallback = ({
         ...style,
       }}
     >
-      <source
-        srcSet={loading ? `${placeholderSrc}.jpg` : srcWebp}
-        type={type}
-      />
+      <source srcSet={generatedSrc} type={type} />
       <ImageStyled
-        src={loading ? `${placeholderSrc}.jpg` : srcJpg}
+        src={generatedSrc}
         blurred={loading}
         alt={splittedSrc[splittedSrc.length - 1]}
         {...delegated}

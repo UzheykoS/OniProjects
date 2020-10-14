@@ -22,6 +22,7 @@ import OneClickBuyModal from '@components/modals/OneClickBuyModal';
 import { submitOneClickOrder } from '@src/api/oni-web';
 import { useSnackbar, SnackbarType } from '@hooks/useSnackbar';
 import colors from '@constants/colors';
+import { formatMessage } from '@utils/Helper';
 
 interface IBasketProps {
   items: IBasketItem[];
@@ -65,10 +66,7 @@ export function Basket({
   };
 
   const handleOneClickBuySubmit = async (phone: string) => {
-    const itemsMessage = items.reduce((acc, item) => {
-      acc += `${item.product.id} - ${item.quantity} \n`;
-      return acc;
-    }, '');
+    const itemsMessage = formatMessage(items);
 
     try {
       await submitOneClickOrder({
