@@ -2,7 +2,6 @@ import styled from 'styled-components';
 import colors from '@constants/colors';
 import { IconButton, IconButtonProps } from '@material-ui/core';
 import React from 'react';
-import { FlexColumn } from '@styles/styled';
 
 export const MainContainer = styled.div`
   display: flex;
@@ -31,7 +30,7 @@ export const BannerTextContent = styled.div`
 export const BannerTextContentMobile = styled.div`
   display: flex;
   flex-direction: column;
-  margin: 6rem 0 3rem 2rem;
+  margin: 6rem 0 3rem 0;
   justify-content: center;
   z-index: 10;
 `;
@@ -119,7 +118,7 @@ export const BackgroundImage = styled.img<IBackgroundImage>`
           max-width: 100%;
           `
           : `
-        top: 0;
+        top: -87px;
         left: 0;
         `
       }
@@ -254,10 +253,4 @@ export const IconButtonStyled = styled(
       background-color: ${colors.secondary.pink};
     }
   }
-`;
-
-export const FlexColumnStyled = styled(FlexColumn)`
-  margin-top: 1px;
-  /* margin-left: -1px; */
-  /* width: calc(100% - 2px) !important; */
 `;

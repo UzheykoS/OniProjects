@@ -5,7 +5,6 @@ import {
   DescriptionLink,
   TopSalesHeader,
   TopSalesProductsMobile,
-  FlexColumnStyled,
 } from '../styled';
 import {
   macarons,
@@ -13,8 +12,9 @@ import {
   zephyr,
   cheesecakes,
   IProduct,
+  cakes,
 } from '@constants/products';
-import { FlexRow, Flex } from '@styles/styled';
+import { FlexRow, Flex, FlexColumn } from '@styles/styled';
 import KeyboardArrowLeft from '@material-ui/icons/KeyboardArrowLeft';
 import KeyboardArrowRight from '@material-ui/icons/KeyboardArrowRight';
 import { Typography } from '@material-ui/core';
@@ -39,37 +39,64 @@ export function TopSalesSection({ isMobile }: IMainPageSectionProps) {
   function addItemToConstructor(product: IProduct) {
     history.push({
       pathname: getDessertRouteKey(product) || '/',
-      state: { productItem: product },
+      // uncomment to add item and  scroll user to constructor
+      // state: { productItem: product },
     });
   }
 
   const sections = [];
-  if (isMobile) {
-    sections.push(
-      <FlexRow key={0}>
-        <FlexColumnStyled bordered isLastChild>
-          <TopSalesItem
-            height={15}
-            product={macarons[0]}
-            isMobile
-            onClick={addItemToConstructor}
-          />
-        </FlexColumnStyled>
-      </FlexRow>
-    );
-    sections.push(
-      <FlexRow key={1}>
-        <FlexColumnStyled bordered isLastChild>
-          <TopSalesItem
-            height={15}
-            product={choux[0]}
-            isMobile
-            onClick={addItemToConstructor}
-          />
-        </FlexColumnStyled>
-      </FlexRow>
-    );
+  sections.push(
+    <FlexColumn style={{ marginTop: '1px' }} bordered key={0}>
+      <TopSalesItem
+        product={macarons[0]}
+        title='Макарон'
+        description='Любимый десерт французов. Маленькое пирожное, которое состоит из двух миндальных половинок, пропитанных начинкой. Яркий вкус, нежная текстура внутри и хрустящая корочка снаружи'
+        onClick={addItemToConstructor}
+      />
+    </FlexColumn>
+  );
+  sections.push(
+    <FlexColumn style={{ marginTop: '1px' }} bordered key={1}>
+      <TopSalesItem
+        product={choux[0]}
+        title='Шу'
+        description='Основа пирожного шу – заварное тесто, покрытое тонким хрустящим слоем. Внутри – много начинки и лёгкого крема. Украшаем разноцветными кружочками из марципана'
+        onClick={addItemToConstructor}
+      />
+    </FlexColumn>
+  );
+  sections.push(
+    <FlexColumn style={{ marginTop: '1px' }} bordered key={2}>
+      <TopSalesItem
+        product={zephyr[0]}
+        title='Зефир'
+        description='Как в детстве, только ещё вкуснее. Мы разработали рецептуру с пониженным содержанием сахара и готовим зефир на основе натуральных фруктовых пюре без красителей и ароматизаторов'
+        onClick={addItemToConstructor}
+      />
+    </FlexColumn>
+  );
+  sections.push(
+    <FlexColumn style={{ marginTop: '1px' }} bordered key={3}>
+      <TopSalesItem
+        product={cheesecakes[0]}
+        title='Чизкейки'
+        description=''
+        onClick={addItemToConstructor}
+      />
+    </FlexColumn>
+  );
+  sections.push(
+    <FlexColumn style={{ marginTop: '1px' }} bordered key={4}>
+      <TopSalesItem
+        product={cakes[0][0]}
+        title='Торты'
+        description='Баланс во вкусе, правильная текстура и аппетитный декор – это наш идеальный торт. Каждый продуман до мелочей и заставляет посмотреть на десерты по-новому'
+        onClick={addItemToConstructor}
+      />
+    </FlexColumn>
+  );
 
+  if (isMobile) {
     return (
       <Flex direction={'column'} style={{ margin: '2rem' }}>
         <TopSalesHeader>
@@ -109,7 +136,9 @@ export function TopSalesSection({ isMobile }: IMainPageSectionProps) {
               // beforeChange: (_current, next) => setActiveStep(next),
             }}
           >
-            {sections}
+            {sections.map((s, i) => (
+              <FlexRow key={i}>{s}</FlexRow>
+            ))}
           </Slider>
         </TopSalesProductsMobile>
         <Flex flexEnd>
@@ -120,37 +149,6 @@ export function TopSalesSection({ isMobile }: IMainPageSectionProps) {
       </Flex>
     );
   }
-
-  sections.push(
-    <FlexColumnStyled bordered key={0}>
-      <TopSalesItem product={macarons[0]} onClick={addItemToConstructor} />
-    </FlexColumnStyled>
-  );
-  sections.push(
-    <FlexColumnStyled bordered key={1}>
-      <TopSalesItem product={choux[1]} onClick={addItemToConstructor} />
-    </FlexColumnStyled>
-  );
-  sections.push(
-    <FlexColumnStyled bordered key={2}>
-      <TopSalesItem product={macarons[2]} onClick={addItemToConstructor} />
-    </FlexColumnStyled>
-  );
-  sections.push(
-    <FlexColumnStyled bordered key={3}>
-      <TopSalesItem product={zephyr[1]} onClick={addItemToConstructor} />
-    </FlexColumnStyled>
-  );
-  sections.push(
-    <FlexColumnStyled bordered key={4}>
-      <TopSalesItem product={macarons[4]} onClick={addItemToConstructor} />
-    </FlexColumnStyled>
-  );
-  sections.push(
-    <FlexColumnStyled bordered key={5}>
-      <TopSalesItem product={cheesecakes[0]} onClick={addItemToConstructor} />
-    </FlexColumnStyled>
-  );
 
   return (
     <Flex direction={'column'}>

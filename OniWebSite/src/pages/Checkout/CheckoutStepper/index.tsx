@@ -3,7 +3,6 @@ import {
   Content,
   CheckoutHeaderWrapper,
   CheckoutStepperContainer,
-  TextLink,
   HelperText,
   BackArrowWrapper,
 } from '../styled';
@@ -26,6 +25,7 @@ import { BREAKPOINT } from '@constants';
 import { Flex } from '@styles/styled';
 import { Success } from './Success';
 import { formatMessage } from '@utils/Helper';
+import { TextLink } from '@common/styled';
 
 enum CheckoutTabs {
   Delivery = 'Способ доставки',
@@ -44,13 +44,13 @@ enum CheckoutSteps {
 export interface IRequiredContactData {
   name?: string;
   phone?: string;
+  address?: string;
 }
 
 export interface IContactData extends IRequiredContactData {
   comments?: string;
   date?: string | null;
   time?: string | null;
-  address?: string;
 }
 
 export interface IOrder extends IContactData {

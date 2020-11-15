@@ -16,6 +16,8 @@ interface IProps extends IProductSingleWrapper {
   product: IProduct;
   height?: number;
   isMobile?: boolean;
+  title?: string;
+  description?: string;
   onClick: (item: IProduct) => void;
 }
 export function TopSalesItem({
@@ -23,6 +25,8 @@ export function TopSalesItem({
   product,
   isMobile,
   onClick,
+  title,
+  description,
 }: IProps) {
   const [mouseOver, setMouseOver] = useState(false);
 
@@ -37,9 +41,15 @@ export function TopSalesItem({
   function getImageHeight() {
     switch (product.type) {
       case ProductType.Choux:
-        return 160;
+        return 180;
       case ProductType.Cheesecake:
-        return 140;
+        return 160;
+      case ProductType.Macaron:
+        return 130;
+      case ProductType.Zephyr:
+        return 180;
+      case ProductType.Cake:
+        return 200;
       default:
         return;
     }
@@ -64,8 +74,8 @@ export function TopSalesItem({
         </AddIconWrapper>
       )}
       <ProductImageWrapper src={product.imageUrl} height={getImageHeight()} />
-      <Title>{product.id}</Title>
-      <Description>{product.fullDescription}</Description>
+      <Title>{title || product.id}</Title>
+      <Description>{description || product.fullDescription}</Description>
     </ProductSingleWrapper>
   );
 }

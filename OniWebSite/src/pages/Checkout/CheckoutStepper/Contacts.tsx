@@ -21,6 +21,7 @@ import { DeliveryType } from './Delivery';
 
 export const INVALID_NAME = 'Введите Ваше имя';
 export const INVALID_PHONE = 'Введите правильный номер телефона';
+export const INVALID_ADDRESS = 'Введите адрес';
 export const numberPattern = /\d+/g;
 
 interface IProps {
@@ -76,6 +77,12 @@ export function Contacts({
         phone: !value || value.indexOf('_') > -1 ? INVALID_PHONE : undefined,
       });
     }
+    if (key === 'address' && delivery === DeliveryType.Delivery) {
+      setFormErrors({
+        ...formErrors,
+        address: value ? undefined : INVALID_ADDRESS,
+      });
+    }
   };
 
   const handleDateChange = (date: Date | null) => {
@@ -94,6 +101,10 @@ export function Contacts({
     const errors = { ...formErrors };
     errors.name = formData.name ? undefined : INVALID_NAME;
     errors.phone = formData.phone ? undefined : INVALID_PHONE;
+    errors.address =
+      delivery !== DeliveryType.Delivery || formData.address
+        ? undefined
+        : INVALID_ADDRESS;
     setFormErrors(errors);
 
     if (Object.values(errors).filter(Boolean).length) {
@@ -207,11 +218,20 @@ export function Contacts({
               label='Адрес'
               name='address'
               value={formData.address}
-              disabled={delivery === DeliveryType.SelfService}
               onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
                 handleChange('address', e.target.value)
               }
+              onBlur={(e: React.FocusEvent<HTMLInputElement>) =>
+                handleBlur('address', e.target.value)
+              }
               variant='outlined'
+              disabled={delivery === DeliveryType.SelfService}
+              required={delivery === DeliveryType.Delivery}
+              FormHelperTextProps={{
+                classes: { root: classes.formHelperText },
+              }}
+              error={!!formErrors.address}
+              helperText={formErrors.address}
             />
           </Flex>
         </Flex>

@@ -70,7 +70,7 @@ export function Cheesecakes() {
             onClick={handleCheesecakeClick}
           />
         </FlexColumn>
-        <FlexColumn bordered>
+        <FlexColumn bordered isLastChild>
           <CheesecakeSingle
             product={cheesecakes[2]}
             showButton

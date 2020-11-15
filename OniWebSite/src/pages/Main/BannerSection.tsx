@@ -34,8 +34,8 @@ export function BannerSection({ isMobile }: IMainPageSectionProps) {
         <BackgroundImage
           src={
             supports
-              ? './images/pages/main/main_1.webp'
-              : './images/pages/main/main_1.jpg'
+              ? './images/pages/main/main_2.webp'
+              : './images/pages/main/main_2.jpg'
           }
           onLoad={onImageLoaded}
           isMobile

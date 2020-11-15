@@ -5,7 +5,6 @@ import {
   BasketTable,
   BasketHeader,
   BasketHeaderCell,
-  TextLink,
   TotalMobile,
   BackArrowWrapper,
 } from './styled';
@@ -21,8 +20,8 @@ import { Flex } from '@styles/styled';
 import OneClickBuyModal from '@components/modals/OneClickBuyModal';
 import { submitOneClickOrder } from '@src/api/oni-web';
 import { useSnackbar, SnackbarType } from '@hooks/useSnackbar';
-import colors from '@constants/colors';
 import { formatMessage } from '@utils/Helper';
+import { TextLink } from '@common/styled';
 
 interface IBasketProps {
   items: IBasketItem[];
@@ -222,7 +221,6 @@ export function Basket({
             </TextLink>
             <Button
               rounded
-              style={{ border: `1px solid ${colors.secondary.pink}` }}
               disabled={!items.length}
               onClick={handleCheckoutClick}
             >
