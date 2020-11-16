@@ -2,6 +2,7 @@ import styled from 'styled-components';
 import colors from '@constants/colors';
 import { IconButton, IconButtonProps } from '@material-ui/core';
 import React from 'react';
+import { FlexColumn } from '@styles/styled';
 
 export const MainContainer = styled.div`
   display: flex;
@@ -253,4 +254,8 @@ export const IconButtonStyled = styled(
       background-color: ${colors.secondary.pink};
     }
   }
+`;
+
+export const FlexColumnStyled = styled(FlexColumn as any)`
+  margin-top: 1px;
 `;

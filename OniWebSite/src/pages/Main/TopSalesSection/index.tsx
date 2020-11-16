@@ -5,6 +5,7 @@ import {
   DescriptionLink,
   TopSalesHeader,
   TopSalesProductsMobile,
+  FlexColumnStyled,
 } from '../styled';
 import {
   macarons,
@@ -14,7 +15,7 @@ import {
   IProduct,
   cakes,
 } from '@constants/products';
-import { FlexRow, Flex, FlexColumn } from '@styles/styled';
+import { FlexRow, Flex } from '@styles/styled';
 import KeyboardArrowLeft from '@material-ui/icons/KeyboardArrowLeft';
 import KeyboardArrowRight from '@material-ui/icons/KeyboardArrowRight';
 import { Typography } from '@material-ui/core';
@@ -46,54 +47,54 @@ export function TopSalesSection({ isMobile }: IMainPageSectionProps) {
 
   const sections = [];
   sections.push(
-    <FlexColumn style={{ marginTop: '1px' }} bordered key={0}>
+    <FlexColumnStyled bordered key={0}>
       <TopSalesItem
         product={macarons[0]}
         title='Макарон'
         description='Любимый десерт французов. Маленькое пирожное, которое состоит из двух миндальных половинок, пропитанных начинкой. Яркий вкус, нежная текстура внутри и хрустящая корочка снаружи'
         onClick={addItemToConstructor}
       />
-    </FlexColumn>
+    </FlexColumnStyled>
   );
   sections.push(
-    <FlexColumn style={{ marginTop: '1px' }} bordered key={1}>
+    <FlexColumnStyled bordered key={1}>
       <TopSalesItem
         product={choux[0]}
         title='Шу'
         description='Основа пирожного шу – заварное тесто, покрытое тонким хрустящим слоем. Внутри – много начинки и лёгкого крема. Украшаем разноцветными кружочками из марципана'
         onClick={addItemToConstructor}
       />
-    </FlexColumn>
+    </FlexColumnStyled>
   );
   sections.push(
-    <FlexColumn style={{ marginTop: '1px' }} bordered key={2}>
+    <FlexColumnStyled bordered key={2}>
       <TopSalesItem
         product={zephyr[0]}
         title='Зефир'
         description='Как в детстве, только ещё вкуснее. Мы разработали рецептуру с пониженным содержанием сахара и готовим зефир на основе натуральных фруктовых пюре без красителей и ароматизаторов'
         onClick={addItemToConstructor}
       />
-    </FlexColumn>
+    </FlexColumnStyled>
   );
   sections.push(
-    <FlexColumn style={{ marginTop: '1px' }} bordered key={3}>
+    <FlexColumnStyled bordered key={3}>
       <TopSalesItem
         product={cheesecakes[0]}
         title='Чизкейки'
         description=''
         onClick={addItemToConstructor}
       />
-    </FlexColumn>
+    </FlexColumnStyled>
   );
   sections.push(
-    <FlexColumn style={{ marginTop: '1px' }} bordered key={4}>
+    <FlexColumnStyled bordered key={4}>
       <TopSalesItem
         product={cakes[0][0]}
         title='Торты'
         description='Баланс во вкусе, правильная текстура и аппетитный декор – это наш идеальный торт. Каждый продуман до мелочей и заставляет посмотреть на десерты по-новому'
         onClick={addItemToConstructor}
       />
-    </FlexColumn>
+    </FlexColumnStyled>
   );
 
   if (isMobile) {
