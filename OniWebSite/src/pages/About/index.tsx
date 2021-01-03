@@ -19,7 +19,7 @@ export function About() {
       <Flex
         direction={isMobile ? 'column' : 'row'}
         justifyCenter
-        style={{ margin: isMobile ? '5rem 2rem 2rem 2rem' : '50px 0px' }}
+        style={{ margin: isMobile ? '5rem 2rem 2rem 2rem' : '50px 0px 85px 0' }}
       >
         <Flex
           direction='column'
@@ -211,7 +211,7 @@ export function About() {
             >
               Только{' '}
               <span style={{ color: colors.secondary.gold }}>натуральные</span>{' '}
-              ингредиенты. Без компромиссов.
+              ингредиенты. {'\n'}Без компромиссов.
             </Typography>
           </Flex>
           {!isMobile && (

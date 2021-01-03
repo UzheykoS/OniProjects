@@ -82,7 +82,7 @@ export const AboutImageSectionMobile = styled.div`
 `;
 
 export const ImagesContainer = styled.div`
-  margin-bottom: 25px;
+  margin-bottom: 70px;
   width: 100%;
   height: 680px;
   object-fit: cover;
@@ -172,7 +172,7 @@ export const DescriptionLink = styled.a`
   font-family: 'Roboto', sans-serif;
   font-weight: 400;
   font-size: 16px;
-  color: red;
+  color: #ff3e69;
   text-transform: uppercase;
   text-decoration: none;
 `;

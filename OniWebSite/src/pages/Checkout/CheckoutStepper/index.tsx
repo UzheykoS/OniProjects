@@ -179,14 +179,21 @@ export function CheckoutStepper({ returnToBasket }: ICheckoutStepperProps) {
 
       {isMobile && <Typography variant='h2'>Оформление заказа</Typography>}
 
-      {!!totalPrice && (
-        <Flex alignBaseline style={{ marginTop: '10px' }}>
-          <HelperText>Сумма вашего заказа: </HelperText>
-          <Typography variant='h2' style={{ fontSize: 16 }}>
-            {totalPrice} грн.
-          </Typography>
-        </Flex>
-      )}
+      {!!totalPrice &&
+        (activeStep === CheckoutSteps.Delivery ? (
+          <Flex alignBaseline style={{ marginTop: '10px' }}>
+            <HelperText>
+              Минимальная сумма заказа для доставки курьером составляет 200 грн
+            </HelperText>
+          </Flex>
+        ) : (
+          <Flex alignBaseline style={{ marginTop: '10px' }}>
+            <HelperText>Сумма заказа: </HelperText>
+            <Typography variant='h2' style={{ fontSize: 16 }}>
+              {totalPrice} грн
+            </Typography>
+          </Flex>
+        ))}
 
       {activeStep !== CheckoutSteps.Success && (
         <Stepper

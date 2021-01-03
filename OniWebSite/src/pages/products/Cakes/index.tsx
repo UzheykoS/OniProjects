@@ -23,13 +23,14 @@ export function Cakes() {
       <FlexRow>
         <FlexColumn style={{ flexGrow: 1, flexShrink: 2 }}>
           <Typography
-            variant='h3'
+            variant='h1'
             style={{
               whiteSpace: 'nowrap',
               margin: isMobile ? '50px 10px 10px 10px' : '0 100px 0 0',
+              fontSize: '40px',
             }}
           >
-            ТОРТЫ
+            Торты
           </Typography>
         </FlexColumn>
         <FlexColumn style={{ flexGrow: 2 }}>

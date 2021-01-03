@@ -117,13 +117,13 @@ export const chouxMix: IProduct[] = [
     id: Choux.ChouxMixSmall,
     imageUrl: './images/pages/choux/box-2',
     type: ProductType.Choux,
-    price: 180,
+    price: 90,
   },
   {
     id: Choux.ChouxMixLarge,
     imageUrl: './images/pages/choux/box-4',
     type: ProductType.Choux,
-    price: 360,
+    price: 180,
   },
 ];
 

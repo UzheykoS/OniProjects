@@ -51,7 +51,7 @@ export function TopSalesSection({ isMobile }: IMainPageSectionProps) {
       <TopSalesItem
         product={macarons[0]}
         title='Макарон'
-        description='Любимый десерт французов. Маленькое пирожное, которое состоит из двух миндальных половинок, пропитанных начинкой. Яркий вкус, нежная текстура внутри и хрустящая корочка снаружи'
+        description='15 вкусов и все любимые'
         onClick={addItemToConstructor}
       />
     </FlexColumnStyled>
@@ -61,7 +61,7 @@ export function TopSalesSection({ isMobile }: IMainPageSectionProps) {
       <TopSalesItem
         product={choux[0]}
         title='Шу'
-        description='Основа пирожного шу – заварное тесто, покрытое тонким хрустящим слоем. Внутри – много начинки и лёгкого крема. Украшаем разноцветными кружочками из марципана'
+        description='Как эклеры, только лучше'
         onClick={addItemToConstructor}
       />
     </FlexColumnStyled>
@@ -71,7 +71,7 @@ export function TopSalesSection({ isMobile }: IMainPageSectionProps) {
       <TopSalesItem
         product={zephyr[0]}
         title='Зефир'
-        description='Как в детстве, только ещё вкуснее. Мы разработали рецептуру с пониженным содержанием сахара и готовим зефир на основе натуральных фруктовых пюре без красителей и ароматизаторов'
+        description='Легко, воздушно, натурально'
         onClick={addItemToConstructor}
       />
     </FlexColumnStyled>
@@ -81,7 +81,7 @@ export function TopSalesSection({ isMobile }: IMainPageSectionProps) {
       <TopSalesItem
         product={cheesecakes[0]}
         title='Чизкейки'
-        description=''
+        description='Такие, как должны быть'
         onClick={addItemToConstructor}
       />
     </FlexColumnStyled>
@@ -91,7 +91,7 @@ export function TopSalesSection({ isMobile }: IMainPageSectionProps) {
       <TopSalesItem
         product={cakes[0][0]}
         title='Торты'
-        description='Баланс во вкусе, правильная текстура и аппетитный декор – это наш идеальный торт. Каждый продуман до мелочей и заставляет посмотреть на десерты по-новому'
+        description='Муссовые и не только'
         onClick={addItemToConstructor}
       />
     </FlexColumnStyled>
@@ -110,7 +110,7 @@ export function TopSalesSection({ isMobile }: IMainPageSectionProps) {
               flexDirection: 'column',
             }}
           >
-            ТОП ПРОДАЖ
+            НАШИ ДЕСЕРТЫ
           </Typography>
           <div>
             <IconButtonStyled onClick={handleBack} left>
@@ -144,7 +144,7 @@ export function TopSalesSection({ isMobile }: IMainPageSectionProps) {
         </TopSalesProductsMobile>
         <Flex flexEnd>
           <DescriptionLink href='/products'>
-            {`${SEPARATORS.DASH} ДЕСЕРТЫ`}
+            {`${SEPARATORS.DASH} ПОДРОБНЕЕ`}
           </DescriptionLink>
         </Flex>
       </Flex>
@@ -155,10 +155,10 @@ export function TopSalesSection({ isMobile }: IMainPageSectionProps) {
     <Flex direction={'column'}>
       <TopSalesHeader>
         <Typography variant='h3' gutterBottom>
-          ТОП ПРОДАЖ
+          НАШИ ДЕСЕРТЫ
         </Typography>
         <DescriptionLink href='/products'>
-          {`${SEPARATORS.DASH} ДЕСЕРТЫ`}
+          {`${SEPARATORS.DASH} ПОДРОБНЕЕ`}
         </DescriptionLink>
       </TopSalesHeader>
       <TopSalesProducts>

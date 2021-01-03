@@ -1,11 +1,12 @@
 import React from 'react';
-import { CheesecakesWrapper, CheesecakesInfo } from './styled';
+import { CheesecakesInfo } from './styled';
 import { Typography, useMediaQuery } from '@material-ui/core';
 import { FlexRow, FlexColumn } from '@styles/styled';
 import { cheesecakes, IProduct } from '@constants/products';
 import { useBasket } from '@hooks/useBasket';
 import { CheesecakeSingle } from '@components/products/CheesecakeSingle';
 import { BREAKPOINT } from '@constants';
+import { DessertsWrapperBase } from '@common/styled';
 
 export function Cheesecakes() {
   const { addToBasket } = useBasket();
@@ -16,17 +17,18 @@ export function Cheesecakes() {
   };
 
   return (
-    <CheesecakesWrapper>
+    <DessertsWrapperBase>
       <FlexRow>
         <FlexColumn style={{ flexGrow: 1, flexShrink: 2 }}>
           <Typography
-            variant='h3'
+            variant='h1'
             style={{
               whiteSpace: 'nowrap',
               margin: isMobile ? '50px 10px 10px 10px' : '0 100px 0 0',
+              fontSize: '40px',
             }}
           >
-            ЧИЗКЕЙКИ
+            Чизкейки
           </Typography>
         </FlexColumn>
         <FlexColumn style={{ flexGrow: 2 }}>
@@ -38,9 +40,9 @@ export function Cheesecakes() {
                 margin: isMobile ? '10px 10px 20px 10px' : '0 120px 20px 0',
               }}
             >
-              Макарон – это маленькое пирожное, которое состоит из двух
-              миндальных половинок, пропитанных начинкой. Яркий вкус, нежная
-              текстура внутри и хрустящая корочка снаружи.{' '}
+              Мы делаем запечённые чизкейки на основе сыра Филадельфия - всё,
+              как надо. В нашем меню три вкуса. Кардинально разные, чтобы каждый
+              нашёл что-то для себя.
             </Typography>
             <Typography
               variant='body2'
@@ -78,6 +80,6 @@ export function Cheesecakes() {
           />
         </FlexColumn>
       </FlexRow>
-    </CheesecakesWrapper>
+    </DessertsWrapperBase>
   );
 }

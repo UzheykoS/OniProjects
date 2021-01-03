@@ -103,7 +103,7 @@ export function Basket({
       </CheckoutHeaderWrapper>
       {isMobile && <Typography variant='h2'>Корзина</Typography>}
       <Typography style={{ fontSize: 13 }} variant='body2'>
-        Минимальная стоимость заказа для доставки курьером составляет 200 грн.
+        Минимальная сумма заказа для доставки курьером составляет 200 грн
       </Typography>
       <BasketTable>
         {!isMobile && (

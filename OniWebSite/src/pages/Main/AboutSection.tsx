@@ -19,10 +19,6 @@ export function AboutSection({ isMobile }: IMainPageSectionProps) {
   if (isMobile) {
     return (
       <InfoSectionMobile>
-        <Typography variant='h3' style={{ marginBottom: '1rem' }}>
-          О НАС
-        </Typography>
-
         <Typography variant='h1' style={{ lineHeight: '30px', fontSize: 26 }}>
           Мы{' '}
           <span style={{ color: colors.secondary.gold }}>фанаты десертов</span>{' '}
@@ -78,9 +74,6 @@ export function AboutSection({ isMobile }: IMainPageSectionProps) {
 
   return (
     <InfoSection>
-      <Typography variant='h3' style={{ marginBottom: '2rem' }}>
-        О НАС
-      </Typography>
       <Typography variant='h1'>
         Мы <span style={{ color: colors.secondary.gold }}>фанаты десертов</span>{' '}
         и хотим,

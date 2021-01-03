@@ -108,7 +108,7 @@ const MixSelectModal: FC<IMixSelectModalModalProps> = ({
               Цена
             </Typography>
             <Typography variant='body1' style={{ fontFamily: 'Yeseva One' }}>
-              {`${Number(mix.price) * quantity} грн.`}
+              {`${Number(mix.price) * quantity} грн`}
             </Typography>
           </Flex>
         </Flex>

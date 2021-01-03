@@ -1,5 +1,5 @@
 import React, { useReducer, useState, useCallback, useEffect } from 'react';
-import { ChouxWrapper, ChouxInfo } from './styled';
+import { ChouxInfo } from './styled';
 import { Typography, useMediaQuery } from '@material-ui/core';
 import { FlexRow, FlexColumn } from '@styles/styled';
 import {
@@ -17,6 +17,7 @@ import { useBasket } from '@hooks/useBasket';
 import { SCROLL_INTO_VIEW_ELEMENT, BREAKPOINT } from '@constants';
 import { useLocation } from 'react-router-dom';
 import { ILocationStateProps, getConstructorMode } from '..';
+import { DessertsWrapperBase } from '@common/styled';
 
 export function ChouxPage() {
   const location = useLocation();
@@ -59,6 +60,24 @@ export function ChouxPage() {
   const handleClose = useCallback(() => setSelectedMix(undefined), []);
   const { addToBasket } = useBasket();
   const isMobile = useMediaQuery(`(max-width: ${BREAKPOINT})`);
+
+  const [atBottom, setAtBottom] = useState(false);
+
+  const handleScroll = () => {
+    // check that constructor can overlay footer
+    if (document.documentElement.scrollHeight - 950 <= window.scrollY) {
+      setAtBottom(true);
+    } else {
+      setAtBottom(false);
+    }
+  };
+
+  useEffect(() => {
+    window.addEventListener('scroll', handleScroll);
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, []);
 
   const handleChouxClick = (item: IProduct) => {
     if (!expanded && !isMobile) {
@@ -129,17 +148,18 @@ export function ChouxPage() {
   }
 
   return (
-    <ChouxWrapper>
+    <DessertsWrapperBase>
       <FlexRow>
         <FlexColumn style={{ flexGrow: 1, flexShrink: 2 }}>
           <Typography
-            variant='h3'
+            variant='h1'
             style={{
               whiteSpace: 'nowrap',
               margin: isMobile ? '50px 10px 10px 10px' : '0 100px 0 0',
+              fontSize: '40px',
             }}
           >
-            ШУ
+            Шу
           </Typography>
         </FlexColumn>
         <FlexColumn style={{ flexGrow: 2 }}>
@@ -217,7 +237,7 @@ export function ChouxPage() {
         {!isMobile && (
           <FlexColumn
             style={{
-              position: 'relative',
+              position: !atBottom ? 'relative' : undefined,
             }}
           >
             <ConstructorContainer
@@ -225,8 +245,9 @@ export function ChouxPage() {
               dispatch={dispatch}
               expanded={expanded}
               setExpanded={setExpanded}
-              stickyLimit={625}
+              stickyLimit={687}
               editItem={editItem}
+              limitBottom={expanded && atBottom}
             />
           </FlexColumn>
         )}
@@ -242,6 +263,6 @@ export function ChouxPage() {
           cancelModal={cancelModal}
         />
       )}
-    </ChouxWrapper>
+    </DessertsWrapperBase>
   );
 }

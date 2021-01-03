@@ -97,7 +97,7 @@ export function BasketItemMobile({
         </Flex>
         <Flex>
           <Typography variant='h2' style={{ fontSize: 16 }}>
-            {`${Number(product.price) * quantity} грн.`}
+            {`${Number(product.price) * quantity} грн`}
           </Typography>
         </Flex>
       </Flex>

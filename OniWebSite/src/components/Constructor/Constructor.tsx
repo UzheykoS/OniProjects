@@ -18,7 +18,7 @@ import { Button } from '@common/Button';
 import { ConstructorGridItem } from './ConstructorGridItem';
 import { useBasket, IBasketItem } from '@hooks/useBasket';
 import { IProduct, macaronMix, chouxMix, zephyrMix } from '@constants/products';
-import ConstructorClearModal from './ConstructorClearModal';
+// import ConstructorClearModal from './ConstructorClearModal';
 import colors from '@constants/colors';
 import { getRandomDessert } from '@utils/Helper';
 import { Flex } from '@styles/styled';
@@ -460,13 +460,13 @@ export function Constructor({
           </CenteredRow>
         )}
       </ConstructorWrapper>
-      {!isMobile && (
+      {/* {!isMobile && (
         <ConstructorClearModal
           confirmClear={handleClear}
           closeModal={handleClearModalClose}
           open={showClear}
         />
-      )}
+      )} */}
     </>
   );
 }

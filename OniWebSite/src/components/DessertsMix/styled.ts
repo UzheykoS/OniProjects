@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import { BREAKPOINT } from '@constants';
+import colors from '@constants/colors';
 
 export interface IMixSection {
   size: 'small' | 'large';
@@ -56,7 +57,9 @@ export const TitleWrapper = styled.div`
 export const DessertMixTitle = styled.div`
   font-family: 'Yeseva One';
   font-weight: 400;
-  font-size: 16px;
-  padding: 0 0px 5px 20px;
+  font-size: 20px;
+  padding: 0 0 0 10px;
+  border-left: 3px solid ${colors.primary.gold};
+  margin-left: 10px;
   white-space: nowrap;
 `;

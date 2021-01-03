@@ -13,8 +13,12 @@ export const CakeSingleWrapper = styled.div`
   justify-content: space-between;
   padding: 20px;
   border: 1px solid ${colors.primary.grey};
+  border-bottom: none;
   @media (max-width: ${BREAKPOINT}) {
     flex-direction: column;
+  }
+  &:last-child {
+    border-bottom: 1px solid ${colors.primary.grey};
   }
 `;
 

@@ -1,5 +1,5 @@
 import React, { useReducer, useState, useCallback, useEffect } from 'react';
-import { ZephyrWrapper, ZephyrInfo } from './styled';
+import { ZephyrInfo } from './styled';
 import { Typography, useMediaQuery } from '@material-ui/core';
 import { FlexRow, FlexColumn } from '@styles/styled';
 import {
@@ -17,6 +17,7 @@ import { useBasket } from '@hooks/useBasket';
 import { SCROLL_INTO_VIEW_ELEMENT, BREAKPOINT } from '@constants';
 import { useLocation } from 'react-router-dom';
 import { ILocationStateProps, getConstructorMode } from '..';
+import { DessertsWrapperBase } from '@common/styled';
 
 export function ZephyrPage() {
   const location = useLocation();
@@ -143,17 +144,18 @@ export function ZephyrPage() {
   }
 
   return (
-    <ZephyrWrapper>
+    <DessertsWrapperBase>
       <FlexRow>
         <FlexColumn style={{ flexGrow: 1, flexShrink: 2 }}>
           <Typography
-            variant='h3'
+            variant='h1'
             style={{
               whiteSpace: 'nowrap',
               margin: isMobile ? '50px 10px 10px 10px' : '0 100px 0 0',
+              fontSize: '40px',
             }}
           >
-            ЗЕФИР
+            Зефир
           </Typography>
         </FlexColumn>
         <FlexColumn style={{ flexGrow: 2 }}>
@@ -241,7 +243,7 @@ export function ZephyrPage() {
               dispatch={dispatch}
               expanded={expanded}
               setExpanded={setExpanded}
-              stickyLimit={760}
+              stickyLimit={800}
               editItem={editItem}
               limitBottom={expanded && atBottom}
             />
@@ -259,6 +261,6 @@ export function ZephyrPage() {
           cancelModal={cancelModal}
         />
       )}
-    </ZephyrWrapper>
+    </DessertsWrapperBase>
   );
 }

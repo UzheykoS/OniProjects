@@ -33,7 +33,7 @@ export const ExpansionPanelStyled = styled(
 
   @media (min-width: ${BREAKPOINT}) {
     position: absolute;
-    top: 45px;
+    top: 107px;
     width: 310px;
     margin-left: 20px;
   }

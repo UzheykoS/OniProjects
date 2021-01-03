@@ -89,7 +89,7 @@ export function BasketItem({
       </BasketItemWrapperCell>
       <BasketItemWrapperCell width={20}>
         <Typography variant='body1'>
-          {`${Number(product.price) * quantity} грн.`}
+          {`${Number(product.price) * quantity} грн`}
         </Typography>
         <IconButton onClick={() => onRemoveItemClick(item)}>
           <DeleteIcon />
