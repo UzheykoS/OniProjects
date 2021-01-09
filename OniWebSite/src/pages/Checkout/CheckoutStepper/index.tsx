@@ -94,19 +94,25 @@ export function CheckoutStepper({ returnToBasket }: ICheckoutStepperProps) {
   const { showSnackbar } = useSnackbar();
   const isMobile = useMediaQuery(`(max-width: ${BREAKPOINT})`);
 
-  const handleDeliveryChange = (delivery: DeliveryType) => {
-    if (delivery === DeliveryType.SelfService) {
+  const handleDeliveryChange = (deliveryValue: DeliveryType) => {
+    if (deliveryValue === DeliveryType.SelfService) {
       setForm({
         ...form,
-        delivery,
+        delivery: deliveryValue,
         address: 'Самовывоз: бул. Вацлава Гавела, 9А',
       });
     } else {
-      setForm({ ...form, delivery, address: '' });
+      setForm({ ...form, delivery: deliveryValue, address: '' });
     }
   };
 
   const handleDeliverySubmit = () => {
+    if (form.delivery === DeliveryType.Delivery) {
+      addDelivery();
+    } else {
+      removeDelivery();
+    }
+
     window.scrollTo({
       top: 0,
       left: 0,
@@ -150,9 +156,16 @@ export function CheckoutStepper({ returnToBasket }: ICheckoutStepperProps) {
     setActiveStep(step);
   };
 
+  const handleContactsBackClick = () => {
+    removeDelivery();
+    setActiveStep(CheckoutSteps.Delivery);
+    setForm({ ...form, date: null });
+  };
+
   function isStepComplete(step: CheckoutSteps) {
     return step < activeStep;
   }
+
   return (
     <CheckoutStepperContainer>
       {isMobile ? (
@@ -179,21 +192,14 @@ export function CheckoutStepper({ returnToBasket }: ICheckoutStepperProps) {
 
       {isMobile && <Typography variant='h2'>Оформление заказа</Typography>}
 
-      {!!totalPrice &&
-        (activeStep === CheckoutSteps.Delivery ? (
-          <Flex alignBaseline style={{ marginTop: '10px' }}>
-            <HelperText>
-              Минимальная сумма заказа для доставки курьером составляет 200 грн
-            </HelperText>
-          </Flex>
-        ) : (
-          <Flex alignBaseline style={{ marginTop: '10px' }}>
-            <HelperText>Сумма заказа: </HelperText>
-            <Typography variant='h2' style={{ fontSize: 16 }}>
-              {totalPrice} грн
-            </Typography>
-          </Flex>
-        ))}
+      {!!totalPrice && (
+        <Flex alignBaseline style={{ marginTop: '10px' }}>
+          <HelperText>Сумма заказа: </HelperText>
+          <Typography variant='h2' style={{ fontSize: 16 }}>
+            {totalPrice} грн
+          </Typography>
+        </Flex>
+      )}
 
       {activeStep !== CheckoutSteps.Success && (
         <Stepper
@@ -225,8 +231,7 @@ export function CheckoutStepper({ returnToBasket }: ICheckoutStepperProps) {
           <Delivery
             totalPrice={totalPrice}
             delivery={form.delivery}
-            addDelivery={addDelivery}
-            removeDelivery={removeDelivery}
+            items={items}
             handleDeliveryChange={handleDeliveryChange}
             handleContinue={handleDeliverySubmit}
           />
@@ -238,7 +243,7 @@ export function CheckoutStepper({ returnToBasket }: ICheckoutStepperProps) {
             delivery={form.delivery}
             totalPrice={totalPrice}
             handleContinue={handleContactDataSubmit}
-            handleBackClick={() => setActiveStep(CheckoutSteps.Delivery)}
+            handleBackClick={handleContactsBackClick}
           />
         )}
         {activeStep === CheckoutSteps.Payment && (

@@ -18,6 +18,7 @@ import DatePickerWrapper from '@common/DatePicker';
 import { Flex } from '@styles/styled';
 import { BREAKPOINT } from '@constants';
 import { DeliveryType } from './Delivery';
+import { TextLink } from '@common/styled';
 
 export const INVALID_NAME = 'Введите Ваше имя';
 export const INVALID_PHONE = 'Введите правильный номер телефона';
@@ -114,21 +115,23 @@ export function Contacts({
     }
   }
 
+  const tomorrow = new Date();
+  tomorrow.setDate(tomorrow.getDate() + 1);
+
   return (
     <MainWrapper>
-      <Typography variant={'body2'} style={{ marginBottom: 14 }}>
-        * Поле обязательное к заполнению
-      </Typography>
       <FormWrapper noValidate autoComplete='on'>
         <Flex style={{ width: '100%' }} direction={isMobile ? 'column' : 'row'}>
           <Flex
             direction='column'
             style={{
               width: isMobile ? '100%' : '50%',
-              margin: isMobile ? '15px 5px 0 5px' : '15px 5px',
+              margin: isMobile ? '15px 5px 0 5px' : '15px 5px 10px 5px',
             }}
           >
-            <Typography variant={'h3'}>КОНТАКТНЫЕ ДАННЫЕ</Typography>
+            <Typography variant={'h3'} style={{ marginBottom: '10px' }}>
+              КОНТАКТНЫЕ ДАННЫЕ
+            </Typography>
             <TextFieldStyled
               label='Имя'
               name='name'
@@ -188,7 +191,7 @@ export function Contacts({
             direction='column'
             style={{
               width: isMobile ? '100%' : '50%',
-              margin: isMobile ? '0px 5px 15px 5px' : '15px 5px',
+              margin: isMobile ? '0px 5px 15px 5px' : '25px 5px 10px 5px',
             }}
           >
             <FormRowWrapper style={{ marginTop: isMobile ? 0 : 18 }}>
@@ -198,6 +201,9 @@ export function Contacts({
                 value={formData.date}
                 style={{ margin: '12px 5px 9px 5px', width: '100%' }}
                 onChange={handleDateChange}
+                minDate={
+                  delivery === DeliveryType.Delivery ? tomorrow : new Date()
+                }
               />
               <TextFieldStyled
                 label='Время'
@@ -236,15 +242,25 @@ export function Contacts({
           </Flex>
         </Flex>
       </FormWrapper>
+      <Typography variant={'body2'} style={{ margin: '0px 0px 10px 10px' }}>
+        * Обязательное поле
+      </Typography>
       <Flex justifyBetween>
-        <Button
-          color='secondary'
-          small={isMobile}
-          rounded
+        <TextLink
+          style={{
+            textTransform: 'uppercase',
+            fontWeight: 'bold',
+            color: '#1E2F42',
+            marginRight: 40,
+            opacity: 1,
+            letterSpacing: '3px',
+            alignSelf: 'center',
+          }}
+          tabIndex={0}
           onClick={handleBackClick}
         >
-          НАЗАД
-        </Button>
+          вернуться к доставке
+        </TextLink>
         <Button rounded small={isMobile} onClick={handleSubmit}>
           ДАЛЬШЕ
         </Button>

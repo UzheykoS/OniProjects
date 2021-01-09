@@ -86,7 +86,7 @@ const OneClickBuyModal: FC<IOneClickBuyModalModalProps> = ({
         }}
         variant={'body2'}
       >
-        Оставьте свой номер телефона и мы перезвоним в течении 20 минут
+        Оставьте свой номер телефона и мы перезвоним в течение 20 минут
       </Typography>
       <TextFieldStyled
         label='Телефон'
@@ -110,7 +110,7 @@ const OneClickBuyModal: FC<IOneClickBuyModalModalProps> = ({
         FormHelperTextProps={{
           classes: { root: classes.formHelperText },
         }}
-        style={{ marginBottom: 30 }}
+        style={{ marginBottom: 10 }}
         error={!!phoneError}
         helperText={phoneError}
         fullWidth
