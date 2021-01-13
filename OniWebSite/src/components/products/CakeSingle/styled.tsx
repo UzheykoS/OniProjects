@@ -102,6 +102,7 @@ export const DescriptionLarge = styled.div`
   font-family: 'Roboto', sans-serif;
   font-size: 14px;
   color: ${colors.primary.black};
+  margin-bottom: 10px;
 `;
 
 export const DescriptionSmall = styled.div`
@@ -128,7 +129,8 @@ export const CakeSizeInfo = styled.div`
 export const IconTextWrapper = styled.div`
   font-family: 'Roboto', sans-serif;
   font-size: 12px;
-  color: #cccccc;
+  color: rgb(30, 47, 66);
+  opacity: 0.6;
   padding: 0 10px;
 `;
 
@@ -178,7 +180,7 @@ export const ChipStyled = styled(Chip).attrs({
 
 export const CarouseNavBar = styled.div`
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   width: 100%;
   align-items: baseline;
 `;
@@ -186,6 +188,7 @@ export const CarouseNavBar = styled.div`
 export const SliderPagingWrapper = styled.ul`
   display: flex;
   list-style-type: none;
+  padding: 0;
 `;
 
 interface ISliderPagingButton {

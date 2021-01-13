@@ -38,7 +38,7 @@ export function Contacts() {
             </svg>
             <Typography
               variant='h3'
-              style={{ marginBottom: '2rem', marginTop: '2rem' }}
+              style={{ marginBottom: '1rem', marginTop: '2rem' }}
             >
               ЖДЁМ В ГОСТИ
             </Typography>
@@ -63,7 +63,7 @@ export function Contacts() {
             )}
             <Typography
               variant='h3'
-              style={{ marginBottom: '2rem', marginTop: '2rem' }}
+              style={{ marginBottom: '1rem', marginTop: '2rem' }}
             >
               АДРЕС
             </Typography>
@@ -93,7 +93,7 @@ export function Contacts() {
 
             <Typography
               variant='h3'
-              style={{ marginBottom: '2rem', marginTop: '2rem' }}
+              style={{ marginBottom: '1rem', marginTop: '2rem' }}
             >
               СВЯЗАТЬСЯ С НАМИ
             </Typography>

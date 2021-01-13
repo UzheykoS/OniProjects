@@ -57,13 +57,13 @@ export function MacaronsPage() {
         : ConstructoreMode.MacaronSmall
     )
   );
+  const isMobile = useMediaQuery(`(max-width: ${BREAKPOINT})`);
   const [expanded, setExpanded] = useState<boolean>(
-    !!editItem || !!productItem
+    !!editItem || !!productItem || !isMobile
   );
   const [selectedMix, setSelectedMix] = useState<IProduct>();
   const handleClose = useCallback(() => setSelectedMix(undefined), []);
   const { addToBasket } = useBasket();
-  const isMobile = useMediaQuery(`(max-width: ${BREAKPOINT})`);
 
   const handleMacaronClick = (item: IProduct) => {
     if (!expanded && !isMobile) {
@@ -194,17 +194,16 @@ export function MacaronsPage() {
               двух миндальных половинок, пропитанных начинкой. Яркий вкус,
               нежная текстура внутри и хрустящая корочка снаружи.
             </Typography>
-            <Typography
-              variant='body2'
-              style={{
-                margin: isMobile ? '0 10px 20px 10px' : '10px 70px 20px 0px',
-              }}
-            >
-              Можно купить готовый набор ассорти или собрать свой набор на 6, 12
-              или 24 макарон.
-            </Typography>
           </MacaronsInfo>
         </FlexColumn>
+      </FlexRow>
+      <FlexRow>
+        <Typography
+          variant='h3'
+          style={{ margin: '30px 0 15px 0', whiteSpace: 'nowrap' }}
+        >
+          НАБОРЫ МАКАРОН
+        </Typography>
       </FlexRow>
       <FlexRow>
         <FlexColumn>
@@ -253,7 +252,7 @@ export function MacaronsPage() {
             id={SCROLL_INTO_VIEW_ELEMENT}
             style={{ margin: '60px 0 30px 0', whiteSpace: 'nowrap' }}
           >
-            ВКУСЫ
+            СОБРАТЬ СВОЙ НАБОР
           </Typography>
         </FlexColumn>
         <FlexColumn />

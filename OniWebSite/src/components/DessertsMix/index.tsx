@@ -35,7 +35,7 @@ export function DessertsMix({
         <DessertMixTitle>{`${product.price} грн`}</DessertMixTitle>
       </TitleWrapper>
       <Button rounded onClick={() => onClick(product)}>
-        ДОБАВИТЬ
+        В корзину
       </Button>
     </MixSection>
   );

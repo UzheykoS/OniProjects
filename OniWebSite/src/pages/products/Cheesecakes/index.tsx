@@ -37,21 +37,12 @@ export function Cheesecakes() {
               variant='body1'
               style={{
                 lineHeight: isMobile ? '19px' : '24px',
-                margin: isMobile ? '10px 10px 20px 10px' : '0 120px 20px 0',
+                margin: isMobile ? '10px 10px 20px 10px' : '0 120px 60px 0',
               }}
             >
               Мы делаем запечённые чизкейки на основе сыра Филадельфия - всё,
               как надо. В нашем меню три вкуса. Кардинально разные, чтобы каждый
               нашёл что-то для себя.
-            </Typography>
-            <Typography
-              variant='body2'
-              style={{
-                margin: isMobile ? '0 10px 20px 10px' : '10px 70px 20px 0px',
-              }}
-            >
-              У нас можно выбрать любые вкусы из меню и сформировать свой набор
-              на 6, 12 или 24 макарон.
             </Typography>
           </CheesecakesInfo>
         </FlexColumn>

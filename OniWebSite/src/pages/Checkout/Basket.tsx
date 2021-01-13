@@ -102,31 +102,23 @@ export function Basket({
         )}
       </CheckoutHeaderWrapper>
       {isMobile && <Typography variant='h2'>Корзина</Typography>}
-      <Typography style={{ fontSize: 13 }} variant='body2'>
+      <Typography style={{ marginTop: 3 }} variant='body2'>
         Минимальная сумма заказа для доставки курьером составляет 200 грн
       </Typography>
       <BasketTable>
         {!isMobile && (
           <BasketHeader>
             <BasketHeaderCell width={30}>
-              <Typography style={{ fontSize: 13 }} variant={'body2'}>
-                Фото
-              </Typography>
+              <Typography variant={'body2'}>Фото</Typography>
             </BasketHeaderCell>
             <BasketHeaderCell width={25}>
-              <Typography style={{ fontSize: 13 }} variant={'body2'}>
-                Название
-              </Typography>
+              <Typography variant={'body2'}>Название</Typography>
             </BasketHeaderCell>
             <BasketHeaderCell width={25}>
-              <Typography style={{ fontSize: 13 }} variant={'body2'}>
-                Количество
-              </Typography>
+              <Typography variant={'body2'}>Количество</Typography>
             </BasketHeaderCell>
             <BasketHeaderCell width={20}>
-              <Typography style={{ fontSize: 13 }} variant={'body2'}>
-                Цена
-              </Typography>
+              <Typography variant={'body2'}>Цена</Typography>
             </BasketHeaderCell>
           </BasketHeader>
         )}

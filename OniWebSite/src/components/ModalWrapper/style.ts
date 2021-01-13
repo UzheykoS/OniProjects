@@ -39,6 +39,6 @@ export const DialogActionsStyled = styled(DialogActions).attrs({
 })`
   &.root {
     justify-content: space-around;
-    margin-top: 10px;
+    margin-bottom: 10px;
   }
 `;

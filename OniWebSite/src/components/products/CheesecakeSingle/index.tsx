@@ -1,5 +1,5 @@
 import React from 'react';
-import { Title, Description } from './styled';
+import { Title, Description, Price } from './styled';
 import { IProduct } from '@constants/products';
 import { ProductImageWrapper } from '../ProductImageWrapper';
 import { IProductSingleWrapper, ProductSingleWrapper } from '../styled';
@@ -26,9 +26,9 @@ export function CheesecakeSingle({ product, onClick, showButton }: IProps) {
           direction={'column'}
           style={{ flexGrow: 1, marginBottom: 20 }}
         >
-          <Title style={{ marginBottom: 10 }}>{`${product.price} грн`}</Title>
+          <Price>{`${product.price} грн`}</Price>
           <Button rounded onClick={() => onClick(product)}>
-            ДОБАВИТЬ
+            В корзину
           </Button>
         </Flex>
       )}

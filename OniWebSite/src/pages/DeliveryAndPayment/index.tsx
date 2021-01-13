@@ -64,18 +64,36 @@ export function DeliveryAndPayment() {
             </svg>
             <Typography
               variant='h3'
-              style={{ marginBottom: '2rem', marginTop: '2rem' }}
+              style={{ marginBottom: '1rem', marginTop: '2rem' }}
             >
               ДОСТАВКА ПО КИЕВУ
             </Typography>
             <Typography variant='body1'>
-              Доставляем курьером с Пн по Сб. Стоимость доставки – 80 грн.
-              Минимальная сумма заказа для доставки – 200 грн. При оформлении
-              заказа до 11:00 возможна доставка в тот же день.
+              <b>Доставляем курьером</b> на следующий день после оформления
+              заказа. Стоимость доставки – 80 грн. Минимальная сумма заказа для
+              доставки – 200 грн. Возможность доставки курьером в день заказа
+              уточняйте дополнительно.
+            </Typography>
+            <Typography variant='body1' style={{ marginTop: '1rem' }}>
+              <b>Срочную доставку в день заказа</b> осуществляем на курьерском такси.
+              Стоимость доставки – по тарифу перевозчика. Минимальная сумма
+              заказа для доставки – 200 грн. Если все выбранные десерты есть в
+              наличии, вы можете получить заказ в течение часа после оформления.
             </Typography>
             <Typography
               variant='h3'
-              style={{ marginBottom: '2rem', marginTop: '2rem' }}
+              style={{ marginBottom: '1rem', marginTop: '2.5rem' }}
+            >
+              ДОСТАВКА В ДРУГИЕ ГОРОДА
+            </Typography>
+            <Typography variant='body1'>
+              Отправляем десерты Новой почтой только в холодное время года –
+              температура на улице не выше 10°C. Стоимость доставки – по тарифу
+              перевозчика. Минимальная сумма заказа для доставки – 200 грн.
+            </Typography>
+            <Typography
+              variant='h3'
+              style={{ marginBottom: '1rem', marginTop: '2.5rem' }}
             >
               САМОВЫВОЗ
             </Typography>
@@ -128,27 +146,37 @@ export function DeliveryAndPayment() {
         <Flex
           direction='column'
           style={{
-            padding: isMobile ? '' : '3rem 0 0 5rem',
+            padding: isMobile ? '' : '8rem 0 0 5rem',
             position: 'relative',
             flexBasis: isMobile ? '' : '30rem',
           }}
         >
           <Typography
             variant='h3'
-            style={{ marginBottom: '2rem', marginTop: '2rem' }}
+            style={{ marginBottom: '1rem', marginTop: '2rem' }}
           >
             ОПЛАТА
           </Typography>
-          <Typography variant='body1' style={{ marginBottom: '2rem' }}>
-            Заказ можно оплатить наличными при получении или заранее на карту.
+          <Typography variant='body1' style={{ marginBottom: '1rem' }}>
+            Если доставку осуществляет наш курьер – заказ можно оплатить заранее
+            на карту или наличными при получении.
+          </Typography>
+          <Typography variant='body1' style={{ marginBottom: '1rem' }}>
+            Если доставку осуществляет курьерское такси или Новая почта – заказ
+            необходимо оплатить заранее на карту.
+          </Typography>
+          <Typography variant='body1'>
+            Если вы забираете заказ самостоятельно – его можно оплатить при
+            получении наличными или через терминал. Также вы можете оплатить
+            заказ заранее на карту.
           </Typography>
           <Flex
             justifyCenter
             id='map-wrapper'
             style={{
-              height: 300,
+              height: 400,
               width: isMobile ? '100%' : 700,
-              top: isMobile ? '' : 250,
+              top: isMobile ? '' : 450,
               position: isMobile ? 'inherit' : 'absolute',
             }}
           >

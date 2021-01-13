@@ -10,7 +10,7 @@ const theme = createMuiTheme({
       containedSecondary: {
         backgroundColor: colors.primary.white,
         '&:hover': {
-          backgroundColor: colors.secondary.gold,
+          backgroundColor: colors.primary.white,
         },
       },
     },
@@ -65,8 +65,9 @@ const theme = createMuiTheme({
     body2: {
       fontFamily: 'Roboto',
       fontWeight: 400,
-      fontSize: 11,
+      fontSize: 13,
       opacity: 0.6,
+      color: 'rgb(30,47,66)',
     },
   },
   palette: {

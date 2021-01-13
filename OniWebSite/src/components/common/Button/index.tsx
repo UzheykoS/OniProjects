@@ -2,7 +2,6 @@ import React from 'react';
 import ButtonComponent, { ButtonProps } from '@material-ui/core/Button';
 import styled from 'styled-components';
 import colors from '@constants/colors';
-import { BREAKPOINT } from '@constants';
 
 export interface IButtonProps extends ButtonProps {
   rounded?: boolean;
@@ -49,10 +48,7 @@ export const Button = styled(
   }
   &.containedSecondary {
     outline: none;
-    @media (max-width: ${BREAKPOINT}) {
-      text-decoration: underline;
-    }
-    // border: 1px solid ${colors.secondary.pink};
+    border: 1px solid ${colors.primary.gold};
   }
   ${({ small }) =>
     small
@@ -68,5 +64,4 @@ export const Button = styled(
         width: 180px;
       }
       `}
-  
 `;

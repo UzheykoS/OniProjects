@@ -195,7 +195,7 @@ export function CheckoutStepper({ returnToBasket }: ICheckoutStepperProps) {
       {!!totalPrice && (
         <Flex alignBaseline style={{ marginTop: '10px' }}>
           <HelperText>Сумма заказа: </HelperText>
-          <Typography variant='h2' style={{ fontSize: 16 }}>
+          <Typography variant='h2' style={{ fontSize: 18 }}>
             {totalPrice} грн
           </Typography>
         </Flex>

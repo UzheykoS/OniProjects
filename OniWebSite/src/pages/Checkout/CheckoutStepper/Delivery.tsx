@@ -86,7 +86,7 @@ export function Delivery({
             label={
               <Flex direction='column' style={{ margin: '3px 0' }}>
                 {DeliveryType.SelfService}
-                <Typography style={{ fontSize: 11 }} variant='body2'>
+                <Typography variant='body2'>
                   Киев, бульвар Вацлава Гавела, 9А
                 </Typography>
               </Flex>
@@ -98,7 +98,7 @@ export function Delivery({
             label={
               <Flex direction='column' style={{ margin: '3px 0' }}>
                 {DeliveryType.Delivery}
-                <Typography style={{ fontSize: 11 }} variant='body2'>
+                <Typography variant='body2'>
                   Возможна на следующий день
                 </Typography>
               </Flex>
@@ -110,7 +110,7 @@ export function Delivery({
             label={
               <Flex direction='column' style={{ margin: '3px 0' }}>
                 {DeliveryType.Urgent}
-                <Typography style={{ fontSize: 11 }} variant='body2'>
+                <Typography variant='body2'>
                   Возможна в течение часа при условии наличия выбранных десертов
                 </Typography>
               </Flex>
@@ -122,14 +122,18 @@ export function Delivery({
             label={
               <Flex direction='column' style={{ margin: '3px 0' }}>
                 {DeliveryType.NP}
-                <Typography style={{ fontSize: 11 }} variant='body2'>
+                <Typography variant='body2'>
                   Не отправляем шу, чизкейки и торты
                 </Typography>
               </Flex>
             }
           />
         </RadioGroup>
-        {!!errorMessage && <FormHelperText>{errorMessage}</FormHelperText>}
+        {!!errorMessage && (
+          <FormHelperText style={{ fontSize: 13 }}>
+            {errorMessage}
+          </FormHelperText>
+        )}
       </FormControl>
       <Flex justifyBetween>
         <Flex style={{ alignItems: 'center' }}>

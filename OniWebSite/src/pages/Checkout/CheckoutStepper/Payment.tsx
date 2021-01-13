@@ -53,8 +53,8 @@ export function Payment({
             control={<Radio />}
             label={
               <Flex direction='column' style={{ margin: '3px 0' }}>
-                Предоплата на карту
-                <Typography style={{ fontSize: 11 }} variant='body2'>
+                Оплата на карту
+                <Typography variant='body2'>
                   Мы вышлем реквизиты для оплаты после подтверждения заказа
                 </Typography>
               </Flex>
@@ -71,7 +71,7 @@ export function Payment({
           />
         </RadioGroup>
       </FormControl>
-      <Flex justifyBetween>
+      <Flex justifyBetween style={{ marginTop: 20 }}>
         <TextLink
           style={{
             textTransform: 'uppercase',

@@ -30,20 +30,18 @@ const MixSelectModal: FC<IMixSelectModalModalProps> = ({
       onClose={closeModal}
       onCancel={() => cancelModal(mix)}
       onSubmit={() => confirmAdd(quantity)}
-      saveButtonLabel='Добавить'
+      saveButtonLabel='В корзину'
       cancelButtonLabel='Выбрать вкусы'
     >
       <Typography
         style={{
           color: colors.secondary.dark,
-          fontSize: 13,
           lineHeight: '20px',
           textAlign: 'center',
         }}
         variant={'body2'}
       >
-        Мы соберем набор из разных вкусов. Также их можно выбрать
-        самостоятельно.
+        {`Мы соберём набор из самых популярных ${mix.type.toLowerCase()} на свой вкус`}
       </Typography>
       <Flex
         justifyAround
@@ -59,19 +57,19 @@ const MixSelectModal: FC<IMixSelectModalModalProps> = ({
         <Flex
           direction='column'
           justifyCenter
-          style={{ marginTop: isMobile ? 30 : undefined }}
+          style={{
+            marginTop: isMobile ? 30 : undefined,
+            marginLeft: 30,
+            marginRight: 10,
+          }}
         >
           <Flex>
             <Typography
               variant='body1'
               style={{ fontWeight: 600, marginRight: 20 }}
-            >{`${mix.type} (Ассорти)`}</Typography>
-            <Typography
-              variant='body1'
-              style={{ fontWeight: 600 }}
-            >{`${mix.id}`}</Typography>
+            >{`${mix.type} ${mix.id}`}</Typography>
           </Flex>
-          <Flex style={{ margin: '10px 0' }}>
+          <Flex style={{ margin: '10px 0 10px' }}>
             <Typography
               variant='body1'
               style={{

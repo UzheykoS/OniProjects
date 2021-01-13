@@ -47,9 +47,10 @@ export function Cakes() {
               на десерты по-новому.
             </Typography>
             <Typography
-              variant='body2'
+              variant='body1'
               style={{
-                margin: isMobile ? '0 10px 20px 10px' : '10px 70px 20px 0px',
+                lineHeight: isMobile ? '19px' : '24px',
+                margin: isMobile ? '10px 10px 20px 10px' : '0 120px 20px 0',
               }}
             >
               Меню тортов стандартное – нельзя менять составляющие или декор.

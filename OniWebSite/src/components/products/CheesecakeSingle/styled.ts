@@ -35,13 +35,23 @@ export const Title = styled.div`
   flex-grow: 1;
 `;
 
+export const Price = styled.div`
+  font-family: 'Yeseva One';
+  font-weight: 400;
+  font-size: 20px;
+  margin-bottom: 10px;
+  text-align: center;
+  white-space: nowrap;
+`;
+
 export const Description = styled.div`
   font-family: 'Roboto', sans-serif;
-  font-size: 12px;
-  color: #cccccc;
   text-align: center;
   padding: 10px 35px;
   line-height: 17px;
   box-sizing: border-box;
   flex-grow: 10;
+  color: rgb(30, 47, 66);
+  font-size: 13px;
+  opacity: 0.6;
 `;

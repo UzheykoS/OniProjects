@@ -9,7 +9,6 @@ import {
 } from '@material-ui/core/';
 import { Button } from '@common/Button';
 import CloseIcon from '@material-ui/icons/Close';
-import { TextLink } from '@common/styled';
 
 interface ModalWrapperProps {
   title: string;
@@ -85,22 +84,16 @@ const ModalWrapper: FC<ModalWrapperProps> = ({
             {saveButtonLabel}
           </Button>
           {showCancelButton && (
-            <TextLink
-              style={{
-                textTransform: 'uppercase',
-                fontWeight: 'bold',
-                letterSpacing: '3px',
-                color: '#1E2F42',
-                marginRight: 40,
-                opacity: 1,
-                alignSelf: 'center',
-              }}
-              tabIndex={0}
+            <Button
               disabled={submitting}
               onClick={onCancel ? onCancel : onClose}
+              color='secondary'
+              tabIndex={0}
+              rounded
+              style={{ marginRight: 10, whiteSpace: 'nowrap' }}
             >
               {cancelButtonLabel}
-            </TextLink>
+            </Button>
           )}
         </DialogActionsStyled>
       )}

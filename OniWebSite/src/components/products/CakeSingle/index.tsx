@@ -6,7 +6,6 @@ import {
   DescriptionLarge,
   ImagesSection,
   InfoSection,
-  DescriptionSmall,
   SizeAndQtySelector,
   CakeSizeInfo,
   PriceAndButtonWrapper,
@@ -26,7 +25,6 @@ import { Typography, useMediaQuery } from '@material-ui/core';
 import DiameterIcon from '@icons/diameter-icon.svg';
 import PeopleIcon from '@icons/people-icon.svg';
 import InfoIcon from '@icons/info-icon.svg';
-import ExtendIcon from '@icons/extend-icon.svg';
 import { Button } from '@common/Button';
 import Zoom from '@material-ui/core/Zoom';
 import IconButton from '@common/IconButton';
@@ -58,7 +56,6 @@ enum CakeSize {
 export function CakeSingle({ cakePair, onClick }: IProps) {
   const {
     id,
-    shortDescription,
     fullDescription,
     imageUrl,
     imageCutUrl,
@@ -114,8 +111,16 @@ export function CakeSingle({ cakePair, onClick }: IProps) {
       </IconButtonStyled>
       <Flex direction='column' style={{ width: '100%' }}>
         <Flex>
-          <ImageWrapper src={imageUrl} visible={activeIndex === 0} />
-          <ImageWrapper src={imageCutUrl} visible={activeIndex === 1} />
+          <ImageWrapper
+            src={imageUrl}
+            visible={activeIndex === 0}
+            onClick={() => setPreviewImageUrl(imageUrl)}
+          />
+          <ImageWrapper
+            src={imageCutUrl}
+            visible={activeIndex === 1}
+            onClick={() => setPreviewImageUrl(imageCutUrl!)}
+          />
         </Flex>
         <CarouseNavBar>
           <SliderPagingWrapper>
@@ -128,16 +133,6 @@ export function CakeSingle({ cakePair, onClick }: IProps) {
               active={activeIndex === 1}
             />
           </SliderPagingWrapper>
-          <IconButton
-            disableFocusRipple
-            disableRipple
-            size='small'
-            onClick={() =>
-              setPreviewImageUrl(activeIndex === 0 ? imageUrl : imageCutUrl!)
-            }
-          >
-            <ExtendIcon />
-          </IconButton>
         </CarouseNavBar>
       </Flex>
       <IconButtonStyled
@@ -181,23 +176,24 @@ export function CakeSingle({ cakePair, onClick }: IProps) {
       <InfoSection>
         <Title>{id}</Title>
         <DescriptionLarge>{fullDescription}</DescriptionLarge>
-        <DescriptionSmall>{shortDescription}</DescriptionSmall>
         <SizeAndQtySelector>
-          <ChipStyled
-            clickable
-            color='secondary'
-            label={`${weight} кг`}
-            variant={selectedSize === CakeSize.Small ? 'outlined' : 'default'}
-            onClick={() => setSelectedSize(CakeSize.Small)}
-          />
-          <ChipStyled
-            clickable
-            color='secondary'
-            label={`${weightLarge} кг`}
-            variant={selectedSize === CakeSize.Large ? 'outlined' : 'default'}
-            style={{ marginRight: 50 }}
-            onClick={() => setSelectedSize(CakeSize.Large)}
-          />
+          <Flex>
+            <ChipStyled
+              clickable
+              color='secondary'
+              label={`${weight} кг`}
+              variant={selectedSize === CakeSize.Small ? 'outlined' : 'default'}
+              onClick={() => setSelectedSize(CakeSize.Small)}
+            />
+            <ChipStyled
+              clickable
+              color='secondary'
+              label={`${weightLarge} кг`}
+              variant={selectedSize === CakeSize.Large ? 'outlined' : 'default'}
+              style={{ marginRight: 50, marginLeft: 10 }}
+              onClick={() => setSelectedSize(CakeSize.Large)}
+            />
+          </Flex>
           <QuantityEditor
             quantity={quantity}
             handleIncreaseQuantity={handleIncreaseQuantity}
@@ -230,7 +226,7 @@ export function CakeSingle({ cakePair, onClick }: IProps) {
           )}
           <TooltipStyled
             TransitionComponent={Zoom}
-            title='Исходя из порции 250 гр на человека'
+            title='Исходя из порции 150 гр на человека'
             arrow
             placement={isMobile ? 'top' : 'right'}
             enterTouchDelay={0}
@@ -253,7 +249,7 @@ export function CakeSingle({ cakePair, onClick }: IProps) {
             {getPrice()}
           </Typography>
           <Button rounded onClick={handleAddClick}>
-            Добавить
+            В корзину
           </Button>
         </PriceAndButtonWrapper>
       </InfoSection>

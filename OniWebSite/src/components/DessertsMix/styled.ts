@@ -59,7 +59,7 @@ export const DessertMixTitle = styled.div`
   font-weight: 400;
   font-size: 20px;
   padding: 0 0 0 10px;
-  border-left: 3px solid ${colors.primary.gold};
+  border-left: 2px solid ${colors.primary.gold};
   margin-left: 10px;
   white-space: nowrap;
 `;

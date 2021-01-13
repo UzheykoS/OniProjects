@@ -53,13 +53,13 @@ export function ZephyrPage() {
         : ConstructoreMode.ZephyrSmall
     )
   );
+  const isMobile = useMediaQuery(`(max-width: ${BREAKPOINT})`);
   const [expanded, setExpanded] = useState<boolean>(
-    !!editItem || !!productItem
+    !!editItem || !!productItem || !isMobile
   );
   const [selectedMix, setSelectedMix] = useState<IProduct>();
   const handleClose = useCallback(() => setSelectedMix(undefined), []);
   const { addToBasket } = useBasket();
-  const isMobile = useMediaQuery(`(max-width: ${BREAKPOINT})`);
 
   const handleZephyrClick = (item: IProduct) => {
     if (!expanded && !isMobile) {
@@ -171,17 +171,16 @@ export function ZephyrPage() {
               пониженным содержанием сахара и готовим зефир на основе
               натуральных фруктовых пюре без красителей и ароматизаторов.
             </Typography>
-            <Typography
-              variant='body2'
-              style={{
-                margin: isMobile ? '0 10px 20px 10px' : '10px 70px 20px 0px',
-              }}
-            >
-              Можно купить готовый набор ассорти или собрать свой набор на 8 или
-              16 штук.
-            </Typography>
           </ZephyrInfo>
         </FlexColumn>
+      </FlexRow>
+      <FlexRow>
+        <Typography
+          variant='h3'
+          style={{ margin: '30px 0 0 0', whiteSpace: 'nowrap' }}
+        >
+          НАБОРЫ ЗЕФИРА
+        </Typography>
       </FlexRow>
       <FlexRow>
         <FlexColumn>
@@ -228,7 +227,7 @@ export function ZephyrPage() {
             id={SCROLL_INTO_VIEW_ELEMENT}
             style={{ margin: '60px 0 30px 0', whiteSpace: 'nowrap' }}
           >
-            ВКУСЫ
+            СОБРАТЬ СВОЙ НАБОР
           </Typography>
         </FlexColumn>
         <FlexColumn />

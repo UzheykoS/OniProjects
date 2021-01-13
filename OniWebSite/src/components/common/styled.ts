@@ -6,8 +6,9 @@ interface ITextLinkProps {
 }
 export const TextLink = styled.div<ITextLinkProps>`
   font-size: 13px;
-  opacity: 0.4;
+  opacity: 0.6;
   font-family: 'Roboto';
+  color: rgb(30,47,66);
 
   ${({ disabled }) =>
     disabled !== true &&

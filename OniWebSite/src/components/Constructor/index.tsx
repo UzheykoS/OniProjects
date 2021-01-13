@@ -69,7 +69,7 @@ export function ConstructorContainer({
               fontSize: '13px',
             }}
           >
-            СОБРАТЬ СВОЙ НАБОР&nbsp;
+            МОЙ НАБОР&nbsp;
           </Typography>
           {isMobile && (
             <Typography
@@ -101,7 +101,7 @@ export function ConstructorContainer({
                 letterSpacing: '3px',
               }}
             >
-              СОБРАТЬ СВОЙ НАБОР
+              МОЙ НАБОР
             </Typography>
             <IconButton onClick={() => setExpanded(false)}>
               <CloseIcon />
@@ -132,7 +132,7 @@ export function ConstructorContainer({
             width: 'auto',
           }}
         >
-          СОБРАТЬ СВОЙ НАБОР
+          МОЙ НАБОР
         </Typography>
       </ExpansionPanelSummaryStyled>
       <ExpansionPanelDetailsStyled>

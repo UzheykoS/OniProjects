@@ -446,7 +446,7 @@ export function Constructor({
         </CenteredRow>
         <CenteredRow>
           <Button rounded onClick={handleConstructorSubmit}>
-            Добавить
+            В корзину
           </Button>
         </CenteredRow>
         {!!errorMessage && (

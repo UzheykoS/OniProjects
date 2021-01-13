@@ -35,13 +35,14 @@ export const Title = styled.div`
 
 export const Description = styled.div`
   font-family: 'Roboto', sans-serif;
-  font-size: 12px;
-  color: #cccccc;
   text-align: center;
   padding: 5px 40px;
   height: 52px;
   text-overflow: ellipsis;
   overflow: hidden;
+  color: rgb(30, 47, 66);
+  font-size: 13px;
+  opacity: 0.6;
 `;
 
 interface IAddIconWrapper {
