@@ -178,7 +178,6 @@ export const ImageWrapper = styled(ImageWithFallback)`
   width: 100%;
   height: 100%;
   object-fit: contain;
-  background: ${colors.primary.white};
   padding: 0 10px;
   box-sizing: border-box;
 `;

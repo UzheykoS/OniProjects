@@ -54,6 +54,23 @@ export function ConstructorGridItem({
     setMouseOver(false);
   };
 
+  const getPlaceholder = () => {
+    switch (mode) {
+      case ConstructoreMode.MacaronSmall:
+      case ConstructoreMode.MacaronMedium:
+      case ConstructoreMode.MacaronLarge:
+        return 'images/pages/macarons/macaron_empty';
+      case ConstructoreMode.ZephyrSmall:
+      case ConstructoreMode.ZephyrMedium:
+        return 'images/pages/zephyr/zephyr_empty';
+      case ConstructoreMode.ChouxSmall:
+      case ConstructoreMode.ChouxMedium:
+        return 'images/pages/choux/choux_empty';
+      default:
+        return '';
+    }
+  };
+
   if (isMobile) {
     return (
       <ConstructorGridItemWrapper
@@ -155,9 +172,14 @@ export function ConstructorGridItem({
                   }}
                 >
                   <Paper style={{ padding: '0 5px' }}>
-                    <ClickAwayListener onClickAway={() => onClick()}>
-                      <TooltipTitle>{'Тут пока ничего нет'}</TooltipTitle>
-                    </ClickAwayListener>
+                    <ImageWrapper
+                      style={{ height: '100%' }}
+                      src={getPlaceholder()}
+                    >
+                      <ClickAwayListener onClickAway={() => onClick()}>
+                        <TooltipTitle>{'Тут пока ничего нет'}</TooltipTitle>
+                      </ClickAwayListener>
+                    </ImageWrapper>
                   </Paper>
                 </Zoom>
               )}
@@ -208,7 +230,10 @@ export function ConstructorGridItem({
               />
             </RemoveIconWrapper>
 
-            <ImageWrapper style={{ height: '100%' }} src={item.imageUrl} />
+            <ImageWrapper
+              style={{ height: '100%', background: colors.primary.white }}
+              src={item.imageUrl}
+            />
           </div>
         </TooltipStyled>
       ) : (
@@ -218,7 +243,12 @@ export function ConstructorGridItem({
           arrow
           placement={'bottom'}
         >
-          <div style={{ width: '100%', height: '100%' }} />
+          <div>
+            <ImageWrapper
+              style={{ height: '100%', background: '#F5F5F5', opacity: 0.5 }}
+              src={getPlaceholder()}
+            />
+          </div>
         </TooltipStyled>
       )}
     </ConstructorGridItemWrapper>

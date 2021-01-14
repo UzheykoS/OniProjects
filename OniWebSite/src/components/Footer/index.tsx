@@ -112,6 +112,7 @@ export const Footer = () => {
                     style={{ textDecoration: 'underline' }}
                     color='inherit'
                     href={'https://goo.gl/maps/61G5oKAfPiXo6cU18'}
+                    target='_blank'
                   >
                     <TextWrapper>Киев, бульвар Вацлава Гавела, 9А</TextWrapper>
                   </Link>
@@ -240,6 +241,7 @@ export const Footer = () => {
               style={{ textDecoration: 'underline' }}
               color='inherit'
               href={'https://goo.gl/maps/61G5oKAfPiXo6cU18'}
+              target='_blank'
             >
               <TextWrapper>Киев, бульвар Вацлава Гавела, 9А</TextWrapper>
             </Link>

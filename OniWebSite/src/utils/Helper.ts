@@ -13,7 +13,7 @@ export function loadMainPageImage(url: string) {
   return new Promise(resolve => {
     let img = new Image();
     img.onload = () => {
-      resolve();
+      resolve(true);
     };
     img.src = url;
 
@@ -32,7 +32,7 @@ export function preloadImages(urls: string[]) {
       let img = new Image();
       img.src = url;
     });
-    resolve();
+    resolve(true);
   });
 }
 

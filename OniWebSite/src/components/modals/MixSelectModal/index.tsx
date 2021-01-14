@@ -1,7 +1,7 @@
-import React, { FC, useState } from 'react';
+import React, { FC, useMemo, useState } from 'react';
 import ModalWrapper, { ModalFormProps } from '@components/ModalWrapper';
 import { Typography, useMediaQuery } from '@material-ui/core';
-import { IProduct } from '@constants/products';
+import { IProduct, ProductType } from '@constants/products';
 import { ImageWithFallback } from '@common/ImageWithFallback';
 import { Flex } from '@styles/styled';
 import colors from '@constants/colors';
@@ -23,6 +23,19 @@ const MixSelectModal: FC<IMixSelectModalModalProps> = ({
   const [quantity, setQuantity] = useState(1);
   const isMobile = useMediaQuery(`(max-width: ${BREAKPOINT})`);
 
+  const getDessert = useMemo(() => {
+    switch (mix.type) {
+      case ProductType.Macaron:
+        return 'макарон';
+      case ProductType.Zephyr:
+        return 'видов зефира';
+      case ProductType.Choux:
+        return 'шу';
+      default:
+        return '';
+    }
+  }, [mix.type]);
+
   return (
     <ModalWrapper
       title='Отличный выбор'
@@ -41,7 +54,7 @@ const MixSelectModal: FC<IMixSelectModalModalProps> = ({
         }}
         variant={'body2'}
       >
-        {`Мы соберём набор из самых популярных ${mix.type.toLowerCase()} на свой вкус`}
+        {`Мы соберём набор из самых популярных ${getDessert} на свой вкус`}
       </Typography>
       <Flex
         justifyAround

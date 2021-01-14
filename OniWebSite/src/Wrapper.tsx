@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Switch, Route, Redirect } from 'react-router';
 import { CorporateClients } from './pages/CorporateClients';
 import { DeliveryAndPayment } from './pages/DeliveryAndPayment';
@@ -21,6 +21,7 @@ import { Snackbar } from '@common/Snackbar';
 import { useSnackbar } from '@hooks/useSnackbar';
 import { Cheesecakes } from '@pages/products/Cheesecakes';
 import { Contacts } from '@pages/Contacts';
+import { BASKET_SESSION_KEY, useBasket } from '@hooks/useBasket';
 
 const ScrollToTop = () => {
   window.scrollTo(0, 0);
@@ -30,6 +31,15 @@ const ScrollToTop = () => {
 export function Wrapper() {
   const { loading } = useLoading();
   const { message, type, title, hideSnackbar } = useSnackbar();
+  const { initialize } = useBasket();
+
+  useEffect(() => {
+    const rawState = localStorage.getItem(BASKET_SESSION_KEY);
+    if (rawState) {
+      initialize(JSON.parse(rawState));
+    }
+  }, []);
+
   return (
     <AppStyled>
       <Router>
@@ -60,7 +70,12 @@ export function Wrapper() {
         </Switch>
         <Footer />
         <Busy loading={loading} />
-        <Snackbar message={message} title={title} type={type} handleClose={hideSnackbar} />
+        <Snackbar
+          message={message}
+          title={title}
+          type={type}
+          handleClose={hideSnackbar}
+        />
       </Router>
     </AppStyled>
   );

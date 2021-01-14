@@ -6,6 +6,8 @@ import React, {
 } from 'react';
 import { IProduct, ICakeInfo, DELIVERY_PRICE } from '@constants/products';
 
+export const BASKET_SESSION_KEY = '__basket_session_key';
+
 export interface IBasketItem {
   product: IProduct | ICakeInfo;
   contents?: IProduct[];
@@ -23,6 +25,7 @@ interface IBasketState {
   decreaseQuantity(item: IBasketItem): void;
   addDelivery(): void;
   removeDelivery(): void;
+  initialize(state: IBasketState): void;
 }
 
 const initialBasketState = {
@@ -36,6 +39,7 @@ const initialBasketState = {
   decreaseQuantity: () => {},
   addDelivery: () => {},
   removeDelivery: () => {},
+  initialize: () => {},
 };
 const BasketContext = createContext<IBasketState>(initialBasketState);
 
@@ -47,8 +51,10 @@ type ActionType = {
     | 'increase'
     | 'decrease'
     | 'addDelivery'
-    | 'removeDelivery';
+    | 'removeDelivery'
+    | 'initialize';
   item?: IBasketItem;
+  initialState?: IBasketState;
 };
 
 function basketReducer(state: IBasketState, action: ActionType) {
@@ -57,7 +63,9 @@ function basketReducer(state: IBasketState, action: ActionType) {
       if (action.item) {
         const { items } = state;
         items.push(action.item);
-        return { ...state, items };
+        const newState = { ...state, items };
+        localStorage.setItem(BASKET_SESSION_KEY, JSON.stringify(newState));
+        return newState;
       }
       return state;
     case 'remove':
@@ -66,7 +74,9 @@ function basketReducer(state: IBasketState, action: ActionType) {
         const index = items.findIndex(i => i === action.item);
         if (index > -1) {
           items.splice(index, 1);
-          return { ...state, items };
+          const newState = { ...state, items };
+          localStorage.setItem(BASKET_SESSION_KEY, JSON.stringify(newState));
+          return newState;
         }
       }
       return state;
@@ -77,7 +87,9 @@ function basketReducer(state: IBasketState, action: ActionType) {
         if (index > -1) {
           items[index].quantity++;
         }
-        return { ...state, items };
+        const newState = { ...state, items };
+        localStorage.setItem(BASKET_SESSION_KEY, JSON.stringify(newState));
+        return newState;
       }
       return state;
     case 'decrease':
@@ -91,15 +103,32 @@ function basketReducer(state: IBasketState, action: ActionType) {
             items.splice(index, 1);
           }
         }
-        return { ...state, items };
+        const newState = { ...state, items };
+        localStorage.setItem(BASKET_SESSION_KEY, JSON.stringify(newState));
+        return newState;
       }
       return state;
-    case 'clear':
-      return { ...state, items: [], delivery: false };
-    case 'addDelivery':
-      return { ...state, delivery: true };
-    case 'removeDelivery':
-      return { ...state, delivery: false };
+    case 'clear': {
+      const newState = { ...state, items: [], delivery: false };
+      localStorage.removeItem(BASKET_SESSION_KEY);
+      return newState;
+    }
+    case 'addDelivery': {
+      const newState = { ...state, delivery: true };
+      localStorage.setItem(BASKET_SESSION_KEY, JSON.stringify(newState));
+      return newState;
+    }
+    case 'removeDelivery': {
+      const newState = { ...state, delivery: false };
+      localStorage.setItem(BASKET_SESSION_KEY, JSON.stringify(newState));
+      return newState;
+    }
+    case 'initialize': {
+      if (action.initialState) {
+        return action.initialState;
+      }
+      return state;
+    }
     default:
       throw new Error('Unknown action');
   }
@@ -136,6 +165,10 @@ const BasketProvider = ({ children }: { children?: React.ReactNode }) => {
     dispatch({ type: 'removeDelivery' });
   };
 
+  const initialize = (initialState: IBasketState) => {
+    dispatch({ type: 'initialize', initialState });
+  };
+
   let totalPrice = state.items.reduce((accumulator, currentValue) => {
     accumulator += Number(currentValue.product.price) * currentValue.quantity;
     return accumulator;
@@ -158,6 +191,7 @@ const BasketProvider = ({ children }: { children?: React.ReactNode }) => {
         decreaseQuantity,
         addDelivery,
         removeDelivery,
+        initialize,
       }}
     >
       {children}
@@ -174,6 +208,7 @@ function useBasket(): IBasketState {
     decreaseQuantity,
     addDelivery,
     removeDelivery,
+    initialize,
     items,
     totalPrice,
     delivery,
@@ -190,7 +225,7 @@ function useBasket(): IBasketState {
     (item: IBasketItem) => {
       removeFromBasket && removeFromBasket(item);
     },
-    [addToBasket]
+    [removeFromBasket]
   );
 
   const clearBasketHandler = useCallback(() => {
@@ -213,11 +248,18 @@ function useBasket(): IBasketState {
 
   const addDeliveryHandler = useCallback(() => {
     addDelivery && addDelivery();
-  }, [addToBasket]);
+  }, [addDelivery]);
 
   const removeDeliveryHandler = useCallback(() => {
     removeDelivery && removeDelivery();
-  }, [addToBasket]);
+  }, [removeDelivery]);
+
+  const initializeHandler = useCallback(
+    (state: IBasketState) => {
+      initialize && initialize(state);
+    },
+    [initialize]
+  );
 
   return {
     addToBasket: addToBasketHandler,
@@ -227,6 +269,7 @@ function useBasket(): IBasketState {
     decreaseQuantity: decreaseQuantityHandler,
     addDelivery: addDeliveryHandler,
     removeDelivery: removeDeliveryHandler,
+    initialize: initializeHandler,
     delivery,
     items,
     totalPrice,
