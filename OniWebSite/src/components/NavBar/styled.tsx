@@ -120,7 +120,7 @@ interface ILogo {
 export const Logo = styled.img<ILogo>`
   ${({ height }) =>
     `
-    height: ${height || 67}px;
+    height: ${height || 65}px;
     `}
   ${({ whiteMode }) =>
     whiteMode &&

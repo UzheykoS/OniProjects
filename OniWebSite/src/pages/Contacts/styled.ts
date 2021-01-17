@@ -5,13 +5,12 @@ export const ContactsSection = styled.div`
   display: flex;
   flex-direction: column;
   margin-right: 2rem;
-  font-family: 'Roboto';
   font-size: 13px;
 `;
 
 export const Title = styled.div`
   font-weight: 700;
-  padding: 40px 0px 7px 0px;
+  padding: 20px 0px 7px 0px;
   font-size: 1rem;
 `;
 

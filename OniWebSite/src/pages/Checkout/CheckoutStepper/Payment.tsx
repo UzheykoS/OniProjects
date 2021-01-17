@@ -41,6 +41,19 @@ export function Payment({
     handleContinue(value);
   };
 
+  const getDeliveryLabel = () => {
+    switch (delivery) {
+      case DeliveryType.SelfService:
+        return 'При получении: наличными или терминалом';
+      case DeliveryType.Delivery:
+        return 'Наличными при получении';
+      case DeliveryType.Urgent:
+      case DeliveryType.NP:
+      default:
+        return '';
+    }
+  };
+
   return (
     <MainWrapper>
       <Typography variant={'h3'} style={{ marginBottom: '10px' }}>
@@ -60,15 +73,14 @@ export function Payment({
               </Flex>
             }
           />
-          <FormControlLabel
-            value={PaymentType.Cash}
-            control={<Radio />}
-            label={
-              delivery === DeliveryType.SelfService
-                ? 'При получении: наличными или терминалом'
-                : 'Наличными при получении'
-            }
-          />
+          {[DeliveryType.Delivery, DeliveryType.SelfService].indexOf(delivery) >
+            -1 && (
+            <FormControlLabel
+              value={PaymentType.Cash}
+              control={<Radio />}
+              label={getDeliveryLabel()}
+            />
+          )}
         </RadioGroup>
       </FormControl>
       <Flex justifyBetween style={{ marginTop: 20 }}>

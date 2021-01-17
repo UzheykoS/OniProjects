@@ -79,6 +79,9 @@ const theme = createMuiTheme({
       main: colors.primary.gold,
       contrastText: colors.primary.black,
     },
+    error: {
+      main: colors.error[0],
+    },
   },
   breakpoints: {
     values: {

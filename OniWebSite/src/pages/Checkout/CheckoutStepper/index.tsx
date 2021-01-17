@@ -45,11 +45,13 @@ export interface IRequiredContactData {
   name?: string;
   phone?: string;
   address?: string;
+  date?: string | null;
+  surname?: string;
+  city?: string;
 }
 
 export interface IContactData extends IRequiredContactData {
   comments?: string;
-  date?: string | null;
   time?: string | null;
 }
 
@@ -66,13 +68,15 @@ interface ICheckoutStepperProps {
 
 const initialState = {
   delivery: DeliveryType.SelfService,
-  payment: PaymentType.Cash,
+  payment: PaymentType.Card,
   name: '',
   phone: '',
   comments: '',
   address: 'Самовывоз: бул. Вацлава Гавела, 9А',
   date: null,
   time: null,
+  surname: '',
+  city: '',
 };
 
 export function CheckoutStepper({ returnToBasket }: ICheckoutStepperProps) {
@@ -85,6 +89,7 @@ export function CheckoutStepper({ returnToBasket }: ICheckoutStepperProps) {
     removeDelivery,
   } = useBasket();
   const [activeStep, setActiveStep] = useState(CheckoutSteps.Delivery);
+  const [payment, setPayment] = useState(PaymentType.Card);
 
   const [form, setForm] = useState<IOrder>({
     ...initialState,
@@ -102,7 +107,14 @@ export function CheckoutStepper({ returnToBasket }: ICheckoutStepperProps) {
         address: 'Самовывоз: бул. Вацлава Гавела, 9А',
       });
     } else {
-      setForm({ ...form, delivery: deliveryValue, address: '' });
+      setForm({
+        ...form,
+        delivery: deliveryValue,
+        address:
+          form.address === 'Самовывоз: бул. Вацлава Гавела, 9А'
+            ? ''
+            : form.address,
+      });
     }
   };
 
@@ -140,8 +152,8 @@ export function CheckoutStepper({ returnToBasket }: ICheckoutStepperProps) {
 
     try {
       await submitOrder({ ...form, payment, itemsMessage });
+      setPayment(form.payment);
       clearBasket();
-      showSnackbar('Заказ сохранён!');
       setActiveStep(CheckoutSteps.Success);
     } catch (e) {
       console.log(e);
@@ -255,7 +267,7 @@ export function CheckoutStepper({ returnToBasket }: ICheckoutStepperProps) {
             handleBackClick={() => setActiveStep(CheckoutSteps.Contacts)}
           />
         )}
-        {activeStep === CheckoutSteps.Success && <Success />}
+        {activeStep === CheckoutSteps.Success && <Success payment={payment} />}
       </Content>
     </CheckoutStepperContainer>
   );

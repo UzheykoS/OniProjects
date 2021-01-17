@@ -63,7 +63,7 @@ export function NavBar() {
         <LogoLink>
           <Link to={routes[Pages.Main]!.path}>
             <Logo
-              src='/images/icons/Oni_w_black.png'
+              src='/images/logo_black.png'
               whiteMode={currentPage === Pages.Main}
             />
           </Link>

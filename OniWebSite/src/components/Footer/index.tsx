@@ -165,7 +165,7 @@ export const Footer = () => {
         <Grid item md={3}>
           <Grid container direction='column' alignItems='center'>
             <LogoWrapper>
-              <Logo src='/images/icons/Oni_w_black.png' />
+              <Logo src='/images/logo_pink.png' />
               <TextWrapper>© ONI, 2021</TextWrapper>
             </LogoWrapper>
           </Grid>

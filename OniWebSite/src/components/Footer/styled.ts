@@ -82,7 +82,7 @@ export const ListItem = styled.li`
 `;
 
 export const Logo = styled.img`
-  width: 87px;
+  height: 65px;
 
   @media (min-width: ${BREAKPOINT}) {
     padding-bottom: 160px;

@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { TextField, TextFieldProps, makeStyles } from '@material-ui/core';
+import { TextField, TextFieldProps } from '@material-ui/core';
 import { BREAKPOINT } from '@constants';
 
 export const MainWrapper = styled.div`
@@ -23,12 +23,5 @@ export const FormRowWrapper = styled.div`
 `;
 
 export const TextFieldStyled = styled(TextField)<TextFieldProps>`
-  margin: 12px 5px;
+  margin: 2px 5px;
 ` as typeof TextField;
-
-export const useStyles = makeStyles({
-  formHelperText: {
-    position: 'absolute',
-    bottom: '-22px',
-  },
-});

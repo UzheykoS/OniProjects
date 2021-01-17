@@ -19,7 +19,7 @@ export function Contacts() {
   const isMobile = useMediaQuery(`(max-width: ${BREAKPOINT})`);
 
   return (
-    <Flex direction='column' justifyCenter>
+    <Flex direction='column' style={{ fontFamily: 'Roboto' }} justifyCenter>
       <Flex
         justifyCenter
         direction={isMobile ? 'column' : 'row'}
@@ -46,9 +46,7 @@ export function Contacts() {
               Если срочно нужно что-то вкусное, а вы забыли сделать заказ – в
               нашей кофейне всегда можно выбрать десерты с витрины. Ну и, само
               собой, выпить вкусный кофе – к нему мы относимся с такой же
-              любовью, как к сладкому. Наш идеальный сценарий: взять макарон,
-              капучино и наблюдать через стеклянную стену за тем, как создаются
-              любимые десерты.
+              любовью, как к сладкому.
             </Typography>
             {isMobile && (
               <ImageWithFallback
@@ -82,11 +80,7 @@ export function Contacts() {
                 <Flex direction='column'>
                   <Title>Время работы</Title>
                   <TextWrapper>Пн-Пт 9:00-20:00</TextWrapper>
-                  <TextWrapper>Сб-Вс 9:00-18:00</TextWrapper>
-                </Flex>
-                <Flex direction='column'>
-                  <Title>Приём заказов</Title>
-                  <TextWrapper>Пн-Вс 9:00-18:00</TextWrapper>
+                  <TextWrapper>Сб-Вс 9:00-19:00</TextWrapper>
                 </Flex>
               </Flex>
             </ContactsSection>
@@ -97,58 +91,59 @@ export function Contacts() {
             >
               СВЯЗАТЬСЯ С НАМИ
             </Typography>
-            <ContactsSection>
-              <TextWrapper>
-                <IconWrapper>
-                  <PhoneIcon />
-                </IconWrapper>
-                <Link
-                  href='tel:+380962490430'
-                  style={{ textDecoration: 'underline', lineHeight: '35px' }}
-                  color='inherit'
-                >
-                  +38 096 249 04 30
-                </Link>
-                {!isMobile && (
-                  <Flex>
-                    <SocialsItem
-                      style={{ marginLeft: 70, marginRight: 20 }}
-                      target='_blank'
-                      href='https://t.me/oni_desserts'
-                    >
-                      <TextWrapper>Telegram </TextWrapper>
-                      <img
-                        src='images/icons/telegram.png'
-                        style={{ marginLeft: 5 }}
-                      />
-                    </SocialsItem>
-                    <SocialsItem
-                      target='_blank'
-                      href='viber://chat?number=380962490430'
-                    >
-                      <TextWrapper>Viber </TextWrapper>
-                      <img
-                        src='images/icons/viber.png'
-                        style={{ marginLeft: 5 }}
-                      />
-                    </SocialsItem>
-                  </Flex>
-                )}
-              </TextWrapper>
-              <TextWrapper>
-                <IconWrapper>
-                  <EnvelopeIcon />
-                </IconWrapper>
-                <Link
-                  href='mailto:info@oni.ua'
-                  style={{ textDecoration: 'underline' }}
-                  color='inherit'
-                >
-                  info@oni.ua
-                </Link>
-              </TextWrapper>
+            <Flex>
+              <Flex direction='column'>
+                <TextWrapper>
+                  <IconWrapper>
+                    <PhoneIcon />
+                  </IconWrapper>
+                  <Link
+                    href='tel:+380962490430'
+                    style={{ textDecoration: 'underline', lineHeight: '35px' }}
+                    color='inherit'
+                  >
+                    +38 096 249 04 30
+                  </Link>
+                </TextWrapper>
+                <TextWrapper>
+                  <IconWrapper>
+                    <EnvelopeIcon />
+                  </IconWrapper>
+                  <Link
+                    href='mailto:info@oni.ua'
+                    style={{ textDecoration: 'underline' }}
+                    color='inherit'
+                  >
+                    info@oni.ua
+                  </Link>
+                </TextWrapper>
+              </Flex>
+              {!isMobile && (
+                <Flex direction='column' style={{ marginLeft: 70 }}>
+                  <SocialsItem target='_blank' href='https://t.me/oni_desserts'>
+                    <img
+                      src='images/icons/telegram.png'
+                      style={{ marginRight: 5, marginBottom: 5 }}
+                    />
+                    <TextWrapper>Telegram </TextWrapper>
+                  </SocialsItem>
+                  <SocialsItem
+                    target='_blank'
+                    href='viber://chat?number=380962490430'
+                  >
+                    <img
+                      src='images/icons/viber.png'
+                      style={{ marginRight: 5 }}
+                    />
+                    <TextWrapper>Viber </TextWrapper>
+                  </SocialsItem>
+                </Flex>
+              )}
               {isMobile && (
-                <Flex style={{ paddingTop: '3px' }}>
+                <Flex
+                  style={{ paddingTop: 3, marginLeft: 50 }}
+                  direction='column'
+                >
                   <SocialsItem target='_blank' href='https://t.me/oni_desserts'>
                     <img
                       src='images/icons/telegram.png'
@@ -159,7 +154,6 @@ export function Contacts() {
                   <SocialsItem
                     target='_blank'
                     href='viber://chat?number=380962490430'
-                    style={{ marginLeft: '25px' }}
                   >
                     <img
                       src='images/icons/viber.png'
@@ -169,7 +163,7 @@ export function Contacts() {
                   </SocialsItem>
                 </Flex>
               )}
-            </ContactsSection>
+            </Flex>
           </Flex>
         </Flex>
 

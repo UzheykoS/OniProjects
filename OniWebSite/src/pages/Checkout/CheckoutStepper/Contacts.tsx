@@ -9,7 +9,6 @@ import {
   MainWrapper,
   TextFieldStyled,
   FormRowWrapper,
-  useStyles,
 } from './styled';
 import { Button } from '@common/Button';
 import { IContactData, IRequiredContactData } from '.';
@@ -20,9 +19,12 @@ import { BREAKPOINT } from '@constants';
 import { DeliveryType } from './Delivery';
 import { TextLink } from '@common/styled';
 
-export const INVALID_NAME = 'Введите Ваше имя';
+export const INVALID_NAME = 'Введите имя';
+export const INVALID_SURNAME = 'Введите фамилию';
 export const INVALID_PHONE = 'Введите правильный номер телефона';
 export const INVALID_ADDRESS = 'Введите адрес';
+export const INVALID_CITY = 'Введите город';
+export const INVALID_DATE = 'Введите дату';
 export const numberPattern = /\d+/g;
 
 interface IProps {
@@ -41,7 +43,6 @@ export function Contacts({
   handleContinue,
   handleBackClick,
 }: IProps) {
-  const classes = useStyles();
   const [formErrors, setFormErrors] = React.useState<IRequiredContactData>({});
   const isMobile = useMediaQuery(`(max-width: ${BREAKPOINT})`);
 
@@ -78,11 +79,23 @@ export function Contacts({
         phone: !value || value.indexOf('_') > -1 ? INVALID_PHONE : undefined,
       });
     }
-    if (key === 'address' && delivery === DeliveryType.Delivery) {
+    if (key === 'address' && delivery !== DeliveryType.SelfService) {
       setFormErrors({
         ...formErrors,
         address: value ? undefined : INVALID_ADDRESS,
       });
+    }
+    if (delivery === DeliveryType.NP && key === 'surname') {
+      setFormErrors({
+        ...formErrors,
+        surname: value ? undefined : INVALID_SURNAME,
+      });
+    }
+    if (delivery === DeliveryType.NP && key === 'city') {
+      setFormErrors({ ...formErrors, city: value ? undefined : INVALID_CITY });
+    }
+    if (key === 'date') {
+      setFormErrors({ ...formErrors, date: value ? undefined : INVALID_DATE });
     }
   };
 
@@ -103,9 +116,17 @@ export function Contacts({
     errors.name = formData.name ? undefined : INVALID_NAME;
     errors.phone = formData.phone ? undefined : INVALID_PHONE;
     errors.address =
-      delivery !== DeliveryType.Delivery || formData.address
+      delivery === DeliveryType.SelfService || formData.address
         ? undefined
         : INVALID_ADDRESS;
+    errors.surname =
+      delivery !== DeliveryType.NP || formData.surname
+        ? undefined
+        : INVALID_SURNAME;
+    errors.city =
+      delivery !== DeliveryType.NP || formData.city ? undefined : INVALID_CITY;
+    errors.date = formData.date ? undefined : INVALID_DATE;
+
     setFormErrors(errors);
 
     if (Object.values(errors).filter(Boolean).length) {
@@ -144,12 +165,26 @@ export function Contacts({
               }
               variant='outlined'
               required
-              FormHelperTextProps={{
-                classes: { root: classes.formHelperText },
-              }}
               error={!!formErrors.name}
-              helperText={formErrors.name}
+              helperText={!!formErrors.name ? formErrors.name : ' '}
             />
+            {delivery === DeliveryType.NP && (
+              <TextFieldStyled
+                label='Фамилия'
+                name='surname'
+                value={formData.surname}
+                onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+                  handleChange('surname', e.target.value)
+                }
+                onBlur={(e: React.FocusEvent<HTMLInputElement>) =>
+                  handleBlur('surname', e.target.value)
+                }
+                variant='outlined'
+                required
+                error={!!formErrors.surname}
+                helperText={!!formErrors.surname ? formErrors.surname : ' '}
+              />
+            )}
             <TextFieldStyled
               label='Телефон'
               type={'tel'}
@@ -169,22 +204,21 @@ export function Contacts({
                   InputBaseComponentProps
                 >,
               }}
-              FormHelperTextProps={{
-                classes: { root: classes.formHelperText },
-              }}
               error={!!formErrors.phone}
-              helperText={formErrors.phone}
+              helperText={!!formErrors.phone ? formErrors.phone : ' '}
             />
-            <TextFieldStyled
-              label='Комментарий'
-              value={formData.comments}
-              onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
-                handleChange('comments', e.target.value)
-              }
-              variant='outlined'
-              multiline
-              rowsMax='4'
-            />
+            {delivery !== DeliveryType.NP && (
+              <TextFieldStyled
+                label='Комментарий'
+                value={formData.comments}
+                onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+                  handleChange('comments', e.target.value)
+                }
+                variant='outlined'
+                multiline
+                rowsMax='4'
+              />
+            )}
           </Flex>
 
           <Flex
@@ -197,31 +231,57 @@ export function Contacts({
             <FormRowWrapper style={{ marginTop: isMobile ? 0 : 18 }}>
               <DatePickerWrapper
                 variant={isMobile ? 'dialog' : 'inline'}
-                label='Дата'
+                label={delivery === DeliveryType.NP ? 'Дата отправки' : 'Дата'}
                 value={formData.date}
-                style={{ margin: '12px 5px 9px 5px', width: '100%' }}
+                style={{ margin: '2px 5px', width: '100%' }}
                 onChange={handleDateChange}
+                onBlur={(e: React.FocusEvent<HTMLInputElement>) =>
+                  handleBlur('date', e.target.value)
+                }
+                required
                 minDate={
                   delivery === DeliveryType.Delivery ? tomorrow : new Date()
                 }
+                error={!!formErrors.date}
+                helperText={!!formErrors.date ? formErrors.date : ' '}
               />
-              <TextFieldStyled
-                label='Время'
-                type='time'
-                InputLabelProps={{
-                  shrink: true,
-                }}
-                inputProps={{
-                  step: 300, // 5 min
-                }}
-                value={formData.time || ''}
-                fullWidth
-                variant='outlined'
-                onChange={ev => handleTimeChange(ev.target.value)}
-              />
+              {delivery !== DeliveryType.NP && (
+                <TextFieldStyled
+                  label='Время'
+                  type='time'
+                  InputLabelProps={{
+                    shrink: true,
+                  }}
+                  inputProps={{
+                    step: 300, // 5 min
+                  }}
+                  value={formData.time || ''}
+                  fullWidth
+                  variant='outlined'
+                  onChange={ev => handleTimeChange(ev.target.value)}
+                />
+              )}
+              {delivery === DeliveryType.NP && (
+                <TextFieldStyled
+                  label='Город'
+                  name='city'
+                  value={formData.city}
+                  onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+                    handleChange('city', e.target.value)
+                  }
+                  onBlur={(e: React.FocusEvent<HTMLInputElement>) =>
+                    handleBlur('city', e.target.value)
+                  }
+                  variant='outlined'
+                  required
+                  fullWidth
+                  error={!!formErrors.city}
+                  helperText={!!formErrors.city ? formErrors.city : ' '}
+                />
+              )}
             </FormRowWrapper>
             <TextFieldStyled
-              label='Адрес'
+              label={delivery === DeliveryType.NP ? 'Отделение/Адрес' : 'Адрес'}
               name='address'
               value={formData.address}
               onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
@@ -232,13 +292,22 @@ export function Contacts({
               }
               variant='outlined'
               disabled={delivery === DeliveryType.SelfService}
-              required={delivery === DeliveryType.Delivery}
-              FormHelperTextProps={{
-                classes: { root: classes.formHelperText },
-              }}
+              required={delivery !== DeliveryType.SelfService}
               error={!!formErrors.address}
-              helperText={formErrors.address}
+              helperText={!!formErrors.address ? formErrors.address : ' '}
             />
+            {delivery === DeliveryType.NP && (
+              <TextFieldStyled
+                label='Комментарий'
+                value={formData.comments}
+                onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+                  handleChange('comments', e.target.value)
+                }
+                variant='outlined'
+                multiline
+                rowsMax='4'
+              />
+            )}
           </Flex>
         </Flex>
       </FormWrapper>

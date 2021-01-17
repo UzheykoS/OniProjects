@@ -6,7 +6,7 @@ export default {
     black: '#333333',
   },
   secondary: {
-    pink: '#FF3E69',
+    pink: '#F02778',
     gold: '#B8A36A',
     dark: '#1E2F42',
   },
@@ -16,6 +16,6 @@ export default {
     red: '#FF6B6B',
   },
   error: {
-    0: '#F44336',
+    0: '#F02778',
   },
 };
