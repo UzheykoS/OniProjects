@@ -133,8 +133,7 @@ export function NavBar() {
     setOpen(open);
   };
 
-  const iOS =
-    (process as any).browser && /iPad|iPhone|iPod/.test(navigator.userAgent);
+  const iOS = /iPad|iPhone|iPod/.test(navigator.userAgent);
 
   const navBarMobile = (
     <NavBarWrapperMobile transparent={currentPage === Pages.Main}>

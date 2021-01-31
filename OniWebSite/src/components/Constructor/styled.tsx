@@ -1,25 +1,26 @@
 import styled from 'styled-components';
 import {
-  ExpansionPanelSummary,
-  ExpansionPanel,
-  ExpansionPanelProps,
-  ExpansionPanelDetails,
+  AccordionSummary,
+  Accordion,
+  AccordionProps,
+  AccordionDetails,
   Typography,
   Dialog,
   Chip,
   makeStyles,
 } from '@material-ui/core';
+
 import colors from '@constants/colors';
 import React from 'react';
 import { BREAKPOINT } from '@constants';
 import { ImageWithFallback } from '@common/ImageWithFallback';
 
-interface IExpansionPanelStyled extends ExpansionPanelProps {
+interface IExpansionPanelStyled extends AccordionProps {
   isSticky?: boolean | null;
 }
 
 export const ExpansionPanelStyled = styled(
-  ({ isSticky, ...rest }: IExpansionPanelStyled) => <ExpansionPanel {...rest} />
+  ({ isSticky, ...rest }: IExpansionPanelStyled) => <Accordion {...rest} />
 ).attrs({
   classes: {
     expanded: 'expanded',
@@ -69,7 +70,7 @@ export const ExpansionPanelStyled = styled(
     `};
 `;
 
-export const ExpansionPanelSummaryStyled = styled(ExpansionPanelSummary).attrs({
+export const ExpansionPanelSummaryStyled = styled(AccordionSummary).attrs({
   classes: {
     expanded: 'expanded',
   },
@@ -96,7 +97,7 @@ export const ExpansionPanelSummaryStyled = styled(ExpansionPanelSummary).attrs({
   }
 `;
 
-export const ExpansionPanelDetailsStyled = styled(ExpansionPanelDetails)`
+export const ExpansionPanelDetailsStyled = styled(AccordionDetails)`
   padding: 0px;
 `;
 

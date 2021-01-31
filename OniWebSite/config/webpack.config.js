@@ -1,8 +1,11 @@
-const webpack = require('webpack');
 const path = require('path');
-const merge = require('webpack-merge');
+require('dotenv').config();
+
+const webpack = require('webpack');
+const { merge } = require('webpack-merge');
 const hash = require('string-hash');
 
+const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
@@ -10,13 +13,15 @@ const CopyWebpackPlugin = require('copy-webpack-plugin');
 const APP_DIR = path.resolve(__dirname, '../src');
 const aliases = require('./aliases');
 
-module.exports = env => {
+module.exports = () => {
   const {
     NODE_ENV,
     ONI_WEB_SERVER_URL,
     INSTAGRAM_ACCESS_TOKEN,
     GOOGLE_API_KEY,
-  } = env;
+  } = process.env;
+  const isDevelopment = NODE_ENV !== 'production';
+  console.log('NODE_ENV:', NODE_ENV);
 
   return merge([
     {
@@ -25,14 +30,21 @@ module.exports = env => {
         filename: '[name].bundle.js',
         path: path.join(APP_DIR, '..', 'dist'),
       },
-      devtool: 'inline-source-map',
-      mode: 'development',
+      devtool: isDevelopment ? 'inline-source-map' : 'cheap-module-source-map',
+      mode: isDevelopment ? 'development' : 'production',
       devServer: {
+        open: 'http://localhost',
+        port: 9040,
         contentBase: path.join(APP_DIR, '..', 'dist'),
         compress: false,
-        port: 9040,
+        clientLogLevel: 'silent',
+        watchOptions: {
+          ignored: /node_modules/,
+        },
+        hot: true,
       },
       target: 'web',
+      cache: true,
       optimization: {
         splitChunks: {
           cacheGroups: {
@@ -71,9 +83,7 @@ module.exports = env => {
           {
             test: /\.css$/,
             use: [
-              NODE_ENV === 'production'
-                ? MiniCssExtractPlugin.loader
-                : 'style-loader',
+              isDevelopment ? 'style-loader' : MiniCssExtractPlugin.loader,
               'css-loader',
             ],
           },
@@ -82,17 +92,6 @@ module.exports = env => {
             test: /\.tsx?$/,
             use: 'source-map-loader',
           },
-          // {
-          //     test: /\.(jpe?g|png|gif|svg)$/i,
-          //     loaders: ['file-loader?name=/images/[name].[ext]'],
-          // },
-          // {
-          //     test: /\.(png|jpg|gif)$/,
-          //     loader: 'url-loader',
-          //     options: {
-          //         limit: 8192
-          //     }
-          // },
           {
             test: /\.tsx?$/,
             use: [
@@ -102,10 +101,7 @@ module.exports = env => {
                   cacheDirectory: true,
                   babelrc: false,
                   presets: [
-                    [
-                      '@babel/preset-env',
-                      // { targets: { browsers: 'last 2 versions' } },
-                    ],
+                    ['@babel/preset-env'],
                     '@babel/preset-typescript',
                     '@babel/preset-react',
                   ],
@@ -114,9 +110,9 @@ module.exports = env => {
                       '@babel/plugin-proposal-class-properties',
                       { loose: true },
                     ],
-                    'react-hot-loader/babel',
                     'babel-plugin-styled-components',
-                  ],
+                    'react-hot-loader/babel',
+                  ].filter(Boolean),
                 },
               },
               {
@@ -124,51 +120,6 @@ module.exports = env => {
               },
             ],
             exclude: /node_modules/,
-          },
-          {
-            test: /\.woff$/,
-            loader: 'url-loader',
-            options: {
-              name: 'fonts/[name].[ext]',
-              limit: 10000,
-              mimetype: 'application/font-woff',
-            },
-          },
-          {
-            test: /\.woff2$/,
-            loader: 'url-loader',
-            options: {
-              name: 'fonts/[name].[ext]',
-              limit: 10000,
-              mimetype: 'application/font-woff2',
-            },
-          },
-          {
-            test: /\.otf$/,
-            loader: 'url-loader',
-            options: {
-              name: 'fonts/[name].[ext]',
-              limit: 10000,
-              mimetype: 'font/opentype',
-            },
-          },
-          {
-            test: /\.ttf$/,
-            loader: 'url-loader',
-            options: {
-              name: 'fonts/[name].[ext]',
-              limit: 10000,
-              mimetype: 'application/octet-stream',
-            },
-          },
-          {
-            test: /\.eot$/,
-            loader: 'url-loader',
-            options: {
-              name: 'fonts/[name].[ext]',
-              limit: 10000,
-              mimetype: 'application/vnd.ms-fontobject',
-            },
           },
         ],
       },
@@ -186,15 +137,22 @@ module.exports = env => {
             INSTAGRAM_ACCESS_TOKEN: JSON.stringify(INSTAGRAM_ACCESS_TOKEN),
           },
         }),
-        new CopyWebpackPlugin([{ from: 'public' }]),
-        new webpack.IgnorePlugin(/^\.\/locale/, /moment/),
+        new CopyWebpackPlugin({
+          patterns: [{ from: path.resolve(__dirname, '../public') }],
+        }),
+        new webpack.IgnorePlugin({
+          resourceRegExp: /^\.\/locale$/,
+          contextRegExp: /moment$/,
+        }),
+        new CleanWebpackPlugin(),
         new HtmlWebpackPlugin({
           template: 'src/index.html',
           filename: './index.html',
           googleApi: GOOGLE_API_KEY,
         }),
-        new MiniCssExtractPlugin(),
-      ],
+        // new MiniCssExtractPlugin(),
+        isDevelopment && new webpack.HotModuleReplacementPlugin(),
+      ].filter(Boolean),
     },
   ]);
 };

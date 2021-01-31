@@ -1,5 +1,5 @@
 import React, { ReactElement } from 'react';
-import { withGoogleMap, GoogleMap, Marker } from 'react-google-maps';
+const { withGoogleMap, GoogleMap, Marker } = require('react-google-maps');
 import {
   DeliverySection,
   TextWrapper,
@@ -75,10 +75,11 @@ export function DeliveryAndPayment() {
               уточняйте дополнительно.
             </Typography>
             <Typography variant='body1' style={{ marginTop: '1rem' }}>
-              <b>Срочную доставку в день заказа</b> осуществляем на курьерском такси.
-              Стоимость доставки – по тарифу перевозчика. Минимальная сумма
-              заказа для доставки – 200 грн. Если все выбранные десерты есть в
-              наличии, вы можете получить заказ в течение часа после оформления.
+              <b>Срочную доставку в день заказа</b> осуществляем на курьерском
+              такси. Стоимость доставки – по тарифу перевозчика. Минимальная
+              сумма заказа для доставки – 200 грн. Если все выбранные десерты
+              есть в наличии, вы можете получить заказ в течение часа после
+              оформления.
             </Typography>
             <Typography
               variant='h3'

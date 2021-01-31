@@ -1,19 +1,18 @@
-const merge = require('webpack-merge');
+require('dotenv').config();
+const { merge } = require('webpack-merge');
 const path = require('path');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 const webpack = require('webpack');
 const TerserPlugin = require('terser-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CompressionPlugin = require('compression-webpack-plugin');
+const CssMinimizerPlugin = require('css-minimizer-webpack-plugin');
 
 const baseConfig = require('./webpack.config');
 const APP_DIR = path.resolve(__dirname);
-const paths = require('./paths');
-const publicPath = paths.servedPath;
 
-const prodConfiguration = env => {
-  const { GOOGLE_API_KEY } = env;
+const prodConfiguration = () => {
+  const { GOOGLE_API_KEY } = process.env;
 
   return merge([
     {
@@ -21,26 +20,19 @@ const prodConfiguration = env => {
         filename: 'static/js/[name].[chunkhash:8].js',
         chunkFilename: 'static/js/[name].[chunkhash:8].chunk.js',
         path: path.join(APP_DIR, '..', 'dist'),
-        publicPath: publicPath,
-        // Point sourcemap entries to original disk location (format as URL on Windows)
-        devtoolModuleFilenameTemplate: info =>
-          path
-            .relative(paths.appSrc, info.absoluteResourcePath)
-            .replace(/\\/g, '/'),
+        publicPath: '/',
       },
       optimization: {
-        minimizer: [
-          new TerserPlugin({
-            sourceMap: true,
-          }),
-        ],
+        minimizer: [new TerserPlugin(), new CssMinimizerPlugin()],
       },
       mode: 'production',
       devtool: 'cheap-module-source-map',
       plugins: [
         new MiniCssExtractPlugin(),
-        new OptimizeCssAssetsPlugin(),
-        new webpack.IgnorePlugin(/^\.\/locale$/, /moment$/),
+        new webpack.IgnorePlugin({
+          resourceRegExp: /^\.\/locale$/,
+          contextRegExp: /moment$/,
+        }),
         new HtmlWebpackPlugin({
           inject: true,
           template: 'src/index.html',
