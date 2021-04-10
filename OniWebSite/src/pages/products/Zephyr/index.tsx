@@ -57,6 +57,10 @@ export function ZephyrPage() {
   const [expanded, setExpanded] = useState<boolean>(
     !!editItem || !!productItem || !isMobile
   );
+  useEffect(() => {
+    setExpanded(!!editItem || !!productItem || !isMobile);
+  }, [isMobile]);
+
   const [selectedMix, setSelectedMix] = useState<IProduct>();
   const handleClose = useCallback(() => setSelectedMix(undefined), []);
   const { addToBasket } = useBasket();
@@ -75,7 +79,11 @@ export function ZephyrPage() {
   };
 
   const handleZephyrMixClick = (item: IProduct) => {
-    setSelectedMix(item);
+    if (item.id === Zephyr.ZephyrMixSmall) {
+      setSelectedMix({ ...item, imageUrl: item.imageUrl + '-rotated' });
+    } else {
+      setSelectedMix(item);
+    }
   };
 
   const handleZephyrMixConfirm = (quantity: number) => {
@@ -186,12 +194,14 @@ export function ZephyrPage() {
         <FlexColumn>
           <DessertsMix
             size={'large'}
-            imageHeight={isMobile ? 146 : undefined}
+            imageHeight={isMobile ? 240 : undefined}
             product={zephyrMix[0]}
             onClick={handleZephyrMixClick}
             pictureStyle={{
-              width: '280px',
-              height: isMobile ? 'auto' : '320px',
+              height: 'auto',
+              width: '165px',
+              marginBottom: isMobile ? '10px' : '20px',
+              // height: isMobile ? 'auto' : '320px',
               justifyContent: 'center',
               flexDirection: 'column',
             }}

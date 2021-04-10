@@ -74,6 +74,7 @@ interface IFlex {
   flex?: string;
   flexWrap?: boolean;
   direction?: 'column' | 'column-reverse' | 'row' | 'row-reverse';
+  fullHeight?: boolean;
 }
 
 export const Flex = styled.div<IFlex>`
@@ -144,4 +145,9 @@ export const Flex = styled.div<IFlex>`
     css`
       flex-direction: ${direction};
     `}
+    ${({ fullHeight }) =>
+      fullHeight &&
+      css`
+        height: 100%;
+      `}
 `;

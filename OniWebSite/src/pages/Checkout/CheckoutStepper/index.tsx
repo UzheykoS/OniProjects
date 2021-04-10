@@ -18,7 +18,7 @@ import { Delivery, DeliveryType } from './Delivery';
 import { Contacts } from './Contacts';
 import { Payment, PaymentType } from './Payment';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
-import { IBasketItem, useBasket } from '@hooks/useBasket';
+import { useBasket } from '@hooks/useBasket';
 import { submitOrder } from '@src/api/oni-web';
 import { useSnackbar, SnackbarType } from '@hooks/useSnackbar';
 import { BREAKPOINT } from '@constants';
@@ -62,7 +62,7 @@ export interface IOrder extends IContactData {
 }
 
 interface ICheckoutStepperProps {
-  items: IBasketItem[];
+  isCheckout?: boolean;
   returnToBasket: () => void;
 }
 
@@ -74,12 +74,15 @@ const initialState = {
   comments: '',
   address: 'Самовывоз: бул. Вацлава Гавела, 9А',
   date: null,
-  time: null,
+  time: '',
   surname: '',
   city: '',
 };
 
-export function CheckoutStepper({ returnToBasket }: ICheckoutStepperProps) {
+export function CheckoutStepper({
+  returnToBasket,
+  isCheckout,
+}: ICheckoutStepperProps) {
   const {
     items,
     totalPrice,
@@ -176,6 +179,10 @@ export function CheckoutStepper({ returnToBasket }: ICheckoutStepperProps) {
 
   function isStepComplete(step: CheckoutSteps) {
     return step < activeStep;
+  }
+
+  if (!isCheckout) {
+    return null;
   }
 
   return (

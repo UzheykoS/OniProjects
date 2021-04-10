@@ -8,7 +8,7 @@ interface ITextMaskCustomProps {
 function PhoneInput(props: ITextMaskCustomProps) {
   const { inputRef, ...other } = props;
   // prettier-ignore
-  const maks = ['(', /[0-9]/, /\d/, /\d/, ')', ' ', /\d/, /\d/, /\d/, '-', /\d/, /\d/, /\d/, /\d/]
+  const mask = ['(', /[0]/, /\d/, /\d/, ')', ' ', /\d/, /\d/, /\d/, '-', /\d/, /\d/, /\d/, /\d/]
   return (
     <MaskedInput
       {...other}
@@ -16,7 +16,7 @@ function PhoneInput(props: ITextMaskCustomProps) {
         inputRef(ref ? ref.inputElement : null);
       }}
       showMask={true}
-      mask={maks}
+      mask={mask}
       guide={false}
       keepCharPositions={false}
     />

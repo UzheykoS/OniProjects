@@ -1,43 +1,22 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { IProduct, ProductType } from '@constants/products';
 import {
   IProductSingleWrapper,
-  ProductSingleWrapper,
   Title,
   Description,
-  AddIconMobileWrapper,
-  AddIconWrapper,
 } from '@components/products/styled';
 import { ProductImageWrapper } from '@components/products/ProductImageWrapper';
-import AddIcon from '@material-ui/icons/Add';
-import colors from '@constants/colors';
+import { TopSalesItemWrapper } from './styled';
+import { Flex } from '@styles/styled';
 
 interface IProps extends IProductSingleWrapper {
   product: IProduct;
-  height?: number;
-  isMobile?: boolean;
   title?: string;
   description?: string;
   onClick: (item: IProduct) => void;
 }
-export function TopSalesItem({
-  height = 19,
-  product,
-  isMobile,
-  onClick,
-  title,
-  description,
-}: IProps) {
-  const [mouseOver, setMouseOver] = useState(false);
 
-  const onMouseOver = () => {
-    !isMobile && setMouseOver(true);
-  };
-
-  const onMouseOut = () => {
-    !isMobile && setMouseOver(false);
-  };
-
+export function TopSalesItem({ product, onClick, title, description }: IProps) {
   function getImageHeight() {
     switch (product.type) {
       case ProductType.Choux:
@@ -56,26 +35,14 @@ export function TopSalesItem({
   }
 
   return (
-    <ProductSingleWrapper
-      height={height}
-      onMouseOver={onMouseOver}
-      onMouseOut={onMouseOut}
-      onClick={() => onClick(product)}
-    >
-      {isMobile ? (
-        <AddIconMobileWrapper onClick={() => onClick(product)}>
-          <AddIcon
-            style={{ fontSize: 36, color: colors.primary.white, opacity: 0.7 }}
-          />
-        </AddIconMobileWrapper>
-      ) : (
-        <AddIconWrapper visible={mouseOver}>
-          <AddIcon style={{ fontSize: 40, color: colors.primary.white }} />
-        </AddIconWrapper>
-      )}
-      <ProductImageWrapper src={product.imageUrl} height={getImageHeight()} />
-      <Title>{title || product.id}</Title>
-      <Description>{description || product.fullDescription}</Description>
-    </ProductSingleWrapper>
+    <TopSalesItemWrapper onClick={() => onClick(product)}>
+      <Flex fullHeight>
+        <ProductImageWrapper src={product.imageUrl} height={getImageHeight()} />
+      </Flex>
+      <Flex direction='column'>
+        <Title>{title || product.id}</Title>
+        <Description>{description || product.fullDescription}</Description>
+      </Flex>
+    </TopSalesItemWrapper>
   );
 }

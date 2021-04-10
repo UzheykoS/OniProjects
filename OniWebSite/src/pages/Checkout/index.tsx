@@ -17,12 +17,11 @@ export function Checkout() {
 
   return (
     <CheckoutContainer>
-      {isCheckout ? (
-        <CheckoutStepper
-          items={items}
-          returnToBasket={() => setIsCheckout(false)}
-        />
-      ) : (
+      <CheckoutStepper
+        isCheckout={isCheckout}
+        returnToBasket={() => setIsCheckout(false)}
+      />
+      {!isCheckout && (
         <Basket
           items={items}
           totalPrice={totalPrice}

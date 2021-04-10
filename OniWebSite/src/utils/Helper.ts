@@ -102,3 +102,21 @@ export function formatMessage(items: IBasketItem[]) {
   }, '');
   return itemsMessage;
 }
+
+export const PATTERN = {
+  militaryTime: /^([0-1]?[0-9]|2[0-3]):([0-5][0-9])(:[0-5][0-9])?$/,
+};
+
+export const militaryTime = (value: string) => PATTERN.militaryTime.test(value);
+
+export const fillMaskByValue = (mask: string, value: string) => {
+  let result = '';
+  for (let i = 0, c = mask.length; i < c; i += 1) {
+    if (i === 2) {
+      result += ':';
+    } else {
+      result += value[i] ? value[i] : mask[i] ? mask[i] : '';
+    }
+  }
+  return result;
+};

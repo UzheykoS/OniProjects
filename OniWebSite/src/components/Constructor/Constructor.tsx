@@ -217,7 +217,10 @@ export function Constructor({
         break;
       case ConstructoreMode.ZephyrSmall:
         addToBasket({
-          product: zephyrMix[0],
+          product: {
+            ...zephyrMix[0],
+            imageUrl: zephyrMix[0].imageUrl + '-rotated',
+          },
           quantity: 1,
           contents,
         });

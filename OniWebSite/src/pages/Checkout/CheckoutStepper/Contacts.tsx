@@ -18,6 +18,7 @@ import { Flex } from '@styles/styled';
 import { BREAKPOINT } from '@constants';
 import { DeliveryType } from './Delivery';
 import { TextLink } from '@common/styled';
+import TimeInput from '@common/TimeInput';
 
 export const INVALID_NAME = 'Введите имя';
 export const INVALID_SURNAME = 'Введите фамилию';
@@ -48,6 +49,8 @@ export function Contacts({
 
   const handleChange = (key: string, value: string) => {
     if (key === 'phone') {
+      console.log('value', value);
+
       const numberString = value.match(numberPattern)?.join('');
       setFormData({ ...formData, [key]: numberString });
     } else {
@@ -74,6 +77,7 @@ export function Contacts({
       setFormErrors({ ...formErrors, name: value ? undefined : INVALID_NAME });
     }
     if (key === 'phone') {
+      console.log('handleBlur', value);
       setFormErrors({
         ...formErrors,
         phone: !value || value.indexOf('_') > -1 ? INVALID_PHONE : undefined,
@@ -225,7 +229,7 @@ export function Contacts({
             direction='column'
             style={{
               width: isMobile ? '100%' : '50%',
-              margin: isMobile ? '0px 5px 15px 5px' : '25px 5px 10px 5px',
+              margin: isMobile ? '22px 5px 15px 5px' : '25px 5px 10px 5px',
             }}
           >
             <FormRowWrapper style={{ marginTop: isMobile ? 0 : 18 }}>
@@ -246,20 +250,31 @@ export function Contacts({
                 helperText={!!formErrors.date ? formErrors.date : ' '}
               />
               {delivery !== DeliveryType.NP && (
-                <TextFieldStyled
+                <TimeInput
                   label='Время'
-                  type='time'
-                  InputLabelProps={{
-                    shrink: true,
-                  }}
-                  inputProps={{
-                    step: 300, // 5 min
-                  }}
+                  // InputLabelProps={{
+                  //   shrink: true,
+                  // }}
                   value={formData.time || ''}
                   fullWidth
                   variant='outlined'
+                  style={{ margin: '2px 5px' }}
                   onChange={ev => handleTimeChange(ev.target.value)}
                 />
+                // <TextFieldStyled
+                //   label='Время'
+                //   type='time'
+                //   InputLabelProps={{
+                //     shrink: true,
+                //   }}
+                //   inputProps={{
+                //     step: 300, // 5 min
+                //   }}
+                //   value={formData.time || ''}
+                //   fullWidth
+                //   variant='outlined'
+                //   onChange={ev => handleTimeChange(ev.target.value)}
+                // />
               )}
               {delivery === DeliveryType.NP && (
                 <TextFieldStyled

@@ -57,6 +57,9 @@ export function ChouxPage() {
   const [expanded, setExpanded] = useState<boolean>(
     !!editItem || !!productItem || !isMobile
   );
+  useEffect(() => {
+    setExpanded(!!editItem || !!productItem || !isMobile);
+  }, [isMobile]);
   const [selectedMix, setSelectedMix] = useState<IProduct>();
   const handleClose = useCallback(() => setSelectedMix(undefined), []);
   const { addToBasket } = useBasket();
