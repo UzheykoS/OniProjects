@@ -70,6 +70,7 @@ export const ImageWithFallback = ({
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',
+        userSelect: 'none',
         ...style,
       }}
     >

@@ -8,6 +8,7 @@ import React from 'react';
 
 export interface IImageWrapper extends IImageWithFallbackProps {
   height?: number;
+  maxWidth?: string;
 }
 
 export const ImageWrapper = styled(({ height, ...rest }: IImageWrapper) => (
@@ -20,7 +21,10 @@ export const ImageWrapper = styled(({ height, ...rest }: IImageWrapper) => (
       `
       height: ${height ? height + 'px' : 'auto'};
     `};
-    max-width: 200px;
+    ${({ maxWidth }) =>
+      `
+      max-width: ${maxWidth ? maxWidth : '200px'};
+    `};
   }
 
   ${({ height }) =>

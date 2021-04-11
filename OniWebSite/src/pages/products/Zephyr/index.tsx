@@ -6,7 +6,6 @@ import {
   constructorReducer,
   initialContstructorState,
   ConstructoreMode,
-  ConstructorError,
 } from '@components/Constructor/Constructor';
 import { ConstructorContainer } from '@components/Constructor';
 import { DessertsMix } from '@components/DessertsMix';
@@ -69,13 +68,7 @@ export function ZephyrPage() {
     if (!expanded && !isMobile) {
       setExpanded(true);
     }
-    try {
-      dispatch({ type: 'add', item });
-    } catch (e) {
-      if (e instanceof ConstructorError) {
-        console.log('Add modal dialog asking to increase mix size');
-      }
-    }
+    dispatch({ type: 'add', item });
   };
 
   const handleZephyrMixClick = (item: IProduct) => {
@@ -185,7 +178,7 @@ export function ZephyrPage() {
       <FlexRow>
         <Typography
           variant='h3'
-          style={{ margin: '30px 0 0 0', whiteSpace: 'nowrap' }}
+          style={{ margin: '30px 0px 15px', whiteSpace: 'nowrap' }}
         >
           НАБОРЫ ЗЕФИРА
         </Typography>
@@ -194,14 +187,19 @@ export function ZephyrPage() {
         <FlexColumn>
           <DessertsMix
             size={'large'}
-            imageHeight={isMobile ? 240 : undefined}
-            product={zephyrMix[0]}
+            product={
+              isMobile
+                ? {
+                    ...zephyrMix[0],
+                    imageUrl: zephyrMix[0].imageUrl + '-rotated',
+                  }
+                : zephyrMix[0]
+            }
             onClick={handleZephyrMixClick}
             pictureStyle={{
               height: 'auto',
-              width: '165px',
+              width: '260px',
               marginBottom: isMobile ? '10px' : '20px',
-              // height: isMobile ? 'auto' : '320px',
               justifyContent: 'center',
               flexDirection: 'column',
             }}

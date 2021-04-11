@@ -69,15 +69,15 @@ export enum Cheesecake {
 
 export enum Cakes {
   SoulSmall = 'Soul',
-  SoulLarge = 'Soul XL',
+  SoulLarge = 'Soul ',
   CarrotSmall = 'Carrot Cake',
-  CarrotLarge = 'Carrot Cake XL',
+  CarrotLarge = 'Carrot Cake ',
   PinkSmall = 'Pink',
-  PinkLarge = 'Pink XL',
+  PinkLarge = 'Pink ',
   InfinitySmall = 'Infinity',
-  InfinityLarge = 'Infinity XL',
+  InfinityLarge = 'Infinity ',
   RioSmall = 'Rio',
-  RioLarge = 'Rio XL',
+  RioLarge = 'Rio ',
 }
 
 export const Products = {

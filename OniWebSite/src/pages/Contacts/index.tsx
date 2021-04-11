@@ -71,7 +71,7 @@ export function Contacts() {
                   <IconWrapper>
                     <LocationIcon />
                   </IconWrapper>
-                  <LinkWrapper href='/delivery#map-wrapper'>
+                  <LinkWrapper href='https://goo.gl/maps/61G5oKAfPiXo6cU18' target='_blank'>
                     Киев, бульвар Вацлава Гавела, 9А
                   </LinkWrapper>
                 </TextWrapper>

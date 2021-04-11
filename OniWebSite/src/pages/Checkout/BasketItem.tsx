@@ -8,12 +8,12 @@ import QuantityEditor from '@common/QuantityEditor';
 import { useHistory } from 'react-router-dom';
 import { getDessertRouteKey } from '@utils/Helper';
 import {
-  cakes,
   ProductType,
   ICakeInfo,
   Choux,
   Zephyr,
   Macarons,
+  cakes,
 } from '@constants/products';
 
 interface IBasketItemProps {
@@ -70,7 +70,7 @@ export function BasketItem({
       </BasketItemWrapperCell>
       <BasketItemWrapperCell width={25}>
         <Typography variant='body1'>
-          <b>{product.type}</b> {product.id}{' '}
+          <b>{product.type}</b> {product.id.trimRight()}{' '}
           {product.type === ProductType.Cake
             ? `${
                 ([] as ICakeInfo[])
@@ -83,6 +83,7 @@ export function BasketItem({
       <BasketItemWrapperCell width={25}>
         <QuantityEditor
           quantity={quantity}
+          isMobile={false}
           handleIncreaseQuantity={() => handleIncreaseQuantity(item)}
           handleDecreaseQuantity={() => handleDecreaseQuantity(item)}
         />

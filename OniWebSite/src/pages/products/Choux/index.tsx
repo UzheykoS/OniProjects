@@ -6,7 +6,6 @@ import {
   constructorReducer,
   initialContstructorState,
   ConstructoreMode,
-  ConstructorError,
 } from '@components/Constructor/Constructor';
 import { ConstructorContainer } from '@components/Constructor';
 import { DessertsMix } from '@components/DessertsMix';
@@ -86,13 +85,7 @@ export function ChouxPage() {
     if (!expanded && !isMobile) {
       setExpanded(true);
     }
-    try {
-      dispatch({ type: 'add', item });
-    } catch (e) {
-      if (e instanceof ConstructorError) {
-        console.log('Add modal dialog asking to increase mix size');
-      }
-    }
+    dispatch({ type: 'add', item });
   };
 
   const handleChouxMixClick = (item: IProduct) => {

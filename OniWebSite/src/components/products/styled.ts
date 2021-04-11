@@ -74,8 +74,8 @@ export const AddIconMobileWrapper = styled.div`
   top: 0;
   right: 0;
   margin: 10px;
-  width: 48px;
-  height: 48px;
+  width: 54px;
+  height: 54px;
   border-radius: 50%;
   background: ${colors.primary.gold};
   border: 2px solid ${colors.primary.white};

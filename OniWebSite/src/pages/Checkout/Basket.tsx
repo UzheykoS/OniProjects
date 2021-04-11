@@ -3,8 +3,6 @@ import {
   BasketWrapper,
   CheckoutHeaderWrapper,
   BasketTable,
-  BasketHeader,
-  BasketHeaderCell,
   TotalMobile,
   BackArrowWrapper,
 } from './styled';
@@ -77,7 +75,7 @@ export function Basket({
       setOneClickDialogOpen(false);
       showSnackbar('Заказ сохранён!');
     } catch (e) {
-      console.log(e);
+      console.error(e);
       showSnackbar(
         'Ошибка при сохранении заказа ☹️\nПопробуйте ещё раз',
         SnackbarType.Error
@@ -106,22 +104,6 @@ export function Basket({
         Минимальная сумма заказа для доставки курьером составляет 200 грн
       </Typography>
       <BasketTable>
-        {!isMobile && (
-          <BasketHeader>
-            <BasketHeaderCell width={30}>
-              <Typography variant={'body2'}>Фото</Typography>
-            </BasketHeaderCell>
-            <BasketHeaderCell width={25}>
-              <Typography variant={'body2'}>Название</Typography>
-            </BasketHeaderCell>
-            <BasketHeaderCell width={25}>
-              <Typography variant={'body2'}>Количество</Typography>
-            </BasketHeaderCell>
-            <BasketHeaderCell width={20}>
-              <Typography variant={'body2'}>Цена</Typography>
-            </BasketHeaderCell>
-          </BasketHeader>
-        )}
         {items.map((item, index) => {
           return isMobile ? (
             <BasketItemMobile

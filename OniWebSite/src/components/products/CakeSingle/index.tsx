@@ -104,8 +104,7 @@ export function CakeSingle({ cakePair, onClick }: IProps) {
   const imageSection = (
     <ImagesSection>
       <IconButtonStyled
-        onClick={() => setActiveIndex(0)}
-        disabled={activeIndex === 0}
+        onClick={() => setActiveIndex(activeIndex === 0 ? 1 : 0)}
       >
         <KeyboardArrowLeft />
       </IconButtonStyled>
@@ -136,8 +135,7 @@ export function CakeSingle({ cakePair, onClick }: IProps) {
         </CarouseNavBar>
       </Flex>
       <IconButtonStyled
-        onClick={() => setActiveIndex(1)}
-        disabled={activeIndex === 1}
+        onClick={() => setActiveIndex(activeIndex === 0 ? 1 : 0)}
       >
         <KeyboardArrowRight />
       </IconButtonStyled>
@@ -179,6 +177,7 @@ export function CakeSingle({ cakePair, onClick }: IProps) {
         <SizeAndQtySelector>
           <Flex>
             <ChipStyled
+              $isMobile={isMobile}
               clickable
               color='secondary'
               label={`${weight} кг`}
@@ -186,16 +185,18 @@ export function CakeSingle({ cakePair, onClick }: IProps) {
               onClick={() => setSelectedSize(CakeSize.Small)}
             />
             <ChipStyled
+              $isMobile={isMobile}
               clickable
               color='secondary'
               label={`${weightLarge} кг`}
               variant={selectedSize === CakeSize.Large ? 'outlined' : 'default'}
-              style={{ marginRight: 50, marginLeft: 10 }}
+              style={{ marginRight: isMobile ? 0 : 50, marginLeft: isMobile ? 5 : 10 }}
               onClick={() => setSelectedSize(CakeSize.Large)}
             />
           </Flex>
           <QuantityEditor
             quantity={quantity}
+            isMobile={isMobile}
             handleIncreaseQuantity={handleIncreaseQuantity}
             handleDecreaseQuantity={handleDecreaseQuantity}
           />
@@ -242,7 +243,7 @@ export function CakeSingle({ cakePair, onClick }: IProps) {
             variant={'h2'}
             style={{
               marginRight: isMobile ? '20px' : '40px',
-              fontSize: isMobile ? 16 : 24,
+              fontSize: isMobile ? 20 : 24,
               whiteSpace: 'nowrap',
             }}
           >

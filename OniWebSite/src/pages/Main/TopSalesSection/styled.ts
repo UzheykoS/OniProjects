@@ -15,3 +15,11 @@ export const TopSalesItemWrapper = styled.div`
     padding: 40px 0 20px 0;
   }
 `;
+
+export const TopSalesItemTitle = styled.div`
+  font-family: 'Yeseva One', cursive;
+  font-size: 20px;
+  color: black;
+  text-align: center;
+  padding: 10px 0;
+`;

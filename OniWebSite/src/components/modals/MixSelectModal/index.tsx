@@ -97,6 +97,7 @@ const MixSelectModal: FC<IMixSelectModalModalProps> = ({
             </Typography>
             <QuantityEditor
               quantity={quantity}
+              isMobile={isMobile}
               handleIncreaseQuantity={() => setQuantity(quantity + 1)}
               handleDecreaseQuantity={() => {
                 if (quantity > 1) {

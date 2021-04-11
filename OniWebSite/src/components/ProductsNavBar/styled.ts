@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { BREAKPOINT } from '@constants';
+import { BREAKPOINT, BREAKPOINT_XL } from '@constants';
 import colors from '@constants/colors';
 
 interface IProductsNavBarWrapper {
@@ -18,6 +18,10 @@ export const ProductsNavBarWrapper = styled.div<IProductsNavBarWrapper>`
       top: 120px;
       position: fixed;
     `}
+
+  @media (max-width: ${BREAKPOINT_XL}) {
+    left: 5%;
+  }
 `;
 
 export const ProductsNavBarWrapperMobile = styled.div<IProductsNavBarWrapper>`

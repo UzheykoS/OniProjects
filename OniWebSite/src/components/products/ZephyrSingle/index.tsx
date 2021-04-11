@@ -50,7 +50,7 @@ export function ZephyrSingle({ product, height, onClick }: IProps) {
           <AddIcon style={{ fontSize: 40, color: colors.primary.white }} />
         </AddIconWrapper>
       )}
-      <ProductImageWrapper height={200} src={product.imageUrl} />
+      <ProductImageWrapper src={product.imageUrl} />
       <Title>{product.id}</Title>
       <Description>{product.fullDescription}</Description>
     </ProductSingleWrapper>

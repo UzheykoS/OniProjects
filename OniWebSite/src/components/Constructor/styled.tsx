@@ -1,25 +1,24 @@
 import styled from 'styled-components';
 import {
-  ExpansionPanelSummary,
-  ExpansionPanel,
-  ExpansionPanelProps,
-  ExpansionPanelDetails,
+  AccordionSummary,
+  Accordion,
+  AccordionProps,
+  AccordionDetails,
   Typography,
   Dialog,
   Chip,
-  makeStyles,
 } from '@material-ui/core';
 import colors from '@constants/colors';
 import React from 'react';
 import { BREAKPOINT } from '@constants';
 import { ImageWithFallback } from '@common/ImageWithFallback';
 
-interface IExpansionPanelStyled extends ExpansionPanelProps {
+interface IExpansionPanelStyled extends AccordionProps {
   isSticky?: boolean | null;
 }
 
 export const ExpansionPanelStyled = styled(
-  ({ isSticky, ...rest }: IExpansionPanelStyled) => <ExpansionPanel {...rest} />
+  ({ isSticky, ...rest }: IExpansionPanelStyled) => <Accordion {...rest} />
 ).attrs({
   classes: {
     expanded: 'expanded',
@@ -63,13 +62,13 @@ export const ExpansionPanelStyled = styled(
         }
         @media (min-width: ${BREAKPOINT}) {
           position: fixed;
-          top: 145px;
+          top: 135px;
           width: 310px;
         }
     `};
 `;
 
-export const ExpansionPanelSummaryStyled = styled(ExpansionPanelSummary).attrs({
+export const ExpansionPanelSummaryStyled = styled(AccordionSummary).attrs({
   classes: {
     expanded: 'expanded',
   },
@@ -96,7 +95,7 @@ export const ExpansionPanelSummaryStyled = styled(ExpansionPanelSummary).attrs({
   }
 `;
 
-export const ExpansionPanelDetailsStyled = styled(ExpansionPanelDetails)`
+export const ExpansionPanelDetailsStyled = styled(AccordionDetails)`
   padding: 0px;
 `;
 
@@ -246,19 +245,3 @@ export const ChipStyled = styled(Chip).attrs({
     color: ${colors.primary.black};
   }
 `;
-
-export const TooltipTitle = styled.div`
-  font-family: 'Yeseva One', cursive;
-  font-size: 12px;
-  color: black;
-  text-align: center;
-  padding: 10px 0;
-`;
-
-export const useStyles = makeStyles({
-  closeIconWrapper: {
-    position: 'absolute',
-    right: '5px',
-    top: '0px',
-  },
-});

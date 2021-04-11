@@ -12,6 +12,7 @@ import PhoneIcon from '@icons/phone.svg';
 import EnvelopeIcon from '@icons/envelope.svg';
 import { Flex } from '@styles/styled';
 import { BREAKPOINT } from '@constants';
+import { LinkWrapper } from '@pages/Contacts/styled';
 
 interface IGoogleMapsWrapperProps {
   containerElement: ReactElement;
@@ -75,10 +76,11 @@ export function DeliveryAndPayment() {
               уточняйте дополнительно.
             </Typography>
             <Typography variant='body1' style={{ marginTop: '1rem' }}>
-              <b>Срочную доставку в день заказа</b> осуществляем на курьерском такси.
-              Стоимость доставки – по тарифу перевозчика. Минимальная сумма
-              заказа для доставки – 200 грн. Если все выбранные десерты есть в
-              наличии, вы можете получить заказ в течение часа после оформления.
+              <b>Срочную доставку в день заказа</b> осуществляем на курьерском
+              такси. Стоимость доставки – по тарифу перевозчика. Минимальная
+              сумма заказа для доставки – 200 грн. Если все выбранные десерты
+              есть в наличии, вы можете получить заказ в течение часа после
+              оформления.
             </Typography>
             <Typography
               variant='h3'
@@ -109,7 +111,12 @@ export function DeliveryAndPayment() {
                     <IconWrapper>
                       <LocationIcon />
                     </IconWrapper>
-                    Киев, бульвар Вацлава Гавела, 9А
+                    <LinkWrapper
+                      href='https://goo.gl/maps/61G5oKAfPiXo6cU18'
+                      target='_blank'
+                    >
+                      Киев, бульвар Вацлава Гавела, 9А
+                    </LinkWrapper>
                   </TextWrapper>
                 </Flex>
                 <Flex>
@@ -151,6 +158,25 @@ export function DeliveryAndPayment() {
             flexBasis: isMobile ? '' : '30rem',
           }}
         >
+          {isMobile && (
+            <Flex
+              justifyCenter
+              id='map-wrapper'
+              style={{
+                height: 400,
+                width: '100%',
+              }}
+            >
+              <GoogleMapsWrapper
+                containerElement={<div style={{ width: '100%' }} />}
+                mapElement={<div style={{ height: `100%` }} />}
+                isMobile={isMobile}
+                onMapLoad={() => {}}
+                onMapClick={() => {}}
+                onMarkerRightClick={() => {}}
+              />
+            </Flex>
+          )}
           <Typography
             variant='h3'
             style={{ marginBottom: '1rem', marginTop: '2rem' }}
@@ -170,25 +196,27 @@ export function DeliveryAndPayment() {
             получении наличными или через терминал. Также вы можете оплатить
             заказ заранее на карту.
           </Typography>
-          <Flex
-            justifyCenter
-            id='map-wrapper'
-            style={{
-              height: 400,
-              width: isMobile ? '100%' : 700,
-              top: isMobile ? '' : 450,
-              position: isMobile ? 'inherit' : 'absolute',
-            }}
-          >
-            <GoogleMapsWrapper
-              containerElement={<div style={{ width: '100%' }} />}
-              mapElement={<div style={{ height: `100%` }} />}
-              isMobile={isMobile}
-              onMapLoad={() => {}}
-              onMapClick={() => {}}
-              onMarkerRightClick={() => {}}
-            />
-          </Flex>
+          {!isMobile && (
+            <Flex
+              justifyCenter
+              id='map-wrapper'
+              style={{
+                height: 400,
+                width: 700,
+                top: 450,
+                position: 'absolute',
+              }}
+            >
+              <GoogleMapsWrapper
+                containerElement={<div style={{ width: '100%' }} />}
+                mapElement={<div style={{ height: `100%` }} />}
+                isMobile={isMobile}
+                onMapLoad={() => {}}
+                onMapClick={() => {}}
+                onMarkerRightClick={() => {}}
+              />
+            </Flex>
+          )}
           {isMobile && (
             <DeliverySection>
               <Flex>
@@ -196,7 +224,12 @@ export function DeliveryAndPayment() {
                   <IconWrapper>
                     <LocationIcon />
                   </IconWrapper>
-                  Киев, бульвар Вацлава Гавела, 9А
+                  <LinkWrapper
+                    href='https://goo.gl/maps/61G5oKAfPiXo6cU18'
+                    target='_blank'
+                  >
+                    Киев, бульвар Вацлава Гавела, 9А
+                  </LinkWrapper>
                 </TextWrapper>
               </Flex>
               <Flex>

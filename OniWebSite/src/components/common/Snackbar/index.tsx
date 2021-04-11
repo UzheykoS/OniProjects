@@ -1,11 +1,16 @@
 import React from 'react';
 import { AlertTitle, AlertProps } from '@material-ui/lab';
-import { Snackbar as MUISnackbar } from '@material-ui/core';
+import { Slide, Snackbar as MUISnackbar } from '@material-ui/core';
 import { SnackbarType } from '@hooks/useSnackbar';
-import { MuiAlertStyled } from './styled';
+import { MuiAlertStyled, StyledSnackbarContent } from './styled';
+import { TransitionProps } from '@material-ui/core/transitions';
 
 function Alert(props: AlertProps) {
   return <MuiAlertStyled elevation={6} variant='standard' {...props} />;
+}
+
+function SlideTransition(props: TransitionProps) {
+  return <Slide {...props} direction='up' />;
 }
 
 interface IProps {
@@ -20,18 +25,26 @@ export const Snackbar = ({ message, type, title, handleClose }: IProps) => {
     <MUISnackbar
       open={!!message}
       autoHideDuration={type === SnackbarType.Info ? null : 6000}
-      anchorOrigin={{ vertical: 'top', horizontal: 'center' }}
+      anchorOrigin={{
+        vertical: type === SnackbarType.Message ? 'bottom' : 'top',
+        horizontal: 'center',
+      }}
+      TransitionComponent={SlideTransition}
       onClose={handleClose}
     >
       {!!message ? (
-        <Alert
-          onClose={handleClose}
-          severity={type || 'success'}
-          style={{ whiteSpace: 'pre-line', fontSize: 16 }}
-        >
-          <AlertTitle>{title}</AlertTitle>
-          {message}
-        </Alert>
+        type === SnackbarType.Message ? (
+          <StyledSnackbarContent message={message} />
+        ) : (
+          <Alert
+            onClose={handleClose}
+            severity={type || 'success'}
+            style={{ whiteSpace: 'pre-line', fontSize: 16 }}
+          >
+            <AlertTitle>{title}</AlertTitle>
+            {message}
+          </Alert>
+        )
       ) : (
         <div /> // prevents empty alert on close transition
       )}

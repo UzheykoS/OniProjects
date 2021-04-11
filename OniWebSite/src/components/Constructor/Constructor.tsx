@@ -40,10 +40,11 @@ interface IConstructorState {
   mode: ConstructoreMode;
   items: IProduct[];
   randomItems: IProduct[];
+  error?: string;
 }
 
 type ActionType = {
-  type: 'setMode' | 'add' | 'remove' | 'clear' | 'surpriseMe';
+  type: 'setMode' | 'add' | 'remove' | 'clear' | 'surpriseMe' | 'clearError';
   mode?: ConstructoreMode;
   item?: IProduct;
   index?: number;
@@ -65,6 +66,7 @@ export const initialContstructorState = (
     mode,
     items: [],
     randomItems: [],
+    error: '',
   };
 };
 
@@ -86,7 +88,10 @@ export function constructorReducer(
       if (state.items.length + state.randomItems.length === state.mode) {
         const modeIndex = state.availableModes.indexOf(state.mode);
         if (modeIndex === state.availableModes.length - 1) {
-          return newState;
+          return {
+            ...newState,
+            error: 'Упс! В вашей коробке больше нет места',
+          };
           // throw new ConstructorError('List is already full');
         } else {
           newState.mode = state.availableModes[modeIndex + 1];
@@ -108,7 +113,9 @@ export function constructorReducer(
         'Attempt to remove element with index: ' + action.index
       );
     case 'clear':
-      return { ...state, items: [], randomItems: [] };
+      return { ...state, items: [], randomItems: [], error: undefined };
+    case 'clearError':
+      return { ...state, error: undefined };
     case 'surpriseMe':
       const { items, mode } = state;
       const randomItems = [];
@@ -263,6 +270,7 @@ export function Constructor({
   const handleClear = () => {
     dispatch({ type: 'clear' });
     handleClearModalClose();
+    setSurpriseMeTitleIndex(0);
   };
 
   const handleClearIconClick = () => {
@@ -299,7 +307,10 @@ export function Constructor({
   };
 
   const handleMobileItemClick = (index?: number) => {
-    if (!index || index === activeItem) {
+    if (index === undefined) {
+      setActiveItem(undefined);
+    } else if (index === activeItem) {
+      dispatch({ type: 'remove', index });
       setActiveItem(undefined);
     } else {
       setActiveItem(index);
@@ -319,7 +330,6 @@ export function Constructor({
           index={i}
           isActive={i === activeItem}
           onClick={isMobile ? handleMobileItemClick : handleRemoveClick}
-          removeItem={handleRemoveClick}
         />
       );
     }
@@ -371,7 +381,12 @@ export function Constructor({
           <Flex justifyCenter style={{ marginBottom: 10 }}>
             <MUIButton
               variant='contained'
-              style={{ width: 100, height: 40, borderRadius: '50px' }}
+              style={{
+                width: 100,
+                height: 40,
+                borderRadius: '50px',
+                backgroundColor: '#EEF2F0',
+              }}
               onClick={handleClearModalClose}
             >
               Нет

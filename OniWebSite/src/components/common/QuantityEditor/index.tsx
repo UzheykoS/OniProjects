@@ -7,14 +7,16 @@ import { IconButton, Typography } from '@material-ui/core';
 
 interface IProps {
   quantity: number;
-  handleIncreaseQuantity: any;
-  handleDecreaseQuantity: any;
+  handleIncreaseQuantity: () => void;
+  handleDecreaseQuantity: () => void;
+  isMobile: boolean;
 }
 
 const QuantityEditor = ({
   quantity,
   handleIncreaseQuantity,
   handleDecreaseQuantity,
+  isMobile,
 }: IProps) => {
   return (
     <QuantityEditorWrapper>
@@ -27,7 +29,10 @@ const QuantityEditor = ({
       >
         <RemoveIcon style={{ fontSize: 28 }} />
       </IconButton>
-      <Typography variant='body1' style={{ margin: '0px 20px' }}>
+      <Typography
+        variant='body1'
+        style={{ margin: isMobile ? '0 7px' : '0px 20px' }}
+      >
         {quantity}
       </Typography>
       <IconButton

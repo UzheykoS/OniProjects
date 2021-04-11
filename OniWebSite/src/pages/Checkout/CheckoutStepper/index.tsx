@@ -155,11 +155,11 @@ export function CheckoutStepper({
 
     try {
       await submitOrder({ ...form, payment, itemsMessage });
-      setPayment(form.payment);
+      setPayment(payment);
       clearBasket();
       setActiveStep(CheckoutSteps.Success);
     } catch (e) {
-      console.log(e);
+      console.error(e);
       showSnackbar(
         'Ошибка при сохранении заказа ☹️\nПопробуйте ещё раз',
         SnackbarType.Error

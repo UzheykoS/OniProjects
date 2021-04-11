@@ -49,8 +49,6 @@ export function Contacts({
 
   const handleChange = (key: string, value: string) => {
     if (key === 'phone') {
-      console.log('value', value);
-
       const numberString = value.match(numberPattern)?.join('');
       setFormData({ ...formData, [key]: numberString });
     } else {
@@ -77,7 +75,6 @@ export function Contacts({
       setFormErrors({ ...formErrors, name: value ? undefined : INVALID_NAME });
     }
     if (key === 'phone') {
-      console.log('handleBlur', value);
       setFormErrors({
         ...formErrors,
         phone: !value || value.indexOf('_') > -1 ? INVALID_PHONE : undefined,
@@ -98,13 +95,11 @@ export function Contacts({
     if (delivery === DeliveryType.NP && key === 'city') {
       setFormErrors({ ...formErrors, city: value ? undefined : INVALID_CITY });
     }
-    if (key === 'date') {
-      setFormErrors({ ...formErrors, date: value ? undefined : INVALID_DATE });
-    }
   };
 
   const handleDateChange = (date: Date | null) => {
     setFormData({ ...formData, date: date ? date.toISOString() : null });
+    setFormErrors({ ...formErrors, date: date ? undefined : INVALID_DATE });
   };
 
   const handleTimeChange = (time: string) => {

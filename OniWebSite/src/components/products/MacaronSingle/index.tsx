@@ -50,7 +50,7 @@ export function MacaronSingle({ product, height, onClick }: IProps) {
           }}
         >
           <AddIcon
-            style={{ fontSize: 36, color: colors.primary.white, opacity: 0.7 }}
+            style={{ fontSize: 42, color: colors.primary.white, opacity: 0.7 }}
           />
         </AddIconMobileWrapper>
       ) : (

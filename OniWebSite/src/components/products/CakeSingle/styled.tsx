@@ -50,7 +50,7 @@ export const InfoSection = styled.div`
   display: flex;
   justify-content: center;
   flex-direction: column;
-  padding: 20px 50px 10px 60px;
+  padding: 20px 30px 10px 40px;
   @media (max-width: ${BREAKPOINT}) {
     padding: 5px;
   }
@@ -157,12 +157,16 @@ export const PriceAndButtonWrapper = styled.div`
   justify-content: space-between;
 `;
 
+interface IChipStyled {
+  $isMobile: boolean;
+}
+
 export const ChipStyled = styled(Chip).attrs({
   classes: {
     colorSecondary: 'colorSecondary',
     outlinedSecondary: 'outlinedSecondary',
   },
-})`
+})<IChipStyled>`
   margin: 0px 5px;
   height: 36px;
   border-radius: 50px;
@@ -176,6 +180,12 @@ export const ChipStyled = styled(Chip).attrs({
     background-color: ${colors.primary.white};
     color: ${colors.primary.black};
   }
+
+  ${({ $isMobile }) =>
+    $isMobile &&
+    `
+      margin: 0;
+      `};
 `;
 
 export const CarouseNavBar = styled.div`

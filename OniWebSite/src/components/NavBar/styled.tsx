@@ -105,7 +105,7 @@ export const RoutesListItem = styled.li<IRoutesListItem>`
       `}
 `;
 
-export const LogoLink = styled(RoutesListItem)`
+export const LogoLink = styled(RoutesListItem as any)`
   margin: 0px 150px;
   @media (max-width: ${BREAKPOINT}) {
     margin: 0;

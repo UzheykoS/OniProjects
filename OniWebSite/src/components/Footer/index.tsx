@@ -31,7 +31,7 @@ export const Footer = () => {
         <Flex justifyCenter direction='column'>
           <Flex justifyCenter>
             <LogoWrapper>
-              <Logo src='/images/icons/Oni_w_black.png' />
+              <Logo src='/images/logo_pink.png' />
             </LogoWrapper>
           </Flex>
 

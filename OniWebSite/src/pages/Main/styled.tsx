@@ -31,7 +31,7 @@ export const BannerTextContent = styled.div`
 export const BannerTextContentMobile = styled.div`
   display: flex;
   flex-direction: column;
-  margin: 6rem 0 3rem 0;
+  margin: 6rem 2rem 3rem;
   justify-content: center;
   z-index: 10;
 `;

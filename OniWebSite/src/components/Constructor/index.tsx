@@ -11,6 +11,7 @@ import { Constructor, IConstructorProps } from './Constructor';
 import { BREAKPOINT } from '@constants';
 import CloseIcon from '@material-ui/icons/Close';
 import { Flex } from '@styles/styled';
+import { SnackbarType, useSnackbar } from '@hooks/useSnackbar';
 
 export interface IConstructorContainerProps extends IConstructorProps {
   expanded: boolean;
@@ -29,6 +30,7 @@ export function ConstructorContainer({
   const [isSticky, setIsSticky] = useState(false);
   const isMobile = useMediaQuery(`(max-width: ${BREAKPOINT})`);
   const [isLargeFont, setIsLargeFont] = useState(false);
+  const { showSnackbar } = useSnackbar();
 
   const handleScroll = () => {
     if (window.scrollY > stickyLimit) {
@@ -51,6 +53,13 @@ export function ConstructorContainer({
       window.removeEventListener('scroll', handleScroll);
     };
   }, []);
+
+  useEffect(() => {
+    if (rest.state.error) {
+      showSnackbar(rest.state.error, SnackbarType.Message);
+      rest.dispatch({ type: 'clearError' });
+    }
+  }, [rest.state.error]);
 
   if (isMobile) {
     return (

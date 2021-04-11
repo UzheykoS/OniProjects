@@ -90,6 +90,7 @@ export function BasketItemMobile({
       <Flex justifyBetween>
         <Flex>
           <QuantityEditor
+            isMobile
             quantity={quantity}
             handleIncreaseQuantity={() => handleIncreaseQuantity(item)}
             handleDecreaseQuantity={() => handleDecreaseQuantity(item)}

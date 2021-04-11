@@ -4,6 +4,7 @@ export enum SnackbarType {
   Success = 'success',
   Error = 'error',
   Info = 'info',
+  Message = 'message'
 }
 
 interface ISnackbarContext {

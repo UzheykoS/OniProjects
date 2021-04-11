@@ -54,7 +54,7 @@ export function AboutSection({ isMobile }: IMainPageSectionProps) {
               то, что делают. Вы обязательно это почувствуете.
             </Typography>
             <DescriptionLink href='/about'>
-              {`${SEPARATORS.DASH} ЧИТАТЬ ЕЩЁ `}
+              {`${SEPARATORS.DASH} УЗНАТЬ БОЛЬШЕ `}
             </DescriptionLink>
             <ImageWithFallback
               src={'./images/pages/about/about_12'}
@@ -106,7 +106,7 @@ export function AboutSection({ isMobile }: IMainPageSectionProps) {
             то, что делают. Вы обязательно это почувствуете.
           </Typography>
           <DescriptionLink href='/about'>
-            {`${SEPARATORS.DASH} ЧИТАТЬ ЕЩЁ `}
+            {`${SEPARATORS.DASH} УЗНАТЬ БОЛЬШЕ `}
           </DescriptionLink>
           <ImageWithFallback
             src={'./images/pages/about/about_8'}

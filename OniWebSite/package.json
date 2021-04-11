@@ -26,7 +26,7 @@
     "@types/react-router-dom": "^5.1.4",
     "@types/react-slick": "^0.23.4",
     "@types/react-text-mask": "^5.4.6",
-    "@types/styled-components": "^4.4.3",
+    "@types/styled-components": "^5.1.9",
     "axios": "^0.19.2",
     "date-fns": "^2.12.0",
     "imagemin": "^7.0.1",
@@ -42,7 +42,7 @@
     "react-spinners": "^0.8.0",
     "react-text-mask": "^5.4.3",
     "slick-carousel": "^1.8.1",
-    "styled-components": "^5.1.0",
+    "styled-components": "^5.2.3",
     "webpack-dev-server": "^3.10.3"
   },
   "devDependencies": {

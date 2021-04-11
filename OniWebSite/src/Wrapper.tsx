@@ -23,7 +23,7 @@ import { Cheesecakes } from '@pages/products/Cheesecakes';
 import { Contacts } from '@pages/Contacts';
 import { BASKET_SESSION_KEY, useBasket } from '@hooks/useBasket';
 
-const ScrollToTop = () => {
+export const ScrollToTop = () => {
   window.scrollTo(0, 0);
   return null;
 };
@@ -43,7 +43,7 @@ export function Wrapper() {
   return (
     <AppStyled>
       <Router>
-        <Route component={ScrollToTop} />
+        {/* <Route component={ScrollToTop} /> */}
         <NavBar />
         <ProductsNavBar />
         <Switch>

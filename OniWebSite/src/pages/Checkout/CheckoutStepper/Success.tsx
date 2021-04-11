@@ -40,8 +40,9 @@ export function Success({ payment }: { payment: PaymentType }) {
           textAlign: 'center',
         }}
       >
-        Мы свяжемся с вами, чтобы уточнить наличие выбранных десертов
-        {payment === PaymentType.Card ? ', и вышлем реквизиты для оплаты' : ''}
+        {payment === PaymentType.Card
+          ? 'Мы уточним наличие выбранных десертов и вышлем реквизиты для оплаты'
+          : 'Мы уточним наличие выбранных десертов и свяжемся с вами, чтобы подтвердить заказ'}
       </Typography>
       <Flex justifyCenter>
         <Button rounded style={{ marginTop: '2rem' }} onClick={handleNextClick}>

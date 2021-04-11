@@ -85,23 +85,6 @@ export const BasketTable = styled.div`
   }
 `;
 
-export const BasketHeader = styled.div`
-  display: flex;
-  flex-direction: row;
-  padding-bottom: 10px;
-`;
-
-export const BasketHeaderCell = styled.div<ICellProps>`
-  ${({ width }) =>
-    width &&
-    `
-    width: ${width}%;
-    `};
-  &:first-child {
-    padding-left: 25px;
-  }
-`;
-
 export const HelperText = styled.div`
   font-size: 13px;
   margin-right: 5px;
