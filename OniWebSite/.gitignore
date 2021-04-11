@@ -13,5 +13,4 @@ typings/*
 dist/*
 build/*
 config/dev.ts
-.env
 .env.development
