@@ -22,11 +22,7 @@ import { useSnackbar } from '@hooks/useSnackbar';
 import { Cheesecakes } from '@pages/products/Cheesecakes';
 import { Contacts } from '@pages/Contacts';
 import { BASKET_SESSION_KEY, useBasket } from '@hooks/useBasket';
-
-export const ScrollToTop = () => {
-  window.scrollTo(0, 0);
-  return null;
-};
+import ScrollToTop from '@components/ScrollToTop';
 
 export function Wrapper() {
   const { loading } = useLoading();
@@ -43,39 +39,41 @@ export function Wrapper() {
   return (
     <AppStyled>
       <Router>
-        {/* <Route component={ScrollToTop} /> */}
-        <NavBar />
-        <ProductsNavBar />
-        <Switch>
-          <Route
-            exact
-            path='/products'
-            component={() => <Redirect to='/products/macarons' />}
+        <>
+          <ScrollToTop />
+          <NavBar />
+          <ProductsNavBar />
+          <Switch>
+            <Route
+              exact
+              path='/products'
+              component={() => <Redirect to='/products/macarons' />}
+            />
+            <Route path='/clients' component={CorporateClients} />
+            <Route exact path='/' component={Main} />
+            <Route path='/contacts' component={Contacts} />
+            <Route path='/delivery' component={DeliveryAndPayment} />
+            <Route path='/about' component={About} />
+            <Route path='/checkout' component={Checkout} />
+
+            <Route path='/products/macarons' component={MacaronsPage} />
+            <Route path='/products/zephyr' component={ZephyrPage} />
+            <Route path='/products/cakes' component={Cakes} />
+            <Route path='/products/choux' component={ChouxPage} />
+            <Route path='/products/cheesecakes' component={Cheesecakes} />
+
+            <Route path='/404' component={NotFoundPage} />
+            <Route path='*' component={() => <Redirect to='/404' />} />
+          </Switch>
+          <Footer />
+          <Busy loading={loading} />
+          <Snackbar
+            message={message}
+            title={title}
+            type={type}
+            handleClose={hideSnackbar}
           />
-          <Route path='/clients' component={CorporateClients} />
-          <Route exact path='/' component={Main} />
-          <Route path='/contacts' component={Contacts} />
-          <Route path='/delivery' component={DeliveryAndPayment} />
-          <Route path='/about' component={About} />
-          <Route path='/checkout' component={Checkout} />
-
-          <Route path='/products/macarons' component={MacaronsPage} />
-          <Route path='/products/zephyr' component={ZephyrPage} />
-          <Route path='/products/cakes' component={Cakes} />
-          <Route path='/products/choux' component={ChouxPage} />
-          <Route path='/products/cheesecakes' component={Cheesecakes} />
-
-          <Route path='/404' component={NotFoundPage} />
-          <Route path='*' component={() => <Redirect to='/404' />} />
-        </Switch>
-        <Footer />
-        <Busy loading={loading} />
-        <Snackbar
-          message={message}
-          title={title}
-          type={type}
-          handleClose={hideSnackbar}
-        />
+        </>
       </Router>
     </AppStyled>
   );

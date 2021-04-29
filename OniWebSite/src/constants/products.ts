@@ -49,7 +49,8 @@ export enum Choux {
   RaspberryLiciRose = 'Малина-Личи-Роза',
   Apricot = 'Фундук-Абрикос',
   ChouxMixSmall = '2 шт',
-  ChouxMixLarge = '4 шт',
+  ChouxMixMedium = '4 шт',
+  ChouxMixLarge = '6 шт',
 }
 
 export enum Zephyr {
@@ -68,6 +69,10 @@ export enum Cheesecake {
 }
 
 export enum Cakes {
+  CarrotStrawberrySmall = 'Морковный с клубникой',
+  CarrotStrawberryLarge = 'Морковный с клубникой ',
+  MedovikSmall = 'Медовик с солёной карамелью',
+  MedovikLarge = 'Медовик с солёной карамелью ',
   SoulSmall = 'Soul',
   SoulLarge = 'Soul ',
   CarrotSmall = 'Carrot Cake',
@@ -120,8 +125,14 @@ export const chouxMix: IProduct[] = [
     price: 90,
   },
   {
-    id: Choux.ChouxMixLarge,
+    id: Choux.ChouxMixMedium,
     imageUrl: './images/pages/choux/box-4',
+    type: ProductType.Choux,
+    price: 180,
+  },
+  {
+    id: Choux.ChouxMixLarge,
+    imageUrl: './images/pages/choux/box-6',
     type: ProductType.Choux,
     price: 180,
   },
@@ -375,6 +386,62 @@ export const cheesecakes: IProduct[] = [
 ];
 
 export const cakes: [ICakeInfo, ICakeInfo][] = [
+  [
+    {
+      id: Cakes.CarrotStrawberrySmall,
+      fullDescription:
+        'Морковные бисквиты с цедрой апельсина и мукой из грецкого ореха, клубничное конфи и крем с сыром Филадельфия.',
+      shortDescription: '',
+      imageUrl: '/images/pages/cakes/carrot_strawberry',
+      imageCutUrl: '/images/pages/cakes/carrot_strawberry_cut',
+      type: ProductType.Cake,
+      price: 620,
+      weight: 1.2,
+      diameter: 18,
+      persons: '6-8',
+    },
+    {
+      id: Cakes.CarrotStrawberryLarge,
+      fullDescription:
+        'Морковные бисквиты с цедрой апельсина и мукой из грецкого ореха, клубничное конфи и крем с сыром Филадельфия.',
+      shortDescription: '',
+      imageUrl: '/images/pages/cakes/carrot_strawberry',
+      imageCutUrl: '/images/pages/cakes/carrot_strawberry_cut',
+      type: ProductType.Cake,
+      price: 960,
+      weight: 1.8,
+      diameter: 22,
+      persons: '10-12',
+    },
+  ],
+  [
+    {
+      id: Cakes.MedovikSmall,
+      fullDescription:
+        'Тонкие карамельно-медовые бисквиты, крем с топлёной сметаной и солёная карамель.',
+      shortDescription: '',
+      imageUrl: '/images/pages/cakes/medovik',
+      imageCutUrl: '/images/pages/cakes/medovik_cut',
+      type: ProductType.Cake,
+      price: 620,
+      weight: 1.2,
+      diameter: 18,
+      persons: '6-8',
+    },
+    {
+      id: Cakes.MedovikLarge,
+      fullDescription:
+        'Тонкие карамельно-медовые бисквиты, крем с топлёной сметаной и солёная карамель.',
+      shortDescription: '',
+      imageUrl: '/images/pages/cakes/medovik',
+      imageCutUrl: '/images/pages/cakes/medovik_cut',
+      type: ProductType.Cake,
+      price: 960,
+      weight: 1.8,
+      diameter: 22,
+      persons: '10-12',
+    },
+  ],
   [
     {
       id: Cakes.SoulSmall,

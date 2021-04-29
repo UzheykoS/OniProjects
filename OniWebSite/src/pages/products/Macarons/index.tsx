@@ -47,13 +47,28 @@ export function MacaronsPage() {
     constructorReducer,
     initialContstructorState(
       [
-        ConstructoreMode.MacaronSmall,
-        ConstructoreMode.MacaronMedium,
-        ConstructoreMode.MacaronLarge,
+        {
+          type: ConstructoreMode.MacaronSmall,
+          count: 6,
+        },
+        {
+          type: ConstructoreMode.MacaronMedium,
+          count: 12,
+        },
+        {
+          type: ConstructoreMode.MacaronLarge,
+          count: 24,
+        },
       ],
       editItem
-        ? getConstructorMode(editItem.product, ConstructoreMode.MacaronSmall)
-        : ConstructoreMode.MacaronSmall
+        ? getConstructorMode(editItem.product, {
+            type: ConstructoreMode.MacaronSmall,
+            count: 6,
+          })
+        : {
+            type: ConstructoreMode.MacaronSmall,
+            count: 6,
+          }
     )
   );
   const isMobile = useMediaQuery(`(max-width: ${BREAKPOINT})`);
@@ -108,11 +123,29 @@ export function MacaronsPage() {
     }
 
     if (mix.id === Macarons.MacaronsMixMedium) {
-      dispatch({ type: 'setMode', mode: ConstructoreMode.MacaronMedium });
+      dispatch({
+        type: 'setMode',
+        mode: {
+          type: ConstructoreMode.MacaronMedium,
+          count: 12,
+        },
+      });
     } else if (mix.id === Macarons.MacaronsMixLarge) {
-      dispatch({ type: 'setMode', mode: ConstructoreMode.MacaronLarge });
+      dispatch({
+        type: 'setMode',
+        mode: {
+          type: ConstructoreMode.MacaronLarge,
+          count: 24,
+        },
+      });
     } else if (mix.id === Macarons.MacaronsMixSmall) {
-      dispatch({ type: 'setMode', mode: ConstructoreMode.MacaronSmall });
+      dispatch({
+        type: 'setMode',
+        mode: {
+          type: ConstructoreMode.MacaronSmall,
+          count: 6,
+        },
+      });
     }
     if (!isMobile) {
       setExpanded(true);

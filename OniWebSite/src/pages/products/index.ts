@@ -1,6 +1,9 @@
 import { IBasketItem } from '@hooks/useBasket';
 import { IProduct, Macarons, Choux, Zephyr } from '@constants/products';
-import { ConstructoreMode } from '@components/Constructor/Constructor';
+import {
+  ConstructoreMode,
+  IConstructoreMode,
+} from '@components/Constructor/Constructor';
 
 export interface ILocationStateProps {
   editItem?: IBasketItem;
@@ -9,23 +12,49 @@ export interface ILocationStateProps {
 
 export function getConstructorMode(
   product: IProduct,
-  defaultMode: ConstructoreMode
-) {
+  defaultMode: IConstructoreMode
+): IConstructoreMode {
   switch (product.id) {
     case Macarons.MacaronsMixSmall:
-      return ConstructoreMode.MacaronSmall;
+      return {
+        type: ConstructoreMode.MacaronSmall,
+        count: 6,
+      };
     case Macarons.MacaronsMixMedium:
-      return ConstructoreMode.MacaronMedium;
+      return {
+        type: ConstructoreMode.MacaronMedium,
+        count: 12,
+      };
     case Macarons.MacaronsMixLarge:
-      return ConstructoreMode.MacaronLarge;
+      return {
+        type: ConstructoreMode.MacaronLarge,
+        count: 24,
+      };
     case Choux.ChouxMixSmall:
-      return ConstructoreMode.ChouxSmall;
+      return {
+        type: ConstructoreMode.ChouxSmall,
+        count: 2,
+      };
+    case Choux.ChouxMixMedium:
+      return {
+        type: ConstructoreMode.ChouxMedium,
+        count: 4,
+      };
     case Choux.ChouxMixLarge:
-      return ConstructoreMode.ChouxMedium;
+      return {
+        type: ConstructoreMode.ChouxLarge,
+        count: 6,
+      };
     case Zephyr.ZephyrMixSmall:
-      return ConstructoreMode.ZephyrSmall;
+      return {
+        type: ConstructoreMode.ZephyrSmall,
+        count: 8,
+      };
     case Zephyr.ZephyrMixLarge:
-      return ConstructoreMode.ZephyrMedium;
+      return {
+        type: ConstructoreMode.ZephyrMedium,
+        count: 16,
+      };
     default:
       return defaultMode;
   }

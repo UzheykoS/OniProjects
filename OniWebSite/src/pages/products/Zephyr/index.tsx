@@ -46,10 +46,25 @@ export function ZephyrPage() {
   const [state, dispatch] = useReducer(
     constructorReducer,
     initialContstructorState(
-      [ConstructoreMode.ZephyrSmall, ConstructoreMode.ZephyrMedium],
+      [
+        {
+          type: ConstructoreMode.ZephyrSmall,
+          count: 8,
+        },
+        {
+          type: ConstructoreMode.ZephyrMedium,
+          count: 16,
+        },
+      ],
       editItem
-        ? getConstructorMode(editItem.product, ConstructoreMode.ZephyrSmall)
-        : ConstructoreMode.ZephyrSmall
+        ? getConstructorMode(editItem.product, {
+            type: ConstructoreMode.ZephyrSmall,
+            count: 8,
+          })
+        : {
+            type: ConstructoreMode.ZephyrSmall,
+            count: 8,
+          }
     )
   );
   const isMobile = useMediaQuery(`(max-width: ${BREAKPOINT})`);
@@ -99,9 +114,21 @@ export function ZephyrPage() {
     }
 
     if (mix.id === Zephyr.ZephyrMixSmall) {
-      dispatch({ type: 'setMode', mode: ConstructoreMode.ZephyrSmall });
+      dispatch({
+        type: 'setMode',
+        mode: {
+          type: ConstructoreMode.ZephyrSmall,
+          count: 8,
+        },
+      });
     } else if (mix.id === Zephyr.ZephyrMixLarge) {
-      dispatch({ type: 'setMode', mode: ConstructoreMode.ZephyrMedium });
+      dispatch({
+        type: 'setMode',
+        mode: {
+          type: ConstructoreMode.ZephyrMedium,
+          count: 16,
+        },
+      });
     }
     if (!isMobile) {
       setExpanded(true);
@@ -198,7 +225,7 @@ export function ZephyrPage() {
             onClick={handleZephyrMixClick}
             pictureStyle={{
               height: 'auto',
-              width: '260px',
+              width: '162px',
               marginBottom: isMobile ? '10px' : '20px',
               justifyContent: 'center',
               flexDirection: 'column',

@@ -67,7 +67,7 @@ export function BasketItemMobile({
               supports ? `${product.imageUrl}.webp` : `${product.imageUrl}.jpg`
             }
           />
-          <Typography variant='body1'>
+          <Typography variant='body1' style={{ paddingLeft: 6 }}>
             <b>{product.type}</b> {product.id}{' '}
             {product.type === ProductType.Cake
               ? `${

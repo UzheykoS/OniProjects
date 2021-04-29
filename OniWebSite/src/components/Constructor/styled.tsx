@@ -7,6 +7,7 @@ import {
   Typography,
   Dialog,
   Chip,
+  Popover,
 } from '@material-ui/core';
 import colors from '@constants/colors';
 import React from 'react';
@@ -168,7 +169,7 @@ export const ConstructorGridItemWrapper = styled.div<
       ? `width: 74px; height: 74px;`
       : size === 'medium'
       ? `width: 100px; height: 100px; `
-      : `width: 150px; height: 150px; `};
+      : `width: 150px; height: 150px; margin: 3px 2px;`};
 
   ${({ removeEnabled }) => removeEnabled && `cursor: pointer;`};
 `;
@@ -243,5 +244,23 @@ export const ChipStyled = styled(Chip).attrs({
   &.outlinedSecondary {
     background-color: ${colors.primary.white};
     color: ${colors.primary.black};
+  }
+`;
+
+export const StyledHoverablePopover = styled(Popover).attrs({
+  classes: {
+    root: 'root',
+    paper: 'paper',
+  },
+})`
+  &.root {
+    pointer-events: none;
+  }
+  .paper {
+    width: auto;
+    padding: 16px;
+    box-sizing: border-box;
+    pointer-events: auto; // need to follow pattern with hover over interactive content
+    font-family: 'Manrope';
   }
 `;

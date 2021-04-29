@@ -11,7 +11,7 @@ export function submitOrder(order: IOrder) {
     timeout: 1000,
     headers: { 'Content-type': 'application/json; charset=utf-8' },
   });
-  return;
+  // return;
   return instance.post('sendWebOrder', JSON.stringify(order));
 }
 

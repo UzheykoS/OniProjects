@@ -41,10 +41,12 @@ export function ConstructorContainer({
   };
 
   useEffect(() => {
-    setIsLargeFont(true);
-    setTimeout(() => {
-      setIsLargeFont(false);
-    }, 100);
+    if (rest.state.items.length || rest.state.randomItems.length) {
+      setIsLargeFont(true);
+      setTimeout(() => {
+        setIsLargeFont(false);
+      }, 100);
+    }
   }, [rest.state.items.length, rest.state.randomItems.length]);
 
   useEffect(() => {

@@ -1,4 +1,4 @@
-import React, { useCallback, useState, useEffect } from 'react';
+import React, { useCallback, useState, useEffect, useMemo } from 'react';
 import {
   ConstructorWrapper,
   ModeSelectWrapper,
@@ -12,10 +12,11 @@ import {
   Typography,
   Button as MUIButton,
   useMediaQuery,
+  ClickAwayListener,
 } from '@material-ui/core';
 import DeleteOutlinedIcon from '@material-ui/icons/DeleteOutlined';
 import { Button } from '@common/Button';
-import { ConstructorGridItem } from './ConstructorGridItem';
+import ConstructorGridItem from './ConstructorGridItem';
 import { useBasket, IBasketItem } from '@hooks/useBasket';
 import { IProduct, macaronMix, chouxMix, zephyrMix } from '@constants/products';
 // import ConstructorClearModal from './ConstructorClearModal';
@@ -24,6 +25,8 @@ import { getRandomDessert } from '@utils/Helper';
 import { Flex } from '@styles/styled';
 import { useSnackbar, SnackbarType } from '@hooks/useSnackbar';
 import { BREAKPOINT } from '@constants';
+import usePopover from './usePopover';
+import HoverablePopover from './HoverablePopover';
 
 export enum ConstructoreMode {
   MacaronSmall = 6,
@@ -33,11 +36,17 @@ export enum ConstructoreMode {
   ChouxMedium = 4,
   ZephyrSmall = 8,
   ZephyrMedium = 16,
+  ChouxLarge,
+}
+
+export interface IConstructoreMode {
+  type: ConstructoreMode;
+  count: number;
 }
 
 interface IConstructorState {
-  availableModes: ConstructoreMode[];
-  mode: ConstructoreMode;
+  availableModes: IConstructoreMode[];
+  mode: IConstructoreMode;
   items: IProduct[];
   randomItems: IProduct[];
   error?: string;
@@ -45,7 +54,7 @@ interface IConstructorState {
 
 type ActionType = {
   type: 'setMode' | 'add' | 'remove' | 'clear' | 'surpriseMe' | 'clearError';
-  mode?: ConstructoreMode;
+  mode?: IConstructoreMode;
   item?: IProduct;
   index?: number;
 };
@@ -58,8 +67,8 @@ export class ConstructorError extends Error {
 }
 
 export const initialContstructorState = (
-  availableModes: ConstructoreMode[],
-  mode: ConstructoreMode
+  availableModes: IConstructoreMode[],
+  mode: IConstructoreMode
 ): IConstructorState => {
   return {
     availableModes,
@@ -85,8 +94,11 @@ export function constructorReducer(
         throw new ConstructorError('Attempt to add empty item');
       }
       let newState = { ...state };
-      if (state.items.length + state.randomItems.length === state.mode) {
-        const modeIndex = state.availableModes.indexOf(state.mode);
+      if (state.items.length + state.randomItems.length === state.mode.count) {
+        const modeIndex = state.availableModes.findIndex(
+          m => m.count === state.mode.count
+        );
+
         if (modeIndex === state.availableModes.length - 1) {
           return {
             ...newState,
@@ -119,8 +131,8 @@ export function constructorReducer(
     case 'surpriseMe':
       const { items, mode } = state;
       const randomItems = [];
-      for (let i = items.length; i < mode; i++) {
-        randomItems.push(getRandomDessert(mode));
+      for (let i = items.length; i < mode.count; i++) {
+        randomItems.push(getRandomDessert(mode.type));
       }
       return { ...state, randomItems };
     default:
@@ -178,9 +190,11 @@ export function Constructor({
 
     const allItems = [...state.items, ...state.randomItems];
     const contents =
-      state.mode < allItems.length ? allItems.slice(0, state.mode) : allItems;
+      state.mode.count < allItems.length
+        ? allItems.slice(0, state.mode.count)
+        : allItems;
 
-    switch (state.mode) {
+    switch (state.mode.type) {
       case ConstructoreMode.MacaronSmall:
         addToBasket({
           product: {
@@ -222,6 +236,13 @@ export function Constructor({
           contents,
         });
         break;
+      case ConstructoreMode.ChouxLarge:
+        addToBasket({
+          product: chouxMix[2],
+          quantity: 1,
+          contents,
+        });
+        break;
       case ConstructoreMode.ZephyrSmall:
         addToBasket({
           product: {
@@ -250,7 +271,7 @@ export function Constructor({
 
   const isValid = () => {
     const isNotFull =
-      state.items.length + state.randomItems.length < state.mode;
+      state.items.length + state.randomItems.length < state.mode.count;
     if (isNotFull) {
       setErrorMessage('Соберите полный набор');
     } else {
@@ -263,7 +284,7 @@ export function Constructor({
     setErrorMessage('');
   }, [state.items.length]);
 
-  const handleModeSelect = (m: ConstructoreMode) => {
+  const handleModeSelect = (m: IConstructoreMode) => {
     dispatch({ type: 'setMode', mode: m });
   };
 
@@ -280,7 +301,7 @@ export function Constructor({
   };
 
   const handleSurpriseMeClick = () => {
-    if (state.items.length === state.mode) {
+    if (state.items.length === state.mode.count) {
       setShowSurpriseMe(true);
     } else {
       surpriseMe();
@@ -306,26 +327,29 @@ export function Constructor({
     dispatch({ type: 'remove', index });
   };
 
-  const handleMobileItemClick = (index?: number) => {
-    if (index === undefined) {
-      setActiveItem(undefined);
-    } else if (index === activeItem) {
-      dispatch({ type: 'remove', index });
-      setActiveItem(undefined);
-    } else {
-      setActiveItem(index);
-    }
-  };
+  const handleMobileItemClick = useCallback(
+    (index?: number) => {
+      if (index === undefined) {
+        setActiveItem(undefined);
+      } else if (index === activeItem) {
+        dispatch({ type: 'remove', index });
+        setActiveItem(undefined);
+      } else {
+        setActiveItem(index);
+      }
+    },
+    [activeItem]
+  );
 
-  const constructorGridContent = () => {
+  const constructorGridContent = useMemo(() => {
     let result: JSX.Element[] = [];
     const itemsCollection = [...state.items, ...state.randomItems];
-    for (let i = 0; i < state.mode; i++) {
+    for (let i = 0; i < state.mode.count; i++) {
       const item = itemsCollection[i];
       result.push(
         <ConstructorGridItem
           key={i}
-          mode={state.mode}
+          mode={state.mode.type}
           item={item}
           index={i}
           isActive={i === activeItem}
@@ -335,15 +359,25 @@ export function Constructor({
     }
 
     return result;
-  };
+  }, [isMobile, activeItem, state]);
+
+  const {
+    PopoverContext,
+    popoverOpened,
+    handlePopoverOpen,
+    handlePopoverClose,
+    handleAddContent,
+    popoverAnchor,
+    popoverContent,
+  } = usePopover();
 
   return (
     <>
       <ConstructorWrapper
         size={
-          state.mode === ConstructoreMode.MacaronLarge
+          state.mode.type === ConstructoreMode.MacaronLarge
             ? 'small'
-            : state.mode === ConstructoreMode.ChouxSmall
+            : state.mode.type === ConstructoreMode.ChouxSmall
             ? 'large'
             : 'medium'
         }
@@ -352,12 +386,14 @@ export function Constructor({
           <div>
             {state.availableModes.map(mode => (
               <ChipStyled
-                key={mode}
+                key={mode.type}
                 clickable
                 color='secondary'
-                label={mode}
+                label={mode.count}
                 style={{ width: '50px', margin: '0px 5px' }}
-                variant={state.mode === mode ? 'outlined' : 'default'}
+                variant={
+                  state.mode.count === mode.count ? 'outlined' : 'default'
+                }
                 onClick={() => handleModeSelect(mode)}
               />
             ))}
@@ -409,9 +445,27 @@ export function Constructor({
             </MUIButton>
           </Flex>
         </Flex>
-        <ConstructorGridWrapper>
-          {constructorGridContent()}
-        </ConstructorGridWrapper>
+        <ClickAwayListener
+          onClickAway={() => {
+            handlePopoverClose();
+            setActiveItem(undefined);
+          }}
+        >
+          <ConstructorGridWrapper>
+            <PopoverContext
+              value={{
+                handlePopoverOpen,
+                handlePopoverClose,
+                handleAddContent,
+                popoverAnchor,
+                popoverOpened,
+                popoverContent,
+              }}
+            >
+              {constructorGridContent}
+            </PopoverContext>
+          </ConstructorGridWrapper>
+        </ClickAwayListener>
         <CenteredRow>
           <Flex direction='column' style={{ width: '100%' }}>
             <SurpriseMe
@@ -478,6 +532,13 @@ export function Constructor({
           </CenteredRow>
         )}
       </ConstructorWrapper>
+      <HoverablePopover
+        handlePopoverOpen={handlePopoverOpen}
+        handlePopoverClose={handlePopoverClose}
+        popoverAnchor={popoverAnchor}
+        popoverOpened={popoverOpened}
+        content={popoverContent}
+      />
       {/* {!isMobile && (
         <ConstructorClearModal
           confirmClear={handleClear}

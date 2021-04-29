@@ -46,10 +46,29 @@ export function ChouxPage() {
   const [state, dispatch] = useReducer(
     constructorReducer,
     initialContstructorState(
-      [ConstructoreMode.ChouxSmall, ConstructoreMode.ChouxMedium],
+      [
+        {
+          type: ConstructoreMode.ChouxSmall,
+          count: 2,
+        },
+        {
+          type: ConstructoreMode.ChouxMedium,
+          count: 4,
+        },
+        {
+          type: ConstructoreMode.ChouxLarge,
+          count: 6,
+        },
+      ],
       editItem
-        ? getConstructorMode(editItem.product, ConstructoreMode.ChouxSmall)
-        : ConstructoreMode.ChouxSmall
+        ? getConstructorMode(editItem.product, {
+            type: ConstructoreMode.ChouxSmall,
+            count: 2,
+          })
+        : {
+            type: ConstructoreMode.ChouxSmall,
+            count: 2,
+          }
     )
   );
   const isMobile = useMediaQuery(`(max-width: ${BREAKPOINT})`);
@@ -112,9 +131,29 @@ export function ChouxPage() {
     }
 
     if (mix.id === Choux.ChouxMixSmall) {
-      dispatch({ type: 'setMode', mode: ConstructoreMode.ChouxSmall });
+      dispatch({
+        type: 'setMode',
+        mode: {
+          type: ConstructoreMode.ChouxSmall,
+          count: 2,
+        },
+      });
+    } else if (mix.id === Choux.ChouxMixMedium) {
+      dispatch({
+        type: 'setMode',
+        mode: {
+          type: ConstructoreMode.ChouxMedium,
+          count: 4,
+        },
+      });
     } else if (mix.id === Choux.ChouxMixLarge) {
-      dispatch({ type: 'setMode', mode: ConstructoreMode.ChouxMedium });
+      dispatch({
+        type: 'setMode',
+        mode: {
+          type: ConstructoreMode.ChouxLarge,
+          count: 6,
+        },
+      });
     }
     if (!isMobile) {
       setExpanded(true);
@@ -186,10 +225,9 @@ export function ChouxPage() {
         <FlexColumn>
           <DessertsMix
             size='small'
-            imageHeight={130}
+            imageHeight={250}
             pictureStyle={{
               alignItems: 'center',
-              height: isMobile ? undefined : 270,
             }}
             product={chouxMix[0]}
             onClick={handleChouxMixClick}
@@ -200,6 +238,14 @@ export function ChouxPage() {
             size='small'
             imageHeight={250}
             product={chouxMix[1]}
+            onClick={handleChouxMixClick}
+          />
+        </FlexColumn>
+        <FlexColumn>
+          <DessertsMix
+            size='small'
+            imageHeight={250}
+            product={chouxMix[2]}
             onClick={handleChouxMixClick}
           />
         </FlexColumn>

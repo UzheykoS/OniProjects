@@ -17,7 +17,6 @@ module.exports = env => {
     INSTAGRAM_ACCESS_TOKEN,
     GOOGLE_API_KEY,
   } = env;
-
   return merge([
     {
       entry: ['react-hot-loader/patch', '@babel/polyfill', APP_DIR],

@@ -63,6 +63,7 @@ export function getRandomDessert(mode: ConstructoreMode) {
   switch (mode) {
     case ConstructoreMode.ChouxSmall:
     case ConstructoreMode.ChouxMedium:
+    case ConstructoreMode.ChouxLarge:
       return choux[Math.floor(Math.random() * choux.length)];
     case ConstructoreMode.ZephyrSmall:
     case ConstructoreMode.ZephyrMedium:
@@ -75,6 +76,18 @@ export function getRandomDessert(mode: ConstructoreMode) {
   }
 }
 
+export function formatDate(date: string) {
+  var d = new Date(date),
+    month = '' + (d.getMonth() + 1),
+    day = '' + d.getDate(),
+    year = d.getFullYear();
+
+  if (month.length < 2) month = '0' + month;
+  if (day.length < 2) day = '0' + day;
+
+  return [year, month, day].join('-');
+}
+
 export function formatMessage(items: IBasketItem[]) {
   const itemsMessage = items.reduce((acc, item) => {
     acc += `${item.product.type}: ${
@@ -83,7 +96,11 @@ export function formatMessage(items: IBasketItem[]) {
       ) > -1
         ? 'Набор на'
         : ''
-    } ${item.product.id} - ${item.quantity} шт. ${
+    } ${
+      item.product.id.endsWith(' ')
+        ? item.product.id + '(большой)'
+        : item.product.id
+    } - ${item.quantity} шт. ${
       item.contents?.length
         ? `(${item.contents.reduce((contentsAcc, contentItem, index) => {
             contentsAcc +=

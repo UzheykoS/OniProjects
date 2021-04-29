@@ -1,4 +1,10 @@
-import React, { useState } from 'react';
+import React, {
+  memo,
+  SyntheticEvent,
+  useCallback,
+  useMemo,
+  useState,
+} from 'react';
 import { ConstructoreMode } from './Constructor';
 import {
   ConstructorGridItemWrapper,
@@ -8,10 +14,11 @@ import {
 import colors from '@constants/colors';
 import RemoveIcon from '@material-ui/icons/Remove';
 import { IProduct } from '@constants/products';
-import { useMediaQuery } from '@material-ui/core';
+import { Typography, useMediaQuery } from '@material-ui/core';
 import { BREAKPOINT } from '@constants';
 import Zoom from '@material-ui/core/Zoom';
 import { TooltipStyled } from '@common/Tooltip/styled';
+import { usePopoverContext } from './usePopover';
 
 interface IConstructorGridItemProps {
   item?: IProduct;
@@ -21,7 +28,7 @@ interface IConstructorGridItemProps {
   onClick: (index?: number) => void;
 }
 
-export function ConstructorGridItem({
+function ConstructorGridItem({
   item,
   onClick,
   mode,
@@ -31,15 +38,15 @@ export function ConstructorGridItem({
   const [mouseOver, setMouseOver] = useState(false);
   const isMobile = useMediaQuery(`(max-width: ${BREAKPOINT})`);
 
-  const onMouseOver = () => {
+  const onMouseOver = useCallback(() => {
     setMouseOver(true);
-  };
+  }, []);
 
-  const onMouseOut = () => {
+  const onMouseOut = useCallback(() => {
     setMouseOver(false);
-  };
+  }, []);
 
-  const getPlaceholder = () => {
+  const placeholder = useMemo(() => {
     switch (mode) {
       case ConstructoreMode.MacaronSmall:
       case ConstructoreMode.MacaronMedium:
@@ -50,11 +57,58 @@ export function ConstructorGridItem({
         return 'images/pages/zephyr/zephyr_empty';
       case ConstructoreMode.ChouxSmall:
       case ConstructoreMode.ChouxMedium:
+      case ConstructoreMode.ChouxLarge:
         return 'images/pages/choux/choux_empty';
       default:
         return '';
     }
-  };
+  }, [mode]);
+
+  const {
+    handlePopoverOpen,
+    handlePopoverClose,
+    handleAddContent,
+  } = usePopoverContext();
+
+  const mobilePopoverContent = useMemo(
+    () => (
+      <Typography
+        style={{
+          backgroundColor: colors.primary.white,
+          color: colors.primary.black,
+          fontSize: 12,
+        }}
+      >
+        {item ? item.id : 'Тут пока ничего нет'}
+      </Typography>
+    ),
+    [item]
+  );
+
+  const openPopover = useCallback(
+    (event: SyntheticEvent<any>) => {
+      handleAddContent(mobilePopoverContent);
+      handlePopoverOpen(event);
+    },
+    [mobilePopoverContent]
+  );
+
+  const handleMobilePopoverOpen = useCallback(
+    (ev: SyntheticEvent<any>) => {
+      openPopover(ev);
+      onClick(index);
+    },
+    [index, isActive, onClick]
+  );
+
+  const handleMobilePopoverClose = useCallback(() => {
+    handlePopoverClose();
+    onClick();
+  }, [isActive, onClick]);
+
+  const handleRemoveClick = useCallback(() => {
+    onClick(index);
+  }, [isActive, onClick, index]);
 
   if (isMobile) {
     return (
@@ -72,65 +126,50 @@ export function ConstructorGridItem({
         removeEnabled={!!item}
       >
         {item ? (
-          <TooltipStyled
-            TransitionComponent={Zoom}
-            title={item.id}
-            arrow
-            placement={'bottom'}
-            enterTouchDelay={0}
-            leaveTouchDelay={0}
-            open={isActive}
-            onOpen={() => onClick(index)}
-            onClose={() => onClick()}
+          <div
+            onClick={
+              isActive ? handleMobilePopoverClose : handleMobilePopoverOpen
+            }
           >
-            <div>
-              <RemoveIconWrapper
-                visible={isActive}
-                small={
-                  mode === ConstructoreMode.MacaronLarge ||
-                  mode === ConstructoreMode.ZephyrMedium
-                }
-              >
-                <RemoveIcon
-                  style={{
-                    fontSize: 40,
-                    color: colors.primary.white,
-                  }}
-                />
-              </RemoveIconWrapper>
+            <RemoveIconWrapper
+              visible={isActive}
+              small={
+                mode === ConstructoreMode.MacaronLarge ||
+                mode === ConstructoreMode.ZephyrMedium
+              }
+              onClick={handleRemoveClick}
+            >
+              <RemoveIcon
+                style={{
+                  fontSize: 40,
+                  color: colors.primary.white,
+                }}
+              />
+            </RemoveIconWrapper>
 
-              <ImageWrapper
-                style={{ height: '100%', background: colors.primary.white }}
-                src={item.imageUrl}
-              />
-            </div>
-          </TooltipStyled>
+            <ImageWrapper
+              style={{ height: '100%', background: colors.primary.white }}
+              src={item.imageUrl}
+            />
+          </div>
         ) : (
-          <TooltipStyled
-            TransitionComponent={Zoom}
-            title={'Тут пока ничего нет'}
-            arrow
-            placement={'bottom'}
-            enterTouchDelay={0}
-            leaveTouchDelay={0}
-            open={isActive}
-            onOpen={() => onClick(index)}
-            onClose={() => onClick()}
+          <div
+            onClick={
+              isActive ? handleMobilePopoverClose : handleMobilePopoverOpen
+            }
           >
-            <div>
-              <ImageWrapper
-                style={{ height: '100%', background: '#F5F5F5', opacity: 0.5 }}
-                src={getPlaceholder()}
-              />
-            </div>
-          </TooltipStyled>
+            <ImageWrapper
+              style={{ height: '100%', background: '#F5F5F5', opacity: 0.5 }}
+              src={placeholder}
+            />
+          </div>
         )}
       </ConstructorGridItemWrapper>
     );
   }
   return (
     <ConstructorGridItemWrapper
-      onClick={() => onClick(index)}
+      onClick={handleRemoveClick}
       size={
         mode === ConstructoreMode.MacaronLarge ||
         mode === ConstructoreMode.ZephyrMedium
@@ -188,7 +227,7 @@ export function ConstructorGridItem({
           <div>
             <ImageWrapper
               style={{ height: '100%', background: '#F5F5F5', opacity: 0.5 }}
-              src={getPlaceholder()}
+              src={placeholder}
             />
           </div>
         </TooltipStyled>
@@ -196,3 +235,5 @@ export function ConstructorGridItem({
     </ConstructorGridItemWrapper>
   );
 }
+
+export default memo(ConstructorGridItem);

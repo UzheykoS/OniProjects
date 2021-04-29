@@ -24,7 +24,7 @@ import { useSnackbar, SnackbarType } from '@hooks/useSnackbar';
 import { BREAKPOINT } from '@constants';
 import { Flex } from '@styles/styled';
 import { Success } from './Success';
-import { formatMessage } from '@utils/Helper';
+import { formatDate, formatMessage } from '@utils/Helper';
 import { TextLink } from '@common/styled';
 
 enum CheckoutTabs {
@@ -152,9 +152,10 @@ export function CheckoutStepper({
   const handlePaymentSubmit = async (payment: PaymentType) => {
     setForm(initialState);
     const itemsMessage = formatMessage(items);
+    const date = form.date ? formatDate(form.date) : '';
 
     try {
-      await submitOrder({ ...form, payment, itemsMessage });
+      await submitOrder({ ...form, date, payment, itemsMessage });
       setPayment(payment);
       clearBasket();
       setActiveStep(CheckoutSteps.Success);
