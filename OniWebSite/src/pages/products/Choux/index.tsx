@@ -225,7 +225,7 @@ export function ChouxPage() {
         <FlexColumn>
           <DessertsMix
             size='small'
-            imageHeight={250}
+            imageHeight={isMobile ? 180 : 230}
             pictureStyle={{
               alignItems: 'center',
             }}
@@ -236,7 +236,7 @@ export function ChouxPage() {
         <FlexColumn>
           <DessertsMix
             size='small'
-            imageHeight={250}
+            imageHeight={isMobile ? 180 : 230}
             product={chouxMix[1]}
             onClick={handleChouxMixClick}
           />
@@ -244,7 +244,7 @@ export function ChouxPage() {
         <FlexColumn>
           <DessertsMix
             size='small'
-            imageHeight={250}
+            imageHeight={isMobile ? 180 : 230}
             product={chouxMix[2]}
             onClick={handleChouxMixClick}
           />

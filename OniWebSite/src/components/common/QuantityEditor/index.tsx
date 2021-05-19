@@ -31,7 +31,7 @@ const QuantityEditor = ({
       </IconButton>
       <Typography
         variant='body1'
-        style={{ margin: isMobile ? '0 7px' : '0px 20px' }}
+        style={{ margin: isMobile ? '0 10px' : '0px 20px' }}
       >
         {quantity}
       </Typography>

@@ -42,8 +42,11 @@ export function BasketItemMobile({
   function getImageWidth() {
     switch (product.id) {
       case Choux.ChouxMixSmall:
+        return 64;
+      case Choux.ChouxMixMedium:
+        return 120;
       case Choux.ChouxMixLarge:
-        return 140;
+        return 190;
       case Cheesecake.Gorgonzola:
       case Cheesecake.Lemon:
       case Cheesecake.VanillaCaramel:

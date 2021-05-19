@@ -1,7 +1,7 @@
 import React, { FC, useMemo, useState } from 'react';
 import ModalWrapper, { ModalFormProps } from '@components/ModalWrapper';
 import { Typography, useMediaQuery } from '@material-ui/core';
-import { IProduct, ProductType } from '@constants/products';
+import { Choux, IProduct, ProductType } from '@constants/products';
 import { ImageWithFallback } from '@common/ImageWithFallback';
 import { Flex } from '@styles/styled';
 import colors from '@constants/colors';
@@ -64,7 +64,14 @@ const MixSelectModal: FC<IMixSelectModalModalProps> = ({
         <Flex justifyCenter>
           <ImageWithFallback
             src={mix.imageUrl}
-            style={{ width: '210px', height: 'auto', alignItems: 'center' }}
+            style={{
+              width:
+                mix.type === ProductType.Choux && mix.id === Choux.ChouxMixSmall
+                  ? '115px'
+                  : '210px',
+              height: 'auto',
+              alignItems: 'center',
+            }}
           />
         </Flex>
         <Flex

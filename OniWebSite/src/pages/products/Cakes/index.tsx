@@ -66,6 +66,8 @@ export function Cakes() {
         <CakeSingle cakePair={cakes[2]} onClick={handleCakeAdd} />
         <CakeSingle cakePair={cakes[3]} onClick={handleCakeAdd} />
         <CakeSingle cakePair={cakes[4]} onClick={handleCakeAdd} />
+        <CakeSingle cakePair={cakes[5]} onClick={handleCakeAdd} />
+        <CakeSingle cakePair={cakes[6]} onClick={handleCakeAdd} />
       </CakesMenuWrapper>
     </CakesWrapper>
   );
