@@ -8,7 +8,6 @@ export function submitOrder(order: IOrder) {
 
   const instance = axios.create({
     baseURL: process.env.ONI_WEB_SERVER_URL,
-    timeout: 1000,
     headers: { 'Content-type': 'application/json; charset=utf-8' },
   });
   // return;
@@ -22,7 +21,6 @@ export function submitOneClickOrder(order: Partial<IOrder>) {
 
   const instance = axios.create({
     baseURL: process.env.ONI_WEB_SERVER_URL,
-    timeout: 1000,
     headers: { 'Content-type': 'application/json; charset=utf-8' },
   });
   return instance.post('sendWebOrder', JSON.stringify(order));
