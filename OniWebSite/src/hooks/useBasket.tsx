@@ -4,7 +4,7 @@ import React, {
   useReducer,
   useCallback,
 } from 'react';
-import { IProduct, ICakeInfo, DELIVERY_PRICE } from '@constants/products';
+import { IProduct, ICakeInfo } from '@constants/products';
 
 export const BASKET_SESSION_KEY = '__basket_session_key';
 
@@ -174,9 +174,9 @@ const BasketProvider = ({ children }: { children?: React.ReactNode }) => {
     return accumulator;
   }, 0);
 
-  if (state.delivery) {
-    totalPrice += DELIVERY_PRICE;
-  }
+  // if (state.delivery) {
+  //   totalPrice += DELIVERY_PRICE;
+  // }
 
   return (
     <BasketContext.Provider

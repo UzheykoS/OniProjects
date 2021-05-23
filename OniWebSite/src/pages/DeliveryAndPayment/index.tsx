@@ -75,7 +75,7 @@ export function DeliveryAndPayment() {
             </Typography>
             <Typography variant='body1' style={{ marginTop: '1rem' }}>
               Доставляем курьерским такси через нашего партнёра Uklon. Стоимость
-              доставки: до 10 км – 90 грн, больше 10 км – 150 грн. Стоимость
+              доставки: до 11 км – 80 грн, больше 11 км – 120 грн. Стоимость
               доставки за пределы Киева рассчитывается по тарифу Uklon.
             </Typography>
             <Typography variant='body1' style={{ marginTop: '1rem' }}>
@@ -90,7 +90,7 @@ export function DeliveryAndPayment() {
             <Typography variant='body1'>
               Отправляем десерты Новой почтой только в холодное время года –
               температура на улице не выше 10°C. Стоимость доставки – по тарифу
-              перевозчика. Минимальная сумма заказа для доставки – 200 грн.
+              перевозчика. Минимальная сумма заказа для доставки – 400 грн.
             </Typography>
             <Typography
               variant='h3'
@@ -198,7 +198,7 @@ export function DeliveryAndPayment() {
               style={{
                 height: 400,
                 width: 700,
-                top: 450,
+                top: 395,
                 position: 'absolute',
               }}
             >

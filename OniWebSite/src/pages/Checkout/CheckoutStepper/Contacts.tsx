@@ -239,7 +239,7 @@ export function Contacts({
                 }
                 required
                 minDate={
-                  delivery === DeliveryType.Delivery ? tomorrow : new Date()
+                  new Date()
                 }
                 error={!!formErrors.date}
                 helperText={!!formErrors.date ? formErrors.date : ' '}

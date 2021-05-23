@@ -9,13 +9,12 @@ import { Flex } from '@styles/styled';
 import { TotalMobile } from '../styled';
 import { FormHelperText, Typography, useMediaQuery } from '@material-ui/core';
 import { BREAKPOINT } from '@constants';
-import { DELIVERY_PRICE, ProductType } from '@constants/products';
+import { ProductType } from '@constants/products';
 import { IBasketItem } from '@hooks/useBasket';
 
 export enum DeliveryType {
   SelfService = 'Самовывоз',
-  Delivery = 'Доставка курьером по Киеву (80 грн)',
-  Urgent = 'Срочная доставка курьерским такси (по тарифу перевозчика)',
+  Delivery = 'Доставка по Киеву курьерским такси Uklon',
   NP = 'Доставка Новой почтой (по тарифу перевозчика)',
 }
 
@@ -42,7 +41,7 @@ export function Delivery({
       setErrorMessage(
         delivery === DeliveryType.SelfService
           ? ''
-          : 'Минимальная сумма заказа для доставки составляет 200 грн'
+          : 'Минимальная сумма заказа для доставки составляет 400 грн'
       );
     } else {
       const containsForbiddenItems = items.reduce(
@@ -99,19 +98,7 @@ export function Delivery({
               <Flex direction='column' style={{ margin: '3px 0' }}>
                 {DeliveryType.Delivery}
                 <Typography variant='body2'>
-                  Возможна на следующий день
-                </Typography>
-              </Flex>
-            }
-          />
-          <FormControlLabel
-            value={DeliveryType.Urgent}
-            control={<Radio />}
-            label={
-              <Flex direction='column' style={{ margin: '3px 0' }}>
-                {DeliveryType.Urgent}
-                <Typography variant='body2'>
-                  Возможна в течение часа при условии наличия выбранных десертов
+                  Стоимость доставки: до 11 км – 80 грн, больше 11 км – 120 грн
                 </Typography>
               </Flex>
             }
@@ -138,11 +125,12 @@ export function Delivery({
       <Flex justifyBetween>
         <Flex style={{ alignItems: 'center' }}>
           <TotalMobile>Итого:</TotalMobile>
-          <Typography variant='h2' style={{ fontSize: 21 }}>{`${
-            delivery === DeliveryType.Delivery
-              ? totalPrice + DELIVERY_PRICE
-              : totalPrice
-          } грн`}</Typography>
+          <Typography
+            variant='h2'
+            style={{ fontSize: 21 }}
+          >{`${totalPrice} грн${
+            delivery === DeliveryType.Delivery ? ' + доставка' : ''
+          }`}</Typography>
         </Flex>
         <Button
           rounded

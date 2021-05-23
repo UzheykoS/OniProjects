@@ -188,7 +188,7 @@ export function NavBar() {
       <LogoLink style={{ padding: '10px 0' }}>
         <Link to={routes[Pages.Main]!.path}>
           <Logo
-            src='/images/icons/Oni_w_black.png'
+            src='/images/logo_black.png'
             height={50}
             whiteMode={currentPage === Pages.Main}
           />

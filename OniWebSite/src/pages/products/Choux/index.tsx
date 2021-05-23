@@ -108,7 +108,11 @@ export function ChouxPage() {
   };
 
   const handleChouxMixClick = (item: IProduct) => {
-    setSelectedMix(item);
+    if (item.id === Choux.ChouxMixSmall) {
+      setSelectedMix({ ...item, imageUrl: item.imageUrl + '-rotated' });
+    } else {
+      setSelectedMix(item);
+    }
   };
 
   const handleChouxMixConfirm = (quantity: number) => {
@@ -225,9 +229,10 @@ export function ChouxPage() {
         <FlexColumn>
           <DessertsMix
             size='small'
-            imageHeight={isMobile ? 180 : 230}
+            imageHeight={isMobile ? 180 : 200}
             pictureStyle={{
               alignItems: 'center',
+              marginBottom: '10px',
             }}
             product={chouxMix[0]}
             onClick={handleChouxMixClick}
@@ -236,17 +241,23 @@ export function ChouxPage() {
         <FlexColumn>
           <DessertsMix
             size='small'
-            imageHeight={isMobile ? 180 : 230}
+            imageHeight={isMobile ? 180 : 200}
             product={chouxMix[1]}
             onClick={handleChouxMixClick}
+            pictureStyle={{
+              marginBottom: '10px',
+            }}
           />
         </FlexColumn>
         <FlexColumn>
           <DessertsMix
             size='small'
-            imageHeight={isMobile ? 180 : 230}
+            imageHeight={isMobile ? 180 : 200}
             product={chouxMix[2]}
             onClick={handleChouxMixClick}
+            pictureStyle={{
+              marginBottom: '10px',
+            }}
           />
         </FlexColumn>
       </FlexRow>

@@ -224,7 +224,10 @@ export function Constructor({
         break;
       case ConstructoreMode.ChouxSmall:
         addToBasket({
-          product: chouxMix[0],
+          product: {
+            ...chouxMix[0],
+            imageUrl: chouxMix[0].imageUrl + '-rotated',
+          },
           quantity: 1,
           contents,
         });

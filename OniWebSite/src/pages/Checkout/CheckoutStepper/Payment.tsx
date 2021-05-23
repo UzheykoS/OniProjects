@@ -46,8 +46,6 @@ export function Payment({
       case DeliveryType.SelfService:
         return 'При получении: наличными или терминалом';
       case DeliveryType.Delivery:
-        return 'Наличными при получении';
-      case DeliveryType.Urgent:
       case DeliveryType.NP:
       default:
         return '';
@@ -73,7 +71,7 @@ export function Payment({
               </Flex>
             }
           />
-          {[DeliveryType.Delivery, DeliveryType.SelfService].indexOf(delivery) >
+          {[DeliveryType.SelfService].indexOf(delivery) >
             -1 && (
             <FormControlLabel
               value={PaymentType.Cash}

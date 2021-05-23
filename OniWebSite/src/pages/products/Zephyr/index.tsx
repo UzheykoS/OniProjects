@@ -225,7 +225,7 @@ export function ZephyrPage() {
             onClick={handleZephyrMixClick}
             pictureStyle={{
               height: 'auto',
-              width: '162px',
+              width: isMobile ? '258px' : '162px',
               marginBottom: isMobile ? '10px' : '20px',
               justifyContent: 'center',
               flexDirection: 'column',
