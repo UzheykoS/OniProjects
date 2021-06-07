@@ -58,6 +58,7 @@ export function About() {
                   height: 'auto',
                   objectFit: 'cover',
                   textAlign: 'center',
+                  maxWidth: '500px',
                 }}
               />
             )}
@@ -187,10 +188,11 @@ export function About() {
             <ImageWithFallback
               src='./images/pages/about/about_9'
               style={{
-                width: isMobile ? '100%' : '710px',
-                height: isMobile ? 'auto' : '320px',
+                width: '100%',
+                height: 'auto',
                 objectFit: 'cover',
-                marginTop: isMobile ? '1rem' : '2rem',
+                marginTop: '1rem',
+                maxWidth: '500px',
               }}
             />
           )}
@@ -258,6 +260,7 @@ export function About() {
                   width: '100%',
                   objectFit: 'cover',
                   textAlign: 'center',
+                  maxWidth: '500px',
                 }}
               />
             </>

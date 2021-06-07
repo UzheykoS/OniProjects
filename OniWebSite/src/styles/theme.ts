@@ -37,7 +37,7 @@ const theme = createMuiTheme({
       fontWeight: 500,
       whiteSpace: 'pre-line',
       fontSize: '4rem',
-      '@media (max-width:1224px)': {
+      '@media (max-width:1023px)': {
         fontSize: '26px',
         lineHeight: '38px',
       },
@@ -48,7 +48,7 @@ const theme = createMuiTheme({
       letterSpacing: '5px',
       color: colors.secondary.gold,
       fontSize: '1rem',
-      '@media (max-width:1224px)': {
+      '@media (max-width:1023px)': {
         fontSize: '13px',
       },
     },
@@ -57,7 +57,7 @@ const theme = createMuiTheme({
       fontWeight: 400,
       fontSize: 16,
       whiteSpace: 'pre-line',
-      '@media (max-width:1224px)': {
+      '@media (max-width:1023px)': {
         // fontSize: 12,
         // lineHeight: '19px',
       },

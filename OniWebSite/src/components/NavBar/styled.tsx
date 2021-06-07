@@ -106,7 +106,7 @@ export const RoutesListItem = styled.li<IRoutesListItem>`
 `;
 
 export const LogoLink = styled(RoutesListItem as any)`
-  margin: 0px 150px;
+  margin-left: 150px;
   @media (max-width: ${BREAKPOINT}) {
     margin: 0;
   }
@@ -136,7 +136,7 @@ export const RoutesWrapper = styled.div`
 
 export const RightSide = styled.div`
   display: flex;
-  margin: 0px 150px;
+  margin: 0px 150px 0 0;
   align-self: center;
 `;
 

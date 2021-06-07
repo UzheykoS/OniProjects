@@ -1,4 +1,4 @@
-export const BREAKPOINT = '1224px';
+export const BREAKPOINT = '1025px';
 export const BREAKPOINT_XL = '1600px';
 export const DATE_FORMAT = 'dd/MM/yyyy';
 export const TIME_FOMAT = '00:00';

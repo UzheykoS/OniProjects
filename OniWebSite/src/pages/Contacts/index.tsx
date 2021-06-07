@@ -52,10 +52,11 @@ export function Contacts() {
               <ImageWithFallback
                 src='./images/pages/about/hire'
                 style={{
-                  width: isMobile ? '100%' : '710px',
-                  height: isMobile ? 'auto' : '320px',
+                  width: '100%',
+                  height: 'auto',
                   objectFit: 'cover',
                   marginTop: '2rem',
+                  maxWidth: '500px',
                 }}
               />
             )}
@@ -71,7 +72,10 @@ export function Contacts() {
                   <IconWrapper>
                     <LocationIcon />
                   </IconWrapper>
-                  <LinkWrapper href='https://goo.gl/maps/61G5oKAfPiXo6cU18' target='_blank'>
+                  <LinkWrapper
+                    href='https://goo.gl/maps/61G5oKAfPiXo6cU18'
+                    target='_blank'
+                  >
                     Киев, бульвар Вацлава Гавела, 9А
                   </LinkWrapper>
                 </TextWrapper>

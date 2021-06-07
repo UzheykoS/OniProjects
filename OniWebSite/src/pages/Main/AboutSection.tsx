@@ -64,6 +64,7 @@ export function AboutSection({ isMobile }: IMainPageSectionProps) {
                 objectFit: 'cover',
                 textAlign: 'center',
                 paddingTop: '2rem',
+                maxWidth: '500px',
               }}
             />
           </AboutTextSectionMobile>

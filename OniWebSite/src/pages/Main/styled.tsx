@@ -84,7 +84,7 @@ export const AboutImageSectionMobile = styled.div`
 export const ImagesContainer = styled.div`
   margin-bottom: 70px;
   width: 100%;
-  height: 680px;
+  height: 800px;
   object-fit: cover;
   display: flex;
   justify-content: center;
@@ -121,6 +121,8 @@ export const BackgroundImage = styled.img<IBackgroundImage>`
           : `
         top: -87px;
         left: 0;
+        object-fit: cover;
+        min-height: 900px;
         `
       }
    `};
