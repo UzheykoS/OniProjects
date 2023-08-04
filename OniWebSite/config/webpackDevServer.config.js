@@ -2,9 +2,8 @@
 
 const errorOverlayMiddleware = require('react-dev-utils/errorOverlayMiddleware');
 const noopServiceWorkerMiddleware = require('react-dev-utils/noopServiceWorkerMiddleware');
-const config = require('../../../../EmergeTMS/brokeragetms-frontend/config/webpack.config.dev');
-const paths = require('../../../../EmergeTMS/brokeragetms-frontend/config/paths');
-const configValues = require('../../../../EmergeTMS/brokeragetms-frontend/config/configValues');
+const config = require('./webpack.config');
+const paths = require('./paths');
 
 const protocol = process.env.HTTPS === 'true' ? 'https' : 'http';
 const host = process.env.HOST || '0.0.0.0';
@@ -59,7 +58,7 @@ module.exports = function(proxy, allowedHost) {
     hot: true,
     // It is important to tell WebpackDevServer to use the same "root" path
     // as we specified in the config. In development, we always serve from /.
-    publicPath: config.output.publicPath,
+    // publicPath: config.output.publicPath,
     // WebpackDevServer is noisy by default so we emit custom message instead
     // by listening to the compiler events with `compiler.plugin` calls above.
     quiet: true,
